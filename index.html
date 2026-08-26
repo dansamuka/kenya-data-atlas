@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kenya Data Atlas static MVP — explore places, compare indicators and follow the evidence.">
+  <meta name="theme-color" content="#123c32">
+  <title>Kenya Data Atlas — Understand Kenya through data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="demo-banner"><span>Demonstration prototype</span> Figures are illustrative unless explicitly marked as sourced examples.</div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Kenya Data Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Kenya <b>Data Atlas</b></span></a>
+    <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <nav id="main-nav" aria-label="Main navigation">
+      <a href="#explore">Explore</a><a href="#compare">Compare</a><a href="#rankings">Rankings</a><a href="#series">Series</a><a href="#catalogue">Data</a>
+    </nav>
+    <button class="header-search" data-focus-search aria-label="Open search">⌕ <span>Search</span></button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">One country · every place · traceable evidence</p>
+        <h1>Understand Kenya.<br><em>Place by place.</em></h1>
+        <p class="hero-intro">Explore public data from Kenya to county, constituency and ward—then compare places, follow trends and inspect every source.</p>
+        <div class="search-shell" role="search">
+          <label for="atlas-search">Search Kenya</label>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input id="atlas-search" autocomplete="off" placeholder="County, constituency, ward or indicator…" aria-describedby="search-help"><kbd>⌘ K</kbd></div>
+          <div class="search-results" id="search-results" role="listbox" hidden></div>
+          <p id="search-help">Try <button data-search="Nakuru">Nakuru</button>, <button data-search="Kaimbaga">Kaimbaga Ward</button> or <button data-search="Inflation">Inflation</button></p>
+        </div>
+        <div class="hierarchy" aria-label="Geographic hierarchy"><span>Kenya</span><b>→</b><span>47 counties</span><b>→</b><span>290 constituencies</span><b>→</b><span>1,450 wards</span></div>
+      </div>
+      <aside class="pulse-card" aria-label="Kenya pulse featured indicator">
+        <div class="pulse-top"><span class="live-dot"></span> Kenya pulse <button class="icon-button" aria-label="More information" data-toast="Values in this prototype are clearly labelled demo data.">i</button></div>
+        <p class="metric-label">Consumer price inflation</p><div class="feature-value">4.6<span>%</span></div>
+        <div class="trend"><span>↓ 0.3 pp</span> from previous period</div>
+        <div class="sparkline" aria-label="Illustrative inflation trend from January to July"><i style="height:62%"></i><i style="height:54%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:48%"></i><i style="height:45%"></i><i style="height:38%"></i></div>
+        <dl><div><dt>Reference period</dt><dd>July 2026</dd></div><div><dt>Source</dt><dd>Demo · KNBS-style</dd></div></dl>
+        <button class="text-link" data-series="inflation">Open series <span>→</span></button>
+      </aside>
+    </section>
+
+    <section class="section pulse-section" id="explore">
+      <div class="section-heading"><div><p class="eyebrow">Kenya at a glance</p><h2>The national pulse</h2></div><p>Key signals in one calm view. Every figure carries its period, source and quality status.</p></div>
+      <div class="metric-grid" id="pulse-grid"></div>
+    </section>
+
+    <section class="map-section section">
+      <div class="map-copy">
+        <p class="eyebrow">Explore the country</p><h2>Start with a place</h2>
+        <p>Move from the national picture to local context. This schematic map demonstrates county selection without implying precise boundaries.</p>
+        <label class="select-label">Map indicator<select id="map-indicator"><option>Population</option><option>Electricity access</option><option>Registered voters</option></select></label>
+        <div class="map-legend"><span>Lower</span><i></i><i></i><i></i><i></i><span>Higher</span></div>
+        <p class="source-note">Demo visualisation · not an official boundary map</p>
+      </div>
+      <div class="map-panel">
+        <div class="kenya-map" id="kenya-map" aria-label="Schematic interactive county map" role="img"></div>
+        <div class="map-tooltip" id="map-tooltip"><small>Selected county</small><strong>Nakuru</strong><span>Population · 2.16m</span><button data-area="Nakuru County">View county profile →</button></div>
+      </div>
+    </section>
+
+    <section class="section profile-section" id="profile">
+      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> Nakuru</p><p class="eyebrow">Area profile · County 032</p><h2>Nakuru County</h2><p>A sample profile showing how directly published facts, comparison context and unavailable local data remain distinct.</p></div><div class="profile-actions"><button data-add-compare="Nakuru">＋ Compare</button><button data-toast="Demo download prepared as a browser-generated CSV.">↓ Download</button></div></div>
+      <nav class="topic-tabs" aria-label="Profile topics"><button class="active">Overview</button><button>People</button><button>Economy</button><button>Health</button><button>Finance</button><button>Infrastructure</button></nav>
+      <div class="quick-facts">
+        <article><span>Population</span><strong>2.16m</strong><small>2019 · KNBS example</small><b class="badge a">A</b></article>
+        <article><span>Area</span><strong>7,510 km²</strong><small>Boundary record · demo</small><b class="badge b">B</b></article>
+        <article><span>Registered voters</span><strong>—</strong><small>Demo value not supplied</small><b class="badge missing">N/A</b></article>
+        <article><span>GCP per person</span><strong>KES 192k</strong><small>2023 · illustrative</small><b class="badge demo">Demo</b></article>
+      </div>
+      <div class="profile-lower">
+        <article class="chart-card"><div class="card-head"><div><small>What has changed?</small><h3>Population over time</h3></div><span class="badge a">A · Official direct</span></div><div class="line-chart" aria-label="Illustrative population line chart"><span class="y-label top">2.2m</span><span class="y-label bottom">1.2m</span><svg viewBox="0 0 600 210" role="img"><title>Population rises between 1999 and 2019</title><path class="grid" d="M40 30H580M40 100H580M40 170H580"/><path class="area" d="M50 155 C180 145 240 128 320 105 S470 65 560 42 L560 175 L50 175Z"/><path class="line" d="M50 155 C180 145 240 128 320 105 S470 65 560 42"/><circle cx="50" cy="155" r="5"/><circle cx="320" cy="105" r="5"/><circle cx="560" cy="42" r="5"/></svg><div class="x-labels"><span>1999</span><span>2009</span><span>2019</span></div></div><p class="source-note">Source: KNBS census · values shown as a sourced-schema example; verify before publication</p></article>
+        <article class="availability-card"><small>Ward-level availability</small><h3>Honest gaps are part of the product.</h3><p>Some socioeconomic statistics are published only at county or administrative-area level. The Atlas does not automatically assign these values to wards.</p><div class="no-data"><span>—</span><div><strong>Ward poverty rate</strong><small>Data not currently available at ward level</small></div></div><button class="text-link" data-toast="Methodology view is represented in this static MVP.">Read the geography methodology →</button></article>
+      </div>
+    </section>
+
+    <section class="compare-section section" id="compare">
+      <div class="section-heading inverse"><div><p class="eyebrow">Compare places</p><h2>Context changes the picture.</h2></div><p>Select up to four counties and compare like with like. Prototype values are illustrative.</p></div>
+      <div class="compare-controls"><div id="compare-chips"></div><button id="add-place">＋ Add county</button><select id="compare-indicator" aria-label="Comparison indicator"><option>GCP per person</option><option>Population</option><option>Electricity access</option></select></div>
+      <div class="comparison-chart" id="comparison-chart"></div>
+      <div class="benchmark-row"><span>County median <strong>KES 168k</strong></span><span>Upper quartile <strong>KES 221k</strong></span><span>Reference period <strong>2023 · demo</strong></span></div>
+    </section>
+
+    <section class="section rankings-section" id="rankings">
+      <div class="section-heading"><div><p class="eyebrow">Rankings</p><h2>Comparable. Same period. Same method.</h2></div><button class="outline-button" id="download-ranking">Download table ↓</button></div>
+      <div class="ranking-toolbar"><label>Indicator<select id="ranking-indicator"><option>Population</option><option>GCP per person</option><option>Electricity access</option></select></label><span><b>47</b> counties · Demo subset shown</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Rank</th><th>County</th><th>Value</th><th>Percentile</th><th>Reference</th><th>Quality</th></tr></thead><tbody id="ranking-body"></tbody></table></div>
+      <p class="source-note">Rankings are illustrative only. Production rankings must use identical units, periods and compatible methods.</p>
+    </section>
+
+    <section class="series-section section" id="series">
+      <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Move from headline to observations, methods, releases and machine-readable data.</p></div>
+      <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">4.6%</div><small>July 2026 · Monthly</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option><option>Change</option><option>Year-on-year change</option><option>Index to 100</option></select><div><button data-toast="CSV download is simulated in this MVP.">CSV</button><button data-toast="JSON API endpoint is planned for the production platform.">{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/><path class="series-line" d="M30 175 C70 160 95 195 135 155 S205 130 245 145 S310 95 350 110 S410 65 460 80 S525 55 570 105 S640 150 680 120 S735 85 780 98"/></svg><span class="current-point">4.6%</span></div><div class="series-meta"><span><small>Series ID</small>KDA-CPI-YOY-KEN</span><span><small>Unit</small>Percent</span><span><small>Source</small>Demo · KNBS-style</span><span><small>Updated</small>26 Aug 2026</span></div></div></div>
+    </section>
+
+    <section class="catalogue-section section" id="catalogue">
+      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The prototype catalogue demonstrates the expected metadata model.</p><div class="coverage"><div><strong>7</strong><span>demo indicators</span></div><div><strong>5</strong><span>source families</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="You are already viewing the prototype catalogue section.">Browse the catalogue →</button></div>
+      <div class="dataset-list" id="dataset-list"></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#catalogue">Data & sources</a><a href="#profile">Methodology</a><a href="#series">Developers</a><a href="README.md">About this MVP</a></div><p class="footer-note">Static demonstration prototype · not an official Government of Kenya publication.</p></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
