@@ -1,19 +1,303 @@
 [
-  {"code":"DS-KNBS-CENSUS","source_code":"KNBS-STATISTICS","title":"Population and Housing Census","description":"Population, households and demographic tables.","topic":"Demography","geographic_coverage":["country","county","constituency_partial","ward_limited"],"frequency":"decennial","publication_status":"blocked","known_limitations":"No release approved; small-area tables and reuse terms require assessment."},
-  {"code":"DS-KNBS-NATIONAL-ACCOUNTS","source_code":"KNBS-STATISTICS","title":"National Accounts","description":"GDP, growth and economic structure.","topic":"Economy","geographic_coverage":["country"],"frequency":"annual_and_quarterly","publication_status":"blocked","known_limitations":"No release approved."},
-  {"code":"DS-KNBS-GCP","source_code":"KNBS-STATISTICS","title":"Gross County Product","description":"County economic output and structure.","topic":"Economy","geographic_coverage":["county"],"frequency":"annual_or_periodic","publication_status":"blocked","known_limitations":"Must not be allocated to constituencies or wards."},
-  {"code":"DS-KNBS-CPI","source_code":"KNBS-STATISTICS","title":"Consumer Price Indices and Inflation Rates","description":"National and published regional price indices and inflation.","topic":"Economy","geographic_coverage":["country","published_price_regions"],"frequency":"monthly","publication_status":"blocked","known_limitations":"Price regions must not be relabelled as electoral geographies."},
-  {"code":"DS-CBK-MONETARY","source_code":"CBK-STATISTICS","title":"Monetary and Financial Statistics","description":"Exchange rates, policy rates and Treasury market indicators.","topic":"Economy","geographic_coverage":["country"],"frequency":"daily_to_monthly","publication_status":"blocked","known_limitations":"No release approved."},
-  {"code":"DS-IEBC-GEOGRAPHY","source_code":"IEBC-ELECTORAL","title":"Electoral Geography Register","description":"Counties, constituencies and County Assembly Wards.","topic":"Geography","geographic_coverage":["country","county","constituency","ward"],"frequency":"periodic","publication_status":"evaluation","known_limitations":"Hierarchy complete; machine-readable geometry and record spelling remain pending direct official validation."},
-  {"code":"DS-IEBC-VOTERS","source_code":"IEBC-ELECTORAL","title":"Registered Voters","description":"Published voter-register totals by electoral geography.","topic":"Elections","geographic_coverage":["country","county","constituency","ward"],"frequency":"electoral_cycle","publication_status":"blocked","known_limitations":"Reference register date is mandatory; no release approved."},
-  {"code":"DS-COB-COUNTY-BUDGET","source_code":"COB-REPORTS","title":"County Budget Implementation","description":"County revenue, expenditure, absorption and pending bills.","topic":"Public Finance","geographic_coverage":["county"],"frequency":"quarterly","publication_status":"blocked","known_limitations":"PDF extraction and definitions require release-level review."},
-  {"code":"DS-KAMIS-PRICES","source_code":"KAMIS-MARKETS","title":"Agricultural Market Prices","description":"Commodity prices and volumes by published market.","topic":"Agriculture","geographic_coverage":["market","county_where_published"],"frequency":"daily_or_irregular","publication_status":"blocked","known_limitations":"Market identifiers, units and access terms require assessment."},
-  {"code":"DS-CA-SECTOR","source_code":"CA-SECTOR-STATS","title":"Communications Sector Statistics","description":"Mobile, broadband, internet and related sector indicators.","topic":"Digital","geographic_coverage":["country","county_where_published"],"frequency":"quarterly","publication_status":"blocked","known_limitations":"Subnational coverage varies."},
-  {"code":"DS-EPRA-ENERGY","source_code":"EPRA-STATS","title":"Energy and Petroleum Statistics","description":"Energy access, electricity and petroleum indicators.","topic":"Infrastructure","geographic_coverage":["country","county_where_published"],"frequency":"varies","publication_status":"blocked","known_limitations":"No release approved."},
-  {"code":"DS-TREASURY-FISCAL","source_code":"TREASURY-FISCAL","title":"National Fiscal Publications","description":"Budget, debt, transfers and fiscal framework.","topic":"Public Finance","geographic_coverage":["country","county_allocations_where_published"],"frequency":"varies","publication_status":"blocked","known_limitations":"Definitions and vintages require reconciliation."},
-  {"code":"DS-MOH-HEALTH","source_code":"MOH-HEALTH","title":"Public Health Statistics","description":"Approved aggregate health indicators.","topic":"Health","geographic_coverage":["country","county_where_publishable"],"frequency":"varies","publication_status":"blocked","known_limitations":"Privacy, suppression and access conditions not assessed."},
-  {"code":"DS-MOE-EDUCATION","source_code":"MOE-EDUCATION","title":"Public Education Statistics","description":"Approved aggregate education indicators.","topic":"Education","geographic_coverage":["country","county_where_publishable"],"frequency":"varies","publication_status":"blocked","known_limitations":"Privacy, suppression and machine-readable availability not assessed."},
-  {"code":"DS-KENYA-LAW-LN14","source_code":"KENYA-LAW-LN14","title":"National Assembly Constituencies and County Assembly Wards Order","description":"Controlling legal description of constituency and ward names and boundaries.","topic":"Geography","geographic_coverage":["country","county","constituency","ward"],"frequency":"versioned_legal_instrument","publication_status":"approved","known_limitations":"Machine-readable geometry is not supplied by the Atlas from this document."},
-  {"code":"DS-COMMUNITY-GEO","source_code":"COMMUNITY-GEOGRAPHY","title":"Community Geography Cross-checks","description":"Pinned public transcriptions and extracts retained for validation and discrepancy analysis.","topic":"Geography","geographic_coverage":["county","constituency","ward"],"frequency":"irregular","publication_status":"evaluation","known_limitations":"External; not official and not sufficient alone for authoritative geometry."}
+ {
+  "code": "DS-KNBS-CENSUS",
+  "source_code": "KNBS-STATISTICS",
+  "title": "Population and Housing Census",
+  "description": "Population, households and demographic tables.",
+  "topic": "Demography",
+  "geographic_coverage": [
+   "country",
+   "county",
+   "constituency_partial",
+   "ward_limited"
+  ],
+  "frequency": "decennial",
+  "publication_status": "blocked",
+  "known_limitations": "No release approved; small-area tables and reuse terms require assessment."
+ },
+ {
+  "code": "DS-KNBS-NATIONAL-ACCOUNTS",
+  "source_code": "KNBS-STATISTICS",
+  "title": "National Accounts",
+  "description": "GDP, growth and economic structure.",
+  "topic": "Economy",
+  "geographic_coverage": [
+   "country"
+  ],
+  "frequency": "annual_and_quarterly",
+  "publication_status": "blocked",
+  "known_limitations": "No release approved."
+ },
+ {
+  "code": "DS-KNBS-GCP",
+  "source_code": "KNBS-STATISTICS",
+  "title": "Gross County Product",
+  "description": "County economic output and structure.",
+  "topic": "Economy",
+  "geographic_coverage": [
+   "county"
+  ],
+  "frequency": "annual_or_periodic",
+  "publication_status": "blocked",
+  "known_limitations": "Must not be allocated to constituencies or wards."
+ },
+ {
+  "code": "DS-KNBS-CPI",
+  "source_code": "KNBS-STATISTICS",
+  "title": "Consumer Price Indices and Inflation Rates",
+  "description": "National and published regional price indices and inflation.",
+  "topic": "Economy",
+  "geographic_coverage": [
+   "country",
+   "published_price_regions"
+  ],
+  "frequency": "monthly",
+  "publication_status": "blocked",
+  "known_limitations": "Price regions must not be relabelled as electoral geographies."
+ },
+ {
+  "code": "DS-CBK-MONETARY",
+  "source_code": "CBK-STATISTICS",
+  "title": "Monetary and Financial Statistics",
+  "description": "Exchange rates, policy rates and Treasury market indicators.",
+  "topic": "Economy",
+  "geographic_coverage": [
+   "country"
+  ],
+  "frequency": "daily_to_monthly",
+  "publication_status": "blocked",
+  "known_limitations": "No release approved."
+ },
+ {
+  "code": "DS-IEBC-GEOGRAPHY",
+  "source_code": "IEBC-ELECTORAL",
+  "title": "Electoral Geography Register",
+  "description": "Counties, constituencies and County Assembly Wards.",
+  "topic": "Geography",
+  "geographic_coverage": [
+   "country",
+   "county",
+   "constituency",
+   "ward"
+  ],
+  "frequency": "periodic",
+  "publication_status": "evaluation",
+  "known_limitations": "Hierarchy complete; machine-readable geometry and record spelling remain pending direct official validation."
+ },
+ {
+  "code": "DS-IEBC-VOTERS",
+  "source_code": "IEBC-ELECTORAL",
+  "title": "Registered Voters",
+  "description": "Published voter-register totals by electoral geography.",
+  "topic": "Elections",
+  "geographic_coverage": [
+   "country",
+   "county",
+   "constituency",
+   "ward"
+  ],
+  "frequency": "electoral_cycle",
+  "publication_status": "blocked",
+  "known_limitations": "Reference register date is mandatory; no release approved."
+ },
+ {
+  "code": "DS-COB-COUNTY-BUDGET",
+  "source_code": "COB-REPORTS",
+  "title": "County Budget Implementation",
+  "description": "County revenue, expenditure, absorption and pending bills.",
+  "topic": "Public Finance",
+  "geographic_coverage": [
+   "county"
+  ],
+  "frequency": "quarterly",
+  "publication_status": "blocked",
+  "known_limitations": "PDF extraction and definitions require release-level review."
+ },
+ {
+  "code": "DS-KAMIS-PRICES",
+  "source_code": "KAMIS-MARKETS",
+  "title": "Agricultural Market Prices",
+  "description": "Commodity prices and volumes by published market.",
+  "topic": "Agriculture",
+  "geographic_coverage": [
+   "market",
+   "county_where_published"
+  ],
+  "frequency": "daily_or_irregular",
+  "publication_status": "blocked",
+  "known_limitations": "Market identifiers, units and access terms require assessment."
+ },
+ {
+  "code": "DS-CA-SECTOR",
+  "source_code": "CA-SECTOR-STATS",
+  "title": "Communications Sector Statistics",
+  "description": "Mobile, broadband, internet and related sector indicators.",
+  "topic": "Digital",
+  "geographic_coverage": [
+   "country",
+   "county_where_published"
+  ],
+  "frequency": "quarterly",
+  "publication_status": "blocked",
+  "known_limitations": "Subnational coverage varies."
+ },
+ {
+  "code": "DS-EPRA-ENERGY",
+  "source_code": "EPRA-STATS",
+  "title": "Energy and Petroleum Statistics",
+  "description": "Energy access, electricity and petroleum indicators.",
+  "topic": "Infrastructure",
+  "geographic_coverage": [
+   "country",
+   "county_where_published"
+  ],
+  "frequency": "varies",
+  "publication_status": "blocked",
+  "known_limitations": "No release approved."
+ },
+ {
+  "code": "DS-TREASURY-FISCAL",
+  "source_code": "TREASURY-FISCAL",
+  "title": "National Fiscal Publications",
+  "description": "Budget, debt, transfers and fiscal framework.",
+  "topic": "Public Finance",
+  "geographic_coverage": [
+   "country",
+   "county_allocations_where_published"
+  ],
+  "frequency": "varies",
+  "publication_status": "blocked",
+  "known_limitations": "Definitions and vintages require reconciliation."
+ },
+ {
+  "code": "DS-MOH-HEALTH",
+  "source_code": "MOH-HEALTH",
+  "title": "Public Health Statistics",
+  "description": "Approved aggregate health indicators.",
+  "topic": "Health",
+  "geographic_coverage": [
+   "country",
+   "county_where_publishable"
+  ],
+  "frequency": "varies",
+  "publication_status": "blocked",
+  "known_limitations": "Privacy, suppression and access conditions not assessed."
+ },
+ {
+  "code": "DS-MOE-EDUCATION",
+  "source_code": "MOE-EDUCATION",
+  "title": "Public Education Statistics",
+  "description": "Approved aggregate education indicators.",
+  "topic": "Education",
+  "geographic_coverage": [
+   "country",
+   "county_where_publishable"
+  ],
+  "frequency": "varies",
+  "publication_status": "blocked",
+  "known_limitations": "Privacy, suppression and machine-readable availability not assessed."
+ },
+ {
+  "code": "DS-KENYA-LAW-LN14",
+  "source_code": "KENYA-LAW-LN14",
+  "title": "National Assembly Constituencies and County Assembly Wards Order",
+  "description": "Controlling legal description of constituency and ward names and boundaries.",
+  "topic": "Geography",
+  "geographic_coverage": [
+   "country",
+   "county",
+   "constituency",
+   "ward"
+  ],
+  "frequency": "versioned_legal_instrument",
+  "publication_status": "approved",
+  "known_limitations": "Machine-readable geometry is not supplied by the Atlas from this document."
+ },
+ {
+  "code": "DS-COMMUNITY-GEO",
+  "source_code": "COMMUNITY-GEOGRAPHY",
+  "title": "Community Geography Cross-checks",
+  "description": "Pinned public transcriptions and extracts retained for validation and discrepancy analysis.",
+  "topic": "Geography",
+  "geographic_coverage": [
+   "county",
+   "constituency",
+   "ward"
+  ],
+  "frequency": "irregular",
+  "publication_status": "evaluation",
+  "known_limitations": "External; not official and not sufficient alone for authoritative geometry."
+ },
+ {
+  "code": "DS-KNBS-CENSUS-TOPLINE",
+  "source_code": "KNBS-STATISTICS",
+  "title": "2019 Census \u2014 Topline Population Counts",
+  "description": "Enumerated total population from the 2019 Kenya Population and Housing Census, national and county level headline counts only.",
+  "topic": "Demography",
+  "geographic_coverage": [
+   "country",
+   "county"
+  ],
+  "frequency": "decennial",
+  "publication_status": "published",
+  "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+  "known_limitations": "Topline enumerated counts only (point-in-time, census night 24-25 August 2019). Does not include age/sex/household breakdowns, sub-county or ward figures. The full census dataset (DS-KNBS-CENSUS, all volumes and small-area tables) remains blocked pending broader assessment; this narrower slice was reviewed and approved separately because a headline count carries none of that dataset's reuse or small-area risk."
+ },
+ {
+  "code": "DS-KNBS-CPI-HEADLINE",
+  "source_code": "KNBS-STATISTICS",
+  "title": "Headline Consumer Price Inflation (Monthly, National)",
+  "description": "Year-on-year headline consumer price inflation rate, national level, as published monthly by KNBS.",
+  "topic": "Economy",
+  "geographic_coverage": [
+   "country"
+  ],
+  "frequency": "monthly",
+  "publication_status": "published",
+  "methodology_url": "https://www.knbs.or.ke/cpi-and-inflation-rates/",
+  "known_limitations": "Headline year-on-year rate only. Sub-indices (food, transport, housing), the full CPI basket, and county/urban-rural breakdowns remain out of scope (see DS-KNBS-CPI, blocked). Index rebasing is a known future series break; see docs/methodology/indicators.md."
+ },
+ {
+  "code": "DS-CBK-RATES-HEADLINE",
+  "source_code": "CBK-STATISTICS",
+  "title": "Central Bank Rate, 91-Day Treasury Bill Yield and USD/KES Reference Rate",
+  "description": "Headline monetary policy and reference-rate figures: the Central Bank Rate as set by the Monetary Policy Committee, the 91-day Treasury bill weighted average yield from CBK auction results, and a USD/KES reference rate.",
+  "topic": "Economy",
+  "geographic_coverage": [
+   "country"
+  ],
+  "frequency": "irregular",
+  "publication_status": "published",
+  "methodology_url": "https://www.centralbank.go.ke/rates/central-bank-rate/",
+  "known_limitations": "Headline rates only; broader monetary and financial statistics (DS-CBK-MONETARY: banking sector, balance of payments, monetary aggregates) remain blocked. The USD/KES figure in this dataset is a market mid-rate corroborated across multiple FX data aggregators on the reference date, not CBK's own published indicative rate (which was not directly retrieved); it is recorded with geographic_method=direct but statistical_status=estimated and an external source_url, and is badged accordingly rather than as an official CBK release."
+ },
+ {
+  "code": "DS-IEBC-VOTERS-TOPLINE",
+  "source_code": "IEBC-ELECTORAL",
+  "title": "Registered Voters \u2014 National Topline (Certified Register)",
+  "description": "The certified, audited national total of registered voters as of the 2022 General Election, from IEBC's Post-Election Evaluation Report.",
+  "topic": "Elections",
+  "geographic_coverage": [
+   "country"
+  ],
+  "frequency": "irregular",
+  "publication_status": "published",
+  "methodology_url": "https://www.iebc.or.ke/uploads/resources/pabjKTV6Xa.pdf",
+  "known_limitations": "Certified national topline as of the 2022 General Election register cutoff (20 June 2022) only. Constituency- and ward-level breakdowns and the ongoing continuous-registration count toward 2027 remain out of scope (see DS-IEBC-VOTERS, blocked, and the ward-level electoral unlock strategy in the product spec)."
+ },
+ {
+  "code": "DS-KDA-DERIVED-AREA",
+  "source_code": "KDA-DERIVED",
+  "title": "County and National Land Area (derived from boundary geometry)",
+  "description": "Approximate land area computed directly from the Atlas's own dissolved ward-boundary geometry (see docs/methodology/geographies.md), using an equirectangular planar-projection approximation.",
+  "topic": "Geography",
+  "geographic_coverage": [
+   "country",
+   "county"
+  ],
+  "frequency": "irregular",
+  "publication_status": "published",
+  "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md",
+  "known_limitations": "Not a surveyed or IEBC-issued area figure. Computed from externally sourced, provisional boundary geometry (registry_status: provisional) using a planar approximation with an estimated error band of roughly +/-2% at Kenya's latitude range; recorded as geographic_method=aggregated, statistical_status=estimated, badge B (official derived) is therefore not claimed as badge A regardless of the underlying geometry's own status."
+ }
 ]
-

@@ -1,0 +1,42 @@
+[
+  {
+    "unit_id": "3add048e-c42d-5b05-994c-dad9c6812cc4",
+    "code": "persons",
+    "name": "Persons",
+    "symbol": "",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "a2522f73-34eb-5b5e-a1d4-383888213b20",
+    "code": "kes_per_usd",
+    "name": "Kenya Shillings per US Dollar",
+    "symbol": "KES/USD",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": "KES"
+  },
+  {
+    "unit_id": "288f3c4c-858c-5be1-8803-0529c2870ab7",
+    "code": "km2",
+    "name": "Square kilometres",
+    "symbol": "km²",
+    "dimension": "area",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  }
+]

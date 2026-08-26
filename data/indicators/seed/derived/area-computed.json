@@ -1,0 +1,346 @@
+{
+  "generated_at": "2026-08-26T13:07:19.928Z",
+  "method": "equirectangular planar projection, mean-latitude reference per feature, shoelace formula",
+  "boundary_version": "2012-01",
+  "geometry_source": "data/geography/geometry (canonical ward layer, dissolved to county and country)",
+  "estimated_error_band_pct": 2,
+  "note": "Approximate. Not a surveyed or IEBC-issued figure. See data/catalogue/seed/datasets.json DS-KDA-DERIVED-AREA and docs/methodology/indicators.md.",
+  "results": [
+    {
+      "geo_code": "KEN",
+      "name": "Kenya",
+      "level": "country",
+      "area_km2": 583965.7,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C001",
+      "name": "Mombasa",
+      "level": "county",
+      "area_km2": 220,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C002",
+      "name": "Kwale",
+      "level": "county",
+      "area_km2": 8311.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C003",
+      "name": "Kilifi",
+      "level": "county",
+      "area_km2": 12672.3,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C004",
+      "name": "Tana River",
+      "level": "county",
+      "area_km2": 38648.5,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C005",
+      "name": "Lamu",
+      "level": "county",
+      "area_km2": 6299.7,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C006",
+      "name": "Taita Taveta",
+      "level": "county",
+      "area_km2": 17176.8,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C007",
+      "name": "Garissa",
+      "level": "county",
+      "area_km2": 44388.9,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C008",
+      "name": "Wajir",
+      "level": "county",
+      "area_km2": 56975.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C009",
+      "name": "Mandera",
+      "level": "county",
+      "area_km2": 26091.6,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C010",
+      "name": "Marsabit",
+      "level": "county",
+      "area_km2": 71284.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C011",
+      "name": "Isiolo",
+      "level": "county",
+      "area_km2": 25470.8,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C012",
+      "name": "Meru",
+      "level": "county",
+      "area_km2": 6966.4,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C013",
+      "name": "Tharaka-Nithi",
+      "level": "county",
+      "area_km2": 2651.8,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C014",
+      "name": "Embu",
+      "level": "county",
+      "area_km2": 2831.3,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C015",
+      "name": "Kitui",
+      "level": "county",
+      "area_km2": 30662.3,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C016",
+      "name": "Machakos",
+      "level": "county",
+      "area_km2": 6236.2,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C017",
+      "name": "Makueni",
+      "level": "county",
+      "area_km2": 8048.5,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C018",
+      "name": "Nyandarua",
+      "level": "county",
+      "area_km2": 3256.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C019",
+      "name": "Nyeri",
+      "level": "county",
+      "area_km2": 3350.4,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C020",
+      "name": "Kirinyaga",
+      "level": "county",
+      "area_km2": 1485.6,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C021",
+      "name": "Murang'a",
+      "level": "county",
+      "area_km2": 2569.3,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C022",
+      "name": "Kiambu",
+      "level": "county",
+      "area_km2": 2553.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C023",
+      "name": "Turkana",
+      "level": "county",
+      "area_km2": 68849.2,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C024",
+      "name": "West Pokot",
+      "level": "county",
+      "area_km2": 9178.9,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C025",
+      "name": "Samburu",
+      "level": "county",
+      "area_km2": 21111.2,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C026",
+      "name": "Trans Nzoia",
+      "level": "county",
+      "area_km2": 2496.3,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C027",
+      "name": "Uasin Gishu",
+      "level": "county",
+      "area_km2": 3348.9,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C028",
+      "name": "Elgeyo/Marakwet",
+      "level": "county",
+      "area_km2": 3034.7,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C029",
+      "name": "Nandi",
+      "level": "county",
+      "area_km2": 2886.1,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C030",
+      "name": "Baringo",
+      "level": "county",
+      "area_km2": 11042.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C031",
+      "name": "Laikipia",
+      "level": "county",
+      "area_km2": 9497.6,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C032",
+      "name": "Nakuru",
+      "level": "county",
+      "area_km2": 7515,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C033",
+      "name": "Narok",
+      "level": "county",
+      "area_km2": 17964.4,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C034",
+      "name": "Kajiado",
+      "level": "county",
+      "area_km2": 21989.7,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C035",
+      "name": "Kericho",
+      "level": "county",
+      "area_km2": 2443.2,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C036",
+      "name": "Bomet",
+      "level": "county",
+      "area_km2": 2512.5,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C037",
+      "name": "Kakamega",
+      "level": "county",
+      "area_km2": 3016.8,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C038",
+      "name": "Vihiga",
+      "level": "county",
+      "area_km2": 564.3,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C039",
+      "name": "Bungoma",
+      "level": "county",
+      "area_km2": 3030.5,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C040",
+      "name": "Busia",
+      "level": "county",
+      "area_km2": 1692.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C041",
+      "name": "Siaya",
+      "level": "county",
+      "area_km2": 2526.5,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C042",
+      "name": "Kisumu",
+      "level": "county",
+      "area_km2": 2086.1,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C043",
+      "name": "Homa Bay",
+      "level": "county",
+      "area_km2": 3179.8,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C044",
+      "name": "Migori",
+      "level": "county",
+      "area_km2": 2593.1,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C045",
+      "name": "Kisii",
+      "level": "county",
+      "area_km2": 1317.3,
+      "quality_status": "derived_provisional"
+    },
+    {
+      "geo_code": "KEN-C046",
+      "name": "Nyamira",
+      "level": "county",
+      "area_km2": 899.5,
+      "quality_status": "derived_validated"
+    },
+    {
+      "geo_code": "KEN-C047",
+      "name": "Nairobi",
+      "level": "county",
+      "area_km2": 697.8,
+      "quality_status": "derived_provisional"
+    }
+  ]
+}

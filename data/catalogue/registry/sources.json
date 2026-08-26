@@ -214,6 +214,23 @@
     "assessment_status": "evaluation_only",
     "assessment_note": "Never presented as official; used for transcription and discrepancy checks.",
     "active": true
+  },
+  {
+    "source_id": "37a22f81-be94-544b-9794-2518c53b12ed",
+    "source_code": "KDA-DERIVED",
+    "agency_id": "9b148b36-80bd-5bef-89ed-4d9fd37ba1c2",
+    "name": "Atlas-computed derivations",
+    "source_type": "internal_derivation",
+    "landing_page_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md",
+    "expected_cadence": "on boundary or methodology change",
+    "source_priority": "low",
+    "access_method": "internal_pipeline",
+    "reuse_status": "atlas_derivation",
+    "licence_name": "Same terms as the Atlas repository",
+    "licence_url": null,
+    "attribution_text": "Source: Kenya Data Atlas (computed)",
+    "assessment_status": "approved",
+    "assessment_note": "Self-governed: permitted only where the statistical-publication-policy's basis 5 applies, the transformation is fully documented in docs/methodology/indicators.md, and the input data's own provenance is separately disclosed. Reviewed 2026-08-26.",
+    "active": true
   }
 ]
-

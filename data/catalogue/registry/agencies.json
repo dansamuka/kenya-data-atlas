@@ -130,6 +130,16 @@
     "jurisdiction": "External",
     "description": "Community-maintained extracts used only with explicit provenance and quality status.",
     "active": true
+  },
+  {
+    "agency_id": "9b148b36-80bd-5bef-89ed-4d9fd37ba1c2",
+    "agency_code": "KDA",
+    "name": "Kenya Data Atlas",
+    "abbreviation": "KDA",
+    "agency_type": "atlas_derivation",
+    "official_url": "https://github.com/dansamuka/kenya-data-atlas",
+    "jurisdiction": "Kenya",
+    "description": "The Atlas itself, as publisher of transparent derivations computed from other agencies' underlying data (e.g. land area computed from boundary geometry). Used only where the statistical-publication-policy's basis 5 (\"a transparent Atlas derivation or model\") applies, with methodology published and reviewable.",
+    "active": true
   }
 ]
-

@@ -243,6 +243,82 @@
     "frequency": "irregular",
     "publication_status": "evaluation",
     "known_limitations": "External; not official and not sufficient alone for authoritative geometry."
+  },
+  {
+    "dataset_id": "71cd1495-9331-5033-b43c-4e1fcaf919ac",
+    "dataset_code": "DS-KNBS-CENSUS-TOPLINE",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2019 Census — Topline Population Counts",
+    "description": "Enumerated total population from the 2019 Kenya Population and Housing Census, national and county level headline counts only.",
+    "topic": "Demography",
+    "geographic_coverage": [
+      "country",
+      "county"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+    "known_limitations": "Topline enumerated counts only (point-in-time, census night 24-25 August 2019). Does not include age/sex/household breakdowns, sub-county or ward figures. The full census dataset (DS-KNBS-CENSUS, all volumes and small-area tables) remains blocked pending broader assessment; this narrower slice was reviewed and approved separately because a headline count carries none of that dataset's reuse or small-area risk."
+  },
+  {
+    "dataset_id": "8a8144c3-6ad7-52b4-a6ec-e4a8bc85d42d",
+    "dataset_code": "DS-KNBS-CPI-HEADLINE",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Headline Consumer Price Inflation (Monthly, National)",
+    "description": "Year-on-year headline consumer price inflation rate, national level, as published monthly by KNBS.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/cpi-and-inflation-rates/",
+    "known_limitations": "Headline year-on-year rate only. Sub-indices (food, transport, housing), the full CPI basket, and county/urban-rural breakdowns remain out of scope (see DS-KNBS-CPI, blocked). Index rebasing is a known future series break; see docs/methodology/indicators.md."
+  },
+  {
+    "dataset_id": "71d05116-970d-5630-8008-49c59eb71ba0",
+    "dataset_code": "DS-CBK-RATES-HEADLINE",
+    "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",
+    "title": "Central Bank Rate, 91-Day Treasury Bill Yield and USD/KES Reference Rate",
+    "description": "Headline monetary policy and reference-rate figures: the Central Bank Rate as set by the Monetary Policy Committee, the 91-day Treasury bill weighted average yield from CBK auction results, and a USD/KES reference rate.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "irregular",
+    "publication_status": "published",
+    "methodology_url": "https://www.centralbank.go.ke/rates/central-bank-rate/",
+    "known_limitations": "Headline rates only; broader monetary and financial statistics (DS-CBK-MONETARY: banking sector, balance of payments, monetary aggregates) remain blocked. The USD/KES figure in this dataset is a market mid-rate corroborated across multiple FX data aggregators on the reference date, not CBK's own published indicative rate (which was not directly retrieved); it is recorded with geographic_method=direct but statistical_status=estimated and an external source_url, and is badged accordingly rather than as an official CBK release."
+  },
+  {
+    "dataset_id": "7eadcd85-0c68-5221-8644-a22a7ec397ba",
+    "dataset_code": "DS-IEBC-VOTERS-TOPLINE",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "Registered Voters — National Topline (Certified Register)",
+    "description": "The certified, audited national total of registered voters as of the 2022 General Election, from IEBC's Post-Election Evaluation Report.",
+    "topic": "Elections",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "irregular",
+    "publication_status": "published",
+    "methodology_url": "https://www.iebc.or.ke/uploads/resources/pabjKTV6Xa.pdf",
+    "known_limitations": "Certified national topline as of the 2022 General Election register cutoff (20 June 2022) only. Constituency- and ward-level breakdowns and the ongoing continuous-registration count toward 2027 remain out of scope (see DS-IEBC-VOTERS, blocked, and the ward-level electoral unlock strategy in the product spec)."
+  },
+  {
+    "dataset_id": "05b4bda9-0468-56bf-a98f-14a6ed74989b",
+    "dataset_code": "DS-KDA-DERIVED-AREA",
+    "source_id": "37a22f81-be94-544b-9794-2518c53b12ed",
+    "title": "County and National Land Area (derived from boundary geometry)",
+    "description": "Approximate land area computed directly from the Atlas's own dissolved ward-boundary geometry (see docs/methodology/geographies.md), using an equirectangular planar-projection approximation.",
+    "topic": "Geography",
+    "geographic_coverage": [
+      "country",
+      "county"
+    ],
+    "frequency": "irregular",
+    "publication_status": "published",
+    "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md",
+    "known_limitations": "Not a surveyed or IEBC-issued area figure. Computed from externally sourced, provisional boundary geometry (registry_status: provisional) using a planar approximation with an estimated error band of roughly +/-2% at Kenya's latitude range; recorded as geographic_method=aggregated, statistical_status=estimated, badge B (official derived) is therefore not claimed as badge A regardless of the underlying geometry's own status."
   }
 ]
-

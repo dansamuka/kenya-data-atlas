@@ -1,0 +1,93 @@
+[
+  {
+    "code": "KDA-POP-TOTAL-KEN",
+    "indicator_code": "IND-POPULATION",
+    "geo_code": "KEN",
+    "dataset_code": "DS-KNBS-CENSUS-TOPLINE",
+    "frequency": "decennial",
+    "period_type": "point_in_time",
+    "unit_code": "persons",
+    "price_basis": "not_applicable",
+    "transformation": "level",
+    "geographic_method": "direct",
+    "comparability_group": "POP-CENSUS-2019"
+  },
+  {
+    "code": "KDA-POP-TOTAL-C032",
+    "indicator_code": "IND-POPULATION",
+    "geo_code": "KEN-C032",
+    "dataset_code": "DS-KNBS-CENSUS-TOPLINE",
+    "frequency": "decennial",
+    "period_type": "point_in_time",
+    "unit_code": "persons",
+    "price_basis": "not_applicable",
+    "transformation": "level",
+    "geographic_method": "direct",
+    "comparability_group": "POP-CENSUS-2019"
+  },
+  {
+    "code": "KDA-CPI-YOY-KEN",
+    "indicator_code": "IND-CPI-INFLATION",
+    "geo_code": "KEN",
+    "dataset_code": "DS-KNBS-CPI-HEADLINE",
+    "frequency": "monthly",
+    "period_type": "month",
+    "unit_code": "percent",
+    "price_basis": "not_applicable",
+    "transformation": "rate",
+    "geographic_method": "direct",
+    "comparability_group": "CPI-BASE-2019M2"
+  },
+  {
+    "code": "KDA-USDKES-KEN",
+    "indicator_code": "IND-USD-KES",
+    "geo_code": "KEN",
+    "dataset_code": "DS-CBK-RATES-HEADLINE",
+    "frequency": "daily",
+    "period_type": "day",
+    "unit_code": "kes_per_usd",
+    "price_basis": "not_applicable",
+    "transformation": "level",
+    "geographic_method": "direct",
+    "comparability_group": "FX-USDKES-MARKET"
+  },
+  {
+    "code": "KDA-CBR-KEN",
+    "indicator_code": "IND-CBR",
+    "geo_code": "KEN",
+    "dataset_code": "DS-CBK-RATES-HEADLINE",
+    "frequency": "irregular",
+    "period_type": "point_in_time",
+    "unit_code": "percent",
+    "price_basis": "not_applicable",
+    "transformation": "level",
+    "geographic_method": "direct",
+    "comparability_group": "CBR-POLICY-RATE"
+  },
+  {
+    "code": "KDA-TBILL91-KEN",
+    "indicator_code": "IND-TBILL-91",
+    "geo_code": "KEN",
+    "dataset_code": "DS-CBK-RATES-HEADLINE",
+    "frequency": "weekly",
+    "period_type": "point_in_time",
+    "unit_code": "percent",
+    "price_basis": "not_applicable",
+    "transformation": "level",
+    "geographic_method": "direct",
+    "comparability_group": "TBILL-91-AUCTION"
+  },
+  {
+    "code": "KDA-VOTERS-KEN",
+    "indicator_code": "IND-REGISTERED-VOTERS",
+    "geo_code": "KEN",
+    "dataset_code": "DS-IEBC-VOTERS-TOPLINE",
+    "frequency": "irregular",
+    "period_type": "point_in_time",
+    "unit_code": "persons",
+    "price_basis": "not_applicable",
+    "transformation": "level",
+    "geographic_method": "direct",
+    "comparability_group": "VOTERS-CERTIFIED-REGISTER"
+  }
+]
