@@ -1,6 +1,48 @@
 geo_code,county,pricing_town,super_petrol_kes_per_litre
 KEN-C001,Mombasa,Mombasa,210.87
+KEN-C002,Kwale,Kwale,211.23
+KEN-C003,Kilifi,Kilifi,211.68
+KEN-C004,Tana River,Hola,216.30
+KEN-C005,Lamu,Lamu,215.84
+KEN-C006,Taita/Taveta,Mwatate,213.45
+KEN-C007,Garissa,Garissa,220.40
+KEN-C008,Wajir,Wajir,228.60
+KEN-C009,Mandera,Mandera,234.68
+KEN-C010,Marsabit,Marsabit,226.34
+KEN-C011,Isiolo,Isiolo,218.44
+KEN-C012,Meru,Meru,218.67
+KEN-C013,Tharaka-Nithi,Chuka,216.31
+KEN-C014,Embu,Embu,215.46
+KEN-C015,Kitui,Kitui,216.15
+KEN-C016,Machakos,Machakos,214.07
+KEN-C017,Makueni,Mtito Andei,217.61
+KEN-C018,Nyandarua,Nyahururu,212.99
+KEN-C019,Nyeri,Nyeri,215.90
+KEN-C020,Kirinyaga,Kerugoya,215.34
+KEN-C021,Murang'a,Muranga,214.53
+KEN-C022,Kiambu,Thika,213.70
+KEN-C023,Turkana,Lodwar,220.08
+KEN-C024,West Pokot,Kapenguria,214.96
+KEN-C025,Samburu,Maralal,216.29
+KEN-C026,Trans Nzoia,Kitale,213.94
 KEN-C027,Uasin Gishu,Eldoret,213.69
+KEN-C028,Elgeyo-Marakwet,Iten,213.69
+KEN-C029,Nandi,Kapsabet,213.38
+KEN-C030,Baringo,Kabarnet,214.54
+KEN-C031,Laikipia,Nanyuki,216.80
 KEN-C032,Nakuru,Nakuru,212.92
+KEN-C033,Narok,Narok,215.92
+KEN-C034,Kajiado,Kajiado,214.36
+KEN-C035,Kericho,Kericho,214.16
+KEN-C036,Bomet,Bomet,215.15
+KEN-C037,Kakamega,Kakamega,213.43
+KEN-C038,Vihiga,Mbale,213.69
+KEN-C039,Bungoma,Bungoma,214.59
+KEN-C040,Busia,Busia,214.75
+KEN-C041,Siaya,Siaya,213.88
 KEN-C042,Kisumu,Kisumu,213.69
+KEN-C043,Homa Bay,Homabay,214.66
+KEN-C044,Migori,Migori,216.03
+KEN-C045,Kisii,Kisii,214.77
+KEN-C046,Nyamira,Nyamira,214.27
 KEN-C047,Nairobi City,Nairobi,214.03
