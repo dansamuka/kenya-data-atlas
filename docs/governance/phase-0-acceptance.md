@@ -15,25 +15,23 @@
 - [x] Source assessment, publication, decision and issue templates created.
 - [x] Current interface demo values explicitly excluded from production.
 
-## Institutional acceptance — required before production
+## Independent-publisher readiness
 
-- [ ] Accountable legal publisher named.
-- [ ] Product Owner appointed.
-- [ ] Statistical Lead appointed.
-- [ ] Data and Geography Stewards appointed.
-- [ ] Privacy & Security, Engineering and Editorial Leads appointed.
-- [ ] Alternates and conflicts process recorded.
-- [ ] Kenyan legal/privacy review completed.
-- [ ] Governance Board approves version 1.0.
-- [ ] KNBS reuse basis and contact path documented.
-- [ ] IEBC reuse basis and contact path documented.
-- [ ] CBK reuse basis and contact path documented.
-- [ ] Controller of Budget reuse basis and contact path documented.
-- [ ] KAMIS reuse basis and contact path documented.
+- [x] Private-citizen Owner/Publisher operating model defined.
+- [x] Self-review and risk-tier disclosures defined.
+- [x] Independent review required for spatial, modelled and sensitive work.
+- [x] Non-affiliation and non-endorsement requirement defined.
+- [x] Future institutional-transfer path defined.
+- [ ] Owner identity and private operating contact recorded outside the public repository.
+- [ ] Reuse basis assessed before each dataset is publicly republished.
+- [ ] Dataset-specific privacy and publication checklist completed before release.
+- [ ] Specialist review obtained whenever rights, privacy or method risk is unclear.
 
 ## Decision
 
-**Repository Phase 0 status:** Complete.  
-**Production publication authorization:** Not granted.  
-**Next permitted work:** Phase 1 geography design and source evaluations in non-production environments. No data may be represented as production-approved until institutional acceptance is complete.
+**Repository Phase 0 status:** Complete for an independent private-citizen publisher.
+
+**Production publication authorization:** Granted on a dataset-by-dataset basis only after its source assessment and release checklist pass.
+
+**Next permitted work:** Phase 1 geography foundation and source evaluations. Direct, lawfully reusable public data may later be published without agency endorsement when the documented controls pass; demo data remains non-production.
 
