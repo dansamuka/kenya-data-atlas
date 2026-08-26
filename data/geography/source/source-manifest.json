@@ -1,0 +1,52 @@
+{
+  "manifest_version": "1.0",
+  "retrieved_at": "2026-08-26",
+  "legal_reference": {
+    "source_id": "IEBC-BOUNDARY-FAQ",
+    "publisher": "Independent Electoral and Boundaries Commission",
+    "title": "Boundary Delimitation FAQ",
+    "url": "https://iebc.or.ke/uploads/resources/gV62Lv1JdT.pdf",
+    "assertions_used": [
+      "IEBC determines constituency and County Assembly Ward electoral boundaries",
+      "Kenya has 290 constituencies",
+      "Kenya has 1,450 County Assembly Wards"
+    ],
+    "reuse_status": "Referenced as a public legal/administrative source; document is not redistributed here"
+  },
+  "extract_source": {
+    "source_id": "KDA-EXT-TIGAWANNA-2025",
+    "repository": "https://github.com/tigawanna/kenya_wards_geojson_data",
+    "commit": "32580eb19fba05bb6421257331e63ef3f8a5dc8e",
+    "licence": "MIT",
+    "upstream_claimed_source": "Kenya Elections — Humanitarian Data Exchange",
+    "classification": "External community extract; pending record-by-record comparison with an official gazette/register",
+    "files": {
+      "counties.json": {"git_blob_sha": "93b61845cd57dbc9b130fcfe1a9aa4bdd1b226c2", "expected_records": 47},
+      "constituencies.json": {"git_blob_sha": "83c73a9b2e2778efd2878c0537c81ae5a5728d02", "expected_records": 290},
+      "wards.json": {"git_blob_sha": "86b6d057d987f6e04f46ffa64797c699c5bb0cf1", "expected_records": 1450}
+    }
+  },
+    "validation_finding": "Rejected as the canonical ward seed: wards.json contains 1,439 rows although the repository documentation and IEBC count state 1,450. Retained as a discrepancy/cross-check source."
+  },
+  "canonical_seed_source": {
+    "source_id": "KDA-TRANSCRIPTION-LN14-2012",
+    "repository": "https://github.com/pkiage/data-Kenya-Counties-Constituencies-Wards",
+    "ref": "main",
+    "legal_source": "Kenya Legal Notice 14 of 2012 — National Assembly Constituencies and County Assembly Wards Order",
+    "legal_source_url": "https://new.kenyalaw.org/akn/ke/act/ln/2012/14/eng@2022-12-31",
+    "classification": "External transcription of a public legal instrument; exact counts and hierarchy validated, record spellings remain provisional pending direct comparison",
+    "reuse_status": "Public legal source referenced; transcription retained with attribution and provenance",
+    "files": {
+      "geographies.csv": {"git_blob_sha": "7d0a741b702efe85a88881a9b14a2976ac9dbde2", "expected_records": 1450}
+    }
+  },
+  "secondary_cross_check": {
+    "source_id": "KDA-EXT-OSM-KENYA-2024",
+    "repository": "https://github.com/its-kios09/osm-kenya-boundaries",
+    "commit": "2dd4d71038b52d824cba304561b86ba79cf4315e",
+    "licence": "MIT",
+    "validation_finding": "Contains 47 counties, 290 constituencies and 1,448 wards; retained for discrepancy analysis, not canonical seeding."
+  },
+  "publication_rule": "Registry rows remain provisional until compared with an authoritative IEBC gazette or register. Counts are independently confirmed by IEBC. Geometry is not bundled in Phase 1 and remains pending validation."
+}
+

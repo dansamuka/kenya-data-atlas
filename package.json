@@ -1,0 +1,12 @@
+{
+  "name": "kenya-data-atlas",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "geography:build": "node scripts/geography/build-registry.mjs",
+    "geography:validate": "node scripts/geography/validate-registry.mjs",
+    "test": "npm run geography:validate"
+  }
+}
+

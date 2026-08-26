@@ -1,0 +1,36 @@
+{
+  "report_version": "1.0",
+  "generated_at": "2026-08-26",
+  "status": "pass_with_provisional_records",
+  "counts": {
+    "country": 1,
+    "county": 47,
+    "constituency": 290,
+    "ward": 1450,
+    "total": 1788,
+    "aliases": 3576
+  },
+  "checks_passed": [
+    "unique geography identifiers",
+    "unique canonical codes",
+    "expected record counts by level",
+    "valid parent for every non-country record",
+    "unique sibling slugs",
+    "ward-to-constituency code integrity",
+    "alias referential integrity",
+    "unique normalized alias per geography",
+    "Murang'a punctuation-search normalization"
+  ],
+  "source_discrepancies": [
+    {"source_id": "KDA-EXT-TIGAWANNA-2025", "claimed_wards": 1450, "observed_wards": 1439, "disposition": "rejected_as_canonical_seed"},
+    {"source_id": "KDA-EXT-OSM-KENYA-2024", "claimed_wards": "1450+", "observed_wards": 1448, "disposition": "rejected_as_canonical_seed"}
+  ],
+  "open_items": [
+    "Compare every record spelling and code directly with Legal Notice 14 of 2012 or a current authoritative IEBC register",
+    "Acquire and hash authoritative boundary geometry",
+    "Validate CRS, topology, overlaps, gaps, centroids and areas",
+    "Create simplified geometry levels and mark a boundary version validated",
+    "Add administrative geography in a separate system before creating crosswalks"
+  ]
+}
+
