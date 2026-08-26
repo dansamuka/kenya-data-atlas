@@ -24,7 +24,12 @@ function number(value, context) {
   return n;
 }
 function normName(value) {
-  return String(value || '').toLowerCase().replace(/[/'’.-]/g, ' ').replace(/\s+/g, ' ').trim();
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[/'’.-]/g, ' ')
+    .replace(/\bcity\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function validateCountyRows(rows, name, geoByCode, labelField = 'name') {
