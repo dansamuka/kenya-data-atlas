@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-26T23:45:00+03:00",
+  "sprint": "Data Sprint 2 — Local Kenya",
+  "sources": {
+    "iebc_gazette_2022": {
+      "agency": "Independent Electoral and Boundaries Commission (IEBC)",
+      "title": "Kenya Gazette, 21 June 2022 — Gazette Notice No. 7290, Registered Voters for the 2022 General Election",
+      "url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf",
+      "ward_schedule": "First Schedule — Registered Voters per County Assembly Ward",
+      "constituency_schedule": "Second Schedule — Registered Voters per Constituency",
+      "county_schedule": "Third Schedule — Registered Voters per County",
+      "quality": "A",
+      "reference_date": "2022-06-20",
+      "published_date": "2022-06-21",
+      "note": "Primary legal publication. Domestic ward values in the First Schedule total 22,102,532 registered voters. Sprint 2 publishes ward values as official direct observations and constituency values as official-derived sums of the ward schedule, with reconciliation checks to the county schedule."
+    },
+    "coded_transcription": {
+      "maintainer": "samy-migwi/kenya_2022_voters_dashboard_app",
+      "title": "Machine-readable transcription of IEBC 2022 CAW registered-voter schedule",
+      "url": "https://raw.githubusercontent.com/samy-migwi/kenya_2022_voters_dashboard_app/29b269a6562262a77faf6d22ba5837f46d35df75/data/voters.csv",
+      "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+      "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+      "quality": "extraction_artifact",
+      "note": "Pinned, code-bearing transport copy used to join the official schedule to canonical county, constituency and ward codes. It is not the statistical authority; every published Atlas observation cites IEBC as the source."
+    },
+    "independent_transcription": {
+      "maintainer": "AllanGachomo/Kenya-Voters-Registration-Analysis-and-Prediction",
+      "title": "Independent cleaned transcription of Registered Voters per CAW 2022",
+      "url": "https://raw.githubusercontent.com/AllanGachomo/Kenya-Voters-Registration-Analysis-and-Prediction/03eeb949416ef7e28e6a4a4725a0de3a756fa7f5/Data/Clean/Registered%20Voters%20per%20CAW%202022.csv",
+      "commit": "03eeb949416ef7e28e6a4a4725a0de3a756fa7f5",
+      "blob_sha": "1d0753ca88c84021ed2da42de8947d7aeaea61a9",
+      "raw_pdf_blob_sha": "ba0bed616f1d218df487360d05d2997e33383a51",
+      "quality": "cross_check_only",
+      "note": "Pinned independent transcription and retained raw IEBC PDF snapshot used only by validation to detect extraction/transcription errors."
+    }
+  }
+}
