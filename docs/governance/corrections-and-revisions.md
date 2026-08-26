@@ -43,7 +43,7 @@ Minor typographic corrections that do not alter meaning remain in the audit log 
 
 ## Emergency withdrawal
 
-Critical privacy, legal or severe integrity risk permits immediate containment by the Accountable Publisher, Statistical Lead or Privacy & Security Lead. The action and reason must be logged immediately and independently reviewed within two business days.
+Critical privacy, legal or severe integrity risk permits immediate containment by the Owner/Publisher or a delegated Privacy & Security Lead. The action and reason must be logged immediately and, where material, independently reviewed as soon as practicable.
 
 Withdrawn content returns an explicit unavailable response; it must not silently fall back to an older or lower-geography value.
 
@@ -70,5 +70,5 @@ Every dataset page will provide “Report a data issue.” Reports receive an id
 - Medium: acknowledge within 5 business days.
 - Low: include in routine backlog review.
 
-Final resolution time depends on source-agency confirmation and must not be fabricated.
+Final resolution time may depend on source clarification or specialist review and must not be fabricated. Source-agency confirmation is sought where useful but is not presumed to be available.
 
