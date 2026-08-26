@@ -1,6 +1,6 @@
 # Data Sprint 1 — County Core
 
-Implemented 26 August 2026.
+Implemented 26 August 2026. Validated and remediated after live-browser review on the same date.
 
 Data Sprint 1 expands Kenya Data Atlas from a thin indicator prototype into a source-backed county data layer while preserving the project's central rule: **never invent lower-level values and never copy a county statistic into a constituency or ward.**
 
@@ -15,7 +15,7 @@ Data Sprint 1 expands Kenya Data Atlas from a thin indicator prototype into a so
 | County expenditure | 47/47 counties | FY 2024/25 | A — official direct |
 | Overall budget absorption | 47/47 counties | FY 2024/25 | A — official direct |
 | Development budget absorption | 47/47 counties | FY 2024/25 | A — official direct |
-| Super Petrol | 5 county-linked pricing towns | 15 Aug–14 Sep 2026 | Existing Nairobi/Mombasa observations retain their base provenance; three added town rows are E — external |
+| Super Petrol representative pricing town | 47/47 county display slots | 15 Aug–14 Sep 2026 | Existing Nairobi/Mombasa retain base provenance; added representative-town rows are E — external |
 
 ## Source decisions
 
@@ -53,13 +53,25 @@ Official publication page: <https://cob.go.ke/download/county-governments-budget
 
 Fields loaded for every county: total budget, total expenditure, overall absorption rate and development budget absorption rate. No budget statistic is allocated below county.
 
-### EPRA fuel prices
+### EPRA fuel prices — representative pricing towns, not county averages
 
-The existing Atlas already carries Nairobi and Mombasa Super Petrol observations. Sprint 1 adds Nakuru, Eldoret/Uasin Gishu and Kisumu for the 15 August–14 September 2026 cycle. Super Petrol was unchanged for this cycle.
+EPRA publishes maximum retail prices by **pricing town/location**, not as one statistical average for each county. The first Sprint 1 release loaded only five town/county links. That was too conservative for the county browsing experience and did not meet the intended breadth of the sprint.
 
-The current-cycle public town comparison is also independently visible through FuelKenya's EPRA-based town feed: <https://fuelkenya.com/>.
+The remediated release uses one representative published pricing town for each county display slot. **Forty-six of 47 mappings use a pricing town physically in the same county. Nyandarua is the one explicit exception: Nyahururu is used as the nearest published pricing town and is labelled as a proxy.** None of these values should be interpreted as a county mean or county-wide tariff.
 
-A pricing town is **not** a county statistic. The three added town observations are therefore badged **E — external**, linked to counties only for navigation, and explicitly labelled as pricing-town values rather than county averages.
+EPRA stated that Super Petrol remained unchanged for the **15 August–14 September 2026** cycle. The representative values therefore use the prior full pricing-town PMS schedule, whose Super Petrol values remained applicable to the new cycle.
+
+Current-cycle corroboration: <https://www.pulse.co.ke/story/epra-announces-august-september-fuel-prices-2026081413042614562>
+
+Pinned full-town transcription used for the representative values: <https://github.com/erickarugu/fuelkenya/blob/main/api/data/epra-cycles/2026-07-15_to_2026-08-14.csv>
+
+Because the machine-readable full-town transcription is external rather than an archived official EPRA file, added representative-town observations remain **E — external**. The Atlas keeps this conservative provenance badge even though the underlying schedule is EPRA-based.
+
+## Choropleth rendering remediation
+
+The live browser review identified a separate UI defect: the D3 map correctly calculated quantile colours and wrote them to SVG `fill` attributes, but the stylesheet also declared a fixed `fill` for `.geo-feature`. CSS won the cascade, so the map looked uniformly pale while the legend displayed multiple bins.
+
+`assets/sprint1-ui.js` now promotes the computed D3 fill attribute to an inline style for data-bearing polygons. No-data polygons retain their hatch pattern. A regression assertion in `scripts/indicators/validate-sprint1.mjs` prevents this specific defect from silently returning.
 
 ## Files
 
@@ -67,14 +79,16 @@ A pricing town is **not** a county statistic. The three added town observations 
 - `voters-2022.csv` — 47-county IEBC Gazette schedule.
 - `gcp-2020-2024.csv` — 47 counties × 5 annual current-price GCP observations.
 - `county-budget-fy2024-25.csv` — 47 county fiscal-year budget implementation rows.
-- `fuel-super-petrol-2026-08.csv` — five county-linked pricing towns.
+- `fuel-super-petrol-2026-08.csv` — 47 representative pricing-town rows for county navigation.
+- `fuel-super-petrol-2026-08-audit.csv` — explicit mapping method for every fuel display row.
 - `sources.json` — source and provenance manifest.
+- `VALIDATION.md` — post-release audit findings and validation scope.
 
 ## Runtime publication architecture
 
 `assets/sprint1-data.js` is a transparent additive layer that loads the source files above, resolves every `geo_code` against the canonical geography registry, and adds the resulting series/observations to the JSON registry responses used by the static application.
 
-The overlay creates **332 county series and 520 observations**, plus five new indicators and five source releases. It leaves the existing generated registries untouched and creates no constituency or ward observations.
+After fuel remediation the overlay creates **374 county series and 562 observations**, plus five new indicators and five source releases. It leaves the existing generated registries untouched and creates no constituency or ward observations.
 
 New indicators:
 
@@ -88,10 +102,10 @@ Existing indicators extended:
 
 - `IND-POPULATION` — adds 2009 county history.
 - `IND-REGISTERED-VOTERS` — adds all 47 counties.
-- `IND-FUEL-PETROL` — adds three additional major pricing-town observations with explicit external-source treatment.
+- `IND-FUEL-PETROL` — adds representative pricing-town observations across all 47 county display slots, with explicit non-county-average treatment.
 
 ## Known limitation / next migration
 
 The Sprint 1 overlay is intentionally additive so the public static site can use the data immediately. The next data-engineering migration should move these releases into the native `data/indicators/seed/` and catalogue build pipeline so regenerated `registry/*.json` and `registry/*.csv` files contain the same observations without the browser overlay.
 
-GCP values are **current-price totals** and should not be interpreted as real economic growth without constant-price series.
+For fuel, the preferred long-term visualization is a **pricing-town point layer** rather than a county choropleth. The county view is a navigation convenience and is explicitly labelled representative. GCP values are **current-price totals** and should not be interpreted as real economic growth without constant-price series.
