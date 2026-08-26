@@ -28,6 +28,41 @@
     return article;
   }
 
+  /*
+   * Choropleth repair (0.6.1): geo-explorer.js writes each computed D3 colour
+   * as an SVG presentation attribute. The base stylesheet also declares a
+   * fill on .geo-feature; CSS therefore wins the cascade and made every data
+   * polygon look pale even though the legend and values were correct.
+   *
+   * Mirror the computed presentation attribute into an inline style. This is
+   * deliberately a rendering-only fix: values, classes and canonical geometry
+   * are untouched. No-data features keep their hatch pattern from CSS.
+   */
+  function syncChoroplethFills() {
+    $$('#geo-svg .geo-feature').forEach(path => {
+      if (path.classList.contains('no-data')) {
+        path.style.removeProperty('fill');
+        return;
+      }
+      const computedFill = path.getAttribute('fill');
+      if (computedFill) path.style.fill = computedFill;
+    });
+  }
+
+  function installChoroplethFillRepair() {
+    const svg = $('#geo-svg');
+    if (!svg || svg.dataset.fillRepairInstalled === 'true') return;
+    svg.dataset.fillRepairInstalled = 'true';
+    const observer = new MutationObserver(() => syncChoroplethFills());
+    observer.observe(svg, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['fill', 'class']
+    });
+    syncChoroplethFills();
+  }
+
   function renderCountyFacts(name) {
     const S1 = window.KDASprint1;
     if (!S1 || !S1.additions) return;
@@ -94,7 +129,10 @@
         const small = existing.querySelector('small');
         const badge = existing.querySelector('.badge');
         if (strong) strong.textContent = `${Number(snap.fuel_pricing_town.super_petrol_kes_per_litre).toFixed(2)}/L`;
-        if (small) small.textContent = `${snap.fuel_pricing_town.pricing_town} pricing town · 15 Aug–14 Sep 2026 · not a county average`;
+        if (small) {
+          const nyandaruaCaveat = name === 'Nyandarua' ? ' · nearest published pricing town' : '';
+          small.textContent = `${snap.fuel_pricing_town.pricing_town} pricing town${nyandaruaCaveat} · 15 Aug–14 Sep 2026 · not a county average`;
+        }
         if (badge && !['Nairobi City', 'Mombasa'].includes(name)) {
           badge.textContent = 'E';
           badge.className = 'badge e';
@@ -174,6 +212,17 @@
     const S1 = window.KDASprint1;
     if (!S1) return;
     await S1.ready;
+
+    // The fuel file now contains one representative published pricing town for
+    // every county. These are town prices used for county navigation, not
+    // county averages; Nyandarua uses the nearest published pricing town.
+    S1.coverage['IND-FUEL-PETROL'] = {
+      available: 47,
+      total: 47,
+      note: '47/47 counties · representative EPRA pricing towns · not county averages'
+    };
+
+    installChoroplethFillRepair();
 
     const picker = await waitForApp();
     if (S1.error) return;
