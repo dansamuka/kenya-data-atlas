@@ -53,7 +53,7 @@ Collect only fields needed for an approved Atlas purpose. Each non-public field 
 
 ## Security incidents
 
-Suspected exposure, unauthorized change or integrity compromise is immediately escalated to the Privacy & Security Lead and Accountable Publisher. Preserve evidence, contain access, assess affected data, document decisions and make legally required notifications.
+Suspected exposure, unauthorized change or integrity compromise is immediately escalated to the Owner/Publisher and any delegated Privacy & Security Lead. Preserve evidence, contain access, assess affected data, document decisions and make legally required notifications.
 
 ## Retention
 
@@ -61,7 +61,7 @@ Official source releases, approved transformations, observation vintages and aud
 
 ## Required reviews before public beta
 
-- legal/privacy impact assessment;
+- documented owner privacy assessment, with specialist legal/privacy advice where risk or rights are unclear;
 - threat model;
 - access-control review;
 - dependency and secret scan;
