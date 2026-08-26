@@ -1,6 +1,6 @@
 /* Kenya Data Atlas — Data Sprint 2 UI supplements.
- * Makes Local Kenya coverage explicit as the user drills
- * Kenya -> County -> Constituency -> Ward for registered voters.
+ * Makes Local Kenya coverage and geography-crosswalk quality explicit as the
+ * user drills Kenya -> County -> Constituency -> Ward for registered voters.
  */
 (function () {
   'use strict';
@@ -18,6 +18,16 @@
     return 'country';
   }
 
+  function countyNumber(code) {
+    const match = code.match(/^KEN-C(\d{3})/);
+    return match ? Number(match[1]) : null;
+  }
+
+  function constituencyNumber(code) {
+    const match = code.match(/-CON(\d+)/);
+    return match ? Number(match[1]) : null;
+  }
+
   function childCount(parentCode, childLevel) {
     const S2 = window.KDASprint2;
     if (!S2) return 0;
@@ -26,6 +36,21 @@
       if (parent === parentCode && S2.geoLevelByCode.get(code) === childLevel) count += 1;
     }
     return count;
+  }
+
+  function crosswalkCount(code, level) {
+    const S2 = window.KDASprint2;
+    if (!S2) return 0;
+    if (level === 'country') return S2.crosswalks.length;
+    if (level === 'county') {
+      const n = countyNumber(code);
+      return S2.crosswalks.filter(x => x.county_code === n).length;
+    }
+    if (level === 'constituency') {
+      const n = constituencyNumber(code);
+      return S2.crosswalks.filter(x => x.constituency_code === n).length;
+    }
+    return S2.crosswalkByGeoCode.has(code) ? 1 : 0;
   }
 
   function formatCount(value) {
@@ -42,28 +67,43 @@
     if (level === 'country') {
       return {
         text: 'Coverage: 47/47 counties · 290/290 constituencies · 1,450/1,450 wards · certified register 2022',
-        source: 'Source: IEBC · A — Official direct at county/ward level · constituency totals are B — Official derived'
+        source: `Source: IEBC · ward geography: 1,389 A — direct-aligned + ${crosswalkCount(code, level)} B — explicit crosswalks · constituency totals B — official derived`
       };
     }
+
     if (level === 'county') {
       const n = childCount(code, 'constituency');
+      const x = crosswalkCount(code, level);
       return {
-        text: `Coverage: ${n}/${n} constituencies in this county · 290/290 nationally · certified register 2022`,
-        source: 'Source: IEBC · B — Official derived · exact sum of published County Assembly Ward values'
+        text: `Coverage: ${n}/${n} constituencies in this county · 290/290 nationally · ${x} crosswalked ward ${x === 1 ? 'identity' : 'identities'}`,
+        source: 'Source: IEBC · constituency values are exact sums of published CAW observations · no county value allocated downward'
       };
     }
+
     if (level === 'constituency') {
       const n = childCount(code, 'ward');
+      const x = crosswalkCount(code, level);
       const total = S2.constituencyValueByGeoCode.get(code);
       return {
-        text: `Coverage: ${n}/${n} wards in this constituency · 1,450/1,450 nationally${total != null ? ` · ${formatCount(total)} voters` : ''}`,
-        source: 'Source: IEBC · A — Official direct for each ward · Kenya Gazette First Schedule'
+        text: `Coverage: ${n}/${n} wards in this constituency · ${x} explicit geography ${x === 1 ? 'crosswalk' : 'crosswalks'}${total != null ? ` · ${formatCount(total)} voters` : ''}`,
+        source: x
+          ? `Source: IEBC · ${n - x} A — direct-aligned ward ${n - x === 1 ? 'observation' : 'observations'} · ${x} B — crosswalked · constituency total B — official derived`
+          : 'Source: IEBC · all child wards A — direct-aligned · constituency total B — official derived'
       };
     }
+
     const value = S2.wardValueByGeoCode.get(code);
+    const crosswalk = S2.crosswalkByGeoCode.get(code);
+    if (crosswalk) {
+      return {
+        text: `Coverage: exact IEBC ward observation${value != null ? ` · ${formatCount(value)} registered voters` : ''} · explicit geography crosswalk`,
+        source: `Source: IEBC · B — Official transformed · source CAW ${String(crosswalk.source_ward_code).padStart(4, '0')} ${crosswalk.source_name} → Atlas ${crosswalk.canonical_name} · ${crosswalk.method.replaceAll('_', ' ')}`
+      };
+    }
+
     return {
       text: `Coverage: exact ward observation${value != null ? ` · ${formatCount(value)} registered voters` : ''} · certified register 2022`,
-      source: 'Source: IEBC · A — Official direct · Kenya Gazette First Schedule'
+      source: 'Source: IEBC · A — Official direct-aligned · Kenya Gazette First Schedule'
     };
   }
 
@@ -124,8 +164,6 @@
     const breadcrumb = $('#geo-breadcrumb');
     if (breadcrumb) breadcrumb.addEventListener('click', () => setTimeout(refreshLocalContext, 50));
 
-    // Geo Explorer re-renders the source line asynchronously. This observer
-    // restores the more precise level-specific IEBC provenance immediately.
     const sourceNote = $('#geo-source-note');
     if (sourceNote) {
       let applying = false;
