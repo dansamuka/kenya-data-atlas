@@ -18,7 +18,7 @@
     "indicators:validate": "node scripts/indicators/validate-registry.mjs",
     "sprint1:validate": "node scripts/indicators/validate-sprint1.mjs",
     "sprint2:diagnose": "node scripts/indicators/diagnose-sprint2-geography.mjs",
-    "sprint2:validate": "node scripts/indicators/validate-sprint2.mjs"
+    "sprint2:validate": "node scripts/indicators/validate-sprint2-release.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"
