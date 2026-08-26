@@ -117,5 +117,22 @@
     "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md",
     "comparable": true,
     "active": true
+  },
+  {
+    "indicator_id": "1e520a03-e5c6-5028-9a7f-c61658067ebd",
+    "indicator_code": "IND-FUEL-PETROL",
+    "name": "Super Petrol pump price",
+    "short_name": "Petrol price",
+    "description": "Maximum retail price of Super Petrol, as set monthly by EPRA.",
+    "topic": "Economy",
+    "subtopic": "Energy prices",
+    "unit_id": "c378415c-0864-5d65-9772-35dda6b0fb78",
+    "higher_is_better": false,
+    "preferred_frequency": "monthly",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.epra.go.ke/pump-price-formulae",
+    "comparable": true,
+    "active": true
   }
 ]

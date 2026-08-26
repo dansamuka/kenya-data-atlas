@@ -340,6 +340,16 @@
     "notes": ""
   },
   {
+    "lineage_edge_id": "6fa929d9-e94d-5113-a7e8-f2f9a4398ece",
+    "from_entity_type": "source",
+    "from_entity_id": "c0d98736-dff3-551c-8d64-86ad591fbde6",
+    "to_entity_type": "dataset",
+    "to_entity_id": "1b35c8c2-bd14-517c-825e-293f0ffbcde1",
+    "relationship": "contains",
+    "transformation_version": "",
+    "notes": ""
+  },
+  {
     "lineage_edge_id": "05270efd-5343-5591-8d53-525979fae32d",
     "from_entity_type": "dataset",
     "from_entity_id": "23c35c8b-807b-59c8-8d6b-eca482fb97f6",
@@ -455,6 +465,16 @@
     "from_entity_id": "05b4bda9-0468-56bf-a98f-14a6ed74989b",
     "to_entity_type": "release",
     "to_entity_id": "40202350-a52d-505b-8c87-82f2cb84e245",
+    "relationship": "released_as",
+    "transformation_version": "",
+    "notes": ""
+  },
+  {
+    "lineage_edge_id": "270f740a-b0ed-5917-a65f-77ebc70c8379",
+    "from_entity_type": "dataset",
+    "from_entity_id": "1b35c8c2-bd14-517c-825e-293f0ffbcde1",
+    "to_entity_type": "release",
+    "to_entity_id": "f8591e7c-3405-5d76-ae73-4cd41417e324",
     "relationship": "released_as",
     "transformation_version": "",
     "notes": ""
@@ -615,6 +635,16 @@
     "from_entity_id": "40202350-a52d-505b-8c87-82f2cb84e245",
     "to_entity_type": "source_file",
     "to_entity_id": "8ed822e8-1d0d-5a33-b971-cb774bd1aa81",
+    "relationship": "represented_by",
+    "transformation_version": "",
+    "notes": ""
+  },
+  {
+    "lineage_edge_id": "c62fcce8-8c15-55a8-9a9a-dcc942b59ebe",
+    "from_entity_type": "release",
+    "from_entity_id": "f8591e7c-3405-5d76-ae73-4cd41417e324",
+    "to_entity_type": "source_file",
+    "to_entity_id": "71bc3064-998a-5b5e-a3bf-bc1da6de6b6d",
     "relationship": "represented_by",
     "transformation_version": "",
     "notes": ""

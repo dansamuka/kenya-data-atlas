@@ -320,5 +320,20 @@
     "publication_status": "published",
     "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md",
     "known_limitations": "Not a surveyed or IEBC-issued area figure. Computed from externally sourced, provisional boundary geometry (registry_status: provisional) using a planar approximation with an estimated error band of roughly +/-2% at Kenya's latitude range; recorded as geographic_method=aggregated, statistical_status=estimated, badge B (official derived) is therefore not claimed as badge A regardless of the underlying geometry's own status."
+  },
+  {
+    "dataset_id": "1b35c8c2-bd14-517c-825e-293f0ffbcde1",
+    "dataset_code": "DS-EPRA-FUEL-HEADLINE",
+    "source_id": "c0d98736-dff3-551c-8d64-86ad591fbde6",
+    "title": "Maximum Retail Fuel Prices — Super Petrol (Nairobi, Mombasa)",
+    "description": "Monthly maximum retail pump price of Super Petrol for the Nairobi and Mombasa pricing towns, as announced by EPRA under the Petroleum Act 2019 and Legal Notice No. 192 of 2022.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "https://www.epra.go.ke/pump-price-formulae",
+    "known_limitations": "Covers only 2 of 47 counties (Nairobi and Mombasa pricing towns) from a single announcement. EPRA sets prices by town/pricing zone, not strictly by administrative county boundary; Nairobi town and Mombasa town are used here as reasonable proxies for their respective counties, not as an official county-level statistic. The remaining EPRA town price list (34+ towns) is not yet loaded. Diesel and kerosene prices from the same announcement are not yet loaded either."
   }
 ]

@@ -158,35 +158,115 @@ $('#main-nav').onclick = () => { $('#main-nav').classList.remove('open'); menu.s
     $('.pulse-card dl').innerHTML = `<div><dt>Reference period</dt><dd>${obs.period_label}</dd></div><div><dt>Source</dt><dd>${source} · ${badgeLabel(obs.badge)}</dd></div>`;
   }
 
-  // ------------------------------------------------------- Nakuru profile
-  // Population and land area are real; anything not seeded shows the
-  // project's honest missing-data treatment rather than a placeholder number.
-  const nakuruPopulation = latestObs('KDA-POP-TOTAL-C032');
-  const nakuruArea = latestObs('KDA-AREA-KEN-C032');
-  const quickFacts = $('.quick-facts');
-  if (quickFacts) {
-    const factHtml = (label, obsPair, unitCode, suffix) => {
-      if (!obsPair) return `<article><span>${label}</span><strong>—</strong><small>Data not currently available</small><b class="badge missing">N/A</b></article>`;
+  // --------------------------------------------------------- County profile
+  // A single profile section, re-rendered for whichever county is selected.
+  // Coverage varies by indicator: population and land area are real for all
+  // 47 counties; fuel price is real for exactly 2 (Nairobi, Mombasa); voters
+  // and GCP are not yet available for any county and are always shown as
+  // honest gaps rather than filled in with Nakuru's numbers or anything else.
+  const allCounties = (geographies ?? [])
+    .filter(g => g.level === 'county')
+    .map(g => g.name)
+    .sort((a, b) => a.localeCompare(b));
+
+  const countyPicker = $('#county-picker');
+  if (countyPicker) countyPicker.innerHTML = allCounties.map(name => `<option${name === 'Nakuru' ? ' selected' : ''}>${name}</option>`).join('');
+
+  function countyGeo(name) {
+    return (geographies ?? []).find(g => g.level === 'county' && g.name === name);
+  }
+  function countySeriesCode(indicatorCode, name) {
+    const geo = countyGeo(name);
+    if (!geo) return null;
+    if (indicatorCode === 'IND-POPULATION') return `KDA-POP-TOTAL-${geo.geo_code}`;
+    if (indicatorCode === 'IND-LAND-AREA') return `KDA-AREA-${geo.geo_code}`;
+    if (indicatorCode === 'IND-FUEL-PETROL') return `KDA-FUEL-PETROL-${geo.geo_code}`;
+    return null;
+  }
+
+  let currentCounty = 'Nakuru';
+
+  function renderProfile(name) {
+    currentCounty = name;
+    const geo = countyGeo(name);
+    const population = latestObs(countySeriesCode('IND-POPULATION', name));
+    const area = latestObs(countySeriesCode('IND-LAND-AREA', name));
+    const fuel = latestObs(countySeriesCode('IND-FUEL-PETROL', name));
+
+    $('#profile-breadcrumb-county').textContent = name;
+    $('#profile-eyebrow').textContent = geo ? `Area profile · County ${String(geo.county_code).padStart(3, '0')}` : 'Area profile';
+    $('#profile-title').textContent = `${name} County`;
+    if (countyPicker && countyPicker.value !== name) countyPicker.value = name;
+
+    const factHtml = (label, obsPair, unitCode, suffix, unavailableNote) => {
+      if (!obsPair) return `<article><span>${label}</span><strong>—</strong><small>${unavailableNote}</small><b class="badge missing">N/A</b></article>`;
       const { obs } = obsPair;
       return `<article><span>${label}</span><strong>${formatValue(obs.value, unitCode)}${suffix}</strong><small>${obs.period_label} · ${badgeLabel(obs.badge)}</small><b class="badge ${obs.badge.toLowerCase()}">${obs.badge}</b></article>`;
     };
-    quickFacts.innerHTML = [
-      factHtml('Population', nakuruPopulation, 'persons', ''),
-      factHtml('Land area', nakuruArea, 'km2', ' km²'),
-      '<article><span>Registered voters</span><strong>—</strong><small>Not yet available at county level</small><b class="badge missing">N/A</b></article>',
+    const quickFacts = $('.quick-facts');
+    if (quickFacts) quickFacts.innerHTML = [
+      factHtml('Population', population, 'persons', '', 'Data not currently available'),
+      factHtml('Land area', area, 'km2', ' km²', 'Data not currently available'),
+      factHtml('Super Petrol price', fuel, 'kes_per_litre', '/L', 'Only Nairobi and Mombasa are loaded so far'),
       '<article><span>GCP per person</span><strong>—</strong><small>Not yet available — GCP is published episodically, not annually (see methodology)</small><b class="badge missing">N/A</b></article>'
     ].join('');
+
+    const chartCard = $('.chart-card');
+    if (chartCard) {
+      if (population) {
+        const { obs, series: s } = population;
+        chartCard.innerHTML = `<div class="card-head"><div><small>What do we know?</small><h3>Population</h3></div>${badgeHtml(obs.badge)}</div>
+          <div style="padding:2rem 0"><div class="feature-value" style="font-size:3rem">${formatValue(obs.value, 'persons')}</div>
+          <p class="source-note" style="margin-top:1rem">${obs.period_label} · ${agencyNameFor(s)}. Only the 2019 enumeration is loaded; earlier censuses are not yet in the registry, so no trend line is shown rather than an invented one.</p></div>`;
+      } else {
+        chartCard.innerHTML = `<div class="card-head"><div><small>What do we know?</small><h3>Population</h3></div>${badgeHtml(null)}</div><p class="source-note" style="margin-top:1rem">Data not currently available for ${name}.</p>`;
+      }
+    }
   }
 
-  // The old fabricated 1999-2009-2019 population curve is replaced with an
-  // honest single-point statement: only the 2019 enumeration is loaded.
-  const chartCard = $('.chart-card');
-  if (chartCard && nakuruPopulation) {
-    const { obs, series: s } = nakuruPopulation;
-    chartCard.innerHTML = `<div class="card-head"><div><small>What do we know?</small><h3>Population</h3></div>${badgeHtml(obs.badge)}</div>
-      <div style="padding:2rem 0"><div class="feature-value" style="font-size:3rem">${formatValue(obs.value, 'persons')}</div>
-      <p class="source-note" style="margin-top:1rem">${obs.period_label} · ${agencyNameFor(s)}. Only the 2019 enumeration is loaded; the 1999 and 2009 censuses are not yet in the registry, so no trend line is shown rather than an invented one.</p></div>`;
+  function updateMapTooltip(name) {
+    const tooltipName = $('#map-tooltip-name');
+    const tooltipValue = $('#map-tooltip-value');
+    if (tooltipName) tooltipName.textContent = name;
+    if (tooltipValue) {
+      const indicatorName = $('#map-indicator') ? $('#map-indicator').value : 'Population';
+      const population = latestObs(countySeriesCode('IND-POPULATION', name));
+      const area = latestObs(countySeriesCode('IND-LAND-AREA', name));
+      let valueText = 'No real data loaded yet for this indicator';
+      if (indicatorName === 'Population') valueText = population ? `Population · ${formatValue(population.obs.value, 'persons')}` : 'Population · not yet available';
+      if (indicatorName === 'Land area') valueText = area ? `Land area · ${formatValue(area.obs.value, 'km2')} km²` : 'Land area · not yet available';
+      if (indicatorName === 'Registered voters') valueText = 'Registered voters · only available nationally so far';
+      tooltipValue.textContent = valueText;
+    }
   }
+  function selectCounty(name) {
+    renderProfile(name);
+    updateMapTooltip(name);
+    document.getElementById('profile')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  const addCompareBtn = $('#profile-add-compare');
+  if (addCompareBtn) addCompareBtn.onclick = () => {
+    if (compareCounties.includes(currentCounty)) { toast(`${currentCounty} is already in the comparison.`); return; }
+    if (!areaByCountyName.has(currentCounty)) { toast(`No real data available yet for ${currentCounty} in the comparison indicator.`); return; }
+    if (compareCounties.length >= 4) { toast('Comparison is limited to four places in this prototype.'); return; }
+    compareCounties.push(currentCounty);
+    renderCompare();
+    toast(`Added ${currentCounty} to the comparison below.`);
+  };
+  const downloadProfileBtn = $('#profile-download');
+  if (downloadProfileBtn) downloadProfileBtn.onclick = () => {
+    const population = latestObs(countySeriesCode('IND-POPULATION', currentCounty));
+    const area = latestObs(countySeriesCode('IND-LAND-AREA', currentCounty));
+    const fuel = latestObs(countySeriesCode('IND-FUEL-PETROL', currentCounty));
+    const rows = [['indicator', 'value', 'unit', 'reference_period', 'badge', 'source_url'].join(',')];
+    for (const [label, pair, unit] of [['population', population, 'persons'], ['land_area_km2', area, 'km2'], ['petrol_price_kes_per_litre', fuel, 'kes_per_litre']]) {
+      if (pair) rows.push([label, pair.obs.value, unit, `"${pair.obs.period_label}"`, pair.obs.badge, pair.obs.source_url].join(','));
+    }
+    download(`kenya-data-atlas-${currentCounty.toLowerCase().replace(/\s+/g, '-')}.csv`, rows.join('\n'));
+  };
+  if (countyPicker) countyPicker.onchange = () => selectCounty(countyPicker.value);
+  if (allCounties.length) { renderProfile(currentCounty); updateMapTooltip(currentCounty); }
 
   // ---------------------------------------------------------------- Rankings
   // Land area is the only indicator with full 47-county coverage, so it is
@@ -297,30 +377,31 @@ $('#main-nav').onclick = () => { $('#main-nav').classList.remove('open'); menu.s
   }).catch(() => {});
 
   // -------------------------------------------------------------------- Map
-  // The county grid remains an explicit schematic (its cells carry no real
-  // spatial position), so it deliberately is NOT wired to per-county real
-  // data — doing so would imply a geographic accuracy the grid doesn't have.
-  // Only the indicator options and the one illustrative tooltip value are
-  // updated to reference indicators the Atlas can actually back.
+  // The grid's cells still carry no real spatial position — clicking cell #12
+  // does not mean "the 12th county on a real map" — so this is deliberately
+  // NOT presented as a boundary map. But each cell now selects a genuinely
+  // different real county (cycling through the actual 47 names), which is
+  // the fix for "why does every cell show Nakuru": it doesn't any more. The
+  // authoritative, precise way to pick a county is the dropdown in the
+  // profile section above; the grid is a lightweight way to browse.
   const mapIndicator = $('#map-indicator');
   if (mapIndicator) mapIndicator.innerHTML = '<option>Population</option><option>Land area</option><option>Registered voters</option>';
   const map = $('#kenya-map');
   for (let i = 0; i < 56; i += 1) {
     const b = document.createElement('button');
     b.className = 'county-cell';
-    b.setAttribute('aria-label', `Schematic county cell ${i + 1}`);
+    const cellCounty = allCounties.length ? allCounties[i % allCounties.length] : null;
+    b.setAttribute('aria-label', cellCounty ? `Select ${cellCounty}` : `Schematic county cell ${i + 1}`);
     b.onclick = () => {
       $$('.county-cell').forEach(c => c.classList.remove('active'));
       b.classList.add('active');
-      $('#map-tooltip strong').textContent = 'Nakuru';
-      const indicatorName = mapIndicator ? mapIndicator.value : 'Population';
-      let valueText = 'Schematic cell · not a real boundary';
-      if (indicatorName === 'Population' && nakuruPopulation) valueText = `Population · ${formatValue(nakuruPopulation.obs.value, 'persons')} (real)`;
-      if (indicatorName === 'Land area' && nakuruArea) valueText = `Land area · ${formatValue(nakuruArea.obs.value, 'km2')} km² (real)`;
-      $('#map-tooltip span').textContent = valueText;
+      if (cellCounty) selectCounty(cellCounty);
     };
     map.appendChild(b);
   }
+  const viewProfileBtn = $('#map-view-profile');
+  if (viewProfileBtn) viewProfileBtn.onclick = () => selectCounty(currentCounty);
+  if (mapIndicator) mapIndicator.onchange = () => updateMapTooltip(currentCounty);
 
   // ------------------------------------------------------------------ Search
   // Extended to match real indicator names alongside real geographies.

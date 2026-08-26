@@ -1,7 +1,7 @@
 # Methodology — Indicators, Series and Observations
 
 **Last rebuilt:** 26 August 2026
-**Status:** First real (non-demo) content. Seven indicators, 55 series, 56 observations.
+**Status:** 8 indicators, 103 series, 104 observations. Two indicators — population and land area — now have full 47-county coverage, enabling a genuine per-county profile switcher rather than a single fixed example.
 
 ---
 
@@ -51,10 +51,25 @@ narrower slice was reviewable when the broader dataset was not:
 
 ## 3. What's actually seeded
 
-### Population (badge A, direct official)
-National (47,564,296) and Nakuru County (2,162,202), both from the 2019 census,
-enumerated on census night, 24–25 August 2019, published 4 November 2019. `period_type:
-point_in_time` — a census counts a moment, not an annual average.
+### Population (badge A, direct official) — all 47 counties
+National (47,564,296) and every county, all from the 2019 census, enumerated on
+census night, 24–25 August 2019, published 4 November 2019. The 47 county figures
+were cross-checked against a secondary aggregation of the official results (direct
+automated retrieval from knbs.or.ke is blocked by the publisher's robots policy);
+the sum of all 47 county values equals exactly 47,564,296, matching KNBS's
+published national total. `period_type: point_in_time` — a census counts a moment,
+not an annual average.
+
+### Super Petrol pump price (badge A, direct official) — Nairobi and Mombasa only
+Maximum retail price set by EPRA for the pricing cycle 15 August – 14 September
+2026 (announced 14 August 2026): Nairobi KES 214.03/L, Mombasa KES 210.87/L.
+Modelled as `point_in_time` on the announcement date, not the future cycle window —
+EPRA is setting a forward price ceiling, not reporting a past observation, so the
+announcement date is the true reference point. Covers 2 of 47 counties only: EPRA
+prices by town/pricing zone, not by administrative county, and Nairobi/Mombasa
+town are used here as reasonable (not official) proxies for their counties. The
+remaining ~34 EPRA pricing towns, and the diesel/kerosene prices from the same
+announcement, are not yet loaded.
 
 ### Consumer price inflation (badge A)
 Two real monthly observations: June 2026 (6.4%) and July 2026 (6.5%), both KNBS. This

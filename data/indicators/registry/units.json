@@ -38,5 +38,15 @@
     "scale_factor": 1,
     "decimal_places": 1,
     "currency_code": ""
+  },
+  {
+    "unit_id": "c378415c-0864-5d65-9772-35dda6b0fb78",
+    "code": "kes_per_litre",
+    "name": "Kenya Shillings per litre",
+    "symbol": "KES/L",
+    "dimension": "currency",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": "KES"
   }
 ]

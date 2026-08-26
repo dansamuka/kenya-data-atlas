@@ -286,5 +286,23 @@
     "source_sheet": "",
     "source_page": "",
     "notes": "Computed by scripts/indicators/compute-derived-area.mjs from data/geography/geometry/*.geojson at boundary_version 2012-01."
+  },
+  {
+    "source_file_id": "71bc3064-998a-5b5e-a3bf-bc1da6de6b6d",
+    "release_id": "f8591e7c-3405-5d76-ae73-4cd41417e324",
+    "original_url": "https://www.epra.go.ke/pump-price-formulae",
+    "original_filename": "EPRA maximum retail fuel prices, 15 August - 14 September 2026",
+    "archived_path": "",
+    "retrieved_at": "",
+    "mime_type": "text/html",
+    "byte_size": "",
+    "sha256": "",
+    "git_blob_sha": "",
+    "licence_name": "No licence stated by publisher; reviewed under statistical-publication-policy.md basis 1-4",
+    "extraction_status": "referenced_not_archived",
+    "source_table": "",
+    "source_sheet": "",
+    "source_page": "",
+    "notes": "Super Petrol maximum retail price: Nairobi KES 214.03/L, Mombasa KES 210.87/L. Diesel fell KES 5/L in this cycle; not yet loaded."
   }
 ]

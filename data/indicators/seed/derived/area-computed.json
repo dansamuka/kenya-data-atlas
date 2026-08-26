@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T13:07:19.928Z",
+  "generated_at": "2026-08-26T13:41:49.932Z",
   "method": "equirectangular planar projection, mean-latitude reference per feature, shoelace formula",
   "boundary_version": "2012-01",
   "geometry_source": "data/geography/geometry (canonical ward layer, dissolved to county and country)",

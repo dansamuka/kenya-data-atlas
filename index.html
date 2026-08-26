@@ -62,21 +62,16 @@
       </div>
       <div class="map-panel">
         <div class="kenya-map" id="kenya-map" aria-label="Schematic interactive county map" role="img"></div>
-        <div class="map-tooltip" id="map-tooltip"><small>Selected county</small><strong>Nakuru</strong><span>Population · 2.16m</span><button data-area="Nakuru County">View county profile →</button></div>
+        <div class="map-tooltip" id="map-tooltip"><small>Selected county</small><strong id="map-tooltip-name">Nakuru</strong><span id="map-tooltip-value">Population · 2.16m</span><button id="map-view-profile">View county profile →</button></div>
       </div>
     </section>
 
     <section class="section profile-section" id="profile">
-      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> Nakuru</p><p class="eyebrow">Area profile · County 032</p><h2>Nakuru County</h2><p>A sample profile showing how directly published facts, comparison context and unavailable local data remain distinct.</p></div><div class="profile-actions"><button data-add-compare="Nakuru">＋ Compare</button><button data-toast="Demo download prepared as a browser-generated CSV.">↓ Download</button></div></div>
+      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> <span id="profile-breadcrumb-county">Nakuru</span></p><label class="select-label" style="margin-top:.6rem">Select county<select id="county-picker" aria-label="Select a county to view its profile"></select></label><p class="eyebrow" id="profile-eyebrow">Area profile · County 032</p><h2 id="profile-title">Nakuru County</h2><p>Real, published facts where they exist; unavailable local data is shown honestly rather than filled in.</p></div><div class="profile-actions"><button id="profile-add-compare">＋ Compare</button><button id="profile-download">↓ Download</button></div></div>
       <nav class="topic-tabs" aria-label="Profile topics"><button class="active">Overview</button><button>People</button><button>Economy</button><button>Health</button><button>Finance</button><button>Infrastructure</button></nav>
-      <div class="quick-facts">
-        <article><span>Population</span><strong>2.16m</strong><small>2019 · KNBS example</small><b class="badge a">A</b></article>
-        <article><span>Area</span><strong>7,510 km²</strong><small>Boundary record · demo</small><b class="badge b">B</b></article>
-        <article><span>Registered voters</span><strong>—</strong><small>Demo value not supplied</small><b class="badge missing">N/A</b></article>
-        <article><span>GCP per person</span><strong>KES 192k</strong><small>2023 · illustrative</small><b class="badge demo">Demo</b></article>
-      </div>
+      <div class="quick-facts"></div>
       <div class="profile-lower">
-        <article class="chart-card"><div class="card-head"><div><small>What has changed?</small><h3>Population over time</h3></div><span class="badge a">A · Official direct</span></div><div class="line-chart" aria-label="Illustrative population line chart"><span class="y-label top">2.2m</span><span class="y-label bottom">1.2m</span><svg viewBox="0 0 600 210" role="img"><title>Population rises between 1999 and 2019</title><path class="grid" d="M40 30H580M40 100H580M40 170H580"/><path class="area" d="M50 155 C180 145 240 128 320 105 S470 65 560 42 L560 175 L50 175Z"/><path class="line" d="M50 155 C180 145 240 128 320 105 S470 65 560 42"/><circle cx="50" cy="155" r="5"/><circle cx="320" cy="105" r="5"/><circle cx="560" cy="42" r="5"/></svg><div class="x-labels"><span>1999</span><span>2009</span><span>2019</span></div></div><p class="source-note">Source: KNBS census · values shown as a sourced-schema example; verify before publication</p></article>
+        <article class="chart-card"></article>
         <article class="availability-card"><small>Ward-level availability</small><h3>Honest gaps are part of the product.</h3><p>Some socioeconomic statistics are published only at county or administrative-area level. The Atlas does not automatically assign these values to wards.</p><div class="no-data"><span>—</span><div><strong>Ward poverty rate</strong><small>Data not currently available at ward level</small></div></div><button class="text-link" data-toast="Methodology view is represented in this static MVP.">Read the geography methodology →</button></article>
       </div>
     </section>

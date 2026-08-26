@@ -1,6 +1,44 @@
 [
-  { "code": "persons", "name": "Persons", "symbol": "", "dimension": "count", "scale_factor": 1, "decimal_places": 0 },
-  { "code": "percent", "name": "Percent", "symbol": "%", "dimension": "ratio", "scale_factor": 1, "decimal_places": 1 },
-  { "code": "kes_per_usd", "name": "Kenya Shillings per US Dollar", "symbol": "KES/USD", "dimension": "ratio", "scale_factor": 1, "decimal_places": 2, "currency_code": "KES" },
-  { "code": "km2", "name": "Square kilometres", "symbol": "km\u00b2", "dimension": "area", "scale_factor": 1, "decimal_places": 1 }
+  {
+    "code": "persons",
+    "name": "Persons",
+    "symbol": "",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0
+  },
+  {
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1
+  },
+  {
+    "code": "kes_per_usd",
+    "name": "Kenya Shillings per US Dollar",
+    "symbol": "KES/USD",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": "KES"
+  },
+  {
+    "code": "km2",
+    "name": "Square kilometres",
+    "symbol": "km²",
+    "dimension": "area",
+    "scale_factor": 1,
+    "decimal_places": 1
+  },
+  {
+    "code": "kes_per_litre",
+    "name": "Kenya Shillings per litre",
+    "symbol": "KES/L",
+    "dimension": "currency",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": "KES"
+  }
 ]

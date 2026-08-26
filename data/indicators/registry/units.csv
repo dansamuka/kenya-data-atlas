@@ -3,3 +3,4 @@ unit_id,code,name,symbol,dimension,scale_factor,decimal_places,currency_code
 "09db3d3a-c7b1-51f3-9909-d94d80106e82","percent","Percent","%","ratio","1","1",""
 "a2522f73-34eb-5b5e-a1d4-383888213b20","kes_per_usd","Kenya Shillings per US Dollar","KES/USD","ratio","1","2","KES"
 "288f3c4c-858c-5be1-8803-0529c2870ab7","km2","Square kilometres","km²","area","1","1",""
+"c378415c-0864-5d65-9772-35dda6b0fb78","kes_per_litre","Kenya Shillings per litre","KES/L","currency","1","2","KES"
