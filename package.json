@@ -6,7 +6,10 @@
   "scripts": {
     "geography:build": "node scripts/geography/build-registry.mjs",
     "geography:validate": "node scripts/geography/validate-registry.mjs",
-    "test": "npm run geography:validate"
+    "catalogue:build": "node scripts/catalogue/build-catalogue.mjs",
+    "catalogue:validate": "node scripts/catalogue/validate-catalogue.mjs",
+    "build:data": "npm run geography:build && npm run catalogue:build",
+    "test": "npm run geography:validate && npm run catalogue:validate"
   }
 }
 

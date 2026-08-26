@@ -49,6 +49,7 @@ README.md           Project and data-status documentation
 - **Static product prototype:** Complete
 - **Phase 0 — Governance and statistical policy:** Implemented as a repository policy package
 - **Phase 1 — Canonical geography foundation:** Implemented (complete hierarchy; record-level status provisional pending final official spelling comparison; geometry validation pending)
+- **Phase 2 — Source, dataset and provenance registry:** Implemented and validated
 
 Phase 0 policies, decision rights, registers and approval templates are indexed in [`docs/governance/README.md`](docs/governance/README.md). No demonstration value in the interface is approved production data.
 
@@ -65,6 +66,8 @@ In the repository settings, choose **Pages → Deploy from a branch**, select th
 The next phase should replace demo content with validated source releases, a canonical geography registry, versioned boundaries, observation vintages, an API, and automated quality checks. Every observation should retain agency, dataset, release, source table/page, reference period, publication date, ingestion date, method and quality status.
 
 The Phase 1 registry can be rebuilt and validated with `npm run geography:build` and `npm test`. It contains 1 country, 47 counties, 290 constituencies and 1,450 wards with deterministic IDs, canonical codes, parents and search aliases. See [`data/geography/README.md`](data/geography/README.md).
+
+Phase 2 adds 12 agencies, 12 publication sources, 16 dataset families, 4 retained/reference releases, 8 source-file records and 40 validated lineage edges. See [`data/catalogue/README.md`](data/catalogue/README.md).
 
 ## Accessibility and browser support
 

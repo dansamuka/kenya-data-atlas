@@ -1,0 +1,15 @@
+[
+  {"code":"KNBS","name":"Kenya National Bureau of Statistics","abbreviation":"KNBS","agency_type":"national_statistics_office","official_url":"https://www.knbs.or.ke/","jurisdiction":"Kenya","description":"Official national statistics agency."},
+  {"code":"CBK","name":"Central Bank of Kenya","abbreviation":"CBK","agency_type":"central_bank","official_url":"https://www.centralbank.go.ke/","jurisdiction":"Kenya","description":"Official monetary and financial authority."},
+  {"code":"IEBC","name":"Independent Electoral and Boundaries Commission","abbreviation":"IEBC","agency_type":"constitutional_commission","official_url":"https://www.iebc.or.ke/","jurisdiction":"Kenya","description":"Electoral management and electoral-boundary authority."},
+  {"code":"COB","name":"Controller of Budget","abbreviation":"CoB","agency_type":"constitutional_office","official_url":"https://cob.go.ke/","jurisdiction":"Kenya","description":"Oversees implementation of national and county budgets."},
+  {"code":"KAMIS","name":"Kenya Agricultural Market Information System","abbreviation":"KAMIS","agency_type":"government_information_system","official_url":"https://kamis.kilimo.go.ke/","jurisdiction":"Kenya","description":"Agricultural market price and supply information system."},
+  {"code":"CA","name":"Communications Authority of Kenya","abbreviation":"CA","agency_type":"regulator","official_url":"https://www.ca.go.ke/","jurisdiction":"Kenya","description":"Communications-sector regulator and statistics publisher."},
+  {"code":"EPRA","name":"Energy and Petroleum Regulatory Authority","abbreviation":"EPRA","agency_type":"regulator","official_url":"https://www.epra.go.ke/","jurisdiction":"Kenya","description":"Energy and petroleum regulator."},
+  {"code":"TREASURY","name":"The National Treasury and Economic Planning","abbreviation":"National Treasury","agency_type":"government_ministry","official_url":"https://www.treasury.go.ke/","jurisdiction":"Kenya","description":"National fiscal, budget and economic-policy authority."},
+  {"code":"MOH","name":"Ministry of Health","abbreviation":"MoH","agency_type":"government_ministry","official_url":"https://www.health.go.ke/","jurisdiction":"Kenya","description":"National health-policy and health-information authority."},
+  {"code":"MOE","name":"Ministry of Education","abbreviation":"MoE","agency_type":"government_ministry","official_url":"https://www.education.go.ke/","jurisdiction":"Kenya","description":"National education-policy and information authority."},
+  {"code":"KENYA-LAW","name":"National Council for Law Reporting — Kenya Law","abbreviation":"Kenya Law","agency_type":"state_corporation","official_url":"https://new.kenyalaw.org/","jurisdiction":"Kenya","description":"Official public legal-information service."},
+  {"code":"KDA-COMMUNITY","name":"External open-data maintainers","abbreviation":"Community sources","agency_type":"external_community","official_url":"https://github.com/","jurisdiction":"External","description":"Community-maintained extracts used only with explicit provenance and quality status."}
+]
+

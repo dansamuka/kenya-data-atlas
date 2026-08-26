@@ -1,0 +1,248 @@
+[
+  {
+    "dataset_id": "d3a94abc-cdb3-5241-959a-737e5f055d76",
+    "dataset_code": "DS-KNBS-CENSUS",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Population and Housing Census",
+    "description": "Population, households and demographic tables.",
+    "topic": "Demography",
+    "geographic_coverage": [
+      "country",
+      "county",
+      "constituency_partial",
+      "ward_limited"
+    ],
+    "frequency": "decennial",
+    "publication_status": "blocked",
+    "known_limitations": "No release approved; small-area tables and reuse terms require assessment."
+  },
+  {
+    "dataset_id": "58292a81-27b6-58ce-acc5-7e31b51ba441",
+    "dataset_code": "DS-KNBS-NATIONAL-ACCOUNTS",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "National Accounts",
+    "description": "GDP, growth and economic structure.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "annual_and_quarterly",
+    "publication_status": "blocked",
+    "known_limitations": "No release approved."
+  },
+  {
+    "dataset_id": "5bfcff92-77c6-547e-9dc2-61c1df8825b2",
+    "dataset_code": "DS-KNBS-GCP",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Gross County Product",
+    "description": "County economic output and structure.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual_or_periodic",
+    "publication_status": "blocked",
+    "known_limitations": "Must not be allocated to constituencies or wards."
+  },
+  {
+    "dataset_id": "d264c1b9-8fce-574a-ad04-2edf958cb6ce",
+    "dataset_code": "DS-KNBS-CPI",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Consumer Price Indices and Inflation Rates",
+    "description": "National and published regional price indices and inflation.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country",
+      "published_price_regions"
+    ],
+    "frequency": "monthly",
+    "publication_status": "blocked",
+    "known_limitations": "Price regions must not be relabelled as electoral geographies."
+  },
+  {
+    "dataset_id": "de708d33-e56e-5bd2-9172-a1b9ea5189d7",
+    "dataset_code": "DS-CBK-MONETARY",
+    "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",
+    "title": "Monetary and Financial Statistics",
+    "description": "Exchange rates, policy rates and Treasury market indicators.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "daily_to_monthly",
+    "publication_status": "blocked",
+    "known_limitations": "No release approved."
+  },
+  {
+    "dataset_id": "44ebcafb-ebca-5acf-9c8c-e507d1d38b2e",
+    "dataset_code": "DS-IEBC-GEOGRAPHY",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "Electoral Geography Register",
+    "description": "Counties, constituencies and County Assembly Wards.",
+    "topic": "Geography",
+    "geographic_coverage": [
+      "country",
+      "county",
+      "constituency",
+      "ward"
+    ],
+    "frequency": "periodic",
+    "publication_status": "evaluation",
+    "known_limitations": "Hierarchy complete; machine-readable geometry and record spelling remain pending direct official validation."
+  },
+  {
+    "dataset_id": "921d85d8-76d4-5b24-a661-4bb27451b953",
+    "dataset_code": "DS-IEBC-VOTERS",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "Registered Voters",
+    "description": "Published voter-register totals by electoral geography.",
+    "topic": "Elections",
+    "geographic_coverage": [
+      "country",
+      "county",
+      "constituency",
+      "ward"
+    ],
+    "frequency": "electoral_cycle",
+    "publication_status": "blocked",
+    "known_limitations": "Reference register date is mandatory; no release approved."
+  },
+  {
+    "dataset_id": "ad8278b4-d641-51bc-8d44-1bd91c2c80ac",
+    "dataset_code": "DS-COB-COUNTY-BUDGET",
+    "source_id": "4cf7d629-21ea-5e09-b2c7-d3a5baae46f0",
+    "title": "County Budget Implementation",
+    "description": "County revenue, expenditure, absorption and pending bills.",
+    "topic": "Public Finance",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "quarterly",
+    "publication_status": "blocked",
+    "known_limitations": "PDF extraction and definitions require release-level review."
+  },
+  {
+    "dataset_id": "28b16d9f-ef9a-5956-a1ae-9a5fd3612dfc",
+    "dataset_code": "DS-KAMIS-PRICES",
+    "source_id": "ba563830-b20c-5511-bc73-e437acafd77b",
+    "title": "Agricultural Market Prices",
+    "description": "Commodity prices and volumes by published market.",
+    "topic": "Agriculture",
+    "geographic_coverage": [
+      "market",
+      "county_where_published"
+    ],
+    "frequency": "daily_or_irregular",
+    "publication_status": "blocked",
+    "known_limitations": "Market identifiers, units and access terms require assessment."
+  },
+  {
+    "dataset_id": "e2fb7577-c901-535b-a43a-83dea70b6ad4",
+    "dataset_code": "DS-CA-SECTOR",
+    "source_id": "ee274def-5b1f-5e75-b56a-c1e57d1a2070",
+    "title": "Communications Sector Statistics",
+    "description": "Mobile, broadband, internet and related sector indicators.",
+    "topic": "Digital",
+    "geographic_coverage": [
+      "country",
+      "county_where_published"
+    ],
+    "frequency": "quarterly",
+    "publication_status": "blocked",
+    "known_limitations": "Subnational coverage varies."
+  },
+  {
+    "dataset_id": "36364b09-173a-5511-a63b-5aec08bc6e81",
+    "dataset_code": "DS-EPRA-ENERGY",
+    "source_id": "c0d98736-dff3-551c-8d64-86ad591fbde6",
+    "title": "Energy and Petroleum Statistics",
+    "description": "Energy access, electricity and petroleum indicators.",
+    "topic": "Infrastructure",
+    "geographic_coverage": [
+      "country",
+      "county_where_published"
+    ],
+    "frequency": "varies",
+    "publication_status": "blocked",
+    "known_limitations": "No release approved."
+  },
+  {
+    "dataset_id": "1d4eae3c-7ae4-56c3-a18d-420274032821",
+    "dataset_code": "DS-TREASURY-FISCAL",
+    "source_id": "ed4481d3-b752-5bdf-8609-d22b79f867d3",
+    "title": "National Fiscal Publications",
+    "description": "Budget, debt, transfers and fiscal framework.",
+    "topic": "Public Finance",
+    "geographic_coverage": [
+      "country",
+      "county_allocations_where_published"
+    ],
+    "frequency": "varies",
+    "publication_status": "blocked",
+    "known_limitations": "Definitions and vintages require reconciliation."
+  },
+  {
+    "dataset_id": "7e911912-b4b2-5bef-883d-242f3d7c176b",
+    "dataset_code": "DS-MOH-HEALTH",
+    "source_id": "9bc61625-170e-54e8-90c7-922455df162c",
+    "title": "Public Health Statistics",
+    "description": "Approved aggregate health indicators.",
+    "topic": "Health",
+    "geographic_coverage": [
+      "country",
+      "county_where_publishable"
+    ],
+    "frequency": "varies",
+    "publication_status": "blocked",
+    "known_limitations": "Privacy, suppression and access conditions not assessed."
+  },
+  {
+    "dataset_id": "e0b6b1d3-53b9-557e-9268-8389f10fa75f",
+    "dataset_code": "DS-MOE-EDUCATION",
+    "source_id": "71fe9667-1348-56df-8582-2ce4831b53d2",
+    "title": "Public Education Statistics",
+    "description": "Approved aggregate education indicators.",
+    "topic": "Education",
+    "geographic_coverage": [
+      "country",
+      "county_where_publishable"
+    ],
+    "frequency": "varies",
+    "publication_status": "blocked",
+    "known_limitations": "Privacy, suppression and machine-readable availability not assessed."
+  },
+  {
+    "dataset_id": "23c35c8b-807b-59c8-8d6b-eca482fb97f6",
+    "dataset_code": "DS-KENYA-LAW-LN14",
+    "source_id": "d9b04ef7-6746-5958-ab3e-e1603af78b7d",
+    "title": "National Assembly Constituencies and County Assembly Wards Order",
+    "description": "Controlling legal description of constituency and ward names and boundaries.",
+    "topic": "Geography",
+    "geographic_coverage": [
+      "country",
+      "county",
+      "constituency",
+      "ward"
+    ],
+    "frequency": "versioned_legal_instrument",
+    "publication_status": "approved",
+    "known_limitations": "Machine-readable geometry is not supplied by the Atlas from this document."
+  },
+  {
+    "dataset_id": "1a365356-19a2-50b6-9b80-3a03e749fdbe",
+    "dataset_code": "DS-COMMUNITY-GEO",
+    "source_id": "4923a9c3-8ae3-5f3a-b40a-900e4f8a7a85",
+    "title": "Community Geography Cross-checks",
+    "description": "Pinned public transcriptions and extracts retained for validation and discrepancy analysis.",
+    "topic": "Geography",
+    "geographic_coverage": [
+      "county",
+      "constituency",
+      "ward"
+    ],
+    "frequency": "irregular",
+    "publication_status": "evaluation",
+    "known_limitations": "External; not official and not sufficient alone for authoritative geometry."
+  }
+]
+

@@ -1,0 +1,67 @@
+[
+  {
+    "release_id": "5c393eb1-11fb-5a88-8328-d979212327d1",
+    "release_code": "REL-KENYA-LAW-LN14-CURRENT",
+    "dataset_id": "23c35c8b-807b-59c8-8d6b-eca482fb97f6",
+    "title": "Legal Notice 14 of 2012 — current Kenya Law version",
+    "reference_period_start": "",
+    "reference_period_end": "",
+    "published_at": "",
+    "discovered_at": "2026-08-26T00:00:00Z",
+    "ingested_at": "",
+    "release_url": "https://new.kenyalaw.org/akn/ke/act/ln/2012/14/eng@2022-12-31",
+    "release_status": "approved",
+    "version_label": "eng@2022-12-31",
+    "release_notes": "Controlling legal reference. Original document linked, not redistributed in this repository.",
+    "supersedes_release_id": ""
+  },
+  {
+    "release_id": "79d2de53-c02e-5267-9673-d86b67e5a60d",
+    "release_code": "REL-LN14-TRANSCRIPTION-PKIAGE",
+    "dataset_id": "1a365356-19a2-50b6-9b80-3a03e749fdbe",
+    "title": "CSV transcription of counties, constituencies and wards",
+    "reference_period_start": "",
+    "reference_period_end": "",
+    "published_at": "",
+    "discovered_at": "2026-08-26T00:00:00Z",
+    "ingested_at": "2026-08-26T00:00:00Z",
+    "release_url": "https://github.com/pkiage/data-Kenya-Counties-Constituencies-Wards/blob/main/csv-Kenya-Counties-Constituencies-Wards.csv",
+    "release_status": "evaluation",
+    "version_label": "git-blob-7d0a741",
+    "release_notes": "Canonical Phase 1 seed; 1,450 ward rows; spellings remain provisional.",
+    "supersedes_release_id": ""
+  },
+  {
+    "release_id": "e44fb753-c3de-5ea2-a83a-497718755a31",
+    "release_code": "REL-TIGAWANNA-GEO-32580EB",
+    "dataset_id": "1a365356-19a2-50b6-9b80-3a03e749fdbe",
+    "title": "HDX-derived geography extract",
+    "reference_period_start": "",
+    "reference_period_end": "",
+    "published_at": "",
+    "discovered_at": "2026-08-26T00:00:00Z",
+    "ingested_at": "2026-08-26T00:00:00Z",
+    "release_url": "https://github.com/tigawanna/kenya_wards_geojson_data/tree/32580eb19fba05bb6421257331e63ef3f8a5dc8e",
+    "release_status": "evaluation",
+    "version_label": "32580eb19fba05bb6421257331e63ef3f8a5dc8e",
+    "release_notes": "Rejected as canonical ward seed: contains 1,439 tabular ward rows.",
+    "supersedes_release_id": ""
+  },
+  {
+    "release_id": "2403abc0-72db-5a3f-afa6-94ce01c1cb8e",
+    "release_code": "REL-OSM-KENYA-2DD4D71",
+    "dataset_id": "1a365356-19a2-50b6-9b80-3a03e749fdbe",
+    "title": "OSM Kenya Boundaries package",
+    "reference_period_start": "",
+    "reference_period_end": "",
+    "published_at": "",
+    "discovered_at": "2026-08-26T00:00:00Z",
+    "ingested_at": "2026-08-26T00:00:00Z",
+    "release_url": "https://github.com/its-kios09/osm-kenya-boundaries/tree/2dd4d71038b52d824cba304561b86ba79cf4315e",
+    "release_status": "evaluation",
+    "version_label": "2dd4d71038b52d824cba304561b86ba79cf4315e",
+    "release_notes": "Rejected as canonical ward seed: contains 1,448 ward rows.",
+    "supersedes_release_id": ""
+  }
+]
+
