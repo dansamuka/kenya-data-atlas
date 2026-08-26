@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-08-26T23:45:00+03:00",
+  "schema_version": "1.1",
+  "generated_at": "2026-08-27T00:25:00+03:00",
   "sprint": "Data Sprint 2 — Local Kenya",
   "sources": {
     "iebc_gazette_2022": {
@@ -13,7 +13,7 @@
       "quality": "A",
       "reference_date": "2022-06-20",
       "published_date": "2022-06-21",
-      "note": "Primary legal publication. Domestic ward values in the First Schedule total 22,102,532 registered voters. Sprint 2 publishes ward values as official direct observations and constituency values as official-derived sums of the ward schedule, with reconciliation checks to the county schedule."
+      "note": "Primary statistical authority. All 1,450 domestic ward rows are ingested and total 22,102,532 registered voters. All rows feed constituency and county reconciliation; ward spatial publication is subject to the documented Mandera boundary exception below."
     },
     "coded_transcription": {
       "maintainer": "samy-migwi/kenya_2022_voters_dashboard_app",
@@ -22,7 +22,7 @@
       "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
       "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
       "quality": "extraction_artifact",
-      "note": "Pinned, code-bearing transport copy used to join the official schedule to canonical county, constituency and ward codes. It is not the statistical authority; every published Atlas observation cites IEBC as the source."
+      "note": "Pinned code-bearing transport copy used for deterministic ingestion. It is not the statistical authority; published values cite IEBC and are independently cross-checked."
     },
     "independent_transcription": {
       "maintainer": "AllanGachomo/Kenya-Voters-Registration-Analysis-and-Prediction",
@@ -34,5 +34,23 @@
       "quality": "cross_check_only",
       "note": "Pinned independent transcription and retained raw IEBC PDF snapshot used only by validation to detect extraction/transcription errors."
     }
+  },
+  "boundary_exception": {
+    "id": "S2-MANDERA-BOUNDARY-HOLD-001",
+    "status": "open_geometry_reconciliation",
+    "county_code": 9,
+    "county": "Mandera",
+    "constituency_codes": [43, 44],
+    "constituencies": ["Mandera East", "Lafey"],
+    "source_ward_rows": 10,
+    "held_ward_rows": 10,
+    "mapped_ward_rows_elsewhere": 1440,
+    "statistical_treatment": "All 10 IEBC rows remain in constituency, county and national totals. None is attached to a current Atlas ward polygon until the boundary source is reconciled.",
+    "reason": "The 2022 IEBC schedule uses Mandera East wards Arabia, Township, Neboi, Khalalio and Libehia, and Lafey wards Sala, Fino, Lafey, Waranqara and Alango Gof. The current external Atlas ward layer instead reflects the configuration introduced by High Court orders in 2012, including Bulla Mpya and a different placement of Libehia. The Court of Appeal allowed the appeal on 5 July 2013 and set aside those High Court orders. Spatially assigning the 2022 voter rows to the current polygons would therefore require an unsupported boundary assumption.",
+    "court_of_appeal_case": "Hassan & 2 others v Attorney General & 3 others [2013] KECA 496 (KLR), Civil Appeal 281 of 2012",
+    "court_of_appeal_date": "2013-07-05",
+    "court_of_appeal_url": "https://new.kenyalaw.org/akn/ke/judgment/keca/2013/496",
+    "statistical_authority_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf",
+    "publication_rule": "Prefer a visible data gap over false geographic precision."
   }
 }
