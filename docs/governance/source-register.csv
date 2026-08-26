@@ -1,0 +1,12 @@
+source_id,agency,dataset_family,priority,official_url,cadence,proposed_content,reuse_status,publication_status,owner,review_due,notes
+SRC-KNBS,Kenya National Bureau of Statistics,National and county statistics,Critical,https://www.knbs.or.ke/,Varies,"Census; GDP/GCP; CPI; labour; poverty; surveys",Pending legal/licence review,Blocked,,,"Authoritative metadata and terms must be assessed per dataset/release"
+SRC-CBK,Central Bank of Kenya,Monetary and financial statistics,Critical,https://www.centralbank.go.ke/,Daily to monthly,"FX; policy rates; Treasury indicators; banking",Pending legal/licence review,Blocked,,,"Confirm reuse and automated-access terms"
+SRC-IEBC,Independent Electoral and Boundaries Commission,Electoral geography and statistics,Critical,https://www.iebc.or.ke/,Periodic,"Counties; constituencies; wards; voters; polling stations",Pending legal/licence review,Blocked,,,"Boundary version and election/register reference date required"
+SRC-COB,Controller of Budget,Budget implementation,Critical,https://cob.go.ke/,Quarterly,"County revenue; expenditure; absorption; pending bills",Pending legal/licence review,Blocked,,,"PDF/table extraction requires human review"
+SRC-KAMIS,Kenya Agricultural Market Information System,Agricultural markets,High,https://kamis.kilimo.go.ke/,Daily or irregular,"Commodity prices; volumes; markets; counties",Pending legal/licence review,Blocked,,,"Validate access reliability and market identifiers"
+SRC-CA,Communications Authority of Kenya,Communications statistics,Medium,https://www.ca.go.ke/,Quarterly,"Mobile; broadband; internet; infrastructure",Not assessed,Blocked,,,"Phase 2 source"
+SRC-EPRA,Energy and Petroleum Regulatory Authority,Energy statistics,Medium,https://www.epra.go.ke/,Varies,"Electricity; petroleum; access; pricing",Not assessed,Blocked,,,"Phase 2 source"
+SRC-TREASURY,The National Treasury,Public finance,Medium,https://www.treasury.go.ke/,Varies,"Budget; debt; transfers; fiscal framework",Not assessed,Blocked,,,"Clarify overlaps and definitions with other sources"
+SRC-MOH,Ministry of Health,Health statistics,Medium,https://www.health.go.ke/,Varies,"Facilities; service utilization; outcomes",Not assessed,Blocked,,,"Privacy and disclosure review required"
+SRC-MOE,Ministry of Education,Education statistics,Medium,https://www.education.go.ke/,Varies,"Schools; enrolment; teachers; infrastructure",Not assessed,Blocked,,,"Granular public availability must be validated"
+
