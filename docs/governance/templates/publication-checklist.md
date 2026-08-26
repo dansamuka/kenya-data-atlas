@@ -11,7 +11,8 @@ Copy this file for every production release. A blank box means publication is no
 - Proposed Atlas publication date:
 - Preparer:
 - Statistical reviewer:
-- Publisher:
+- Owner/Publisher:
+- Review model: Self-review / Independent peer review / Institutional review
 
 ## Source and rights
 
@@ -59,7 +60,8 @@ Copy this file for every production release. A blank box means publication is no
 ## Approval
 
 - [ ] Statistical Lead approval — name, date, decision:
-- [ ] Independent Publisher approval — name, date, decision:
+- [ ] Owner/Publisher approval — name, date, decision:
+- [ ] Independent reviewer approval where required by the risk tier — name, competence, date, decision:
 - [ ] Privacy/Security approval where required — name, date, decision:
 - Final status: `approved` / `rejected` / `returned for changes`
 
