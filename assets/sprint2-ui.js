@@ -1,5 +1,5 @@
 /* Kenya Data Atlas — Data Sprint 2 UI supplements.
- * Makes Local Kenya coverage and geography-crosswalk quality explicit as the
+ * Makes Local Kenya coverage and the Mandera boundary hold explicit while the
  * user drills Kenya -> County -> Constituency -> Ward for registered voters.
  */
 (function () {
@@ -10,24 +10,13 @@
     const match = location.hash.match(/^#map\/([^?]+)/);
     return match ? decodeURIComponent(match[1]) : 'KEN';
   }
-
   function levelForCode(code) {
     if (/-W\d+$/.test(code)) return 'ward';
     if (/-CON\d+$/.test(code)) return 'constituency';
     if (/^KEN-C\d+$/.test(code)) return 'county';
     return 'country';
   }
-
-  function countyNumber(code) {
-    const match = code.match(/^KEN-C(\d{3})/);
-    return match ? Number(match[1]) : null;
-  }
-
-  function constituencyNumber(code) {
-    const match = code.match(/-CON(\d+)/);
-    return match ? Number(match[1]) : null;
-  }
-
+  function constituencyCodeForWard(code) { return code.replace(/-W\d+$/, ''); }
   function childCount(parentCode, childLevel) {
     const S2 = window.KDASprint2;
     if (!S2) return 0;
@@ -37,24 +26,10 @@
     }
     return count;
   }
-
-  function crosswalkCount(code, level) {
+  function formatCount(value) { return Number(value).toLocaleString('en-KE', { maximumFractionDigits: 0 }); }
+  function holdCount(constituencyGeoCode) {
     const S2 = window.KDASprint2;
-    if (!S2) return 0;
-    if (level === 'country') return S2.crosswalks.length;
-    if (level === 'county') {
-      const n = countyNumber(code);
-      return S2.crosswalks.filter(x => x.county_code === n).length;
-    }
-    if (level === 'constituency') {
-      const n = constituencyNumber(code);
-      return S2.crosswalks.filter(x => x.constituency_code === n).length;
-    }
-    return S2.crosswalkByGeoCode.has(code) ? 1 : 0;
-  }
-
-  function formatCount(value) {
-    return Number(value).toLocaleString('en-KE', { maximumFractionDigits: 0 });
+    return S2 ? S2.spatialHolds.filter(item => item.constituency_geo_code === constituencyGeoCode).length : 0;
   }
 
   function contextualCoverage() {
@@ -66,44 +41,52 @@
 
     if (level === 'country') {
       return {
-        text: 'Coverage: 47/47 counties · 290/290 constituencies · 1,450/1,450 wards · certified register 2022',
-        source: `Source: IEBC · ward geography: 1,389 A — direct-aligned + ${crosswalkCount(code, level)} B — explicit crosswalks · constituency totals B — official derived`
+        text: 'Coverage: 47/47 counties · 290/290 constituencies · 1,440/1,450 wards spatially mapped · 10 ward rows on boundary hold',
+        source: 'Source: IEBC · all 1,450 domestic ward rows retained in statistical totals · 10 Mandera East/Lafey rows withheld from uncertain external ward polygons'
       };
     }
 
     if (level === 'county') {
       const n = childCount(code, 'constituency');
-      const x = crosswalkCount(code, level);
+      const isMandera = code === 'KEN-C009';
       return {
-        text: `Coverage: ${n}/${n} constituencies in this county · 290/290 nationally · ${x} crosswalked ward ${x === 1 ? 'identity' : 'identities'}`,
-        source: 'Source: IEBC · constituency values are exact sums of published CAW observations · no county value allocated downward'
+        text: isMandera
+          ? `Coverage: ${n}/${n} constituencies · 10 ward rows on spatial boundary hold in Mandera East/Lafey`
+          : `Coverage: ${n}/${n} constituencies in this county · registered-voter drill-down populated to ward level`,
+        source: isMandera
+          ? 'Source: IEBC · constituency totals use every published CAW row; uncertain ward geometry is not guessed'
+          : 'Source: IEBC · constituency values are exact sums of published CAW observations · no county value allocated downward'
       };
     }
 
     if (level === 'constituency') {
-      const n = childCount(code, 'ward');
-      const x = crosswalkCount(code, level);
+      const expected = S2.sourceWardCountByGeoCode.get(code) || 0;
+      const mapped = childCount(code, 'ward');
+      const held = holdCount(code);
       const total = S2.constituencyValueByGeoCode.get(code);
+      if (held) {
+        return {
+          text: `Coverage: ${mapped}/${expected} wards spatially mapped · ${held} official ward rows held pending boundary reconciliation${total != null ? ` · ${formatCount(total)} constituency voters` : ''}`,
+          source: 'Source: IEBC · constituency total B — Official derived from all child CAW rows · ward polygons intentionally withheld rather than misassigned'
+        };
+      }
       return {
-        text: `Coverage: ${n}/${n} wards in this constituency · ${x} explicit geography ${x === 1 ? 'crosswalk' : 'crosswalks'}${total != null ? ` · ${formatCount(total)} voters` : ''}`,
-        source: x
-          ? `Source: IEBC · ${n - x} A — direct-aligned ward ${n - x === 1 ? 'observation' : 'observations'} · ${x} B — crosswalked · constituency total B — official derived`
-          : 'Source: IEBC · all child wards A — direct-aligned · constituency total B — official derived'
+        text: `Coverage: ${mapped}/${expected} wards spatially mapped${total != null ? ` · ${formatCount(total)} voters` : ''}`,
+        source: 'Source: IEBC · ward observations A — Official direct · constituency total B — Official derived'
       };
     }
 
+    const parent = constituencyCodeForWard(code);
+    if (S2.heldConstituencyGeoCodes.has(parent)) {
+      return {
+        text: 'Ward-level value withheld from this polygon · official source row exists but current boundary attribution is unresolved',
+        source: 'Source: IEBC · boundary hold · see Data Sprint 2 methodology for Mandera East/Lafey exception'
+      };
+    }
     const value = S2.wardValueByGeoCode.get(code);
-    const crosswalk = S2.crosswalkByGeoCode.get(code);
-    if (crosswalk) {
-      return {
-        text: `Coverage: exact IEBC ward observation${value != null ? ` · ${formatCount(value)} registered voters` : ''} · explicit geography crosswalk`,
-        source: `Source: IEBC · B — Official transformed · source CAW ${String(crosswalk.source_ward_code).padStart(4, '0')} ${crosswalk.source_name} → Atlas ${crosswalk.canonical_name} · ${crosswalk.method.replaceAll('_', ' ')}`
-      };
-    }
-
     return {
       text: `Coverage: exact ward observation${value != null ? ` · ${formatCount(value)} registered voters` : ''} · certified register 2022`,
-      source: 'Source: IEBC · A — Official direct-aligned · Kenya Gazette First Schedule'
+      source: 'Source: IEBC · A — Official direct · Kenya Gazette First Schedule'
     };
   }
 
@@ -128,10 +111,7 @@
     if (!context) return;
     const line = ensureCoverageChip();
     const sourceNote = $('#geo-source-note');
-    if (line) {
-      line.hidden = false;
-      line.textContent = context.text;
-    }
+    if (line) { line.hidden = false; line.textContent = context.text; }
     if (sourceNote) sourceNote.textContent = context.source;
   }
 
@@ -145,8 +125,7 @@
     link.textContent = 'Open Local Kenya sources →';
     link.style.cssText = 'display:inline-flex;margin-left:.55rem;margin-top:.55rem;text-decoration:none';
     const sprint1 = $('#sprint1-source-link');
-    if (sprint1) sprint1.insertAdjacentElement('afterend', link);
-    else copy.appendChild(link);
+    if (sprint1) sprint1.insertAdjacentElement('afterend', link); else copy.appendChild(link);
 
     const coverage = $('.catalogue-section .coverage');
     if (coverage) {
@@ -163,7 +142,6 @@
     window.addEventListener('hashchange', () => setTimeout(refreshLocalContext, 30));
     const breadcrumb = $('#geo-breadcrumb');
     if (breadcrumb) breadcrumb.addEventListener('click', () => setTimeout(refreshLocalContext, 50));
-
     const sourceNote = $('#geo-source-note');
     if (sourceNote) {
       let applying = false;
@@ -182,10 +160,7 @@
     const S2 = window.KDASprint2;
     if (!S2) return;
     await S2.ready;
-    if (S2.error) {
-      console.error('Sprint 2 UI unavailable:', S2.error);
-      return;
-    }
+    if (S2.error) { console.error('Sprint 2 UI unavailable:', S2.error); return; }
     addCatalogueLink();
     installRefreshHooks();
     setTimeout(refreshLocalContext, 80);
