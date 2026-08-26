@@ -60,7 +60,7 @@ Spatial derivation must record source geography, target geography, boundary vers
 
 ## 6. Modelled estimates
 
-Modelled data is excluded from the first production release by default. An exception requires Governance Board approval and:
+Modelled data is excluded from the first production release by default. An exception requires Owner/Publisher approval plus qualified independent methodological review and:
 
 - a documented need that direct data cannot meet;
 - reproducible method and code;
