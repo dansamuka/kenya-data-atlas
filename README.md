@@ -40,8 +40,17 @@ The prototype deliberately shows unavailable values as `—` and never copies co
 index.html          Main GitHub Pages entry point
 assets/styles.css   Visual system and responsive layout
 assets/app.js       Demo data and interactions
+docs/governance/    Phase 0 governance and statistical publication system
 README.md           Project and data-status documentation
 ```
+
+## Project status
+
+- **Static product prototype:** Complete
+- **Phase 0 — Governance and statistical policy:** Implemented as a repository policy package
+- **Phase 1 — Canonical geography foundation:** Not started
+
+Phase 0 policies, decision rights, registers and approval templates are indexed in [`docs/governance/README.md`](docs/governance/README.md). No demonstration value in the interface is approved production data.
 
 ## GitHub Pages
 
@@ -54,3 +63,4 @@ The next phase should replace demo content with validated source releases, a can
 ## Accessibility and browser support
 
 The MVP uses semantic landmarks, a skip link, visible focus states, responsive tables and keyboard-accessible controls. Before public launch, run a formal WCAG 2.2 AA audit and test current Chrome, Firefox, Safari and Edge versions.
+
