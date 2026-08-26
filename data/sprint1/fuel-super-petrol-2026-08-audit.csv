@@ -1,0 +1,48 @@
+geo_code,county,pricing_town,super_petrol_kes_per_litre,mapping_method
+KEN-C001,Mombasa,Mombasa,210.87,direct_same_county
+KEN-C002,Kwale,Kwale,211.23,direct_same_county
+KEN-C003,Kilifi,Kilifi,211.68,direct_same_county
+KEN-C004,Tana River,Hola,216.30,direct_same_county
+KEN-C005,Lamu,Lamu,215.84,direct_same_county
+KEN-C006,Taita/Taveta,Mwatate,213.45,direct_same_county
+KEN-C007,Garissa,Garissa,220.40,direct_same_county
+KEN-C008,Wajir,Wajir,228.60,direct_same_county
+KEN-C009,Mandera,Mandera,234.68,direct_same_county
+KEN-C010,Marsabit,Marsabit,226.34,direct_same_county
+KEN-C011,Isiolo,Isiolo,218.44,direct_same_county
+KEN-C012,Meru,Meru,218.67,direct_same_county
+KEN-C013,Tharaka-Nithi,Chuka,216.31,direct_same_county
+KEN-C014,Embu,Embu,215.46,direct_same_county
+KEN-C015,Kitui,Kitui,216.15,direct_same_county
+KEN-C016,Machakos,Machakos,214.07,direct_same_county
+KEN-C017,Makueni,Mtito Andei,217.61,direct_same_county
+KEN-C018,Nyandarua,Nyahururu,212.99,nearest_published_pricing_town
+KEN-C019,Nyeri,Nyeri,215.90,direct_same_county
+KEN-C020,Kirinyaga,Kerugoya,215.34,direct_same_county
+KEN-C021,Murang'a,Muranga,214.53,direct_same_county
+KEN-C022,Kiambu,Thika,213.70,direct_same_county
+KEN-C023,Turkana,Lodwar,220.08,direct_same_county
+KEN-C024,West Pokot,Kapenguria,214.96,direct_same_county
+KEN-C025,Samburu,Maralal,216.29,direct_same_county
+KEN-C026,Trans Nzoia,Kitale,213.94,direct_same_county
+KEN-C027,Uasin Gishu,Eldoret,213.69,direct_same_county
+KEN-C028,Elgeyo-Marakwet,Iten,213.69,direct_same_county
+KEN-C029,Nandi,Kapsabet,213.38,direct_same_county
+KEN-C030,Baringo,Kabarnet,214.54,direct_same_county
+KEN-C031,Laikipia,Nanyuki,216.80,direct_same_county
+KEN-C032,Nakuru,Nakuru,212.92,direct_same_county
+KEN-C033,Narok,Narok,215.92,direct_same_county
+KEN-C034,Kajiado,Kajiado,214.36,direct_same_county
+KEN-C035,Kericho,Kericho,214.16,direct_same_county
+KEN-C036,Bomet,Bomet,215.15,direct_same_county
+KEN-C037,Kakamega,Kakamega,213.43,direct_same_county
+KEN-C038,Vihiga,Mbale,213.69,direct_same_county
+KEN-C039,Bungoma,Bungoma,214.59,direct_same_county
+KEN-C040,Busia,Busia,214.75,direct_same_county
+KEN-C041,Siaya,Siaya,213.88,direct_same_county
+KEN-C042,Kisumu,Kisumu,213.69,direct_same_county
+KEN-C043,Homa Bay,Homabay,214.66,direct_same_county
+KEN-C044,Migori,Migori,216.03,direct_same_county
+KEN-C045,Kisii,Kisii,214.77,direct_same_county
+KEN-C046,Nyamira,Nyamira,214.27,direct_same_county
+KEN-C047,Nairobi City,Nairobi,214.03,direct_same_county
