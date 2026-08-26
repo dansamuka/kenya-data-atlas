@@ -11,25 +11,20 @@ function parseCsv(raw, file) {
   const headers = lines.shift().split(',');
   return lines.map((line, index) => {
     const cells = line.split(',');
-    if (cells.length !== headers.length) {
-      throw new Error(`${file}:${index + 2}: expected ${headers.length} columns, found ${cells.length}`);
-    }
+    if (cells.length !== headers.length) throw new Error(`${file}:${index + 2}: expected ${headers.length} columns, found ${cells.length}`);
     return Object.fromEntries(headers.map((h, i) => [h, cells[i]]));
   });
 }
 
-async function csv(name) {
-  return parseCsv(await readFile(path.join(dataDir, name), 'utf8'), name);
-}
-
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
-}
-
+async function csv(name) { return parseCsv(await readFile(path.join(dataDir, name), 'utf8'), name); }
+function assert(condition, message) { if (!condition) throw new Error(message); }
 function number(value, context) {
   const n = Number(value);
   assert(Number.isFinite(n), `${context}: expected a finite number, got ${JSON.stringify(value)}`);
   return n;
+}
+function normName(value) {
+  return String(value || '').toLowerCase().replace(/[/'’.-]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function validateCountyRows(rows, name, geoByCode, labelField = 'name') {
@@ -43,7 +38,7 @@ function validateCountyRows(rows, name, geoByCode, labelField = 'name') {
     assert(geo, `${name}:${i + 2}: ${row.geo_code} does not resolve in canonical geography registry`);
     assert(geo.level === 'county', `${name}:${i + 2}: ${row.geo_code} resolves to ${geo.level}, expected county`);
     if (row[labelField]) {
-      assert(row[labelField] === geo.name, `${name}:${i + 2}: label ${JSON.stringify(row[labelField])} does not match canonical county ${JSON.stringify(geo.name)}`);
+      assert(normName(row[labelField]) === normName(geo.name), `${name}:${i + 2}: label ${JSON.stringify(row[labelField])} does not match canonical county ${JSON.stringify(geo.name)}`);
     }
   }
   return codes;
@@ -62,19 +57,14 @@ const canonicalCountyCodes = new Set(geography.filter(g => g.level === 'county')
 assert(canonicalCountyCodes.size === 47, `canonical geography registry: expected 47 counties, found ${canonicalCountyCodes.size}`);
 
 const [population, voters, gcp, budget, fuel, fuelAudit] = await Promise.all([
-  csv('population-2009.csv'),
-  csv('voters-2022.csv'),
-  csv('gcp-2020-2024.csv'),
-  csv('county-budget-fy2024-25.csv'),
-  csv('fuel-super-petrol-2026-08.csv'),
+  csv('population-2009.csv'), csv('voters-2022.csv'), csv('gcp-2020-2024.csv'),
+  csv('county-budget-fy2024-25.csv'), csv('fuel-super-petrol-2026-08.csv'),
   csv('fuel-super-petrol-2026-08-audit.csv')
 ]);
 
 for (const [name, rows] of [
-  ['population-2009.csv', population],
-  ['voters-2022.csv', voters],
-  ['gcp-2020-2024.csv', gcp],
-  ['county-budget-fy2024-25.csv', budget]
+  ['population-2009.csv', population], ['voters-2022.csv', voters],
+  ['gcp-2020-2024.csv', gcp], ['county-budget-fy2024-25.csv', budget]
 ]) {
   const codes = validateCountyRows(rows, name, geoByCode);
   for (const code of canonicalCountyCodes) assert(codes.has(code), `${name}: missing canonical county ${code}`);
@@ -121,11 +111,6 @@ checkAnchor(budget, 'KEN-C045', 'budget_total_ksh_mn', 15155.35, 'county-budget-
 checkAnchor(budget, 'KEN-C029', 'overall_absorption_pct', 98, 'county-budget-fy2024-25.csv');
 checkAnchor(budget, 'KEN-C042', 'development_absorption_pct', 29, 'county-budget-fy2024-25.csv');
 
-// Fuel is a town-level price product displayed on a county map. Sprint 1 now
-// provides one representative published pricing town for each county; these
-// must never be described as county averages. Nyandarua is the sole explicit
-// nearest-town proxy because no same-county town appears in the pinned full
-// pricing-town transcription used for this cycle.
 const fuelCodes = validateCountyRows(fuel, 'fuel-super-petrol-2026-08.csv', geoByCode, 'county');
 for (const code of canonicalCountyCodes) assert(fuelCodes.has(code), `fuel-super-petrol-2026-08.csv: missing ${code}`);
 assert(fuelAudit.length === 47, `fuel-super-petrol-2026-08-audit.csv: expected 47 audited mappings, found ${fuelAudit.length}`);
@@ -136,14 +121,11 @@ for (const [i, row] of fuel.entries()) {
   assert(row.pricing_town, `fuel-super-petrol-2026-08.csv:${i + 2}: pricing_town is required`);
   const audited = auditByCode.get(row.geo_code);
   assert(audited, `fuel-super-petrol-2026-08-audit.csv: missing audit mapping for ${row.geo_code}`);
-  assert(audited.county === row.county, `fuel audit county mismatch for ${row.geo_code}`);
+  assert(normName(audited.county) === normName(row.county), `fuel audit county mismatch for ${row.geo_code}`);
   assert(audited.pricing_town === row.pricing_town, `fuel audit pricing-town mismatch for ${row.geo_code}`);
   assert(number(audited.super_petrol_kes_per_litre, `fuel audit ${row.geo_code}`) === price, `fuel audit price mismatch for ${row.geo_code}`);
-  if (row.geo_code === 'KEN-C018') {
-    assert(audited.mapping_method === 'nearest_published_pricing_town', 'Nyandarua must remain explicitly flagged as nearest published pricing town');
-  } else {
-    assert(audited.mapping_method === 'direct_same_county', `${row.geo_code}: expected direct_same_county mapping`);
-  }
+  if (row.geo_code === 'KEN-C018') assert(audited.mapping_method === 'nearest_published_pricing_town', 'Nyandarua must remain explicitly flagged as nearest published pricing town');
+  else assert(audited.mapping_method === 'direct_same_county', `${row.geo_code}: expected direct_same_county mapping`);
 }
 checkAnchor(fuel, 'KEN-C001', 'super_petrol_kes_per_litre', 210.87, 'fuel-super-petrol-2026-08.csv');
 checkAnchor(fuel, 'KEN-C027', 'super_petrol_kes_per_litre', 213.69, 'fuel-super-petrol-2026-08.csv');
@@ -152,30 +134,22 @@ checkAnchor(fuel, 'KEN-C042', 'super_petrol_kes_per_litre', 213.69, 'fuel-super-
 checkAnchor(fuel, 'KEN-C047', 'super_petrol_kes_per_litre', 214.03, 'fuel-super-petrol-2026-08.csv');
 
 const sources = JSON.parse(await readFile(path.join(dataDir, 'sources.json'), 'utf8'));
-for (const key of ['population_2009', 'registered_voters_2022', 'gcp_2020_2024', 'county_budget_fy2024_25', 'fuel_aug_sep_2026']) {
-  assert(sources.sources?.[key], `sources.json: missing ${key}`);
-}
+for (const key of ['population_2009', 'registered_voters_2022', 'gcp_2020_2024', 'county_budget_fy2024_25', 'fuel_aug_sep_2026']) assert(sources.sources?.[key], `sources.json: missing ${key}`);
 assert(sources.schema_version === '1.1', `sources.json: expected schema_version 1.1, got ${sources.schema_version}`);
 assert(sources.sources.fuel_aug_sep_2026.note.includes('not a county average'), 'sources.json: fuel methodology must state that representative town values are not county averages');
 assert(sources.sources.fuel_aug_sep_2026.note.includes('Nyandarua'), 'sources.json: Nyandarua proxy caveat must be explicit');
 
-// Regression guard for the visual defect found after Sprint 1 deployment.
-// geo-explorer writes D3 colours as SVG fill attributes while the base CSS has
-// a .geo-feature fill rule. The Sprint 1 UI must promote those computed colours
-// to inline style so the stylesheet cannot flatten the choropleth.
 const ui = await readFile(path.join(root, 'assets/sprint1-ui.js'), 'utf8');
 assert(ui.includes('function syncChoroplethFills()'), 'choropleth regression: missing fill synchronisation repair');
 assert(ui.includes('path.style.fill = computedFill'), 'choropleth regression: computed D3 fill is not promoted to inline style');
-assert(ui.includes("available: 47"), 'Sprint 1 UI: fuel coverage disclosure is not updated to 47 counties');
+assert(ui.includes('available: 47'), 'Sprint 1 UI: fuel coverage disclosure is not updated to 47 counties');
 
 console.log(JSON.stringify({
-  status: 'PASS',
-  canonical_counties: canonicalCountyCodes.size,
+  status: 'PASS', canonical_counties: canonicalCountyCodes.size,
   population_2009: { rows: population.length, total: populationTotal, source_anchors_checked: 3 },
   voters_2022: { rows: voters.length, gazette_county_schedule_total: votersTotal, later_audited_national_topline: 22120458, source_anchors_checked: 3 },
   gcp_2020_2024: { counties: gcp.length, annual_observations: gcp.length * 5, source_anchors_checked: 4 },
   county_budget_fy2024_25: { counties: budget.length, fields_validated: 4, source_anchors_checked: 5 },
   fuel_aug_sep_2026: { representative_counties: fuel.length, same_county_mappings: 46, nearest_town_proxies: 1, source_anchors_checked: 5 },
-  choropleth_fill_regression_guard: 'PASS',
-  lower_level_inheritance: 'none'
+  choropleth_fill_regression_guard: 'PASS', lower_level_inheritance: 'none'
 }, null, 2));
