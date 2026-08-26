@@ -15,7 +15,7 @@
   const HOLD_REASON = 'Official IEBC ward rows are retained in totals but withheld from current ward polygons until the Mandera East/Lafey boundary source is reconciled.';
 
   const S2 = {
-    version: '2.3',
+    version: '2.4',
     ready: null,
     additions: null,
     error: null,
@@ -30,6 +30,7 @@
     parentCodeByGeoCode: new Map(),
     heldConstituencyGeoCodes: new Set(),
     crosswalks: [],
+    crosswalkByGeoCode: new Map(),
     spatialHolds: []
   };
 
@@ -134,7 +135,7 @@
       dataset_id: 's2-ds-iebc-local-voters', dataset_code: 'DS-IEBC-VOTERS-LOCAL-2022-S2', source_id: sourceId,
       title: 'Registered Voters — 2022 Constituency and County Assembly Ward Schedule', topic: 'Elections',
       geographic_coverage: ['constituency', 'ward'], frequency: 'electoral_cycle', publication_status: 'published',
-      known_limitations: 'All 1,450 domestic IEBC ward rows are ingested and reconcile to constituency/county totals. 1,440 are spatially published. Ten Mandera East/Lafey rows are held from current ward geometry because the external boundary layer conflicts with the operative IEBC configuration; no value is forced onto an uncertain polygon.'
+      known_limitations: 'All 1,450 domestic IEBC ward rows are ingested and reconcile to constituency/county totals. 1,440 are spatially published. Ten Mandera East/Lafey rows are held from current ward geometry because the external boundary layer conflicts with the operative IEBC configuration; no value is forced onto an uncertain polygon. Published ward rows requiring a source-to-canonical geography crosswalk are badged B.'
     };
   }
   function makeRelease(dataset) {
@@ -235,10 +236,14 @@
         S2.parentCodeByGeoCode.set(ward.geo_code, constituency.geo_code);
         const codeDiff = Number(ward.ward_code) !== row.ward_code;
         const labelDiff = norm(ward.name) !== norm(row.ward_name);
-        if (codeDiff || labelDiff) S2.crosswalks.push({
-          source_ward_code: row.ward_code, canonical_ward_code: Number(ward.ward_code), source_name: row.ward_name,
-          canonical_name: ward.name, constituency_code: code, match_method: method.get(row.ward_code)
-        });
+        if (codeDiff || labelDiff) {
+          const item = {
+            source_ward_code: row.ward_code, canonical_ward_code: Number(ward.ward_code), source_name: row.ward_name,
+            canonical_name: ward.name, canonical_geo_code: ward.geo_code, constituency_code: code, match_method: method.get(row.ward_code)
+          };
+          S2.crosswalks.push(item);
+          S2.crosswalkByGeoCode.set(ward.geo_code, item);
+        }
       }
     }
     assert(usedCanonical.size === 1440, `expected 1,440 safely mapped wards, found ${usedCanonical.size}`);
@@ -256,15 +261,21 @@
     for (const row of rows) {
       const ward = resolved.get(row.ward_code);
       if (!ward) continue; // documented spatial hold
-      const x = S2.crosswalks.find(item => item.source_ward_code === row.ward_code);
+      const x = S2.crosswalkByGeoCode.get(ward.geo_code);
       const crosswalkId = x ? `S2-CAW-XW-${String(row.ward_code).padStart(4, '0')}-${String(ward.ward_code).padStart(4, '0')}` : '';
       const seriesId = `s2-voters-ward-${String(ward.ward_code).padStart(4, '0')}`;
       const observationId = `${seriesId}-obs-2022`;
-      series.push(makeSeries(seriesId, `KDA-VOTERS-2022-${ward.geo_code}`, voterIndicator, ward, persons, dataset, 'direct_official', 'IEBC-REGISTER-2022-WARD-GAZETTE', observationId));
+      const method = x ? 'crosswalked_official' : 'direct_official';
+      const badge = x ? 'B' : 'A';
+      const group = x ? 'IEBC-REGISTER-2022-WARD-CROSSWALK' : 'IEBC-REGISTER-2022-WARD-GAZETTE';
+      series.push(makeSeries(seriesId, `KDA-VOTERS-2022-${ward.geo_code}`, voterIndicator, ward, persons, dataset, method, group, observationId));
       observations.push(makeObservation(
-        observationId, seriesId, ward, row.registered_voters, dataset, release, 'direct_official', 'A',
+        observationId, seriesId, ward, row.registered_voters, dataset, release, method, badge,
         'First Schedule — Registered Voters per County Assembly Ward', firstSchedulePage(row.ward_code), row.ward_name,
-        `Official IEBC CAW value. Source CAW code ${row.ward_code}; canonical Atlas ward ${ward.geo_code}. No parent value inherited.`, crosswalkId
+        x
+          ? `Official IEBC CAW value transformed through explicit source-to-canonical geography crosswalk: source CAW ${row.ward_code} ${row.ward_name} → ${ward.geo_code} ${ward.name}; method ${x.match_method}. No parent value inherited.`
+          : `Official IEBC CAW value. Source CAW code ${row.ward_code}; canonical Atlas ward ${ward.geo_code}. No parent value inherited.`,
+        crosswalkId
       ));
     }
 
@@ -319,7 +330,7 @@
     if (type === 'indicators') {
       merged = base.map(item => item.indicator_code === 'IND-REGISTERED-VOTERS' ? {
         ...item,
-        description: 'Registered voters in the certified 2022 register. All 1,450 domestic ward rows are ingested; 1,440 are safely published on current ward geometry, while 10 Mandera East/Lafey rows are held from spatial attribution pending boundary reconciliation. Constituency totals use all source rows.',
+        description: 'Registered voters in the certified 2022 register. All 1,450 domestic ward rows are ingested; 1,440 are safely published on current ward geometry, while 10 Mandera East/Lafey rows are held from spatial attribution pending boundary reconciliation. Constituency totals use all source rows; published source-to-canonical ward crosswalks are explicitly badged B.',
         minimum_geo_level: 'ward', methodology_url: 'data/sprint2/README.md'
       } : item);
     } else {
