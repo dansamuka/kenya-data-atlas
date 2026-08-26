@@ -22,6 +22,7 @@ The Atlas will provide:
 The Atlas will not:
 
 - claim to be an official government publication without written authority;
+- imply affiliation with or endorsement by a source agency, the United Nations, UNDP or a future buyer;
 - manufacture small-area precision;
 - copy county values into constituency or ward profiles;
 - publish identifiable household or personal records;
@@ -65,7 +66,9 @@ Usage growth never overrides correctness, privacy or source restrictions.
 
 A publishable observation has an approved indicator, series, value or explicit missing status, unit, reference period, versioned geography, observation method, provenance class, source release, publication date where known, ingestion date, quality status and recorded approval.
 
-## Charter ownership
+## Current ownership and independence
 
-The Governance Board owns this charter. Material changes require a decision record, impact assessment and version update.
+The private-citizen creator is the current Owner/Publisher and owns this charter. The Atlas is an independent public-interest project, not an official government or United Nations publication. Material changes require a decision record, impact assessment and version update.
+
+If the project is later acquired or formally sponsored, charter ownership transfers only through the documented institutional-transition process. A prospective relationship must never be described as completed before a binding agreement and authorized public announcement exist.
 
