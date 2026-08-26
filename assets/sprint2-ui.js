@@ -1,6 +1,6 @@
 /* Kenya Data Atlas — Data Sprint 2 UI supplements.
- * Makes Local Kenya coverage and the Mandera boundary hold explicit while the
- * user drills Kenya -> County -> Constituency -> Ward for registered voters.
+ * Makes Local Kenya coverage, crosswalk quality and the Mandera boundary hold
+ * explicit while the user drills Kenya -> County -> Constituency -> Ward.
  */
 (function () {
   'use strict';
@@ -17,6 +17,10 @@
     return 'country';
   }
   function constituencyCodeForWard(code) { return code.replace(/-W\d+$/, ''); }
+  function constituencyNumber(code) {
+    const match = code.match(/-CON(\d+)/);
+    return match ? Number(match[1]) : null;
+  }
   function childCount(parentCode, childLevel) {
     const S2 = window.KDASprint2;
     if (!S2) return 0;
@@ -31,6 +35,11 @@
     const S2 = window.KDASprint2;
     return S2 ? S2.spatialHolds.filter(item => item.constituency_geo_code === constituencyGeoCode).length : 0;
   }
+  function crosswalkCount(constituencyGeoCode) {
+    const S2 = window.KDASprint2;
+    const n = constituencyNumber(constituencyGeoCode);
+    return S2 && n ? S2.crosswalks.filter(item => item.constituency_code === n).length : 0;
+  }
 
   function contextualCoverage() {
     const S2 = window.KDASprint2;
@@ -40,9 +49,10 @@
     const level = levelForCode(code);
 
     if (level === 'country') {
+      const x = S2.crosswalks.length;
       return {
-        text: 'Coverage: 47/47 counties · 290/290 constituencies · 1,440/1,450 wards spatially mapped · 10 ward rows on boundary hold',
-        source: 'Source: IEBC · all 1,450 domestic ward rows retained in statistical totals · 10 Mandera East/Lafey rows withheld from uncertain external ward polygons'
+        text: `Coverage: 47/47 counties · 290/290 constituencies · 1,440/1,450 wards spatially mapped · ${x} mapped ward crosswalks · 10 ward rows on boundary hold`,
+        source: `Source: IEBC · ${1440 - x} A — direct-aligned mapped wards · ${x} B — explicitly crosswalked mapped wards · all 1,450 source rows retained in totals`
       };
     }
 
@@ -63,6 +73,7 @@
       const expected = S2.sourceWardCountByGeoCode.get(code) || 0;
       const mapped = childCount(code, 'ward');
       const held = holdCount(code);
+      const crossed = crosswalkCount(code);
       const total = S2.constituencyValueByGeoCode.get(code);
       if (held) {
         return {
@@ -71,8 +82,10 @@
         };
       }
       return {
-        text: `Coverage: ${mapped}/${expected} wards spatially mapped${total != null ? ` · ${formatCount(total)} voters` : ''}`,
-        source: 'Source: IEBC · ward observations A — Official direct · constituency total B — Official derived'
+        text: `Coverage: ${mapped}/${expected} wards spatially mapped · ${crossed} explicit geography ${crossed === 1 ? 'crosswalk' : 'crosswalks'}${total != null ? ` · ${formatCount(total)} voters` : ''}`,
+        source: crossed
+          ? `Source: IEBC · ${mapped - crossed} A — direct-aligned wards · ${crossed} B — crosswalked wards · constituency total B — Official derived`
+          : 'Source: IEBC · all child wards A — Official direct-aligned · constituency total B — Official derived'
       };
     }
 
@@ -84,9 +97,16 @@
       };
     }
     const value = S2.wardValueByGeoCode.get(code);
+    const crosswalk = S2.crosswalkByGeoCode.get(code);
+    if (crosswalk) {
+      return {
+        text: `Coverage: exact IEBC ward observation${value != null ? ` · ${formatCount(value)} registered voters` : ''} · explicit geography crosswalk`,
+        source: `Source: IEBC · B — Official transformed · source CAW ${String(crosswalk.source_ward_code).padStart(4, '0')} ${crosswalk.source_name} → Atlas ${crosswalk.canonical_name} · ${crosswalk.match_method.replaceAll('_', ' ')}`
+      };
+    }
     return {
       text: `Coverage: exact ward observation${value != null ? ` · ${formatCount(value)} registered voters` : ''} · certified register 2022`,
-      source: 'Source: IEBC · A — Official direct · Kenya Gazette First Schedule'
+      source: 'Source: IEBC · A — Official direct-aligned · Kenya Gazette First Schedule'
     };
   }
 
