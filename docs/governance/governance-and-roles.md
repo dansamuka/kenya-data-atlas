@@ -1,69 +1,80 @@
 # Governance and decision rights
 
-Names are intentionally unassigned until the legal publisher formally appoints role holders. One person may cover multiple roles in a small team, but a person who prepares a release must not be its sole final approver.
+## Current operating model
+
+Kenya Data Atlas is currently created and published by a private citizen as an independent public-interest data project. The creator serves as **Owner/Publisher**, Product Owner and initial Data Steward. This is legitimate for independently republishing and analysing lawfully reusable public data; it does not create government, source-agency, United Nations or UNDP affiliation.
+
+The project applies role separation as a quality practice, not as a claim that a staffed institution already exists. Where one person holds several roles, the publication record says so plainly and uses reproducible checks, retained evidence and—where risk warrants—an external peer reviewer.
 
 ## Roles
 
-| Role | Accountability |
-|---|---|
-| Accountable Publisher | Legal and institutional accountability; final launch and emergency-withdrawal authority |
-| Product Owner | Product scope, public utility, prioritization and acceptance |
-| Statistical Lead | Indicator definitions, methods, comparability and statistical approval |
-| Data Steward | Dataset ownership, source records, quality issues and release readiness |
-| Geography Steward | Canonical geography, aliases, boundaries, crosswalks and geographic methods |
-| Privacy & Security Lead | Disclosure control, access, security risk and incident response |
-| Engineering Lead | Platform integrity, pipelines, environments, backups and technical releases |
-| Editorial Lead | Neutral language, citations, methodology and public notices |
-| Governance Board | Policy, disputes, exceptions, high-risk modelled data and public-beta approval |
+| Role | Current holder | Accountability |
+|---|---|---|
+| Owner/Publisher | Private-citizen creator | Legal ownership, scope, public claims, launch and emergency withdrawal |
+| Product Owner | Owner/Publisher | Product priorities, user value and acceptance |
+| Data Steward | Owner/Publisher until delegated | Source records, lineage, quality issues and release readiness |
+| Statistical Reviewer | Owner for low-risk direct data; independent reviewer preferred | Definitions, methods, comparability and statistical review |
+| Geography Steward | Owner until a specialist is appointed | Canonical geography, aliases, boundaries and crosswalks |
+| Privacy & Security Lead | Owner until delegated | Disclosure control, access, security and incidents |
+| Engineering Lead | Owner or contracted contributor | Platform integrity, pipelines, backups and deployment |
+| Editorial Reviewer | Owner or independent peer | Neutral language, citations, methodology and notices |
+| Advisory Panel | Future, optional | Independent challenge on high-risk methods and public-interest questions |
 
-Each role must have a named primary, alternate, appointment date and contact recorded in the private operating register before production access is granted.
+## Risk-based approval model
+
+### Tier 1 — Direct public data
+
+Examples: an official source publishes a table directly for the represented geography.
+
+The Owner/Publisher may publish after completing the source assessment, automated checks, source comparison and publication checklist. Self-review must be declared in the release record. An external agency sign-off is not required.
+
+### Tier 2 — Transparent derivation or material correction
+
+Examples: calculated rates from official inputs, unit conversions, or corrections that affect rankings.
+
+Requires reproducible code and documented formula. Independent peer review is strongly preferred and becomes mandatory before the Atlas markets the result as decision-grade analysis.
+
+### Tier 3 — Spatial derivation, modelling or sensitive disclosure risk
+
+Requires an appropriately qualified independent reviewer before publication, documented uncertainty, method/version disclosure and prominent classification. Where privacy, licence or legal status is unclear, publication pauses pending specialist advice.
 
 ## Decision matrix
 
-| Decision | Recommends | Must approve | Must be consulted |
-|---|---|---|---|
-| Add a source | Data Steward | Statistical Lead | Legal/licensing reviewer |
-| Add or change an indicator | Statistical Lead | Statistical Lead + Product Owner | Data Steward |
-| Publish a routine validated release | Data Steward | Statistical Lead + independent Publisher | Engineering Lead |
-| Publish spatially derived data | Geography Steward | Statistical Lead + Governance Board delegate | Editorial Lead |
-| Publish modelled data | Statistical Lead | Governance Board | Privacy Lead, Geography Steward |
-| Change a canonical boundary | Geography Steward | Statistical Lead | Data Steward, Engineering Lead |
-| Correct a material published error | Data Steward | Statistical Lead + Publisher | Editorial Lead |
-| Withdraw data urgently | Any lead | Accountable Publisher or Statistical Lead | Privacy/Security Lead where relevant |
-| Change a core policy | Policy owner | Governance Board | All affected leads |
-| Public-beta launch | Product Owner | Accountable Publisher + Governance Board | All leads |
+| Decision | Current authority | Additional requirement |
+|---|---|---|
+| Add a directly published public source | Owner/Data Steward | Completed source and reuse assessment |
+| Add or change an indicator | Owner/Statistical Reviewer | Versioned definition and test evidence |
+| Publish a Tier 1 release | Owner/Publisher | Completed checklist and declared self-review |
+| Publish official-derived data | Owner/Publisher | Reproducible method; peer review preferred |
+| Publish spatially derived or modelled data | Owner/Publisher | Qualified independent review required |
+| Change a canonical boundary | Geography Steward/Owner | Source evidence, version and impact review |
+| Correct a material error | Owner/Publisher | Public notice and new vintage |
+| Withdraw data urgently | Owner/Publisher | Immediate audit record and later review |
+| Change a core policy | Owner/Publisher | Decision record and version update |
+| Transfer institutional control | Owner plus acquiring organization | Transition checklist and signed authority transfer |
 
-## Meeting and quorum
+## Independent review
 
-- Governance Board meets at least monthly during build and quarterly after launch.
-- Quorum requires the Accountable Publisher or delegate, Statistical Lead, Product Owner and one independent functional lead.
-- A conflicted member declares the conflict and does not approve the relevant decision.
-- Decisions record alternatives, evidence, risks, dissent, conditions, owner and review date.
+Reviewers may be contracted specialists, academic peers, civil-society practitioners or appropriately qualified volunteers. Record their name or review identifier, qualifications/relevance, conflicts, scope, findings and date. A source agency need not approve republication unless its licence or an agreement requires it.
 
-## Escalation
+## Conflicts and transparency
 
-Publication pauses when there is unresolved disagreement about:
+The Owner and reviewers disclose material funding, employment, political, commercial or source relationships relevant to a publication. Sponsorship does not permit a sponsor to alter results without an auditable, evidence-based correction.
 
-- legal reuse rights;
-- privacy or suppression;
+## Escalation and pause conditions
+
+Publication pauses for unresolved:
+
+- public reuse or licence rights;
+- privacy or suppression risk;
 - geographic validity;
 - methodological comparability;
-- a material unexplained source discrepancy;
-- whether a value could mislead users.
+- material source discrepancy;
+- risk that presentation would mislead a reasonable user.
 
-The issue goes to the Governance Board. Privacy, security and legal blockers cannot be overruled merely to meet a launch date.
+The Owner seeks specialist review proportionate to the issue. Deadlines or commercial interest cannot override legal, privacy or integrity blockers.
 
-## Segregation of duties
+## Future institutional governance
 
-At minimum:
-
-1. a preparer runs or reviews ingestion;
-2. a statistical reviewer verifies definition, method and checks;
-3. a publisher authorizes promotion to production.
-
-The system must preserve each identity and timestamp. Automated checks support but never impersonate human approval.
-
-## Exceptions
-
-Exceptions require a decision record specifying scope, justification, residual risk, compensating controls, expiry and review owner. There are no exceptions to privacy law, binding licences or the ban on fabricated data.
+After acquisition or formal sponsorship, the institutional owner may appoint separate product, statistical, privacy, engineering and editorial roles plus a governance committee. Existing policies and audit records remain effective until formally superseded. See the institutional transition plan.
 
