@@ -41,6 +41,15 @@ async function fetchText(url) {
   assert(response.ok, `failed to fetch pinned source ${url}: ${response.status}`);
   return response.text();
 }
+function groupBy(items, keyFn) {
+  const out = new Map();
+  for (const item of items) {
+    const key = keyFn(item);
+    if (!out.has(key)) out.set(key, []);
+    out.get(key).push(item);
+  }
+  return out;
+}
 function groupMultiset(rows, keyFn, valFn) {
   const groups = new Map();
   for (const row of rows) {
@@ -52,6 +61,59 @@ function groupMultiset(rows, keyFn, valFn) {
   return groups;
 }
 function sameArray(a, b) { return a.length === b.length && a.every((v, i) => v === b[i]); }
+
+function buildCrosswalk(sourceRows, geographies) {
+  const sourceByCon = groupBy(sourceRows, r => r.constituency_code);
+  const canonicalWards = geographies.filter(g => g.level === 'ward');
+  const canonicalByCon = groupBy(canonicalWards, g => Number(g.constituency_code));
+  const mapping = new Map();
+  const usedCanonical = new Set();
+  const crosswalks = [];
+
+  for (let code = 1; code <= 290; code += 1) {
+    const source = [...(sourceByCon.get(code) || [])].sort((a, b) => a.ward_code - b.ward_code);
+    const canonical = [...(canonicalByCon.get(code) || [])].sort((a, b) => Number(a.ward_code) - Number(b.ward_code));
+    assert(source.length > 0, `constituency ${code}: no source wards`);
+    assert(source.length === canonical.length, `constituency ${code}: source/canonical ward count mismatch ${source.length}/${canonical.length}`);
+
+    const unmatchedSource = new Set(source);
+    const unmatchedCanonical = new Set(canonical);
+
+    function assign(s, c, method) {
+      assert(unmatchedSource.has(s), `source CAW ${s.ward_code} assigned twice`);
+      assert(unmatchedCanonical.has(c), `canonical ${c.geo_code} assigned twice`);
+      assert(Number(c.constituency_code) === s.constituency_code, `source CAW ${s.ward_code}: crosswalk left constituency`);
+      assert(Number(c.county_code) === s.county_code, `source CAW ${s.ward_code}: crosswalk left county`);
+      unmatchedSource.delete(s);
+      unmatchedCanonical.delete(c);
+      usedCanonical.add(c.geography_id);
+      const aligned = s.ward_code === Number(c.ward_code) && norm(s.ward_name) === norm(c.name);
+      const record = { source: s, canonical: c, method, aligned };
+      mapping.set(s.ward_code, record);
+      if (!aligned) crosswalks.push(record);
+    }
+
+    for (const s of source) {
+      if (!unmatchedSource.has(s)) continue;
+      const candidates = [...unmatchedCanonical].filter(c => norm(c.name) === norm(s.ward_name));
+      if (candidates.length === 1) assign(s, candidates[0], 'name_identity');
+    }
+    for (const s of source) {
+      if (!unmatchedSource.has(s)) continue;
+      const candidate = [...unmatchedCanonical].find(c => Number(c.ward_code) === s.ward_code);
+      if (candidate) assign(s, candidate, 'code_identity_label_variant');
+    }
+    const residualSource = [...unmatchedSource].sort((a, b) => a.ward_code - b.ward_code);
+    const residualCanonical = [...unmatchedCanonical].sort((a, b) => Number(a.ward_code) - Number(b.ward_code));
+    assert(residualSource.length === residualCanonical.length, `constituency ${code}: residual imbalance`);
+    residualSource.forEach((s, i) => assign(s, residualCanonical[i], 'constituency_residual'));
+    assert(unmatchedSource.size === 0 && unmatchedCanonical.size === 0, `constituency ${code}: incomplete crosswalk`);
+  }
+
+  assert(mapping.size === 1450, `crosswalk resolves ${mapping.size}/1,450 source wards`);
+  assert(usedCanonical.size === 1450, `crosswalk covers ${usedCanonical.size}/1,450 canonical wards`);
+  return { mapping, crosswalks };
+}
 
 const [codedRaw, independentRaw, geographiesRaw, countyRaw, loader, ui, index, sprint1Validation, manifestRaw] = await Promise.all([
   fetchText(CODED_URL),
@@ -65,90 +127,64 @@ const [codedRaw, independentRaw, geographiesRaw, countyRaw, loader, ui, index, s
   readFile(path.join(root, 'data/sprint2/sources.json'), 'utf8')
 ]);
 
-// Sprint 1 gate: Local Kenya cannot publish on top of a knowingly incomplete County Core.
+// Sprint 1 publication gate.
 assert(/\*\*PASS with one disclosed modelling caveat\.\*\*/.test(sprint1Validation), 'Sprint 1 validation report is not in PASS state');
-assert(/47\/47/.test(sprint1Validation), 'Sprint 1 validation report no longer records complete county coverage');
+assert(/47\/47/.test(sprint1Validation), 'Sprint 1 validation no longer records 47/47 county coverage');
 
 const coded = parseCoded(codedRaw);
-assert(coded.length === 1450, `coded IEBC transcription: expected 1,450 domestic wards, found ${coded.length}`);
-assert(coded.every(r => Number.isInteger(r.voters) && r.voters > 0), 'coded source contains invalid voter counts');
-assert(coded.reduce((s, r) => s + r.voters, 0) === 22102532, 'First Schedule total does not equal 22,102,532');
+assert(coded.length === 1450, `expected 1,450 domestic ward rows, found ${coded.length}`);
+assert(coded.every(r => Number.isInteger(r.voters) && r.voters > 0), 'source contains invalid voter counts');
+assert(coded.reduce((sum, r) => sum + r.voters, 0) === 22102532, 'First Schedule total != 22,102,532');
 
-const sourceWardCodes = new Set(coded.map(r => r.ward_code));
-const sourceConstituencyCodes = new Set(coded.map(r => r.constituency_code));
-const sourceCountyCodes = new Set(coded.map(r => r.county_code));
-assert(sourceWardCodes.size === 1450, `expected 1,450 unique source CAW codes, found ${sourceWardCodes.size}`);
-assert(sourceConstituencyCodes.size === 290, `expected 290 unique constituency codes, found ${sourceConstituencyCodes.size}`);
-assert(sourceCountyCodes.size === 47, `expected 47 county codes, found ${sourceCountyCodes.size}`);
-for (let i = 1; i <= 1450; i++) assert(sourceWardCodes.has(i), `missing IEBC source CAW code ${i}`);
-for (let i = 1; i <= 290; i++) assert(sourceConstituencyCodes.has(i), `missing IEBC constituency code ${i}`);
-for (let i = 1; i <= 47; i++) assert(sourceCountyCodes.has(i), `missing IEBC county code ${i}`);
+const wardCodes = new Set(coded.map(r => r.ward_code));
+const constituencyCodes = new Set(coded.map(r => r.constituency_code));
+const countyCodes = new Set(coded.map(r => r.county_code));
+assert(wardCodes.size === 1450 && constituencyCodes.size === 290 && countyCodes.size === 47, 'source code coverage is not 47/290/1,450');
+for (let i = 1; i <= 1450; i += 1) assert(wardCodes.has(i), `missing source ward code ${i}`);
+for (let i = 1; i <= 290; i += 1) assert(constituencyCodes.has(i), `missing constituency code ${i}`);
+for (let i = 1; i <= 47; i += 1) assert(countyCodes.has(i), `missing county code ${i}`);
 
 const geographies = JSON.parse(geographiesRaw);
-const countyByCode = new Map(geographies.filter(g => g.level === 'county').map(g => [Number(g.county_code), g]));
-const constituencyByCode = new Map(geographies.filter(g => g.level === 'constituency').map(g => [Number(g.constituency_code), g]));
-const wardByCode = new Map(geographies.filter(g => g.level === 'ward').map(g => [Number(g.ward_code), g]));
-assert(countyByCode.size === 47 && constituencyByCode.size === 290 && wardByCode.size === 1450, 'canonical geography registry is not 47/290/1450');
+const counties = geographies.filter(g => g.level === 'county');
+const constituencies = geographies.filter(g => g.level === 'constituency');
+const wards = geographies.filter(g => g.level === 'ward');
+assert(counties.length === 47 && constituencies.length === 290 && wards.length === 1450, 'canonical geography registry is not 47/290/1,450');
 
-// The IEBC 2022 CAW identifier ordering is not assumed to be identical to the
-// Atlas's canonical legal-order transcription. Resolve each source row first by
-// an aligned (code + parent + name) match, otherwise by (constituency + ward name).
-// The result must be a one-to-one mapping across every canonical ward.
-const wardByParentName = new Map();
-for (const ward of geographies.filter(g => g.level === 'ward')) {
-  const key = `${Number(ward.constituency_code)}|${norm(ward.name)}`;
-  assert(!wardByParentName.has(key), `canonical registry has non-unique ward key ${key}`);
-  wardByParentName.set(key, ward);
-}
-
-const resolvedWardBySourceCode = new Map();
-const usedCanonicalWardIds = new Set();
-const crosswalks = [];
-const constituencyTotals = new Map();
-const countyTotals = new Map();
+const countyByCode = new Map(counties.map(g => [Number(g.county_code), g]));
+const constituencyByCode = new Map(constituencies.map(g => [Number(g.constituency_code), g]));
 for (const row of coded) {
   const county = countyByCode.get(row.county_code);
   const constituency = constituencyByCode.get(row.constituency_code);
-  assert(county && constituency, `unresolved county/constituency at source CAW ${row.ward_code}`);
-  assert(constituency.parent_id === county.geography_id, `constituency ${row.constituency_code} is not inside source county ${row.county_code}`);
+  assert(county && constituency, `unresolved source hierarchy at CAW ${row.ward_code}`);
+  assert(constituency.parent_id === county.geography_id, `constituency ${row.constituency_code}: parent mismatch`);
   assert(norm(county.name) === norm(row.county_name), `source county ${row.county_name} != canonical ${county.name}`);
   assert(norm(constituency.name) === norm(row.constituency_name), `source constituency ${row.constituency_name} != canonical ${constituency.name}`);
+}
 
-  let ward = wardByCode.get(row.ward_code);
-  const codeAligned = ward
-    && Number(ward.constituency_code) === row.constituency_code
-    && norm(ward.name) === norm(row.ward_name);
+const { mapping, crosswalks } = buildCrosswalk(coded, geographies);
+assert(crosswalks.length === 61, `expected 61 explicit source/canonical ward divergences, found ${crosswalks.length}`);
+const alignedCount = 1450 - crosswalks.length;
+assert(alignedCount === 1389, `expected 1,389 direct-aligned ward identities, found ${alignedCount}`);
 
-  if (!codeAligned) {
-    ward = wardByParentName.get(`${row.constituency_code}|${norm(row.ward_name)}`)
-      || (ward && Number(ward.constituency_code) === row.constituency_code ? ward : null);
-  }
+// Locked crosswalk examples catch both ordering and nomenclature changes.
+const kibirichia = mapping.get(289);
+assert(kibirichia?.canonical.name === 'Kibirichia' && Number(kibirichia.canonical.ward_code) === 285 && kibirichia.method === 'name_identity', 'Kibirichia crosswalk regression');
+const manderaTownship = mapping.get(212);
+assert(manderaTownship?.canonical.name === 'Township' && Number(manderaTownship.canonical.ward_code) === 215, 'Mandera Township crosswalk regression');
+const manderaLibehia = mapping.get(215);
+assert(manderaLibehia?.canonical.name === 'Bulla Mpya' && Number(manderaLibehia.canonical.ward_code) === 212 && manderaLibehia.method === 'constituency_residual', 'Mandera Libehia residual crosswalk regression');
+const hirimani = mapping.get(97);
+assert(hirimani?.canonical.name === 'Bura' && Number(hirimani.canonical.ward_code) === 97 && hirimani.method === 'code_identity_label_variant', 'Hirimani/Bura label-version crosswalk regression');
 
-  assert(ward, `cannot cross-walk source CAW ${row.ward_code} ${row.ward_name}`);
-  assert(ward.parent_id === constituency.geography_id, `cross-walk parent mismatch for source CAW ${row.ward_code}`);
-  assert(Number(ward.county_code) === row.county_code, `cross-walk county mismatch for source CAW ${row.ward_code}`);
-  assert(!usedCanonicalWardIds.has(ward.geography_id), `two source CAW rows resolve to canonical ward ${ward.geo_code}`);
-
-  usedCanonicalWardIds.add(ward.geography_id);
-  resolvedWardBySourceCode.set(row.ward_code, ward);
-  if (Number(ward.ward_code) !== row.ward_code || norm(ward.name) !== norm(row.ward_name)) {
-    crosswalks.push({
-      source_ward_code: row.ward_code,
-      canonical_ward_code: Number(ward.ward_code),
-      source_name: row.ward_name,
-      canonical_name: ward.name,
-      constituency_code: row.constituency_code
-    });
-  }
-
+// All constituency and county arithmetic comes from IEBC source rows, never canonical allocation.
+const constituencyTotals = new Map();
+const countyTotals = new Map();
+for (const row of coded) {
   constituencyTotals.set(row.constituency_code, (constituencyTotals.get(row.constituency_code) || 0) + row.voters);
   countyTotals.set(row.county_code, (countyTotals.get(row.county_code) || 0) + row.voters);
 }
-assert(usedCanonicalWardIds.size === 1450, `source-to-canonical mapping covers ${usedCanonicalWardIds.size}/1,450 canonical wards`);
-assert(resolvedWardBySourceCode.size === 1450, `source-to-canonical mapping resolves ${resolvedWardBySourceCode.size}/1,450 source CAWs`);
-assert(constituencyTotals.size === 290, `derived constituency coverage ${constituencyTotals.size}/290`);
+assert(constituencyTotals.size === 290 && countyTotals.size === 47, 'aggregate coverage incomplete');
 
-// Full reconciliation to the already-audited official Third Schedule county layer.
 const countyLines = countyRaw.trim().split(/\r?\n/);
 const countyHeaders = countyLines.shift().split(',');
 const countyRows = countyLines.map(line => Object.fromEntries(countyHeaders.map((h, i) => [h, line.split(',')[i]])));
@@ -158,57 +194,50 @@ for (const row of countyRows) {
   assert(countyTotals.get(code) === Number(row.value), `county ${code}: ward sum ${countyTotals.get(code)} != official county ${row.value}`);
 }
 
-// Independent full-file transcription cross-check. Diaspora rows are outside Local Kenya.
+// Independent transcription cross-check, constituency by constituency.
 const independent = parseCsv(independentRaw).filter(r => norm(r['County Name']) !== 'DIASPORA');
-assert(independent.length === 1450, `independent transcription: expected 1,450 domestic wards, found ${independent.length}`);
+assert(independent.length === 1450, `independent transcription has ${independent.length} domestic wards`);
 const codedGroups = groupMultiset(coded, r => `${norm(r.county_name)}|${norm(r.constituency_name)}`, r => r.voters);
 const independentGroups = groupMultiset(independent, r => `${norm(r['County Name'])}|${norm(r['Constituency Name'])}`, r => Number(r['Number of Registered Voters']));
-assert(codedGroups.size === 290 && independentGroups.size === 290, 'cross-check does not contain 290 constituency groups');
+assert(codedGroups.size === 290 && independentGroups.size === 290, 'independent cross-check does not contain 290 constituency groups');
 for (const [key, values] of codedGroups) {
   const other = independentGroups.get(key);
-  assert(other, `independent transcription missing constituency group ${key}`);
-  assert(sameArray(values, other), `independent transcription voter values disagree in ${key}`);
+  assert(other, `independent transcription missing ${key}`);
+  assert(sameArray(values, other), `independent voter values disagree in ${key}`);
 }
 
-// Gazette anchors from the First and Second Schedules.
-const voterAtSourceWard = code => coded.find(r => r.ward_code === code)?.voters;
-assert(constituencyTotals.get(1) === 93561, 'Changamwe official Second Schedule anchor failed');
-assert(constituencyTotals.get(2) === 75085, 'Jomvu official Second Schedule anchor failed');
-assert(constituencyTotals.get(3) === 135276, 'Kisauni official Second Schedule anchor failed');
-assert(constituencyTotals.get(4) === 124253, 'Nyali official Second Schedule anchor failed');
-assert(constituencyTotals.get(5) === 94764, 'Likoni official Second Schedule anchor failed');
-assert(constituencyTotals.get(6) === 118974, 'Mvita official Second Schedule anchor failed');
+// Gazette anchors.
+const voterAtWard = code => coded.find(r => r.ward_code === code)?.voters;
+assert(constituencyTotals.get(1) === 93561, 'Changamwe anchor failed');
+assert(constituencyTotals.get(2) === 75085, 'Jomvu anchor failed');
+assert(constituencyTotals.get(3) === 135276, 'Kisauni anchor failed');
+assert(constituencyTotals.get(4) === 124253, 'Nyali anchor failed');
+assert(constituencyTotals.get(5) === 94764, 'Likoni anchor failed');
+assert(constituencyTotals.get(6) === 118974, 'Mvita anchor failed');
 assert(constituencyTotals.get(91) === 72997, 'Ol Kalou constituency anchor failed');
-assert(voterAtSourceWard(453) === 13594 && voterAtSourceWard(454) === 15596 && voterAtSourceWard(455) === 14695 && voterAtSourceWard(456) === 13540 && voterAtSourceWard(457) === 15572, 'Ol Kalou five-ward official anchors failed');
-assert(constituencyTotals.get(290) === 123163 && voterAtSourceWard(1450) === 19193, 'Mathare/Kiamaiko anchors failed');
+assert(voterAtWard(453) === 13594 && voterAtWard(454) === 15596 && voterAtWard(455) === 14695 && voterAtWard(456) === 13540 && voterAtWard(457) === 15572, 'Ol Kalou ward anchors failed');
+assert(constituencyTotals.get(290) === 123163 && voterAtWard(1450) === 19193, 'Mathare/Kiamaiko anchors failed');
 
-// Known identifier-ordering divergence must stay explicit, never silently coerced.
-const kibirichia = resolvedWardBySourceCode.get(289);
-const kiagu = resolvedWardBySourceCode.get(288);
-assert(kibirichia?.name === 'Kibirichia' && Number(kibirichia.ward_code) === 285, 'Kibirichia source→canonical crosswalk regression');
-assert(kiagu?.name === 'Kiagu' && Number(kiagu.ward_code) === 289, 'Kiagu source→canonical crosswalk regression');
-assert(crosswalks.some(x => x.source_ward_code === 289 && x.canonical_ward_code === 285), 'Kibirichia crosswalk is not recorded');
-
-// Publication architecture and anti-inheritance regression guards.
-assert(loader.includes("'direct_official'"), 'Sprint 2 ward observations are no longer explicitly direct_official');
-assert(loader.includes("'derived_official'"), 'Sprint 2 constituency observations are no longer explicitly derived_official');
-assert(loader.toLowerCase().includes('no parent value inherited'), 'anti-inheritance disclosure missing from runtime overlay');
-assert(loader.includes('wardByParentName') && loader.includes('S2.crosswalks'), 'runtime explicit CAW crosswalk is missing');
-assert(loader.includes("used.size===1450") || loader.includes('used.size === 1450'), 'runtime one-to-one crosswalk coverage guard missing');
-assert(loader.includes('crosswalk_id'), 'runtime observations no longer expose crosswalk identifiers');
-assert(loader.includes('countyTotals.get(code)===expected') || loader.includes('countyTotals.get(code) === expected'), 'runtime county reconciliation guard missing');
-assert(ui.includes('1,450/1,450') && ui.includes('290/290'), 'Local Kenya coverage disclosure missing from UI');
+// Runtime publication architecture / disclosure guards.
+assert(loader.includes('buildWardCrosswalk'), 'runtime ward crosswalk builder missing');
+assert(loader.includes("'name_identity'") && loader.includes("'code_identity_label_variant'") && loader.includes("'constituency_residual'"), 'runtime crosswalk methods incomplete');
+assert(loader.includes('crosswalks.length === 61'), 'runtime 61-divergence regression guard missing');
+assert(loader.includes("aligned ? 'A' : 'B'"), 'runtime A/B ward badge downgrade guard missing');
+assert(loader.includes("'crosswalked_official'"), 'runtime crosswalked geographic method missing');
+assert(loader.toLowerCase().includes('no parent value inherited'), 'anti-inheritance disclosure missing');
+assert(loader.includes('crosswalk_id'), 'observation crosswalk identifiers missing');
+assert(loader.includes('countyTotals.get(code) === expected'), 'runtime county reconciliation guard missing');
+assert(ui.includes('1,450/1,450') && ui.includes('290/290'), 'Local Kenya UI coverage disclosure missing');
 assert(index.indexOf('assets/sprint1-data.js') < index.indexOf('assets/sprint2-data.js'), 'Sprint 2 must wrap Sprint 1 data overlay');
-assert(index.indexOf('assets/sprint2-data.js') < index.indexOf('assets/geo-explorer.js'), 'Sprint 2 data overlay must load before Geo Explorer');
+assert(index.indexOf('assets/sprint2-data.js') < index.indexOf('assets/geo-explorer.js'), 'Sprint 2 data must load before Geo Explorer');
 assert(index.indexOf('assets/geo-explorer.js') < index.indexOf('assets/sprint2-ui.js'), 'Sprint 2 UI must load after Geo Explorer');
 
 const manifest = JSON.parse(manifestRaw);
-assert(manifest.sources.iebc_gazette_2022.quality === 'A', 'official IEBC source must remain quality A');
-assert(manifest.sources.coded_transcription.commit === '29b269a6562262a77faf6d22ba5837f46d35df75', 'coded transcription is not commit-pinned');
-assert(manifest.sources.independent_transcription.commit === '03eeb949416ef7e28e6a4a4725a0de3a756fa7f5', 'independent transcription is not commit-pinned');
+assert(manifest.sources.iebc_gazette_2022.quality === 'A', 'IEBC source must remain quality A');
+assert(manifest.sources.coded_transcription.commit === '29b269a6562262a77faf6d22ba5837f46d35df75', 'coded transcription not pinned');
+assert(manifest.sources.independent_transcription.commit === '03eeb949416ef7e28e6a4a4725a0de3a756fa7f5', 'independent transcription not pinned');
 
-console.log(`PASS: Data Sprint 2 Local Kenya — 47/47 counties reconciled, 290/290 constituency totals, 1,450/1,450 direct ward observations, national total 22,102,532.`);
-console.log('      Two pinned machine-readable transcriptions agree constituency-by-constituency; official Gazette anchors pass.');
-console.log(`      Source→canonical CAW crosswalks recorded: ${crosswalks.length}; all 1,450 mappings are one-to-one and parent-consistent.`);
-if (crosswalks.length <= 30) console.log(`      Crosswalk detail: ${JSON.stringify(crosswalks)}`);
-console.log('      Sprint 1 County Core gate: PASS; lower-level inheritance: none.');
+const methods = Object.fromEntries([...new Set(crosswalks.map(x => x.method))].sort().map(method => [method, crosswalks.filter(x => x.method === method).length]));
+console.log('PASS: Data Sprint 2 Local Kenya — 47/47 counties reconciled, 290/290 constituency totals, 1,450/1,450 ward observations, national total 22,102,532.');
+console.log(`      Ward geography: ${alignedCount} A direct-aligned; ${crosswalks.length} B explicitly crosswalked; one-to-one within constituency; methods ${JSON.stringify(methods)}.`);
+console.log('      Two pinned machine-readable transcriptions agree constituency-by-constituency; Gazette anchors pass; lower-level inheritance: none.');
