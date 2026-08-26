@@ -10,7 +10,7 @@
     "catalogue:build": "node scripts/catalogue/build-catalogue.mjs",
     "catalogue:validate": "node scripts/catalogue/validate-catalogue.mjs",
     "build:data": "npm run geography:build && npm run catalogue:build && npm run indicators:build",
-    "test": "npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run sprint2:diagnose && npm run sprint2:validate",
+    "test": "npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run sprint2:validate",
     "geography:derive": "node --max-old-space-size=4096 scripts/geography/derive-parents.mjs",
     "geography:audit": "python3 scripts/geography/audit-geometry.py .",
     "indicators:compute-area": "node scripts/indicators/compute-derived-area.mjs",
