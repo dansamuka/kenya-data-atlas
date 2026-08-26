@@ -52,18 +52,31 @@
       <div class="metric-grid" id="pulse-grid"></div>
     </section>
 
-    <section class="map-section section">
-      <div class="map-copy">
-        <p class="eyebrow">Explore the country</p><h2>Start with a place</h2>
-        <p>Move from the national picture to local context. This schematic map demonstrates county selection without implying precise boundaries.</p>
-        <label class="select-label">Map indicator<select id="map-indicator"><option>Population</option><option>Electricity access</option><option>Registered voters</option></select></label>
-        <div class="map-legend"><span>Lower</span><i></i><i></i><i></i><i></i><span>Higher</span></div>
-        <p class="source-note">Demo visualisation · not an official boundary map</p>
+    <section class="section geo-section" id="geo-explorer">
+      <div class="geo-header">
+        <div>
+          <p class="eyebrow" id="geo-eyebrow">47 counties · 2019 Kenya Population and Housing Census</p>
+          <h2 id="geo-heading">How does population vary across Kenya?</h2>
+        </div>
+        <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"></select></label>
       </div>
-      <div class="map-panel">
-        <div class="kenya-map" id="kenya-map" aria-label="Schematic interactive county map" role="img"></div>
-        <div class="map-tooltip" id="map-tooltip"><small>Selected county</small><strong id="map-tooltip-name">Nakuru</strong><span id="map-tooltip-value">Population · 2.16m</span><button id="map-view-profile">View county profile →</button></div>
+      <nav class="geo-breadcrumb" id="geo-breadcrumb" aria-label="Geography breadcrumb"></nav>
+      <div class="geo-layout">
+        <div class="geo-map-panel">
+          <div class="geo-map-wrap">
+            <svg id="geo-svg" viewBox="0 0 800 780" role="img" aria-label="Kenya statistical map"></svg>
+            <div class="geo-tooltip" id="geo-tooltip" role="status" hidden></div>
+          </div>
+          <div class="geo-legend" id="geo-legend" aria-hidden="true"></div>
+          <p class="source-note" id="geo-source-note"></p>
+        </div>
+        <aside class="geo-ranking-panel" aria-label="Ranking">
+          <h3 id="geo-ranking-title">Ranking (47)</h3>
+          <p class="geo-ranking-note" id="geo-ranking-note" hidden></p>
+          <ol class="geo-ranking-list" id="geo-ranking-list"></ol>
+        </aside>
       </div>
+      <div class="geo-selected-summary" id="geo-selected-summary" hidden></div>
     </section>
 
     <section class="section profile-section" id="profile">
@@ -103,7 +116,9 @@
 
   <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#catalogue">Data & sources</a><a href="#profile">Methodology</a><a href="#series">Developers</a><a href="README.md">About this MVP</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/geo-explorer.js"></script>
 </body>
 </html>
 

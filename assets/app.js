@@ -224,24 +224,8 @@ $('#main-nav').onclick = () => { $('#main-nav').classList.remove('open'); menu.s
     }
   }
 
-  function updateMapTooltip(name) {
-    const tooltipName = $('#map-tooltip-name');
-    const tooltipValue = $('#map-tooltip-value');
-    if (tooltipName) tooltipName.textContent = name;
-    if (tooltipValue) {
-      const indicatorName = $('#map-indicator') ? $('#map-indicator').value : 'Population';
-      const population = latestObs(countySeriesCode('IND-POPULATION', name));
-      const area = latestObs(countySeriesCode('IND-LAND-AREA', name));
-      let valueText = 'No real data loaded yet for this indicator';
-      if (indicatorName === 'Population') valueText = population ? `Population · ${formatValue(population.obs.value, 'persons')}` : 'Population · not yet available';
-      if (indicatorName === 'Land area') valueText = area ? `Land area · ${formatValue(area.obs.value, 'km2')} km²` : 'Land area · not yet available';
-      if (indicatorName === 'Registered voters') valueText = 'Registered voters · only available nationally so far';
-      tooltipValue.textContent = valueText;
-    }
-  }
   function selectCounty(name) {
     renderProfile(name);
-    updateMapTooltip(name);
     document.getElementById('profile')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -266,7 +250,8 @@ $('#main-nav').onclick = () => { $('#main-nav').classList.remove('open'); menu.s
     download(`kenya-data-atlas-${currentCounty.toLowerCase().replace(/\s+/g, '-')}.csv`, rows.join('\n'));
   };
   if (countyPicker) countyPicker.onchange = () => selectCounty(countyPicker.value);
-  if (allCounties.length) { renderProfile(currentCounty); updateMapTooltip(currentCounty); }
+  if (allCounties.length) renderProfile(currentCounty);
+  window.KDASelectCountyProfile = selectCounty;
 
   // ---------------------------------------------------------------- Rankings
   // Land area is the only indicator with full 47-county coverage, so it is
@@ -377,52 +362,45 @@ $('#main-nav').onclick = () => { $('#main-nav').classList.remove('open'); menu.s
   }).catch(() => {});
 
   // -------------------------------------------------------------------- Map
-  // The grid's cells still carry no real spatial position — clicking cell #12
-  // does not mean "the 12th county on a real map" — so this is deliberately
-  // NOT presented as a boundary map. But each cell now selects a genuinely
-  // different real county (cycling through the actual 47 names), which is
-  // the fix for "why does every cell show Nakuru": it doesn't any more. The
-  // authoritative, precise way to pick a county is the dropdown in the
-  // profile section above; the grid is a lightweight way to browse.
-  const mapIndicator = $('#map-indicator');
-  if (mapIndicator) mapIndicator.innerHTML = '<option>Population</option><option>Land area</option><option>Registered voters</option>';
-  const map = $('#kenya-map');
-  for (let i = 0; i < 56; i += 1) {
-    const b = document.createElement('button');
-    b.className = 'county-cell';
-    const cellCounty = allCounties.length ? allCounties[i % allCounties.length] : null;
-    b.setAttribute('aria-label', cellCounty ? `Select ${cellCounty}` : `Schematic county cell ${i + 1}`);
-    b.onclick = () => {
-      $$('.county-cell').forEach(c => c.classList.remove('active'));
-      b.classList.add('active');
-      if (cellCounty) selectCounty(cellCounty);
-    };
-    map.appendChild(b);
-  }
-  const viewProfileBtn = $('#map-view-profile');
-  if (viewProfileBtn) viewProfileBtn.onclick = () => selectCounty(currentCounty);
-  if (mapIndicator) mapIndicator.onchange = () => updateMapTooltip(currentCounty);
+  // The schematic 56-cell grid has been removed entirely and replaced by
+  // assets/geo-explorer.js, which renders the Atlas's real, validated
+  // boundary geometry as an interactive choropleth (Kenya -> County ->
+  // Constituency -> Ward). County-picker selections here still drive the
+  // single-page county profile below; the geo-explorer section above is the
+  // primary way to browse by place now.
 
   // ------------------------------------------------------------------ Search
   // Extended to match real indicator names alongside real geographies.
+  // Geography results resolve to a real geography_id and hand off to the
+  // SAME selection function the map and rankings use (window.KDAGeo),
+  // rather than sending every result to the same generic profile.
   const input = $('#atlas-search'), results = $('#search-results');
   async function search(q) {
     const query = q.trim().toLowerCase();
     if (!query) { results.hidden = true; return; }
     const registry = geographies ?? [];
     const geos = registry.filter(g => `${g.name} ${g.level} ${g.geo_code}`.toLowerCase().includes(query))
-      .slice(0, 6).map(g => [g.name, `${g.level[0].toUpperCase() + g.level.slice(1)} · ${g.geo_code}`, g.geo_code, 'geo']);
+      .slice(0, 6).map(g => ({ label: g.name, sub: `${g.level[0].toUpperCase() + g.level.slice(1)} · ${g.geo_code}`, code: g.geo_code, geoId: g.geography_id, kind: 'geo' }));
     const inds = (indicators ?? []).filter(i => `${i.name} ${i.short_name} ${i.topic}`.toLowerCase().includes(query))
-      .slice(0, 4).map(i => [i.name, `Indicator · ${i.topic}`, i.indicator_code, 'indicator']);
+      .slice(0, 4).map(i => ({ label: i.name, sub: `Indicator · ${i.topic}`, code: i.indicator_code, geoId: '', kind: 'indicator' }));
     const found = [...geos, ...inds].slice(0, 10);
-    results.innerHTML = found.map(x => `<button class="search-result" role="option" data-result="${x[0]}" data-code="${x[2]}" data-kind="${x[3]}"><span>${x[0]}</span><small>${x[1]}</small></button>`).join('')
+    results.innerHTML = found.map(x => `<button class="search-result" role="option" data-result="${x.label}" data-code="${x.code}" data-geo-id="${x.geoId}" data-kind="${x.kind}"><span>${x.label}</span><small>${x.sub}</small></button>`).join('')
       || '<div class="search-result"><span>No matching geography or indicator</span><small>Try another term</small></div>';
     results.hidden = false;
     $$('[data-result]').forEach(b => b.onclick = () => {
       input.value = b.dataset.result;
       results.hidden = true;
-      location.hash = b.dataset.kind === 'indicator' ? 'series' : 'profile';
-      toast(b.dataset.kind === 'indicator' ? `Opened the ${b.dataset.result} indicator (${b.dataset.code}).` : `Found ${b.dataset.result} in the canonical registry (${b.dataset.code}).`);
+      if (b.dataset.kind === 'indicator') {
+        location.hash = 'series';
+        toast(`Opened the ${b.dataset.result} indicator (${b.dataset.code}).`);
+        return;
+      }
+      if (window.KDAGeo && b.dataset.geoId) {
+        window.KDAGeo.selectGeography(b.dataset.geoId);
+        document.getElementById('geo-explorer')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        toast(`Found ${b.dataset.result} in the canonical registry (${b.dataset.code}). Map is still loading — try again in a moment.`);
+      }
     });
   }
   input.oninput = e => search(e.target.value);
