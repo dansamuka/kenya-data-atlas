@@ -52,6 +52,10 @@ README.md           Project and data-status documentation
 
 Phase 0 policies, decision rights, registers and approval templates are indexed in [`docs/governance/README.md`](docs/governance/README.md). No demonstration value in the interface is approved production data.
 
+## Ownership model
+
+Kenya Data Atlas is currently an independent public-interest project created and published by a private citizen using publicly available, attributed data. It is not affiliated with or endorsed by the Government of Kenya, KNBS, IEBC, CBK, the United Nations, UNDP or any other source organization. The governance package is designed to scale into an institutional model if the project is later acquired, sponsored or operated by an NGO or public-interest organization.
+
 ## GitHub Pages
 
 In the repository settings, choose **Pages → Deploy from a branch**, select the default branch and `/ (root)`. The site has no server-side requirements.
