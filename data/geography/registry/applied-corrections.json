@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-08-26T11:50:47.530Z",
+  "source_id": "KDA-TRANSCRIPTION-LN14-2012",
+  "applied": [
+    {
+      "correction_id": "KDA-COR-0001",
+      "scope": "constituency",
+      "name": "BARINGO NORTH",
+      "field": "CONSTITUENCY ID",
+      "from": "#N/A",
+      "to": "158"
+    },
+    {
+      "correction_id": "KDA-COR-0001",
+      "scope": "constituency",
+      "name": "BARINGO NORTH",
+      "field": "CONSTITUENCY ID",
+      "from": "#N/A",
+      "to": "158"
+    },
+    {
+      "correction_id": "KDA-COR-0001",
+      "scope": "constituency",
+      "name": "BARINGO NORTH",
+      "field": "CONSTITUENCY ID",
+      "from": "#N/A",
+      "to": "158"
+    },
+    {
+      "correction_id": "KDA-COR-0001",
+      "scope": "constituency",
+      "name": "BARINGO NORTH",
+      "field": "CONSTITUENCY ID",
+      "from": "#N/A",
+      "to": "158"
+    },
+    {
+      "correction_id": "KDA-COR-0001",
+      "scope": "constituency",
+      "name": "BARINGO NORTH",
+      "field": "CONSTITUENCY ID",
+      "from": "#N/A",
+      "to": "158"
+    }
+  ]
+}

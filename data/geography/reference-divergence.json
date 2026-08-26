@@ -1,0 +1,1366 @@
+{
+  "generated_at": "2026-08-26T11:50:47.613Z",
+  "reference_layer": "HDX-KENYA-ELECTIONS-CONSTITUENCIES-2018",
+  "canonical_hierarchy": "KDA-TRANSCRIPTION-LN14-2012",
+  "note": "The registry hierarchy is authoritative. These wards were verified against the 2012 delimitation and the registry assignment is correct; the divergence is a defect in the reference constituency layer, not in the registry.",
+  "divergences": [
+    {
+      "geo_code": "KEN-C001-CON002-W0007",
+      "name": "Miritini",
+      "reference_containment": 0.83444,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C002-CON007-W0031",
+      "name": "Gombatobongwe",
+      "reference_containment": 0.710365,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C002-CON008-W0037",
+      "name": "Mwereni",
+      "reference_containment": 0.584896,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C002-CON009-W0040",
+      "name": "Waa",
+      "reference_containment": 0.858426,
+      "match_method": "complete_parent_group_residual_assignment",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0052",
+      "name": "Sokoni",
+      "reference_containment": 0.884628,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0054",
+      "name": "Dabaso",
+      "reference_containment": 0.800224,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0057",
+      "name": "Mnarani",
+      "reference_containment": 0.880995,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON012-W0059",
+      "name": "Mwarakaya",
+      "reference_containment": 0.804892,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON014-W0070",
+      "name": "Rabai/Kisurutini",
+      "reference_containment": 0.875239,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON015-W0073",
+      "name": "Jaribuni",
+      "reference_containment": 0.855025,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON015-W0074",
+      "name": "Sokoke",
+      "reference_containment": 0.768469,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0075",
+      "name": "Jilore",
+      "reference_containment": 0.833321,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0076",
+      "name": "Kakuyuni",
+      "reference_containment": 0.882944,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0085",
+      "name": "Sabaki",
+      "reference_containment": 0.000834,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C004-CON019-W0094",
+      "name": "Chewani",
+      "reference_containment": 0.817309,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C006-CON024-W0118",
+      "name": "Wumingu/Kishushe",
+      "reference_containment": 0.163339,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0120",
+      "name": "Rong'e",
+      "reference_containment": 0.807312,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0121",
+      "name": "Mwatate",
+      "reference_containment": 0.881992,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0122",
+      "name": "Bura",
+      "reference_containment": 0.869173,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0130",
+      "name": "Ngolia",
+      "reference_containment": 0.831078,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON027-W0131",
+      "name": "Waberi",
+      "reference_containment": 0.780554,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON027-W0132",
+      "name": "Galbet",
+      "reference_containment": 0.737807,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0135",
+      "name": "Balambala",
+      "reference_containment": 0.803772,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0136",
+      "name": "Danyere",
+      "reference_containment": 0.867858,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0137",
+      "name": "Jara Jara",
+      "reference_containment": 0.84597,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0138",
+      "name": "Saka",
+      "reference_containment": 0.762342,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0139",
+      "name": "Sankuri",
+      "reference_containment": 0.584363,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON031-W0154",
+      "name": "Jarajila",
+      "reference_containment": 0.80358,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON032-W0158",
+      "name": "Sangailu",
+      "reference_containment": 0.58073,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C007-CON032-W0159",
+      "name": "Ijara",
+      "reference_containment": 0.709464,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0163",
+      "name": "Korondile",
+      "reference_containment": 0.856422,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0164",
+      "name": "Malkagufu",
+      "reference_containment": 0.803764,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C008-CON035-W0173",
+      "name": "Sarman",
+      "reference_containment": 0.424696,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C008-CON035-W0174",
+      "name": "Tarbaj",
+      "reference_containment": 0.844916,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C008-CON036-W0176",
+      "name": "Arbajahan",
+      "reference_containment": 0.505297,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C008-CON037-W0182",
+      "name": "Lakoley South/Basir",
+      "reference_containment": 0.285246,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0198",
+      "name": "Guba",
+      "reference_containment": 0.599825,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0200",
+      "name": "Kiliwehiri",
+      "reference_containment": 0.761643,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0201",
+      "name": "Ashabito",
+      "reference_containment": 0.721278,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0205",
+      "name": "Rhamu-Dimtu",
+      "reference_containment": 0.753799,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON042-W0210",
+      "name": "Shimbir Fatuma",
+      "reference_containment": 0.751166,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0211",
+      "name": "Arabia",
+      "reference_containment": 0.862418,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0213",
+      "name": "Khalalio",
+      "reference_containment": 0.459066,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0225",
+      "name": "Moyale Township",
+      "reference_containment": 0.550221,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C010-CON046-W0232",
+      "name": "Turbi",
+      "reference_containment": 0.832286,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0245",
+      "name": "Ngare Mara",
+      "reference_containment": 0.789772,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0252",
+      "name": "Kiegoi/Antubochiu",
+      "reference_containment": 0.76079,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0253",
+      "name": "Athiru Gaiti",
+      "reference_containment": 0.6751,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0254",
+      "name": "Akachiu",
+      "reference_containment": 0.694089,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0257",
+      "name": "Athiru Ruujine",
+      "reference_containment": 0.362499,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0258",
+      "name": "Igembe East",
+      "reference_containment": 0.77843,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0259",
+      "name": "Njia",
+      "reference_containment": 0.897662,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0260",
+      "name": "Kangeta",
+      "reference_containment": 0.486167,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0262",
+      "name": "Ntunene",
+      "reference_containment": 0.496152,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0263",
+      "name": "Antubetwe Kiongo",
+      "reference_containment": 0.838958,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0266",
+      "name": "Athwana",
+      "reference_containment": 0.609492,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0270",
+      "name": "Mbeu",
+      "reference_containment": 0.896375,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON055-W0271",
+      "name": "Thangatha",
+      "reference_containment": 0.868482,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON058-W0288",
+      "name": "Abothuguchi West",
+      "reference_containment": 0.446765,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0295",
+      "name": "Nkuene",
+      "reference_containment": 0.17959,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C013-CON061-W0305",
+      "name": "Igambang'ombe",
+      "reference_containment": 0.871958,
+      "match_method": "spatial_parent_and_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0307",
+      "name": "Mukothima",
+      "reference_containment": 0.895199,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0308",
+      "name": "Nkondi",
+      "reference_containment": 0.851882,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0310",
+      "name": "Marimanti",
+      "reference_containment": 0.862126,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0313",
+      "name": "Nginda",
+      "reference_containment": 0.681416,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0317",
+      "name": "Gaturi North",
+      "reference_containment": 0.008794,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C015-CON068-W0338",
+      "name": "Migwani",
+      "reference_containment": 0.377177,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0350",
+      "name": "Kisasi",
+      "reference_containment": 0.748921,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0352",
+      "name": "Kwavonza/Yatta",
+      "reference_containment": 0.00012,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0353",
+      "name": "Kanyangi",
+      "reference_containment": 0.000711,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0354",
+      "name": "Miambani",
+      "reference_containment": 0.82665,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0357",
+      "name": "Mulango",
+      "reference_containment": 0.779065,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0360",
+      "name": "Chuluni",
+      "reference_containment": 0.857309,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0361",
+      "name": "Nzambani",
+      "reference_containment": 0.84849,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0362",
+      "name": "Voo/Kyamatu",
+      "reference_containment": 0.868486,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0363",
+      "name": "Endau/Malalani",
+      "reference_containment": 0.895988,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C016-CON077-W0381",
+      "name": "Kangundo North",
+      "reference_containment": 0.856194,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C016-CON079-W0390",
+      "name": "Mitaboni",
+      "reference_containment": 0.837631,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C016-CON079-W0392",
+      "name": "Upper Kaewa/Iveti",
+      "reference_containment": 0.878853,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C016-CON080-W0397",
+      "name": "Syokimau/Mulolongo",
+      "reference_containment": 0.830577,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0398",
+      "name": "Kalama",
+      "reference_containment": 0.887269,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0404",
+      "name": "Kola",
+      "reference_containment": 0.42947,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C017-CON085-W0420",
+      "name": "Ukia",
+      "reference_containment": 0.86093,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0424",
+      "name": "Wote",
+      "reference_containment": 0.814457,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0430",
+      "name": "Mbitini",
+      "reference_containment": 0.817696,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0435",
+      "name": "Nguu/Masumba",
+      "reference_containment": 0.87963,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C017-CON088-W0439",
+      "name": "Thange",
+      "reference_containment": 0.589941,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0444",
+      "name": "Murungaru",
+      "reference_containment": 0.760104,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C018-CON090-W0452",
+      "name": "Githioro",
+      "reference_containment": 0.839067,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C018-CON091-W0455",
+      "name": "Mirangine",
+      "reference_containment": 0.858158,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C018-CON093-W0465",
+      "name": "Shamata",
+      "reference_containment": 0.763214,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0477",
+      "name": "Ruguru",
+      "reference_containment": 0.721794,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C019-CON097-W0483",
+      "name": "Mahiga",
+      "reference_containment": 0.619255,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C020-CON101-W0504",
+      "name": "Kabare",
+      "reference_containment": 0.857852,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C020-CON103-W0515",
+      "name": "Inoi",
+      "reference_containment": 0.33092,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C021-CON105-W0520",
+      "name": "Kiru",
+      "reference_containment": 0.526841,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C021-CON107-W0531",
+      "name": "Kangari",
+      "reference_containment": 0.744073,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0544",
+      "name": "Ruchu",
+      "reference_containment": 0.676703,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C022-CON112-W0556",
+      "name": "Githobokoni",
+      "reference_containment": 0.663973,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0575",
+      "name": "Mwiki",
+      "reference_containment": 0.891381,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C022-CON119-W0595",
+      "name": "Uthiru",
+      "reference_containment": 0.757297,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C022-CON121-W0601",
+      "name": "Bibirioni",
+      "reference_containment": 0.873522,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0619",
+      "name": "Letea",
+      "reference_containment": 0.7203,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0627",
+      "name": "Lodwar Township",
+      "reference_containment": 0.776122,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0628",
+      "name": "Kanamkemer",
+      "reference_containment": 0.736634,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C023-CON127-W0633",
+      "name": "Kaputir",
+      "reference_containment": 0.82735,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0644",
+      "name": "Siyoi",
+      "reference_containment": 0.755982,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0656",
+      "name": "Alale",
+      "reference_containment": 0.896381,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C024-CON132-W0660",
+      "name": "Tapach",
+      "reference_containment": 0.796855,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C025-CON133-W0663",
+      "name": "Maralal",
+      "reference_containment": 0.745528,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0671",
+      "name": "Baawa",
+      "reference_containment": 0.855947,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C026-CON138-W0687",
+      "name": "Machewa",
+      "reference_containment": 0.869223,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0707",
+      "name": "Kuinet/Kapsuswa",
+      "reference_containment": 0.001969,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C027-CON143-W0718",
+      "name": "Kimumu",
+      "reference_containment": 0.537187,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C027-CON146-W0727",
+      "name": "Racecourse",
+      "reference_containment": 0,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0739",
+      "name": "Kapsowar",
+      "reference_containment": 0.721995,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C029-CON151-W0753",
+      "name": "Chemelil/Chemase",
+      "reference_containment": 0.00056,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C029-CON151-W0754",
+      "name": "Kapsimotwo",
+      "reference_containment": 0.011983,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0762",
+      "name": "Chepkunyuk",
+      "reference_containment": 0.894205,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0763",
+      "name": "Ol'lessos",
+      "reference_containment": 0.007964,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0764",
+      "name": "Kapchorua",
+      "reference_containment": 0.004737,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0780",
+      "name": "Sangalo/Kebulonik",
+      "reference_containment": 0.879382,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C030-CON158-W0791",
+      "name": "Saimo/Soi",
+      "reference_containment": 0.817743,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C030-CON160-W0798",
+      "name": "Marigat",
+      "reference_containment": 0.85253,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C030-CON160-W0800",
+      "name": "Mochongoi",
+      "reference_containment": 0.810163,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C030-CON161-W0803",
+      "name": "Emining",
+      "reference_containment": 0.881879,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0816",
+      "name": "Salama",
+      "reference_containment": 0.880985,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C031-CON164-W0821",
+      "name": "Umande",
+      "reference_containment": 0.004095,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C031-CON165-W0823",
+      "name": "Segera",
+      "reference_containment": 0.736718,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON166-W0826",
+      "name": "Mariashoni",
+      "reference_containment": 0.878364,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON166-W0829",
+      "name": "Molo",
+      "reference_containment": 0.858593,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0835",
+      "name": "Njoro",
+      "reference_containment": 0.778573,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0845",
+      "name": "Elementaita",
+      "reference_containment": 0.714337,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0847",
+      "name": "Malewa West",
+      "reference_containment": 0.771943,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON170-W0850",
+      "name": "Keringet",
+      "reference_containment": 0.796237,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON170-W0851",
+      "name": "Kiptagich",
+      "reference_containment": 0.817098,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON172-W0858",
+      "name": "Waseges",
+      "reference_containment": 0.864562,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON172-W0859",
+      "name": "Kabazi",
+      "reference_containment": 0.803351,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON173-W0860",
+      "name": "Menengai West",
+      "reference_containment": 0.747112,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON174-W0868",
+      "name": "Lanet/Umoja",
+      "reference_containment": 0.556804,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0870",
+      "name": "Barut",
+      "reference_containment": 0.443517,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0871",
+      "name": "London",
+      "reference_containment": 0.304506,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0875",
+      "name": "Shaabab",
+      "reference_containment": 0.816045,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0887",
+      "name": "Ilkerin",
+      "reference_containment": 0.77722,
+      "match_method": "spatial_parent_and_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0889",
+      "name": "Mogondo",
+      "reference_containment": 0.721118,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0890",
+      "name": "Kapsasian",
+      "reference_containment": 0.779714,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0896",
+      "name": "Melili",
+      "reference_containment": 0.730213,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON180-W0898",
+      "name": "Ildamat",
+      "reference_containment": 0.878329,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0903",
+      "name": "Melelo",
+      "reference_containment": 0.803831,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0905",
+      "name": "Sogoo",
+      "reference_containment": 0.768755,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0906",
+      "name": "Sagamian",
+      "reference_containment": 0.659757,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C034-CON185-W0921",
+      "name": "Kaputiei North",
+      "reference_containment": 0.660968,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0955",
+      "name": "Cheplanget",
+      "reference_containment": 0.873242,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C036-CON196-W0976",
+      "name": "Merigi",
+      "reference_containment": 0.899075,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C036-CON197-W0981",
+      "name": "Silibwet Township",
+      "reference_containment": 0.723339,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0986",
+      "name": "Chepchabas",
+      "reference_containment": 0.639907,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0989",
+      "name": "Boito",
+      "reference_containment": 0.834022,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C037-CON203-W1016",
+      "name": "Shinoyi-Shikomari-",
+      "reference_containment": 0.579141,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C037-CON204-W1021",
+      "name": "Mumias North",
+      "reference_containment": 0.255044,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C037-CON210-W1047",
+      "name": "Idakho South",
+      "reference_containment": 0.793172,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C039-CON217-W1082",
+      "name": "Namwela",
+      "reference_containment": 0.756116,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1126",
+      "name": "Malaba South",
+      "reference_containment": 0.870146,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C040-CON227-W1133",
+      "name": "Nambale Township",
+      "reference_containment": 0.886142,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C040-CON228-W1140",
+      "name": "Busibwabo",
+      "reference_containment": 0.848501,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1188",
+      "name": "Manyatta 'b'",
+      "reference_containment": 0.836042,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1189",
+      "name": "Nyalenda 'a'",
+      "reference_containment": 0.021264,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1190",
+      "name": "Kolwa Central",
+      "reference_containment": 0.870024,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1196",
+      "name": "Railways",
+      "reference_containment": 0.891088,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1197",
+      "name": "Migosi",
+      "reference_containment": 0.580449,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C043-CON248-W1237",
+      "name": "West Gem",
+      "reference_containment": 0.700454,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1249",
+      "name": "Kabuoch South/Pala",
+      "reference_containment": 0.878139,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C043-CON252-W1260",
+      "name": "Ruma Kaksingri East",
+      "reference_containment": 0.840181,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1332",
+      "name": "Kisii Central",
+      "reference_containment": 0.161593,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1341",
+      "name": "Bogusero",
+      "reference_containment": 0.873374,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1344",
+      "name": "Kitutu Central",
+      "reference_containment": 0,
+      "match_method": "complete_county_residual_assignment",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C047-CON274-W1369",
+      "name": "Kangemi",
+      "reference_containment": 0.868901,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON276-W1377",
+      "name": "Ngando",
+      "reference_containment": 0.739157,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1384",
+      "name": "South-C",
+      "reference_containment": 0.232822,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1385",
+      "name": "Nyayo Highrise",
+      "reference_containment": 0.011254,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C047-CON280-W1399",
+      "name": "Njiru",
+      "reference_containment": 0.868376,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON281-W1405",
+      "name": "Korogocho",
+      "reference_containment": 0.714486,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON282-W1409",
+      "name": "Pipeline",
+      "reference_containment": 0.153414,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1416",
+      "name": "Kayole North",
+      "reference_containment": 0.654088,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1417",
+      "name": "Kayole Central",
+      "reference_containment": 0.833422,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1419",
+      "name": "Komarock",
+      "reference_containment": 0,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "source_layers_disagree_on_parent"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1420",
+      "name": "Matopeni",
+      "reference_containment": 0.85403,
+      "match_method": "complete_parent_group_residual_assignment",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1421",
+      "name": "Upper Savannah",
+      "reference_containment": 0.330319,
+      "match_method": "county_constituency_fuzzy_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1425",
+      "name": "Mihango",
+      "reference_containment": 0.862273,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1431",
+      "name": "Maringo/Hamza",
+      "reference_containment": 0.667527,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1432",
+      "name": "Harambee",
+      "reference_containment": 0.544872,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1433",
+      "name": "Viwandani",
+      "reference_containment": 0.889995,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1439",
+      "name": "Nairobi Central",
+      "reference_containment": 0.84279,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1444",
+      "name": "Nairobi South",
+      "reference_containment": 0.409275,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1445",
+      "name": "Hospital",
+      "reference_containment": 0.872564,
+      "match_method": "canonical_code_or_normalized_name",
+      "disposition": "edge_misalignment_between_source_layers"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "manifest_version": "1.0",
+  "manifest_version": "3.0",
   "retrieved_at": "2026-08-26",
   "legal_reference": {
     "source_id": "IEBC-BOUNDARY-FAQ",
@@ -7,46 +7,93 @@
     "title": "Boundary Delimitation FAQ",
     "url": "https://iebc.or.ke/uploads/resources/gV62Lv1JdT.pdf",
     "assertions_used": [
-      "IEBC determines constituency and County Assembly Ward electoral boundaries",
+      "IEBC determines electoral boundaries",
       "Kenya has 290 constituencies",
       "Kenya has 1,450 County Assembly Wards"
-    ],
-    "reuse_status": "Referenced as a public legal/administrative source; document is not redistributed here"
-  },
-  "extract_source": {
-    "source_id": "KDA-EXT-TIGAWANNA-2025",
-    "repository": "https://github.com/tigawanna/kenya_wards_geojson_data",
-    "commit": "32580eb19fba05bb6421257331e63ef3f8a5dc8e",
-    "licence": "MIT",
-    "upstream_claimed_source": "Kenya Elections — Humanitarian Data Exchange",
-    "classification": "External community extract; pending record-by-record comparison with an official gazette/register",
-    "files": {
-      "counties.json": {"git_blob_sha": "93b61845cd57dbc9b130fcfe1a9aa4bdd1b226c2", "expected_records": 47},
-      "constituencies.json": {"git_blob_sha": "83c73a9b2e2778efd2878c0537c81ae5a5728d02", "expected_records": 290},
-      "wards.json": {"git_blob_sha": "86b6d057d987f6e04f46ffa64797c699c5bb0cf1", "expected_records": 1450}
-    }
-  },
-    "validation_finding": "Rejected as the canonical ward seed: wards.json contains 1,439 rows although the repository documentation and IEBC count state 1,450. Retained as a discrepancy/cross-check source."
+    ]
   },
   "canonical_seed_source": {
     "source_id": "KDA-TRANSCRIPTION-LN14-2012",
     "repository": "https://github.com/pkiage/data-Kenya-Counties-Constituencies-Wards",
-    "ref": "main",
-    "legal_source": "Kenya Legal Notice 14 of 2012 — National Assembly Constituencies and County Assembly Wards Order",
     "legal_source_url": "https://new.kenyalaw.org/akn/ke/act/ln/2012/14/eng@2022-12-31",
-    "classification": "External transcription of a public legal instrument; exact counts and hierarchy validated, record spellings remain provisional pending direct comparison",
-    "reuse_status": "Public legal source referenced; transcription retained with attribution and provenance",
-    "files": {
-      "geographies.csv": {"git_blob_sha": "7d0a741b702efe85a88881a9b14a2976ac9dbde2", "expected_records": 1450}
+    "classification": "External transcription of a public legal instrument; exact counts and hierarchy validated",
+    "expected_records": 1450,
+    "known_defects": [
+      {
+        "defect": "CONSTITUENCY ID is the Excel error value #N/A for all five Baringo North ward rows",
+        "correction_id": "KDA-COR-0001",
+        "resolution": "Corrected to 158 via data/geography/source/legal-order-transcription/corrections.csv, with evidence recorded."
+      },
+      {
+        "defect": "Irregular internal whitespace in three names: \"BARINGO  NORTH\", \"CENTRAL  WARD\", \"KITUTU   CENTRAL\"",
+        "resolution": "Whitespace is collapsed at parse time in build-registry.mjs. Uncorrected it propagates into slugs, aliases and geometry name matching."
+      }
+    ]
+  },
+  "selected_geometry_sources": [
+    {
+      "source_id": "HDX-KENYA-ELECTIONS-COUNTIES-2018",
+      "url": "https://data.humdata.org/dataset/kenya-elections",
+      "resource": "Admin1-counties.zip",
+      "modified": "2018-08-16",
+      "upstream_source_as_listed_by_hdx": "IEBC",
+      "promoted_records": 47,
+      "classification": "External boundary geometry; validated against canonical registry; not IEBC-issued to the Atlas",
+      "role": "cross_check_reference",
+      "note": "Retained as an independent cross-check only. Published county and constituency geometry is DERIVED by dissolving the canonical ward layer so that the hierarchy nests by construction. Divergence against this reference is measured and published in derived-geometry-report.json.",
+      "known_defects": [
+        "One blank padding record with empty COUNTY_NAM and sliver geometry; dropped before matching."
+      ]
+    },
+    {
+      "source_id": "HDX-KENYA-ELECTIONS-CONSTITUENCIES-2018",
+      "url": "https://data.humdata.org/dataset/kenya-elections",
+      "resource": "Admin2-constituencies.zip",
+      "modified": "2018-08-16",
+      "upstream_source_as_listed_by_hdx": "IEBC",
+      "promoted_records": 290,
+      "classification": "External boundary geometry; validated against canonical registry; not IEBC-issued to the Atlas",
+      "role": "cross_check_reference",
+      "note": "Retained as an independent cross-check only. Published county and constituency geometry is DERIVED by dissolving the canonical ward layer so that the hierarchy nests by construction. Divergence against this reference is measured and published in derived-geometry-report.json.",
+      "known_defects": [
+        "Five blank padding records (source indexes 290-294) with empty CONSTITUEN and sliver geometry; dropped before matching because a blank name normalises to a blank name and will match anything else that does."
+      ]
+    },
+    {
+      "source_id": "HDX-ADMINISTRATIVE-WARDS-1450-2019",
+      "url": "https://data.humdata.org/dataset/administrative-wards-in-kenya-1450",
+      "resource": "Kenya_Wards.zip",
+      "modified": "2019-04-12",
+      "publisher": "American Red Cross",
+      "promoted_records": 1450,
+      "classification": "External boundary geometry; reconciled to the electoral registry; not IEBC-issued",
+      "role": "canonical",
+      "taxonomy_caveat": "The dataset is titled \"Administrative Wards in Kenya 1450\" but is attached to geographies recorded as geography_system = electoral. A 1,450-ward dataset is in practice the County Assembly Wards, but that lineage is NOT stated by the publisher and has not been confirmed. Until it is, treat the attachment as an unverified equivalence between an administrative ward layer and the electoral ward registry. This is the exact hazard the geography_system column exists to make visible. Open item: confirm with the American Red Cross or IEBC whether this layer derives from IEBC CAW boundaries."
     }
-  },
-  "secondary_cross_check": {
-    "source_id": "KDA-EXT-OSM-KENYA-2024",
-    "repository": "https://github.com/its-kios09/osm-kenya-boundaries",
-    "commit": "2dd4d71038b52d824cba304561b86ba79cf4315e",
-    "licence": "MIT",
-    "validation_finding": "Contains 47 counties, 290 constituencies and 1,448 wards; retained for discrepancy analysis, not canonical seeding."
-  },
-  "publication_rule": "Registry rows remain provisional until compared with an authoritative IEBC gazette or register. Counts are independently confirmed by IEBC. Geometry is not bundled in Phase 1 and remains pending validation."
+  ],
+  "rejected_or_cross_check_sources": [
+    {
+      "source_id": "KDA-EXT-TIGAWANNA-2025",
+      "finding": "Actual ward table and GeoJSON contain 1,439 records; rejected as canonical ward geometry."
+    },
+    {
+      "source_id": "KDA-EXT-OSM-KENYA-2024",
+      "finding": "Ward table contains 1,448 records; rejected as canonical ward geometry."
+    },
+    {
+      "source_id": "HDX-KENYA-ELECTIONS-WARDS-2018",
+      "finding": "Admin3 ward shapefile contains 1,439 records; rejected in favour of the separate complete 1,450-ward HDX dataset."
+    },
+    {
+      "source_id": "KDA-EXT-OSM-KENYA-2024",
+      "licence_caveat": "The repackaging repository ships an MIT LICENSE file. MIT covers the repository CODE. The underlying data is OpenStreetMap-derived and carries ODbL regardless; a downstream repackager cannot relicense OSM data. Nothing published depends on this package, and it is retained only as a rejected cross-check. If any OSM-derived geometry is ever promoted, ODbL attribution and share-alike obligations attach and the layer must be kept separately licensed."
+    }
+  ],
+  "publication_rule": "Publish ward geometry only as externally sourced and reconciled; publish county, constituency and country geometry only as dissolved from wards. Do not label any of it official-direct or imply IEBC endorsement. Preserve file and geometry hashes, match methods, applied corrections and reference divergences.",
+  "boundary_version_policy": {
+    "current_era": "2012-01",
+    "basis": "First boundary review, concluded 2012, in force from the 2013 general election: 47 counties, 290 constituencies, 1,450 County Assembly Wards.",
+    "next_era_expected": "After the August 2027 general election. IEBC announced a phased approach in January 2026 and confirmed no constituency or ward boundaries change before the poll.",
+    "rule": "boundary_version records the legal delimitation era. Geometry provenance is recorded separately in geometry_source_id and geometry_revision, so replacing coordinates never implies a boundary change."
+  }
 }
-

@@ -3690,18 +3690,18 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "389fdf28-2a92-5d90-b25c-93e7e7b261ae",
-    "geography_id": "8a20fc79-c0ef-501c-8c25-4aecfc084e45",
-    "alias": "Baringo  North",
+    "alias_id": "b3694606-0d1c-5b04-bb8e-4233cbe46f42",
+    "geography_id": "24a0e54f-9055-5f4e-bb8b-51537f34c387",
+    "alias": "Baringo North",
     "normalized_alias": "baringo north",
     "alias_type": "canonical",
     "language": "en",
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "ad729956-8751-5685-900d-ab7a802bda55",
-    "geography_id": "8a20fc79-c0ef-501c-8c25-4aecfc084e45",
-    "alias": "Baringo  North constituency",
+    "alias_id": "5b244f14-d43f-5246-a403-0477682034b5",
+    "geography_id": "24a0e54f-9055-5f4e-bb8b-51537f34c387",
+    "alias": "Baringo North constituency",
     "normalized_alias": "baringo north constituency",
     "alias_type": "common",
     "language": "en",
@@ -11810,7 +11810,7 @@
   {
     "alias_id": "62544dfa-af80-5303-98e6-3651da3a69c7",
     "geography_id": "37e62cc6-b8cd-5a52-8b4b-62cb1bac5dee",
-    "alias": "Central  Ward",
+    "alias": "Central Ward",
     "normalized_alias": "central ward",
     "alias_type": "canonical",
     "language": "en",
@@ -11819,7 +11819,7 @@
   {
     "alias_id": "d4f9daea-625e-5ed2-a8a9-f04718c0dfa9",
     "geography_id": "37e62cc6-b8cd-5a52-8b4b-62cb1bac5dee",
-    "alias": "Central  Ward ward",
+    "alias": "Central Ward ward",
     "normalized_alias": "central ward ward",
     "alias_type": "common",
     "language": "en",
@@ -20250,8 +20250,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "41b86e58-3674-5fa0-9326-e110e5fff790",
-    "geography_id": "60b81648-cf7d-55ca-93fb-a4b9e46b6514",
+    "alias_id": "c319bb24-0c6f-5ec5-b7ea-3439652c974e",
+    "geography_id": "ca953ac8-2966-5a98-92d3-6a28f025d19e",
     "alias": "Barwessa",
     "normalized_alias": "barwessa",
     "alias_type": "canonical",
@@ -20259,8 +20259,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "c2b88fb9-b36d-508c-b9d1-00a70b85cc44",
-    "geography_id": "60b81648-cf7d-55ca-93fb-a4b9e46b6514",
+    "alias_id": "9104f039-2ac0-5f14-bac4-b9d06446c5aa",
+    "geography_id": "ca953ac8-2966-5a98-92d3-6a28f025d19e",
     "alias": "Barwessa ward",
     "normalized_alias": "barwessa ward",
     "alias_type": "common",
@@ -20268,8 +20268,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "3af56f80-68e8-54b7-b2ba-78ab8d109d45",
-    "geography_id": "e6f18a00-000c-5298-93f8-09646febba5c",
+    "alias_id": "20aaf4aa-7250-51e4-b8df-611686ddf569",
+    "geography_id": "aec9c02d-a88c-53f4-a937-c46abfba8532",
     "alias": "Kabartonjo",
     "normalized_alias": "kabartonjo",
     "alias_type": "canonical",
@@ -20277,8 +20277,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "8de39721-6644-5ad5-8c66-9c473b49a311",
-    "geography_id": "e6f18a00-000c-5298-93f8-09646febba5c",
+    "alias_id": "8c40eb95-8625-50db-abe1-e9c776d76635",
+    "geography_id": "aec9c02d-a88c-53f4-a937-c46abfba8532",
     "alias": "Kabartonjo ward",
     "normalized_alias": "kabartonjo ward",
     "alias_type": "common",
@@ -20286,8 +20286,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "b4cc6962-00ae-5ea8-a6c9-8337fa4fa62a",
-    "geography_id": "d171ad7d-ec4e-54a3-b3dc-78642e706027",
+    "alias_id": "bb59dee0-07da-5cd7-8391-b8058b29379b",
+    "geography_id": "bdbb9620-8266-534f-8259-f897208eba83",
     "alias": "Saimo/Kipsaraman",
     "normalized_alias": "saimo kipsaraman",
     "alias_type": "canonical",
@@ -20295,8 +20295,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "5466445e-a909-5e5f-a733-7bdeabe4d8df",
-    "geography_id": "d171ad7d-ec4e-54a3-b3dc-78642e706027",
+    "alias_id": "8916df80-fa6d-506b-9056-ab720cd7beba",
+    "geography_id": "bdbb9620-8266-534f-8259-f897208eba83",
     "alias": "Saimo/Kipsaraman ward",
     "normalized_alias": "saimo kipsaraman ward",
     "alias_type": "common",
@@ -20304,8 +20304,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "22d31089-6353-58a5-aa9a-78bf358302f9",
-    "geography_id": "9ff72920-15f9-5f67-8337-365f949b9ec1",
+    "alias_id": "7a776a14-0a7a-5bc8-aea7-5201a3522cf5",
+    "geography_id": "5a8141e2-6c57-5b6b-8f9d-4190b70bd3d2",
     "alias": "Saimo/Soi",
     "normalized_alias": "saimo soi",
     "alias_type": "canonical",
@@ -20313,8 +20313,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "3339bae1-5c4c-578a-b2e3-35231876b6a7",
-    "geography_id": "9ff72920-15f9-5f67-8337-365f949b9ec1",
+    "alias_id": "2e5d6f07-9743-50c1-9a75-bd5d7bdf07aa",
+    "geography_id": "5a8141e2-6c57-5b6b-8f9d-4190b70bd3d2",
     "alias": "Saimo/Soi ward",
     "normalized_alias": "saimo soi ward",
     "alias_type": "common",
@@ -20322,8 +20322,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "5de0b177-323e-5df9-9830-184dd76d2ddb",
-    "geography_id": "363bc1be-245c-5d85-ac53-511fa29b4de2",
+    "alias_id": "c6690a5c-f4c0-5579-9133-e124083d4ee4",
+    "geography_id": "1c1232c0-b8d2-5235-b09d-063045495415",
     "alias": "Bartabwa",
     "normalized_alias": "bartabwa",
     "alias_type": "canonical",
@@ -20331,8 +20331,8 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   },
   {
-    "alias_id": "50a25931-a66e-59e5-9edd-4b00801d194f",
-    "geography_id": "363bc1be-245c-5d85-ac53-511fa29b4de2",
+    "alias_id": "27b267ed-ffad-55ef-ae91-536152f040ee",
+    "geography_id": "1c1232c0-b8d2-5235-b09d-063045495415",
     "alias": "Bartabwa ward",
     "normalized_alias": "bartabwa ward",
     "alias_type": "common",
@@ -30260,7 +30260,7 @@
   {
     "alias_id": "25837224-d851-5e62-b456-486439953620",
     "geography_id": "b3fb5aea-c4d6-5914-9fa7-95e111c94a06",
-    "alias": "Kitutu   Central",
+    "alias": "Kitutu Central",
     "normalized_alias": "kitutu central",
     "alias_type": "canonical",
     "language": "en",
@@ -30269,7 +30269,7 @@
   {
     "alias_id": "b116680a-ca6f-5e78-8200-452566405555",
     "geography_id": "b3fb5aea-c4d6-5914-9fa7-95e111c94a06",
-    "alias": "Kitutu   Central ward",
+    "alias": "Kitutu Central ward",
     "normalized_alias": "kitutu central ward",
     "alias_type": "common",
     "language": "en",
@@ -32184,4 +32184,3 @@
     "source_id": "KDA-TRANSCRIPTION-LN14-2012"
   }
 ]
-

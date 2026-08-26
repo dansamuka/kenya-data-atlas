@@ -1,0 +1,197 @@
+{
+  "generated_at": "2026-08-26T11:51:16.643Z",
+  "status": "pass",
+  "method": "parent geometry dissolved from the canonical ward layer",
+  "boundary_version": "2012-01",
+  "geometry_revision": 1,
+  "levels": {
+    "constituency": {
+      "role": "derived",
+      "derived_from": "ward",
+      "expected_records": 290,
+      "produced_records": 290,
+      "nesting_failures": [],
+      "provisional_records": [
+        "KEN-C003-CON017",
+        "KEN-C014-CON064",
+        "KEN-C015-CON071",
+        "KEN-C027-CON141",
+        "KEN-C027-CON146",
+        "KEN-C029-CON151",
+        "KEN-C029-CON153",
+        "KEN-C031-CON164",
+        "KEN-C042-CON238",
+        "KEN-C045-CON269",
+        "KEN-C047-CON277",
+        "KEN-C047-CON284"
+      ],
+      "output_sha256": "875e46ab9e5453e82ac90dcdad55801fb3d5b7cfca922277ffab02312782c979"
+    },
+    "county": {
+      "role": "derived",
+      "derived_from": "constituency",
+      "expected_records": 47,
+      "produced_records": 47,
+      "nesting_failures": [],
+      "provisional_records": [
+        "KEN-C003",
+        "KEN-C014",
+        "KEN-C015",
+        "KEN-C027",
+        "KEN-C029",
+        "KEN-C031",
+        "KEN-C042",
+        "KEN-C045",
+        "KEN-C047"
+      ],
+      "output_sha256": "e506303ecf3d8ac282840ad49cb399b0dd584d1f948bf525a747e74a4e197b23"
+    },
+    "country": {
+      "role": "derived",
+      "derived_from": "county",
+      "expected_records": 1,
+      "produced_records": 1,
+      "nesting_failures": [],
+      "provisional_records": [
+        "KEN"
+      ],
+      "output_sha256": "08744644bf7287fb76d6a9d98f380f5a3438fafef8caad4bb8f03e5e95e7328e"
+    }
+  },
+  "reference_comparison": {
+    "constituency": {
+      "reference_layer": "HDX-KENYA-ELECTIONS-CONSTITUENCIES-2018",
+      "compared": 290,
+      "median_jaccard": 0.9072,
+      "below_0_90": 136,
+      "not_comparable": 1,
+      "ten_largest_divergences": [
+        {
+          "geo_code": "KEN-C015-CON071",
+          "name": "Kitui Rural",
+          "jaccard": 0.1931
+        },
+        {
+          "geo_code": "KEN-C006-CON024",
+          "name": "Wundanyi",
+          "jaccard": 0.197
+        },
+        {
+          "geo_code": "KEN-C012-CON051",
+          "name": "Igembe South",
+          "jaccard": 0.2344
+        },
+        {
+          "geo_code": "KEN-C032-CON176",
+          "name": "Nakuru Town East",
+          "jaccard": 0.2694
+        },
+        {
+          "geo_code": "KEN-C047-CON282",
+          "name": "Embakasi South",
+          "jaccard": 0.2851
+        },
+        {
+          "geo_code": "KEN-C029-CON153",
+          "name": "Nandi Hills",
+          "jaccard": 0.3014
+        },
+        {
+          "geo_code": "KEN-C047-CON284",
+          "name": "Embakasi Central",
+          "jaccard": 0.3378
+        },
+        {
+          "geo_code": "KEN-C015-CON070",
+          "name": "Kitui West",
+          "jaccard": 0.3483
+        },
+        {
+          "geo_code": "KEN-C043-CON251",
+          "name": "Mbita",
+          "jaccard": 0.3927
+        },
+        {
+          "geo_code": "KEN-C042-CON240",
+          "name": "Kisumu Central",
+          "jaccard": 0.4051
+        }
+      ]
+    },
+    "county": {
+      "reference_layer": "HDX-KENYA-ELECTIONS-COUNTIES-2018",
+      "compared": 47,
+      "median_jaccard": 0.9817,
+      "below_0_90": 7,
+      "not_comparable": 0,
+      "ten_largest_divergences": [
+        {
+          "geo_code": "KEN-C043",
+          "name": "Homa Bay",
+          "jaccard": 0.6565
+        },
+        {
+          "geo_code": "KEN-C005",
+          "name": "Lamu",
+          "jaccard": 0.6705
+        },
+        {
+          "geo_code": "KEN-C041",
+          "name": "Siaya",
+          "jaccard": 0.7119
+        },
+        {
+          "geo_code": "KEN-C001",
+          "name": "Mombasa",
+          "jaccard": 0.7529
+        },
+        {
+          "geo_code": "KEN-C042",
+          "name": "Kisumu",
+          "jaccard": 0.7734
+        },
+        {
+          "geo_code": "KEN-C044",
+          "name": "Migori",
+          "jaccard": 0.8115
+        },
+        {
+          "geo_code": "KEN-C002",
+          "name": "Kwale",
+          "jaccard": 0.8836
+        },
+        {
+          "geo_code": "KEN-C040",
+          "name": "Busia",
+          "jaccard": 0.9159
+        },
+        {
+          "geo_code": "KEN-C036",
+          "name": "Bomet",
+          "jaccard": 0.9257
+        },
+        {
+          "geo_code": "KEN-C035",
+          "name": "Kericho",
+          "jaccard": 0.932
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "2 clipping operation(s) hit a floating-point precision limit and were skipped; see clipping_precision_failures."
+  ],
+  "clipping_precision_failures": [
+    {
+      "operation": "intersection",
+      "label": "compare:KEN-C024-CON130",
+      "message": "Unable to complete output ring starting at [35.761318, 1.669756]. Last matching segment found ends at [35.76402280055618, 1.6673830823606113]."
+    },
+    {
+      "operation": "union",
+      "label": "compare:KEN-C024-CON130",
+      "message": "Unable to complete output ring starting at [35.337551, 1.823382]. Last matching segment found ends at [35.76402280055618, 1.6673830823606113]."
+    }
+  ]
+}
