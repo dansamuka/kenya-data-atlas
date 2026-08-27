@@ -8,6 +8,7 @@ on:
       - scripts/sprint3/harden_acquisition_v22.py
       - scripts/sprint3/harden_acquisition_v23.py
       - scripts/sprint3/harden_acquisition_v24.py
+      - scripts/sprint3/harden_acquisition_v25.py
   workflow_dispatch:
 
 concurrency:
@@ -33,7 +34,7 @@ jobs:
         env:
           FY: ${{ matrix.fy }}
         run: |
-          python scripts/sprint3/harden_acquisition_v24.py
+          python scripts/sprint3/harden_acquisition_v25.py
           python - <<'PY'
           import json, os, sys
           from pathlib import Path
