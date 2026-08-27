@@ -7,7 +7,7 @@ const read = async p => JSON.parse(await readFile(path.join(root, p), 'utf8'));
 const text = async p => readFile(path.join(root, p), 'utf8');
 const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
 
-const [geos, units, indicators, series, observations, datasets, releases, index, sprint1Loader] = await Promise.all([
+const [geos, units, indicators, series, observations, datasets, releases, taxonomy, index, sprint1Loader] = await Promise.all([
   read('data/geography/registry/geographies.json'),
   read('data/indicators/registry/units.json'),
   read('data/indicators/registry/indicators.json'),
@@ -15,6 +15,7 @@ const [geos, units, indicators, series, observations, datasets, releases, index,
   read('data/indicators/registry/observations.json'),
   read('data/catalogue/registry/datasets.json'),
   read('data/catalogue/registry/releases.json'),
+  read('data/indicators/seed/placeholder-taxonomy.json'),
   text('index.html'),
   text('assets/sprint1-data.js').catch(() => '')
 ]);
@@ -30,7 +31,22 @@ const requiredIndicators = [
 ];
 const indicatorByCode = new Map(indicators.map(i => [i.indicator_code, i]));
 for (const code of requiredIndicators) assert(indicatorByCode.has(code), `native indicator registry missing ${code}`);
-assert(indicators.length === 13, `expected 13 native indicators after Sprint 1 promotion, found ${indicators.length}`);
+
+// The native registry now deliberately contains active data indicators AND
+// planned/sourced taxonomy slots. Do not hardcode the old Sprint-1 count of 13:
+// a lifecycle promotion must not require changing this API test. Instead, the
+// taxonomy itself defines which profile/Pulse indicator codes must exist.
+for (const def of taxonomy.indicators || []) {
+  assert(indicatorByCode.has(def.code), `native indicator registry missing taxonomy slot ${def.code}`);
+}
+for (const i of indicators) {
+  assert(['planned','sourced','active','retired'].includes(i.lifecycle_status), `${i.indicator_code}: missing/invalid lifecycle_status in native API`);
+  assert(typeof i.tab === 'string' && i.tab.length > 0, `${i.indicator_code}: missing tab in native API`);
+  assert(Array.isArray(i.applies_to_levels), `${i.indicator_code}: applies_to_levels is not an array in native API`);
+}
+assert(indicatorByCode.get('IND-POP-2009')?.lifecycle_status === 'active', 'native API missing active IND-POP-2009 profile slot');
+assert(indicatorByCode.get('IND-HEALTH-FACILITY-COUNT')?.lifecycle_status === 'sourced', 'native API missing sourced health-facility placeholder');
+assert(indicatorByCode.get('IND-MOBILE-MONEY-VOLUME')?.lifecycle_status === 'planned', 'native API missing planned national mobile-money slot');
 
 const requiredDatasets = [
   'DS-KNBS-CENSUS-2009-COUNTY-S1',
@@ -65,7 +81,7 @@ function ownObs(rows) {
   return observations.filter(o => ids.has(o.series_id));
 }
 
-let population2009 = 0, voters2022 = 0, gcpSeries = 0, gcpObs = 0, budgetCells = 0, fuelCounties = 0;
+let population2009 = 0, voters2022 = 0, gcpSeries = 0, gcpObs = 0, budgetCells = 0, fuelCounties = 0, population2009Slots = 0;
 const budgetIndicators = [
   'IND-COUNTY-BUDGET-TOTAL', 'IND-COUNTY-EXPENDITURE-TOTAL',
   'IND-COUNTY-BUDGET-ABSORPTION', 'IND-COUNTY-DEVELOPMENT-ABSORPTION'
@@ -77,6 +93,14 @@ for (const county of counties) {
   assert(popObs.some(o => o.period_label === '2009 census'), `${county.geo_code}: native registry missing 2009 population observation`);
   assert(popObs.some(o => o.period_start === '2019-08-24' && /2019/.test(o.period_label)), `${county.geo_code}: native registry missing 2019 population observation`);
   population2009 += 1;
+
+  // Placeholder Category v2 exposes the already-ingested 2009 observation as
+  // its own active fixed profile slot, without duplicating/source-inventing data.
+  const pop2009Rows = ownSeries('IND-POP-2009', county.geography_id);
+  const pop2009Obs = ownObs(pop2009Rows);
+  assert(pop2009Rows.length === 1 && pop2009Obs.length === 1, `${county.geo_code}: IND-POP-2009 slot is not exactly one series/observation`);
+  assert(pop2009Obs[0].period_label === '2009 census', `${county.geo_code}: IND-POP-2009 does not point to the 2009 census observation`);
+  population2009Slots += 1;
 
   const voterRows = ownSeries('IND-REGISTERED-VOTERS', county.geography_id);
   const voterObs = ownObs(voterRows);
@@ -103,7 +127,7 @@ for (const county of counties) {
   fuelCounties += 1;
 }
 
-assert(population2009 === 47 && voters2022 === 47, 'native county coverage incomplete');
+assert(population2009 === 47 && population2009Slots === 47 && voters2022 === 47, 'native county/profile coverage incomplete');
 assert(gcpSeries === 47 && gcpObs === 235, `native GCP coverage ${gcpSeries} series/${gcpObs} observations != 47/235`);
 assert(budgetCells === 188, `native county-budget coverage ${budgetCells} != 188`);
 assert(fuelCounties === 47, `native fuel county-linked coverage ${fuelCounties} != 47`);
@@ -119,5 +143,6 @@ assert(!index.includes('<a href="#compare">') && !index.includes('<a href="#rank
 assert(/id="compare" hidden/.test(index) && /id="rankings" hidden/.test(index), 'legacy Compare/Rankings compatibility sections are not hidden');
 
 console.log(`PASS: native API contains ${indicators.length} indicators, ${series.length} series and ${observations.length} observations.`);
-console.log('      Sprint 1: 47/47 population history, voters, GCP, four budget measures and county-linked fuel observations are in committed registries.');
+console.log('      Lifecycle-aware taxonomy slots are native; future planned/sourced -> active promotions do not require this validator to change.');
+console.log('      Sprint 1: 47/47 population history, dedicated 2009 profile slot, voters, GCP, four budget measures and county-linked fuel observations are in committed registries.');
 console.log('      Runtime Sprint 1 fetch injection: disabled. Geo Explorer: sole visible ranking surface.');
