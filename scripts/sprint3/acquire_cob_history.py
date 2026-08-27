@@ -43,6 +43,11 @@ COB_PAGES = {
 }
 
 COB_DIRECT_FALLBACK = {
+    "2013/14": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-20132014/?wpdmdl=7639",
+    "2014/15": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201415/?wpdmdl=9317",
+    "2015/16": "https://cob.go.ke/download/annual-county-budget-implementation-review-report-fy-2015-16/?wpdmdl=10035",
+    "2016/17": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201617/?wpdmdl=10487",
+    "2017/18": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-for-fy-2017-18/?wpdmdl=14829",
     "2021/22": "https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf",
 }
 
