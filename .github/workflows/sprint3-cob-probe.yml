@@ -1,48 +1,41 @@
-name: Probe CoB historical download
+name: Probe CoB FY2018 parser
 
 on:
   push:
     branches: [data-sprint-3-historical-kenya]
     paths: [.github/workflows/sprint3-cob-probe.yml]
+  workflow_dispatch:
 
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml pdfplumber
-      - name: Probe FY2018/19 numbered overview markers
+      - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
+      - name: Validate FY2018/19 all-county parser
         run: |
+          python scripts/sprint3/harden_acquisition_v3.py
           python - <<'PY'
-          import io,re,requests,pdfplumber
-          from bs4 import BeautifulSoup
-          from urllib.parse import urljoin
-          landing='https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/'
-          targets={'Elgeyo Marakwet':5,'Homa Bay':8,'Laikipia':20,'Nyamira':34,'Nyeri':36,'Turkana':43}
-          s=requests.Session(); s.headers['User-Agent']='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'
-          r=s.get(landing,timeout=90,allow_redirects=True); r.raise_for_status(); soup=BeautifulSoup(r.text,'lxml'); cand=[]
-          for tag in soup.find_all(True):
-              for attr in ('href','data-downloadurl','data-url','onclick'):
-                  val=str(tag.get(attr) or '')
-                  cand += [urljoin(r.url,x) for x in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I)]
-          cand=list(dict.fromkeys(cand)); data=None
-          for u in cand:
-              z=s.get(u,timeout=180,allow_redirects=True)
-              if z.content[:4]==b'%PDF': data=z.content; print('PDF',u); break
-          if data is None: raise RuntimeError('No PDF')
-          with pdfplumber.open(io.BytesIO(data)) as pdf: texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
-          for county,n in targets.items():
-              hits=[]
-              p1=re.compile(rf'3\s*\.\s*{n}\s*\.\s*1\b',re.I)
-              p2=re.compile(rf'3\s*\.\s*{n}\b',re.I)
-              for i,raw in enumerate(texts):
-                  flat=' '.join(raw.split())
-                  overview=bool(re.search(r'Overview.{0,180}?(?:FY|Financial\s+Year).{0,60}?2018/19.{0,80}?Budget',flat,re.I))
-                  if p1.search(flat) or (p2.search(flat) and overview):
-                      hits.append((i+1,bool(p1.search(flat)),overview,flat[:1300]))
-              print('\nTARGET',county,'CHAPTER',n,'HITS',[(x[0],x[1],x[2]) for x in hits])
-              for page,sub,ov,ctx in hits[:5]: print('PAGE',page,ctx[:1300])
+          import json, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts/sprint3')
+          import acquire_cob_history as cob
+
+          root=Path('.')
+          geos=json.loads((root/'data/geography/registry/geographies.json').read_text())
+          counties=[g['name'] for g in geos if g.get('level')=='county']
+          session=cob.requests.Session()
+          session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
+          url='https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/?wpdmdl=15011'
+          r=cob._get(session,url,180)
+          assert r.content[:4]==b'%PDF' and len(r.content)>100000
+          values=cob._parse_narrative_year(r.content,'2018/19',counties)
+          cob._validate_year('2018/19',values,counties)
+          print('FY2018/19 PASS',len(values),'counties')
+          for county in ['Lamu','Trans Nzoia','Nyeri','Turkana','Laikipia','Nyamira','Homa Bay']:
+              print(county,values[county])
           PY
