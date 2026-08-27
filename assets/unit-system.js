@@ -7,12 +7,15 @@
   const $=(s,r)=>(r||document).querySelector(s);
   const $$=(s,r)=>[...(r||document).querySelectorAll(s)];
   let indicators=[], units=[], indicatorByCode=new Map(), unitById=new Map();
+  let refreshQueued=false;
 
   const json=async url=>{
     try{const r=await fetch(url);return r.ok?await r.json():[];}catch{return [];}
   };
-
   const normalize=s=>String(s||'').toLowerCase().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'');
+  const setText=(el,text)=>{if(el&&el.textContent!==text) el.textContent=text;};
+  const setTitle=(el,text)=>{if(el&&el.title!==text) el.title=text;};
+  const setAria=(el,text)=>{if(el&&el.getAttribute('aria-label')!==text) el.setAttribute('aria-label',text);};
 
   function shortUnit(unit){
     if(!unit) return '';
@@ -61,10 +64,15 @@
   function makeChip(unit,extraClass){
     const chip=document.createElement('span');
     chip.className=`unit-chip${extraClass?` ${extraClass}`:''}`;
-    chip.textContent=shortUnit(unit);
-    chip.title=`Unit of measurement: ${longUnit(unit)}`;
-    chip.setAttribute('aria-label',`Unit of measurement: ${longUnit(unit)}`);
+    updateChip(chip,unit);
     return chip;
+  }
+
+  function updateChip(chip,unit,prefix=''){
+    if(!chip||!unit) return;
+    const text=`${prefix}${shortUnit(unit)}`;
+    const detail=`Unit of measurement: ${longUnit(unit)}`;
+    setText(chip,text);setTitle(chip,detail);setAria(chip,detail);
   }
 
   function annotateIndicatorOptions(){
@@ -75,8 +83,8 @@
       const unit=unitForIndicator(ind);
       if(!ind||!unit) return;
       const base=option.dataset.baseLabel||ind.name||option.textContent.split(' · ')[0];
-      option.dataset.baseLabel=base;
-      option.textContent=`${base} · ${shortUnit(unit)}`;
+      if(option.dataset.baseLabel!==base) option.dataset.baseLabel=base;
+      setText(option,`${base} · ${shortUnit(unit)}`);
     });
   }
 
@@ -97,9 +105,10 @@
         note=document.createElement('div');
         note.id='geo-unit-context';
         note.className='geo-unit-context';
+        note.innerHTML='<span>Unit</span><strong></strong>';
         meta.prepend(note);
       }
-      note.innerHTML=`<span>Unit</span><strong>${longUnit(unit)}</strong>`;
+      setText($('strong',note),longUnit(unit));
     }
 
     const panel=$('.geo-ranking-panel');
@@ -107,25 +116,21 @@
     if(panel&&title){
       let chip=$('.geo-ranking-unit',panel);
       if(!chip){chip=makeChip(unit,'geo-ranking-unit');title.insertAdjacentElement('afterend',chip);}
-      chip.textContent=shortUnit(unit);
-      chip.title=`Unit of measurement: ${longUnit(unit)}`;
-      chip.setAttribute('aria-label',`Unit of measurement: ${longUnit(unit)}`);
+      updateChip(chip,unit);
     }
 
     const summary=$('#geo-selected-summary');
     if(summary&&!summary.hidden){
       let chip=$('.geo-summary-unit',summary);
       if(!chip){chip=makeChip(unit,'geo-summary-unit');summary.appendChild(chip);}
-      chip.textContent=shortUnit(unit);
-      chip.title=`Unit of measurement: ${longUnit(unit)}`;
+      updateChip(chip,unit);
     }
 
     const tooltip=$('#geo-tooltip');
     if(tooltip&&!tooltip.hidden&&tooltip.textContent.trim()){
       let chip=$('.geo-tooltip-unit',tooltip);
       if(!chip){chip=makeChip(unit,'geo-tooltip-unit');tooltip.appendChild(chip);}
-      chip.textContent=`Unit · ${shortUnit(unit)}`;
-      chip.title=`Unit of measurement: ${longUnit(unit)}`;
+      updateChip(chip,unit,'Unit · ');
     }
   }
 
@@ -134,14 +139,13 @@
     if(!label) return;
     const value=$('strong,.feature-value',card);
     if(value&&/^\s*[—-]\s*$/.test(value.textContent||'')) return;
-    if(/per person/i.test(label.textContent||'')) return; // no matching per-capita indicator in the registry yet
+    if(/per person/i.test(label.textContent||'')) return;
     const ind=bestIndicatorForLabel(label.textContent);
     const unit=unitForIndicator(ind);
     if(!unit) return;
     let chip=$('.unit-chip.metric-unit',card);
     if(!chip){chip=makeChip(unit,'metric-unit');label.insertAdjacentElement('afterend',chip);}
-    chip.textContent=shortUnit(unit);
-    chip.title=`Unit of measurement: ${longUnit(unit)}`;
+    updateChip(chip,unit);
   }
 
   function annotateCards(){
@@ -158,10 +162,20 @@
     if(!unit) return;
     const spans=$$('.series-meta>span');
     const cell=spans.find(s=>$('small',s)?.textContent.trim()==='Unit');
-    if(cell) cell.innerHTML=`<small>Unit</small>${longUnit(unit)}`;
+    if(cell){
+      let value=$('.series-unit-value',cell);
+      if(!value){
+        const small=$('small',cell);
+        cell.textContent='';
+        if(small) cell.appendChild(small);
+        else {const label=document.createElement('small');label.textContent='Unit';cell.appendChild(label);}
+        value=document.createElement('span');value.className='series-unit-value';cell.appendChild(value);
+      }
+      setText(value,longUnit(unit));
+    }
     let chip=$('.series-unit-chip','.series-side');
     if(!chip&&heading){chip=makeChip(unit,'series-unit-chip');heading.insertAdjacentElement('afterend',chip);}
-    if(chip) chip.textContent=shortUnit(unit);
+    if(chip) updateChip(chip,unit);
   }
 
   function annotateSearch(){
@@ -171,20 +185,26 @@
       const small=$('small',row);
       if(!unit||!small) return;
       const base=small.dataset.baseText||small.textContent.split(' · Unit:')[0];
-      small.dataset.baseText=base;
-      small.textContent=`${base} · Unit: ${shortUnit(unit)}`;
+      if(small.dataset.baseText!==base) small.dataset.baseText=base;
+      setText(small,`${base} · Unit: ${shortUnit(unit)}`);
     });
   }
 
   function refresh(){
+    refreshQueued=false;
     annotateMapContext();
     annotateCards();
     annotateSeries();
     annotateSearch();
   }
+  function scheduleRefresh(){
+    if(refreshQueued) return;
+    refreshQueued=true;
+    queueMicrotask(refresh);
+  }
 
   function installObservers(){
-    const watch=(node,opts)=>node&&new MutationObserver(()=>queueMicrotask(refresh)).observe(node,opts);
+    const watch=(node,opts)=>node&&new MutationObserver(scheduleRefresh).observe(node,opts);
     watch($('#geo-indicator'),{childList:true,subtree:true});
     watch($('.geo-map-panel'),{childList:true,subtree:true});
     watch($('#geo-ranking-list'),{childList:true});
