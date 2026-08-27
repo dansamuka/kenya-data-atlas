@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 """Make Sprint 3 CoB narrative parsing position-aware within PDF pages.
 
-FY2019/20 contains legitimate cases where the end/opening of adjacent county
-chapters share one physical PDF page. Earlier hardening treated a duplicate page
-number as a collision, even when the two chapter headings began at different
-character offsets on that page.
+FY2019/20 contains legitimate cases where adjacent county chapters share one
+physical PDF page. Earlier hardening treated any duplicate page number as a
+collision, even when two chapter headings started at different character offsets.
 
-This patch keeps the strict chapter-indexed locator from v4, but records each
-section start as (page_index, character_offset). Windows are then sliced exactly
-from one county start coordinate to the next. Two counties may share a page, but
-they may never share the same start coordinate, and chapter coordinates must be
-strictly increasing in the canonical 3.1..3.47 order.
+This patch keeps the strict chapter-indexed locator from v4 and distinguishes two
+kinds of starts:
+  * exact starts: a numbered chapter/subsection or county heading has a character
+    offset on the resolved page;
+  * fallback starts: v4 could only backtrack to an approximate page, so the page
+    start is retained exactly as the previously proven parser did.
+
+Only exact starts are allowed to share a page. This fixes legitimate same-page
+chapters without pretending an approximate fallback has character-level precision.
 """
 from pathlib import Path
 
@@ -34,19 +37,18 @@ def main() -> None:
     chapter_order = {name: i + 1 for i, name in enumerate(COB_2013_ORDER)}
     section_starts = {}
 
-    def start_pos_for(page_i: int, variants: list[str], chapter_no: int) -> int:
+    def start_pos_for(page_i: int, variants: list[str], chapter_no: int) -> tuple[int, bool]:
         raw = texts[page_i]
         pos = _section_heading_pos(raw, variants, chapter_no)
         if pos is not None:
-            return pos
+            return pos, True
 
         # OCR can damage punctuation in the numbered chapter marker or insert
-        # line breaks inside the county heading. Try flexible raw-text forms
-        # before falling back to the start of the already-validated page.
+        # line breaks inside the county heading. Try flexible raw-text forms.
         for pattern in (_chapter_pattern(chapter_no, 1), _chapter_pattern(chapter_no)):
             m = re.search(pattern, raw, re.I)
             if m:
-                return m.start()
+                return m.start(), True
         best = None
         for variant in variants:
             words = [re.escape(x) for x in _norm(variant).split()]
@@ -55,68 +57,73 @@ def main() -> None:
             if m and (best is None or m.start() < best):
                 best = m.start()
         if best is not None:
-            return best
+            return best, True
 
+        # Preserve v4's proven approximate-page behaviour. This is not promoted
+        # to a fake exact offset, and an approximate start may not share a page
+        # with another county start.
         print("CoB start-position fallback", variants[0], fy, "chapter", chapter_no, "page", page_i + 1)
-        return 0
+        return 0, False
 
     for county in county_names:
         variants = COUNTY_VARIANTS.get(county, [county])
         chapter_no = chapter_order[county]
         page_i = _find_section(texts, variants, fy, chapter_no, floor)
-        start_pos = start_pos_for(page_i, variants, chapter_no)
-        section_starts[county] = (page_i, start_pos)
+        start_pos, exact = start_pos_for(page_i, variants, chapter_no)
+        section_starts[county] = (page_i, start_pos, exact)
 
-    # Same physical page is legitimate. Same exact start coordinate is not.
-    reverse = {}
-    for county, coord in section_starts.items():
-        reverse.setdefault(coord, []).append(county)
-    collisions = {
-        f"page {page_i + 1} offset {start_pos}": names
-        for (page_i, start_pos), names in reverse.items()
-        if len(names) > 1
-    }
-    if collisions:
-        raise RuntimeError(f"{fy}: duplicate county section coordinate(s): {collisions}")
+    # A physical page may contain multiple county starts only if all starts are
+    # exact and have distinct offsets. Approximate backtracks stay one-per-page.
+    by_page = {}
+    for county, (page_i, start_pos, exact) in section_starts.items():
+        by_page.setdefault(page_i, []).append((start_pos, exact, county))
+    ambiguous = {}
+    for page_i, starts in by_page.items():
+        if len(starts) <= 1:
+            continue
+        if any(not exact for _, exact, _ in starts):
+            ambiguous[page_i + 1] = [county for _, _, county in starts]
+            continue
+        offsets = {}
+        for start_pos, _, county in starts:
+            offsets.setdefault(start_pos, []).append(county)
+        duplicate_offsets = {pos: names for pos, names in offsets.items() if len(names) > 1}
+        if duplicate_offsets:
+            ambiguous[page_i + 1] = duplicate_offsets
+        else:
+            ordered_names = [county for _, _, county in sorted(starts)]
+            print("CoB same-page chapter starts", fy, "page", page_i + 1, ordered_names)
+    if ambiguous:
+        raise RuntimeError(f"{fy}: ambiguous county section start(s): {ambiguous}")
 
-    # The report's county chapters are canonically ordered 3.1..3.47. Enforce
-    # that the resolved physical coordinates follow that order strictly; this
-    # catches a false OCR match without forbidding legitimate same-page starts.
-    chapter_sections = sorted(
-        (chapter_order[county], section_starts[county][0], section_starts[county][1], county)
-        for county in county_names
+    # Preserve the v4 parser's physical-page ordering for approximate starts;
+    # exact offsets only refine ordering inside a shared page.
+    ordered = sorted(
+        (page_i, start_pos, chapter_order[county], county, exact)
+        for county, (page_i, start_pos, exact) in section_starts.items()
     )
-    previous = None
-    for chapter_no, page_i, start_pos, county in chapter_sections:
-        coord = (page_i, start_pos)
-        if previous is not None and coord <= previous:
-            raise RuntimeError(
-                f"{fy}: non-monotonic county chapter start at 3.{chapter_no} {county}: "
-                f"page {page_i + 1} offset {start_pos} after {previous}"
-            )
-        previous = coord
 
     found = {}
-    for idx, (chapter_no, page_i, start_pos, county) in enumerate(chapter_sections):
+    for idx, (page_i, start_pos, chapter_no, county, exact) in enumerate(ordered):
         hard_stop = min(page_i + 6, len(texts))
-        next_coord = None
-        if idx + 1 < len(chapter_sections):
-            _, next_page, next_pos, _ = chapter_sections[idx + 1]
-            next_coord = (next_page, next_pos)
+        next_start = None
+        if idx + 1 < len(ordered):
+            next_page, next_pos, next_chapter, next_county, next_exact = ordered[idx + 1]
+            next_start = (next_page, next_pos, next_chapter, next_county, next_exact)
 
         window_pages = []
-        if next_coord is not None and next_coord[0] == page_i:
-            # Adjacent county starts later on this same physical page.
-            next_pos = next_coord[1]
-            if next_pos <= start_pos:
+        if next_start is not None and next_start[0] == page_i:
+            # Guaranteed exact/distinct by the page-level validation above.
+            next_pos = next_start[1]
+            if not exact or not next_start[4] or next_pos <= start_pos:
                 raise RuntimeError(f"{fy} {county}: invalid same-page section bounds {start_pos}:{next_pos}")
             window_pages.append(texts[page_i][start_pos:next_pos])
         else:
-            window_pages.append(texts[page_i][start_pos:])
-            if next_coord is not None and next_coord[0] < hard_stop:
-                next_page, next_pos = next_coord
+            window_pages.append(texts[page_i][start_pos if exact else 0:])
+            if next_start is not None and next_start[0] < hard_stop:
+                next_page, next_pos, _, _, next_exact = next_start
                 window_pages.extend(texts[page_i + 1:next_page])
-                if next_page < len(texts) and next_pos > 0:
+                if next_page < len(texts) and next_exact and next_pos > 0:
                     prefix = texts[next_page][:next_pos]
                     if _norm(prefix):
                         window_pages.append(prefix)
