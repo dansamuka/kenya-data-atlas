@@ -1,0 +1,45 @@
+name: Diagnose Baringo late-year CoB text
+
+on:
+  push:
+    branches: [data-sprint-3-historical-kenya]
+    paths:
+      - .github/workflows/sprint3-baringo-diagnostic.yml
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    strategy:
+      fail-fast: false
+      matrix:
+        fy: ['2020/21','2021/22']
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml html5lib pdfplumber pandas
+      - name: Print Baringo section window
+        env:
+          FY: ${{ matrix.fy }}
+        run: |
+          python scripts/sprint3/harden_acquisition_v13.py
+          python - <<'PY'
+          import io,json,os,sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts/sprint3')
+          import acquire_cob_history as cob
+          fy=os.environ['FY']
+          session=cob.requests.Session(); session.headers.update({'User-Agent':'Mozilla/5.0','Accept':'*/*'})
+          url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
+          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
+              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+          floor=cob._find_chapter_floor(texts)
+          page=cob._find_section(texts,['Baringo'],fy,1,floor)
+          print('FY',fy,'URL',url,'FLOOR',floor+1,'BARINGO_PAGE',page+1)
+          for i in range(page,min(page+6,len(texts))):
+              print('\n=== PAGE',i+1,'===')
+              print(texts[i][:12000])
+          PY
