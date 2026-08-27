@@ -14,101 +14,67 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml pdfplumber
-      - name: Probe county narrative extraction
+      - name: Probe FY2018/19 chapter headings
         run: |
           python - <<'PY'
           import io,re,requests,pdfplumber
           from bs4 import BeautifulSoup
           from urllib.parse import urljoin
-          PAGES={
-          '2015/16':'https://cob.go.ke/download/annual-county-budget-implementation-review-report-fy-2015-16/',
-          '2016/17':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201617/',
-          '2017/18':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-for-fy-2017-18/',
-          '2018/19':'https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/',
-          '2019/20':'https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-fy-2019-20/',
-          '2020/21':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-2020-21/',
-          '2021/22':'https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-for-the-fy-2021-22/',
-          '2022/23':'https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-fy-2022-23/',
-          '2023/24':'https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-2023-24/'}
-          COUNTIES=['Mombasa','Kwale','Kilifi','Tana River','Lamu','Taita Taveta','Garissa','Wajir','Mandera','Marsabit','Isiolo','Meru','Tharaka-Nithi','Embu','Kitui','Machakos','Makueni','Nyandarua','Nyeri','Kirinyaga',"Murang'a",'Kiambu','Turkana','West Pokot','Samburu','Trans Nzoia','Uasin Gishu','Elgeyo/Marakwet','Nandi','Baringo','Laikipia','Nakuru','Narok','Kajiado','Kericho','Bomet','Kakamega','Vihiga','Bungoma','Busia','Siaya','Kisumu','Homa Bay','Migori','Kisii','Nyamira','Nairobi']
-          VAR={
-          'Taita Taveta':['Taita Taveta','Taita/Taveta'], 'Tharaka-Nithi':['Tharaka Nithi','Tharaka-Nithi'], "Murang'a":["Murang'a",'Muranga','Murang’a'],
-          'Elgeyo/Marakwet':['Elgeyo Marakwet','Elgeyo/Marakwet','Elgeyo-Marakwet'], 'Nairobi':['Nairobi City','Nairobi']}
-          for c in COUNTIES: VAR.setdefault(c,[c])
-          def money(num,unit):
-              x=float(num.replace(',',''))
-              u=(unit or '').lower()
-              if u.startswith('b'): x*=1000
-              elif u.startswith('ksh') and x>100000: x/=1000000
-              return x
-          def first_money(text,patterns):
-              for pat in patterns:
-                  m=re.search(pat,text,re.I|re.S)
-                  if m:
-                      try:return money(m.group(1),m.group(2) if m.lastindex and m.lastindex>=2 else '')
-                      except:pass
-              return None
-          def first_pct(text,patterns):
-              for pat in patterns:
-                  m=re.search(pat,text,re.I|re.S)
-                  if m:
-                      try:return float(m.group(1))
-                      except:pass
-              return None
-          def extract(window):
-              t=' '.join(window.split())
-              budget=first_money(t,[
-                r'(?:approved|revised|supplementary)(?:\s+annual)?(?:\s+supplementary)?\s+budget.{0,180}?Kshs?\.?\s*([0-9][0-9,.]*)\s*(billion|million)',
-                r'budget(?:ed)?\s+to\s+spend.{0,120}?Kshs?\.?\s*([0-9][0-9,.]*)\s*(billion|million)',
-                r'budget\s+of\s+Kshs?\.?\s*([0-9][0-9,.]*)\s*(billion|million)'])
-              expend=first_money(t,[
-                r'(?:spent|expenditure(?:\s+for\s+the\s+period)?(?:\s+under\s+review)?(?:\s+amounted\s+to)?|total\s+expenditure.{0,40}?)(?:.{0,100}?)Kshs?\.?\s*([0-9][0-9,.]*)\s*(billion|million)',
-                r'spent\s+a\s+total\s+of\s+Kshs?\.?\s*([0-9][0-9,.]*)\s*(billion|million)'])
-              dev=first_pct(t,[
-                r'development\s+(?:expenditure|activities).{0,240}?absorption\s+rate\s+(?:of\s+)?([0-9]+(?:\.[0-9]+)?)',
-                r'development\s+(?:expenditure|budget).{0,180}?(?:represented|recorded|translated\s+to|was)\s+(?:an\s+)?absorption\s+rate\s+of\s+([0-9]+(?:\.[0-9]+)?)',
-                r'development\s+absorption\s+rate.{0,60}?([0-9]+(?:\.[0-9]+)?)'])
-              return budget,expend,dev
+
+          landing='https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/'
+          targets=['Nyeri','Turkana','Laikipia','Nyamira','Homa Bay','Elgeyo Marakwet']
+          variants={
+            'Nyeri':['Nyeri'], 'Turkana':['Turkana'], 'Laikipia':['Laikipia'], 'Nyamira':['Nyamira'],
+            'Homa Bay':['Homa Bay','Homabay'],
+            'Elgeyo Marakwet':['Elgeyo Marakwet','Elgeyo/Marakwet','Elgeyo-Marakwet']}
           s=requests.Session(); s.headers['User-Agent']='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'
-          for fy,url in PAGES.items():
+          r=s.get(landing,timeout=90,allow_redirects=True); r.raise_for_status()
+          soup=BeautifulSoup(r.text,'lxml'); cand=[]
+          for tag in soup.find_all(True):
+              for attr in ('href','data-downloadurl','data-url','onclick'):
+                  val=str(tag.get(attr) or '')
+                  cand += [urljoin(r.url,x) for x in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I)]
+          for a in soup.find_all('a',href=True):
+              h=urljoin(r.url,a['href'])
+              if '.pdf' in h.lower(): cand.append(h)
+          cand=list(dict.fromkeys(cand))
+          print('CANDIDATES',cand)
+          pdf_bytes=None; pdf_url=None
+          for url in cand:
               try:
-                  r=s.get(url,timeout=60); soup=BeautifulSoup(r.text,'lxml'); cand=[]
-                  for tag in soup.find_all(True):
-                      for attr in ('href','data-downloadurl','data-url','onclick'):
-                          val=str(tag.get(attr) or '')
-                          cand += [urljoin(r.url,x) for x in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I)]
-                  for a in soup.find_all('a',href=True):
-                      h=urljoin(r.url,a['href'])
-                      if '.pdf' in h.lower():cand.append(h)
-                  cand=list(dict.fromkeys(cand));
-                  if fy=='2021/22':cand.append('https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf')
-                  q=None
-                  for x in cand:
-                      try:
-                          z=s.get(x,timeout=120,allow_redirects=True)
-                          if z.content[:4]==b'%PDF' and len(z.content)>100000:q=z;break
-                      except:pass
-                  if q is None: print('YEAR',fy,'NO_PDF');continue
-                  with pdfplumber.open(io.BytesIO(q.content)) as pdf:
-                      texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
-                  got={}; miss=[]
-                  for county in COUNTIES:
-                      candidates=[]
-                      for i,t in enumerate(texts):
-                          if i<10: continue
-                          low=t.lower()
-                          if any(v.lower()+' county' in low for v in VAR[county]):
-                              w='\n'.join(texts[i:min(i+6,len(texts))])
-                              b,e,d=extract(w)
-                              sc=sum(x is not None for x in (b,e,d))
-                              if sc:candidates.append((sc,i,b,e,d,w))
-                      if candidates:
-                          best=max(candidates,key=lambda x:(x[0],-x[1]));sc,i,b,e,d,w=best
-                          got[county]=(i+1,b,e,d)
-                      else:miss.append(county)
-                  full=[c for c,v in got.items() if all(x is not None for x in v[1:])]
-                  print('YEAR',fy,'PAGES',len(texts),'ANY',len(got),'FULL',len(full),'MISS_ANY',miss,'MISS_FIELDS',[(c,got.get(c)) for c in COUNTIES if c in got and c not in full])
-                  for c in ['Baringo','Nairobi','Mombasa','Wajir','West Pokot']:
-                      print('ANCHOR',fy,c,got.get(c))
-              except Exception as e: print('YEAR',fy,'ERROR',repr(e))
+                  z=s.get(url,timeout=180,allow_redirects=True)
+                  if z.content[:4]==b'%PDF' and len(z.content)>100000:
+                      pdf_bytes=z.content; pdf_url=url; break
+              except Exception as exc: print('FAILED',url,repr(exc))
+          if pdf_bytes is None: raise RuntimeError('No FY2018/19 PDF')
+          print('PDF',pdf_url,'BYTES',len(pdf_bytes))
+          with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+          print('PAGES',len(texts))
+
+          # Print candidate heading occurrences with compact neighboring context.
+          for target in targets:
+              print('\n===',target,'===')
+              hits=[]
+              for i,raw in enumerate(texts):
+                  flat=' '.join(raw.split())
+                  if any(re.search(rf'\b{re.escape(v)}\s+County\b',flat,re.I) for v in variants[target]):
+                      # Only show pages where the name appears relatively early, or where an Overview cue is present.
+                      first=min([flat.lower().find((v+' County').lower()) for v in variants[target] if (v+' County').lower() in flat.lower()] or [999999])
+                      overview=bool(re.search(r'Overview.{0,180}?(?:FY|Financial\s+Year).{0,60}?2018/19.{0,80}?Budget',flat,re.I))
+                      numbered=bool(any(re.search(rf'(?:^|\s)\d+(?:\.\d+)+\s+{re.escape(v)}\s+County\b',flat,re.I) for v in variants[target]))
+                      if first < 2500 or overview or numbered:
+                          hits.append((i+1,first,overview,numbered,flat[:2200]))
+              for page,first,overview,numbered,ctx in hits[:20]:
+                  print('PAGE',page,'POS',first,'OVERVIEW',overview,'NUMBERED',numbered)
+                  # Extract up to 700 chars around first county-name occurrence.
+                  start=max(0,first-180); print(ctx[start:start+900])
+
+          # Also print lines that look like numbered county chapter headings anywhere in the PDF.
+          print('\n=== NUMBERED COUNTY-LIKE HEADINGS ===')
+          for i,raw in enumerate(texts):
+              lines=[' '.join(x.split()) for x in raw.splitlines() if x.strip()]
+              for line in lines:
+                  if re.match(r'^\d+(?:\.\d+)+\s+.+?\s+County(?:\s+Government)?$',line,re.I):
+                      print(i+1, line[:180])
           PY
