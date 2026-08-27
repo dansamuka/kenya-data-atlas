@@ -18,6 +18,10 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const EARTH_RADIUS_KM = 6371.0088; // mean radius (IUGG)
+// Reproducible builds require a stable observation vintage. This is the date on
+// which the current boundary-derived area release was first produced, not the
+// wall-clock time of whichever CI runner happens to rebuild it.
+const GENERATED_AT = '2026-08-26T00:00:00.000Z';
 
 const read = async file => JSON.parse(await readFile(path.join(root, file), 'utf8'));
 
@@ -57,7 +61,7 @@ for (const feature of counties.features) {
 }
 
 const output = {
-  generated_at: new Date().toISOString(),
+  generated_at: GENERATED_AT,
   method: 'equirectangular planar projection, mean-latitude reference per feature, shoelace formula',
   boundary_version: '2012-01',
   geometry_source: 'data/geography/geometry (canonical ward layer, dissolved to county and country)',

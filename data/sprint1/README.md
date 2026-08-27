@@ -1,6 +1,6 @@
 # Data Sprint 1 — County Core
 
-Implemented 26 August 2026. Validated and remediated after live-browser review on the same date.
+Implemented 26 August 2026. Validated and remediated after live-browser review on the same date. Native-registry migration completed in v0.8.0.
 
 Data Sprint 1 expands Kenya Data Atlas from a thin indicator prototype into a source-backed county data layer while preserving the project's central rule: **never invent lower-level values and never copy a county statistic into a constituency or ward.**
 
@@ -33,7 +33,7 @@ Source: IEBC / *Kenya Gazette*, 21 June 2022, Third Schedule, “Registered Vote
 
 Official source: <https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf>
 
-The county schedule sums to **22,102,532**. The Atlas already carries the later KPMG-audited national topline of **22,120,458**. These are different release vintages. Sprint 1 preserves both rather than scaling or forcing the county rows to equal the later national number.
+The county schedule sums to **22,102,532**. The Atlas also carries the later KPMG-audited national topline of **22,120,458**. These are different release vintages. Sprint 1 preserves both rather than scaling or forcing the county rows to equal the later national number.
 
 Audit context: <https://www.iebc.or.ke/uploads/resources/JqmDO7vRL0.pdf>
 
@@ -55,9 +55,7 @@ Fields loaded for every county: total budget, total expenditure, overall absorpt
 
 ### EPRA fuel prices — representative pricing towns, not county averages
 
-EPRA publishes maximum retail prices by **pricing town/location**, not as one statistical average for each county. The first Sprint 1 release loaded only five town/county links. That was too conservative for the county browsing experience and did not meet the intended breadth of the sprint.
-
-The remediated release uses one representative published pricing town for each county display slot. **Forty-six of 47 mappings use a pricing town physically in the same county. Nyandarua is the one explicit exception: Nyahururu is used as the nearest published pricing town and is labelled as a proxy.** None of these values should be interpreted as a county mean or county-wide tariff.
+EPRA publishes maximum retail prices by **pricing town/location**, not as one statistical average for each county. The remediated release uses one representative published pricing town for each county display slot. **Forty-six of 47 mappings use a pricing town physically in the same county. Nyandarua is the one explicit exception: Nyahururu is used as the nearest published pricing town and is labelled as a proxy.** None of these values should be interpreted as a county mean or county-wide tariff.
 
 EPRA stated that Super Petrol remained unchanged for the **15 August–14 September 2026** cycle. The representative values therefore use the prior full pricing-town PMS schedule, whose Super Petrol values remained applicable to the new cycle.
 
@@ -69,11 +67,13 @@ Because the machine-readable full-town transcription is external rather than an 
 
 ## Choropleth rendering remediation
 
-The live browser review identified a separate UI defect: the D3 map correctly calculated quantile colours and wrote them to SVG `fill` attributes, but the stylesheet also declared a fixed `fill` for `.geo-feature`. CSS won the cascade, so the map looked uniformly pale while the legend displayed multiple bins.
+The live browser review identified a UI defect: the D3 map correctly calculated quantile colours and wrote them to SVG `fill` attributes, but the stylesheet also declared a fixed `fill` for `.geo-feature`. CSS won the cascade, so the map looked uniformly pale while the legend displayed multiple bins.
 
-`assets/sprint1-ui.js` now promotes the computed D3 fill attribute to an inline style for data-bearing polygons. No-data polygons retain their hatch pattern. A regression assertion in `scripts/indicators/validate-sprint1.mjs` prevents this specific defect from silently returning.
+`assets/sprint1-ui.js` promotes the computed D3 fill attribute to an inline style for data-bearing polygons. No-data polygons retain their hatch pattern. A regression assertion in `scripts/indicators/validate-sprint1.mjs` prevents this specific defect from silently returning.
 
-## Files
+## Source package
+
+The files under `data/sprint1/` remain the human-auditable source package:
 
 - `population-2009.csv` — 47 official county census totals.
 - `voters-2022.csv` — 47-county IEBC Gazette schedule.
@@ -82,13 +82,20 @@ The live browser review identified a separate UI defect: the D3 map correctly ca
 - `fuel-super-petrol-2026-08.csv` — 47 representative pricing-town rows for county navigation.
 - `fuel-super-petrol-2026-08-audit.csv` — explicit mapping method for every fuel display row.
 - `sources.json` — source and provenance manifest.
-- `VALIDATION.md` — post-release audit findings and validation scope.
+- `VALIDATION.md` — release audit findings and validation scope.
 
-## Runtime publication architecture
+## Native publication architecture
 
-`assets/sprint1-data.js` is a transparent additive layer that loads the source files above, resolves every `geo_code` against the canonical geography registry, and adds the resulting series/observations to the JSON registry responses used by the static application.
+As of **v0.8.0**, Sprint 1 is no longer injected into the browser with a `window.fetch` monkey-patch. `npm run build:data` now compiles the County Core package into the same committed machine-readable products used by the rest of the Atlas:
 
-After fuel remediation the overlay creates **374 county series and 562 observations**, plus five new indicators and five source releases. It leaves the existing generated registries untouched and creates no constituency or ward observations.
+- `data/catalogue/registry/datasets.json` / `.csv`
+- `data/catalogue/registry/releases.json` / `.csv`
+- `data/indicators/registry/units.json` / `.csv`
+- `data/indicators/registry/indicators.json` / `.csv`
+- `data/indicators/registry/series.json` / `.csv`
+- `data/indicators/registry/observations.json` / `.csv`
+
+The build-time promoter is `scripts/sprint1/build-native.mjs`. The public application reads those committed registries directly. Therefore a user downloading the JSON/CSV registry gets the same Sprint 1 data that the live site sees; JavaScript execution is no longer required to obtain the County Core data.
 
 New indicators:
 
@@ -100,12 +107,14 @@ New indicators:
 
 Existing indicators extended:
 
-- `IND-POPULATION` — adds 2009 county history.
+- `IND-POPULATION` — adds 2009 county history to the existing county population series.
 - `IND-REGISTERED-VOTERS` — adds all 47 counties.
 - `IND-FUEL-PETROL` — adds representative pricing-town observations across all 47 county display slots, with explicit non-county-average treatment.
 
-## Known limitation / next migration
+`npm run native-api:validate` independently checks that all 47 counties are present in the committed registries for the Sprint 1 coverage contract, including all 235 GCP county-year observations and all 188 county-budget measure observations.
 
-The Sprint 1 overlay is intentionally additive so the public static site can use the data immediately. The next data-engineering migration should move these releases into the native `data/indicators/seed/` and catalogue build pipeline so regenerated `registry/*.json` and `registry/*.csv` files contain the same observations without the browser overlay.
+## CI reproducibility
+
+The primary CI workflow now rebuilds the data products before validation and fails if deterministic source-derived outputs differ from what is committed. It then runs the normal validators and the independent Shapely geography audit. This closes the former gap where a seed file and its generated registry could drift while both still looked individually valid.
 
 For fuel, the preferred long-term visualization is a **pricing-town point layer** rather than a county choropleth. The county view is a navigation convenience and is explicitly labelled representative. GCP values are **current-price totals** and should not be interpreted as real economic growth without constant-price series.
