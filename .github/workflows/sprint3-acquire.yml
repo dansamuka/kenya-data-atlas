@@ -66,8 +66,6 @@ jobs:
 
           # Some annual reports state the approved budget as e.g. "Approved
           # Supplementary Budget was 13.52 billion" without repeating "Kshs".
-          # Preserve that direct official total before considering broader budget
-          # phrases later in a county section.
           q=Path('scripts/sprint3/acquire_cob_history.py')
           t=q.read_text()
           budget_anchor='''    budget = _first_money(text, [\n        r"(?:approved|revised)(?:\\s+annual)?(?:\\s+(?:revised|supplementary))?\\s+budget(?:\\s+for\\s+(?:the\\s+)?county)?\\s+(?:was|is|of|amounted\\s+to)?\\s*(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
@@ -76,21 +74,19 @@ jobs:
           t=t.replace(budget_anchor,budget_replacement,1)
 
           # CoB's standard Overall Expenditure Review often reads "The County spent
-          # Kshs.X billion, which was ...". Accept that county-section-local form;
-          # the downstream budget/expenditure reconciliation still guards against a
-          # category amount being mistaken for the overall total.
+          # Kshs.X billion, which was ...".
           expenditure_anchor='''    expenditure = _first_money(text, [\n        r"spent\\s+a\\s+total\\s+of\\s+(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
           expenditure_replacement='''    expenditure = _first_money(text, [\n        r"(?:the\\s+county\\s+)?spent\\s+(?:a\\s+total\\s+of\\s+)?(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)(?:\\s*,|\\s+which|\\s+on|\\s+during|\\s+in)",\n        r"spent\\s+a\\s+total\\s+of\\s+(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
           assert expenditure_anchor in t
           t=t.replace(expenditure_anchor,expenditure_replacement,1)
 
-          # A county section can start midway down a PDF page, after the previous
-          # county's closing recommendations. Never scan that preceding text for the
-          # new county's budget/expenditure: trim the opening page to the actual
-          # county heading first. This prevents valid but unrelated budget amounts
-          # from becoming the denominator (e.g. Kisii text above the Kisumu heading).
+          # Bound narrative extraction to the actual county section. The report may
+          # begin the next county inside the generic six-page margin; allowing that
+          # text into the current window can pair one county's budget with another's
+          # expenditure. Trim the opening page to the current heading and stop before
+          # the first later page containing any other county-section heading.
           window_anchor='''        window = "\\n".join(texts[page_i:min(page_i + 6, len(texts))])\n        value = _extract_narrative(window, county, fy)\n'''
-          window_replacement='''        first_page = texts[page_i]\n        heading_match = None\n        for variant in variants:\n            v = re.escape(_norm(variant))\n            m = re.search(rf"(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\s+)?{v}\\s+County(?:\\s+Government)?\\b", first_page, re.I)\n            if m and (heading_match is None or m.start() < heading_match.start()):\n                heading_match = m\n        if heading_match:\n            first_page = first_page[heading_match.start():]\n        window = "\\n".join([first_page, *texts[page_i + 1:min(page_i + 6, len(texts))]])\n        value = _extract_narrative(window, county, fy)\n'''
+          window_replacement='''        first_page = texts[page_i]\n        heading_match = None\n        for variant in variants:\n            v = re.escape(_norm(variant))\n            m = re.search(rf"(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\s+)?{v}\\s+County(?:\\s+Government)?\\b", first_page, re.I)\n            if m and (heading_match is None or m.start() < heading_match.start()):\n                heading_match = m\n        if heading_match:\n            first_page = first_page[heading_match.start():]\n        window_pages = [first_page]\n        for j in range(page_i + 1, min(page_i + 6, len(texts))):\n            candidate_page = texts[j]\n            next_section = False\n            for other_county, other_variants in COUNTY_VARIANTS.items():\n                if other_county == county:\n                    continue\n                for other_variant in other_variants:\n                    ov = re.escape(_norm(other_variant))\n                    if re.search(rf"(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\s+)?{ov}\\s+County(?:\\s+Government)?\\b", candidate_page, re.I):\n                        next_section = True\n                        break\n                if next_section:\n                    break\n            if next_section:\n                break\n            window_pages.append(candidate_page)\n        window = "\\n".join(window_pages)\n        value = _extract_narrative(window, county, fy)\n'''
           assert window_anchor in t
           t=t.replace(window_anchor,window_replacement,1)
           q.write_text(t)
