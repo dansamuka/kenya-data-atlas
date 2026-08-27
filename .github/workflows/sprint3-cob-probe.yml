@@ -1,0 +1,40 @@
+name: Probe CoB historical download
+
+on:
+  push:
+    branches: [data-sprint-3-historical-kenya]
+    paths: [.github/workflows/sprint3-cob-probe.yml]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml
+      - name: Resolve 2013/14 OCoB package
+        run: |
+          python - <<'PY'
+          import re, requests
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
+          url='https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-20132014/'
+          s=requests.Session(); s.headers['User-Agent']='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'
+          r=s.get(url,timeout=60); print('page',r.status_code,len(r.content),r.url)
+          soup=BeautifulSoup(r.text,'lxml'); c=[]
+          for tag in soup.find_all(True):
+              for attr in ('href','data-downloadurl','data-url','onclick'):
+                  val=str(tag.get(attr) or '')
+                  for hit in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I): c.append(urljoin(r.url,hit))
+          for hit in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',r.text,re.I): c.append(urljoin(r.url,hit))
+          c=list(dict.fromkeys(c)); print('candidates',c)
+          if not c: raise SystemExit('no wpdmdl candidate')
+          for x in c:
+              try:
+                  q=s.get(x,timeout=90,allow_redirects=True); print('try',x,q.status_code,len(q.content),q.url,q.headers.get('content-type'))
+                  if q.content[:5]==b'%PDF-' and len(q.content)>100000: print('PDF_OK'); raise SystemExit(0)
+              except Exception as e: print('ERR',x,e)
+          raise SystemExit('no PDF candidate worked')
+          PY
