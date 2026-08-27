@@ -1,0 +1,38 @@
+/* World Bank national indicators + registry-derived cross-level compare */
+.wb-pulse-block{margin-top:2rem;padding-top:1.4rem;border-top:1px solid rgba(18,60,50,.12)}
+.wb-pulse-heading{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:1rem}
+.wb-pulse-heading h3{margin:.15rem 0 0;font-family:Newsreader,serif;font-size:1.75rem;color:#123c32}
+.wb-pulse-heading>p{max-width:42rem;margin:0;color:#5c6b65;line-height:1.55}
+.wb-metric-card{position:relative}
+.wb-metric-card .wb-alternate,.wb-background-ref{display:block;margin-top:.3rem}
+.wb-alt-link{appearance:none;border:0;background:transparent;padding:0;color:inherit;font:inherit;text-align:left;text-decoration:underline;text-decoration-color:rgba(18,60,50,.25);text-underline-offset:2px;cursor:pointer}
+.wb-alt-link:hover,.wb-alt-link:focus-visible{text-decoration-color:currentColor}
+.wb-disclosure{display:block;margin-top:.45rem;padding-top:.45rem;border-top:1px solid rgba(18,60,50,.08);font-size:.68rem;line-height:1.45;color:#63716c}
+.wb-more{margin-top:1rem;border-top:1px dashed rgba(18,60,50,.15);padding-top:.8rem}
+.wb-more summary{cursor:pointer;font-weight:700;color:#123c32;width:max-content}
+.wb-more-grid{margin-top:1rem}
+.wb-series-provenance{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin:1rem 0}
+.wb-series-provenance span{padding:.8rem;border:1px solid rgba(18,60,50,.1);border-radius:10px;background:#fff}
+.wb-series-provenance small{display:block;color:#718079;margin-bottom:.2rem}
+.cross-level-section{border-top:1px solid rgba(18,60,50,.1)}
+.cross-level-controls{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:end;gap:.7rem;margin:1.2rem 0}
+.cross-place{display:grid;grid-template-columns:minmax(110px,.7fr) minmax(170px,1.3fr);gap:.5rem;padding:.7rem;border:1px solid rgba(18,60,50,.12);border-radius:12px;background:#fff}
+.cross-place label,.cross-indicator-label{display:flex;flex-direction:column;gap:.3rem;font-size:.72rem;font-weight:700;color:#52605b}
+.cross-place select,.cross-indicator-label select{min-height:38px;border:1px solid rgba(18,60,50,.16);border-radius:8px;background:#fff;color:#173c33;padding:.35rem .55rem;font:inherit;font-size:.82rem}
+.cross-vs{align-self:center;color:#77837f;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.cross-indicator-label{max-width:420px;margin:.8rem 0}
+.cross-level-note{margin:.5rem 0 1rem;color:#62706b;font-size:.8rem}
+.cross-level-chart{display:flex;flex-direction:column;gap:.8rem}
+.cross-bar-row{display:grid;grid-template-columns:minmax(170px,.7fr) minmax(180px,2fr) minmax(140px,.6fr);gap:1rem;align-items:center}
+.cross-bar-label strong,.cross-bar-value{display:block;color:#173c33}
+.cross-bar-label small,.cross-bar-value small{display:block;margin-top:.15rem;color:#7b8782;font-size:.68rem;text-transform:capitalize}
+.cross-bar-track{height:28px;border-radius:8px;background:rgba(18,60,50,.07);overflow:hidden;border:1px solid rgba(18,60,50,.06)}
+.cross-bar-fill{height:100%;min-width:2px;background:linear-gradient(90deg,rgba(18,60,50,.72),rgba(18,60,50,.92));border-radius:7px}
+@media(max-width:900px){
+  .wb-pulse-heading{display:block}.wb-pulse-heading>p{margin-top:.5rem}
+  .cross-level-controls{grid-template-columns:1fr;align-items:stretch}
+  .cross-vs{text-align:center}
+  .cross-bar-row{grid-template-columns:1fr}.cross-bar-track{order:3}.cross-bar-value{order:2}
+  .wb-series-provenance{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){.cross-place{grid-template-columns:1fr}.wb-series-provenance{grid-template-columns:1fr}}
