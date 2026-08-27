@@ -14,67 +14,35 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml pdfplumber
-      - name: Probe FY2018/19 chapter headings
+      - name: Probe FY2018/19 numbered overview markers
         run: |
           python - <<'PY'
           import io,re,requests,pdfplumber
           from bs4 import BeautifulSoup
           from urllib.parse import urljoin
-
           landing='https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/'
-          targets=['Nyeri','Turkana','Laikipia','Nyamira','Homa Bay','Elgeyo Marakwet']
-          variants={
-            'Nyeri':['Nyeri'], 'Turkana':['Turkana'], 'Laikipia':['Laikipia'], 'Nyamira':['Nyamira'],
-            'Homa Bay':['Homa Bay','Homabay'],
-            'Elgeyo Marakwet':['Elgeyo Marakwet','Elgeyo/Marakwet','Elgeyo-Marakwet']}
+          targets={'Elgeyo Marakwet':5,'Homa Bay':8,'Laikipia':20,'Nyamira':34,'Nyeri':36,'Turkana':43}
           s=requests.Session(); s.headers['User-Agent']='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'
-          r=s.get(landing,timeout=90,allow_redirects=True); r.raise_for_status()
-          soup=BeautifulSoup(r.text,'lxml'); cand=[]
+          r=s.get(landing,timeout=90,allow_redirects=True); r.raise_for_status(); soup=BeautifulSoup(r.text,'lxml'); cand=[]
           for tag in soup.find_all(True):
               for attr in ('href','data-downloadurl','data-url','onclick'):
                   val=str(tag.get(attr) or '')
                   cand += [urljoin(r.url,x) for x in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I)]
-          for a in soup.find_all('a',href=True):
-              h=urljoin(r.url,a['href'])
-              if '.pdf' in h.lower(): cand.append(h)
-          cand=list(dict.fromkeys(cand))
-          print('CANDIDATES',cand)
-          pdf_bytes=None; pdf_url=None
-          for url in cand:
-              try:
-                  z=s.get(url,timeout=180,allow_redirects=True)
-                  if z.content[:4]==b'%PDF' and len(z.content)>100000:
-                      pdf_bytes=z.content; pdf_url=url; break
-              except Exception as exc: print('FAILED',url,repr(exc))
-          if pdf_bytes is None: raise RuntimeError('No FY2018/19 PDF')
-          print('PDF',pdf_url,'BYTES',len(pdf_bytes))
-          with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
-              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
-          print('PAGES',len(texts))
-
-          # Print candidate heading occurrences with compact neighboring context.
-          for target in targets:
-              print('\n===',target,'===')
+          cand=list(dict.fromkeys(cand)); data=None
+          for u in cand:
+              z=s.get(u,timeout=180,allow_redirects=True)
+              if z.content[:4]==b'%PDF': data=z.content; print('PDF',u); break
+          if data is None: raise RuntimeError('No PDF')
+          with pdfplumber.open(io.BytesIO(data)) as pdf: texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+          for county,n in targets.items():
               hits=[]
+              p1=re.compile(rf'3\s*\.\s*{n}\s*\.\s*1\b',re.I)
+              p2=re.compile(rf'3\s*\.\s*{n}\b',re.I)
               for i,raw in enumerate(texts):
                   flat=' '.join(raw.split())
-                  if any(re.search(rf'\b{re.escape(v)}\s+County\b',flat,re.I) for v in variants[target]):
-                      # Only show pages where the name appears relatively early, or where an Overview cue is present.
-                      first=min([flat.lower().find((v+' County').lower()) for v in variants[target] if (v+' County').lower() in flat.lower()] or [999999])
-                      overview=bool(re.search(r'Overview.{0,180}?(?:FY|Financial\s+Year).{0,60}?2018/19.{0,80}?Budget',flat,re.I))
-                      numbered=bool(any(re.search(rf'(?:^|\s)\d+(?:\.\d+)+\s+{re.escape(v)}\s+County\b',flat,re.I) for v in variants[target]))
-                      if first < 2500 or overview or numbered:
-                          hits.append((i+1,first,overview,numbered,flat[:2200]))
-              for page,first,overview,numbered,ctx in hits[:20]:
-                  print('PAGE',page,'POS',first,'OVERVIEW',overview,'NUMBERED',numbered)
-                  # Extract up to 700 chars around first county-name occurrence.
-                  start=max(0,first-180); print(ctx[start:start+900])
-
-          # Also print lines that look like numbered county chapter headings anywhere in the PDF.
-          print('\n=== NUMBERED COUNTY-LIKE HEADINGS ===')
-          for i,raw in enumerate(texts):
-              lines=[' '.join(x.split()) for x in raw.splitlines() if x.strip()]
-              for line in lines:
-                  if re.match(r'^\d+(?:\.\d+)+\s+.+?\s+County(?:\s+Government)?$',line,re.I):
-                      print(i+1, line[:180])
+                  overview=bool(re.search(r'Overview.{0,180}?(?:FY|Financial\s+Year).{0,60}?2018/19.{0,80}?Budget',flat,re.I))
+                  if p1.search(flat) or (p2.search(flat) and overview):
+                      hits.append((i+1,bool(p1.search(flat)),overview,flat[:1300]))
+              print('\nTARGET',county,'CHAPTER',n,'HITS',[(x[0],x[1],x[2]) for x in hits])
+              for page,sub,ov,ctx in hits[:5]: print('PAGE',page,ctx[:1300])
           PY
