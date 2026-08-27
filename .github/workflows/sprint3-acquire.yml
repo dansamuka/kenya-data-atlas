@@ -25,7 +25,7 @@ jobs:
           python-version: '3.12'
       - name: Install acquisition dependencies
         run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Harden official HTML acquisition
+      - name: Harden official source acquisition
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -37,6 +37,10 @@ jobs:
           assert marker in s
           s=s.replace(marker,helper+marker,1)
           s=s.replace('pd.read_html(io.StringIO(r.text))','html_tables(r.text)')
+          old='''    try: df=pd.read_csv(io.StringIO(raw))\n    except Exception: df=pd.read_csv(io.StringIO(raw),engine="python")\n    df=flatten_cols(df)'''
+          new='''    df=None\n    for skip in range(0,12):\n        try: candidate=flatten_cols(pd.read_csv(io.StringIO(raw),skiprows=skip))\n        except Exception: continue\n        header_text=" | ".join(candidate.columns)\n        sample_text=" ".join(str(v) for v in candidate.head(3).to_numpy().ravel())\n        if re.search(r"US\\s*DOLLAR|USD|UNITED STATES",header_text+" "+sample_text,re.I):\n            df=candidate; break\n    if df is None: raise RuntimeError("Unable to locate CBK FX currency header row")'''
+          assert old in s
+          s=s.replace(old,new,1)
           p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
