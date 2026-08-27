@@ -1,4 +1,4 @@
-name: Debug Sprint 3 generated parser
+name: Debug Sprint 3 CoB Trans Nzoia FY2022-23
 
 on:
   push:
@@ -10,22 +10,44 @@ on:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml html5lib pdfplumber pandas
-      - name: Inspect generated v21 parser
+      - name: Inspect official Trans Nzoia section
         run: |
-          python scripts/sprint3/harden_acquisition_v21.py
+          python scripts/sprint3/harden_acquisition_v24.py
           python - <<'PY'
-          import inspect, sys
+          import io, sys
           sys.path.insert(0,'scripts/sprint3')
           import acquire_cob_history as cob
-          print('--- EXTRACT NARRATIVE ---')
-          print(inspect.getsource(cob._extract_narrative))
-          print('--- ECONOMIC CLASSIFICATION ---')
-          print(inspect.getsource(cob._economic_classification_values))
+          import pdfplumber
+          fy='2022/23'; county='Trans Nzoia'
+          session=cob.requests.Session(); session.headers.update({'User-Agent':'Mozilla/5.0 Chrome/138.0','Accept':'*/*'})
+          url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
+          with pdfplumber.open(io.BytesIO(content)) as pdf:
+              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+              variants=cob.COUNTY_VARIANTS.get(county,[county])
+              chapter_no=cob.COB_2013_ORDER.index(county)+1
+              floor=cob._find_chapter_floor(texts)
+              page_i=cob._find_section(texts,variants,fy,chapter_no,floor)
+              print('SOURCE',fy,county,'chapter',chapter_no,'page',page_i+1,url)
+              for pi in range(page_i,min(page_i+7,len(pdf.pages))):
+                  print(f'--- PAGE {pi+1} TEXT ---')
+                  for line in texts[pi].splitlines():
+                      line=cob._norm(line)
+                      low=line.lower()
+                      if line and any(k in low for k in ['budget','expenditure','absorption','development','economic classification','total','spent','recurrent','supplementary']):
+                          print(line[:2000])
+                  print(f'--- PAGE {pi+1} TABLE ROWS ---')
+                  for ti,table in enumerate(pdf.pages[pi].extract_tables() or []):
+                      for row in table or []:
+                          cells=[cob._norm(c or '') for c in row or []]
+                          joined=' | '.join(cells)
+                          low=joined.lower()
+                          if any(k in low for k in ['development','total','expenditure','budget','absorption','recurrent']):
+                              print('T',ti,joined[:2600])
           PY
