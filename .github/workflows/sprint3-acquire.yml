@@ -61,5 +61,6 @@ jobs:
             echo "No acquisition changes."
           else
             git commit -m "data(sprint3): snapshot historical source series"
+            git pull --rebase origin data-sprint-3-historical-kenya
             git push origin HEAD:data-sprint-3-historical-kenya
           fi
