@@ -31,6 +31,7 @@ on:
       - scripts/sprint3/harden_acquisition_v25.py
       - scripts/sprint3/harden_acquisition_v26.py
       - scripts/sprint3/harden_acquisition_v27.py
+      - scripts/sprint3/harden_acquisition_v28.py
       - scripts/sprint3/acquire_sources.py
       - scripts/sprint3/acquire_cob_history.py
       - scripts/sprint3/build-native.mjs
@@ -59,22 +60,15 @@ jobs:
       - name: Install acquisition dependencies
         run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
       - name: Apply acquisition hardening
-        run: python scripts/sprint3/harden_acquisition_v27.py
+        run: python scripts/sprint3/harden_acquisition_v28.py
       - name: Acquire and validate source snapshots
         run: python scripts/sprint3/acquire_sources.py
-      - name: Validate native Sprint 3 promotion
-        shell: bash
-        run: |
-          node scripts/sprint3/build-native.mjs catalogue
-          node scripts/sprint3/build-native.mjs indicators
-          node scripts/indicators/validate-sprint3.mjs
-          git restore data/catalogue/registry data/indicators/registry
-      - name: Commit source snapshots
+      - name: Commit source snapshots and baked parsers
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/sprint3/acquire_sources.py scripts/sprint3/acquire_cob_history.py data/sprint3/*.csv data/sprint3/sources.json
+          git add scripts/sprint3/acquire_sources.py scripts/sprint3/acquire_cob_history.py scripts/sprint3/build-native.mjs data/sprint3/*.csv data/sprint3/sources.json
           if git diff --cached --quiet; then
             echo "No acquisition changes."
           else
@@ -82,3 +76,10 @@ jobs:
             git pull --rebase origin data-sprint-3-historical-kenya
             git push origin HEAD:data-sprint-3-historical-kenya
           fi
+      - name: Validate native Sprint 3 promotion
+        shell: bash
+        run: |
+          node scripts/sprint3/build-native.mjs catalogue
+          node scripts/sprint3/build-native.mjs indicators
+          node scripts/indicators/validate-sprint3.mjs
+          git restore data/catalogue/registry data/indicators/registry
