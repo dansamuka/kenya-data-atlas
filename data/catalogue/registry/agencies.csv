@@ -12,3 +12,4 @@ agency_id,agency_code,name,abbreviation,agency_type,official_url,jurisdiction,ac
 "e01b075d-0e71-5a3c-8464-56cd2ee7a8fd","KENYA-LAW","National Council for Law Reporting — Kenya Law","Kenya Law","state_corporation","https://new.kenyalaw.org/","Kenya","true"
 "b4c3f27d-6db6-5d28-9d4d-0d4bfcb0f277","KDA-COMMUNITY","External open-data maintainers","Community sources","external_community","https://github.com/","External","true"
 "9b148b36-80bd-5bef-89ed-4d9fd37ba1c2","KDA","Kenya Data Atlas","KDA","atlas_derivation","https://github.com/dansamuka/kenya-data-atlas","Kenya","true"
+"33ae4410-49f5-5b72-9f1d-e7a7438e9317","WB","World Bank Group","World Bank","international_organization","https://www.worldbank.org/","International","true"

@@ -1,0 +1,119 @@
+name: World Bank national integration
+
+on:
+  push:
+    branches:
+      - main
+      - feature/worldbank-national-integration
+    paths:
+      - .github/workflows/worldbank-national-integration.yml
+      - scripts/catalogue/apply-worldbank-catalogue-seed.mjs
+      - scripts/indicators/apply-worldbank-architecture.mjs
+      - scripts/indicators/apply-worldbank-ui-wiring.mjs
+      - scripts/indicators/compute-derived-area.mjs
+      - scripts/indicators/fetch-worldbank.mjs
+      - scripts/indicators/apply-worldbank-seed.mjs
+      - scripts/indicators/apply-worldbank-registry-metadata.mjs
+      - scripts/indicators/build-cross-level-eligibility.mjs
+      - scripts/indicators/validate-worldbank-integration.mjs
+      - data/indicators/seed/worldbank-config.json
+      - assets/worldbank-integration.js
+      - assets/worldbank-integration.css
+      - docs/methodology/worldbank-indicators.md
+  schedule:
+    # Quarterly on 1 Jan/Apr/Jul/Oct at 06:15 UTC (09:15 Africa/Nairobi).
+    # GitHub runs schedules from the default branch, so this becomes active on merge to main.
+    - cron: '15 6 1 1,4,7,10 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Patch architecture and UI wiring
+        run: |
+          node scripts/indicators/apply-worldbank-architecture.mjs
+          node scripts/indicators/apply-worldbank-ui-wiring.mjs
+
+      - name: Build publication-gated catalogue
+        run: |
+          node scripts/catalogue/apply-worldbank-catalogue-seed.mjs
+          node scripts/catalogue/build-catalogue.mjs
+          node scripts/sprint1/build-native.mjs catalogue
+          node scripts/catalogue/validate-catalogue.mjs
+
+      - name: Fetch World Bank WDI snapshot
+        run: node scripts/indicators/fetch-worldbank.mjs
+
+      - name: Build indicator registry
+        run: |
+          node scripts/indicators/compute-derived-area.mjs
+          node scripts/indicators/apply-worldbank-seed.mjs
+          node scripts/indicators/build-registry.mjs
+          node scripts/sprint1/build-native.mjs indicators
+          node scripts/indicators/apply-placeholder-taxonomy.mjs
+          node scripts/indicators/apply-worldbank-registry-metadata.mjs
+          node scripts/indicators/build-cross-level-eligibility.mjs
+
+      - name: Syntax checks
+        run: |
+          node --check assets/worldbank-integration.js
+          node --check scripts/catalogue/apply-worldbank-catalogue-seed.mjs
+          node --check scripts/indicators/apply-worldbank-architecture.mjs
+          node --check scripts/indicators/apply-worldbank-ui-wiring.mjs
+          node --check scripts/indicators/compute-derived-area.mjs
+          node --check scripts/indicators/fetch-worldbank.mjs
+          node --check scripts/indicators/apply-worldbank-seed.mjs
+          node --check scripts/indicators/apply-worldbank-registry-metadata.mjs
+          node --check scripts/indicators/build-cross-level-eligibility.mjs
+          node --check scripts/indicators/validate-worldbank-integration.mjs
+
+      - name: Registry and release gates
+        run: |
+          node scripts/indicators/validate-registry.mjs
+          node scripts/indicators/validate-placeholder-taxonomy.mjs
+          node scripts/indicators/validate-worldbank-integration.mjs
+          node scripts/indicators/validate-native-api.mjs
+          node scripts/indicators/validate-sprint1.mjs
+          node scripts/indicators/validate-sprint2-release.mjs
+
+      - name: Commit generated integration state
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            index.html \
+            db/schema/indicators.sql \
+            scripts/indicators/validate-registry.mjs \
+            data/catalogue/seed/agencies.json \
+            data/catalogue/seed/sources.json \
+            data/catalogue/seed/datasets.json \
+            data/catalogue/registry \
+            data/indicators/seed/units.json \
+            data/indicators/seed/indicators.json \
+            data/indicators/seed/series.json \
+            data/indicators/seed/observations.json \
+            data/indicators/seed/derived/area-computed.json \
+            data/indicators/seed/derived/worldbank-latest.json \
+            data/indicators/registry
+          if git diff --cached --quiet; then
+            echo "No generated World Bank integration changes."
+          else
+            git commit -m "data(worldbank): publish national WDI integration"
+            branch="${GITHUB_REF_NAME}"
+            git pull --rebase origin "$branch"
+            git push origin "HEAD:$branch"
+          fi

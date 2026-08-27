@@ -141,5 +141,16 @@
     "jurisdiction": "Kenya",
     "description": "The Atlas itself, as publisher of transparent derivations computed from other agencies' underlying data (e.g. land area computed from boundary geometry). Used only where the statistical-publication-policy's basis 5 (\"a transparent Atlas derivation or model\") applies, with methodology published and reviewable.",
     "active": true
+  },
+  {
+    "agency_id": "33ae4410-49f5-5b72-9f1d-e7a7438e9317",
+    "agency_code": "WB",
+    "name": "World Bank Group",
+    "abbreviation": "World Bank",
+    "agency_type": "international_organization",
+    "official_url": "https://www.worldbank.org/",
+    "jurisdiction": "International",
+    "description": "International development institution and publisher of World Development Indicators. In the Atlas, WDI is treated as a secondary harmonising compiler, never as a Kenyan primary statistical agency.",
+    "active": true
   }
 ]

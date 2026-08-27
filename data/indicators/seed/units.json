@@ -40,5 +40,49 @@
     "scale_factor": 1,
     "decimal_places": 2,
     "currency_code": "KES"
+  },
+  {
+    "code": "index_score",
+    "name": "Score",
+    "symbol": "score",
+    "dimension": "index",
+    "decimal_places": 1
+  },
+  {
+    "code": "years",
+    "name": "Years",
+    "symbol": "years",
+    "dimension": "duration",
+    "decimal_places": 1
+  },
+  {
+    "code": "usd",
+    "name": "US dollars",
+    "symbol": "US$",
+    "dimension": "currency",
+    "decimal_places": 0,
+    "currency_code": "USD"
+  },
+  {
+    "code": "usd_per_person",
+    "name": "US dollars per person",
+    "symbol": "US$/person",
+    "dimension": "rate",
+    "decimal_places": 2,
+    "currency_code": "USD"
+  },
+  {
+    "code": "tonnes_per_person",
+    "name": "Tonnes per person",
+    "symbol": "t/person",
+    "dimension": "rate",
+    "decimal_places": 2
+  },
+  {
+    "code": "per_100000_persons",
+    "name": "Per 100,000 population",
+    "symbol": "per 100k",
+    "dimension": "rate",
+    "decimal_places": 1
   }
 ]

@@ -50,6 +50,66 @@
     "currency_code": "KES"
   },
   {
+    "unit_id": "04b90096-6bfb-521e-957b-e8b0f4cf1988",
+    "code": "index_score",
+    "name": "Score",
+    "symbol": "score",
+    "dimension": "index",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "e0d1cd62-62cd-51c5-9ff8-06f51401fad5",
+    "code": "years",
+    "name": "Years",
+    "symbol": "years",
+    "dimension": "duration",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "f69ebbd6-3aef-59c4-b7dd-f49eb2c99d69",
+    "code": "usd",
+    "name": "US dollars",
+    "symbol": "US$",
+    "dimension": "currency",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": "USD"
+  },
+  {
+    "unit_id": "f53cce64-4a0b-55d9-ab82-77787d376297",
+    "code": "usd_per_person",
+    "name": "US dollars per person",
+    "symbol": "US$/person",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": "USD"
+  },
+  {
+    "unit_id": "2c20ee7c-243a-5104-b8d7-79f8590eff06",
+    "code": "tonnes_per_person",
+    "name": "Tonnes per person",
+    "symbol": "t/person",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "54fe9ccc-1a14-5704-b5f8-ea50e599dfae",
+    "code": "per_100000_persons",
+    "name": "Per 100,000 population",
+    "symbol": "per 100k",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
     "unit_id": "301fb81d-4436-5309-8fc5-547d222b8ffe",
     "code": "kes_million",
     "name": "Kenya Shillings, million",
@@ -75,16 +135,6 @@
     "name": "Persons per household",
     "symbol": "persons/household",
     "dimension": "rate",
-    "scale_factor": 1,
-    "decimal_places": 1,
-    "currency_code": ""
-  },
-  {
-    "unit_id": "04b90096-6bfb-521e-957b-e8b0f4cf1988",
-    "code": "index_score",
-    "name": "Score",
-    "symbol": "score",
-    "dimension": "index",
     "scale_factor": 1,
     "decimal_places": 1,
     "currency_code": ""
