@@ -466,5 +466,95 @@
     "publication_status": "published",
     "methodology_url": "data/sprint1/README.md",
     "known_limitations": "Pricing-town observations, not county averages. Nyandarua uses the nearest published pricing town, Nyahururu."
+  },
+  {
+    "dataset_id": "8dee6b68-65ea-5eeb-852d-1d2e41fa6bbc",
+    "dataset_code": "DS-KNBS-CPI-HISTORY-S3",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Headline Inflation — Historical Monthly Series",
+    "description": "Historical national headline year-on-year CPI inflation, monthly.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "data/sprint3/README.md",
+    "known_limitations": "Headline year-on-year rate only. Historical values may span CPI rebasing regimes; values are reproduced as published and are not recomputed across base changes."
+  },
+  {
+    "dataset_id": "f9da28e6-141d-5c45-849e-9d9427ab2b8b",
+    "dataset_code": "DS-CBK-CBR-HISTORY-S3",
+    "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",
+    "title": "Central Bank Rate — Historical Decision Series",
+    "description": "Historical Central Bank Rate observations from the official CBK CBR table.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "irregular",
+    "publication_status": "published",
+    "methodology_url": "data/sprint3/README.md",
+    "known_limitations": "Policy-rate decision observations only; unchanged intervals are not expanded to daily or monthly rows."
+  },
+  {
+    "dataset_id": "8c733370-074a-5024-8fa4-be9f67b706fa",
+    "dataset_code": "DS-CBK-FX-MONTHLY-HISTORY-S3",
+    "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",
+    "title": "USD/KES — Monthly Period-Average Exchange Rate",
+    "description": "Official CBK monthly period-average Kenya shillings per US dollar.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "data/sprint3/README.md",
+    "known_limitations": "Monthly period averages are a separate measure from the Atlas daily market-mid reference series and must not be merged into that daily series."
+  },
+  {
+    "dataset_id": "876a9fad-3a12-541a-8b0b-4d9e2afd8ade",
+    "dataset_code": "DS-CBK-TBILL91-MONTHLY-HISTORY-S3",
+    "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",
+    "title": "91-Day Treasury Bill — Historical Monthly Average",
+    "description": "Official CBK monthly 91-day Treasury bill rate history from the central-bank-rates table and Statistical Bulletins.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "data/sprint3/README.md",
+    "known_limitations": "Monthly average series; it is distinct from individual weekly auction observations."
+  },
+  {
+    "dataset_id": "81827566-3e01-5aa7-8b41-6004c2ab290a",
+    "dataset_code": "DS-EPRA-NAIROBI-PETROL-HISTORY-S3",
+    "source_id": "c0d98736-dff3-551c-8d64-86ad591fbde6",
+    "title": "Super Petrol — Nairobi Pricing-Town History",
+    "description": "Historical maximum retail Super Petrol price for the Nairobi EPRA pricing town.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "pricing_town_nairobi"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "data/sprint3/README.md",
+    "known_limitations": "Nairobi pricing-town observations only. These are not Nairobi County averages and are never propagated to other geographies."
+  },
+  {
+    "dataset_id": "4bf10b7d-f6d2-565d-8e7c-d96994a56584",
+    "dataset_code": "DS-COB-COUNTY-BUDGET-HISTORY-S3",
+    "source_id": "4cf7d629-21ea-5e09-b2c7-d3a5baae46f0",
+    "title": "County Budget Implementation — Historical Annual Series",
+    "description": "Annual county budget, expenditure and absorption measures from Controller of Budget annual reports.",
+    "topic": "Public Finance",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "data/sprint3/README.md",
+    "known_limitations": "Official county fiscal-year values only. No allocation to constituencies or wards. Definitions are preserved from each annual report."
   }
 ]
