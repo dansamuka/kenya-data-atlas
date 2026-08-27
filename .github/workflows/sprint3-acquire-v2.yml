@@ -5,6 +5,7 @@ on:
     branches: [data-sprint-3-historical-kenya]
     paths:
       - .github/workflows/sprint3-acquire-v2.yml
+      - scripts/sprint3/harden_acquisition_v2.py
       - scripts/sprint3/acquire_sources.py
       - scripts/sprint3/acquire_cob_history.py
   workflow_dispatch:
@@ -26,45 +27,8 @@ jobs:
           python-version: '3.12'
       - name: Install acquisition dependencies
         run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Apply proven acquisition hardening
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import textwrap
-
-          # Reuse the already-proven hardening block from the original workflow so
-          # v2 changes only the CoB chapter locator rather than duplicating source logic.
-          workflow=Path('.github/workflows/sprint3-acquire.yml').read_text()
-          marker="          python - <<'PY'\n"
-          start=workflow.index(marker)+len(marker)
-          end=workflow.index("\n          PY\n",start)
-          code=textwrap.dedent(workflow[start:end])
-          exec(compile(code,'.github/workflows/sprint3-acquire.yml:hardening','exec'),{})
-
-          q=Path('scripts/sprint3/acquire_cob_history.py')
-          t=q.read_text()
-
-          # Pin the FY2018/19 official WordPress Download Manager URL discovered by
-          # the successful probe, avoiding dependence on landing-page HTML state.
-          direct_2018='    "2018/19": "https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/?wpdmdl=15011",\n'
-          if direct_2018 not in t:
-              anchor='    "2021/22": "https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf",\n'
-              if anchor not in t:
-                  raise SystemExit('Expected CoB direct-fallback anchor missing')
-              t=t.replace(anchor,direct_2018+anchor,1)
-
-          find_start=t.index('def _section_heading_pos(')
-          find_end=t.index('\ndef _extract_narrative',find_start)
-          new_find='''def _chapter_pattern(chapter_no: int, subsection: int | None = None):\n    if subsection is None:\n        return rf"3\\s*\\.\\s*{chapter_no}\\b"\n    return rf"3\\s*\\.\\s*{chapter_no}\\s*\\.\\s*{subsection}\\b"\n\n\ndef _section_heading_pos(raw: str, variants: list[str], chapter_no: int):\n    # Prefer the numbered chapter/subsection marker; it is unique even when the\n    # county title itself is duplicated in tables, figures or contents pages.\n    for pattern in (_chapter_pattern(chapter_no, 1), _chapter_pattern(chapter_no)):\n        m=re.search(pattern, raw, re.I)\n        if m:\n            return m.start()\n    best=None\n    for variant in variants:\n        v=re.escape(_norm(variant))\n        m=re.search(rf"{v}\\s+County(?:\\s+Government)?\\b",raw,re.I)\n        if m and (best is None or m.start()<best):\n            best=m.start()\n    return best\n\n\ndef _find_chapter_floor(texts: list[str]) -> int:\n    # All narrative reports use chapter 3.1 for Baringo. Ignore contents/summary\n    # pages and find the first substantive Baringo chapter page.\n    for page_i, raw in enumerate(texts):\n        if page_i < 15:\n            continue\n        flat=_norm(raw)\n        if re.search(_chapter_pattern(1),flat,re.I) and re.search(r"Baringo\\s+County",flat,re.I):\n            if re.search(r"Overview|Approved|Supplementary|Budget",flat,re.I):\n                return page_i\n    return 20\n\n\ndef _find_section(texts: list[str], variants: list[str], fy: str, chapter_no: int, floor: int) -> int:\n    fy_pat=re.escape(fy)\n    # 1) Best signal: the expected 3.<n>.1 Overview subsection.\n    for page_i in range(floor,len(texts)):\n        flat=_norm(texts[page_i])\n        if re.search(_chapter_pattern(chapter_no,1),flat,re.I) and re.search(r"Overview",flat,re.I):\n            return page_i\n\n    # 2) Expected chapter number + county title.\n    for page_i in range(floor,len(texts)):\n        flat=_norm(texts[page_i])\n        if not re.search(_chapter_pattern(chapter_no),flat,re.I):\n            continue\n        if any(re.search(rf"{re.escape(_norm(v))}\\s+County(?:\\s+Government)?\\b",flat,re.I) for v in variants):\n            return page_i\n\n    # 3) County title followed by the requested FY overview, but only inside the\n    # substantive county-chapter region (never the front-matter summary pages).\n    for page_i in range(floor,len(texts)):\n        flat=_norm(texts[page_i])\n        if not any(re.search(rf"{re.escape(_norm(v))}\\s+County(?:\\s+Government)?\\b",flat,re.I) for v in variants):\n            continue\n        if re.search(rf"Overview.{{0,240}}?(?:FY|Financial\\s+Year).{{0,80}}?{fy_pat}.{{0,100}}?Budget",flat,re.I):\n            return page_i\n
-    # 4) OCR-resilient recovery: later numbered subsections normally survive even\n    # when the chapter title/3.<n>.1 line is garbled. Find the earliest 3.<n>.[2-9]\n    # marker, then backtrack up to three pages to the county opening.\n    later=None\n    for page_i in range(floor,len(texts)):\n        flat=_norm(texts[page_i])\n        if re.search(rf"3\\s*\\.\\s*{chapter_no}\\s*\\.\\s*[2-9]\\b",flat,re.I):\n            later=page_i\n            break\n    if later is not None:\n        for page_i in range(max(floor,later-3),later+1):\n            flat=_norm(texts[page_i])\n            county_hit=any(re.search(rf"{re.escape(_norm(v))}\\s+County(?:\\s+Government)?\\b",flat,re.I) for v in variants)\n            overview=bool(re.search(rf"Overview.{{0,260}}?{fy_pat}.{{0,120}}?Budget",flat,re.I))\n            if county_hit or overview:\n                print('CoB subsection-backtrack',variants[0],fy,'chapter',chapter_no,'page',page_i+1)\n                return page_i\n        page_i=max(floor,later-2)\n        print('CoB numeric-backtrack',variants[0],fy,'chapter',chapter_no,'page',page_i+1)\n        return page_i\n\n    raise RuntimeError(f"county section heading not found for {variants} in {fy} chapter 3.{chapter_no}")\n\n'''
-          t=t[:find_start]+new_find+t[find_end+1:]
-
-          parse_start=t.index('def _parse_narrative_year(')
-          parse_end=t.index('\ndef _validate_year',parse_start)
-          new_parse='''def _parse_narrative_year(content: bytes, fy: str, county_names: list[str]) -> dict[str, dict]:\n    with pdfplumber.open(io.BytesIO(content)) as pdf:\n        texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or "" for p in pdf.pages]\n    floor=_find_chapter_floor(texts)\n    chapter_order={name:i+1 for i,name in enumerate(COB_2013_ORDER)}\n    section_pages={}\n    for county in county_names:\n        variants=COUNTY_VARIANTS.get(county,[county])\n        chapter_no=chapter_order[county]\n        section_pages[county]=_find_section(texts,variants,fy,chapter_no,floor)\n\n    reverse={}\n    for county,p in section_pages.items():\n        reverse.setdefault(p,[]).append(county)\n    collisions={p+1:names for p,names in reverse.items() if len(names)>1}\n    if collisions:\n        raise RuntimeError(f"{fy}: duplicate county section page(s): {collisions}")\n\n    ordered=sorted((page_i,chapter_order[county],county) for county,page_i in section_pages.items())\n    found={}\n    for idx,(page_i,chapter_no,county) in enumerate(ordered):\n        variants=COUNTY_VARIANTS.get(county,[county])\n        start_pos=_section_heading_pos(texts[page_i],variants,chapter_no)\n        first_page=texts[page_i][start_pos if start_pos is not None else 0:]\n        window_pages=[first_page]\n        hard_stop=min(page_i+6,len(texts))\n        if idx+1 < len(ordered):\n            next_page,next_chapter,next_county=ordered[idx+1]\n            if next_page < hard_stop:\n                window_pages.extend(texts[page_i+1:next_page])\n                next_variants=COUNTY_VARIANTS.get(next_county,[next_county])\n                next_pos=_section_heading_pos(texts[next_page],next_variants,next_chapter)\n                if next_pos is not None and next_pos>0:\n                    prefix=texts[next_page][:next_pos]\n                    if _norm(prefix):\n                        window_pages.append(prefix)\n            else:\n                window_pages.extend(texts[page_i+1:hard_stop])\n        else:\n            window_pages.extend(texts[page_i+1:hard_stop])\n        window="\\n".join(window_pages)\n        value=_extract_narrative(window,county,fy)\n        value["source_page"]=page_i+1\n        found[county]=value\n    return found\n\n'''
-          t=t[:parse_start]+new_parse+t[parse_end+1:]
-          q.write_text(t)
-          PY
+      - name: Apply acquisition hardening
+        run: python scripts/sprint3/harden_acquisition_v2.py
       - name: Acquire and validate source snapshots
         run: python scripts/sprint3/acquire_sources.py
       - name: Commit source snapshots
