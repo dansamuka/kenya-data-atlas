@@ -9,6 +9,7 @@ on:
       - 'data/geography/reference/geography-subsets.json'
       - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
+      - 'scripts/indicators/validate-native-api.mjs'
       - 'db/schema/indicators.sql'
       - 'package.json'
   workflow_dispatch:
