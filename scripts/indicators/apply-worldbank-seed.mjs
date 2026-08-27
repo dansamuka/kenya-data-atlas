@@ -9,6 +9,7 @@ const write = async (p, v) => writeFile(path.join(root, p), JSON.stringify(v, nu
 
 const config = await read('data/indicators/seed/worldbank-config.json');
 const snapshot = await read('data/indicators/seed/derived/worldbank-latest.json');
+const taxonomy = await read('data/indicators/seed/placeholder-taxonomy.json');
 const unitPath = 'data/indicators/seed/units.json';
 const indicatorPath = 'data/indicators/seed/indicators.json';
 const seriesPath = 'data/indicators/seed/series.json';
@@ -23,9 +24,20 @@ function upsert(rows, key, row) {
   else rows.push(row);
 }
 
+// The base registry build runs before apply-placeholder-taxonomy.mjs. WB may
+// reuse a shared taxonomy unit (currently index_score), so make only the units
+// actually referenced by WB definitions available to the base seed up front.
+// This avoids duplicating shared unit definitions in worldbank-config.json and
+// avoids changing the established build order.
+const neededUnitCodes = new Set(config.indicators.map(d => d.unit_code));
+for (const u of taxonomy.units || []) {
+  if (neededUnitCodes.has(u.code)) upsert(units, 'code', u);
+}
 for (const u of config.units || []) upsert(units, 'code', u);
 
+const availableUnitCodes = new Set(units.map(u => u.code));
 for (const def of config.indicators) {
+  if (!availableUnitCodes.has(def.unit_code)) throw new Error(`${def.code}: required unit ${def.unit_code} is not available before registry build`);
   upsert(indicators, 'code', {
     code: def.code,
     name: def.name,
