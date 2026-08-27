@@ -1,0 +1,44 @@
+name: Probe Sprint 3 late CoB years
+
+on:
+  push:
+    branches: [data-sprint-3-historical-kenya]
+    paths:
+      - .github/workflows/sprint3-late-years-probe.yml
+  workflow_dispatch:
+
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        fy: ['2020/21','2021/22','2022/23','2023/24']
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml html5lib pdfplumber pandas
+      - name: Validate one late fiscal year
+        env:
+          FY: ${{ matrix.fy }}
+        run: |
+          python scripts/sprint3/harden_acquisition_v13.py
+          python - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts/sprint3')
+          import acquire_cob_history as cob
+          fy=os.environ['FY']
+          root=Path('.')
+          geos=json.loads((root/'data/geography/registry/geographies.json').read_text())
+          counties=[g['name'] for g in geos if g.get('level')=='county']
+          session=cob.requests.Session()
+          session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
+          url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
+          values=cob._parse_narrative_year(content,fy,counties)
+          cob._validate_year(fy,values,counties)
+          print('LATE YEAR PASS',fy,len(values),url)
+          PY
