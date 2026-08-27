@@ -1,0 +1,135 @@
+/* Kenya Data Atlas — UX polish layer
+ * Presentation-only enhancements. No registry/data values are modified.
+ */
+(function(){
+  'use strict';
+  const $=(s,r)=>(r||document).querySelector(s);
+  const $$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+  function installMapOverlay(){
+    const wrap=$('.geo-map-wrap'), legend=$('#geo-legend'), source=$('#geo-source-note');
+    if(!wrap||!legend||!source||wrap.querySelector('.geo-map-overlay')) return;
+    const overlay=document.createElement('div');
+    overlay.className='geo-map-overlay';
+    overlay.setAttribute('aria-label','Map legend and source');
+    legend.removeAttribute('aria-hidden');
+    overlay.append(legend,source);
+    wrap.appendChild(overlay);
+  }
+
+  function enhanceSparkline(){
+    const el=$('.sparkline');
+    if(!el||el.classList.contains('is-sparse')) return;
+    const bars=$$('i',el);
+    if(bars.length>0&&bars.length<4){
+      const n=bars.length;
+      el.classList.add('is-sparse');
+      el.innerHTML=`<span class="sparkline-sparse-note"><b>${n} observations on file</b><span>Trend chart appears once more history accumulates.</span></span>`;
+      el.setAttribute('aria-label',`Insufficient history for a trend chart; ${n} observations on file.`);
+    }
+  }
+
+  function enhanceSummary(){
+    const el=$('#geo-selected-summary');
+    if(!el) return;
+    el.classList.add('kda-card');
+    el.setAttribute('aria-live','polite');
+    const empty=!el.hidden&&/Data not currently available/i.test(el.textContent||'');
+    el.classList.toggle('is-empty',empty);
+    let badge=$('.geo-empty-badge',el);
+    if(empty&&!badge){
+      badge=document.createElement('span');
+      badge.className='badge missing geo-empty-badge';
+      badge.textContent='N/A';
+      el.prepend(badge);
+    }else if(!empty&&badge){badge.remove();}
+  }
+
+  function applyCardSystem(){
+    $$('.metric-card,.quick-facts article,.dataset,.chart-card,.availability-card,#geo-selected-summary').forEach(el=>el.classList.add('kda-card'));
+  }
+
+  function animateNewMapNodes(){
+    const svg=$('#geo-svg');
+    if(!svg||svg.dataset.uxMotion==='true') return;
+    svg.dataset.uxMotion='true';
+    const animate=nodes=>{
+      if(reduced) return;
+      nodes.forEach(node=>{
+        const paths=node.matches?.('.geo-feature')?[node]:$$('.geo-feature',node);
+        paths.forEach(path=>{
+          if(path.dataset.uxAnimated) return;
+          path.dataset.uxAnimated='true';
+          path.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});
+        });
+      });
+    };
+    new MutationObserver(ms=>ms.forEach(m=>animate([...m.addedNodes].filter(n=>n.nodeType===1))))
+      .observe(svg,{childList:true,subtree:true});
+  }
+
+  function animateSearchResults(){
+    const el=$('#search-results');
+    if(!el||el.dataset.uxMotion==='true') return;
+    el.dataset.uxMotion='true';
+    new MutationObserver(()=>{
+      if(!el.hidden&&!reduced){
+        el.animate([{opacity:0,transform:'translateY(-4px) scale(.985)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:150,easing:'ease-out'});
+      }
+    }).observe(el,{attributes:true,attributeFilter:['hidden']});
+  }
+
+  function enhanceTwoPointSeries(){
+    const wrap=$('.large-chart'), svg=$('.large-chart svg');
+    if(!wrap||!svg) return;
+    const circles=$$('circle',svg);
+    wrap.classList.toggle('two-point-series',circles.length===2);
+    if(circles.length===2){
+      wrap.setAttribute('role','img');
+      wrap.setAttribute('aria-label','Two observations on file; points shown without interpolation.');
+    }
+  }
+
+  function colorCatalogue(){
+    const palette=['#537f70','#b86b4b','#697da8','#9b7a45','#6c8f4f','#866c9f','#4c8992'];
+    $$('.dataset').forEach(card=>{
+      const topic=(card.querySelector('p')?.textContent||card.querySelector('.dataset-icon')?.textContent||'data').split('·')[0].trim();
+      let hash=0; for(const ch of topic) hash=(hash*31+ch.charCodeAt(0))>>>0;
+      card.style.setProperty('--dataset-accent',palette[hash%palette.length]);
+      card.dataset.topic=topic.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+      card.classList.add('kda-card');
+    });
+  }
+
+  function installObservers(){
+    const spark=$('.sparkline');
+    if(spark) new MutationObserver(enhanceSparkline).observe(spark,{childList:true});
+    const summary=$('#geo-selected-summary');
+    if(summary) new MutationObserver(enhanceSummary).observe(summary,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+    const pulse=$('#pulse-grid');
+    if(pulse) new MutationObserver(applyCardSystem).observe(pulse,{childList:true});
+    const facts=$('.quick-facts');
+    if(facts) new MutationObserver(applyCardSystem).observe(facts,{childList:true});
+    const datasets=$('#dataset-list');
+    if(datasets) new MutationObserver(()=>{applyCardSystem();colorCatalogue();}).observe(datasets,{childList:true});
+    const chart=$('.large-chart svg');
+    if(chart) new MutationObserver(enhanceTwoPointSeries).observe(chart,{childList:true,subtree:true});
+  }
+
+  function boot(){
+    installMapOverlay();
+    applyCardSystem();
+    enhanceSparkline();
+    enhanceSummary();
+    animateNewMapNodes();
+    animateSearchResults();
+    enhanceTwoPointSeries();
+    colorCatalogue();
+    installObservers();
+    setTimeout(()=>{installMapOverlay();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();},650);
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
+  else boot();
+})();
