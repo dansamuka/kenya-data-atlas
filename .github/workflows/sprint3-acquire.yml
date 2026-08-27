@@ -74,6 +74,15 @@ jobs:
           budget_replacement='''    budget = _first_money(text, [\n        r"(?:approved|revised)(?:\\s+annual)?(?:\\s+(?:revised|supplementary))?\\s+budget(?:\\s+for\\s+(?:the\\s+)?county)?\\s+(?:was|is|of|amounted\\s+to)?\\s*(?:(?:Kshs?|Ksh)\\.?\\s*)?([0-9][0-9,.]*)\\s*(billion|million)",\n'''
           assert budget_anchor in t
           t=t.replace(budget_anchor,budget_replacement,1)
+
+          # CoB's standard Overall Expenditure Review often reads "The County spent
+          # Kshs.X billion, which was ...". Accept that county-section-local form;
+          # the downstream budget/expenditure reconciliation still guards against a
+          # category amount being mistaken for the overall total.
+          expenditure_anchor='''    expenditure = _first_money(text, [\n        r"spent\\s+a\\s+total\\s+of\\s+(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
+          expenditure_replacement='''    expenditure = _first_money(text, [\n        r"(?:the\\s+county\\s+)?spent\\s+(?:a\\s+total\\s+of\\s+)?(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)(?:\\s*,|\\s+which|\\s+on|\\s+during|\\s+in)",\n        r"spent\\s+a\\s+total\\s+of\\s+(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
+          assert expenditure_anchor in t
+          t=t.replace(expenditure_anchor,expenditure_replacement,1)
           q.write_text(t)
           PY
       - name: Acquire and validate source snapshots
