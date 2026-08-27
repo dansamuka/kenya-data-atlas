@@ -43,6 +43,10 @@ jobs:
           s=s.replace(old,new,1)
           s=s.replace('y=int(float(x[yc])); ms=str(x[mc]).strip().lower()[:3]; m=MONTH_ABBR[ms]\n                d=date(y,m,1)','y=int(float(x[yc])); m=parse_month_value(x[mc])\n                d=date(y,m,1)',1)
           s=s.replace('y=int(float(vals[0])); ms=str(vals[1]).strip().lower()[:3]; m=MONTH_ABBR[ms]; d=date(y,m,1)','y=int(float(vals[0])); m=parse_month_value(vals[1]); d=date(y,m,1)',1)
+          anchor='      "https://www.centralbank.go.ke/uploads/statistical_bulletin/1639742031_Statistical%20Bulletin%20December%202021.pdf",\n'
+          addition=anchor+'      "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf",\n'
+          assert anchor in s
+          s=s.replace(anchor,addition,1)
           p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
