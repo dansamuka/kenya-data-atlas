@@ -27,6 +27,16 @@ def main() -> None:
     p = ROOT / "scripts/sprint3/acquire_cob_history.py"
     s = p.read_text(encoding="utf-8")
 
+    # The official FY2019/20 WordPress Download Manager endpoint was resolved
+    # during the successful diagnostic probe. Pin it as a fallback so a transient
+    # landing-page/download-button failure does not make the source undiscoverable.
+    direct_2019 = '    "2019/20": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-fy-2019-20/?wpdmdl=15308",\n'
+    if direct_2019 not in s:
+        anchor = '    "2021/22": "https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf",\n'
+        if anchor not in s:
+            raise RuntimeError("Expected CoB direct-fallback anchor missing")
+        s = s.replace(anchor, direct_2019 + anchor, 1)
+
     pos_start = s.index("def _section_heading_pos(")
     pos_end = s.index("\ndef _find_chapter_floor", pos_start)
     new_pos = r'''def _top_level_chapter_pattern(chapter_no: int):
