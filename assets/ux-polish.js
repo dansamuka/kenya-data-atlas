@@ -144,6 +144,15 @@
     });
   }
 
+  function loadPlaceProfile(){
+    if(document.querySelector('script[data-place-profile-loader]')) return;
+    const script=document.createElement('script');
+    script.src='assets/place-profile.js';
+    script.async=false;
+    script.dataset.placeProfileLoader='true';
+    document.body.appendChild(script);
+  }
+
   function installObservers(){
     const spark=$('.sparkline');
     if(spark) new MutationObserver(enhanceSparkline).observe(spark,{childList:true});
@@ -173,6 +182,7 @@
     enhanceTwoPointSeries();
     colorCatalogue();
     installObservers();
+    loadPlaceProfile();
     setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();},650);
   }
 
