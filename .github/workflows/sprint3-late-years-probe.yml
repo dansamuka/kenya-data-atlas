@@ -5,13 +5,14 @@ on:
     branches: [data-sprint-3-historical-kenya]
     paths:
       - .github/workflows/sprint3-late-years-probe.yml
-      - scripts/sprint3/harden_acquisition_v18.py
+      - scripts/sprint3/harden_acquisition_v19.py
   workflow_dispatch:
 
 jobs:
   probe:
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         fy: ['2020/21','2021/22','2022/23','2023/24']
     runs-on: ubuntu-latest
@@ -26,7 +27,7 @@ jobs:
         env:
           FY: ${{ matrix.fy }}
         run: |
-          python scripts/sprint3/harden_acquisition_v18.py
+          python scripts/sprint3/harden_acquisition_v19.py
           python - <<'PY'
           import json, os, sys
           from pathlib import Path
