@@ -1,3 +1,5 @@
+@import url('place-profile.css');
+
 /* Kenya Data Atlas — unit presentation */
 .unit-chip{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.18rem .42rem;border:1px solid rgba(18,60,50,.13);border-radius:999px;background:rgba(18,60,50,.045);color:#52605a;font-size:.58rem;font-weight:700;letter-spacing:.035em;line-height:1.2;white-space:nowrap;vertical-align:middle}
 .metric-card>.metric-unit{margin:.28rem 0 .2rem}
