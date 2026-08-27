@@ -30,7 +30,10 @@ const [units, indicators, series, observations, geographies] = await Promise.all
 
 const validLifecycle = new Set(['planned','sourced','active','retired']);
 const validTabs = new Set(['people','economy','health','finance','representation','infrastructure','resilience']);
-const surveyCodes = new Set(taxonomy.survey_indicator_codes || []);
+// §11.6 applies to every household/population sample-survey indicator, not just
+// the explicitly enumerated KDHS/NACADA health family. Monetary poverty is a
+// household-survey estimate, so enforce the same uncertainty contract here.
+const surveyCodes = new Set([...(taxonomy.survey_indicator_codes || []), 'IND-POVERTY-RATE']);
 const noRankingCodes = new Set(taxonomy.sensitive_no_ranking_codes || []);
 const unitByCode = new Map(units.map(u => [u.code, u]));
 
