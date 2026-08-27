@@ -8,7 +8,7 @@
       "source_url": "https://knowledgeweb.ndma.go.ke/Content/LibraryDocuments/Long_Rains_National_Report-_202220230510110248.pdf",
       "source_note": "NDMA's assessment covers 23 ASAL counties. Nyeri is explicitly qualified as northern Nyeri (Kieni sub-county), so this county-level tab subset conservatively includes the 22 counties named without a sub-county qualifier. Nyeri/Kieni is recorded separately below and does not trigger a county-wide tab.",
       "members": [
-        "Baringo","Embu","Garissa","Isiolo","Kajiado","Kilifi","Kitui","Kwale","Laikipia","Lamu","Makueni","Mandera","Marsabit","Meru","Narok","Samburu","Taita Taveta","Tana River","Tharaka Nithi","Turkana","Wajir","West Pokot"
+        "Baringo","Embu","Garissa","Isiolo","Kajiado","Kilifi","Kitui","Kwale","Laikipia","Lamu","Makueni","Mandera","Marsabit","Meru","Narok","Samburu","Taita Taveta","Tana River","Tharaka-Nithi","Turkana","Wajir","West Pokot"
       ],
       "partial_memberships": [
         {"county":"Nyeri","scope":"Kieni sub-county","reason":"NDMA assessment names northern Nyeri (Kieni), not Nyeri County as a whole."}
