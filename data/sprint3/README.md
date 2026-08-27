@@ -38,7 +38,11 @@ EPRA prices petroleum products by pricing town / pricing zone. The Sprint 3 fuel
 
 ### County budgets
 
-Controller of Budget annual report values remain at county level. Sprint 3 does **not** divide, interpolate, model, or allocate a county budget or expenditure figure to constituencies or wards. Fiscal-year labels and published absorption rates are preserved.
+Controller of Budget annual report values remain at county level. Sprint 3 does **not** divide, interpolate, model, or allocate a county budget or expenditure figure to constituencies or wards.
+
+Budget and expenditure observations are direct official county values. Published overall and development absorption rates are retained where they can be reliably extracted from the annual report. Where the report exposes the official numerator and denominator but the corresponding rate is not stably machine-extractable, the Atlas stores the deterministic ratio instead. The source snapshot records this explicitly in `rate_method`; this is a statistical transformation of official county values, not a geographic allocation or model estimate.
+
+FY 2013/14 and FY 2014/15 use the reports' consolidated annexes, including explicit handling of the source PDFs' rotated tables. Later years are anchored to the individual county sections of each annual report. Every row retains its official source URL and source page.
 
 ## Source snapshots
 
@@ -52,7 +56,7 @@ The immutable acquisition outputs are stored in `data/sprint3/`:
 - `cob-county-budget-history.csv`
 - `sources.json` — source URLs, hashes and acquisition metadata
 
-`scripts/sprint3/acquire_sources.py` is the one-time source acquisition program. The normal deterministic Atlas build does not depend on live government websites; it consumes the committed source snapshots.
+`scripts/sprint3/acquire_sources.py`, together with `scripts/sprint3/acquire_cob_history.py`, is the source-acquisition program. The normal deterministic Atlas build does not depend on live government websites; it consumes the committed source snapshots.
 
 ## Native registry promotion
 
@@ -68,6 +72,6 @@ Stable identifiers are deterministic. Re-running the build does not create dupli
 
 ## Quality gates
 
-`scripts/indicators/validate-sprint3.mjs` validates raw-source coverage, temporal uniqueness, numerical plausibility, 47-county fiscal-year completeness, registry foreign keys, raw-to-native value agreement, and the prohibition on constituency/ward propagation.
+`scripts/indicators/validate-sprint3.mjs` validates raw-source coverage, temporal uniqueness, numerical plausibility, 47-county fiscal-year completeness, registry foreign keys, raw-to-native value agreement, and the prohibition on constituency/ward propagation. It also checks that county expenditure divided by county budget reconciles to the stored overall absorption rate within the release tolerance.
 
 See `VALIDATION.md` for the release audit and final row counts.
