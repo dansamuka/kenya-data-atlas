@@ -6,14 +6,15 @@ subsections such as `3.16.10`, because a regex word boundary also matches before
 the next dot. A county name elsewhere on that page then made a late chapter page
 look like the opening page.
 
-This hardening makes exact starts heading-specific:
+This hardening makes exact starts heading-specific while retaining v4's proven
+three-page OCR recovery window:
   1. `3.<n>.1 ... Overview` with the expected county;
   2. an explicit top-level `3.<n> <County> County` heading, where `<n>` is not
      followed by another numeric subsection;
-  3. county title + FY overview/budget language.
-
-Later numbered subsections are recovery anchors only. They trigger a wider
-backtrack to the chapter opening; they never count as the opening themselves.
+  3. county title + FY overview/budget language;
+  4. later numbered subsections are recovery anchors only, with the same
+     three-page county-anchored backtrack / two-page numeric fallback that had
+     already passed FY2013/14 through FY2018/19 and removed seven FY2019 errors.
 """
 from pathlib import Path
 
@@ -27,9 +28,8 @@ def main() -> None:
     p = ROOT / "scripts/sprint3/acquire_cob_history.py"
     s = p.read_text(encoding="utf-8")
 
-    # The official FY2019/20 WordPress Download Manager endpoint was resolved
-    # during the successful diagnostic probe. Pin it as a fallback so a transient
-    # landing-page/download-button failure does not make the source undiscoverable.
+    # Pin the official FY2019/20 WPD endpoint resolved by the successful
+    # diagnostic probe. This is only a discovery fallback, not a data override.
     direct_2019 = '    "2019/20": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-fy-2019-20/?wpdmdl=15308",\n'
     if direct_2019 not in s:
         anchor = '    "2021/22": "https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf",\n'
@@ -59,7 +59,7 @@ def _section_heading_pos(raw: str, variants: list[str], chapter_no: int):
         if m:
             return m.start()
 
-    # 3) County heading itself, preferably coupled to Overview shortly after.
+    # 3) County heading itself, preferring one with Overview shortly after.
     best = None
     for variant in variants:
         words = [re.escape(x) for x in _norm(variant).split()]
@@ -99,12 +99,10 @@ def _section_heading_pos(raw: str, variants: list[str], chapter_no: int):
     # 2) Explicit top-level chapter title only; 3.<n>.10 etc. are excluded.
     for page_i in range(floor, len(texts)):
         flat = _norm(texts[page_i])
-        if not county_hit(flat):
-            continue
-        if re.search(_top_level_chapter_pattern(chapter_no), flat, re.I):
+        if county_hit(flat) and re.search(_top_level_chapter_pattern(chapter_no), flat, re.I):
             return page_i
 
-    # 3) County + requested FY overview/budget language in the substantive region.
+    # 3) County + requested FY overview/budget language in substantive pages.
     for page_i in range(floor, len(texts)):
         flat = _norm(texts[page_i])
         if not county_hit(flat):
@@ -112,38 +110,23 @@ def _section_heading_pos(raw: str, variants: list[str], chapter_no: int):
         if re.search(rf"Overview.{{0,320}}?(?:FY|Financial\s+Year)?.{{0,80}}?{fy_pat}.{{0,160}}?Budget", flat, re.I):
             return page_i
 
-    # 4) OCR recovery: find the earliest surviving later subsection, then search
-    # backward up to six pages for a real county opening. Later subsections never
-    # directly become section starts.
+    # 4) OCR recovery. Keep the already-proven v4 distance semantics: the first
+    # surviving later subsection is only an anchor; look back at most three
+    # pages for the county, otherwise estimate the opening two pages earlier.
     later = None
-    later_pat = rf"3\s*\.\s*{chapter_no}\s*\.\s*(?:[2-9]|1\d)\b"
+    later_pat = rf"3\s*\.\s*{chapter_no}\s*\.\s*[2-9]\b"
     for page_i in range(floor, len(texts)):
         flat = _norm(texts[page_i])
         if re.search(later_pat, flat, re.I):
             later = page_i
             break
     if later is not None:
-        back_start = max(floor, later - 6)
-        candidates = []
-        for page_i in range(back_start, later + 1):
+        for page_i in range(max(floor, later - 3), later + 1):
             flat = _norm(texts[page_i])
-            hit = county_hit(flat)
-            if not hit:
-                continue
-            overview = bool(re.search(r"Overview", flat, re.I))
-            budget = bool(re.search(rf"(?:FY|Financial\s+Year)?.{{0,80}}?{fy_pat}.{{0,180}}?Budget", flat, re.I))
-            top = bool(re.search(_top_level_chapter_pattern(chapter_no), flat, re.I))
-            score = (4 if top else 0) + (3 if overview else 0) + (2 if budget else 0)
-            candidates.append((score, -page_i, page_i))
-        if candidates:
-            # Prefer semantic evidence; for equal evidence prefer the earliest page.
-            page_i = max(candidates)[2]
-            print("CoB subsection-backtrack", variants[0], fy, "chapter", chapter_no, "page", page_i + 1)
-            return page_i
-
-        # Last-resort page estimate is intentionally approximate and logged. Keep
-        # it conservative: six pages before the first surviving later subsection.
-        page_i = back_start
+            if county_hit(flat):
+                print("CoB subsection-backtrack", variants[0], fy, "chapter", chapter_no, "page", page_i + 1)
+                return page_i
+        page_i = max(floor, later - 2)
         print("CoB numeric-backtrack", variants[0], fy, "chapter", chapter_no, "page", page_i + 1)
         return page_i
 
