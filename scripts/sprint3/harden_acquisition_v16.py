@@ -2,12 +2,13 @@
 """Reject table-of-contents false positives in late CoB county location.
 
 A live FY2020/21 diagnostic showed Bungoma resolving to PDF page 13: the table
-of contents, not the county chapter.  The TOC contains county names and numbered
-subsections, so numbering alone is insufficient.  Real county opening pages
+of contents, not the county chapter. The TOC contains county names and numbered
+subsections, so numbering alone is insufficient. Real county opening pages
 contain substantive fiscal text and a Ksh monetary value.
 
-This patch strengthens only chapter location.  Extraction and all arithmetic
-release gates remain unchanged.
+This patch strengthens only chapter location. Extraction and all arithmetic
+release gates remain unchanged. It deliberately replaces only `_find_section`;
+the economic-classification helper inserted by v14 must remain intact.
 """
 from pathlib import Path
 
@@ -22,7 +23,7 @@ def main() -> None:
     s = p.read_text(encoding="utf-8")
 
     start = s.index("def _find_section(")
-    end = s.index("\ndef _extract_narrative", start)
+    end = s.index("\ndef _economic_classification_values", start)
     new_find = r'''def _find_section(texts: list[str], variants: list[str], fy: str, chapter_no: int, floor: int) -> int:
     fy_pat = re.escape(fy)
 
