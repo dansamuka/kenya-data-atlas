@@ -7,15 +7,56 @@
   const $$=(s,r)=>[...(r||document).querySelectorAll(s)];
   const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-  function installMapOverlay(){
-    const wrap=$('.geo-map-wrap'), legend=$('#geo-legend'), source=$('#geo-source-note');
-    if(!wrap||!legend||!source||wrap.querySelector('.geo-map-overlay')) return;
-    const overlay=document.createElement('div');
-    overlay.className='geo-map-overlay';
-    overlay.setAttribute('aria-label','Map legend and source');
+  function installMapMeta(){
+    const panel=$('.geo-map-panel'), wrap=$('.geo-map-wrap'), legend=$('#geo-legend'), source=$('#geo-source-note');
+    if(!panel||!wrap||!legend||!source) return;
+    let meta=$('.geo-map-meta',panel);
+    if(!meta){
+      meta=document.createElement('div');
+      meta.className='geo-map-meta';
+      meta.setAttribute('aria-label','Map legend and source');
+      wrap.insertAdjacentElement('afterend',meta);
+    }
     legend.removeAttribute('aria-hidden');
-    overlay.append(legend,source);
-    wrap.appendChild(overlay);
+    meta.append(legend,source);
+    const coverage=$('#sprint1-coverage');
+    if(coverage) meta.append(coverage);
+    const old=$('.geo-map-overlay',panel);
+    if(old) old.remove();
+  }
+
+  function clearMapHover(){
+    const tip=$('#geo-tooltip');
+    if(tip){
+      tip.hidden=true;
+      tip.innerHTML='';
+      tip.style.removeProperty('left');
+      tip.style.removeProperty('top');
+    }
+    $$('.geo-feature.hovered-linked').forEach(el=>el.classList.remove('hovered-linked'));
+    $$('.geo-ranking-list button.hovered').forEach(el=>el.classList.remove('hovered'));
+  }
+
+  function installHoverCleanup(){
+    const section=$('#geo-explorer'), wrap=$('.geo-map-wrap'), svg=$('#geo-svg'), ranking=$('.geo-ranking-panel');
+    if(!section||section.dataset.hoverCleanup==='true') return;
+    section.dataset.hoverCleanup='true';
+    wrap?.addEventListener('pointerleave',clearMapHover);
+    svg?.addEventListener('pointerleave',clearMapHover);
+    ranking?.addEventListener('pointerleave',clearMapHover);
+    section.addEventListener('mouseleave',clearMapHover);
+    section.addEventListener('focusout',event=>{
+      if(!section.contains(event.relatedTarget)) clearMapHover();
+    });
+    $('#geo-indicator')?.addEventListener('change',clearMapHover);
+    window.addEventListener('hashchange',clearMapHover);
+    document.addEventListener('pointermove',event=>{
+      const tip=$('#geo-tooltip');
+      if(tip&&!tip.hidden&&!event.target.closest('.geo-feature')) clearMapHover();
+    },{passive:true});
+    if(svg){
+      new MutationObserver(clearMapHover).observe(svg,{childList:true});
+    }
   }
 
   function enhanceSparkline(){
@@ -115,10 +156,14 @@
     if(datasets) new MutationObserver(()=>{applyCardSystem();colorCatalogue();}).observe(datasets,{childList:true});
     const chart=$('.large-chart svg');
     if(chart) new MutationObserver(enhanceTwoPointSeries).observe(chart,{childList:true,subtree:true});
+    const panel=$('.geo-map-panel');
+    if(panel) new MutationObserver(installMapMeta).observe(panel,{childList:true,subtree:true});
   }
 
   function boot(){
-    installMapOverlay();
+    installMapMeta();
+    installHoverCleanup();
+    clearMapHover();
     applyCardSystem();
     enhanceSparkline();
     enhanceSummary();
@@ -127,7 +172,7 @@
     enhanceTwoPointSeries();
     colorCatalogue();
     installObservers();
-    setTimeout(()=>{installMapOverlay();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();},650);
+    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();},650);
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
