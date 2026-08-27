@@ -57,7 +57,7 @@ for (const s of series) {
   }
   if (!['nominal', 'constant', 'index', 'not_applicable'].includes(s.price_basis)) errors.push(`series ${s.series_code}: invalid price_basis`);
   if (['constant', 'index'].includes(s.price_basis) && !s.base_period) errors.push(`series ${s.series_code}: price_basis ${s.price_basis} requires a base_period`);
-  if (!['direct', 'aggregated', 'interpolated', 'modelled'].includes(s.geographic_method)) errors.push(`series ${s.series_code}: invalid geographic_method`);
+  if (!['direct', 'aggregated', 'interpolated', 'proxy', 'modelled'].includes(s.geographic_method)) errors.push(`series ${s.series_code}: invalid geographic_method`);
   if (!s.comparability_group) errors.push(`series ${s.series_code}: missing comparability_group — required before any chart or ranking may use this series (spec §18C)`);
   if (!s.period_type) errors.push(`series ${s.series_code}: missing period_type`);
 
@@ -86,11 +86,11 @@ for (const s of series) {
 
 // ------------------------------------------------------------- observations
 const seriesById = new Map(series.map(s => [s.series_id, s]));
-const validGeoMethod = new Set(['direct', 'aggregated', 'interpolated', 'modelled']);
+const validGeoMethod = new Set(['direct', 'aggregated', 'interpolated', 'proxy', 'modelled']);
 const validStatStatus = new Set(['final', 'provisional', 'revised', 'projected', 'estimated', 'suppressed']);
 function deriveBadge(geographic_method, source_class) {
   if (source_class === 'external') return 'E';
-  return { direct: 'A', aggregated: 'B', interpolated: 'C', modelled: 'D' }[geographic_method] ?? null;
+  return { direct: 'A', aggregated: 'B', interpolated: 'C', proxy: 'C', modelled: 'D' }[geographic_method] ?? null;
 }
 
 const obsKeys = new Set();
@@ -107,9 +107,12 @@ for (const o of observations) {
   if (!validStatStatus.has(o.statistical_status)) errors.push(`observation ${o.observation_id}: invalid statistical_status`);
   if (o.statistical_status === 'suppressed' && !o.suppression_reason) errors.push(`observation ${o.observation_id}: suppressed without a suppression_reason`);
   if (o.geographic_method === 'interpolated' && !o.crosswalk_id) errors.push(`observation ${o.observation_id}: interpolated without a crosswalk_id`);
+  if (o.geographic_method === 'proxy' && !(o.notes || '').trim()) errors.push(`observation ${o.observation_id}: proxy without explanatory notes`);
 
   // Badge must be re-derivable, never trusted as stored (mirrors the geometry
-  // quality_status remediation).
+  // quality_status remediation). A proxy is Class C: an official value attached
+  // to a different, explicitly documented geographic concept without pretending
+  // the source published a direct value for the registry geography.
   const expectedBadge = deriveBadge(o.geographic_method, o.source_class);
   if (o.badge !== expectedBadge) errors.push(`observation ${o.observation_id}: stored badge ${o.badge} does not match derived badge ${expectedBadge}`);
 
