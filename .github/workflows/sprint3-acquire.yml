@@ -5,6 +5,7 @@ on:
     branches: [data-sprint-3-historical-kenya]
     paths:
       - scripts/sprint3/acquire_sources.py
+      - scripts/sprint3/acquire_cob_history.py
       - .github/workflows/sprint3-acquire.yml
   workflow_dispatch:
 
@@ -15,7 +16,7 @@ jobs:
   acquire:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -53,18 +54,14 @@ jobs:
           old_report='    try: rr=get(report_url,timeout=180); report_hash=sha256(rr.content)\n    except Exception: rr=None; report_hash=""'
           assert old_report in s
           s=s.replace(old_report,'    rr=None; report_hash="official-report-transcription"',1)
-          needle='    if fy in COB_DIRECT_FALLBACK: candidates.append(COB_DIRECT_FALLBACK[fy])'
-          assert needle in s
-          extra='''    # OCoB uses WordPress Download Manager: the file target is commonly stored\n    # in data attributes/onclick markup rather than an href ending in .pdf.\n    for tag in soup.find_all(True):\n        for attr in ("href","data-downloadurl","data-url","onclick"):\n            val=str(tag.get(attr) or "")\n            for hit in re.findall(r"(?:https?://[^\\\"'<>\\s]+)?\\?wpdmdl=\\d+[^\\\"'<>\\s]*",val,re.I):\n                candidates.append(urljoin(pr.url,hit))\n    for hit in re.findall(r"(?:https?://[^\\\"'<>\\s]+)?\\?wpdmdl=\\d+[^\\\"'<>\\s]*",pr.text,re.I):\n        candidates.append(urljoin(pr.url,hit))\n'''
-          s=s.replace(needle,extra+needle,1)
-          s=s.replace('"Taita/Taveta":[','"Taita Taveta":[',1)
-          s=s.replace('"Elgeyo-Marakwet":[','"Elgeyo/Marakwet":[',1)
 
-          cob_marker='def parse_cob_pdf(content: bytes, fy: str):\n'
-          cob_helper='''COB_2013_ANNEX_ORDER = [\n    "Baringo","Bomet","Bungoma","Busia","Elgeyo/Marakwet","Embu","Garissa","Homa Bay","Isiolo","Kajiado","Kakamega","Kericho","Kiambu","Kilifi","Kirinyaga",\n    "Kisii","Kisumu","Kitui","Kwale","Laikipia","Lamu","Machakos","Makueni","Mandera","Marsabit","Meru","Migori","Mombasa","Murang'a","Nairobi",\n    "Nakuru","Nandi","Narok","Nyamira","Nyandarua","Nyeri","Samburu","Siaya","Taita Taveta","Tana River","Tharaka-Nithi","Trans Nzoia","Turkana","Uasin Gishu","Vihiga",\n    "Wajir","West Pokot"\n]\n\ndef parse_cob_2013_annex(content: bytes):\n    """Parse Annex 3 of the first devolution-year report. Those four annex pages\n    are rotated 180 degrees in the source PDF, so pdfplumber exposes metrics as\n    reversed strings and counties as columns. Decode the table explicitly rather\n    than pretending it has the later 9-column layout."""\n    found={}; offset=0\n    with pdfplumber.open(io.BytesIO(content)) as pdf:\n        for page_index,count in zip([223,224,225,226],[15,15,15,2]):\n            tables=pdf.pages[page_index].extract_tables() or []\n            if not tables: raise RuntimeError(f"2013/14: Annex 3 page {page_index+1} has no extractable table")\n            table=max(tables,key=lambda t: sum(len(r or []) for r in t))\n            if len(table)<15: raise RuntimeError(f"2013/14: Annex 3 page {page_index+1} table has {len(table)} metric rows")\n            def row_values(row_i):\n                values=[]\n                for cell in table[row_i]:\n                    raw=''.join(str(cell or '').split())\n                    if not raw: continue\n                    rev=raw[::-1]\n                    if not re.fullmatch(r'-?\\d[\\d,]*(?:\\.\\d+)?%?',rev): continue\n                    value=clean_num(rev)\n                    if value is not None: values.append(value)\n                if len(values)<count:\n                    raise RuntimeError(f"2013/14 Annex 3 page {page_index+1} row {row_i}: decoded {len(values)}/{count} values")\n                return values[:count]\n            budget=row_values(12)\n            expenditure=row_values(6)\n            dev_abs=row_values(4)\n            overall_abs=row_values(3)\n            for j in range(count):\n                name=COB_2013_ANNEX_ORDER[offset+j]\n                found[name]={\n                    "budget_total_ksh_mn":budget[j],\n                    "expenditure_total_ksh_mn":expenditure[j],\n                    "development_absorption_pct":dev_abs[j],\n                    "overall_absorption_pct":overall_abs[j],\n                    "source_page":page_index+1\n                }\n            offset += count\n    if len(found)!=47: raise RuntimeError(f"2013/14 Annex 3 decoded {len(found)}/47 counties")\n    b=found["Baringo"]; n=found["Nairobi"]\n    if not (abs(b["budget_total_ksh_mn"]-3644.9)<0.2 and abs(b["overall_absorption_pct"]-77.1)<0.1 and abs(b["development_absorption_pct"]-30.7)<0.1):\n        raise RuntimeError(f"2013/14 Baringo Annex 3 anchor failed: {b}")\n    if not (abs(n["budget_total_ksh_mn"]-25225.2)<0.2 and abs(n["expenditure_total_ksh_mn"]-17774.9)<0.2 and abs(n["overall_absorption_pct"]-70.5)<0.1 and abs(n["development_absorption_pct"]-24.7)<0.1):\n        raise RuntimeError(f"2013/14 Nairobi Annex 3 anchor failed: {n}")\n    return found,224\n\n'''
-          assert cob_marker in s
-          s=s.replace(cob_marker,cob_helper+cob_marker,1)
-          s=s.replace(cob_marker,cob_marker+'    if fy == "2013/14": return parse_cob_2013_annex(content)\n',1)
+          # The annual CoB report formats vary materially by year. Delegate that
+          # source to its explicit annex / county-section parser rather than trying
+          # to force one generic early-pages table layout.
+          old_call='    acquire_cob(manifest["sources"])\n'
+          new_call='    from acquire_cob_history import acquire_cob_history\n    acquire_cob_history(manifest["sources"], ROOT, OUT)\n'
+          assert old_call in s
+          s=s.replace(old_call,new_call,1)
           p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
@@ -74,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/sprint3/acquire_sources.py data/sprint3/*.csv data/sprint3/sources.json
+          git add scripts/sprint3/acquire_sources.py scripts/sprint3/acquire_cob_history.py data/sprint3/*.csv data/sprint3/sources.json
           if git diff --cached --quiet; then
             echo "No acquisition changes."
           else
