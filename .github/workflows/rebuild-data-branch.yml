@@ -1,0 +1,42 @@
+name: Rebuild data on architecture branch
+
+on:
+  push:
+    branches: [fix-data-architecture-ci-ui]
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rebuild native data products
+        run: npm run build:data
+      - name: Commit deterministic generated registries
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/catalogue/registry/*.json data/catalogue/registry/*.csv
+          git add data/indicators/seed/derived/area-computed.json
+          git add data/indicators/registry/units.json data/indicators/registry/units.csv
+          git add data/indicators/registry/indicators.json data/indicators/registry/indicators.csv
+          git add data/indicators/registry/series.json data/indicators/registry/series.csv
+          git add data/indicators/registry/observations.json data/indicators/registry/observations.csv
+          if git diff --cached --quiet; then
+            echo "Generated registries already current."
+          else
+            git commit -m "chore(data): rebuild native registries"
+            git push origin HEAD:fix-data-architecture-ci-ui
+          fi
