@@ -25,26 +25,15 @@ jobs:
           python-version: '3.12'
       - name: Install acquisition dependencies
         run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Use a standard browser user agent for public statistical pages
+      - name: Harden official HTML acquisition
         run: |
           python - <<'PY'
           from pathlib import Path
           p=Path('scripts/sprint3/acquire_sources.py')
           s=p.read_text()
-          start='UA = "Kenya-Data-Atlas/0.9 source-acquisition (+https://github.com/dansamuka/kenya-data-atlas)"'
-          replacement='UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36"'
-          assert start in s
-          p.write_text(s.replace(start,replacement))
-          PY
-      - name: Probe CBK page response
-        run: |
-          python - <<'PY'
-          import requests,re
-          u='https://www.centralbank.go.ke/inflation-rates/'
-          r=requests.get(u,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'},timeout=30)
-          print('status',r.status_code,'final',r.url,'len',len(r.text),'type',r.headers.get('content-type'))
-          print('has2026', '2026' in r.text, 'tables', len(re.findall(r'<table',r.text,re.I)))
-          print(r.text[:2500].replace('\n',' ')[:2500])
+          s=s.replace('UA = "Kenya-Data-Atlas/0.9 source-acquisition (+https://github.com/dansamuka/kenya-data-atlas)"','UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36"')
+          s=s.replace('pd.read_html(io.StringIO(r.text))', "pd.read_html(io.StringIO(r.text), flavor='lxml')")
+          p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
         run: python scripts/sprint3/acquire_sources.py
