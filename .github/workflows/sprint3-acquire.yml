@@ -32,7 +32,11 @@ jobs:
           p=Path('scripts/sprint3/acquire_sources.py')
           s=p.read_text()
           s=s.replace('UA = "Kenya-Data-Atlas/0.9 source-acquisition (+https://github.com/dansamuka/kenya-data-atlas)"','UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36"')
-          s=s.replace('pd.read_html(io.StringIO(r.text))', "pd.read_html(io.StringIO(r.text), flavor='lxml')")
+          marker='def acquire_cpi(manifest):\n'
+          helper='''def html_tables(raw):\n    """Parse the simple public CBK/EPRA HTML tables without pandas read_html quirks."""\n    soup=BeautifulSoup(raw,"lxml")\n    out=[]\n    for table in soup.find_all("table"):\n        matrix=[]\n        for tr in table.find_all("tr"):\n            cells=[c.get_text(" ",strip=True) for c in tr.find_all(["th","td"])]\n            if cells: matrix.append(cells)\n        if len(matrix)<2: continue\n        width=max(map(len,matrix))\n        matrix=[row+[""]*(width-len(row)) for row in matrix]\n        header=[]; seen={}\n        for i,h in enumerate(matrix[0]):\n            h=h.strip() or f"column_{i+1}"\n            seen[h]=seen.get(h,0)+1\n            header.append(h if seen[h]==1 else f"{h}_{seen[h]}")\n        out.append(flatten_cols(pd.DataFrame(matrix[1:],columns=header)))\n    return out\n\n'''
+          assert marker in s
+          s=s.replace(marker,helper+marker,1)
+          s=s.replace('pd.read_html(io.StringIO(r.text))','html_tables(r.text)')
           p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
