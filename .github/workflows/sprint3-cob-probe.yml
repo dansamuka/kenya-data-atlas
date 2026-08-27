@@ -8,16 +8,16 @@ on:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml pdfplumber
-      - name: Inspect 2013/14 OCoB table layout
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml
+      - name: Download FY2013/14 OCoB report
         run: |
           python - <<'PY'
-          import io,re,requests,pdfplumber
+          import re,requests
           from bs4 import BeautifulSoup
           from urllib.parse import urljoin
           url='https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-20132014/'
@@ -27,21 +27,28 @@ jobs:
               for attr in ('href','data-downloadurl','data-url','onclick'):
                   val=str(tag.get(attr) or '')
                   for hit in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I): c.append(urljoin(r.url,hit))
-          c=list(dict.fromkeys(c)); print('candidates',c)
+          c=list(dict.fromkeys(c)); print(c)
           q=s.get(c[0],timeout=90,allow_redirects=True); assert q.content[:5]==b'%PDF-'
-          counties=['Mombasa','Kwale','Kilifi','Nairobi','Kiambu','Nakuru','Kakamega','Turkana']
+          open('/tmp/cob.pdf','wb').write(q.content)
+          print('bytes',len(q.content))
+          PY
+      - name: Inspect layout text
+        shell: bash
+        run: |
+          command -v pdftotext
+          pdftotext -layout /tmp/cob.pdf /tmp/cob.txt
+          echo "TEXT LINES: $(wc -l < /tmp/cob.txt)"
+          python - <<'PY'
+          import re
+          text=open('/tmp/cob.txt',errors='replace').read().splitlines()
+          pats=[r'budget allocation',r'absorption rate',r'total expenditure',r'development expenditure',r'recurrent expenditure',r'county governments']
           hits=[]
-          with pdfplumber.open(io.BytesIO(q.content)) as pdf:
-              print('pages',len(pdf.pages))
-              for i,p in enumerate(pdf.pages):
-                  t=p.extract_text(x_tolerance=2,y_tolerance=3) or ''
-                  low=t.lower()
-                  score=sum(x.lower() in low for x in counties)
-                  kw=sum(x in low for x in ['budget allocation','absorption','total expenditure','county governments','development expenditure','recurrent expenditure'])
-                  if score>=3 or kw>=3:
-                      compact=' '.join(t.split())
-                      hits.append((i+1,score,kw,compact[:1200]))
-              print('candidate_pages',len(hits))
-              for x in hits[:40]: print('PAGE',x[0],'COUNTY_SCORE',x[1],'KW',x[2],x[3])
-          if not hits: raise SystemExit('no candidate pages')
+          for i,line in enumerate(text):
+              low=line.lower()
+              if sum(bool(re.search(p,low)) for p in pats)>=2:
+                  a=max(0,i-4); b=min(len(text),i+12)
+                  hits.append((i+1,'\n'.join(text[a:b])))
+          print('HITS',len(hits))
+          for n,s in hits[:30]: print('\n=== LINE',n,'===\n',s[:3000])
+          if not hits: raise SystemExit('no layout-text candidates')
           PY
