@@ -38,7 +38,7 @@ jobs:
           s=s.replace(marker,helper+marker,1)
           s=s.replace('pd.read_html(io.StringIO(r.text))','html_tables(r.text)')
           old='''    try: df=pd.read_csv(io.StringIO(raw))\n    except Exception: df=pd.read_csv(io.StringIO(raw),engine="python")\n    df=flatten_cols(df)'''
-          new='''    df=None\n    for skip in range(0,20):\n        try: candidate=flatten_cols(pd.read_csv(io.StringIO(raw),skiprows=skip))\n        except Exception: continue\n        header_text=" | ".join(candidate.columns)\n        if re.search(r"US\\s*DOLLAR|USD|UNITED STATES",header_text,re.I):\n            df=candidate; break\n    if df is None:\n        print("FX raw head:\\n"+"\\n".join(raw.splitlines()[:12]))\n        raise RuntimeError("Unable to locate CBK FX currency header row")'''
+          new='''    df=None\n    for skip in range(0,20):\n        try: candidate=flatten_cols(pd.read_csv(io.StringIO(raw),skiprows=skip))\n        except Exception: continue\n        header_text=" | ".join(candidate.columns)\n        if re.search(r"US\\s*DOLLAR|USD|UNITED STATES",header_text,re.I):\n            df=candidate; break\n    if df is None:\n        print("FX raw head:\\n"+"\\n".join(raw.splitlines()[:12]))\n        raise RuntimeError("Unable to locate CBK FX currency header row")\n    rename={}\n    for c in df.columns:\n        if re.search(r"UNITED STATES|US\\s*DOLLAR|USD",c,re.I): rename[c]="USD"\n    df=df.rename(columns=rename)'''
           assert old in s
           s=s.replace(old,new,1)
           p.write_text(s)
