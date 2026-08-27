@@ -8,35 +8,65 @@ on:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 20
     steps:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml pdfplumber
-      - name: Inspect FY2014/15 annex pages
+      - name: Probe annual CoB annex structures
         run: |
           python - <<'PY'
           import io,re,requests,pdfplumber
           from bs4 import BeautifulSoup
           from urllib.parse import urljoin
-          url='https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201415/'
+          PAGES={
+          '2014/15':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201415/',
+          '2015/16':'https://cob.go.ke/download/annual-county-budget-implementation-review-report-fy-2015-16/',
+          '2016/17':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201617/',
+          '2017/18':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-for-fy-2017-18/',
+          '2018/19':'https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/',
+          '2019/20':'https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-fy-2019-20/',
+          '2020/21':'https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-2020-21/',
+          '2021/22':'https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-for-the-fy-2021-22/',
+          '2022/23':'https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-fy-2022-23/',
+          '2023/24':'https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-2023-24/'}
+          names=['mombasa','kwale','kilifi','tana river','lamu','taita taveta','garissa','wajir','mandera','marsabit','isiolo','meru','tharaka nithi','embu','kitui','machakos','makueni','nyandarua','nyeri','kirinyaga','muranga','kiambu','turkana','west pokot','samburu','trans nzoia','uasin gishu','elgeyo marakwet','nandi','baringo','laikipia','nakuru','narok','kajiado','kericho','bomet','kakamega','vihiga','bungoma','busia','siaya','kisumu','homa bay','migori','kisii','nyamira','nairobi']
+          def norm(x): return re.sub(r'[^a-z0-9]+',' ',x.lower()).strip().replace('nairobi city','nairobi')
+          def score_row(row,rev=False):
+              vals=[norm((str(c or '')[::-1] if rev else str(c or ''))) for c in row]
+              return sum(any(n==v or n in v for n in names) for v in vals)
           s=requests.Session(); s.headers['User-Agent']='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36'
-          r=s.get(url,timeout=60); soup=BeautifulSoup(r.text,'lxml'); c=[]
-          for tag in soup.find_all(True):
-              for attr in ('href','data-downloadurl','data-url','onclick'):
-                  val=str(tag.get(attr) or '')
-                  c += [urljoin(r.url,x) for x in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I)]
-          c=list(dict.fromkeys(c)); print(c)
-          q=s.get(c[0],timeout=120,allow_redirects=True); assert q.content[:5]==b'%PDF-'
-          with pdfplumber.open(io.BytesIO(q.content)) as pdf:
-              print('pages',len(pdf.pages))
-              for i in range(max(0,len(pdf.pages)-30),len(pdf.pages)):
-                  p=pdf.pages[i]; t=p.extract_text(x_tolerance=2,y_tolerance=3) or ''
-                  print('\n=== PAGE',i+1,'===\n',' '.join(t.split())[:4500])
-                  tables=p.extract_tables() or []
-                  print('TABLES',len(tables))
-                  for ti,table in enumerate(tables[:2]):
-                      print('TABLE',ti,'ROWS',len(table),'WIDTH',max((len(r or []) for r in table),default=0))
-                      for row in table[:20]: print(row)
+          for fy,url in PAGES.items():
+              try:
+                  r=s.get(url,timeout=60); soup=BeautifulSoup(r.text,'lxml'); cand=[]
+                  for tag in soup.find_all(True):
+                      for attr in ('href','data-downloadurl','data-url','onclick'):
+                          val=str(tag.get(attr) or '')
+                          cand += [urljoin(r.url,x) for x in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I)]
+                  for a in soup.find_all('a',href=True):
+                      h=urljoin(r.url,a['href'])
+                      if '.pdf' in h.lower(): cand.append(h)
+                  cand=list(dict.fromkeys(cand))
+                  if fy=='2021/22': cand.append('https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf')
+                  q=None; chosen=None
+                  for x in cand:
+                      try:
+                          z=s.get(x,timeout=120,allow_redirects=True)
+                          if z.content[:4]==b'%PDF' and len(z.content)>100000: q=z; chosen=x; break
+                      except Exception: pass
+                  if q is None: print('RESULT',fy,'NO_PDF',cand[:4]); continue
+                  best=None
+                  with pdfplumber.open(io.BytesIO(q.content)) as pdf:
+                      for i in range(max(0,len(pdf.pages)-60),len(pdf.pages)):
+                          for ti,t in enumerate(pdf.pages[i].extract_tables() or []):
+                              for ri,row in enumerate(t):
+                                  a=score_row(row,False); b=score_row(row,True); sc=max(a,b)
+                                  if best is None or sc>best[0]: best=(sc,'rev' if b>a else 'normal',i+1,ti,ri,len(t),max((len(r or []) for r in t),default=0),t)
+                  sc,orient,page,ti,ri,nrows,width,t=best
+                  print('RESULT',fy,'pages',len(pdf.pages),'bytes',len(q.content),'page',page,'table',ti,'county_row',ri,'score',sc,'orient',orient,'shape',nrows,width,'url',chosen)
+                  for j,row in enumerate(t):
+                      if j<18: print('ROW',j,row[:4])
+              except Exception as e:
+                  print('RESULT',fy,'ERROR',repr(e))
           PY
