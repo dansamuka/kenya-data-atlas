@@ -47,12 +47,12 @@ jobs:
           addition=anchor+'      "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf",\n'
           assert anchor in s
           s=s.replace(anchor,addition,1)
-          # EPRA's live pump-price page is intermittently unreachable from hosted CI.
-          # The six direct Nairobi pricing-cycle values below are already transcribed
-          # from the official 2025/26 EPRA statistics report, so do not make release
-          # completion depend on a live HTML page.
-          s=s.replace('    r=get(url,timeout=120)\n    tables=[flatten_cols(x) for x in pd.read_html(io.StringIO(r.text))]\n    best=max(tables,key=lambda d:len(d)) if tables else None','    r=None\n    tables=[]\n    best=None',1)
-          s=s.replace('    try: rr=get(report_url,timeout=180); report_hash=sha256(rr.content)\n    except Exception: rr=None; report_hash=""','    rr=None; report_hash="official-report-transcription"',1)
+          old_epra='    r=get(url,timeout=120)\n    tables=[flatten_cols(x) for x in html_tables(r.text)]\n    best=max(tables,key=lambda d:len(d)) if tables else None'
+          assert old_epra in s
+          s=s.replace(old_epra,'    r=None\n    tables=[]\n    best=None',1)
+          old_report='    try: rr=get(report_url,timeout=180); report_hash=sha256(rr.content)\n    except Exception: rr=None; report_hash=""'
+          assert old_report in s
+          s=s.replace(old_report,'    rr=None; report_hash="official-report-transcription"',1)
           p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
