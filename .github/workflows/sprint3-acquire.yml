@@ -55,17 +55,12 @@ jobs:
           assert old_report in s
           s=s.replace(old_report,'    rr=None; report_hash="official-report-transcription"',1)
 
-          # The annual CoB report formats vary materially by year. Delegate that
-          # source to its explicit annex / county-section parser rather than trying
-          # to force one generic early-pages table layout.
           old_call='    acquire_cob(manifest["sources"])\n'
           new_call='    from acquire_cob_history import acquire_cob_history\n    acquire_cob_history(manifest["sources"], ROOT, OUT)\n'
           assert old_call in s
           s=s.replace(old_call,new_call,1)
           p.write_text(s)
 
-          # Some annual reports state the approved budget as e.g. "Approved
-          # Supplementary Budget was 13.52 billion" without repeating "Kshs".
           q=Path('scripts/sprint3/acquire_cob_history.py')
           t=q.read_text()
           budget_anchor='''    budget = _first_money(text, [\n        r"(?:approved|revised)(?:\\s+annual)?(?:\\s+(?:revised|supplementary))?\\s+budget(?:\\s+for\\s+(?:the\\s+)?county)?\\s+(?:was|is|of|amounted\\s+to)?\\s*(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
@@ -73,22 +68,27 @@ jobs:
           assert budget_anchor in t
           t=t.replace(budget_anchor,budget_replacement,1)
 
-          # CoB's standard Overall Expenditure Review often reads "The County spent
-          # Kshs.X billion, which was ...".
           expenditure_anchor='''    expenditure = _first_money(text, [\n        r"spent\\s+a\\s+total\\s+of\\s+(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
           expenditure_replacement='''    expenditure = _first_money(text, [\n        r"(?:the\\s+county\\s+)?spent\\s+(?:a\\s+total\\s+of\\s+)?(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)(?:\\s*,|\\s+which|\\s+on|\\s+during|\\s+in)",\n        r"spent\\s+a\\s+total\\s+of\\s+(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
           assert expenditure_anchor in t
           t=t.replace(expenditure_anchor,expenditure_replacement,1)
 
-          # Bound narrative extraction to the actual county section. The report may
-          # begin the next county inside the generic six-page margin; allowing that
-          # text into the current window can pair one county's budget with another's
-          # expenditure. Trim the opening page to the current heading and stop before
-          # the first later page containing any other county-section heading.
-          window_anchor='''        window = "\\n".join(texts[page_i:min(page_i + 6, len(texts))])\n        value = _extract_narrative(window, county, fy)\n'''
-          window_replacement='''        first_page = texts[page_i]\n        heading_match = None\n        for variant in variants:\n            v = re.escape(_norm(variant))\n            m = re.search(rf"(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\s+)?{v}\\s+County(?:\\s+Government)?\\b", first_page, re.I)\n            if m and (heading_match is None or m.start() < heading_match.start()):\n                heading_match = m\n        if heading_match:\n            first_page = first_page[heading_match.start():]\n        window_pages = [first_page]\n        for j in range(page_i + 1, min(page_i + 6, len(texts))):\n            candidate_page = texts[j]\n            next_section = False\n            for other_county, other_variants in COUNTY_VARIANTS.items():\n                if other_county == county:\n                    continue\n                for other_variant in other_variants:\n                    ov = re.escape(_norm(other_variant))\n                    if re.search(rf"(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\s+)?{ov}\\s+County(?:\\s+Government)?\\b", candidate_page, re.I):\n                        next_section = True\n                        break\n                if next_section:\n                    break\n            if next_section:\n                break\n            window_pages.append(candidate_page)\n        window = "\\n".join(window_pages)\n        value = _extract_narrative(window, county, fy)\n'''
-          assert window_anchor in t
-          t=t.replace(window_anchor,window_replacement,1)
+          # Replace the section locator. True county openings are followed by an
+          # "Overview of the FY ... Budget" subsection. Later project/table headings
+          # can also contain an exact county name, so explicitly reward the overview
+          # context and prefer the earliest equally strong real section after the TOC.
+          find_start=t.index('def _find_section(')
+          find_end=t.index('\ndef _extract_narrative',find_start)
+          new_find='''def _section_heading_pos(raw: str, variants: list[str]):\n    best = None\n    for variant in variants:\n        v = re.escape(_norm(variant))\n        m = re.search(rf"(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\s+)?{v}\\s+County(?:\\s+Government)?\\b", raw, re.I)\n        if m and (best is None or m.start() < best):\n            best = m.start()\n    return best\n\n\ndef _find_section(texts: list[str], variants: list[str]) -> int:\n    best = None\n    for page_i, raw in enumerate(texts):\n        if page_i < 10:\n            continue\n        lines = [_norm(x) for x in raw.splitlines() if _norm(x)]\n        for line_i, line in enumerate(lines):\n            for variant in variants:\n                v = re.escape(_norm(variant))\n                exact = re.fullmatch(rf"(?:\\d+(?:\\.\\d+)*\\s+)?{v}\\s+County(?:\\s+Government)?", line, re.I)\n                start = re.match(rf"^(?:\\d+(?:\\.\\d+)*\\s+)?{v}\\s+County(?:\\s+Government)?\\b", line, re.I)\n                if not exact and not (start and len(line) <= len(variant) + 70):\n                    continue\n                base = 120 if exact else 100\n                nearby = " ".join(lines[line_i:min(line_i + 10, len(lines))])\n                overview = 90 if re.search(r"overview\\s+of\\s+(?:the\\s+)?fy", nearby, re.I) else 0\n                numbered = 20 if re.match(r"^\\d+(?:\\.\\d+)+\\s+", line) else 0\n                candidate = (base + overview + numbered, -page_i, -line_i)\n                if best is None or candidate > best[0]:\n                    best = (candidate, page_i)\n    if best is not None:\n        return best[1]\n    for page_i, raw in enumerate(texts):\n        if page_i < 10:\n            continue\n        head = _norm(raw[:1800])\n        if "budget" not in head.lower():\n            continue\n        for variant in variants:\n            if re.search(rf"\\b{re.escape(_norm(variant))}\\s+County\\b", head, re.I):\n                print("CoB heading fallback", variant, "page", page_i + 1)\n                return page_i\n    raise RuntimeError(f"county section heading not found for {variants}")\n\n'''
+          t=t[:find_start]+new_find+t[find_end+1:]
+
+          # Two-pass slicing: first locate all 47 true starts, then extract each
+          # section only up to the next true start. If the next section begins partway
+          # through a page, retain the prefix before its heading for the current county.
+          parse_start=t.index('def _parse_narrative_year(')
+          parse_end=t.index('\ndef _validate_year',parse_start)
+          new_parse='''def _parse_narrative_year(content: bytes, fy: str, county_names: list[str]) -> dict[str, dict]:\n    with pdfplumber.open(io.BytesIO(content)) as pdf:\n        texts = [p.extract_text(x_tolerance=2, y_tolerance=3) or "" for p in pdf.pages]\n    section_pages = {}\n    for county in county_names:\n        variants = COUNTY_VARIANTS.get(county, [county])\n        section_pages[county] = _find_section(texts, variants)\n\n    reverse = {}\n    for county, p in section_pages.items():\n        reverse.setdefault(p, []).append(county)\n    collisions = {p + 1: names for p, names in reverse.items() if len(names) > 1}\n    if collisions:\n        raise RuntimeError(f"{fy}: duplicate county section page(s): {collisions}")\n\n    ordered = sorted((page_i, county) for county, page_i in section_pages.items())\n    found = {}\n    for idx, (page_i, county) in enumerate(ordered):\n        variants = COUNTY_VARIANTS.get(county, [county])\n        start_pos = _section_heading_pos(texts[page_i], variants)\n        first_page = texts[page_i][start_pos if start_pos is not None else 0:]\n        window_pages = [first_page]\n        hard_stop = min(page_i + 6, len(texts))\n        if idx + 1 < len(ordered):\n            next_page, next_county = ordered[idx + 1]\n            if next_page < hard_stop:\n                window_pages.extend(texts[page_i + 1:next_page])\n                next_variants = COUNTY_VARIANTS.get(next_county, [next_county])\n                next_pos = _section_heading_pos(texts[next_page], next_variants)\n                if next_pos is not None and next_pos > 0:\n                    prefix = texts[next_page][:next_pos]\n                    if _norm(prefix):\n                        window_pages.append(prefix)\n            else:\n                window_pages.extend(texts[page_i + 1:hard_stop])\n        else:\n            window_pages.extend(texts[page_i + 1:hard_stop])\n        window = "\\n".join(window_pages)\n        value = _extract_narrative(window, county, fy)\n        value["source_page"] = page_i + 1\n        found[county] = value\n    return found\n\n'''
+          t=t[:parse_start]+new_parse+t[parse_end+1:]
           q.write_text(t)
           PY
       - name: Acquire and validate source snapshots
