@@ -8,6 +8,7 @@ on:
       - scripts/sprint3/harden_acquisition_v5.py
       - scripts/sprint3/harden_acquisition_v6.py
       - scripts/sprint3/harden_acquisition_v7.py
+      - scripts/sprint3/harden_acquisition_v8.py
   workflow_dispatch:
 
 jobs:
@@ -20,11 +21,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Inspect FY2019/20 chapter markers
+      - name: Validate FY2019/20 all-county parser
         run: |
-          python scripts/sprint3/harden_acquisition_v7.py
+          python scripts/sprint3/harden_acquisition_v8.py
           python - <<'PY'
-          import io, json, re, sys
+          import json, sys
           from pathlib import Path
           sys.path.insert(0, 'scripts/sprint3')
           import acquire_cob_history as cob
@@ -35,25 +36,9 @@ jobs:
           session=cob.requests.Session()
           session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
           pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES['2019/20'],'2019/20')
-          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
-              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
-          floor=cob._find_chapter_floor(texts)
-          order={name:i+2 for i,name in enumerate(cob.COB_2013_ORDER)}
-          print('PDF',pdf_url,'pages',len(texts),'floor',floor+1)
-
-          for county in ['Kiambu','Kilifi','Kirinyaga','Kisii','Narok','Nyamira','Nyandarua']:
-              ch=order[county]
-              variants=cob.COUNTY_VARIANTS.get(county,[county])
-              found=cob._find_section(texts,variants,'2019/20',ch,floor)
-              pos=cob._section_heading_pos(texts[found],variants,ch)
-              print('\nFINDER',county,'chapter',ch,'page',found+1,'pos',pos)
-              raw=texts[found]
-              print(cob._norm(raw[max(0,(pos or 0)-250):min(len(raw),(pos or 0)+1400)]))
-              pat=rf'3\s*\.\s*{ch}\s*\.\s*(\d+)\b'
-              hits=[]
-              for pi,t in enumerate(texts[floor:],start=floor):
-                  ms=list(re.finditer(pat,t,re.I))
-                  if ms:
-                      hits.append((pi+1,[m.group(1) for m in ms[:8]],cob._norm(t[max(0,ms[0].start()-100):min(len(t),ms[0].start()+450)])))
-              print('MARKERS',hits[:12])
+          values=cob._parse_narrative_year(content,'2019/20',counties)
+          cob._validate_year('2019/20',values,counties)
+          print('FY2019/20 PASS',len(values),'counties',pdf_url)
+          for county in ['Busia','Kilifi','Kirinyaga','Kisii','Narok','Nyamira','Garissa','Homa Bay','Mandera','Meru',"Murang'a",'Nairobi','Siaya','Vihiga']:
+              print(county,values[county])
           PY
