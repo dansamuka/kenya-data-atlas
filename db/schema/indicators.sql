@@ -1,7 +1,8 @@
 -- Kenya Data Atlas indicator, series and observation schema (PostgreSQL).
 --
 -- Implements spec sections 17 (indicator), 18A (series), 18B (unit and period),
--- 18C (series breaks), 20 (observation, two-axis quality model), 21 (vintages).
+-- 18C (series breaks), 20 (observation, two-axis quality model), 21 (vintages),
+-- plus Placeholder Category Specification v2 lifecycle/profile taxonomy fields.
 --
 -- Design notes carried over from the geography schema remediation:
 --   - quality is DERIVED from two orthogonal axes (geographic_method,
@@ -24,7 +25,7 @@ CREATE TABLE unit (
   code text NOT NULL UNIQUE,              -- persons, kes, kes_million, percent, per_1000, index, ratio, km2
   name text NOT NULL,
   symbol text,
-  dimension text NOT NULL CHECK (dimension IN ('count', 'currency', 'ratio', 'rate', 'index', 'area', 'duration')),
+  dimension text NOT NULL CHECK (dimension IN ('count', 'currency', 'ratio', 'rate', 'index', 'area', 'duration', 'category', 'length', 'climate')),
   scale_factor numeric NOT NULL DEFAULT 1,  -- multiplier to the dimension's base unit
   decimal_places smallint NOT NULL DEFAULT 0,
   currency_code text                       -- ISO 4217, where dimension = currency
@@ -50,7 +51,29 @@ CREATE TABLE indicator (
   methodology_url text,
   comparable boolean NOT NULL DEFAULT true,
   active boolean NOT NULL DEFAULT true,
-  created_at timestamptz NOT NULL DEFAULT now()
+
+  -- Placeholder Category Specification v2. A profile slot exists independently
+  -- of whether a series has been ingested. Lifecycle is self-enforcing in the
+  -- registry validator: planned/sourced => zero series; active => >=1 series.
+  lifecycle_status text NOT NULL DEFAULT 'active'
+    CHECK (lifecycle_status IN ('planned', 'sourced', 'active', 'retired')),
+  expected_source text,
+  expected_source_url text,
+  expected_availability_note text,
+  tab text NOT NULL DEFAULT 'economy'
+    CHECK (tab IN ('people', 'economy', 'health', 'finance', 'representation', 'infrastructure', 'resilience')),
+  applies_to_levels text[] NOT NULL DEFAULT '{}'::text[],
+  applies_to_geography_subset text,
+
+  -- Implementation metadata for two binding cross-cutting rules in v2:
+  -- sample-survey uncertainty must be rendered; sensitive indicators must not
+  -- be turned into editorial "worst offender" rankings.
+  requires_sampling_uncertainty boolean NOT NULL DEFAULT false,
+  ranking_allowed boolean NOT NULL DEFAULT true,
+
+  created_at timestamptz NOT NULL DEFAULT now(),
+  CHECK (applies_to_levels <@ ARRAY['county','constituency','ward']::text[]),
+  CHECK (tab <> 'resilience' OR applies_to_geography_subset IS NOT NULL)
 );
 
 -- ----------------------------------------------------------------- series
