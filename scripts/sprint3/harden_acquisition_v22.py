@@ -62,7 +62,7 @@ def main() -> None:
     # Explicit official prose used in FY2021/22+ (and some neighbouring layouts).
     # The returned percentage is still reconciled against any available official
     # development numerator/denominator by the existing downstream logic.
-    dev_anchor = '    dev_direct = _pct_candidates(text, [\n'
+    dev_anchor = '    dev_direct = _percent_candidates(text, [\n'
     if dev_anchor not in s:
         raise RuntimeError("Development absorption candidate anchor missing")
     s = s.replace(
