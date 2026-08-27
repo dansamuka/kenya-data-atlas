@@ -13,10 +13,28 @@
 .geo-summary-unit{margin-top:.65rem}
 .geo-tooltip-unit{display:flex!important;margin-top:.5rem;padding:.16rem .38rem!important;font-size:.55rem!important;color:#52605a!important;background:#f3f6f3!important;border-color:#d9e0db!important}
 
+/* The choropleth legend owns one compact scale-unit label. It changes
+   synchronously with the selected indicator while the JS layer continues to
+   provide the longer registry-derived unit description elsewhere. */
+#geo-legend::before{display:inline-flex;align-items:center;align-self:center;width:max-content;padding:.16rem .4rem;border:1px solid rgba(18,60,50,.13);border-radius:999px;background:rgba(18,60,50,.045);color:#42524b;font-size:.57rem;font-weight:700;letter-spacing:.025em;line-height:1.2;white-space:nowrap;margin-right:.18rem}
+.geo-section:has(#geo-indicator option[value="IND-POPULATION"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-REGISTERED-VOTERS"]:checked) #geo-legend::before{content:"Scale · persons"}
+.geo-section:has(#geo-indicator option[value="IND-CPI-INFLATION"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-CBR"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-TBILL-91"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-COUNTY-BUDGET-ABSORPTION"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-COUNTY-DEVELOPMENT-ABSORPTION"]:checked) #geo-legend::before{content:"Scale · %"}
+.geo-section:has(#geo-indicator option[value="IND-USD-KES"]:checked) #geo-legend::before{content:"Scale · KES/USD"}
+.geo-section:has(#geo-indicator option[value="IND-LAND-AREA"]:checked) #geo-legend::before{content:"Scale · km²"}
+.geo-section:has(#geo-indicator option[value="IND-FUEL-PETROL"]:checked) #geo-legend::before{content:"Scale · KES/L"}
+.geo-section:has(#geo-indicator option[value="IND-GCP-CURRENT"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-COUNTY-BUDGET-TOTAL"]:checked) #geo-legend::before,
+.geo-section:has(#geo-indicator option[value="IND-COUNTY-EXPENDITURE-TOTAL"]:checked) #geo-legend::before{content:"Scale · KSh mn"}
+
 .series-unit-chip{margin:.35rem 0 .2rem}
 .series-unit-value{display:block}
 
 @media (max-width:600px){
   .geo-unit-context strong{font-size:.61rem}
-  .unit-chip{font-size:.55rem}
+  .unit-chip,#geo-legend::before{font-size:.55rem}
 }
