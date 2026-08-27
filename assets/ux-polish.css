@@ -1,0 +1,95 @@
+/* Kenya Data Atlas — UX polish layer
+ * Implements the 27 Aug 2026 UI/UX review without changing data semantics.
+ */
+:root{
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
+  --space-6:1.5rem;--space-8:2rem;--space-12:3rem;--space-16:4rem;
+  --radius-sm:8px;--radius-md:12px;--focus:#0b1f18;
+}
+
+/* Canonical interaction treatment for fact/data cards. Existing layout borders
+   remain intact; this layer makes equivalent components behave consistently. */
+.kda-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;background-color:#fff}
+.kda-card:focus-within{outline:3px solid rgba(31,90,73,.16);outline-offset:2px}
+.metric-card.kda-card:hover,.quick-facts article.kda-card:hover,.dataset.kda-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(22,43,35,.08)}
+
+/* Stronger A/B separation and flagged-card glanceability. */
+.badge.a{background:#dcebdd;color:#205b39;border:1px solid #a8cbb0}
+.badge.b{background:#e2e9f5;color:#294f7a;border:1px solid #b4c5df}
+.badge.c{border:1px solid #c8bce0}.badge.d{border:1px solid #e1b993}.badge.e{border:1px solid #d8a4a0}
+.metric-card:has(.badge.e){box-shadow:inset 0 0 0 1px rgba(182,65,55,.18)}
+
+/* Hero sparse history: intentional empty state instead of two giant bars. */
+.sparkline.is-sparse{height:auto;min-height:78px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:var(--space-4);background:rgba(255,255,255,.045)}
+.sparkline-sparse-note{display:flex;flex-direction:column;gap:.2rem;font-size:.76rem;color:#d9e5df;line-height:1.35}
+.sparkline-sparse-note b{font-family:var(--serif);font-size:1.35rem;color:#fff;font-weight:500}
+.sparkline-sparse-note span{color:#a9bbb3;font-size:.7rem}
+
+/* Priority-zero map fit: one-screen canvas with in-map legend/source overlay. */
+.geo-layout{grid-template-columns:minmax(0,1.7fr) minmax(260px,.72fr)!important;gap:var(--space-6)!important;align-items:stretch!important}
+.geo-map-panel{padding:.75rem!important;border-radius:var(--radius-md);box-shadow:0 10px 30px rgba(22,43,35,.055);overflow:hidden}
+.geo-map-wrap{position:relative;display:grid;place-items:center;min-width:0;background:linear-gradient(180deg,#fbfcfa,#f4f7f3);overflow:hidden;border-radius:8px}
+#geo-svg{width:100%!important;height:min(62vh,680px)!important;min-height:440px;max-height:680px!important;display:block;aspect-ratio:8/9.5;transition:opacity .18s ease}
+.geo-map-overlay{position:absolute;left:var(--space-4);bottom:var(--space-4);z-index:5;max-width:min(74%,610px);padding:.65rem .8rem;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border:1px solid rgba(18,60,50,.16);border-radius:var(--radius-sm);box-shadow:0 5px 18px rgba(22,43,35,.12);pointer-events:none}
+.geo-map-overlay .geo-legend{position:static!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;display:flex!important;flex-wrap:wrap;gap:.35rem .65rem}
+.geo-map-overlay .geo-legend-item{display:flex;align-items:center;gap:.3rem;white-space:nowrap;font-size:.62rem;color:#43504a}
+.geo-map-overlay .geo-legend-item i{display:inline-block;width:22px;height:8px;border-radius:2px;flex:0 0 auto}
+.geo-map-overlay #geo-source-note{margin:.45rem 0 0!important;padding-top:.4rem;border-top:1px solid rgba(18,60,50,.10);font-size:.61rem!important;line-height:1.35;color:#62706a!important}
+#sprint1-coverage{pointer-events:none;margin:.45rem 0 0!important;padding:.32rem .5rem!important;font-size:.64rem!important;background:rgba(18,60,50,.05)!important}
+.geo-ranking-panel{max-height:min(62vh,680px);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.geo-ranking-list{overflow:auto;min-height:0;overscroll-behavior:contain;scrollbar-width:thin}
+.geo-ranking-list button{transition:background-color .15s ease,transform .15s ease}
+.geo-ranking-list button:hover,.geo-ranking-list button.hovered{transform:translateX(2px)}
+.geo-feature{transition:fill .16s ease,stroke .16s ease,opacity .16s ease,filter .16s ease}
+.geo-feature:focus-visible{outline:none;stroke:var(--focus)!important;stroke-width:3.25px!important;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 3px rgba(11,31,24,.55))}
+
+/* Deliberate selected-place empty state. */
+.geo-selected-summary.kda-card{position:relative;border-radius:var(--radius-md);padding:var(--space-6);margin-top:var(--space-6);border:1px solid var(--line);box-shadow:0 8px 24px rgba(22,43,35,.05)}
+.geo-selected-summary.is-empty{background:linear-gradient(135deg,#fff,#f7f8f5);border-style:solid;min-height:140px;padding-right:5.5rem}
+.geo-selected-summary .geo-empty-badge{position:absolute;right:var(--space-6);top:var(--space-6)}
+.geo-selected-summary.is-empty h4{margin-top:0}
+.geo-selected-summary.is-empty dd{color:#78827d}
+
+/* Search/result motion and polished focus states. */
+.search-results{transform-origin:top center;will-change:transform,opacity}
+.search-result{transition:background-color .14s ease,padding-left .14s ease}
+.search-result:hover,.search-result:focus{padding-left:1.08rem}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid rgba(31,90,73,.22);outline-offset:2px}
+
+/* Fix the occasional vertically stretched/floating quality badge in chart heads. */
+.card-head{align-items:flex-start;gap:var(--space-4)}
+.card-head>.badge{position:static!important;flex:0 0 auto;writing-mode:horizontal-tb!important;transform:none!important;min-width:2rem;align-self:flex-start}
+
+/* Topic tabs gain responsive polish without pretending unavailable tab content exists. */
+.topic-tabs button{position:relative;transition:color .16s ease,background-color .16s ease}
+.topic-tabs button:hover{color:var(--green2);background:linear-gradient(180deg,transparent 70%,rgba(31,90,73,.05))}
+
+/* Series with only two observations: points are the evidence; no implied line. */
+.large-chart.two-point-series .series-line{display:none}
+.large-chart.two-point-series circle{filter:drop-shadow(0 2px 2px rgba(22,43,35,.12))}
+.large-chart.two-point-series:after{content:"2 observations on file · points shown without interpolation";position:absolute;left:1rem;bottom:.35rem;font-size:.65rem;color:var(--muted)}
+.large-chart{position:relative}
+
+/* Catalogue category accents: muted but scannable. JS supplies --dataset-accent. */
+.dataset-icon{background:color-mix(in srgb,var(--dataset-accent,#c9b98c) 20%,white)!important;color:color-mix(in srgb,var(--dataset-accent,#705d2e) 78%,#17211d)!important;border:1px solid color-mix(in srgb,var(--dataset-accent,#c9b98c) 42%,white)}
+.dataset.kda-card{border-left:3px solid color-mix(in srgb,var(--dataset-accent,#c9b98c) 60%,white)}
+
+@media (max-width:900px){
+  .geo-layout{grid-template-columns:1fr!important}
+  #geo-svg{height:min(58vh,540px)!important;min-height:360px}
+  .geo-ranking-panel{max-height:430px}
+  .geo-map-overlay{max-width:calc(100% - 1rem);left:.5rem;bottom:.5rem;padding:.5rem .6rem}
+  .geo-map-overlay .geo-legend{gap:.25rem .45rem!important}
+  .geo-map-overlay .geo-legend-item{font-size:.58rem}
+}
+@media (max-width:420px){
+  #geo-svg{height:52vh!important;min-height:330px}
+  .geo-map-overlay{right:.5rem;max-width:none}
+  .geo-map-overlay .geo-legend-item{white-space:normal}
+  .geo-map-overlay #geo-source-note{display:none}
+  .geo-selected-summary.is-empty{padding-right:var(--space-6);padding-top:3.5rem}
+  .geo-selected-summary .geo-empty-badge{left:var(--space-6);right:auto;top:var(--space-4)}
+}
+@media (prefers-reduced-motion:reduce){
+  .kda-card,.geo-feature,.geo-ranking-list button,.search-result,.topic-tabs button,#geo-svg{transition:none!important}
+}
