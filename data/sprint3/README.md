@@ -61,7 +61,7 @@ The immutable acquisition outputs are stored in `data/sprint3/`:
 1. creates explicit Sprint 3 dataset slices and release records;
 2. backfills the existing national CPI and CBR series;
 3. creates separate monthly-average USD/KES and 91-day T-bill series;
-4. creates a clearly labelled Nairobi pricing-town fuel-history series; and
+4. extends the existing Nairobi county-linked fuel series with explicitly labelled Nairobi pricing-town historical observations; and
 5. extends each existing county budget/expenditure/absorption series backward to FY 2013/14.
 
 Stable identifiers are deterministic. Re-running the build does not create duplicate observations.
