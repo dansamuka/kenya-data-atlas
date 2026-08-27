@@ -36,11 +36,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Geography is rebuilt only to prove the full pipeline still passes.
+          # Sprint 3 owns no geography changes, so discard any deterministic
+          # regeneration churn before publishing the historical registry state.
+          git restore data/geography
           git add data/catalogue/registry data/indicators/registry data/indicators/seed/derived
           if git diff --cached --quiet; then
             echo "Generated native registries already current."
           else
             git commit -m "build(sprint3): publish combined WB + historical registries"
-            git pull --rebase origin release-sprint3-wb-20260827
             git push origin HEAD:release-sprint3-wb-20260827
           fi
