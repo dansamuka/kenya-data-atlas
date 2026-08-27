@@ -1,0 +1,24 @@
+name: Probe Sprint 3 native promotion
+
+on:
+  push:
+    branches: [data-sprint-3-historical-kenya]
+    paths:
+      - data/sprint3/**
+      - scripts/sprint3/build-native.mjs
+      - scripts/indicators/validate-sprint3.mjs
+      - .github/workflows/sprint3-native-probe.yml
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Sprint 3 native registries
+        run: |
+          node scripts/sprint3/build-native.mjs catalogue
+          node scripts/sprint3/build-native.mjs indicators
+      - name: Validate Sprint 3
+        run: node scripts/indicators/validate-sprint3.mjs
