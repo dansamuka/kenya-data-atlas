@@ -13,11 +13,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml
-      - name: Download FY2013/14 OCoB report
+      - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml pdfplumber
+      - name: Inspect FY2013/14 annexes
         run: |
           python - <<'PY'
-          import re,requests
+          import io,re,requests,pdfplumber
           from bs4 import BeautifulSoup
           from urllib.parse import urljoin
           url='https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-20132014/'
@@ -27,28 +27,14 @@ jobs:
               for attr in ('href','data-downloadurl','data-url','onclick'):
                   val=str(tag.get(attr) or '')
                   for hit in re.findall(r'(?:https?://[^\"\'<>\s]+)?\?wpdmdl=\d+[^\"\'<>\s]*',val,re.I): c.append(urljoin(r.url,hit))
-          c=list(dict.fromkeys(c)); print(c)
-          q=s.get(c[0],timeout=90,allow_redirects=True); assert q.content[:5]==b'%PDF-'
-          open('/tmp/cob.pdf','wb').write(q.content)
-          print('bytes',len(q.content))
-          PY
-      - name: Inspect layout text
-        shell: bash
-        run: |
-          command -v pdftotext
-          pdftotext -layout /tmp/cob.pdf /tmp/cob.txt
-          echo "TEXT LINES: $(wc -l < /tmp/cob.txt)"
-          python - <<'PY'
-          import re
-          text=open('/tmp/cob.txt',errors='replace').read().splitlines()
-          pats=[r'budget allocation',r'absorption rate',r'total expenditure',r'development expenditure',r'recurrent expenditure',r'county governments']
-          hits=[]
-          for i,line in enumerate(text):
-              low=line.lower()
-              if sum(bool(re.search(p,low)) for p in pats)>=2:
-                  a=max(0,i-4); b=min(len(text),i+12)
-                  hits.append((i+1,'\n'.join(text[a:b])))
-          print('HITS',len(hits))
-          for n,s in hits[:30]: print('\n=== LINE',n,'===\n',s[:3000])
-          if not hits: raise SystemExit('no layout-text candidates')
+          c=list(dict.fromkeys(c)); q=s.get(c[0],timeout=90,allow_redirects=True); assert q.content[:5]==b'%PDF-'
+          with pdfplumber.open(io.BytesIO(q.content)) as pdf:
+              print('pages',len(pdf.pages))
+              for i in range(max(0,len(pdf.pages)-15),len(pdf.pages)):
+                  p=pdf.pages[i]
+                  t=p.extract_text(x_tolerance=2,y_tolerance=3) or ''
+                  print('\n=== PAGE',i+1,'===\n',' '.join(t.split())[:5000])
+                  for ti,table in enumerate(p.extract_tables() or []):
+                      print('TABLE',ti,'ROWS',len(table))
+                      for row in table[:12]: print(row)
           PY
