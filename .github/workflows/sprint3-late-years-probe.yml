@@ -5,6 +5,7 @@ on:
     branches: [data-sprint-3-historical-kenya]
     paths:
       - .github/workflows/sprint3-late-years-probe.yml
+      - scripts/sprint3/harden_acquisition_v22.py
       - scripts/sprint3/harden_acquisition_v23.py
   workflow_dispatch:
 
