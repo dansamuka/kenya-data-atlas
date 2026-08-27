@@ -261,8 +261,10 @@
       "unit_code": "km2",
       "unit_dimension": "area",
       "available_levels": [
+        "constituency",
         "country",
-        "county"
+        "county",
+        "ward"
       ],
       "cross_level_eligible": true,
       "rule_basis": "physical-area exception"
