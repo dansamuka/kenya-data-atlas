@@ -5,8 +5,12 @@ on:
     branches: [data-sprint-3-historical-kenya]
     paths:
       - .github/workflows/sprint3-late-years-probe.yml
-      - scripts/sprint3/harden_acquisition_v19.py
+      - scripts/sprint3/harden_acquisition_v20.py
   workflow_dispatch:
+
+concurrency:
+  group: sprint3-late-probe-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   probe:
@@ -27,7 +31,7 @@ jobs:
         env:
           FY: ${{ matrix.fy }}
         run: |
-          python scripts/sprint3/harden_acquisition_v19.py
+          python scripts/sprint3/harden_acquisition_v20.py
           python - <<'PY'
           import json, os, sys
           from pathlib import Path
