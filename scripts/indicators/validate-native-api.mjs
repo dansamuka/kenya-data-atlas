@@ -27,15 +27,15 @@ assert(units.some(u => u.code === 'kes_million'), 'native unit registry is missi
 const requiredIndicators = [
   'IND-POPULATION', 'IND-LAND-AREA', 'IND-REGISTERED-VOTERS', 'IND-FUEL-PETROL',
   'IND-GCP-CURRENT', 'IND-COUNTY-BUDGET-TOTAL', 'IND-COUNTY-EXPENDITURE-TOTAL',
-  'IND-COUNTY-BUDGET-ABSORPTION', 'IND-COUNTY-DEVELOPMENT-ABSORPTION'
+  'IND-COUNTY-BUDGET-ABSORPTION', 'IND-COUNTY-DEVELOPMENT-ABSORPTION',
+  'IND-CPI-INFLATION', 'IND-CBR', 'IND-USD-KES-MONTHLY-AVG', 'IND-TBILL-91-MONTHLY-AVG'
 ];
 const indicatorByCode = new Map(indicators.map(i => [i.indicator_code, i]));
 for (const code of requiredIndicators) assert(indicatorByCode.has(code), `native indicator registry missing ${code}`);
 
-// The native registry now deliberately contains active data indicators AND
-// planned/sourced taxonomy slots. Do not hardcode the old Sprint-1 count of 13:
-// a lifecycle promotion must not require changing this API test. Instead, the
-// taxonomy itself defines which profile/Pulse indicator codes must exist.
+// Current main deliberately contains active data indicators AND planned/sourced
+// taxonomy slots. Sprint 3 must extend that registry without erasing lifecycle
+// metadata or forcing a frozen indicator count.
 for (const def of taxonomy.indicators || []) {
   assert(indicatorByCode.has(def.code), `native indicator registry missing taxonomy slot ${def.code}`);
 }
@@ -94,8 +94,6 @@ for (const county of counties) {
   assert(popObs.some(o => o.period_start === '2019-08-24' && /2019/.test(o.period_label)), `${county.geo_code}: native registry missing 2019 population observation`);
   population2009 += 1;
 
-  // Placeholder Category v2 exposes the already-ingested 2009 observation as
-  // its own active fixed profile slot, without duplicating/source-inventing data.
   const pop2009Rows = ownSeries('IND-POP-2009', county.geography_id);
   const pop2009Obs = ownObs(pop2009Rows);
   assert(pop2009Rows.length === 1 && pop2009Obs.length === 1, `${county.geo_code}: IND-POP-2009 slot is not exactly one series/observation`);
@@ -116,7 +114,11 @@ for (const county of counties) {
   for (const code of budgetIndicators) {
     const rows = ownSeries(code, county.geography_id);
     const values = ownObs(rows);
-    assert(rows.length === 1 && values.length === 1, `${county.geo_code}: ${code} native coverage is not exactly one series/observation`);
+    // Sprint 3 adds history to the existing fiscal series. Preserve the original
+    // Sprint 1 contract (one series and an FY2024/25 observation) without
+    // incorrectly requiring the series to contain only one observation forever.
+    assert(rows.length === 1, `${county.geo_code}: ${code} should have exactly one native series, found ${rows.length}`);
+    assert(values.some(o => o.period_start === '2024-07-01' && o.period_end === '2025-06-30'), `${county.geo_code}: ${code} missing FY 2024/25 observation`);
     budgetCells += 1;
   }
 
@@ -129,20 +131,15 @@ for (const county of counties) {
 
 assert(population2009 === 47 && population2009Slots === 47 && voters2022 === 47, 'native county/profile coverage incomplete');
 assert(gcpSeries === 47 && gcpObs === 235, `native GCP coverage ${gcpSeries} series/${gcpObs} observations != 47/235`);
-assert(budgetCells === 188, `native county-budget coverage ${budgetCells} != 188`);
+assert(budgetCells === 188, `native county-budget series coverage ${budgetCells} != 188`);
 assert(fuelCounties === 47, `native fuel county-linked coverage ${fuelCounties} != 47`);
 
-// The downloadable registry is now the source consumed by the page. Sprint 1's
-// historical runtime fetch wrapper must never be loaded again.
 assert(!index.includes('<script src="assets/sprint1-data.js"></script>'), 'index.html still loads the retired Sprint 1 runtime injector');
 if (sprint1Loader) assert(!/window\.fetch\s*=/.test(sprint1Loader), 'retired assets/sprint1-data.js still monkey-patches window.fetch');
-
-// The Geo Explorer is the sole user-facing ranking surface. Legacy compatibility
-// DOM may remain for old app.js code, but it must be hidden and absent from nav.
 assert(!index.includes('<a href="#compare">') && !index.includes('<a href="#rankings">'), 'legacy Compare/Rankings links are still exposed in main navigation');
 assert(/id="compare" hidden/.test(index) && /id="rankings" hidden/.test(index), 'legacy Compare/Rankings compatibility sections are not hidden');
 
 console.log(`PASS: native API contains ${indicators.length} indicators, ${series.length} series and ${observations.length} observations.`);
-console.log('      Lifecycle-aware taxonomy slots are native; future planned/sourced -> active promotions do not require this validator to change.');
-console.log('      Sprint 1: 47/47 population history, dedicated 2009 profile slot, voters, GCP, four budget measures and county-linked fuel observations are in committed registries.');
+console.log('      Lifecycle-aware taxonomy slots and Sprint 3 historical indicators coexist in the native API.');
+console.log('      Sprint 1 invariants remain present while county fiscal series may contain earlier validated history.');
 console.log('      Runtime Sprint 1 fetch injection: disabled. Geo Explorer: sole visible ranking surface.');
