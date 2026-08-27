@@ -26,11 +26,14 @@ assert(units.some(u => u.code === 'kes_million'), 'native unit registry is missi
 const requiredIndicators = [
   'IND-POPULATION', 'IND-LAND-AREA', 'IND-REGISTERED-VOTERS', 'IND-FUEL-PETROL',
   'IND-GCP-CURRENT', 'IND-COUNTY-BUDGET-TOTAL', 'IND-COUNTY-EXPENDITURE-TOTAL',
-  'IND-COUNTY-BUDGET-ABSORPTION', 'IND-COUNTY-DEVELOPMENT-ABSORPTION'
+  'IND-COUNTY-BUDGET-ABSORPTION', 'IND-COUNTY-DEVELOPMENT-ABSORPTION',
+  'IND-CPI-INFLATION', 'IND-CBR', 'IND-USD-KES', 'IND-TBILL-91'
 ];
 const indicatorByCode = new Map(indicators.map(i => [i.indicator_code, i]));
 for (const code of requiredIndicators) assert(indicatorByCode.has(code), `native indicator registry missing ${code}`);
-assert(indicators.length === 13, `expected 13 native indicators after Sprint 1 promotion, found ${indicators.length}`);
+// Do not freeze the registry to the Sprint 1 indicator count: later data sprints
+// are expected to add semantically distinct series/indicators.
+assert(indicators.length >= requiredIndicators.length, `native indicator registry unexpectedly small: ${indicators.length}`);
 
 const requiredDatasets = [
   'DS-KNBS-CENSUS-2009-COUNTY-S1',
@@ -92,7 +95,10 @@ for (const county of counties) {
   for (const code of budgetIndicators) {
     const rows = ownSeries(code, county.geography_id);
     const values = ownObs(rows);
-    assert(rows.length === 1 && values.length === 1, `${county.geo_code}: ${code} native coverage is not exactly one series/observation`);
+    // Historical sprints may add earlier fiscal years, but the Sprint 1 release
+    // invariant remains: exactly one series and an FY 2024/25 observation.
+    assert(rows.length === 1, `${county.geo_code}: ${code} should have exactly one native series, found ${rows.length}`);
+    assert(values.some(o => o.period_start === '2024-07-01' && o.period_end === '2025-06-30'), `${county.geo_code}: ${code} missing FY 2024/25 observation`);
     budgetCells += 1;
   }
 
@@ -105,7 +111,7 @@ for (const county of counties) {
 
 assert(population2009 === 47 && voters2022 === 47, 'native county coverage incomplete');
 assert(gcpSeries === 47 && gcpObs === 235, `native GCP coverage ${gcpSeries} series/${gcpObs} observations != 47/235`);
-assert(budgetCells === 188, `native county-budget coverage ${budgetCells} != 188`);
+assert(budgetCells === 188, `native county-budget series coverage ${budgetCells} != 188`);
 assert(fuelCounties === 47, `native fuel county-linked coverage ${fuelCounties} != 47`);
 
 // The downloadable registry is now the source consumed by the page. Sprint 1's
@@ -119,5 +125,6 @@ assert(!index.includes('<a href="#compare">') && !index.includes('<a href="#rank
 assert(/id="compare" hidden/.test(index) && /id="rankings" hidden/.test(index), 'legacy Compare/Rankings compatibility sections are not hidden');
 
 console.log(`PASS: native API contains ${indicators.length} indicators, ${series.length} series and ${observations.length} observations.`);
-console.log('      Sprint 1: 47/47 population history, voters, GCP, four budget measures and county-linked fuel observations are in committed registries.');
+console.log('      Sprint 1 invariants preserved: 47/47 population history, voters, GCP, FY 2024/25 budget measures and county-linked fuel observations remain present.');
+console.log('      Validator is history-safe: additional earlier observations do not invalidate the original release contract.');
 console.log('      Runtime Sprint 1 fetch injection: disabled. Geo Explorer: sole visible ranking surface.');
