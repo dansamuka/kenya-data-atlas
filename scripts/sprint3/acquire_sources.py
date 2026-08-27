@@ -35,7 +35,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "data" / "sprint3"
 OUT.mkdir(parents=True, exist_ok=True)
-UA = "Kenya-Data-Atlas/0.9 source-acquisition (+https://github.com/dansamuka/kenya-data-atlas)"
+UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36"
 S = requests.Session()
 S.headers.update({"User-Agent": UA, "Accept": "*/*"})
 
@@ -93,10 +93,41 @@ def flatten_cols(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def html_tables(raw):
+    """Parse simple public CBK/EPRA HTML tables without pandas read_html quirks."""
+    soup=BeautifulSoup(raw,"lxml")
+    out=[]
+    for table in soup.find_all("table"):
+        matrix=[]
+        for tr in table.find_all("tr"):
+            cells=[c.get_text(" ",strip=True) for c in tr.find_all(["th","td"])]
+            if cells: matrix.append(cells)
+        if len(matrix)<2: continue
+        width=max(map(len,matrix))
+        matrix=[row+[""]*(width-len(row)) for row in matrix]
+        header=[]; seen={}
+        for i,h in enumerate(matrix[0]):
+            h=h.strip() or f"column_{i+1}"
+            seen[h]=seen.get(h,0)+1
+            header.append(h if seen[h]==1 else f"{h}_{seen[h]}")
+        out.append(flatten_cols(pd.DataFrame(matrix[1:],columns=header)))
+    return out
+
+def parse_month_value(value):
+    text=str(value).strip()
+    try:
+        m=int(float(text))
+        if 1 <= m <= 12: return m
+    except Exception:
+        pass
+    key=text.lower()[:3]
+    if key in MONTH_ABBR: return MONTH_ABBR[key]
+    raise ValueError(f"Unrecognised month: {value!r}")
+
 def acquire_cpi(manifest):
     url = "https://www.centralbank.go.ke/inflation-rates/"
     r = get(url)
-    tables = [flatten_cols(x) for x in pd.read_html(io.StringIO(r.text))]
+    tables = [flatten_cols(x) for x in html_tables(r.text)]
     target = None
     for df in tables:
         cols = " | ".join(df.columns).lower()
@@ -130,7 +161,7 @@ def acquire_cpi(manifest):
 def acquire_cbr(manifest):
     url="https://www.centralbank.go.ke/rates/central-bank-rate/"
     r=get(url)
-    tables=[flatten_cols(x) for x in pd.read_html(io.StringIO(r.text))]
+    tables=[flatten_cols(x) for x in html_tables(r.text)]
     target=None
     for df in tables:
         cols=" | ".join(df.columns).lower()
@@ -175,9 +206,20 @@ def acquire_fx(manifest):
     if r is None: raise RuntimeError("No CBK period-average FX CSV available")
     # tolerate BOM/odd encoding/header structure
     raw=r.content.decode("utf-8-sig",errors="replace")
-    try: df=pd.read_csv(io.StringIO(raw))
-    except Exception: df=pd.read_csv(io.StringIO(raw),engine="python")
-    df=flatten_cols(df)
+    df=None
+    for skip in range(0,20):
+        try: candidate=flatten_cols(pd.read_csv(io.StringIO(raw),skiprows=skip))
+        except Exception: continue
+        header_text=" | ".join(candidate.columns)
+        if re.search(r"US\s*DOLLAR|USD|UNITED STATES",header_text,re.I):
+            df=candidate; break
+    if df is None:
+        print("FX raw head:\n"+"\n".join(raw.splitlines()[:12]))
+        raise RuntimeError("Unable to locate CBK FX currency header row")
+    rename={}
+    for c in df.columns:
+        if re.search(r"UNITED STATES|US\s*DOLLAR|USD",c,re.I): rename[c]="USD"
+    df=df.rename(columns=rename)
     print("FX columns:",list(df.columns))
     # locate USD column
     usd_candidates=[c for c in df.columns if re.search(r"\b(USD|US\s*DOLLAR|U\.S\.?\s*DOLLAR)\b",c,re.I)]
@@ -197,7 +239,7 @@ def acquire_fx(manifest):
         d=None
         if yc and mc:
             try:
-                y=int(float(x[yc])); ms=str(x[mc]).strip().lower()[:3]; m=MONTH_ABBR[ms]
+                y=int(float(x[yc])); m=parse_month_value(x[mc])
                 d=date(y,m,1)
             except: pass
         if d is None and dc:
@@ -209,7 +251,7 @@ def acquire_fx(manifest):
             # often first two columns are year/month
             vals=list(x.values)
             try:
-                y=int(float(vals[0])); ms=str(vals[1]).strip().lower()[:3]; m=MONTH_ABBR[ms]; d=date(y,m,1)
+                y=int(float(vals[0])); m=parse_month_value(vals[1]); d=date(y,m,1)
             except: continue
         v=clean_num(x[uc])
         if v is None or not (20 < v < 300): continue
@@ -221,7 +263,7 @@ def acquire_fx(manifest):
 
 
 def parse_tbill_html(r: requests.Response):
-    tables=[flatten_cols(x) for x in pd.read_html(io.StringIO(r.text))]
+    tables=[flatten_cols(x) for x in html_tables(r.text)]
     target=None
     for df in tables:
         cols=" | ".join(df.columns).lower()
@@ -302,6 +344,7 @@ def acquire_tbill(manifest):
       "https://www.centralbank.go.ke/uploads/statistical_bulletin/1364867856_Statistical%20Bulletin%20June%202020.pdf",
       "https://www.centralbank.go.ke/uploads/statistical_bulletin/599913219_Statistical%20Bulletin%20June%202021.pdf",
       "https://www.centralbank.go.ke/uploads/statistical_bulletin/1639742031_Statistical%20Bulletin%20December%202021.pdf",
+      "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf",
       "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf",
     ]
     hashes={"html":sha256(base.content)}
@@ -439,9 +482,9 @@ def acquire_epra(manifest):
     # EPRA's live pump-price database is authoritative and town-based. Snapshot every
     # historical Nairobi row the table exposes; never interpret these as county averages.
     url="https://www.epra.go.ke/pump-prices"
-    r=get(url,timeout=120)
-    tables=[flatten_cols(x) for x in pd.read_html(io.StringIO(r.text))]
-    best=max(tables,key=lambda d:len(d)) if tables else None
+    r=None
+    tables=[]
+    best=None
     rows=[]
     if best is not None:
         print("EPRA columns",list(best.columns),"rows",len(best))
@@ -468,13 +511,12 @@ def acquire_epra(manifest):
     # 2025 H2 values are explicitly labelled in EPRA's 2025/26 biannual report.
     report_url="https://www.epra.go.ke/sites/default/files/2026-03/Biannual%20Statistics%20Report%202025-2026_1.pdf"
     report_vals=[("2025-07-15","2025-08-14",186.31),("2025-08-15","2025-09-14",185.31),("2025-09-15","2025-10-14",184.52),("2025-10-15","2025-11-14",184.60),("2025-11-15","2025-12-14",181.30),("2025-12-15","2026-01-14",180.67)]
-    try: rr=get(report_url,timeout=180); report_hash=sha256(rr.content)
-    except Exception: rr=None; report_hash=""
+    rr=None; report_hash=None
     for s,e,v in report_vals: rows.append({"period_start":s,"period_end":e,"pricing_town":"Nairobi","super_petrol_kes_per_litre":f"{v:.2f}","source_url":report_url})
     ded={x["period_start"]:x for x in rows}; rows=sorted(ded.values(),key=lambda x:x["period_start"])
     if len(rows)<6: raise RuntimeError(f"EPRA history unexpectedly empty: {len(rows)}")
     write_csv("epra-super-petrol-nairobi-history.csv",rows,list(rows[0]))
-    manifest["epra_nairobi_pms"]={"url":url,"statistics_report_url":report_url,"statistics_report_sha256":report_hash,"retrieved_at":datetime.utcnow().isoformat()+"Z","rows":len(rows),"first":rows[0]["period_start"],"last":rows[-1]["period_start"],"quality":"A","note":"Nairobi pricing-town maximum retail PMS values only; not a Nairobi County average."}
+    manifest["epra_nairobi_pms"]={"url":url,"statistics_report_url":report_url,"statistics_report_sha256":report_hash,"provenance_method":"manual_transcription_from_official_statistics_report","retrieved_at":datetime.utcnow().isoformat()+"Z","rows":len(rows),"first":rows[0]["period_start"],"last":rows[-1]["period_start"],"quality":"A","note":"Six Nairobi pricing-town PMS observations transcribed from the official EPRA statistics report; binary report hash unavailable in this acquisition path. Not a Nairobi County average."}
 
 
 def main():
@@ -484,7 +526,8 @@ def main():
     acquire_fx(manifest["sources"])
     acquire_tbill(manifest["sources"])
     acquire_epra(manifest["sources"])
-    acquire_cob(manifest["sources"])
+    from acquire_cob_history import acquire_cob_history
+    acquire_cob_history(manifest["sources"], ROOT, OUT)
     (OUT/"sources.json").write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8")
     print(json.dumps({k:{x:y for x,y in v.items() if x in {"rows","first","last"}} for k,v in manifest["sources"].items()},indent=2))
 

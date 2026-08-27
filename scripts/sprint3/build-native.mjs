@@ -169,7 +169,8 @@ async function buildIndicators() {
 
   const nairobi=geoByCode.get('KEN-C047');
   if (!nairobi) throw new Error('Sprint 3 Nairobi geography missing');
-  const epraSeries=addSeries({code:'KDA-FUEL-PETROL-NAIROBI-TOWN-HISTORY',indicator:fuelInd,geo:nairobi,unitCode:'kes_per_litre',dataset:ds.epra,frequency:'monthly',periodType:'period',group:'EPRA-NAIROBI-PRICING-TOWN',method:'proxy',currency:'KES'});
+  const epraSeries=seriesByCode.get('KDA-FUEL-PETROL-KEN-C047');
+  if (!epraSeries) throw new Error('Sprint 3 canonical Nairobi fuel series missing');
   for (const r of epra) addObs({seriesRow:epraSeries,key:`epra-nairobi:${r.period_start}`,start:r.period_start,end:r.period_end,periodType:'period',label:`${r.period_start} to ${r.period_end}`,value:r.super_petrol_kes_per_litre,release:rel.epra,dataset:ds.epra,url:r.source_url || sources.epra_nairobi_pms.url,method:'proxy',rowLabel:'Nairobi',notes:'Nairobi EPRA pricing-town maximum retail Super Petrol price; not a Nairobi County average.'});
 
   const budgetDefs=[
