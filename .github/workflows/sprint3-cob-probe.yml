@@ -18,7 +18,7 @@ jobs:
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
       - name: Validate FY2019/20 all-county parser
         run: |
-          python scripts/sprint3/harden_acquisition_v4.py
+          python scripts/sprint3/harden_acquisition_v5.py
           python - <<'PY'
           import json, sys
           from pathlib import Path
@@ -34,6 +34,6 @@ jobs:
           values=cob._parse_narrative_year(content,'2019/20',counties)
           cob._validate_year('2019/20',values,counties)
           print('FY2019/20 PASS',len(values),'counties',pdf_url)
-          for county in ['Garissa','Homa Bay','Kiambu','Kilifi','Machakos','Mandera','Mombasa',"Murang'a",'Samburu','Siaya','Uasin Gishu','Vihiga','Narok','Nyamira']:
+          for county in ['Kirinyaga','Kisii','Narok','Nyamira','Garissa','Homa Bay','Kiambu','Kilifi','Machakos','Mandera','Mombasa',"Murang'a",'Samburu','Siaya','Uasin Gishu','Vihiga']:
               print(county,values[county])
           PY
