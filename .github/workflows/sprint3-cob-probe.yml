@@ -7,6 +7,7 @@ on:
       - .github/workflows/sprint3-cob-probe.yml
       - scripts/sprint3/harden_acquisition_v5.py
       - scripts/sprint3/harden_acquisition_v6.py
+      - scripts/sprint3/harden_acquisition_v7.py
   workflow_dispatch:
 
 jobs:
@@ -21,7 +22,7 @@ jobs:
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
       - name: Validate FY2019/20 all-county parser
         run: |
-          python scripts/sprint3/harden_acquisition_v6.py
+          python scripts/sprint3/harden_acquisition_v7.py
           python - <<'PY'
           import json, sys
           from pathlib import Path
