@@ -53,6 +53,10 @@ jobs:
           old_report='    try: rr=get(report_url,timeout=180); report_hash=sha256(rr.content)\n    except Exception: rr=None; report_hash=""'
           assert old_report in s
           s=s.replace(old_report,'    rr=None; report_hash="official-report-transcription"',1)
+          needle='    if fy in COB_DIRECT_FALLBACK: candidates.append(COB_DIRECT_FALLBACK[fy])'
+          assert needle in s
+          extra='''    # OCoB uses WordPress Download Manager: the file target is commonly stored\n    # in data attributes/onclick markup rather than an href ending in .pdf.\n    # Resolve those first-class official download URLs as well.\n    for tag in soup.find_all(True):\n        for attr in ("href","data-downloadurl","data-url","onclick"):\n            val=str(tag.get(attr) or "")\n            for hit in re.findall(r"(?:https?://[^\\\"'<>\\s]+)?\\?wpdmdl=\\d+[^\\\"'<>\\s]*",val,re.I):\n                candidates.append(urljoin(pr.url,hit))\n    for hit in re.findall(r"(?:https?://[^\\\"'<>\\s]+)?\\?wpdmdl=\\d+[^\\\"'<>\\s]*",pr.text,re.I):\n        candidates.append(urljoin(pr.url,hit))\n'''
+          s=s.replace(needle,extra+needle,1)
           p.write_text(s)
           PY
       - name: Acquire and validate source snapshots
