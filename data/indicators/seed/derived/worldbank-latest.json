@@ -13,9 +13,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/IQ.SPI.OVRL?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/IQ.SPI.OVRL?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:58.005Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:58.005Z"
     },
     {
       "wb_code": "EG.ELC.ACCS.ZS",
@@ -26,9 +24,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/EG.ELC.ACCS.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:58.122Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:58.122Z"
     },
     {
       "wb_code": "NY.GDP.MKTP.CD",
@@ -39,9 +35,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/NY.GDP.MKTP.CD?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:58.312Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:58.312Z"
     },
     {
       "wb_code": "NY.GDP.PCAP.CD",
@@ -52,9 +46,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/NY.GDP.PCAP.CD?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:58.521Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:58.521Z"
     },
     {
       "wb_code": "NY.GDP.MKTP.KD.ZG",
@@ -65,9 +57,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:58.722Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:58.722Z"
     },
     {
       "wb_code": "SP.DYN.LE00.IN",
@@ -78,9 +68,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/SP.DYN.LE00.IN?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SP.DYN.LE00.IN?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:58.955Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:58.955Z"
     },
     {
       "wb_code": "SP.POP.TOTL",
@@ -91,9 +79,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/SP.POP.TOTL?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SP.POP.TOTL?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:59.102Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:59.102Z"
     },
     {
       "wb_code": "SP.POP.GROW",
@@ -104,9 +90,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/SP.POP.GROW?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SP.POP.GROW?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:59.322Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:59.322Z"
     },
     {
       "wb_code": "SM.POP.NETM",
@@ -117,9 +101,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/SM.POP.NETM?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SM.POP.NETM?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:59.481Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:59.481Z"
     },
     {
       "wb_code": "HD.HCI.OVRL",
@@ -130,9 +112,7 @@
       "period_end": "2020-12-31",
       "period_label": "2020",
       "source_url": "https://data.worldbank.org/indicator/HD.HCI.OVRL?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/HD.HCI.OVRL?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:59.653Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:59.653Z"
     },
     {
       "wb_code": "SI.POV.DDAY",
@@ -143,9 +123,7 @@
       "period_end": "2022-12-31",
       "period_label": "2022",
       "source_url": "https://data.worldbank.org/indicator/SI.POV.DDAY?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SI.POV.DDAY?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:59.804Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:59.804Z"
     },
     {
       "wb_code": "SL.UEM.TOTL.ZS",
@@ -156,9 +134,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SL.UEM.TOTL.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:43:59.981Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:43:59.981Z"
     },
     {
       "wb_code": "FP.CPI.TOTL.ZG",
@@ -169,9 +145,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/FP.CPI.TOTL.ZG?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:00.166Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:00.166Z"
     },
     {
       "wb_code": "AG.LND.FRST.ZS",
@@ -182,9 +156,7 @@
       "period_end": "2023-12-31",
       "period_label": "2023",
       "source_url": "https://data.worldbank.org/indicator/AG.LND.FRST.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/AG.LND.FRST.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:00.318Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:00.318Z"
     },
     {
       "wb_code": "EN.GHG.CO2.PC.CE.AR5",
@@ -195,9 +167,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/EN.GHG.CO2.PC.CE.AR5?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/EN.GHG.CO2.PC.CE.AR5?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:00.448Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:00.448Z"
     },
     {
       "wb_code": "ER.H2O.FWTL.ZS",
@@ -208,9 +178,7 @@
       "period_end": "2022-12-31",
       "period_label": "2022",
       "source_url": "https://data.worldbank.org/indicator/ER.H2O.FWTL.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/ER.H2O.FWTL.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:00.607Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:00.607Z"
     },
     {
       "wb_code": "EG.ELC.RNWX.ZS",
@@ -221,9 +189,7 @@
       "period_end": "2021-12-31",
       "period_label": "2021",
       "source_url": "https://data.worldbank.org/indicator/EG.ELC.RNWX.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/EG.ELC.RNWX.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:00.761Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:00.761Z"
     },
     {
       "wb_code": "SH.STA.SMSS.ZS",
@@ -234,9 +200,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/SH.STA.SMSS.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SH.STA.SMSS.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:00.945Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:00.945Z"
     },
     {
       "wb_code": "IT.NET.USER.ZS",
@@ -247,9 +211,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/IT.NET.USER.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:01.085Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:01.085Z"
     },
     {
       "wb_code": "VC.IHR.PSRC.P5",
@@ -260,9 +222,7 @@
       "period_end": "2022-12-31",
       "period_label": "2022",
       "source_url": "https://data.worldbank.org/indicator/VC.IHR.PSRC.P5?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/VC.IHR.PSRC.P5?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:01.261Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:01.261Z"
     },
     {
       "wb_code": "SG.GEN.PARL.ZS",
@@ -273,9 +233,7 @@
       "period_end": "2025-12-31",
       "period_label": "2025",
       "source_url": "https://data.worldbank.org/indicator/SG.GEN.PARL.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SG.GEN.PARL.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:01.410Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:01.410Z"
     },
     {
       "wb_code": "BX.KLT.DINV.WD.GD.ZS",
@@ -286,9 +244,7 @@
       "period_end": "2024-12-31",
       "period_label": "2024",
       "source_url": "https://data.worldbank.org/indicator/BX.KLT.DINV.WD.GD.ZS?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/BX.KLT.DINV.WD.GD.ZS?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:01.580Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:01.580Z"
     },
     {
       "wb_code": "SI.POV.GINI",
@@ -299,9 +255,7 @@
       "period_end": "2022-12-31",
       "period_label": "2022",
       "source_url": "https://data.worldbank.org/indicator/SI.POV.GINI?locations=KE",
-      "api_url": "https://api.worldbank.org/v2/country/KEN/indicator/SI.POV.GINI?format=json&per_page=100&date=2010:2026",
-      "retrieved_at": "2026-08-27T13:44:01.777Z",
-      "unchanged_from_previous_snapshot": true
+      "retrieved_at": "2026-08-27T13:44:01.777Z"
     }
   ],
   "missing": [],
