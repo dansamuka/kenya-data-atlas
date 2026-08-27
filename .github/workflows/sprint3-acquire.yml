@@ -63,6 +63,18 @@ jobs:
           assert old_call in s
           s=s.replace(old_call,new_call,1)
           p.write_text(s)
+
+          # Some annual reports state the approved budget as e.g. "Approved
+          # Supplementary Budget was 13.52 billion" without repeating "Kshs".
+          # Preserve that direct official total before considering broader budget
+          # phrases later in a county section.
+          q=Path('scripts/sprint3/acquire_cob_history.py')
+          t=q.read_text()
+          budget_anchor='''    budget = _first_money(text, [\n        r"(?:approved|revised)(?:\\s+annual)?(?:\\s+(?:revised|supplementary))?\\s+budget(?:\\s+for\\s+(?:the\\s+)?county)?\\s+(?:was|is|of|amounted\\s+to)?\\s*(?:Kshs?|Ksh)\\.?\\s*([0-9][0-9,.]*)\\s*(billion|million)",\n'''
+          budget_replacement='''    budget = _first_money(text, [\n        r"(?:approved|revised)(?:\\s+annual)?(?:\\s+(?:revised|supplementary))?\\s+budget(?:\\s+for\\s+(?:the\\s+)?county)?\\s+(?:was|is|of|amounted\\s+to)?\\s*(?:(?:Kshs?|Ksh)\\.?\\s*)?([0-9][0-9,.]*)\\s*(billion|million)",\n'''
+          assert budget_anchor in t
+          t=t.replace(budget_anchor,budget_replacement,1)
+          q.write_text(t)
           PY
       - name: Acquire and validate source snapshots
         run: python scripts/sprint3/acquire_sources.py
