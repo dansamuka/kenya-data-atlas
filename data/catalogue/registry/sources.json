@@ -232,5 +232,23 @@
     "assessment_status": "approved",
     "assessment_note": "Self-governed: permitted only where the statistical-publication-policy's basis 5 applies, the transformation is fully documented in docs/methodology/indicators.md, and the input data's own provenance is separately disclosed. Reviewed 2026-08-26.",
     "active": true
+  },
+  {
+    "source_id": "10bb4e49-de44-59d8-a419-ef5a5f513fc5",
+    "source_code": "WB-WDI",
+    "agency_id": "33ae4410-49f5-5b72-9f1d-e7a7438e9317",
+    "name": "World Development Indicators",
+    "source_type": "public_api",
+    "landing_page_url": "https://data.worldbank.org/country/kenya",
+    "expected_cadence": "indicator_specific_irregular",
+    "source_priority": "medium",
+    "access_method": "public_api",
+    "reuse_status": "approved_cc_by_4_0",
+    "licence_name": "CC BY 4.0",
+    "licence_url": "https://datacatalog.worldbank.org/public-licenses",
+    "attribution_text": "Source: World Bank, World Development Indicators",
+    "assessment_status": "approved",
+    "assessment_note": "National-only WDI integration. World Bank is a secondary harmonising compiler; Atlas badge A is prohibited for this source family.",
+    "active": true
   }
 ]

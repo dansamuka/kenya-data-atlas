@@ -313,5 +313,57 @@
     "publication_status": "published",
     "methodology_url": "https://www.epra.go.ke/pump-price-formulae",
     "known_limitations": "Covers only 2 of 47 counties (Nairobi and Mombasa pricing towns) from a single announcement. EPRA sets prices by town/pricing zone, not strictly by administrative county boundary; Nairobi town and Mombasa town are used here as reasonable proxies for their respective counties, not as an official county-level statistic. The remaining EPRA town price list (34+ towns) is not yet loaded. Diesel and kerosene prices from the same announcement are not yet loaded either."
+  },
+  {
+    "code": "DS-WB-SOCIAL-INDICATORS",
+    "source_code": "WB-WDI",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "annual_or_irregular",
+    "publication_status": "published",
+    "title": "World Development Indicators — Kenya social indicators",
+    "description": "National social indicators for Kenya retrieved from the World Bank WDI API.",
+    "topic": "Social",
+    "known_limitations": "National only. Includes harmonised, projected and modelled series. Values must not be relabelled as county, constituency or ward statistics. Population projection is distinct from KNBS census enumeration."
+  },
+  {
+    "code": "DS-WB-ECONOMIC-INDICATORS",
+    "source_code": "WB-WDI",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "annual_or_irregular",
+    "publication_status": "published",
+    "title": "World Development Indicators — Kenya economic indicators",
+    "description": "National economic indicators for Kenya retrieved from the World Bank WDI API.",
+    "topic": "Economy",
+    "known_limitations": "National only. WDI harmonisation can differ from KNBS/CBK definitions and vintages. WB annual inflation is background context and must not displace the monthly KNBS headline. Remittances are held from activation pending primary-source CBK treatment."
+  },
+  {
+    "code": "DS-WB-ENVIRONMENT-INDICATORS",
+    "source_code": "WB-WDI",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "annual_or_irregular",
+    "publication_status": "published",
+    "title": "World Development Indicators — Kenya environment and infrastructure indicators",
+    "description": "National environment, infrastructure and service-access indicators for Kenya retrieved from the World Bank WDI API.",
+    "topic": "Environment",
+    "known_limitations": "National only. Access-to-electricity can be linked to a Kenyan series only when the Kenyan alternate is active and genuinely comparable."
+  },
+  {
+    "code": "DS-WB-INSTITUTIONS-INDICATORS",
+    "source_code": "WB-WDI",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "annual_or_irregular",
+    "publication_status": "published",
+    "title": "World Development Indicators — Kenya institutions indicators",
+    "description": "National institutional, digital, public-safety, representation and investment indicators for Kenya retrieved from the World Bank WDI API.",
+    "topic": "Institutions",
+    "known_limitations": "National only. Composite/index indicators require explicit methodology disclosure. Internet-use alternates must not be linked to Communications Authority data until a CA series is actually ingested."
   }
 ]

@@ -115,6 +115,10 @@ CREATE TABLE series (
   status series_status NOT NULL DEFAULT 'active',
   superseded_by_series_id uuid REFERENCES series(series_id),
 
+  -- Comparable concept from an independent source/method. This is display metadata,
+  -- never a merge: both series retain their own lifecycle, provenance and observations.
+  comparable_alternate_series_id uuid REFERENCES series(series_id),
+
   CHECK (price_basis NOT IN ('constant', 'index') OR base_period IS NOT NULL),
   UNIQUE (indicator_id, geography_id, boundary_version, frequency, unit_id, price_basis, seasonal_adjustment, transformation)
 );
@@ -122,6 +126,7 @@ CREATE TABLE series (
 CREATE INDEX series_indicator_idx ON series(indicator_id);
 CREATE INDEX series_geography_idx ON series(geography_id);
 CREATE INDEX series_comparability_idx ON series(comparability_group);
+CREATE INDEX series_alternate_idx ON series(comparable_alternate_series_id);
 
 -- ------------------------------------------------------------ series_break
 -- Records a methodology, rebasing, classification or boundary discontinuity.
@@ -183,7 +188,7 @@ CREATE TABLE observation (
   pipeline_run_id text,
 
   CHECK (statistical_status <> 'suppressed' OR suppression_reason IS NOT NULL),
-  CHECK (geographic_method = 'direct' OR crosswalk_id IS NOT NULL OR geographic_method = 'aggregated'),
+  CHECK (geographic_method IN ('direct', 'aggregated', 'modelled') OR crosswalk_id IS NOT NULL),
   UNIQUE (series_id, period_start, period_end, vintage_id)
 );
 

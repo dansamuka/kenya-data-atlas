@@ -1,0 +1,453 @@
+{
+  "generated_from_registry": true,
+  "rule": "Cross-level comparison requires unit dimension ratio/rate/index or a rate/share/per_capita series transformation. IND-LAND-AREA is the sole physical-area exception. Raw counts and currency totals remain same-level only.",
+  "indicators": [
+    {
+      "indicator_code": "IND-TBILL-91",
+      "indicator_id": "3ff83e1d-ee77-59fb-94de-3ce4eef4d01d",
+      "name": "91-day Treasury bill rate",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-ELECTRICITY-ACCESS-WB",
+      "indicator_id": "e2cf8e97-8178-5813-a7ca-43f214900619",
+      "name": "Access to electricity (% of population)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-CBR",
+      "indicator_id": "723524f4-8dde-5740-8c13-bcfa2b16acc6",
+      "name": "Central Bank Rate",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-CO2-PER-CAPITA",
+      "indicator_id": "b295ecc5-1160-569c-a4d7-0e263f642bae",
+      "name": "CO2 emissions per capita (excl. LULUCF)",
+      "unit_code": "tonnes_per_person",
+      "unit_dimension": "rate",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=rate"
+    },
+    {
+      "indicator_code": "IND-CPI-INFLATION",
+      "indicator_id": "17b6163a-3a31-5968-a0f9-4766937c2bed",
+      "name": "Consumer price inflation",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-COUNTY-BUDGET-TOTAL",
+      "indicator_id": "c8e46a32-d1bb-50a4-828d-ee18062860bb",
+      "name": "County budget",
+      "unit_code": "kes_million",
+      "unit_dimension": "currency",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",
+      "indicator_id": "2aaa3771-13ca-50ca-84b5-f207e462fb6c",
+      "name": "County budget absorption rate",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-COUNTY-EXPENDITURE-TOTAL",
+      "indicator_id": "845c6147-d18b-533d-892e-a268571c627d",
+      "name": "County expenditure",
+      "unit_code": "kes_million",
+      "unit_dimension": "currency",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
+      "indicator_id": "ccae0924-1eb2-59ed-8e29-4f89505bc578",
+      "name": "Development budget absorption rate",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-FDI-NET-INFLOWS",
+      "indicator_id": "0e494d68-338f-5345-8386-5b84c9dbd644",
+      "name": "Foreign direct investment, net inflows (% of GDP)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-FOREST-AREA",
+      "indicator_id": "f75b59ff-9d49-5b18-8e13-35022b67fa2a",
+      "name": "Forest area (% of land area)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-FRESHWATER-WITHDRAWAL",
+      "indicator_id": "03ace30c-96b7-5007-ad4e-d5e1223ddfaf",
+      "name": "Freshwater withdrawals (% of internal resources)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-GDP-NATIONAL",
+      "indicator_id": "95abc4d0-dafc-5c5a-aa12-8e63cdcbe866",
+      "name": "GDP (current US$)",
+      "unit_code": "usd",
+      "unit_dimension": "currency",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-GDP-GROWTH",
+      "indicator_id": "cc78b795-f548-5a5f-bf6a-549fe749aa7e",
+      "name": "GDP growth (annual %)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-GDP-PER-CAPITA-NATIONAL",
+      "indicator_id": "71642150-62fc-59ee-805e-4f18399841b8",
+      "name": "GDP per capita (current US$)",
+      "unit_code": "usd_per_person",
+      "unit_dimension": "rate",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=rate"
+    },
+    {
+      "indicator_code": "IND-GINI-WB",
+      "indicator_id": "673d0158-9672-54af-bd98-f7e684c3da7f",
+      "name": "GINI index",
+      "unit_code": "index_score",
+      "unit_dimension": "index",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=index"
+    },
+    {
+      "indicator_code": "IND-GCP-CURRENT",
+      "indicator_id": "d61be01a-2b7f-51b2-8320-24a40ad05e88",
+      "name": "Gross County Product (current prices)",
+      "unit_code": "kes_million",
+      "unit_dimension": "currency",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-HUMAN-CAPITAL-INDEX",
+      "indicator_id": "18dcd3d0-d5eb-502f-b636-f46257adea50",
+      "name": "Human Capital Index (overall)",
+      "unit_code": "index_score",
+      "unit_dimension": "index",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=index"
+    },
+    {
+      "indicator_code": "IND-INTERNET-USERS-WB",
+      "indicator_id": "ee6be025-22fa-5dd4-87d1-268441789a34",
+      "name": "Individuals using the Internet (% of population)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-CPI-INFLATION-WB-ANNUAL",
+      "indicator_id": "f994d695-7f05-565e-b4db-3796e8677dfe",
+      "name": "Inflation, consumer prices (annual %)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-HOMICIDE-RATE",
+      "indicator_id": "5b90749a-78e1-50d8-ae4d-e7fd77abd73d",
+      "name": "Intentional homicides (per 100,000 people)",
+      "unit_code": "per_100000_persons",
+      "unit_dimension": "rate",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=rate"
+    },
+    {
+      "indicator_code": "IND-LAND-AREA",
+      "indicator_id": "1315e984-c280-57c1-97bb-e183b0b2af77",
+      "name": "Land area",
+      "unit_code": "km2",
+      "unit_dimension": "area",
+      "available_levels": [
+        "country",
+        "county"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "physical-area exception"
+    },
+    {
+      "indicator_code": "IND-LIFE-EXPECTANCY",
+      "indicator_id": "c0aaaf91-8bb2-5064-9b76-5c37c8d1cd42",
+      "name": "Life expectancy at birth",
+      "unit_code": "years",
+      "unit_dimension": "duration",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-NET-MIGRATION",
+      "indicator_id": "67c7b4f9-2c17-57a5-8e3b-6d5618f27ba6",
+      "name": "Net migration",
+      "unit_code": "persons",
+      "unit_dimension": "count",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-POPULATION",
+      "indicator_id": "4e6d05b0-7b3b-56de-8076-13026d62c16a",
+      "name": "Population",
+      "unit_code": "persons",
+      "unit_dimension": "count",
+      "available_levels": [
+        "country",
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-POPULATION-GROWTH",
+      "indicator_id": "ac870f6f-35f5-5e02-b733-58303637d6b5",
+      "name": "Population growth (annual %)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-POP-2009",
+      "indicator_id": "4d2af584-0618-5d1a-b75b-9a370ae3aa7d",
+      "name": "Population, 2009 census",
+      "unit_code": "persons",
+      "unit_dimension": "count",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-POPULATION-WB",
+      "indicator_id": "233dc7ee-d7f3-5fd5-b1f9-c2ea2a4fafca",
+      "name": "Population, total — UN projection via World Bank",
+      "unit_code": "persons",
+      "unit_dimension": "count",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-POVERTY-RATE-INTL",
+      "indicator_id": "794869be-7976-583b-88db-2309610f4b21",
+      "name": "Poverty headcount ratio at $3.00/day (2021 PPP)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "indicator_id": "b8ae11eb-3d12-5072-981d-88d09b3cd8de",
+      "name": "Registered voters",
+      "unit_code": "persons",
+      "unit_dimension": "count",
+      "available_levels": [
+        "country",
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-RENEWABLE-ELECTRICITY",
+      "indicator_id": "fddbcd02-c9ae-5361-8bba-91b402f9e1d4",
+      "name": "Renewable electricity share, excluding hydro",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-SAFE-SANITATION",
+      "indicator_id": "04d3f77a-db98-5e6d-9e35-2a7a6a5a402c",
+      "name": "Safely managed sanitation services (% of population)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-WOMEN-PARLIAMENT-SEATS",
+      "indicator_id": "548ffd52-0d6b-5aeb-8be9-8a0c77321dee",
+      "name": "Seats held by women in national parliament (%)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-STATISTICAL-PERFORMANCE",
+      "indicator_id": "8435738a-3644-55d7-8962-293657dad285",
+      "name": "Statistical Performance Indicators — Overall score",
+      "unit_code": "index_score",
+      "unit_dimension": "index",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=index"
+    },
+    {
+      "indicator_code": "IND-FUEL-PETROL",
+      "indicator_id": "1e520a03-e5c6-5028-9a7f-c61658067ebd",
+      "name": "Super Petrol pump price",
+      "unit_code": "kes_per_litre",
+      "unit_dimension": "currency",
+      "available_levels": [
+        "county"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
+      "indicator_code": "IND-UNEMPLOYMENT-MODELLED",
+      "indicator_id": "70f766cf-e6ff-54bc-9a07-af4a7e031330",
+      "name": "Unemployment, total (modeled ILO estimate)",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "indicator_code": "IND-USD-KES",
+      "indicator_id": "3fcc51b3-a441-5902-b39b-3ccb56eab963",
+      "name": "USD/KES exchange rate",
+      "unit_code": "kes_per_usd",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    }
+  ]
+}

@@ -66,6 +66,24 @@ for (const s of series) {
   seriesKeys.add(key);
 }
 
+// ------------------------------------------------ alternate-series symmetry
+// Comparable alternates are independent series joined only for display. The
+// link must be symmetric, never self-referential, and never cross a non-active
+// lifecycle boundary. Freshness selects display position only.
+const seriesByIdForAlternates = new Map(series.map(s => [s.series_id, s]));
+const indicatorByIdForAlternates = new Map(indicators.map(i => [i.indicator_id, i]));
+for (const s of series) {
+  if (!s.comparable_alternate_series_id) continue;
+  const alternate = seriesByIdForAlternates.get(s.comparable_alternate_series_id);
+  if (!alternate) { errors.push(`series ${s.series_code}: comparable_alternate_series_id is orphaned`); continue; }
+  if (alternate.series_id === s.series_id) errors.push(`series ${s.series_code}: comparable alternate cannot point to itself`);
+  if (alternate.comparable_alternate_series_id !== s.series_id) errors.push(`series ${s.series_code}: alternate link to ${alternate.series_code} is not symmetric`);
+  const a = indicatorByIdForAlternates.get(s.indicator_id);
+  const b = indicatorByIdForAlternates.get(alternate.indicator_id);
+  if (a?.lifecycle_status && a.lifecycle_status !== 'active') errors.push(`series ${s.series_code}: alternate-linked indicator ${a.indicator_code} is not active`);
+  if (b?.lifecycle_status && b.lifecycle_status !== 'active') errors.push(`series ${s.series_code}: alternate-linked indicator ${b.indicator_code} is not active`);
+}
+
 // ------------------------------------------------------------- observations
 const seriesById = new Map(series.map(s => [s.series_id, s]));
 const validGeoMethod = new Set(['direct', 'aggregated', 'interpolated', 'modelled']);
