@@ -32,7 +32,7 @@ jobs:
         run: |
           python scripts/sprint3/harden_acquisition_v14.py
           python - <<'PY'
-          import io, os, re, sys
+          import io, os, sys
           sys.path.insert(0,'scripts/sprint3')
           import acquire_cob_history as cob
           import pdfplumber
@@ -42,8 +42,10 @@ jobs:
           with pdfplumber.open(io.BytesIO(content)) as pdf:
               texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
               variants=cob.COUNTY_VARIANTS.get(county,[county])
-              page_i=cob._find_section(texts,variants)
-              print('SOURCE',fy,county,'page',page_i+1,url)
+              chapter_offset=1 if fy=='2019/20' else 0
+              chapter_no=cob.COB_2013_ORDER.index(county)+1+chapter_offset
+              page_i=cob._find_section(texts,variants,fy,chapter_no,10)
+              print('SOURCE',fy,county,'chapter',chapter_no,'page',page_i+1,url)
               for pi in range(page_i,min(page_i+6,len(pdf.pages))):
                   print(f'--- PAGE {pi+1} TEXT HITS ---')
                   lines=[cob._norm(x) for x in texts[pi].splitlines() if cob._norm(x)]
