@@ -471,7 +471,7 @@
       "county"
     ],
     "applies_to_geography_subset": "",
-    "requires_sampling_uncertainty": false,
+    "requires_sampling_uncertainty": true,
     "ranking_allowed": true
   },
   {
