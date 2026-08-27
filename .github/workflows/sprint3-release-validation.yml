@@ -5,6 +5,10 @@ on:
     branches: [release-sprint3-wb-20260827]
   workflow_dispatch:
 
+concurrency:
+  group: sprint3-release-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
