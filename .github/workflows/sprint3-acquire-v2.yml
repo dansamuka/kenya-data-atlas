@@ -28,6 +28,7 @@ on:
       - scripts/sprint3/harden_acquisition_v22.py
       - scripts/sprint3/harden_acquisition_v23.py
       - scripts/sprint3/harden_acquisition_v24.py
+      - scripts/sprint3/harden_acquisition_v25.py
       - scripts/sprint3/acquire_sources.py
       - scripts/sprint3/acquire_cob_history.py
       - scripts/sprint3/build-native.mjs
@@ -56,7 +57,7 @@ jobs:
       - name: Install acquisition dependencies
         run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
       - name: Apply acquisition hardening
-        run: python scripts/sprint3/harden_acquisition_v24.py
+        run: python scripts/sprint3/harden_acquisition_v25.py
       - name: Acquire and validate source snapshots
         run: python scripts/sprint3/acquire_sources.py
       - name: Validate native Sprint 3 promotion
