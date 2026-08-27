@@ -1,4 +1,4 @@
-name: Probe CoB FY2019 parser
+name: Probe CoB historical parser
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
       - scripts/sprint3/harden_acquisition_v6.py
       - scripts/sprint3/harden_acquisition_v7.py
       - scripts/sprint3/harden_acquisition_v8.py
+      - scripts/sprint3/harden_acquisition_v9.py
   workflow_dispatch:
 
 jobs:
@@ -21,24 +22,46 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Validate FY2019/20 all-county parser
+      - name: Inspect FY2018/19 Garissa extraction
         run: |
           python scripts/sprint3/harden_acquisition_v8.py
           python - <<'PY'
-          import json, sys
+          import io, json, re, sys
           from pathlib import Path
           sys.path.insert(0, 'scripts/sprint3')
           import acquire_cob_history as cob
 
+          fy='2018/19'
           root=Path('.')
-          geos=json.loads((root/'data/geography/registry/geographies.json').read_text())
-          counties=[g['name'] for g in geos if g.get('level')=='county']
           session=cob.requests.Session()
           session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
-          pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES['2019/20'],'2019/20')
-          values=cob._parse_narrative_year(content,'2019/20',counties)
-          cob._validate_year('2019/20',values,counties)
-          print('FY2019/20 PASS',len(values),'counties',pdf_url)
-          for county in ['Busia','Kilifi','Kirinyaga','Kisii','Narok','Nyamira','Garissa','Homa Bay','Mandera','Meru',"Murang'a",'Nairobi','Siaya','Vihiga']:
-              print(county,values[county])
+          pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
+          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
+              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+          floor=cob._find_chapter_floor(texts)
+          order={name:i+1 for i,name in enumerate(cob.COB_2013_ORDER)}
+          print('PDF',pdf_url,'pages',len(texts),'floor',floor+1)
+          for county in ['Embu','Garissa','Homa Bay','Isiolo','Lamu','Trans Nzoia']:
+              ch=order[county]
+              variants=cob.COUNTY_VARIANTS.get(county,[county])
+              page=cob._find_section(texts,variants,fy,ch,floor)
+              pos=cob._section_heading_pos(texts[page],variants,ch)
+              print('\nFINDER',county,'chapter',ch,'page',page+1,'pos',pos)
+              for pi in range(max(floor,page-1),min(len(texts),page+8)):
+                  flat=cob._norm(texts[pi])
+                  cues=[]
+                  for cue in ['Overview','Overall Expenditure','Expenditure Review','spent','total expenditure','Development Expenditure','Key Observations']:
+                      if cue.lower() in flat.lower(): cues.append(cue)
+                  if pi == page or cues:
+                      print('PAGE',pi+1,'CUES',cues,flat[:1800])
+              window='\n'.join(texts[page:min(page+6,len(texts))])
+              try:
+                  print('EXTRACT6',cob._extract_narrative(window,county,fy))
+              except Exception as e:
+                  print('EXTRACT6_ERROR',repr(e))
+              window8='\n'.join(texts[page:min(page+8,len(texts))])
+              try:
+                  print('EXTRACT8',cob._extract_narrative(window8,county,fy))
+              except Exception as e:
+                  print('EXTRACT8_ERROR',repr(e))
           PY
