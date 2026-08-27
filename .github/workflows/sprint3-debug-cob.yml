@@ -1,4 +1,4 @@
-name: Verify Sprint 3 Wajir FY2022-23
+name: Verify Sprint 3 FY2022-23 full gate
 
 on:
   push:
@@ -10,35 +10,30 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml html5lib pdfplumber pandas
-      - name: Verify official Wajir values
+      - name: Verify all 47 counties for FY2022-23
         run: |
-          python scripts/sprint3/harden_acquisition_v26.py
+          python scripts/sprint3/harden_acquisition_v27.py
           python - <<'PY'
-          import sys
+          import json, sys
+          from pathlib import Path
           sys.path.insert(0,'scripts/sprint3')
           import acquire_cob_history as cob
-          fy='2022/23'; county='Wajir'
+          fy='2022/23'
+          geos=json.loads(Path('data/geography/registry/geographies.json').read_text())
+          counties=[g['name'] for g in geos if g.get('level')=='county']
           session=cob.requests.Session(); session.headers.update({'User-Agent':'Mozilla/5.0 Chrome/138.0','Accept':'*/*'})
           url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
-          values=cob._parse_narrative_year(content,fy,[county])
-          value=values[county]
-          print('SOURCE',url)
-          print('WAJIR',value)
-          budget=float(value['budget_total_ksh_mn'])
-          spend=float(value['expenditure_total_ksh_mn'])
-          overall=float(value['overall_absorption_pct'])
-          development=float(value['development_absorption_pct'])
-          assert 11200 <= budget <= 11260, value
-          assert 10200 <= spend <= 10260, value
-          assert 88 <= overall <= 94, value
-          assert abs(development - 76.5) <= 0.1, value
-          assert abs(spend / budget * 100 - overall) <= 5.0, value
-          print('WAJIR V26 PASS')
+          values=cob._parse_narrative_year(content,fy,counties)
+          cob._validate_year(fy,values,counties)
+          assert len(values)==47, len(values)
+          for county in ('Trans Nzoia','Wajir'):
+              print(county,values[county])
+          print('FY2022/23 V27 FULL PASS',len(values),url)
           PY
