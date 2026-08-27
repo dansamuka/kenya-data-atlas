@@ -58,5 +58,75 @@
     "scale_factor": 1000000,
     "decimal_places": 2,
     "currency_code": "KES"
+  },
+  {
+    "unit_id": "2b7566ee-fd7f-510a-90da-d0b4f60268c7",
+    "code": "count",
+    "name": "Count",
+    "symbol": "count",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "6590aac1-b204-58cd-a9f0-8fab3fed5cdc",
+    "code": "persons_per_household",
+    "name": "Persons per household",
+    "symbol": "persons/household",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "04b90096-6bfb-521e-957b-e8b0f4cf1988",
+    "code": "index_score",
+    "name": "Score",
+    "symbol": "score",
+    "dimension": "index",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "3ac76693-4ae7-5fa1-a35f-019af2d4a642",
+    "code": "km",
+    "name": "Kilometres",
+    "symbol": "km",
+    "dimension": "length",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "390aea4f-9e25-5bd3-82ff-84463986de5e",
+    "code": "per_10000_persons",
+    "name": "Per 10,000 population",
+    "symbol": "per 10k",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "05877091-2fa7-5ff3-af23-1fe97ba689b1",
+    "code": "climate_measure",
+    "name": "Rainfall / temperature measure",
+    "symbol": "mm / °C",
+    "dimension": "climate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
   }
 ]
