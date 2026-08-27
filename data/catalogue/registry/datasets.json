@@ -335,5 +335,80 @@
     "publication_status": "published",
     "methodology_url": "https://www.epra.go.ke/pump-price-formulae",
     "known_limitations": "Covers only 2 of 47 counties (Nairobi and Mombasa pricing towns) from a single announcement. EPRA sets prices by town/pricing zone, not strictly by administrative county boundary; Nairobi town and Mombasa town are used here as reasonable proxies for their respective counties, not as an official county-level statistic. The remaining EPRA town price list (34+ towns) is not yet loaded. Diesel and kerosene prices from the same announcement are not yet loaded either."
+  },
+  {
+    "dataset_id": "08535fcc-2e2a-5c44-8f1a-1e136b8b9f32",
+    "dataset_code": "DS-KNBS-CENSUS-2009-COUNTY-S1",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2009 Census — County Population Counts",
+    "description": "Official 2009 census population totals for all 47 counties.",
+    "topic": "Demography",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "data/sprint1/README.md",
+    "known_limitations": "Official county totals only; no allocation below county."
+  },
+  {
+    "dataset_id": "93aefd28-bb79-5455-863f-b20ead1bfed4",
+    "dataset_code": "DS-IEBC-VOTERS-COUNTY-2022-S1",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "Registered Voters — 2022 County Gazette Schedule",
+    "description": "IEBC Gazette Third Schedule registered-voter totals for all 47 counties.",
+    "topic": "Elections",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "electoral_cycle",
+    "publication_status": "published",
+    "methodology_url": "data/sprint1/README.md",
+    "known_limitations": "County Gazette schedule totals 22,102,532; the later audited national topline is a different release vintage."
+  },
+  {
+    "dataset_id": "afb99074-2d12-575d-836b-849ff0dc34c3",
+    "dataset_code": "DS-KNBS-GCP-2025-S1",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Gross County Product 2025 — Current Prices",
+    "description": "Gross County Product at current prices for all 47 counties, 2020–2024.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "data/sprint1/README.md",
+    "known_limitations": "2024 is preliminary. County values must not be allocated below county."
+  },
+  {
+    "dataset_id": "016e5890-7bdb-5b2d-8391-966ac8b35a0d",
+    "dataset_code": "DS-COB-COUNTY-BUDGET-FY2024-25-S1",
+    "source_id": "4cf7d629-21ea-5e09-b2c7-d3a5baae46f0",
+    "title": "County Budget Implementation — FY 2024/25",
+    "description": "County budget, expenditure and absorption measures for FY 2024/25.",
+    "topic": "Public Finance",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "data/sprint1/README.md",
+    "known_limitations": "County fiscal-year totals and absorption rates only."
+  },
+  {
+    "dataset_id": "de65c220-8c76-5ba3-85b6-09144ec0bb2b",
+    "dataset_code": "DS-EPRA-FUEL-MAJOR-TOWNS-S1",
+    "source_id": "c0d98736-dff3-551c-8d64-86ad591fbde6",
+    "title": "Super Petrol — Representative EPRA Pricing Towns, Aug–Sep 2026",
+    "description": "Published Super Petrol pricing-town observations linked to counties for navigation.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "county_where_pricing_town_linked"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "data/sprint1/README.md",
+    "known_limitations": "Pricing-town observations, not county averages. Nyandarua uses the nearest published pricing town, Nyahururu."
   }
 ]

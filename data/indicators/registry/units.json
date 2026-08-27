@@ -48,5 +48,15 @@
     "scale_factor": 1,
     "decimal_places": 2,
     "currency_code": "KES"
+  },
+  {
+    "unit_id": "301fb81d-4436-5309-8fc5-547d222b8ffe",
+    "code": "kes_million",
+    "name": "Kenya Shillings, million",
+    "symbol": "KSh mn",
+    "dimension": "currency",
+    "scale_factor": 1000000,
+    "decimal_places": 2,
+    "currency_code": "KES"
   }
 ]
