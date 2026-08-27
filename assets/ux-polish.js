@@ -18,9 +18,10 @@
       wrap.insertAdjacentElement('afterend',meta);
     }
     legend.removeAttribute('aria-hidden');
-    meta.append(legend,source);
+    if(legend.parentElement!==meta) meta.appendChild(legend);
+    if(source.parentElement!==meta) meta.appendChild(source);
     const coverage=$('#sprint1-coverage');
-    if(coverage) meta.append(coverage);
+    if(coverage&&coverage.parentElement!==meta) meta.appendChild(coverage);
     const old=$('.geo-map-overlay',panel);
     if(old) old.remove();
   }
