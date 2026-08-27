@@ -25,6 +25,10 @@ on:
       - scripts/sprint3/acquire_cob_history.py
   workflow_dispatch:
 
+concurrency:
+  group: sprint3-acquire-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
