@@ -50,7 +50,6 @@ const requiredReleases = [
 ];
 for (const code of requiredReleases) assert(releases.some(r => r.release_code === code), `native catalogue missing release ${code}`);
 
-const obsById = new Map(observations.map(o => [o.observation_id, o]));
 const seriesByIndicatorGeo = new Map();
 for (const s of series) {
   const key = `${s.indicator_id}|${s.geography_id}`;
@@ -76,7 +75,7 @@ for (const county of counties) {
   const popObs = ownObs(popRows);
   assert(popRows.length >= 1, `${county.geo_code}: no native population series`);
   assert(popObs.some(o => o.period_label === '2009 census'), `${county.geo_code}: native registry missing 2009 population observation`);
-  assert(popObs.some(o => /^2019/.test(o.period_label)), `${county.geo_code}: native registry missing 2019 population observation`);
+  assert(popObs.some(o => o.period_start === '2019-08-24' && /2019/.test(o.period_label)), `${county.geo_code}: native registry missing 2019 population observation`);
   population2009 += 1;
 
   const voterRows = ownSeries('IND-REGISTERED-VOTERS', county.geography_id);
