@@ -2,7 +2,9 @@ name: World Bank national integration
 
 on:
   push:
-    branches: [feature/worldbank-national-integration]
+    branches:
+      - main
+      - feature/worldbank-national-integration
     paths:
       - .github/workflows/worldbank-national-integration.yml
       - scripts/catalogue/apply-worldbank-catalogue-seed.mjs
@@ -18,6 +20,10 @@ on:
       - assets/worldbank-integration.js
       - assets/worldbank-integration.css
       - docs/methodology/worldbank-indicators.md
+  schedule:
+    # Quarterly on 1 Jan/Apr/Jul/Oct at 06:15 UTC (09:15 Africa/Nairobi).
+    # GitHub runs schedules from the default branch, so this becomes active on merge to main.
+    - cron: '15 6 1 1,4,7,10 *'
   workflow_dispatch:
 
 permissions:
@@ -107,6 +113,7 @@ jobs:
             echo "No generated World Bank integration changes."
           else
             git commit -m "data(worldbank): publish national WDI integration"
-            git pull --rebase origin feature/worldbank-national-integration
-            git push origin HEAD:feature/worldbank-national-integration
+            branch="${GITHUB_REF_NAME}"
+            git pull --rebase origin "$branch"
+            git push origin "HEAD:$branch"
           fi
