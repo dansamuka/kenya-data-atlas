@@ -29,6 +29,8 @@ on:
       - scripts/sprint3/harden_acquisition_v23.py
       - scripts/sprint3/acquire_sources.py
       - scripts/sprint3/acquire_cob_history.py
+      - scripts/sprint3/build-native.mjs
+      - scripts/indicators/validate-sprint3.mjs
   workflow_dispatch:
 
 concurrency:
@@ -56,6 +58,13 @@ jobs:
         run: python scripts/sprint3/harden_acquisition_v23.py
       - name: Acquire and validate source snapshots
         run: python scripts/sprint3/acquire_sources.py
+      - name: Validate native Sprint 3 promotion
+        shell: bash
+        run: |
+          node scripts/sprint3/build-native.mjs catalogue
+          node scripts/sprint3/build-native.mjs indicators
+          node scripts/indicators/validate-sprint3.mjs
+          git restore data/catalogue/registry data/indicators/registry
       - name: Commit source snapshots
         shell: bash
         run: |
