@@ -11,6 +11,7 @@ on:
       - scripts/sprint3/harden_acquisition_v8.py
       - scripts/sprint3/harden_acquisition_v9.py
       - scripts/sprint3/harden_acquisition_v10.py
+      - scripts/sprint3/harden_acquisition_v11.py
   workflow_dispatch:
 
 jobs:
@@ -23,35 +24,27 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Inspect FY2018/19 Table 2.5 structure
+      - name: Validate FY2018/19 official Table 2.5 snapshot
         run: |
-          python scripts/sprint3/harden_acquisition_v10.py
+          python scripts/sprint3/harden_acquisition_v11.py
           python - <<'PY'
-          import io, sys
+          import json, sys
+          from pathlib import Path
           sys.path.insert(0, 'scripts/sprint3')
           import acquire_cob_history as cob
 
           fy='2018/19'
+          root=Path('.')
+          geos=json.loads((root/'data/geography/registry/geographies.json').read_text())
+          counties=[g['name'] for g in geos if g.get('level')=='county']
           session=cob.requests.Session()
           session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
           pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
-          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
-              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
-              table_page=None
-              for i,raw in enumerate(texts):
-                  flat=cob._norm(raw)
-                  if 'Table 2.5' in flat and 'County Budget Allocation' in flat and 'Absorption Rate' in flat:
-                      table_page=i; break
-              print('PDF',pdf_url,'TABLE_PAGE',None if table_page is None else table_page+1)
-              if table_page is None: raise SystemExit(2)
-              for pi in range(table_page,min(table_page+3,len(pdf.pages))):
-                  page=pdf.pages[pi]
-                  print('\n=== PAGE',pi+1,'TEXT ===')
-                  print(repr(texts[pi][:7000]))
-                  tables=page.extract_tables() or []
-                  print('TABLE_COUNT',len(tables))
-                  for ti,t in enumerate(tables):
-                      print('TABLE',ti,'ROWS',len(t),'MAXCOLS',max((len(r or []) for r in t),default=0))
-                      for ri,row in enumerate(t[:35]):
-                          print('ROW',ri,repr(row))
+          values=cob._parse_2018_consolidated_table(content,counties)
+          cob._validate_year(fy,values,counties)
+          print('FY2018/19 PASS',len(values),'counties',pdf_url)
+          print('AGG_BUDGET',sum(v['budget_total_ksh_mn'] for v in values.values()))
+          print('AGG_SPEND',sum(v['expenditure_total_ksh_mn'] for v in values.values()))
+          for county in ['Garissa','Laikipia','Lamu','Trans Nzoia','West Pokot']:
+              print(county,values[county])
           PY
