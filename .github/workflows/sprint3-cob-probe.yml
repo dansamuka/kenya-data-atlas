@@ -23,27 +23,25 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Inspect FY2018/19 Laikipia bounded pages
+      - name: Validate FY2018/19 consolidated Table 2.5 parser
         run: |
-          python scripts/sprint3/harden_acquisition_v9.py
+          python scripts/sprint3/harden_acquisition_v10.py
           python - <<'PY'
-          import io, re, sys
+          import json, sys
+          from pathlib import Path
           sys.path.insert(0, 'scripts/sprint3')
           import acquire_cob_history as cob
 
           fy='2018/19'
+          root=Path('.')
+          geos=json.loads((root/'data/geography/registry/geographies.json').read_text())
+          counties=[g['name'] for g in geos if g.get('level')=='county']
           session=cob.requests.Session()
           session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
           pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
-          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
-              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
-          print('PDF',pdf_url,'pages',len(texts))
-          county_rx=re.compile(r'\bLaikipia\s+County\b',re.I)
-          chapter_rx=re.compile(r'3\s*\.\s*20(?:\s*\.\s*(\d+))?',re.I)
-          for pi in range(145,166):
-              flat=cob._norm(texts[pi-1])
-              cm=county_rx.search(flat); hm=chapter_rx.search(flat)
-              cues=[x for x in ['Overview','Budget','Expenditure','spent','Development'] if x.lower() in flat.lower()]
-              print('\nPAGE',pi,'county',bool(cm),'chapter',hm.group(1) if hm else None,'cues',cues)
-              print(flat[:2400])
+          values=cob._parse_2018_consolidated_table(content,counties)
+          cob._validate_year(fy,values,counties)
+          print('FY2018/19 TABLE PASS',len(values),'counties',pdf_url)
+          for county in ['Garissa','Laikipia','Lamu','Trans Nzoia','West Pokot']:
+              print(county,values[county])
           PY
