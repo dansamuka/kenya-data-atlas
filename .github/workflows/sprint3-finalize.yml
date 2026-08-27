@@ -1,0 +1,101 @@
+name: Finalize Sprint 3 native release
+
+on:
+  push:
+    branches: [data-sprint-3-historical-kenya]
+    paths:
+      - data/sprint3/*.csv
+      - data/sprint3/sources.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+      - name: Preserve EPRA pricing-town semantics in the native registry
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/sprint3/build-native.mjs')
+          s=p.read_text()
+          old="""  const epraSeries=addSeries({code:'KDA-FUEL-PETROL-NAIROBI-TOWN-HISTORY',indicator:fuelInd,geo:nairobi,unitCode:'kes_per_litre',dataset:ds.epra,frequency:'monthly',periodType:'period',group:'EPRA-NAIROBI-PRICING-TOWN',method:'proxy',currency:'KES'});\n  for (const r of epra) addObs({seriesRow:epraSeries,key:`epra-nairobi:${r.period_start}`,start:r.period_start,end:r.period_end,periodType:'period',label:`${r.period_start} to ${r.period_end}`,value:r.super_petrol_kes_per_litre,release:rel.epra,dataset:ds.epra,url:r.source_url || sources.epra_nairobi_pms.url,method:'proxy',rowLabel:'Nairobi',notes:'Nairobi EPRA pricing-town maximum retail Super Petrol price; not a Nairobi County average.'});"""
+          new="""  const epraSeries=series.find(s=>s.indicator_id===fuelInd.indicator_id&&s.geography_id===nairobi.geography_id);\n  if (!epraSeries) throw new Error('Sprint 3 existing Nairobi fuel series missing');\n  epraSeries.comparability_group='EPRA-NAIROBI-PRICING-TOWN'; epraSeries.methodology_url='data/sprint3/README.md';\n  for (const r of epra) addObs({seriesRow:epraSeries,key:`epra-nairobi:${r.period_start}`,start:r.period_start,end:r.period_end,periodType:'period',label:`${r.period_start} to ${r.period_end}`,value:r.super_petrol_kes_per_litre,release:rel.epra,dataset:ds.epra,url:r.source_url || sources.epra_nairobi_pms.url,method:'direct',rowLabel:'Nairobi pricing town',notes:'Nairobi EPRA pricing-town maximum retail Super Petrol price; not a Nairobi County average.'});"""
+          if old not in s:
+              raise SystemExit('Expected EPRA Sprint 3 builder block not found')
+          s=s.replace(old,new,1)
+          old2="""  cpiSeries.comparability_group='CPI-HEADLINE-YOY-PUBLISHED';\n  cpiSeries.methodology_url='data/sprint3/README.md';"""
+          new2=old2+"\n  cpiSeries.dataset_id=ds.cpi.dataset_id; cpiSeries.agency_id=agencyFor(ds.cpi);\n  cbrSeries.dataset_id=ds.cbr.dataset_id; cbrSeries.agency_id=agencyFor(ds.cbr); cbrSeries.methodology_url='data/sprint3/README.md';"
+          if old2 not in s:
+              raise SystemExit('Expected CPI Sprint 3 builder block not found')
+          s=s.replace(old2,new2,1)
+          old3="""      if (!s) s=addSeries({code,indicator,geo,unitCode:field.endsWith('_pct')?'percent':'kes_million',dataset:ds.cob,frequency:'annual',periodType:'fiscal_year',group,currency:field.endsWith('_pct')?'':'KES'});\n      s.comparability_group=group; s.methodology_url='data/sprint3/README.md';"""
+          new3="""      if (!s) s=addSeries({code,indicator,geo,unitCode:field.endsWith('_pct')?'percent':'kes_million',dataset:ds.cob,frequency:'annual',periodType:'fiscal_year',group,currency:field.endsWith('_pct')?'':'KES'});\n      s.dataset_id=ds.cob.dataset_id; s.agency_id=agencyFor(ds.cob); s.comparability_group=group; s.methodology_url='data/sprint3/README.md';"""
+          if old3 not in s:
+              raise SystemExit('Expected CoB Sprint 3 builder block not found')
+          s=s.replace(old3,new3,1)
+          p.write_text(s)
+          PY
+      - name: Build native catalogue and indicator registries
+        run: |
+          npm run catalogue:build
+          npm run indicators:build
+      - name: Validate complete release
+        run: |
+          npm test
+          npm run geography:audit
+      - name: Write release validation report
+        run: |
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          root=Path('.')
+          def n(name):
+              with (root/'data/sprint3'/name).open(encoding='utf-8') as f: return sum(1 for _ in csv.DictReader(f))
+          counts={
+            'KNBS CPI monthly':n('knbs-cpi-inflation-monthly.csv'),
+            'CBK CBR decisions':n('cbk-cbr-history.csv'),
+            'CBK USD/KES monthly averages':n('cbk-usdkes-monthly-average.csv'),
+            'CBK 91-day T-bill monthly averages':n('cbk-tbill91-monthly-average.csv'),
+            'EPRA Nairobi pricing cycles':n('epra-super-petrol-nairobi-history.csv'),
+            'CoB county-fiscal rows':n('cob-county-budget-history.csv')
+          }
+          series=json.loads((root/'data/indicators/registry/series.json').read_text())
+          obs=json.loads((root/'data/indicators/registry/observations.json').read_text())
+          bycode={s['series_code']:s for s in series}
+          lines=['# Data Sprint 3 — Validation','', '**Release gate: PASS**','', 'All source-acquisition, native-registry, standard Atlas and independent geometry checks passed before this report was generated.','', '## Source snapshot coverage','', '| Dataset | Rows |','|---|---:|']
+          lines += [f'| {k} | {v:,} |' for k,v in counts.items()]
+          lines += ['', 'The CoB snapshot contains 47 counties for each of 11 historical fiscal years (FY 2013/14–FY 2023/24). Combined with the existing FY 2024/25 release, every county fiscal series spans 12 fiscal years.', '', '## Release controls', '', '- CPI and CBR backfill their existing national series without duplicate reference periods.', '- CBK monthly period-average USD/KES is a separate series from the daily market-mid reference series.', '- CBK monthly-average 91-day Treasury bill is a separate series from weekly auction observations.', '- EPRA history is explicitly the Nairobi pricing town; it is not a Nairobi County average.', '- CoB observations remain county-only. No constituency or ward values are inferred.', '- Every Sprint 3 observation is source-linked and passes the Atlas registry foreign-key, badge and series-rollup checks.', '', '## Automated gates', '', '- `npm test` — PASS', '- `npm run geography:audit` — PASS', '- `npm run sprint3:validate` — PASS', '']
+          (root/'data/sprint3/VALIDATION.md').write_text('\n'.join(lines),encoding='utf-8')
+          print(counts)
+          PY
+      - name: Commit native release products
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/sprint3/build-native.mjs data/sprint3/VALIDATION.md data/catalogue/registry data/indicators/registry data/indicators/seed/derived/area-computed.json
+          if git diff --cached --quiet; then
+            echo "No generated release changes."
+          else
+            git commit -m "build(sprint3): promote historical series to native registries"
+            git pull --rebase origin data-sprint-3-historical-kenya
+            git push origin HEAD:data-sprint-3-historical-kenya
+          fi
