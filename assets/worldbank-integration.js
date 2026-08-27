@@ -165,8 +165,8 @@
       });
 
       // ------------------------------------------------ Cross-level comparison
-      // Eligible indicators come from the generated registry index; the UI does
-      // not carry a hand-maintained indicator list.
+      // Eligibility is decided for each concrete series, not for an indicator
+      // family. A normalized sibling can therefore never promote a raw total.
       function buildCrossLevelCompare() {
         if ($('#cross-level-compare')) return;
         const anchor = $('#geo-explorer');
@@ -174,7 +174,7 @@
         const section = document.createElement('section');
         section.className = 'section cross-level-section';
         section.id = 'cross-level-compare';
-        section.innerHTML = `<div class="section-heading"><div><p class="eyebrow">Compare across levels</p><h2>County ↔ constituency ↔ ward</h2></div><p>Only normalized indicators—or the explicit land-area exception—appear here. Raw population, voter and currency totals remain same-level only.</p></div>
+        section.innerHTML = `<div class="section-heading"><div><p class="eyebrow">Compare across levels</p><h2>County ↔ constituency ↔ ward</h2></div><p>Only normalized series—or the explicit land-area exception—appear here. Raw population, voter and currency totals remain same-level only.</p></div>
           <div class="cross-level-controls" id="cross-level-controls"></div>
           <label class="select-label cross-indicator-label">Indicator<select id="cross-level-indicator" aria-label="Cross-level comparison indicator"></select></label>
           <p class="cross-level-note" id="cross-level-note"></p>
@@ -182,7 +182,7 @@
         anchor.insertAdjacentElement('afterend', section);
 
         const levels = ['county','constituency','ward'];
-        const state = levels.map((level, index) => ({ level, geoId:'' }));
+        const state = levels.map(level => ({ level, geoId:'' }));
         const controls = $('#cross-level-controls');
         const indicatorSelect = $('#cross-level-indicator');
         const note = $('#cross-level-note');
@@ -216,30 +216,37 @@
           });
         }
 
-        const eligibilityByCode = new Map((eligibility.indicators || []).map(r => [r.indicator_code, r]));
+        const eligibilityBySeriesId = new Map((eligibility.series || []).map(r => [r.series_id, r]));
         function latestSeriesFor(indicatorId, geoId) {
           return series.find(s => s.indicator_id === indicatorId && s.geography_id === geoId && latest(s));
         }
         function eligibleForCurrentPlaces() {
-          const selectedLevels = new Set(state.map(s => s.level));
-          return [...eligibilityByCode.values()].filter(rule => {
-            if (!rule.cross_level_eligible) return false;
-            if (![...selectedLevels].every(level => rule.available_levels.includes(level))) return false;
-            const indicator = indicatorByCode.get(rule.indicator_code);
-            return indicator && state.every(slot => latestSeriesFor(indicator.indicator_id, slot.geoId));
-          });
+          return indicators.map(indicator => {
+            const selectedSeries = state.map(slot => latestSeriesFor(indicator.indicator_id, slot.geoId));
+            if (selectedSeries.some(s => !s)) return null;
+            const rules = selectedSeries.map(s => eligibilityBySeriesId.get(s.series_id));
+            if (rules.some(rule => !rule?.cross_level_eligible)) return null;
+            return {
+              indicator_code: indicator.indicator_code,
+              indicator_id: indicator.indicator_id,
+              name: indicator.name,
+              series_ids: selectedSeries.map(s => s.series_id)
+            };
+          }).filter(Boolean).sort((a,b) => a.name.localeCompare(b.name));
         }
         function updateIndicatorOptions() {
+          const previous = indicatorSelect.value;
           const eligible = eligibleForCurrentPlaces();
           indicatorSelect.innerHTML = eligible.map(r => `<option value="${r.indicator_code}">${escapeHtml(r.name)}</option>`).join('');
           if (!eligible.length) {
-            note.textContent = 'No indicator currently has data at all three of these selected levels — try Land area where coverage exists, or compare places at the same level instead.';
+            note.textContent = 'No concrete series is cross-level eligible and populated at all three selected places — try Land area where coverage exists, or compare places at the same level instead.';
             chart.innerHTML = '';
             indicatorSelect.disabled = true;
             return;
           }
           indicatorSelect.disabled = false;
-          note.textContent = `${eligible.length} indicator${eligible.length===1?'':'s'} genuinely comparable for these selected places. The scale is linear from zero.`;
+          if (eligible.some(r => r.indicator_code === previous)) indicatorSelect.value = previous;
+          note.textContent = `${eligible.length} indicator${eligible.length===1?'':'s'} genuinely comparable for these selected places. Eligibility is checked on each selected series; the scale is linear from zero.`;
           renderChart();
         }
         function renderChart() {
@@ -247,7 +254,8 @@
           if (!indicator) return;
           const rows = state.map(slot => {
             const s = latestSeriesFor(indicator.indicator_id, slot.geoId);
-            return s ? { geo:geoById.get(slot.geoId), s, o:latest(s), unit:unitForSeries(s) } : null;
+            const rule = s ? eligibilityBySeriesId.get(s.series_id) : null;
+            return s && rule?.cross_level_eligible ? { geo:geoById.get(slot.geoId), s, o:latest(s), unit:unitForSeries(s), rule } : null;
           }).filter(Boolean);
           if (rows.length !== state.length) { updateIndicatorOptions(); return; }
           const max = Math.max(...rows.map(r => Number(r.o.value)), 0);
