@@ -1,0 +1,22 @@
+/* Kenya Data Atlas — unit presentation */
+.unit-chip{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.18rem .42rem;border:1px solid rgba(18,60,50,.13);border-radius:999px;background:rgba(18,60,50,.045);color:#52605a;font-size:.58rem;font-weight:700;letter-spacing:.035em;line-height:1.2;white-space:nowrap;vertical-align:middle}
+.metric-card>.metric-unit{margin:.28rem 0 .2rem}
+.metric-card .label+.metric-unit{margin-left:.38rem;margin-top:0}
+.pulse-card>.metric-unit{margin-top:.35rem;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#d9e5df}
+.quick-facts article>.metric-unit{margin:.32rem 0 0}
+.card-head .metric-unit{margin-top:.35rem}
+
+.geo-unit-context{display:flex;align-items:baseline;gap:.45rem;flex-wrap:wrap;color:#53615b;line-height:1.25}
+.geo-unit-context span{text-transform:uppercase;letter-spacing:.08em;font-size:.56rem;font-weight:700;color:#7a8580}
+.geo-unit-context strong{font-size:.65rem;font-weight:700;color:#31443c}
+.geo-ranking-unit{align-self:flex-start;margin:-.25rem 0 .6rem}
+.geo-summary-unit{margin-top:.65rem}
+.geo-tooltip-unit{display:flex!important;margin-top:.5rem;padding:.16rem .38rem!important;font-size:.55rem!important;color:#52605a!important;background:#f3f6f3!important;border-color:#d9e0db!important}
+
+.series-unit-chip{margin:.35rem 0 .2rem}
+.series-unit-value{display:block}
+
+@media (max-width:600px){
+  .geo-unit-context strong{font-size:.61rem}
+  .unit-chip{font-size:.55rem}
+}
