@@ -1,0 +1,43 @@
+name: Placeholder taxonomy native release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/placeholder-taxonomy.yml'
+      - 'data/indicators/seed/placeholder-taxonomy.json'
+      - 'data/geography/reference/geography-subsets.json'
+      - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
+      - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
+      - 'db/schema/indicators.sql'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build native indicators with lifecycle taxonomy
+        run: npm run indicators:build
+      - name: Validate full Atlas registry
+        run: npm test
+      - name: Commit generated native registries
+        run: |
+          if git diff --quiet -- data/indicators/registry; then
+            echo "No generated registry changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/indicators/registry
+          git commit -m "build(taxonomy): publish lifecycle-aware indicator registry"
+          git push
