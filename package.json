@@ -1,25 +1,26 @@
 {
   "name": "kenya-data-atlas",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "scripts": {
     "geography:build": "node scripts/geography/build-registry.mjs && node scripts/geography/ingest-boundaries.mjs && node --max-old-space-size=4096 scripts/geography/derive-parents.mjs",
     "geography:geometry": "node scripts/geography/ingest-boundaries.mjs",
     "geography:validate": "node scripts/geography/validate-registry.mjs",
-    "catalogue:build": "node scripts/catalogue/build-catalogue.mjs && node scripts/sprint1/build-native.mjs catalogue",
+    "catalogue:build": "node scripts/catalogue/build-catalogue.mjs && node scripts/sprint1/build-native.mjs catalogue && node scripts/sprint3/build-native.mjs catalogue",
     "catalogue:validate": "node scripts/catalogue/validate-catalogue.mjs",
     "build:data": "npm run geography:build && npm run catalogue:build && npm run indicators:build",
-    "test": "npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate",
+    "test": "npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate && npm run sprint3:validate",
     "geography:derive": "node --max-old-space-size=4096 scripts/geography/derive-parents.mjs",
     "geography:audit": "python3 scripts/geography/audit-geometry.py .",
     "indicators:compute-area": "node scripts/indicators/compute-derived-area.mjs",
-    "indicators:build": "node scripts/indicators/compute-derived-area.mjs && node scripts/indicators/build-registry.mjs && node scripts/sprint1/build-native.mjs indicators && node scripts/indicators/apply-placeholder-taxonomy.mjs && node scripts/indicators/apply-worldbank-registry-metadata.mjs && node scripts/indicators/build-cross-level-eligibility.mjs",
+    "indicators:build": "node scripts/indicators/compute-derived-area.mjs && node scripts/indicators/build-registry.mjs && node scripts/sprint1/build-native.mjs indicators && node scripts/sprint3/build-native.mjs indicators && node scripts/indicators/apply-placeholder-taxonomy.mjs && node scripts/indicators/apply-worldbank-registry-metadata.mjs && node scripts/indicators/build-cross-level-eligibility.mjs",
     "indicators:validate": "node scripts/indicators/validate-registry.mjs && node scripts/indicators/validate-placeholder-taxonomy.mjs && node scripts/indicators/validate-worldbank-integration.mjs",
     "sprint1:validate": "node scripts/indicators/validate-sprint1.mjs",
     "native-api:validate": "node scripts/indicators/validate-native-api.mjs",
     "sprint2:diagnose": "node scripts/indicators/diagnose-sprint2-geography.mjs",
-    "sprint2:validate": "node scripts/indicators/validate-sprint2-release.mjs"
+    "sprint2:validate": "node scripts/indicators/validate-sprint2-release.mjs",
+    "sprint3:validate": "node scripts/indicators/validate-sprint3.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"

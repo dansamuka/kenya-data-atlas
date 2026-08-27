@@ -1,0 +1,183 @@
+{
+  "sprint": "Data Sprint 3 \u2014 Historical Kenya",
+  "generated_at": "2026-08-27T19:05:06.467464Z",
+  "sources": {
+    "knbs_cpi": {
+      "url": "https://www.centralbank.go.ke/inflation-rates/",
+      "retrieved_at": "2026-08-27T19:05:17.696253Z",
+      "sha256": "d4e14dc41fb980e894b4529ecd9ceb48e2c098e98fa9793d112a7522678b6a76",
+      "rows": 259,
+      "first": "2005-01-01",
+      "last": "2026-07-01",
+      "quality": "A",
+      "note": "CBK official historical inflation table; source column/page attributes inflation statistics to KNBS."
+    },
+    "cbk_cbr": {
+      "url": "https://www.centralbank.go.ke/rates/central-bank-rate/",
+      "retrieved_at": "2026-08-27T19:05:17.833702Z",
+      "sha256": "9c53e685b446d542314e3c9f8f4d5322b4cf023ac61fed818b93f526f95b058f",
+      "rows": 122,
+      "first": "2008-08-06",
+      "last": "2026-08-11",
+      "quality": "A"
+    },
+    "cbk_fx": {
+      "url": "https://www.centralbank.go.ke/uploads/exchange_rates/312193872_Monthly%20Exchange%20rate%20%28period%20average%29.csv",
+      "metadata_url": "https://www.centralbank.go.ke/statistics/exchange-rates/",
+      "retrieved_at": "2026-08-27T19:05:23.974808Z",
+      "sha256": "7def7176a1407a32da315a85d476e91494d45c3974500a92766b585a2f77295d",
+      "rows": 403,
+      "first": "1993-01-01",
+      "last": "2026-07-01",
+      "quality": "A",
+      "definition": "Monthly period-average KES per USD."
+    },
+    "cbk_tbill91": {
+      "urls": [
+        "https://www.centralbank.go.ke/central-bank-rates/",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/1364867856_Statistical%20Bulletin%20June%202020.pdf",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/599913219_Statistical%20Bulletin%20June%202021.pdf",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/1639742031_Statistical%20Bulletin%20December%202021.pdf",
+        "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+      ],
+      "retrieved_at": "2026-08-27T19:08:29.811664Z",
+      "source_hashes": {
+        "html": "4f618c3d21deb31cd7d5d70b3cfe35688e5d279d1b576343ebe72b3e2668126e",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/1364867856_Statistical%20Bulletin%20June%202020.pdf": "6f4ddb09db2eda8aeb7f53c85ebfd9dfa1d77ca8cce4c81b8658f6e4f4399ea1",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/599913219_Statistical%20Bulletin%20June%202021.pdf": "8639bebc659bb478f30a4cb65669d4dc13190e309db44dfd6d78bac760f7cab7",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/1639742031_Statistical%20Bulletin%20December%202021.pdf": "266f72c3b1a4bc6f75b87ea5d668124f4d11c805416a87901dc67dcfe7c16637",
+        "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf": "d2dfe3d6d43f8773b4eaa0bb2871fea6c0b7215cae25c54297be8ac7a0582080",
+        "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf": "a056dd65b8f5dca2e5356718a87f5d11b5a5162c89979efdbab412160dc318eb"
+      },
+      "rows": 405,
+      "first": "1991-07-01",
+      "last": "2025-12-01",
+      "quality": "A",
+      "definition": "Monthly weighted-average 91-day Treasury bill rate; official CBK table / Statistical Bulletins."
+    },
+    "epra_nairobi_pms": {
+      "url": "https://www.epra.go.ke/pump-prices",
+      "statistics_report_url": "https://www.epra.go.ke/sites/default/files/2026-03/Biannual%20Statistics%20Report%202025-2026_1.pdf",
+      "statistics_report_sha256": null,
+      "provenance_method": "manual_transcription_from_official_statistics_report",
+      "retrieved_at": "2026-08-27T19:08:29.813271Z",
+      "rows": 6,
+      "first": "2025-07-15",
+      "last": "2025-12-15",
+      "quality": "A",
+      "note": "Six Nairobi pricing-town PMS observations transcribed from the official EPRA statistics report; binary report hash unavailable in this acquisition path. Not a Nairobi County average."
+    },
+    "cob_history": {
+      "retrieved_at": "2026-08-27T19:24:11.182353Z",
+      "quality": "official_mixed_direct_and_transformed",
+      "years": {
+        "2013/14": {
+          "landing_page": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-20132014/",
+          "pdf_url": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-20132014/?wpdmdl=7639",
+          "pdf_sha256": "ef8e9a7812f4e15a17b0f5680111e5c8440109e9765f809a009e3e4462ba46d8",
+          "rows": 47,
+          "rate_methods": {
+            "published_annex": 47
+          }
+        },
+        "2014/15": {
+          "landing_page": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201415/",
+          "pdf_url": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201415/?wpdmdl=9317",
+          "pdf_sha256": "a282633e530bc4853d603c4d8b67c4a6861f9d2c37e5a4620ab4d532509d6c76",
+          "rows": 47,
+          "rate_methods": {
+            "annex_ratio": 47
+          }
+        },
+        "2015/16": {
+          "landing_page": "https://cob.go.ke/download/annual-county-budget-implementation-review-report-fy-2015-16/",
+          "pdf_url": "https://cob.go.ke/download/annual-county-budget-implementation-review-report-fy-2015-16/?wpdmdl=10035",
+          "pdf_sha256": "eb7506ea0257c02273c0fc3046d3b0a0edc08a40b4911bbd2d147ccf913e9c7e",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 46,
+            "derived_overall+derived_development": 1
+          }
+        },
+        "2016/17": {
+          "landing_page": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201617/",
+          "pdf_url": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-201617/?wpdmdl=10487",
+          "pdf_sha256": "a206f4fe5ea76543d06327e4dc3af6d13a0300abd05a9e637e94798dca6a2b09",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 42,
+            "derived_overall+derived_development": 5
+          }
+        },
+        "2017/18": {
+          "landing_page": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-for-fy-2017-18/",
+          "pdf_url": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-for-fy-2017-18/?wpdmdl=14829",
+          "pdf_sha256": "9646ea3788bd93a80a320c199bc04f6787c1f3568a883c7045d2a0ba3f849fb4",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 46,
+            "derived_overall+derived_development": 1
+          }
+        },
+        "2018/19": {
+          "landing_page": "https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/",
+          "pdf_url": "https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-fy-2018-19/?wpdmdl=15011",
+          "pdf_sha256": "00e24adcb3da800a29ef4b4256cd7ddf3e32f02d14f82e7f4bdb9ed653216e5e",
+          "rows": 47,
+          "rate_methods": {
+            "published_table_2_5_transcribed": 47
+          }
+        },
+        "2019/20": {
+          "landing_page": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-fy-2019-20/",
+          "pdf_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-fy-2019-20/?wpdmdl=15308",
+          "pdf_sha256": "ef41deda74c0a3266bb78a3972b25a2d4b165d5769de36be2ab0021e3d9733e8",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 45,
+            "derived_overall+derived_development": 2
+          }
+        },
+        "2020/21": {
+          "landing_page": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-2020-21/",
+          "pdf_url": "https://cob.go.ke/download/annual-county-governments-budget-implementation-review-report-fy-2020-21/?wpdmdl=15580",
+          "pdf_sha256": "fcc8de913d872a9a35e43b50d5fe0e98dda1abaf5d7bcd3a3ab82b0e3d9bc5e6",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 47
+          }
+        },
+        "2021/22": {
+          "landing_page": "https://cob.go.ke/download/county-governments-annual-budget-implementation-review-report-for-the-fy-2021-22/",
+          "pdf_url": "https://cob.go.ke/wp-content/uploads/2022/09/Counties-Sep-2022-web.pdf",
+          "pdf_sha256": "1b42af2f3b6a2c7b667c8ae71785db11f137d623d14b4de082a1e90da65ce558",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 47
+          }
+        },
+        "2022/23": {
+          "landing_page": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-fy-2022-23/",
+          "pdf_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-fy-2022-23/?wpdmdl=15957",
+          "pdf_sha256": "3106ee6e497b1f91029afc035173591ae7d80492499a2d9fc5e98d4c73ad573f",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 47
+          }
+        },
+        "2023/24": {
+          "landing_page": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-2023-24/",
+          "pdf_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-for-the-financial-year-2023-24/?wpdmdl=16104",
+          "pdf_sha256": "a2d0d9ba5355493a515f02cd3e4a599df80d251b1fff91594a0d0550afa0d9a6",
+          "rows": 47,
+          "rate_methods": {
+            "derived_overall+published_development": 47
+          }
+        }
+      },
+      "rows": 517,
+      "note": "Official Controller of Budget county annual reports. Budget and expenditure are direct county values. Published absorption rates are retained where reliably extractable; otherwise absorption is deterministically derived from official county numerator/denominator values in the same report. No allocation below county."
+    }
+  }
+}
