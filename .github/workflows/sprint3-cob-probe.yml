@@ -18,11 +18,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Validate FY2019/20 all-county parser
+      - name: Inspect FY2019/20 chapter coordinates
         run: |
           python scripts/sprint3/harden_acquisition_v5.py
           python - <<'PY'
-          import json, sys
+          import io, json, sys
           from pathlib import Path
           sys.path.insert(0, 'scripts/sprint3')
           import acquire_cob_history as cob
@@ -33,9 +33,27 @@ jobs:
           session=cob.requests.Session()
           session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
           pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES['2019/20'],'2019/20')
-          values=cob._parse_narrative_year(content,'2019/20',counties)
-          cob._validate_year('2019/20',values,counties)
-          print('FY2019/20 PASS',len(values),'counties',pdf_url)
-          for county in ['Kirinyaga','Kisii','Narok','Nyamira','Garissa','Homa Bay','Kiambu','Kilifi','Machakos','Mandera','Mombasa',"Murang'a",'Samburu','Siaya','Uasin Gishu','Vihiga']:
-              print(county,values[county])
+          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
+              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+          floor=cob._find_chapter_floor(texts)
+          order={name:i+1 for i,name in enumerate(cob.COB_2013_ORDER)}
+          print('PDF',pdf_url,'pages',len(texts),'floor',floor+1)
+          inspect=['Bungoma','Busia','Elgeyo/Marakwet','Garissa','Homa Bay','Kirinyaga','Kisii','Narok','Nyamira']
+          for county in inspect:
+              variants=cob.COUNTY_VARIANTS.get(county,[county])
+              ch=order[county]
+              p=cob._find_section(texts,variants,'2019/20',ch,floor)
+              pos=cob._section_heading_pos(texts[p],variants,ch)
+              lo=max(0,(pos or 0)-180); hi=min(len(texts[p]),(pos or 0)+900)
+              print('\nCOORD',county,'chapter',ch,'page',p+1,'pos',pos)
+              print(cob._norm(texts[p][lo:hi]))
+          for page_no in [161,307]:
+              raw=texts[page_no-1]
+              print('\nPAGE',page_no,'LEN',len(raw))
+              for county in ['Kirinyaga','Kisii','Narok','Nyamira']:
+                  ch=order[county]
+                  variants=cob.COUNTY_VARIANTS.get(county,[county])
+                  pos=cob._section_heading_pos(raw,variants,ch)
+                  if pos is not None:
+                      print('START',county,'chapter',ch,'pos',pos,'SNIP',cob._norm(raw[max(0,pos-120):min(len(raw),pos+900)]))
           PY
