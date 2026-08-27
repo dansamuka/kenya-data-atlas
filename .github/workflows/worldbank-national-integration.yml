@@ -8,6 +8,7 @@ on:
       - scripts/catalogue/apply-worldbank-catalogue-seed.mjs
       - scripts/indicators/apply-worldbank-architecture.mjs
       - scripts/indicators/apply-worldbank-ui-wiring.mjs
+      - scripts/indicators/compute-derived-area.mjs
       - scripts/indicators/fetch-worldbank.mjs
       - scripts/indicators/apply-worldbank-seed.mjs
       - scripts/indicators/apply-worldbank-registry-metadata.mjs
@@ -52,6 +53,7 @@ jobs:
 
       - name: Build indicator registry
         run: |
+          node scripts/indicators/compute-derived-area.mjs
           node scripts/indicators/apply-worldbank-seed.mjs
           node scripts/indicators/build-registry.mjs
           node scripts/sprint1/build-native.mjs indicators
@@ -65,6 +67,7 @@ jobs:
           node --check scripts/catalogue/apply-worldbank-catalogue-seed.mjs
           node --check scripts/indicators/apply-worldbank-architecture.mjs
           node --check scripts/indicators/apply-worldbank-ui-wiring.mjs
+          node --check scripts/indicators/compute-derived-area.mjs
           node --check scripts/indicators/fetch-worldbank.mjs
           node --check scripts/indicators/apply-worldbank-seed.mjs
           node --check scripts/indicators/apply-worldbank-registry-metadata.mjs
@@ -97,6 +100,7 @@ jobs:
             data/indicators/seed/indicators.json \
             data/indicators/seed/series.json \
             data/indicators/seed/observations.json \
+            data/indicators/seed/derived/area-computed.json \
             data/indicators/seed/derived/worldbank-latest.json \
             data/indicators/registry
           if git diff --cached --quiet; then
