@@ -21,7 +21,10 @@ const obsBySeries=new Map();
 for(const o of observations){if(!obsBySeries.has(o.series_id))obsBySeries.set(o.series_id,[]);obsBySeries.get(o.series_id).push(o);}
 const subsetByKey=new Map((subsetsDoc.subsets||[]).map(s=>[s.key,s]));
 const countyNames=new Set(geographies.filter(g=>g.level==='county').map(g=>g.name));
-const surveyCodes=new Set(taxonomy.survey_indicator_codes||[]);
+// §11.6 is source-type based, not tab based. Monetary poverty is generated
+// from a household sample survey and therefore carries the same uncertainty
+// obligations as the KDHS/NACADA rows once it becomes active.
+const surveyCodes=new Set([...(taxonomy.survey_indicator_codes||[]),'IND-POVERTY-RATE']);
 const noRankingCodes=new Set(taxonomy.sensitive_no_ranking_codes||[]);
 const excludedCodes=new Set(taxonomy.excluded_subnational_composite_codes||[]);
 
@@ -42,6 +45,7 @@ for(const i of indicators){
     if(!i.applies_to_geography_subset) errors.push(`${i.indicator_code}: resilience requires a geography subset`);
     else if(!subsetByKey.has(i.applies_to_geography_subset)) errors.push(`${i.indicator_code}: undefined subset ${i.applies_to_geography_subset}`);
   }
+  if(surveyCodes.has(i.indicator_code)&&i.requires_sampling_uncertainty!==true) errors.push(`${i.indicator_code}: sample-survey indicator must set requires_sampling_uncertainty=true`);
   if(noRankingCodes.has(i.indicator_code)&&i.ranking_allowed!==false) errors.push(`${i.indicator_code}: sensitive indicator must set ranking_allowed=false`);
   if(excludedCodes.has(i.indicator_code)&&(i.applies_to_levels||[]).length) errors.push(`${i.indicator_code}: excluded composite must not have subnational profile levels`);
 }
