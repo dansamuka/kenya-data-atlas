@@ -10,6 +10,7 @@ on:
       - scripts/sprint3/harden_acquisition_v7.py
       - scripts/sprint3/harden_acquisition_v8.py
       - scripts/sprint3/harden_acquisition_v9.py
+      - scripts/sprint3/harden_acquisition_v10.py
   workflow_dispatch:
 
 jobs:
@@ -22,25 +23,36 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check pandas requests beautifulsoup4 lxml html5lib pdfplumber
-      - name: Validate FY2018/19 all-county parser
+      - name: Inspect FY2018/19 Laikipia markers
         run: |
           python scripts/sprint3/harden_acquisition_v9.py
           python - <<'PY'
-          import json, sys
-          from pathlib import Path
+          import io, re, sys
           sys.path.insert(0, 'scripts/sprint3')
           import acquire_cob_history as cob
 
           fy='2018/19'
-          root=Path('.')
-          geos=json.loads((root/'data/geography/registry/geographies.json').read_text())
-          counties=[g['name'] for g in geos if g.get('level')=='county']
           session=cob.requests.Session()
           session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/138.0 Safari/537.36','Accept':'*/*'})
           pdf_url,content=cob._discover_pdf(session,cob.COB_PAGES[fy],fy)
-          values=cob._parse_narrative_year(content,fy,counties)
-          cob._validate_year(fy,values,counties)
-          print('FY2018/19 PASS',len(values),'counties',pdf_url)
-          for county in ['Garissa','Homa Bay','Laikipia','Lamu','Trans Nzoia','Nyeri','Turkana']:
-              print(county,values[county])
+          with cob.pdfplumber.open(io.BytesIO(content)) as pdf:
+              texts=[p.extract_text(x_tolerance=2,y_tolerance=3) or '' for p in pdf.pages]
+          floor=cob._find_chapter_floor(texts)
+          print('PDF',pdf_url,'pages',len(texts),'floor',floor+1)
+          for county,ch in [('Kwale',19),('Laikipia',20),('Lamu',21),('Trans Nzoia',42)]:
+              variants=cob.COUNTY_VARIANTS.get(county,[county])
+              print('\n===',county,'chapter',ch,'===')
+              print('FINDER',cob._find_section(texts,variants,fy,ch,floor)+1)
+              county_rx=re.compile(r'\\b'+r'\\s+'.join(re.escape(x) for x in county.split())+r'\\s+County\\b',re.I)
+              chapter_rx=re.compile(rf'3\\s*\\.\\s*{ch}(?:\\s*\\.\\s*(\\d+))?',re.I)
+              shown=0
+              for pi,t in enumerate(texts,start=1):
+                  flat=cob._norm(t)
+                  if county_rx.search(flat) or chapter_rx.search(flat):
+                      cm=county_rx.search(flat); hm=chapter_rx.search(flat)
+                      starts=[x for x in [cm.start() if cm else None,hm.start() if hm else None] if x is not None]
+                      pos=min(starts) if starts else 0
+                      print('PAGE',pi,'county',bool(cm),'chapter',hm.group(1) if hm else None,flat[max(0,pos-180):pos+1300])
+                      shown+=1
+                      if shown>=18: break
           PY
