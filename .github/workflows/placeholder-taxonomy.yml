@@ -10,6 +10,8 @@ on:
       - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-native-api.mjs'
+      - 'assets/place-profile.js'
+      - 'assets/place-profile.css'
       - 'db/schema/indicators.sql'
       - 'package.json'
   workflow_dispatch:
@@ -27,6 +29,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Syntax-check lifecycle profile frontend
+        run: |
+          node --check assets/place-profile.js
+          node --check assets/ux-polish.js
+          node --check assets/unit-system.js
       - name: Build native indicators with lifecycle taxonomy
         run: npm run indicators:build
       - name: Validate full Atlas registry
