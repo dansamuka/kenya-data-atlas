@@ -2,7 +2,7 @@ name: Validate Atlas data
 
 on:
   push:
-    branches: [main, data-sprint-1]
+    branches: [main]
   pull_request:
     branches: [main]
 
@@ -12,16 +12,57 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Install dependencies
-        run: npm ci
-      - name: Validate geography, catalogue and indicators
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+
+      - name: Rebuild all published data products
+        run: npm run build:data
+
+      - name: Fail if seeds and committed build outputs diverge
+        shell: bash
+        run: |
+          git diff --exit-code -- \
+            data/geography/registry/geographies.json \
+            data/geography/registry/geographies.csv \
+            data/geography/registry/aliases.json \
+            data/geography/registry/aliases.csv \
+            data/geography/registry/geometry-versions.json \
+            data/geography/registry/geometry-versions.csv \
+            data/geography/geometry \
+            data/geography/reference \
+            data/catalogue/registry \
+            data/indicators/seed/derived/area-computed.json \
+            data/indicators/registry/units.json \
+            data/indicators/registry/units.csv \
+            data/indicators/registry/indicators.json \
+            data/indicators/registry/indicators.csv \
+            data/indicators/registry/series.json \
+            data/indicators/registry/series.csv \
+            data/indicators/registry/observations.json \
+            data/indicators/registry/observations.csv
+
+      - name: Validate geography, catalogue, indicators and sprint releases
         run: npm test
+
+      - name: Independent Shapely geometry audit
+        run: npm run geography:audit
