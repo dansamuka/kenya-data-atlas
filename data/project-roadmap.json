@@ -1,0 +1,178 @@
+{
+  "project": "Kenya Data Atlas",
+  "purpose": "Session-sized completion roadmap for finishing the repository without restarting completed work.",
+  "completion_definition": "All phases are complete, their acceptance checks pass, and the final release audit documents any intentionally unresolved external-data limitations.",
+  "rules": [
+    "One phase should normally fit one substantial implementation session and end in a validated push.",
+    "Do not mix unrelated data acquisition, UI redesign and methodology research in the same phase unless they share one acceptance surface.",
+    "Every phase must leave main deployable even if later phases are unfinished.",
+    "Source-backed data and Demo content must remain visibly distinct.",
+    "Do not reopen completed geography, Sprint 1, Sprint 2, Sprint 3, World Bank or County Life work unless a regression or documented data correction requires it.",
+    "Prefer generated views over new parallel data stores.",
+    "A phase is complete only after deterministic build/test checks pass and GitHub Pages deploys successfully where the phase touches the website."
+  ],
+  "phases": [
+    {
+      "id": "P00",
+      "title": "Runtime stabilization and CountyIQ sample fallback",
+      "status": "implemented_pending_release_check",
+      "session_goal": "Keep CountyIQ usable when production fetches fail and expose sample mature-product structure without presenting synthetic values as facts.",
+      "outputs": ["bundled CountyIQ fallback snapshot", "Demo preview", "non-fatal fetch degradation", "runtime status messaging"],
+      "acceptance": ["CountyIQ scripts parse", "production data remains first choice", "fallback does not replace the whole page", "Demo values are clearly labelled", "Pages deployment succeeds"],
+      "depends_on": []
+    },
+    {
+      "id": "P01",
+      "title": "Initial-load performance and shared registry loader",
+      "status": "next",
+      "session_goal": "Remove duplicated multi-megabyte registry downloads and ensure the Atlas shell becomes interactive before heavy map/data work begins.",
+      "outputs": ["shared registry promise/cache", "lazy Geo Explorer boot", "deferred heavy observation loading where possible", "runtime smoke checks", "documented initial-load asset budget"],
+      "acceptance": ["app, compare and map do not independently fetch the same master registries", "map still works at all four geography levels", "main page remains usable if D3 or heavy registries are unavailable", "npm test passes"],
+      "depends_on": ["P00"]
+    },
+    {
+      "id": "P02",
+      "title": "CountyIQ canonical analytical mart",
+      "status": "planned",
+      "session_goal": "Generate one 47-county CountyIQ data product from the canonical Atlas registries and stop joining Sprint CSVs in the browser.",
+      "outputs": ["scripts/countyiq/build-county-summary.mjs", "data/countyiq/county-summary.json", "47-county coverage validator", "CountyIQ runtime switched to mart"],
+      "acceptance": ["47/47 counties", "source period unit provenance retained", "deterministic rebuild", "direct Sprint CSV joins removed from production CountyIQ"],
+      "depends_on": ["P00"]
+    },
+    {
+      "id": "P03",
+      "title": "County fiscal history and denominator discipline",
+      "status": "planned",
+      "session_goal": "Surface the strongest existing historical county dataset and add only defensible population-adjusted measures.",
+      "outputs": ["12-year fiscal trend per county", "budget/expenditure/absorption history", "explicit denominator metadata", "population/per-capita measures only where periods support them"],
+      "acceptance": ["47 counties x 12 fiscal years represented", "no silent denominator interpolation", "fiscal trend UI works on mobile", "rankings use common periods"],
+      "depends_on": ["P02"]
+    },
+    {
+      "id": "P04",
+      "title": "County health and living-standards ingestion",
+      "status": "planned",
+      "session_goal": "Activate a coherent first social-outcomes package from already identified official sources.",
+      "outputs": ["poverty/living-standard observations where available", "KDHS health indicators", "KMHFR facility measure", "uncertainty fields", "source/period documentation"],
+      "acceptance": ["no survey estimate activated without required uncertainty metadata", "coverage published honestly", "headline rankings respect coverage threshold", "native registry validation passes"],
+      "depends_on": ["P02"]
+    },
+    {
+      "id": "P05",
+      "title": "County education, economy, agriculture and infrastructure breadth",
+      "status": "planned",
+      "session_goal": "Close the largest domain gaps using only county-comparable primary data.",
+      "outputs": ["education package", "sector/economic structure package", "agriculture package", "infrastructure/connectivity package", "coverage audit"],
+      "acceptance": ["at least 20 CountyIQ-eligible active indicators across at least five domains", "national indicators are never inherited to counties", "all new indicators have catalogue and provenance records"],
+      "depends_on": ["P04"]
+    },
+    {
+      "id": "P06",
+      "title": "Peer groups, percentiles and trend intelligence",
+      "status": "planned",
+      "session_goal": "Make county comparison structurally fair and time-aware before any overall index is published.",
+      "outputs": ["versioned peer-group definition", "peer median/rank", "national percentile", "matched short/medium-term trends", "revision flags"],
+      "acceptance": ["peer membership reproducible from published rules/inputs", "trend calculations require comparable periods", "no peer group implies quality judgement"],
+      "depends_on": ["P03", "P05"]
+    },
+    {
+      "id": "P07",
+      "title": "Development Gap Calculator and evidence narrative engine",
+      "status": "planned",
+      "session_goal": "Turn differences from national/peer benchmarks into transparent, non-causal decision intelligence.",
+      "outputs": ["gap formulas", "benchmark selection rules", "county strengths/weaknesses narrative", "source/denominator disclosure"],
+      "acceptance": ["every gap exposes formula, source, period and denominator", "no unsupported monetary opportunity claim", "narratives are reproducible from displayed statistics"],
+      "depends_on": ["P06"]
+    },
+    {
+      "id": "P08",
+      "title": "County Development & Performance Index research release",
+      "status": "planned",
+      "session_goal": "Build the composite as a research product with explicit statistical diagnostics rather than as a marketing score.",
+      "outputs": ["normalization specification", "direction/weight rules", "correlation review", "missing/outlier rules", "sensitivity scenarios", "rank robustness output", "research-only UI"],
+      "acceptance": ["methodology published", "sensitivity materially tested", "robustness range displayed", "research/beta label remains until historical gate passes"],
+      "depends_on": ["P05", "P06"]
+    },
+    {
+      "id": "P09",
+      "title": "Historical index validation and release decision",
+      "status": "planned",
+      "session_goal": "Determine whether the composite is stable enough to become a normal CountyIQ result.",
+      "outputs": ["historical/back-test package", "rank stability analysis", "versioned index release", "documented go/no-go decision"],
+      "acceptance": ["historical limitations explicit", "material rank instability disclosed", "production label only if release gates pass"],
+      "depends_on": ["P08"]
+    },
+    {
+      "id": "P10",
+      "title": "County government delivery and accountability layer",
+      "status": "planned",
+      "session_goal": "Separate government-linked delivery from broad county outcomes.",
+      "outputs": ["OSR/pending-bills/wage/audit measures", "delivery score methodology", "accountability dashboard", "term-aware records"],
+      "acceptance": ["only government-linked measures enter delivery score", "audit/fiscal sources traceable", "broad county outcomes are not automatically attributed to the governor"],
+      "depends_on": ["P05"]
+    },
+    {
+      "id": "P11",
+      "title": "Administration scorecards and evidence-based recognition",
+      "status": "planned",
+      "session_goal": "Restore leadership/recognition features using reproducible rules and strong attribution cautions.",
+      "outputs": ["administration-period pages", "term baseline/latest comparison", "reproducible recognition categories", "methodology disclaimers"],
+      "acceptance": ["no personal governor causal score from broad outcomes", "recognition generated from published rules", "all periods and sources visible"],
+      "depends_on": ["P09", "P10"]
+    },
+    {
+      "id": "P12",
+      "title": "County Opportunity Finder",
+      "status": "planned",
+      "session_goal": "Create a verified, date-aware opportunity database rather than speculative funding countdowns.",
+      "outputs": ["opportunity schema", "verified programme records", "eligibility/match logic", "deadline/verification handling", "county opportunity UI"],
+      "acceptance": ["every live record has primary URL and verification date", "deadlines are source-backed", "expired/unverified records cannot appear as live"],
+      "depends_on": ["P07"]
+    },
+    {
+      "id": "P13",
+      "title": "County Knowledge Hub and document evidence layer",
+      "status": "planned",
+      "session_goal": "Make each county profile the fastest route to its planning, budget, audit and statistical source documents.",
+      "outputs": ["document registry", "CIDP/ADP/CFSP/CBROP/budget/audit links", "verification metadata", "county document UI"],
+      "acceptance": ["no placeholder # links", "document type/county/period/source recorded", "broken-link audit documented"],
+      "depends_on": ["P02"]
+    },
+    {
+      "id": "P14",
+      "title": "Atlas-wide UI/data convergence",
+      "status": "planned",
+      "session_goal": "Retire stale overlays and ensure every major surface reads the canonical registry or a generated product derived from it.",
+      "outputs": ["legacy overlay audit", "stale comment/content cleanup", "single-source loading conventions", "consistent badges/periods/missing states"],
+      "acceptance": ["no user-facing hardcoded factual figures where canonical values exist", "legacy hidden interfaces do not drive current UX", "Compare, profiles, map, series and CountyIQ follow the same provenance rules"],
+      "depends_on": ["P01", "P02"]
+    },
+    {
+      "id": "P15",
+      "title": "Data distribution and developer surface",
+      "status": "planned",
+      "session_goal": "Turn the existing registries/schema into a documented, stable public data interface without requiring a full server product.",
+      "outputs": ["versioned downloadable bundles", "developer documentation", "example queries", "schema/version contract", "optional lightweight API design"],
+      "acceptance": ["downloads map to documented releases", "schema changes versioned", "developer examples reproduce published values"],
+      "depends_on": ["P14"]
+    },
+    {
+      "id": "P16",
+      "title": "Accessibility, browser, SEO and performance release audit",
+      "status": "planned",
+      "session_goal": "Harden the static product for public launch quality.",
+      "outputs": ["WCAG 2.2 AA audit/fixes", "Chrome/Firefox/Safari/Edge smoke matrix", "mobile checks", "metadata/SEO", "asset/performance audit", "broken-link audit"],
+      "acceptance": ["critical accessibility failures closed", "core journeys work without console-fatal errors", "Pages deploy passes", "known browser limitations documented"],
+      "depends_on": ["P14", "P15"]
+    },
+    {
+      "id": "P17",
+      "title": "Final reproducibility, governance and v1.0 release",
+      "status": "planned",
+      "session_goal": "Close the repository against one final completion ledger and publish a defensible v1.0 state.",
+      "outputs": ["full deterministic rebuild", "all validators", "data-quality/revision review", "README/status rewrite", "v1.0 changelog/release notes", "final unresolved-items register"],
+      "acceptance": ["build:data clean", "npm test clean", "geometry audit clean", "Pages deployment successful", "no required completion gate silently deferred"],
+      "depends_on": ["P09", "P11", "P12", "P13", "P16"]
+    }
+  ]
+}
