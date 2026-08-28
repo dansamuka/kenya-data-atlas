@@ -3,14 +3,15 @@
  * Unit annotations and the World Bank/cross-level layer remain available, but
  * they no longer participate in first paint. CountyIQ is also loaded only when
  * its route is requested and uses the shared Atlas data loader rather than a
- * separate application stack.
+ * separate application stack. The small Sprint 2 voter drill-down adapter is
+ * Explore-only and does not reinstate the retired registry fetch overlay.
  */
 (function(){
   'use strict';
   const KDA=window.KDAData;
   if(!KDA)return;
 
-  let promise=null,countyIqPromise=null;
+  let promise=null,countyIqPromise=null,mapVotersPromise=null;
   function loadOptionalIntegrations(){
     if(promise)return promise;
     promise=Promise.allSettled([
@@ -23,6 +24,14 @@
       return results;
     });
     return promise;
+  }
+  function loadMapVoters(){
+    if(window.KDASprint2Voters)return window.KDASprint2Voters.ready;
+    if(mapVotersPromise)return mapVotersPromise;
+    mapVotersPromise=KDA.loadScript('assets/sprint2-voters.js',{id:'kda-sprint2-voters'})
+      .then(()=>window.KDASprint2Voters?.ready||null)
+      .catch(error=>{console.warn('Explore voter drill-down load:',error?.message||error);return null;});
+    return mapVotersPromise;
   }
   function countyIqFailure(error){
     console.warn('CountyIQ route load:',error?.message||error);
@@ -44,13 +53,16 @@
   const geo=document.querySelector('#geo-explorer');
   if(geo)KDA.whenVisible(geo,loadOptionalIntegrations,{rootMargin:'100px 0px'});
   const routeNeedsOptional=hash=>/^#\/(?:pulse|explore|series|data)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|series|catalogue)/.test(hash);
+  const routeNeedsExplore=hash=>/^#\/explore(?:\/|\?|$)/.test(hash)||/^#map\//.test(hash);
   const routeNeedsCountyIQ=hash=>/^#\/countyiq(?:\/|\?|$)/.test(hash)||/^#(?:countyiq|county-dashboard)$/.test(hash);
   if(routeNeedsOptional(location.hash))loadOptionalIntegrations();
+  if(routeNeedsExplore(location.hash))loadMapVoters();
   if(routeNeedsCountyIQ(location.hash))loadCountyIQ();
-  window.addEventListener('hashchange',()=>{if(routeNeedsOptional(location.hash))loadOptionalIntegrations();if(routeNeedsCountyIQ(location.hash))loadCountyIQ();});
+  window.addEventListener('hashchange',()=>{if(routeNeedsOptional(location.hash))loadOptionalIntegrations();if(routeNeedsExplore(location.hash))loadMapVoters();if(routeNeedsCountyIQ(location.hash))loadCountyIQ();});
   window.addEventListener('kda:route',event=>{
     if(['pulse','explore','series','data'].includes(event.detail?.view))loadOptionalIntegrations();
+    if(event.detail?.view==='explore')loadMapVoters();
     if(event.detail?.view==='countyiq')loadCountyIQ();
   });
-  window.KDAOptional={load:loadOptionalIntegrations,loadCountyIQ};
+  window.KDAOptional={load:loadOptionalIntegrations,loadMapVoters,loadCountyIQ};
 })();
