@@ -10,8 +10,11 @@ try{
   const routed=read('assets/routed-views.css');
   const html=read('index.html');
 
-  assert(routed.trimStart().startsWith('@import url("mobile.css");'),'mobile.css must be imported first by the last-loaded routed stylesheet');
-  assert(html.includes('name="viewport"'),'viewport meta tag is missing');
+  assert(html.includes('<link rel="stylesheet" href="assets/mobile.css">'),'mobile.css must be linked directly in the document head');
+  assert(html.indexOf('assets/mobile.css')>html.indexOf('assets/routed-views.css'),'mobile.css must load after routed-views.css');
+  assert(!routed.includes('@import url("mobile.css")'),'mobile CSS must not use a serial @import waterfall');
+  assert(html.includes('name="viewport"')&&html.includes('viewport-fit=cover'),'safe-area viewport contract is missing');
+  console.log('MOBILE_DIRECT_LOAD_OK');
 
   for(const token of [
     '@media(max-width:760px)',
