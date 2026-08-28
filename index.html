@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Kenya Data Atlas static MVP — explore places, compare indicators and follow the evidence.">
+  <meta name="description" content="Kenya Data Atlas — explore places, compare indicators, follow series and trace public data to source.">
   <meta name="theme-color" content="#123c32">
   <title>Kenya Data Atlas — Understand Kenya through data</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,21 +14,26 @@
   <link rel="stylesheet" href="assets/unit-system.css">
   <link rel="stylesheet" href="assets/worldbank-integration.css">
   <link rel="stylesheet" href="assets/compare.css">
+  <link rel="stylesheet" href="assets/routed-views.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="demo-banner"><span>Independent demonstration</span> Private-citizen project · illustrative figures are clearly labelled.</div>
   <header class="site-header">
-    <a class="brand" href="#home" aria-label="Kenya Data Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Kenya <b>Data Atlas</b></span></a>
+    <a class="brand" href="#/" aria-label="Kenya Data Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Kenya <b>Data Atlas</b></span></a>
     <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
     <nav id="main-nav" aria-label="Main navigation">
-      <a href="#explore">Explore</a><a href="#compare">Compare</a><a href="#series">Series</a><a href="#catalogue">Data</a>
+      <a href="#/pulse" data-view-link="pulse">Pulse</a>
+      <a href="#/explore" data-view-link="explore">Explore</a>
+      <a href="#/compare" data-view-link="compare">Compare</a>
+      <a href="#/series/KDA-CPI-YOY-KEN" data-view-link="series">Series</a>
+      <a href="#/data" data-view-link="data">Data</a>
     </nav>
     <button class="header-search" data-focus-search aria-label="Open search">⌕ <span>Search</span></button>
   </header>
 
   <main id="main">
-    <section class="hero" id="home">
+    <section class="hero" id="home" data-view="home">
       <div class="hero-copy">
         <p class="eyebrow">One country · every place · traceable evidence</p>
         <h1>Understand Kenya.<br><em>Place by place.</em></h1>
@@ -51,39 +56,49 @@
       </aside>
     </section>
 
-    <section class="section pulse-section" id="explore">
-      <div class="section-heading"><div><p class="eyebrow">Kenya at a glance</p><h2>The national pulse</h2></div><p>Key signals in one calm view. Every figure carries its period, source and quality status.</p></div>
+    <section class="section home-glance" id="home-glance" data-view="home">
+      <div class="section-heading"><div><p class="eyebrow">At a glance</p><h2>A short national snapshot.</h2></div><p>Six source-backed signals for orientation. The complete indicator collection has its own Pulse view.</p></div>
+      <div class="metric-grid" id="home-glance-grid"><div class="source-note">Loading national snapshot…</div></div>
+      <div class="home-glance-actions"><a href="#/pulse">Open the full National Pulse →</a></div>
+    </section>
+
+    <section class="section pulse-section" id="explore" data-view="pulse" hidden>
+      <div class="section-heading"><div><p class="eyebrow">National Pulse</p><h2>Kenya, signal by signal.</h2></div><p>Browse core Kenya indicators and the wider published World Bank set without turning the homepage into one continuous dashboard.</p></div>
+      <div class="pulse-filter-bar" id="pulse-filters" role="group" aria-label="Filter National Pulse">
+        <button type="button" class="active" data-pulse-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-pulse-filter="core" aria-pressed="false">Core Kenya</button>
+        <button type="button" data-pulse-filter="economy" aria-pressed="false">Economy</button>
+        <button type="button" data-pulse-filter="social" aria-pressed="false">Social</button>
+        <button type="button" data-pulse-filter="environment" aria-pressed="false">Environment</button>
+        <button type="button" data-pulse-filter="institutions" aria-pressed="false">Institutions</button>
+      </div>
       <div class="metric-grid" id="pulse-grid"><div class="source-note">Loading compact first-paint data…</div></div>
     </section>
 
-    <section class="section geo-section" id="geo-explorer">
-      <div class="geo-header">
-        <div>
-          <p class="eyebrow" id="geo-eyebrow">Geo Explorer · lazy data loading</p>
-          <h2 id="geo-heading">Map data loads as you approach this section.</h2>
-        </div>
-        <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"><option>Map data loads on demand…</option></select></label>
-      </div>
-      <nav class="geo-breadcrumb" id="geo-breadcrumb" aria-label="Geography breadcrumb"></nav>
-      <div class="geo-layout">
-        <div class="geo-map-panel">
-          <div class="geo-map-wrap">
-            <svg id="geo-svg" viewBox="0 0 800 780" role="img" aria-label="Kenya statistical map"></svg>
-            <div class="geo-tooltip" id="geo-tooltip" role="status" hidden></div>
+    <section class="section geo-section" id="geo-explorer" data-view="explore" hidden>
+      <div class="geo-workspace">
+        <aside class="geo-context-rail" aria-label="Explore context">
+          <div class="geo-header">
+            <div><p class="eyebrow" id="geo-eyebrow">Geo Explorer · lazy data loading</p><h2 id="geo-heading">Map data loads when Explore opens.</h2></div>
+            <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"><option>Map data loads on demand…</option></select></label>
           </div>
-          <div class="geo-legend" id="geo-legend" aria-hidden="true"></div>
-          <p class="source-note" id="geo-source-note">The map, D3 and boundary files are outside the initial page-load path.</p>
-        </div>
-        <aside class="geo-ranking-panel" aria-label="Ranking">
-          <h3 id="geo-ranking-title">Ranking</h3>
-          <p class="geo-ranking-note" id="geo-ranking-note" hidden></p>
-          <ol class="geo-ranking-list" id="geo-ranking-list"><li class="geo-rank-nodata" style="padding:1rem">Map rankings load with the explorer.</li></ol>
+          <nav class="geo-breadcrumb" id="geo-breadcrumb" aria-label="Geography breadcrumb"></nav>
         </aside>
+        <div class="geo-main-column">
+          <div class="geo-layout">
+            <div class="geo-map-panel">
+              <div class="geo-map-wrap"><svg id="geo-svg" viewBox="0 0 800 780" role="img" aria-label="Kenya statistical map"></svg><div class="geo-tooltip" id="geo-tooltip" role="status" hidden></div></div>
+              <div class="geo-legend" id="geo-legend" aria-hidden="true"></div>
+              <p class="source-note" id="geo-source-note">The map, D3 and boundary files remain outside the initial page-load path.</p>
+            </div>
+            <aside class="geo-ranking-panel" aria-label="Ranking"><h3 id="geo-ranking-title">Ranking</h3><p class="geo-ranking-note" id="geo-ranking-note" hidden></p><ol class="geo-ranking-list" id="geo-ranking-list"><li class="geo-rank-nodata" style="padding:1rem">Map rankings load with the explorer.</li></ol></aside>
+          </div>
+          <div class="geo-selected-summary" id="geo-selected-summary" hidden></div>
+        </div>
       </div>
-      <div class="geo-selected-summary" id="geo-selected-summary" hidden></div>
     </section>
 
-    <section class="section profile-section" id="profile">
+    <section class="section profile-section" id="profile" data-view="explore" hidden>
       <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> <span id="profile-breadcrumb-county">Nakuru</span></p><label class="select-label" style="margin-top:.6rem">Select county<select id="county-picker" aria-label="Select a county to view its profile"></select></label><p class="eyebrow" id="profile-eyebrow">Area profile</p><h2 id="profile-title">County profile</h2><p>Real, published facts where they exist; unavailable local data is shown honestly rather than filled in.</p></div><div class="profile-actions"><button id="profile-download">↓ Download</button></div></div>
       <nav class="topic-tabs" aria-label="Profile topics"><button class="active">Overview</button><button>People</button><button>Economy</button><button>Health</button><button>Finance</button><button>Infrastructure</button></nav>
       <div class="quick-facts"><div class="source-note">Loading County Core…</div></div>
@@ -93,69 +108,43 @@
       </div>
     </section>
 
-    <section class="section compare-hub" id="compare">
-      <div class="section-heading">
-        <div><p class="eyebrow">Compare places</p><h2>See the whole picture, side by side.</h2><p class="compare-kicker">A dedicated comparison workspace with two views: a rigorous metric matrix and a more intuitive “what changes if I lived there?” experience.</p></div>
-        <p>Only published county observations are used. Common-period comparisons are marked clearly; missing or mismatched data stays visible instead of being filled in.</p>
-      </div>
-
-      <div class="compare-mode-switch" role="tablist" aria-label="Comparison mode">
-        <button class="active" type="button" role="tab" aria-selected="true" data-compare-mode="direct">Direct compare</button>
-        <button type="button" role="tab" aria-selected="false" data-compare-mode="life">My life elsewhere</button>
-      </div>
-
+    <section class="section compare-hub" id="compare" data-view="compare" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Compare places</p><h2>See the whole picture, side by side.</h2><p class="compare-kicker">A dedicated comparison workspace with two views: a rigorous metric matrix and a more intuitive “what changes if I lived there?” experience.</p></div><p>Only published county observations are used. Common-period comparisons are marked clearly; missing or mismatched data stays visible instead of being filled in.</p></div>
+      <div class="compare-mode-switch" role="tablist" aria-label="Comparison mode"><button class="active" type="button" role="tab" aria-selected="true" data-compare-mode="direct">Direct compare</button><button type="button" role="tab" aria-selected="false" data-compare-mode="life">My life elsewhere</button></div>
       <section class="compare-panel" data-compare-panel="direct" aria-label="Direct comparison">
         <div class="compare-panel-head"><div><p class="eyebrow">Direct mode</p><h3>Every available metric, one table.</h3><p>Compare two to four counties across all published county indicators. Matched-period values are safe to compare directly; other values remain side by side with an explicit period or coverage warning.</p></div><div class="compare-panel-actions"><button type="button" id="compare-add-place">＋ Add county</button><button type="button" id="compare-download">↓ Download CSV</button></div></div>
-        <div class="compare-place-strip" id="compare-place-strip"></div>
-        <div id="compare-direct-summary"></div>
-        <div class="compare-matrix-wrap" id="compare-direct-table"><div class="compare-empty">Comparison data loads on demand.</div></div>
+        <div class="compare-place-strip" id="compare-place-strip"></div><div id="compare-direct-summary"></div><div class="compare-matrix-wrap" id="compare-direct-table"><div class="compare-empty">Comparison data loads on demand.</div></div>
       </section>
-
       <section class="compare-panel compare-life-panel" data-compare-panel="life" aria-label="My life elsewhere comparison" hidden>
-        <div class="compare-panel-head"><div><p class="eyebrow">My life elsewhere</p><h3>If another county were home.</h3><p>An intuitive Kenya-to-Kenya view inspired by the “life elsewhere” question: how would the measurable conditions around you differ if you moved from one county to another?</p></div></div>
-        <div class="compare-life-controls">
-          <label>Where I live now<select id="life-home" aria-label="Current county"></select></label>
-          <button type="button" class="swap-life" id="life-swap" aria-label="Swap counties">⇄</button>
-          <label>Elsewhere<select id="life-away" aria-label="Elsewhere county"></select></label>
-        </div>
-        <div class="life-hero" id="life-hero"><div><h3>Comparison data loads when this workspace is opened.</h3></div></div>
-        <div class="life-cards" id="life-cards"></div>
+        <div class="compare-panel-head"><div><p class="eyebrow">My life elsewhere</p><h3>If another county were home.</h3><p>An intuitive Kenya-to-Kenya view: how would the measurable conditions around you differ if you moved from one county to another?</p></div></div>
+        <div class="compare-life-controls"><label>Where I live now<select id="life-home" aria-label="Current county"></select></label><button type="button" class="swap-life" id="life-swap" aria-label="Swap counties">⇄</button><label>Elsewhere<select id="life-away" aria-label="Elsewhere county"></select></label></div>
+        <div class="life-hero" id="life-hero"><div><h3>Comparison data loads when this workspace is opened.</h3></div></div><div class="life-cards" id="life-cards"></div>
         <div class="life-limitations"><strong>Important:</strong> this mode compares place-level statistics, not your personal outcome. It does not infer your salary, rent, grocery bill, safety or healthcare experience unless a suitable county-level dataset is actually published in the Atlas. No county value is copied down from Kenya-level World Bank data.</div>
       </section>
     </section>
 
-    <!-- Retained only for backward compatibility with the older app.js ranking/comparison code. -->
-    <section class="compare-section section" id="compare-legacy" hidden aria-hidden="true">
-      <div class="section-heading inverse"><div><p class="eyebrow">Legacy compare</p><h2>Retired compatibility interface.</h2></div><p>Not a user-facing product surface.</p></div>
-      <div class="compare-controls"><div id="compare-chips"></div><button id="add-place">＋ Add county</button><select id="compare-indicator" aria-label="Comparison indicator"><option>Land area</option></select></div>
-      <div class="comparison-chart" id="comparison-chart"></div>
-      <div class="benchmark-row"></div>
+    <section class="compare-section section" id="compare-legacy" hidden aria-hidden="true"><div class="section-heading inverse"><div><p class="eyebrow">Legacy compare</p><h2>Retired compatibility interface.</h2></div><p>Not a user-facing product surface.</p></div><div class="compare-controls"><div id="compare-chips"></div><button id="add-place">＋ Add county</button><select id="compare-indicator" aria-label="Comparison indicator"><option>Land area</option></select></div><div class="comparison-chart" id="comparison-chart"></div><div class="benchmark-row"></div></section>
+    <section class="section rankings-section" id="rankings" hidden aria-hidden="true"><div class="section-heading"><div><p class="eyebrow">Rankings</p><h2>Retired legacy interface.</h2></div><button class="outline-button" id="download-ranking">Download table ↓</button></div><div class="ranking-toolbar"><label>Indicator<select id="ranking-indicator"><option>Land area</option></select></label><span></span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>County</th><th>Value</th><th>Percentile</th><th>Reference</th><th>Quality</th></tr></thead><tbody id="ranking-body"></tbody></table></div></section>
+
+    <section class="series-section section" id="series" data-view="series" hidden>
+      <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Every published series now has its own linkable URL, alongside observations, methods and source metadata.</p></div>
+      <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">—</div><small>Loading reference period…</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option></select><div><button>CSV</button><button>{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/></svg><span class="current-point">—</span></div><div class="series-meta"><span><small>Series ID</small>Loading…</span><span><small>Unit</small>Loading…</span><span><small>Source</small>Loading…</span><span><small>Reference</small>Loading…</span></div></div></div>
     </section>
 
-    <section class="section rankings-section" id="rankings" hidden aria-hidden="true">
-      <div class="section-heading"><div><p class="eyebrow">Rankings</p><h2>Retired legacy interface.</h2></div><button class="outline-button" id="download-ranking">Download table ↓</button></div>
-      <div class="ranking-toolbar"><label>Indicator<select id="ranking-indicator"><option>Land area</option></select></label><span></span></div>
-      <div class="table-wrap"><table><thead><tr><th>Rank</th><th>County</th><th>Value</th><th>Percentile</th><th>Reference</th><th>Quality</th></tr></thead><tbody id="ranking-body"></tbody></table></div>
-    </section>
-
-    <section class="series-section section" id="series">
-      <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Move from headline to observations, methods, releases and machine-readable data.</p></div>
-      <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">—</div><small>Loading reference period…</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option><option>Change</option><option>Year-on-year change</option><option>Index to 100</option></select><div><button data-toast="CSV download is simulated in this MVP.">CSV</button><button data-toast="The committed JSON registries under data/indicators/registry are the machine-readable API surface.">{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/></svg><span class="current-point">—</span></div><div class="series-meta"><span><small>Series ID</small>Loading…</span><span><small>Unit</small>Percent</span><span><small>Source</small>Loading…</span><span><small>Reference</small>Loading…</span></div></div></div>
-    </section>
-
-    <section class="catalogue-section section" id="catalogue">
-      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The committed registries are the same machine-readable data used by the site.</p><div class="coverage"><div><strong>Native</strong><span>indicator registry</span></div><div><strong>Native</strong><span>downloadable registries</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="The downloadable JSON and CSV registries are under data/indicators/registry and data/catalogue/registry.">Browse the catalogue →</button></div>
-      <div class="dataset-list" id="dataset-list"></div>
+    <section class="catalogue-section section" id="catalogue" data-view="data" hidden>
+      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The committed registries are the same machine-readable data used by the site.</p><div class="coverage"><div><strong>Native</strong><span>indicator registry</span></div><div><strong>Native</strong><span>downloadable registries</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="The downloadable JSON and CSV registries are under data/indicators/registry and data/catalogue/registry.">Browse the catalogue →</button></div><div class="dataset-list" id="dataset-list"></div>
     </section>
   </main>
 
-  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#compare">Compare</a><a href="#catalogue">Data & sources</a><a href="#profile">Methodology</a><a href="#series">Developers</a><a href="README.md">About this MVP</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
+  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="README.md">About</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/data-loader.js"></script>
+  <script src="assets/router.js"></script>
   <script src="assets/app.js"></script>
   <script src="assets/compare.js"></script>
   <script src="assets/geo-explorer.js"></script>
   <script src="assets/ux-polish.js"></script>
   <script src="assets/lazy-integrations.js"></script>
+  <script src="assets/routed-views.js"></script>
 </body>
 </html>
