@@ -84,12 +84,13 @@ function resolveSafe(sourceRows, canonicalRows) {
   return { mapped, methods };
 }
 
-const [codedRaw, independentRaw, geographyRaw, countyRaw, loader, ui, index, sprint1Report, manifestRaw] = await Promise.all([
+const [codedRaw, independentRaw, geographyRaw, countyRaw, loader, ui, geoUi, index, sprint1Report, manifestRaw] = await Promise.all([
   fetchText(CODED_URL), fetchText(CROSSCHECK_URL),
   readFile(path.join(root, 'data/geography/registry/geographies.json'), 'utf8'),
   readFile(path.join(root, 'data/sprint1/voters-2022.csv'), 'utf8'),
   readFile(path.join(root, 'assets/sprint2-data.js'), 'utf8'),
   readFile(path.join(root, 'assets/sprint2-ui.js'), 'utf8'),
+  readFile(path.join(root, 'assets/geo-explorer.js'), 'utf8'),
   readFile(path.join(root, 'index.html'), 'utf8'),
   readFile(path.join(root, 'data/sprint1/VALIDATION.md'), 'utf8'),
   readFile(path.join(root, 'data/sprint2/sources.json'), 'utf8')
@@ -194,17 +195,21 @@ assert(constituencyTotals.get(91) === 72997, 'Ol Kalou anchor failed');
 assert(voterAt(453) === 13594 && voterAt(454) === 15596 && voterAt(455) === 14695 && voterAt(456) === 13540 && voterAt(457) === 15572, 'Ol Kalou ward anchors failed');
 assert(constituencyTotals.get(290) === 123163 && voterAt(1450) === 19193, 'Mathare/Kiamaiko anchors failed');
 
-assert(loader.includes('SPATIAL_HOLD_CONSTITUENCIES = new Set([43, 44])'), 'runtime spatial-hold list missing');
-assert(loader.includes('usedCanonical.size === 1440'), 'runtime 1,440 mapped guard missing');
-assert(loader.includes('S2.spatialHolds.length === 10'), 'runtime 10-hold guard missing');
-assert(loader.includes("x ? 'B' : 'A'"), 'runtime B badge for crosswalks missing');
-assert(loader.includes("x ? 'crosswalked_official' : 'direct_official'"), 'runtime crosswalk method downgrade missing');
-assert(loader.includes('crosswalk_id'), 'runtime crosswalk provenance missing');
+// The retired browser overlay is retained as an auditable historical
+// compatibility implementation, but P01 forbids loading it. Sprint 2 now
+// reaches the browser through the canonical native registries instead.
+assert(loader.includes('SPATIAL_HOLD_CONSTITUENCIES = new Set([43, 44])'), 'archived Sprint 2 spatial-hold list missing');
+assert(loader.includes('usedCanonical.size === 1440'), 'archived 1,440 mapped guard missing');
+assert(loader.includes('S2.spatialHolds.length === 10'), 'archived 10-hold guard missing');
+assert(loader.includes("x ? 'B' : 'A'"), 'archived B badge for crosswalks missing');
+assert(loader.includes("x ? 'crosswalked_official' : 'direct_official'"), 'archived crosswalk method downgrade missing');
+assert(loader.includes('crosswalk_id'), 'archived crosswalk provenance missing');
 assert(loader.toLowerCase().includes('no parent value inherited'), 'anti-inheritance disclosure missing');
-assert(ui.includes('1,440/1,450') && ui.includes('10 ward rows'), 'UI mapped/held disclosure missing');
-assert(index.indexOf('assets/sprint1-data.js') < index.indexOf('assets/sprint2-data.js'), 'Sprint 2 must wrap Sprint 1 data overlay');
-assert(index.indexOf('assets/sprint2-data.js') < index.indexOf('assets/geo-explorer.js'), 'Sprint 2 data must load before Geo Explorer');
-assert(index.indexOf('assets/geo-explorer.js') < index.indexOf('assets/sprint2-ui.js'), 'Sprint 2 UI must load after Geo Explorer');
+assert(ui.includes('1,440/1,450') && ui.includes('10 ward rows'), 'archived Sprint 2 UI mapped/held disclosure missing');
+assert(!index.includes('<script src="assets/sprint2-data.js"></script>'), 'retired Sprint 2 data overlay must not be loaded by index.html');
+assert(!index.includes('<script src="assets/sprint2-ui.js"></script>'), 'retired Sprint 2 UI overlay must not be loaded by index.html');
+assert(index.indexOf('assets/data-loader.js') >= 0 && index.indexOf('assets/data-loader.js') < index.indexOf('assets/geo-explorer.js'), 'shared data loader must precede Geo Explorer');
+assert(geoUi.includes('1,440/1,450') && geoUi.includes('Mandera East/Lafey') && geoUi.includes('10 official ward rows'), 'Geo Explorer must disclose mapped coverage and Mandera spatial hold');
 
 const manifest = JSON.parse(manifestRaw);
 assert(manifest.sources.iebc_gazette_2022.quality === 'A', 'IEBC primary source quality changed');
@@ -215,4 +220,4 @@ const methodCounts = Object.fromEntries([...new Set(crosswalks.map(x => x.method
 console.log('PASS: Data Sprint 2 — 47/47 counties, 290/290 constituencies, 1,450/1,450 IEBC ward rows ingested; total 22,102,532.');
 console.log(`      Spatial: 1,440 mapped, 10 Mandera East/Lafey held, ${crosswalks.length} mapped crosswalks badged B; ${JSON.stringify(methodCounts)}.`);
 console.log(`      Independent transcription audit: 1,450 domestic rows, total ${independentTotal.toLocaleString()}, sorted-value mismatch positions ${independentMismatchPositions}; non-authoritative differences disclosed.`);
-console.log('      All 47 coded-source county sums reconcile exactly to the official Gazette schedule; Gazette anchors pass; lower-level inheritance: none.');
+console.log('      Runtime delivery: native registry + shared lazy loader; retired Sprint 2 fetch overlay is not loaded. Lower-level inheritance: none.');
