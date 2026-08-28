@@ -59,7 +59,9 @@ function validateSample(){
 function validateResilience(){
   const js=read('assets/countyiq.js');
   for(const token of ['loadProductionRows','loadSampleBundle','state.mode=\'production\'','state.mode=\'sample\'','state.mode=\'unavailable\'','Demo preview','data-mode-note','renderUnavailable']) assert(js.includes(token),`runtime missing resilience token ${token}`);
-  assert(js.indexOf('state.rows=await loadProductionRows()')<js.indexOf('loadSampleBundle()'),'production must be attempted before the bundled fallback');
+  const productionCall=js.indexOf('state.rows=await loadProductionRows()');
+  const fallbackCall=js.indexOf('state.sample=await loadSampleBundle()',productionCall);
+  assert(productionCall>=0&&fallbackCall>productionCall,'production data must be attempted before the bundled fallback is used');
   assert(!js.includes("const root=$('#iq-root');if(root)root.innerHTML"),'data failure must not replace the entire CountyIQ root');
   assert(js.includes("script.src='assets/countyiq-sample.js'"),'fallback must be loadable as a local script asset');
   console.log('COUNTYIQ_NONFATAL_FALLBACK_OK');
