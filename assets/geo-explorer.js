@@ -2,7 +2,7 @@
  *
  * The map is intentionally outside the first-paint path. D3, the master
  * registry tables and each geometry level load only when the explorer is near
- * the viewport, explicitly selected or opened through a #map hash. The public
+ * the viewport, explicitly selected or opened through a map route. The public
  * KDAGeo facade exists immediately so search can safely target the map before
  * it has booted.
  */
@@ -15,7 +15,7 @@
   const VIEW_W=800,VIEW_H=780,PAD=18;
   const CHOROPLETH_RANGE=['#eaf2ec','#c3ddce','#8fc0a7','#4f9575','#123c32'];
 
-  let d3=null,svg=null,bootPromise=null,booted=false,bootError=null;
+  let d3=null,svg=null,bootPromise=null,booted=false,bootError=null,voterSupplementPromise=null;
   let geographies=[],indicators=[],series=[],observations=[],units=[],agencies=[],sources=[],datasets=[];
   let geoById=new Map(),indicatorById=new Map(),indicatorByCode=new Map(),unitById=new Map(),observationById=new Map();
   const childrenOf=new Map(),seriesByGeoIndicator=new Map(),geometryCache={country:null,county:null,constituency:null,ward:null};
@@ -81,9 +81,21 @@
   }
   function normalizeFeatureForD3(feature){return feature?{...feature,properties:feature.properties,geometry:normalizeGeometryForD3(feature.geometry)}:feature;}
 
+  async function ensureVoterSupplement(){
+    if(window.KDASprint2Voters)return window.KDASprint2Voters.ready;
+    if(voterSupplementPromise)return voterSupplementPromise;
+    voterSupplementPromise=KDA.loadScript('assets/sprint2-voters.js',{id:'kda-sprint2-voters'})
+      .then(()=>window.KDASprint2Voters?.ready||null)
+      .catch(error=>{console.warn('Geo voter drill-down:',error?.message||error);return null;});
+    return voterSupplementPromise;
+  }
   function obsFor(geographyId,indicatorId){
-    if(!indicatorId)return null;const s=seriesByGeoIndicator.get(`${geographyId}|${indicatorId}`);if(!s?.latest_observation_id)return null;
-    const o=observationById.get(s.latest_observation_id);return o?{series:s,obs:o}:null;
+    if(!indicatorId)return null;
+    const s=seriesByGeoIndicator.get(`${geographyId}|${indicatorId}`);
+    if(s?.latest_observation_id){const o=observationById.get(s.latest_observation_id);if(o)return{series:s,obs:o};}
+    const voter=indicatorByCode.get('IND-REGISTERED-VOTERS');
+    if(voter?.indicator_id===indicatorId)return window.KDASprint2Voters?.valuesByGeographyId?.get(geographyId)||null;
+    return null;
   }
   function agencyNameFor(seriesRow){
     if(!seriesRow)return'Unknown';const dataset=datasets.find(d=>d.dataset_id===seriesRow.dataset_id),source=dataset?sources.find(s=>s.source_id===dataset.source_id):null;
@@ -101,6 +113,15 @@
     select.disabled=false;select.innerHTML=indicators.filter(i=>i.lifecycle_status==='active').map(i=>`<option value="${esc(i.indicator_code)}">${esc(i.name)}</option>`).join('');
   }
   function syncIndicatorSelect(){const select=$('#geo-indicator'),indicator=indicatorById.get(currentIndicatorId);if(select&&indicator)select.value=indicator.indicator_code;}
+  function updateIndicatorAvailability(renderList){
+    const select=$('#geo-indicator'),features=renderList?.features||[];if(!select||!features.length)return;
+    for(const option of select.options){
+      const indicator=indicatorByCode.get(option.value);if(!indicator)continue;
+      const count=features.reduce((sum,feature)=>sum+(obsFor(feature.properties.geography_id,indicator.indicator_id)?1:0),0);
+      option.textContent=count?indicator.name:`${indicator.name} · no data at this level`;
+      option.disabled=count===0&&indicator.indicator_id!==currentIndicatorId;
+    }
+  }
 
   async function boot(){
     if(bootPromise)return bootPromise;
@@ -140,13 +161,15 @@
   async function renderCurrent(){
     const generation=++renderGeneration,geo=geoById.get(currentGeographyId);if(!geo)return;
     const indicator=indicatorById.get(currentIndicatorId),unit=indicator?unitById.get(indicator.unit_id):null;
+    if(indicator?.indicator_code==='IND-REGISTERED-VOTERS'&&geo.level!=='country')await ensureVoterSupplement();
     let renderList,contextFeature=null,mode;
     if(geo.level==='country'){mode='children';renderList=filterFeatures(await ensureGeometry('county'),childrenOf.get(geo.geography_id)||[]);}
     else if(geo.level==='county'){mode='children';renderList=filterFeatures(await ensureGeometry('constituency'),childrenOf.get(geo.geography_id)||[]);contextFeature=findFeature(await ensureGeometry('county'),geo.geography_id);}
     else if(geo.level==='constituency'){mode='children';renderList=filterFeatures(await ensureGeometry('ward'),childrenOf.get(geo.geography_id)||[]);contextFeature=findFeature(await ensureGeometry('constituency'),geo.geography_id);}
     else{mode='siblings';const parent=geoById.get(geo.parent_id);renderList=filterFeatures(await ensureGeometry('ward'),childrenOf.get(parent?.geography_id)||[]);contextFeature=findFeature(await ensureGeometry('constituency'),parent?.geography_id);}
     if(generation!==renderGeneration)return;
-    renderBreadcrumb(geo);renderHeading(geo,indicator);if(indicator)renderSourceNote(indicator,geo);drawMap(renderList,contextFeature,indicator,unit,mode,geo);renderRankingAndSummary(renderList,indicator,unit,geo);
+    updateIndicatorAvailability(renderList);
+    renderBreadcrumb(geo);renderHeading(geo,indicator);if(indicator)renderSourceNote(indicator,geo,renderList);drawMap(renderList,contextFeature,indicator,unit,mode,geo);renderRankingAndSummary(renderList,indicator,unit,geo);
   }
 
   function renderBreadcrumb(geo){
@@ -160,12 +183,20 @@
     const child=childLevelOf(geo.level);if(geo.level==='ward'){const parent=geoById.get(geo.parent_id);eyebrow.textContent=`Compared with other wards in ${parent?.name||''} Constituency`;}
     else{const count=(childrenOf.get(geo.geography_id)||[]).length,label={county:'counties',constituency:'constituencies',ward:'wards'}[child]||'places',pair=indicator?obsFor(geo.geography_id,indicator.indicator_id):null;eyebrow.textContent=`${count} ${label}${pair?' · '+pair.obs.period_label:''}`;}
   }
-  function renderSourceNote(indicator,geo){
-    const el=$('#geo-source-note');if(!el)return;const s=series.find(sr=>sr.indicator_id===indicator.indicator_id),latest=s?.latest_observation_id?observationById.get(s.latest_observation_id):null;
-    let text=s?(latest?`Source: ${agencyNameFor(s)} · ${latest.badge} — ${badgeLabel(latest.badge)}`:`Source: ${agencyNameFor(s)}`):'';
+  function renderSourceNote(indicator,geo,renderList){
+    const el=$('#geo-source-note');if(!el)return;
+    const features=renderList?.features||[],pairs=features.map(feature=>obsFor(feature.properties.geography_id,indicator.indicator_id)).filter(Boolean),representative=pairs[0]||obsFor(geo.geography_id,indicator.indicator_id);
+    const fallbackSeries=series.find(sr=>sr.indicator_id===indicator.indicator_id),fallbackObs=fallbackSeries?.latest_observation_id?observationById.get(fallbackSeries.latest_observation_id):null;
+    const sourceSeries=representative?.series||fallbackSeries,sourceObs=representative?.obs||fallbackObs;
+    let text=sourceSeries?(sourceObs?`Source: ${agencyNameFor(sourceSeries)} · ${sourceObs.badge} — ${badgeLabel(sourceObs.badge)}`:`Source: ${agencyNameFor(sourceSeries)}`):'Source unavailable';
+    const targetLevel=geo.level==='ward'?'ward':childLevelOf(geo.level),targetLabel={county:'counties',constituency:'constituencies',ward:'wards'}[targetLevel]||'places';
+    text+=` · Coverage in this view: ${pairs.length}/${features.length} ${targetLabel}`;
     if(indicator.indicator_code==='IND-REGISTERED-VOTERS'){
+      const s2=window.KDASprint2Voters;
       if(geo?.geo_code==='KEN-C009'||String(geo?.geo_code||'').startsWith('KEN-C009-'))text+=' · Mandera East/Lafey: 10 official ward rows remain in statistical totals but are withheld from current ward polygons pending boundary reconciliation.';
-      else if(geo?.level==='country')text+=' · Coverage: 47 counties · 290 constituencies · 1,440/1,450 ward rows safely mapped; 10 Mandera East/Lafey ward rows are on spatial hold rather than guessed.';
+      else if(geo?.level==='country')text+=' · Constituency and ward values load only when you drill below county; they are never inherited from county totals.';
+      else if(s2?.error)text+=` · Lower-level voter source could not load: ${s2.error}`;
+      else if(s2)text+=` · Sprint 2 verified: ${s2.coverage.constituencies} constituencies and ${s2.coverage.mapped_wards}/${s2.coverage.source_wards} ward rows safely connected; ${s2.coverage.held_wards} held.`;
     }
     el.textContent=text;
   }
@@ -201,7 +232,7 @@
     const tip=$('#geo-tooltip');if(!tip)return;const gid=feature.properties.geography_id,place=geoById.get(gid),pair=indicator?obsFor(gid,indicator.indicator_id):null;
     tip.innerHTML=`<strong>${esc(place?.name||feature.properties.name)}</strong>${indicator?`${esc(indicator.name)}<br>`:''}${pair?`${esc(formatVal(pair.obs.value,unit?.code||''))} · ${esc(pair.obs.period_label)}<span class="geo-tooltip-badge">${esc(pair.obs.badge)} · ${esc(agencyNameFor(pair.series))}</span>`:'Data not currently available'}`;tip.hidden=false;moveTooltip(event);
   }
-  function moveTooltip(event){const tip=$('#geo-tooltip'),wrap=$('.geo-map-wrap');if(!tip||!wrap)return;const rect=wrap.getBoundingClientRect();tip.style.left=`${event.clientX-rect.left}px`;tip.style.top=`${event.clientY-rect.top}px`;}
+  function moveTooltip(event){const tip=$('#geo-tooltip'),wrap=$('.geo-map-wrap');if(!tip||!wrap)return;const rect=wrap.getBoundingClientRect(),pad=12,x=Math.min(Math.max(event.clientX-rect.left,pad),rect.width-pad),y=Math.min(Math.max(event.clientY-rect.top,pad),rect.height-pad);tip.style.left=`${x}px`;tip.style.top=`${y}px`;}
   function hideTooltip(){const tip=$('#geo-tooltip');if(tip)tip.hidden=true;}
 
   function renderRankingAndSummary(renderList,indicator,unit,geo){
