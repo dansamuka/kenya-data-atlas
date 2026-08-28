@@ -1,0 +1,48 @@
+/* My Life Elsewhere — resident-facing language/layout refinements.
+   Loaded by assets/compare.js so the Direct Compare surface remains unchanged. */
+
+.compare-life-panel .compare-panel-head h3{max-width:760px}
+.compare-life-panel .compare-panel-head p{font-size:.9rem;line-height:1.55;max-width:780px}
+.life-hero{align-items:start}
+.life-hero>div:first-child>p:not(.eyebrow){font-size:.92rem;line-height:1.6;max-width:780px}
+.life-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:1.35rem}
+.life-summary-item{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);padding:.85rem .95rem;min-height:92px}
+.life-summary-item small{display:block;text-transform:uppercase;letter-spacing:.09em;font-size:.56rem;font-weight:800;color:#91b5a5;margin-bottom:.38rem}
+.life-summary-item strong{display:block;font-family:var(--serif);font-size:1.08rem;line-height:1.18;color:#f2f5f1}
+.life-match-count{position:sticky;top:132px}
+.life-cards{background:#f5f3ec;color:var(--ink)}
+.life-breakdown-intro{padding:2rem 1.6rem 1.5rem;background:#fff;border-bottom:1px solid var(--line)}
+.life-breakdown-intro .eyebrow{color:var(--green2);margin-bottom:.35rem}
+.life-breakdown-intro h3{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.7rem);font-weight:500;line-height:1.08;margin:0;max-width:850px}
+.life-topic{border-bottom:1px solid #dfe3df}
+.life-topic-head{background:#eef2ec;color:var(--green2);padding:.82rem 1.6rem}
+.life-topic-head small{color:#74847b}
+.life-topic-list{display:block;background:#fff}
+.life-card{background:#fff;color:var(--ink);padding:1.55rem 1.6rem;min-height:0;border-bottom:1px solid #e6e9e5}
+.life-card:last-child{border-bottom:0}
+.life-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1.3rem}
+.life-card-top>div{min-width:0}
+.life-card .badge{position:static;flex:0 0 auto;margin-top:.1rem}
+.life-card small{color:#75827c}
+.life-card strong{font-family:var(--serif);font-size:clamp(1.45rem,2.25vw,2.05rem);line-height:1.08;margin:.4rem 0 0;max-width:900px;color:var(--ink)}
+.life-card.positive strong{color:#266647}
+.life-card.negative strong{color:#9a4a32}
+.life-card.neutral strong{color:#2b3732}
+.life-explanation{font-size:.82rem!important;line-height:1.6!important;color:#52605a!important;max-width:900px;margin:.8rem 0 1rem!important}
+.life-values{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:.85rem;align-items:center;max-width:700px;padding:.8rem .9rem;background:#f6f7f3;border:1px solid #e1e5df}
+.life-values span{font-family:var(--serif);font-size:1.12rem;color:#26332e}
+.life-values b{display:block;font-family:var(--sans);font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:#7b8781;margin-bottom:.18rem}
+.life-values .life-arrow{font-family:var(--sans);font-size:.9rem;color:#8b958f}
+.life-source-line{margin:.7rem 0 0!important;color:#818a85!important;font-size:.62rem!important;line-height:1.45!important}
+.life-limitations{font-size:.74rem;line-height:1.55}
+.life-empty{background:#fff;color:var(--muted)}
+@media(max-width:900px){
+  .life-summary-grid{grid-template-columns:1fr}
+  .life-match-count{position:static}
+}
+@media(max-width:640px){
+  .life-breakdown-intro,.life-card{padding-left:1rem;padding-right:1rem}
+  .life-values{grid-template-columns:1fr;gap:.35rem}
+  .life-values .life-arrow{transform:rotate(90deg);width:max-content}
+  .life-card-top{gap:.75rem}
+}
