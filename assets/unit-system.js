@@ -173,7 +173,8 @@
       }
       setText(value,longUnit(unit));
     }
-    let chip=$('.series-unit-chip','.series-side');
+    const seriesSide=$('.series-side');
+    let chip=seriesSide?$('.series-unit-chip',seriesSide):null;
     if(!chip&&heading){chip=makeChip(unit,'series-unit-chip');heading.insertAdjacentElement('afterend',chip);}
     if(chip) updateChip(chip,unit);
   }
