@@ -164,6 +164,38 @@
     nav.appendChild(link);
   }
 
+  function installMobileNavigation(){
+    const menu=$('.menu-button'),nav=$('#main-nav'),header=$('.site-header');
+    if(!menu||!nav||!header||header.dataset.mobileNavPolish==='true') return;
+    header.dataset.mobileNavPolish='true';
+    const sync=()=>{
+      const open=nav.classList.contains('open');
+      menu.setAttribute('aria-expanded',String(open));
+      menu.textContent=open?'Close':'Menu';
+      menu.setAttribute('aria-label',open?'Close main navigation':'Open main navigation');
+    };
+    const close=({focus=false}={})=>{
+      if(!nav.classList.contains('open')){sync();return;}
+      nav.classList.remove('open');
+      sync();
+      if(focus)menu.focus({preventScroll:true});
+    };
+    new MutationObserver(sync).observe(nav,{attributes:true,attributeFilter:['class']});
+    menu.addEventListener('click',()=>queueMicrotask(sync));
+    document.addEventListener('pointerdown',event=>{
+      if(nav.classList.contains('open')&&!header.contains(event.target))close();
+    },{passive:true});
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'&&nav.classList.contains('open')){event.preventDefault();close({focus:true});}
+    });
+    window.addEventListener('kda:route',()=>close());
+    const desktop=window.matchMedia?.('(min-width:901px)');
+    const onDesktop=event=>{if(event.matches)close();};
+    if(desktop?.addEventListener)desktop.addEventListener('change',onDesktop);
+    else if(desktop?.addListener)desktop.addListener(onDesktop);
+    sync();
+  }
+
   function installObservers(){
     const spark=$('.sparkline');
     if(spark) new MutationObserver(enhanceSparkline).observe(spark,{childList:true});
@@ -193,9 +225,10 @@
     enhanceTwoPointSeries();
     colorCatalogue();
     installCountyDashboardLink();
+    installMobileNavigation();
     installObservers();
     loadPlaceProfile();
-    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();installCountyDashboardLink();},650);
+    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();installCountyDashboardLink();installMobileNavigation();},650);
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
