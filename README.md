@@ -14,6 +14,7 @@ Open `index.html` directly, or serve this folder from any static host. The publi
 - Real D3 geographic explorer with one authoritative ranking panel
 - Dedicated **Compare** workspace with **Direct Compare** and **My Life Elsewhere** modes
 - County profiles with source-backed County Core statistics
+- County Life comparison metrics covering cost & affordability, housing, health access/supply, education and employment
 - Explicit lower-level missing-data treatment
 - IEBC registered-voter drill-down to constituency and ward where spatial attribution is safe
 - Historical Kenya series for CPI, CBR, USD/KES, 91-day T-bills, EPRA Nairobi pricing-town petrol and county public finance
@@ -58,11 +59,13 @@ data/indicators/registry/     Native machine-readable units, indicators, series 
 data/sprint1/                 Audited County Core source package
 data/sprint2/                 Local Kenya source/provenance package
 data/sprint3/                 Historical Kenya frozen source package and release validation
-db/schema/                    PostgreSQL + PostGIS schema
+data/life-elsewhere/          Five-family county comparison source package and validation
+scripts/life/                 County Life native-registry promoter
 scripts/geography/            Build, ingest, dissolve, validate, audit
 scripts/indicators/           Build and release-validation pipeline
 scripts/sprint1/              County Core native-registry promoter
 scripts/sprint3/              Historical acquisition and native-registry promoter
+db/schema/                    PostgreSQL + PostGIS schema
 docs/governance/              Governance and statistical publication system
 docs/methodology/             Published methodology
 CHANGELOG.md                  Release history
@@ -70,7 +73,7 @@ CHANGELOG.md                  Release history
 
 ## Native machine-readable data
 
-As of **v0.9.0**, the committed registry files are the same data products used by the live site. Sprint 1 County Core, Sprint 2 Local Kenya, World Bank national indicators and Sprint 3 Historical Kenya coexist in the native registry rather than being added only in the browser.
+As of **v0.10.0**, the committed registry files are the same data products used by the live site. Sprint 1 County Core, Sprint 2 Local Kenya, World Bank national indicators, Sprint 3 Historical Kenya and County Life coexist in the native registry rather than being added only in the browser.
 
 Sprint 3 adds validated historical observations for:
 
@@ -82,6 +85,16 @@ Sprint 3 adds validated historical observations for:
 - Controller of Budget county fiscal history — **517 rows = 47 counties × 11 fiscal years**.
 
 Together with Sprint 1 FY2024/25, each county fiscal series spans **12 fiscal years**. Controller of Budget values are never propagated below county level. EPRA historical Nairobi observations are pricing-town values, not Nairobi County averages. See `data/sprint3/VALIDATION.md` for the release audit.
+
+County Life v0.10.0 adds **235 direct county observations = 5 indicators × 47 counties** for:
+
+- **Cost & affordability:** rent as a share of household expenditure, 2024;
+- **Housing:** households owning their main dwelling, 2021 survey;
+- **Health access / supply:** health facilities in the 2023 census target;
+- **Education:** population age 3+ at school / learning institution, 2019 census;
+- **Employment:** labour-force participation rate, age 15–64, 2019 census.
+
+These measures remain separate statistics and are not combined into a synthetic quality-of-life score. No County Life value is inherited to a constituency or ward. The v0.10.0 deterministic release validated **84 indicators, 2,477 series and 5,971 observations**. See `data/life-elsewhere/VALIDATION.md` for the release audit and interpretation controls.
 
 The principal downloadable files are:
 
@@ -105,7 +118,7 @@ npm test
 npm run geography:audit
 ```
 
-`npm test` also runs `node --check assets/compare.js`, so syntax regressions in the dedicated comparison engine are release-blocking.
+`npm test` also runs `node --check assets/compare.js`, so syntax regressions in the dedicated comparison engine are release-blocking. The County Life validator additionally enforces 47/47 coverage for all five new indicators, source/value/period equality with the frozen package, the Ministry of Health 14,366-facility reconciliation and zero lower-level inheritance.
 
 ## Project status
 
@@ -116,7 +129,8 @@ npm run geography:audit
 - **Data Sprint 1 — County Core:** Native-registry publication complete
 - **Data Sprint 2 — Local Kenya:** IEBC 47/290/1,450 statistical hierarchy ingested; unsafe spatial assignments explicitly held
 - **World Bank national integration:** Published; national-only WDI series remain national and are never inherited to counties
-- **Data Sprint 3 — Historical Kenya:** Validated release package complete; native historical promotion included in v0.9.0
+- **Data Sprint 3 — Historical Kenya:** Published and validated in the native registry
+- **County Life v0.10.0:** Five requested county comparison families complete at 47/47 coverage each
 - **Compare workspace:** Dedicated county comparison surface implemented; Direct mode auto-discovers published county metrics and My Life Elsewhere uses matched-period observations only
 
 ### Geometry integrity
@@ -134,10 +148,10 @@ GitHub Actions does more than validate whatever happens to be committed. On ever
 1. installs the Node and Shapely dependencies;
 2. runs `npm run build:data`;
 3. fails if deterministic generated registries/geometry differ from the committed outputs;
-4. runs the UI syntax gate plus the full geography, catalogue, indicator, Sprint 1, native-API, Sprint 2 and Sprint 3 validators; and
+4. runs the UI syntax gate plus the full geography, catalogue, indicator, Sprint 1, native-API, Sprint 2, Sprint 3 and County Life validators; and
 5. runs the independent Shapely geometry audit.
 
-This makes seed/output drift, comparison-script syntax errors and geometry-audit regressions release-blocking rather than dependent on someone remembering a manual step.
+This makes seed/output drift, comparison-script syntax errors, County Life coverage/provenance regressions and geometry-audit regressions release-blocking rather than dependent on someone remembering a manual step.
 
 ## Ownership model
 

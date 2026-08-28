@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "snapshot_date": "2026-08-28",
+  "rows": 235,
+  "county_count": 47,
+  "metrics": {
+    "IND-RENT-BURDEN": {
+      "family": "cost_affordability",
+      "title": "Rent as a share of household expenditure",
+      "source_agency": "Kenya National Bureau of Statistics",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/05/2025-Economic-Survey.pdf",
+      "source_table": "Table 20.5 — Proportion of Rent to Household Expenditure by County and Residence, 2024",
+      "reference_period": "2024",
+      "definition": "Total-column proportion of rent to household expenditure by county.",
+      "limitation": "Rent burden only; not a general cost-of-living index and not a prediction of an individual's rent."
+    },
+    "IND-HOUSING-OWNER-OCCUPIED": {
+      "family": "housing",
+      "title": "Households owning their main dwelling",
+      "source_agency": "Kenya National Bureau of Statistics",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2024/06/Kenya-Time-Use-Survey-Report-2021.pdf",
+      "source_table": "Table 3.6b — Percentage Distribution of Households by Tenure Status, Residence and County",
+      "reference_period": "2021 survey",
+      "definition": "Percentage of households reporting that they own their main dwelling unit.",
+      "limitation": "Tenure status is not itself a measure of housing quality, affordability or wealth."
+    },
+    "IND-HEALTH-FACILITY-STOCK": {
+      "family": "health_access",
+      "title": "Health facilities in the 2023 census target",
+      "source_agency": "Ministry of Health",
+      "source_url": "https://repository.familyhealth.go.ke/xmlui/bitstream/handle/123456789/192/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf?isAllowed=y&sequence=1",
+      "source_table": "Table 2 — County Summary; Facilities Targeted Over Facilities Assessed, Closed & Denied Access",
+      "reference_period": "KMHFL as of 1 Aug 2023",
+      "definition": "Facilities targeted for the Kenya Health Facility Census from the KMHFL list as at 1 August 2023.",
+      "limitation": "A facility-stock/supply measure; it does not measure travel time, service quality, capacity or personal access."
+    },
+    "IND-SCHOOL-ATTENDANCE-RATE": {
+      "family": "education",
+      "title": "Population age 3+ at school/learning institution",
+      "source_agency": "Kenya National Bureau of Statistics",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Education-and-Training.pdf",
+      "source_table": "Appendix 2.2 — Distribution of School Attendance Status by Sex and County",
+      "reference_period": "2019 census",
+      "definition": "Percentage of population age 3 years and above recorded as at school/learning institution.",
+      "limitation": "Age structure affects county comparisons; this is attendance status, not school quality or learning outcomes."
+    },
+    "IND-LABOUR-FORCE-PARTICIPATION": {
+      "family": "employment",
+      "title": "Labour-force participation rate, age 15–64",
+      "source_agency": "Kenya National Bureau of Statistics",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Labour-Force.pdf",
+      "source_table": "Table 3.19 — Labour Force Participation Rates for Population Age 15-64 Years by County, Residence and Sex",
+      "reference_period": "2019 census",
+      "definition": "Total labour-force participation rate for population age 15–64 years.",
+      "limitation": "Labour-force participation is not the unemployment rate, job quality, earnings or probability of finding work."
+    }
+  },
+  "integrity_checks": {
+    "expected_rows": 235,
+    "expected_rows_per_metric": 47,
+    "health_facility_target_total": 14366,
+    "subcounty_inheritance": "prohibited"
+  }
+}

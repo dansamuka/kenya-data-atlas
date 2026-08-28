@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.10.0 — 28 August 2026 — County Life / My Life Elsewhere
+
+Publishes five complete county-level comparison families for the dedicated Compare workspace. Direct Compare can place the new metrics side by side across counties; My Life Elsewhere can translate matched observations into plain-language differences without inventing a composite quality-of-life score.
+
+### County Life metrics
+
+- Cost & affordability — rent as a share of household expenditure, 2024: **47/47 counties**.
+- Housing — households owning their main dwelling, 2021 survey: **47/47 counties**.
+- Health access / supply — health facilities in the 2023 census target: **47/47 counties**.
+- Education — population age 3+ at school / learning institution, 2019 census: **47/47 counties**.
+- Employment — labour-force participation rate, age 15–64, 2019 census: **47/47 counties**.
+
+Frozen County Life source package: **235 rows = 5 indicators × 47 counties**. The Ministry of Health facility-stock table reconciles to the published national target of **14,366 facilities**.
+
+### Quality and release controls
+
+- All five indicators are direct county observations with source URL, dataset/release provenance and reference period.
+- No County Life value is inherited to a constituency or ward.
+- Rent burden remains a rent-cost measure, not a synthetic cost-of-living index.
+- Owner occupancy is tenure status, not housing quality or household wealth.
+- Facility stock is supply context, not travel-time access or service quality.
+- School attendance is not a learning-quality measure and remains sensitive to county age structure.
+- Labour-force participation is distinct from unemployment, earnings and job quality.
+- The deterministic v0.10.0 build passed the complete Atlas test suite at **84 indicators, 2,477 series and 5,971 observations**.
+
+See `data/life-elsewhere/VALIDATION.md` for the release audit.
+
+---
+
 ## 0.9.0 — 28 August 2026 — Historical Kenya
 
 Publishes Data Sprint 3 as a deterministic native-registry release alongside the existing World Bank national integration, County Core and Local Kenya datasets.
