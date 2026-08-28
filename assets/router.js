@@ -3,8 +3,8 @@
  */
 (function(){
   'use strict';
-  const VIEW_IDS=new Set(['home','pulse','explore','compare','series','data']);
-  const TITLES={home:'Kenya Data Atlas — Understand Kenya through data',pulse:'National Pulse — Kenya Data Atlas',explore:'Explore places — Kenya Data Atlas',compare:'Compare places — Kenya Data Atlas',series:'Series Explorer — Kenya Data Atlas',data:'Data Catalogue — Kenya Data Atlas'};
+  const VIEW_IDS=new Set(['home','pulse','explore','compare','series','data','countyiq']);
+  const TITLES={home:'Kenya Data Atlas — Understand Kenya through data',pulse:'National Pulse — Kenya Data Atlas',explore:'Explore places — Kenya Data Atlas',compare:'Compare places — Kenya Data Atlas',series:'Series Explorer — Kenya Data Atlas',data:'Data Catalogue — Kenya Data Atlas',countyiq:'CountyIQ — Kenya Data Atlas'};
   const DYNAMIC_VIEW_IDS=new Map([['cross-level-compare','explore']]);
   const rawPush=history.pushState.bind(history),rawReplace=history.replaceState.bind(history);
   let current=null,rendering=false;
@@ -14,7 +14,7 @@
     if(hash==='#main')return current?.hash||'#/';
     if(!hash||hash==='#'||hash==='#home')return '#/';
     if(hash.startsWith('#map/'))return '#/explore/'+hash.slice(5);
-    const legacy={ '#explore':'#/explore','#geo-explorer':'#/explore','#profile':'#/explore','#compare':'#/compare','#series':'#/series/KDA-CPI-YOY-KEN','#catalogue':'#/data','#data':'#/data' };
+    const legacy={ '#explore':'#/explore','#geo-explorer':'#/explore','#profile':'#/explore','#compare':'#/compare','#series':'#/series/KDA-CPI-YOY-KEN','#catalogue':'#/data','#data':'#/data','#countyiq':'#/countyiq','#county-dashboard':'#/countyiq' };
     return legacy[hash]||hash;
   }
   function canonicalUrl(url){
@@ -80,20 +80,13 @@
     requestAnimationFrame(()=>document.querySelector('#atlas-search')?.focus());
   }
 
-  // Compatibility adapter: old map code may still ask history for #map/...;
-  // canonicalise it without forcing the mature Geo Explorer to own site routing.
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
 
-  // Optional integrations can add UI after the router has rendered. Assign
-  // known dynamic surfaces to their parent route immediately so they cannot
-  // leak into an unrelated view before the next hash transition.
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 
-  // Search is a global header/keyboard control, but its input lives on Home.
-  // Route home first, then hand focus to the existing search implementation.
   document.addEventListener('click',event=>{
     const trigger=event.target.closest?.('[data-focus-search]');
     if(!trigger||(current?.view||parse().view)==='home')return;
