@@ -14,6 +14,7 @@
   const $$=(sel,r=document)=>[...r.querySelectorAll(sel)];
   const VIEW_W=800,VIEW_H=780,PAD=18;
   const CHOROPLETH_RANGE=['#eaf2ec','#c3ddce','#8fc0a7','#4f9575','#123c32'];
+  const SPRINT2_VOTER_DISCLOSURE='1,440/1,450 ward rows safely connected; 10 official ward rows held in Mandera East/Lafey';
 
   let d3=null,svg=null,bootPromise=null,booted=false,bootError=null,voterSupplementPromise=null;
   let geographies=[],indicators=[],series=[],observations=[],units=[],agencies=[],sources=[],datasets=[];
@@ -117,9 +118,9 @@
     const select=$('#geo-indicator'),features=renderList?.features||[];if(!select||!features.length)return;
     for(const option of select.options){
       const indicator=indicatorByCode.get(option.value);if(!indicator)continue;
-      const count=features.reduce((sum,feature)=>sum+(obsFor(feature.properties.geography_id,indicator.indicator_id)?1:0),0);
-      option.textContent=count?indicator.name:`${indicator.name} · no data at this level`;
-      option.disabled=count===0&&indicator.indicator_id!==currentIndicatorId;
+      const count=features.reduce((sum,feature)=>sum+(obsFor(feature.properties.geography_id,indicator.indicator_id)?1:0),0),lazyVoter=indicator.indicator_code==='IND-REGISTERED-VOTERS';
+      option.textContent=(count||lazyVoter)?indicator.name:`${indicator.name} · no data at this level`;
+      option.disabled=count===0&&!lazyVoter&&indicator.indicator_id!==currentIndicatorId;
     }
   }
 
@@ -193,10 +194,10 @@
     text+=` · Coverage in this view: ${pairs.length}/${features.length} ${targetLabel}`;
     if(indicator.indicator_code==='IND-REGISTERED-VOTERS'){
       const s2=window.KDASprint2Voters;
-      if(geo?.geo_code==='KEN-C009'||String(geo?.geo_code||'').startsWith('KEN-C009-'))text+=' · Mandera East/Lafey: 10 official ward rows remain in statistical totals but are withheld from current ward polygons pending boundary reconciliation.';
-      else if(geo?.level==='country')text+=' · Constituency and ward values load only when you drill below county; they are never inherited from county totals.';
+      if(geo?.geo_code==='KEN-C009'||String(geo?.geo_code||'').startsWith('KEN-C009-'))text+=` · ${SPRINT2_VOTER_DISCLOSURE}. Boundary reconciliation is still pending for the held rows.`;
+      else if(geo?.level==='country')text+=` · ${SPRINT2_VOTER_DISCLOSURE}. Constituency and ward values load only when you drill below county; they are never inherited from county totals.`;
       else if(s2?.error)text+=` · Lower-level voter source could not load: ${s2.error}`;
-      else if(s2)text+=` · Sprint 2 verified: ${s2.coverage.constituencies} constituencies and ${s2.coverage.mapped_wards}/${s2.coverage.source_wards} ward rows safely connected; ${s2.coverage.held_wards} held.`;
+      else if(s2)text+=` · Sprint 2 verified: ${s2.coverage.constituencies} constituencies; ${SPRINT2_VOTER_DISCLOSURE}.`;
     }
     el.textContent=text;
   }
