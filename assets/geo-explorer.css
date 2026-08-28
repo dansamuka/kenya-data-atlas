@@ -26,7 +26,10 @@
 .geo-feature:hover,.geo-feature:focus-visible{stroke:var(--green);stroke-width:1.6;outline:none}
 .geo-feature.selected{stroke:var(--red);stroke-width:2.2}
 .geo-feature.context{fill:none;stroke:#aebbb3;stroke-width:1.35;pointer-events:none}
-.geo-feature.sibling-muted{fill:#eef1ee;opacity:.7}
+/* Preserve each sibling's data colour after a ward is selected; mute only by
+   opacity so the choropleth remains truthful and the legend still describes
+   what the user sees. */
+.geo-feature.sibling-muted{opacity:.62}
 
 /* Tooltip is the only map label. The map wrapper clips it to the canvas so
    transient labels cannot spill over the legend, ranking rail or page copy. */
