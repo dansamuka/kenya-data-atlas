@@ -8,6 +8,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(`Mobile UI validation: ${mess
 try{
   const mobile=read('assets/mobile.css');
   const routed=read('assets/routed-views.css');
+  const ux=read('assets/ux-polish.js');
   const html=read('index.html');
 
   assert(html.includes('<link rel="stylesheet" href="assets/mobile.css">'),'mobile.css must be linked directly in the document head');
@@ -29,6 +30,7 @@ try{
     'overscroll-behavior',
     '-webkit-overflow-scrolling:touch'
   ]) assert(mobile.includes(token),`missing phone interaction contract: ${token}`);
+  for(const token of ['installMobileNavigation','event.key===\'Escape\'','window.addEventListener(\'kda:route\'','(min-width:901px)','Close main navigation'])assert(ux.includes(token),`mobile menu behavior missing ${token}`);
   console.log('MOBILE_NAV_TOUCH_CONTRACT_OK');
 
   for(const token of [
