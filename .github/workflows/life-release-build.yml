@@ -1,0 +1,44 @@
+name: Build County Life release branch
+
+on:
+  push:
+    branches: [feature/life-elsewhere-county-metrics]
+
+concurrency:
+  group: life-release-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Deterministic native build
+        run: npm run build:data
+      - name: Full registry and County Life validation
+        run: npm test
+      - name: Publish generated registries to feature branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/catalogue/registry data/indicators/registry
+          if git diff --cached --quiet; then
+            echo "No generated registry changes."
+          else
+            git commit -m "build(life): publish county comparison registries"
+            git pull --rebase origin feature/life-elsewhere-county-metrics
+            git push origin HEAD:feature/life-elsewhere-county-metrics
+          fi
