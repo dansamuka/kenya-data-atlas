@@ -1,0 +1,62 @@
+/* Kenya Data Atlas — real Geo Explorer foundation.
+ * Restores the production choropleth styles that were accidentally removed
+ * with the retired schematic-map CSS. This file contains no mock map rules.
+ */
+.geo-section{background:var(--paper)}
+.geo-header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:1rem}
+.geo-header h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-.02em;margin:.3rem 0 0}
+.geo-breadcrumb{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-bottom:1.5rem}
+.geo-breadcrumb button{border:0;background:none;padding:.15rem .3rem;color:var(--green2);font-weight:700;cursor:pointer;font-size:.78rem}
+.geo-breadcrumb button:disabled{color:var(--ink);cursor:default;font-weight:700}
+.geo-breadcrumb span{color:#a7afa9}
+
+/* The canvas and the ranking rail are siblings. Nothing except the transient
+   tooltip is allowed to occupy the map canvas. */
+.geo-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.72fr);gap:1.5rem;align-items:start}
+.geo-map-panel{background:#fff;border:1px solid var(--line);padding:1rem;min-width:0}
+.geo-map-wrap{position:relative;overflow:hidden;isolation:isolate}
+#geo-svg{width:100%;height:auto;display:block}
+#geo-svg text{pointer-events:none}
+.geo-feature{fill:#dce8df;stroke:#fff;stroke-width:.72;cursor:pointer;transition:fill .15s,stroke .15s,opacity .15s}
+.geo-feature.no-data{fill:url(#geo-no-data-pattern);cursor:default}
+.geo-feature:hover,.geo-feature:focus-visible{stroke:var(--green);stroke-width:1.6;outline:none}
+.geo-feature.selected{stroke:var(--red);stroke-width:2.2}
+.geo-feature.context{fill:none;stroke:#aebbb3;stroke-width:1.35;pointer-events:none}
+.geo-feature.sibling-muted{fill:#eef1ee;opacity:.7}
+
+/* Tooltip is the only map label. JS clamps its anchor inside the canvas and
+   overflow:hidden prevents it from crossing the map frame. */
+.geo-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;padding:.62rem .78rem;border-radius:6px;font-size:.72rem;line-height:1.42;box-shadow:var(--shadow);width:max-content;max-width:min(230px,calc(100% - 24px));z-index:5;transform:translate(-50%,-112%)}
+.geo-tooltip strong{display:block;font-family:var(--serif);font-size:.96rem;margin-bottom:.15rem}
+.geo-tooltip .geo-tooltip-badge{display:inline-block;margin-top:.3rem;font-size:.58rem;text-transform:uppercase;letter-spacing:.05em;background:rgba(255,255,255,.16);padding:.1rem .4rem;border-radius:99px}
+.geo-tooltip[hidden]{display:none!important}
+
+.geo-legend{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;font-size:.68rem;color:var(--muted);margin-top:.9rem}
+.geo-legend .geo-legend-item{display:flex;align-items:center;gap:.35rem}
+.geo-legend i{width:16px;height:16px;border-radius:3px;display:inline-block;flex:none}
+
+.geo-ranking-panel{background:#fff;border:1px solid var(--line);padding:1.15rem;max-height:640px;overflow:hidden;min-width:0}
+.geo-ranking-panel h3{font-family:var(--serif);font-size:1.3rem;margin:0 0 .3rem}
+.geo-ranking-note{font-size:.68rem;color:#795f28;background:#f7edd4;padding:.4rem .6rem;border-radius:4px;margin:0 0 .6rem}
+.geo-ranking-list{list-style:none;margin:0;padding:0;overflow:auto;min-height:0}
+.geo-ranking-list li{border-bottom:1px solid var(--line)}
+.geo-ranking-list li:last-child{border-bottom:0}
+.geo-ranking-list button{width:100%;display:grid;grid-template-columns:2rem minmax(0,1fr) auto;gap:.7rem;align-items:center;border:0;background:none;padding:.62rem .2rem;text-align:left;cursor:pointer;font-size:.82rem;color:var(--ink);border-radius:0}
+.geo-ranking-list button>span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.geo-ranking-list button:hover,.geo-ranking-list button:focus-visible,.geo-ranking-list button.hovered{background:#eff4f0;outline:none}
+.geo-ranking-list button.selected{background:var(--mint)}
+.geo-ranking-list .geo-rank-num{font-family:var(--serif);color:var(--muted);font-size:.95rem}
+.geo-ranking-list .geo-rank-value{font-weight:700;white-space:nowrap}
+.geo-ranking-list .geo-rank-nodata{color:#8e9892;font-style:italic;font-weight:400}
+
+.geo-selected-summary{margin-top:1.5rem;background:#fff;border:1px solid var(--line);padding:1.4rem 1.6rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.4rem;align-items:start}
+.geo-selected-summary h4{grid-column:1/-1;font-family:var(--serif);font-size:1.5rem;margin:0}
+.geo-selected-summary dt{font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0}
+.geo-selected-summary dd{margin:.2rem 0 0;font-family:var(--serif);font-size:1.3rem}
+.geo-selected-summary .geo-summary-source{font-size:.7rem;color:var(--muted);grid-column:1/-1;border-top:1px solid var(--line);padding-top:.8rem}
+.geo-map-unavailable{border-radius:8px}
+
+@media(max-width:900px){
+  .geo-layout{grid-template-columns:1fr}
+  .geo-ranking-panel{max-height:420px}
+}
