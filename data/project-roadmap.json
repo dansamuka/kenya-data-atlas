@@ -15,7 +15,7 @@
     {
       "id": "P00",
       "title": "Runtime stabilization and CountyIQ sample fallback",
-      "status": "implemented_pending_release_check",
+      "status": "complete",
       "session_goal": "Keep CountyIQ usable when production fetches fail and expose sample mature-product structure without presenting synthetic values as facts.",
       "outputs": ["bundled CountyIQ fallback snapshot", "Demo preview", "non-fatal fetch degradation", "runtime status messaging"],
       "acceptance": ["CountyIQ scripts parse", "production data remains first choice", "fallback does not replace the whole page", "Demo values are clearly labelled", "Pages deployment succeeds"],
