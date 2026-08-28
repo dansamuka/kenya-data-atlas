@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.9.0 — 28 August 2026 — Historical Kenya
+
+Publishes Data Sprint 3 as a deterministic native-registry release alongside the existing World Bank national integration, County Core and Local Kenya datasets.
+
+### Historical series
+
+- KNBS CPI inflation: 259 monthly observations.
+- CBK Central Bank Rate: 122 historical decisions.
+- CBK USD/KES monthly average: 403 observations.
+- CBK 91-day Treasury bill monthly average: 405 observations.
+- EPRA Nairobi pricing-town Super Petrol: 6 historical cycles, explicitly not treated as a Nairobi County average.
+- Controller of Budget county fiscal history: 517 rows covering all 47 counties for FY2013/14–FY2023/24.
+- Together with Sprint 1 FY2024/25, county fiscal series now span 12 fiscal years.
+
+### Quality and release controls
+
+- Controller of Budget history is never inherited below county level.
+- Monthly FX is kept distinct from the existing daily series.
+- Monthly T-bill averages are kept distinct from auction observations.
+- A governed `proxy` geographic method maps documented pricing-town proxies to Class C / spatially derived rather than mislabelling them as official direct county values.
+- Sprint 3 is wired into `npm run build:data`, `npm test` and the native API validator.
+- The combined World Bank + Sprint 3 release passed the full Atlas build and validation suite at 79 indicators, 2,242 series and 5,736 observations before promotion.
+
+See `data/sprint3/VALIDATION.md` for the release audit.
+
+---
+
 ## 0.4.0 — 26 August 2026 — Geography integrity remediation
 
 Closes every finding in the Phase 1 build audit. All four critical findings are
