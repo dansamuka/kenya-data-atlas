@@ -10,10 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/geo-explorer.css">
   <link rel="stylesheet" href="assets/ux-polish.css">
   <link rel="stylesheet" href="assets/unit-system.css">
   <link rel="stylesheet" href="assets/worldbank-integration.css">
   <link rel="stylesheet" href="assets/compare.css">
+  <link rel="stylesheet" href="assets/countyiq-view.css">
   <link rel="stylesheet" href="assets/routed-views.css">
 </head>
 <body>
@@ -28,6 +30,7 @@
       <a href="#/compare" data-view-link="compare">Compare</a>
       <a href="#/series/KDA-CPI-YOY-KEN" data-view-link="series">Series</a>
       <a href="#/data" data-view-link="data">Data</a>
+      <a href="#/countyiq" data-view-link="countyiq">CountyIQ</a>
     </nav>
     <button class="header-search" data-focus-search aria-label="Open search">⌕ <span>Search</span></button>
   </header>
@@ -131,12 +134,38 @@
       <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">—</div><small>Loading reference period…</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option></select><div><button>CSV</button><button>{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/></svg><span class="current-point">—</span></div><div class="series-meta"><span><small>Series ID</small>Loading…</span><span><small>Unit</small>Loading…</span><span><small>Source</small>Loading…</span><span><small>Reference</small>Loading…</span></div></div></div>
     </section>
 
+    <section class="countyiq-route" id="countyiq-view" data-view="countyiq" hidden>
+      <div class="section ciq-hero">
+        <div>
+          <p class="eyebrow">County intelligence · evidence first</p>
+          <h1><em id="ciq-county-title">Nakuru</em> in context.</h1>
+          <p class="ciq-intro">CountyIQ turns the Atlas's published county facts into concise comparative context—without inventing a score, copying national statistics downward or attributing outcomes to an office-holder.</p>
+        </div>
+        <aside class="ciq-controls">
+          <label>County<select id="ciq-county-select" aria-label="Select CountyIQ county"><option>Loading counties…</option></select></label>
+          <div class="ciq-mode" id="ciq-mode"><i></i><span>Loading source-backed county tables…</span></div>
+        </aside>
+      </div>
+      <div class="section ciq-body">
+        <div class="ciq-principle"><span><strong>Atlas tells you what is true.</strong> CountyIQ adds context, comparison and signal.</span><span>Current release uses published GCP, fiscal and voter data only.</span></div>
+        <div class="ciq-metrics" id="ciq-metrics"><div class="source-note" style="padding:1.5rem;grid-column:1/-1">CountyIQ loads only when this route is opened.</div></div>
+        <div class="ciq-grid">
+          <article class="ciq-card"><div class="ciq-card-head"><div><small>Economic trajectory</small><h2>Gross County Product</h2></div><p>Five published annual observations at current prices.</p></div><div id="ciq-trend"></div></article>
+          <article class="ciq-card"><div class="ciq-card-head"><div><small>County context</small><h2>Where it sits</h2></div><p>Ranks and medians use only the loaded county observations.</p></div><div class="ciq-benchmarks" id="ciq-benchmarks"></div></article>
+        </div>
+        <div class="ciq-grid ciq-lower">
+          <article class="ciq-card"><div class="ciq-card-head"><div><small>Public finance</small><h2>FY2024/25 execution</h2></div></div><div class="ciq-fiscal" id="ciq-fiscal"></div></article>
+          <article class="ciq-card"><div class="ciq-card-head"><div><small>Evidence discipline</small><h2>What this view does—and does not do</h2></div></div><div class="ciq-evidence"><article><strong>Source-backed</strong><p>Visible figures come from the same committed Atlas county tables used elsewhere on the site.</p></article><article><strong>No synthetic score</strong><p>No overall county or governor score is published before a validated methodology exists.</p></article><article><strong>No silent inheritance</strong><p>Kenya-level values are never presented as county, constituency or ward observations.</p></article></div></article>
+        </div>
+      </div>
+    </section>
+
     <section class="catalogue-section section" id="catalogue" data-view="data" hidden>
       <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The committed registries are the same machine-readable data used by the site.</p><div class="coverage"><div><strong>Native</strong><span>indicator registry</span></div><div><strong>Native</strong><span>downloadable registries</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="The downloadable JSON and CSV registries are under data/indicators/registry and data/catalogue/registry.">Browse the catalogue →</button></div><div class="dataset-list" id="dataset-list"></div>
     </section>
   </main>
 
-  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="README.md">About</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
+  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="#/countyiq">CountyIQ</a><a href="README.md">About</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/data-loader.js"></script>
   <script src="assets/router.js"></script>
