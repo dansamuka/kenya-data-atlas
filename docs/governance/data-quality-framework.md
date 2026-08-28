@@ -6,12 +6,24 @@
 |---|---|---|---|
 | A | Official direct | Authoritative source publishes the value for that geography | Green A badge, agency, release and period |
 | B | Official derived | Reproducible calculation from official inputs | Blue B badge, formula/method link |
-| C | Spatially derived | Geographic transformation using documented inputs | C badge, “spatially derived,” uncertainty/limitations |
+| C | Spatially derived | Geographic transformation or explicit geographic proxy using documented official inputs | C badge, source geography/mapping caveat, uncertainty/limitations |
 | D | Modelled | Statistical estimate | D badge, “modelled estimate,” model version and uncertainty |
 | E | External | Credible non-government or international source | E badge and original publisher |
 | Demo | Demonstration only | Invented or illustrative interface content | Prominent demo label; excluded from production |
 
 The badge describes provenance, not an overall score and not whether a value is “good” or “bad.” A class A value can still be old or non-comparable.
+
+### Geographic-method semantics
+
+The controlled `geographic_method` values are:
+
+- **direct** — the source publishes the observation for the Atlas geography. This derives badge A for official sources.
+- **aggregated** — the Atlas reproducibly combines official lower-level observations to the target geography. This derives badge B.
+- **interpolated** — a documented spatial crosswalk transforms an observation between geographic systems. A `crosswalk_id` is mandatory and the observation derives badge C.
+- **proxy** — the source publishes the value for a different, explicitly named geographic concept that is deliberately exposed through an Atlas geography for limited contextual use without changing the source value. Proxy observations derive badge C, must carry explanatory notes naming the limitation, and must never be described as a direct value or average for the Atlas geography.
+- **modelled** — a statistical or other model produces the geographic value. This derives badge D.
+
+A proxy is not interpolation, aggregation or modelling. It does not authorize propagation to lower-level geographies or filling missing observations. For example, an EPRA Nairobi pricing-town pump price may be exposed on the Nairobi county-linked fuel series as a proxy only when the presentation explicitly states that it is the **Nairobi pricing-town maximum retail price, not a Nairobi County average**.
 
 ## Quality dimensions
 
@@ -93,4 +105,3 @@ Each release retains:
 - reviewer dispositions for anomalies;
 - unresolved limitations;
 - named approvals and timestamps.
-

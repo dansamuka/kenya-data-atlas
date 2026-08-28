@@ -5,6 +5,22 @@
   "rule": "Cross-level comparison is decided for the concrete selected series. Unit dimension ratio/rate/index or that series own rate/share/ratio/percent/per-capita/per-person/density/index transformation is eligible. IND-LAND-AREA is the sole physical-area exception. Raw counts and currency totals remain same-level only; sibling transformations never promote them.",
   "series": [
     {
+      "series_code": "KDA-TBILL91-MONTHLY-AVG-KEN",
+      "series_id": "64187f8d-d3aa-505f-8a3a-2b82a6f7966f",
+      "indicator_code": "IND-TBILL-91-MONTHLY-AVG",
+      "indicator_id": "a1fd151b-f0c2-58ea-86f5-619bbab63986",
+      "name": "91-day Treasury bill monthly average rate",
+      "geography_id": "ecf8c770-9d71-5fcf-91e7-39713e391479",
+      "geography_code": "KEN",
+      "geography_level": "country",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "transformation": "level",
+      "aggregation": "",
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
       "series_code": "KDA-TBILL91-KEN",
       "series_id": "bec32926-2542-5470-83ae-854df93092b8",
       "indicator_code": "IND-TBILL-91",
@@ -35843,9 +35859,37 @@
       "aggregation": "",
       "cross_level_eligible": true,
       "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "series_code": "KDA-USDKES-MONTHLY-AVG-KEN",
+      "series_id": "f4b293d3-d71d-59f2-8408-e15e9645b188",
+      "indicator_code": "IND-USD-KES-MONTHLY-AVG",
+      "indicator_id": "f8b86182-ba8e-5ea5-81f5-017bc0ac3dcd",
+      "name": "USD/KES monthly period-average exchange rate",
+      "geography_id": "ecf8c770-9d71-5fcf-91e7-39713e391479",
+      "geography_code": "KEN",
+      "geography_level": "country",
+      "unit_code": "kes_per_usd",
+      "unit_dimension": "ratio",
+      "transformation": "level",
+      "aggregation": "",
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
     }
   ],
   "indicators": [
+    {
+      "indicator_code": "IND-TBILL-91-MONTHLY-AVG",
+      "indicator_id": "a1fd151b-f0c2-58ea-86f5-619bbab63986",
+      "name": "91-day Treasury bill monthly average rate",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "all published series are cross-level eligible; consult series rows for the operative decision"
+    },
     {
       "indicator_code": "IND-TBILL-91",
       "indicator_id": "3ff83e1d-ee77-59fb-94de-3ce4eef4d01d",
@@ -36287,6 +36331,18 @@
       "indicator_code": "IND-USD-KES",
       "indicator_id": "3fcc51b3-a441-5902-b39b-3ccb56eab963",
       "name": "USD/KES exchange rate",
+      "unit_code": "kes_per_usd",
+      "unit_dimension": "ratio",
+      "available_levels": [
+        "country"
+      ],
+      "cross_level_eligible": true,
+      "rule_basis": "all published series are cross-level eligible; consult series rows for the operative decision"
+    },
+    {
+      "indicator_code": "IND-USD-KES-MONTHLY-AVG",
+      "indicator_id": "f8b86182-ba8e-5ea5-81f5-017bc0ac3dcd",
+      "name": "USD/KES monthly period-average exchange rate",
       "unit_code": "kes_per_usd",
       "unit_dimension": "ratio",
       "available_levels": [
