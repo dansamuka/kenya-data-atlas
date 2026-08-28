@@ -300,8 +300,10 @@
         category = 'costs';
         label = 'Rent and household spending';
         headline = delta === 0
-          ? 'rent takes about the same share of household spending'
-          : `rent takes ${pp} percentage points ${delta > 0 ? 'more' : 'less'} of household spending`;
+          ? 'feel about the same squeeze from rent in the household budget'
+          : delta > 0
+            ? `feel a tighter squeeze on housing, with rent taking ${pp} percentage points more of the household budget`
+            : `have a little more breathing room on housing, with rent taking ${pp} percentage points less of the household budget`;
         explanation = `In ${state.home}, rent accounts for ${formatValue(a, metric.unit)} of household expenditure. In ${state.away}, it accounts for ${formatValue(b, metric.unit)}.`;
         polarity = delta < 0 ? 'positive' : delta > 0 ? 'negative' : 'neutral';
         magnitude = Math.abs(delta);
@@ -309,23 +311,34 @@
         category = 'housing';
         label = 'Owning your home';
         headline = delta === 0
-          ? 'home ownership is about as common'
-          : `be ${pp} percentage points ${delta > 0 ? 'more' : 'less'} likely to live in an owner-occupied home`;
+          ? 'have about the same shot at living in a home you own'
+          : delta > 0
+            ? `have a better shot at owning the roof over your head — owner-occupied homes are ${pp} percentage points more common`
+            : `have a tougher shot at owning the roof over your head — owner-occupied homes are ${pp} percentage points less common`;
         explanation = `${formatValue(a, metric.unit)} of households in ${state.home} own their main dwelling, compared with ${formatValue(b, metric.unit)} in ${state.away}.`;
         polarity = delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral';
         magnitude = Math.abs(delta);
       } else if (code === 'IND-HEALTH-FACILITY-STOCK') {
         category = 'health';
         label = 'Health facilities around the county';
-        headline = `have ${countDifferencePhrase(a, b, 'health facilities')} in the county`;
+        const facilityRatio = a > 0 ? b / a : null;
+        headline = delta === 0
+          ? 'have about the same number of medical facilities around the county'
+          : delta > 0
+            ? facilityRatio && facilityRatio >= 1.5
+              ? `have many more medical facilities around the county — about ${facilityRatio.toFixed(1)}× as many are listed`
+              : `have ${countDifferencePhrase(a, b, 'health facilities')} around the county`
+            : `have ${countDifferencePhrase(a, b, 'health facilities')} around the county`;
         explanation = `${state.home} had ${formatValue(a, metric.unit)} facilities in the 2023 census target, while ${state.away} had ${formatValue(b, metric.unit)}. This is a facility-count comparison, not a promise of shorter travel times or better care.`;
         polarity = 'neutral';
       } else if (code === 'IND-SCHOOL-ATTENDANCE-RATE') {
         category = 'education';
         label = 'Being in school or learning';
         headline = delta === 0
-          ? 'see about the same share of people aged 3+ in school or learning'
-          : `see ${pp} percentage points ${delta > 0 ? 'more' : 'fewer'} people aged 3+ in school or a learning institution`;
+          ? 'notice about the same student presence in the community'
+          : delta > 0
+            ? `notice a more student-heavy community, with ${pp} percentage points more people aged 3+ in school or a learning institution`
+            : `notice a less student-heavy community, with ${pp} percentage points fewer people aged 3+ in school or a learning institution`;
         explanation = `School or learning-institution attendance was ${formatValue(a, metric.unit)} in ${state.home} and ${formatValue(b, metric.unit)} in ${state.away}.`;
         polarity = delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral';
         magnitude = Math.abs(delta);
@@ -333,8 +346,10 @@
         category = 'work';
         label = 'Working-age people in the labour force';
         headline = delta === 0
-          ? 'see about the same share of working-age adults active in the labour force'
-          : `see ${pp} percentage points ${delta > 0 ? 'more' : 'fewer'} working-age adults active in the labour force`;
+          ? 'live in a labour market with about the same share of working-age adults active'
+          : delta > 0
+            ? `live in a busier labour market, with ${pp} percentage points more working-age adults working or actively looking for work`
+            : `live in a quieter labour market, with ${pp} percentage points fewer working-age adults working or actively looking for work`;
         explanation = `Among people aged 15–64, labour-force participation was ${formatValue(a, metric.unit)} in ${state.home} and ${formatValue(b, metric.unit)} in ${state.away}.`;
         polarity = 'neutral';
         magnitude = Math.abs(delta);
@@ -342,16 +357,20 @@
         category = 'costs';
         label = 'Filling up the car';
         headline = delta === 0
-          ? 'pay about the same for a litre of Super Petrol'
-          : `pay KSh ${Math.abs(delta).toFixed(2)} ${delta > 0 ? 'more' : 'less'} per litre for Super Petrol`;
+          ? 'feel about the same hit at the petrol pump'
+          : delta > 0
+            ? `feel a little more pinch at the pump, paying KSh ${Math.abs(delta).toFixed(2)} more for every litre of Super Petrol`
+            : `save a bit at the pump, paying KSh ${Math.abs(delta).toFixed(2)} less for every litre of Super Petrol`;
         explanation = `The published price is ${formatValue(a, metric.unit)} in ${state.home} and ${formatValue(b, metric.unit)} in ${state.away}.`;
         polarity = delta < 0 ? 'positive' : delta > 0 ? 'negative' : 'neutral';
       } else if (code === 'IND-POPULATION' || name === 'population') {
         category = 'community';
         label = 'How many people share the county';
         headline = delta === 0
-          ? 'share the county with about the same number of people'
-          : `share the county with ${pctAbs?.toFixed(0) || 'a different number of'}% ${delta > 0 ? 'more' : 'fewer'} people`;
+          ? 'experience a county with about the same number of residents'
+          : delta > 0
+            ? `experience a busier, more populous county, sharing it with ${pctAbs?.toFixed(0) || 'many'}% more residents`
+            : `experience a less populous county, sharing it with ${pctAbs?.toFixed(0) || 'many'}% fewer residents`;
         explanation = `${state.home} had ${formatValue(a, metric.unit)} residents in this reference period, compared with ${formatValue(b, metric.unit)} in ${state.away}.`;
         polarity = 'neutral';
       } else if (code === 'IND-LAND-AREA' || name.includes('land area')) {
@@ -359,10 +378,10 @@
         label = 'How much ground the county covers';
         const ratio = b / a;
         headline = delta === 0
-          ? 'live in a county covering about the same land area'
+          ? 'have about the same amount of ground to cover across the county'
           : ratio >= 1
-            ? `live in a county about ${ratio.toFixed(ratio >= 10 ? 0 : 1)} times larger by land area`
-            : `live in a county about ${(1 / ratio).toFixed((1 / ratio) >= 10 ? 0 : 1)} times smaller by land area`;
+            ? `have far more ground to cover, living in a county about ${ratio.toFixed(ratio >= 10 ? 0 : 1)} times the physical size`
+            : `have less ground to cover, living in a county about ${(1 / ratio).toFixed((1 / ratio) >= 10 ? 0 : 1)} times smaller by land area`;
         explanation = `${state.home} covers ${formatValue(a, metric.unit)} and ${state.away} covers ${formatValue(b, metric.unit)}.`;
         polarity = 'neutral';
       } else if (name.includes('gross county product') && (name.includes('per capita') || name.includes('per person'))) {
@@ -377,8 +396,10 @@
         category = 'local-services';
         label = 'Money available to county government';
         headline = delta === 0
-          ? 'live under a county government with about the same budget'
-          : `live under a county government with a ${pctAbs?.toFixed(pctAbs >= 10 ? 0 : 1)}% ${delta > 0 ? 'larger' : 'smaller'} budget`;
+          ? 'rely on a county government working with about the same size budget'
+          : delta > 0
+            ? `rely on a county government with deeper pockets — its published budget is ${pctAbs?.toFixed(pctAbs >= 10 ? 0 : 1)}% larger`
+            : `rely on a county government with a leaner budget — its published budget is ${pctAbs?.toFixed(pctAbs >= 10 ? 0 : 1)}% smaller`;
         explanation = `${state.home}'s published county budget was ${formatValue(a, metric.unit)}; ${state.away}'s was ${formatValue(b, metric.unit)}. A larger budget does not automatically mean better services.`;
         polarity = 'neutral';
       } else if (name.includes('expenditure') && !name.includes('absorption')) {
