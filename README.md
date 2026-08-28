@@ -12,6 +12,7 @@ Open `index.html` directly, or serve this folder from any static host. The publi
 - Kenya → County → Constituency → Ward hierarchy
 - Kenya Pulse with source, period, change and quality labels
 - Real D3 geographic explorer with one authoritative ranking panel
+- Dedicated **Compare** workspace with **Direct Compare** and **My Life Elsewhere** modes
 - County profiles with source-backed County Core statistics
 - Explicit lower-level missing-data treatment
 - IEBC registered-voter drill-down to constituency and ward where spatial attribution is safe
@@ -20,7 +21,7 @@ Open `index.html` directly, or serve this folder from any static host. The publi
 - Data catalogue and provenance/quality badges
 - Responsive layout, keyboard focus, semantic markup and mobile navigation
 
-The earlier standalone Compare/Rankings prototype sections were retired in v0.8.0. The Geo Explorer is the single user-facing ranking/comparison context, so visitors cannot encounter a stale second ranking system.
+The earlier standalone Rankings prototype remains retired: the Geo Explorer is the single user-facing ranking surface. Compare is now deliberately separate from ranking. Its Direct mode puts all available county metrics side by side; its My Life Elsewhere mode translates only common-period, genuinely comparable county observations into plain-language differences. Missing data, mismatched periods and geography limitations are shown rather than filled in, and national World Bank values are never inherited to counties.
 
 ## Data status
 
@@ -43,6 +44,8 @@ The Atlas deliberately shows unavailable values as `—` and never copies county
 index.html                    Main GitHub Pages entry point
 assets/styles.css             Visual system and responsive layout
 assets/app.js                 Base UI interactions
+assets/compare.js             Dedicated two-mode county comparison engine
+assets/compare.css            Compare workspace visual/responsive system
 assets/geo-explorer.js        Canonical geographic map/ranking explorer
 assets/sprint1-ui.js          County Core profile/coverage presentation
 data/geography/registry/      Canonical registry, aliases, boundary versions, corrections
@@ -88,6 +91,8 @@ npm test
 npm run geography:audit
 ```
 
+`npm test` also runs `node --check assets/compare.js`, so syntax regressions in the dedicated comparison engine are release-blocking.
+
 ## Project status
 
 - **Static product prototype:** Complete
@@ -96,6 +101,7 @@ npm run geography:audit
 - **Phase 2 — Source, dataset and provenance registry:** Implemented and validated
 - **Data Sprint 1 — County Core:** Native-registry publication complete
 - **Data Sprint 2 — Local Kenya:** IEBC 47/290/1,450 statistical hierarchy ingested; unsafe spatial assignments explicitly held
+- **Compare workspace:** Dedicated county comparison surface implemented; Direct mode auto-discovers published county metrics and My Life Elsewhere uses matched-period observations only
 
 ### Geometry integrity
 
@@ -112,10 +118,10 @@ GitHub Actions now does more than validate whatever happens to be committed. On 
 1. installs the Node and Shapely dependencies;
 2. runs `npm run build:data`;
 3. fails if deterministic generated registries/geometry differ from the committed outputs;
-4. runs the full geography, catalogue, indicator, Sprint 1, native-API and Sprint 2 validators; and
+4. runs the UI syntax gate plus the full geography, catalogue, indicator, Sprint 1, native-API and Sprint 2 validators; and
 5. runs the independent Shapely geometry audit.
 
-This makes seed/output drift and geometry-audit regressions release-blocking rather than dependent on someone remembering a manual step.
+This makes seed/output drift, comparison-script syntax errors and geometry-audit regressions release-blocking rather than dependent on someone remembering a manual step.
 
 ## Ownership model
 
