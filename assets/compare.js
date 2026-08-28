@@ -3,19 +3,37 @@
  * Direct mode: every published county metric available for the selected places,
  * side by side, with common-period discipline, topic filters and metric search.
  *
- * My Life Elsewhere mode: a human-readable county-to-county comparison inspired
- * by the question “what would measurable life around me look like elsewhere?”.
- * It uses only common-period Atlas observations, shows every responsibly
- * comparable metric, and never invents personal costs or outcomes.
+ * My Life Elsewhere mode: a resident-facing county-to-county comparison.
+ * It deliberately uses a curated set of measurements that can be explained in
+ * normal-life language. Direct Compare remains the exhaustive statistical view.
  */
 (() => {
   const root = document.querySelector('#compare');
   if (!root || !root.classList.contains('compare-hub')) return;
 
+  if (!document.querySelector('link[data-life-language-style]')) {
+    const lifeStyle = document.createElement('link');
+    lifeStyle.rel = 'stylesheet';
+    lifeStyle.href = 'assets/compare-life-natural.css';
+    lifeStyle.dataset.lifeLanguageStyle = 'true';
+    document.head.appendChild(lifeStyle);
+  }
+
   const $ = (s, r = root) => r.querySelector(s);
   const $$ = (s, r = root) => [...r.querySelectorAll(s)];
   const TOPIC_ORDER = { people: 1, economy: 2, health: 3, finance: 4, representation: 5, infrastructure: 6, resilience: 7 };
   const TOPIC_LABELS = { people: 'People', economy: 'Economy', health: 'Health', finance: 'Public finance', representation: 'Representation', infrastructure: 'Infrastructure', resilience: 'Resilience' };
+
+  const LIFE_CATEGORY_ORDER = ['costs', 'housing', 'health', 'education', 'work', 'community', 'local-services'];
+  const LIFE_CATEGORY_LABELS = {
+    costs: 'Household costs',
+    housing: 'Home & housing',
+    health: 'Health nearby',
+    education: 'Education',
+    work: 'Work & opportunity',
+    community: 'Community & place',
+    'local-services': 'Local services'
+  };
 
   const fetchJson = async url => {
     try {
@@ -29,6 +47,19 @@
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[ch]);
   const csvCell = value => `"${String(value ?? '').replaceAll('"', '""')}"`;
   const normTopic = indicator => String(indicator.tab || indicator.topic || 'other').toLowerCase();
+
+  const lifePanel = $('[data-compare-panel="life"]');
+  if (lifePanel) {
+    const lifeTitle = $('.compare-panel-head h3', lifePanel);
+    const lifeIntro = $('.compare-panel-head p', lifePanel);
+    const lifeLabels = $$('.compare-life-controls label', lifePanel);
+    const lifeLimit = $('.life-limitations', lifePanel);
+    if (lifeTitle) lifeTitle.textContent = 'Picture your everyday life in another county.';
+    if (lifeIntro) lifeIntro.textContent = 'Choose where you live now and another county. We turn comparable county statistics into plain statements about housing, household costs, health, education, work and the community around you.';
+    if (lifeLabels[0]?.firstChild) lifeLabels[0].firstChild.textContent = 'I live in ';
+    if (lifeLabels[1]?.firstChild) lifeLabels[1].firstChild.textContent = 'What if I lived in ';
+    if (lifeLimit) lifeLimit.innerHTML = '<strong>How to read this:</strong> these comparisons describe the county around you, not your personal future. We only use a statistic when both counties have a genuinely comparable published value, and we keep the exact figures and reference period underneath each statement.';
+  }
 
   Promise.all([
     fetchJson('data/geography/registry/geographies.json'),
@@ -230,52 +261,166 @@
         </tr>`).join('')}</tbody></table></section>`).join('');
     }
 
-    function lifePriority(metric) {
-      const n = metric.indicator.name.toLowerCase();
-      if (n.includes('population')) return 100;
-      if (n.includes('petrol') || n.includes('fuel')) return 95;
-      if (n.includes('per capita') || n.includes('per person')) return 90;
-      if (n.includes('budget') && !n.includes('absorption')) return 85;
-      if (n.includes('expenditure')) return 80;
-      if (n.includes('absorption')) return 75;
-      if (n.includes('voter')) return 65;
-      if (n.includes('area')) return 60;
-      return 20;
+    const lifeCode = metric => metric.indicator.indicator_code || '';
+
+    function countDifferencePhrase(homeValue, awayValue, noun) {
+      if (homeValue === awayValue) return `about the same number of ${noun}`;
+      if (homeValue === 0) return `${Math.round(awayValue).toLocaleString('en-KE')} ${noun}`;
+      const pct = ((awayValue - homeValue) / Math.abs(homeValue)) * 100;
+      if (awayValue > homeValue && awayValue / homeValue >= 2) return `${(awayValue / homeValue).toFixed(awayValue / homeValue >= 10 ? 0 : 1)} times as many ${noun}`;
+      return `${Math.abs(pct).toFixed(Math.abs(pct) >= 10 ? 0 : 1)}% ${awayValue > homeValue ? 'more' : 'fewer'} ${noun}`;
     }
 
-    function describeLife(metric) {
+    function percentChange(a, b) {
+      return a === 0 ? null : ((b - a) / Math.abs(a)) * 100;
+    }
+
+    function makeLifeNarrative(metric) {
       const [home, away] = metric.cells;
       if (!home?.obs || !away?.obs) return null;
       const a = Number(home.obs.value), b = Number(away.obs.value);
       if (!Number.isFinite(a) || !Number.isFinite(b)) return null;
-      const unit = metric.unit;
-      const name = metric.indicator.name;
-      const lowerName = name.toLowerCase();
+
+      const code = lifeCode(metric);
+      const name = metric.indicator.name.toLowerCase();
       const delta = b - a;
-      const pct = a === 0 ? null : (delta / Math.abs(a)) * 100;
-      const direction = delta > 0 ? 'higher' : delta < 0 ? 'lower' : 'about the same';
-      const polarity = metric.indicator.higher_is_better === true ? (delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral')
-        : metric.indicator.higher_is_better === false ? (delta < 0 ? 'positive' : delta > 0 ? 'negative' : 'neutral') : 'neutral';
+      const pct = percentChange(a, b);
+      const pp = Math.abs(delta).toFixed(1);
+      const pctAbs = pct === null ? null : Math.abs(pct);
+      const period = away.obs.period_label || metric.commonPeriod || '';
+      const detailValues = `${state.home}: ${formatValue(a, metric.unit)} · ${state.away}: ${formatValue(b, metric.unit)} · ${period}`;
+      let category;
+      let label;
       let headline;
+      let explanation;
+      let polarity = 'neutral';
+      let magnitude = pctAbs ?? Math.abs(delta);
 
-      if (lowerName.includes('population') && pct !== null) headline = `You would live among ${Math.abs(pct).toFixed(0)}% ${delta >= 0 ? 'more' : 'fewer'} people.`;
-      else if (lowerName.includes('area') && a > 0 && b > 0) {
+      if (code === 'IND-RENT-BURDEN') {
+        category = 'costs';
+        label = 'Rent and household spending';
+        headline = delta === 0
+          ? 'rent takes about the same share of household spending'
+          : `rent takes ${pp} percentage points ${delta > 0 ? 'more' : 'less'} of household spending`;
+        explanation = `In ${state.home}, rent accounts for ${formatValue(a, metric.unit)} of household expenditure. In ${state.away}, it accounts for ${formatValue(b, metric.unit)}.`;
+        polarity = delta < 0 ? 'positive' : delta > 0 ? 'negative' : 'neutral';
+        magnitude = Math.abs(delta);
+      } else if (code === 'IND-HOUSING-OWNER-OCCUPIED') {
+        category = 'housing';
+        label = 'Owning your home';
+        headline = delta === 0
+          ? 'home ownership is about as common'
+          : `be ${pp} percentage points ${delta > 0 ? 'more' : 'less'} likely to live in an owner-occupied home`;
+        explanation = `${formatValue(a, metric.unit)} of households in ${state.home} own their main dwelling, compared with ${formatValue(b, metric.unit)} in ${state.away}.`;
+        polarity = delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral';
+        magnitude = Math.abs(delta);
+      } else if (code === 'IND-HEALTH-FACILITY-STOCK') {
+        category = 'health';
+        label = 'Health facilities around the county';
+        headline = `have ${countDifferencePhrase(a, b, 'health facilities')} in the county`;
+        explanation = `${state.home} had ${formatValue(a, metric.unit)} facilities in the 2023 census target, while ${state.away} had ${formatValue(b, metric.unit)}. This is a facility-count comparison, not a promise of shorter travel times or better care.`;
+        polarity = 'neutral';
+      } else if (code === 'IND-SCHOOL-ATTENDANCE-RATE') {
+        category = 'education';
+        label = 'Being in school or learning';
+        headline = delta === 0
+          ? 'see about the same share of people aged 3+ in school or learning'
+          : `see ${pp} percentage points ${delta > 0 ? 'more' : 'fewer'} people aged 3+ in school or a learning institution`;
+        explanation = `School or learning-institution attendance was ${formatValue(a, metric.unit)} in ${state.home} and ${formatValue(b, metric.unit)} in ${state.away}.`;
+        polarity = delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral';
+        magnitude = Math.abs(delta);
+      } else if (code === 'IND-LABOUR-FORCE-PARTICIPATION') {
+        category = 'work';
+        label = 'Working-age people in the labour force';
+        headline = delta === 0
+          ? 'see about the same share of working-age adults active in the labour force'
+          : `see ${pp} percentage points ${delta > 0 ? 'more' : 'fewer'} working-age adults active in the labour force`;
+        explanation = `Among people aged 15–64, labour-force participation was ${formatValue(a, metric.unit)} in ${state.home} and ${formatValue(b, metric.unit)} in ${state.away}.`;
+        polarity = 'neutral';
+        magnitude = Math.abs(delta);
+      } else if (code === 'IND-FUEL-PETROL' || (name.includes('petrol') || name.includes('fuel')) && metric.unit?.code === 'kes_per_litre') {
+        category = 'costs';
+        label = 'Filling up the car';
+        headline = delta === 0
+          ? 'pay about the same for a litre of Super Petrol'
+          : `pay KSh ${Math.abs(delta).toFixed(2)} ${delta > 0 ? 'more' : 'less'} per litre for Super Petrol`;
+        explanation = `The published price is ${formatValue(a, metric.unit)} in ${state.home} and ${formatValue(b, metric.unit)} in ${state.away}.`;
+        polarity = delta < 0 ? 'positive' : delta > 0 ? 'negative' : 'neutral';
+      } else if (code === 'IND-POPULATION' || name === 'population') {
+        category = 'community';
+        label = 'How many people share the county';
+        headline = delta === 0
+          ? 'share the county with about the same number of people'
+          : `share the county with ${pctAbs?.toFixed(0) || 'a different number of'}% ${delta > 0 ? 'more' : 'fewer'} people`;
+        explanation = `${state.home} had ${formatValue(a, metric.unit)} residents in this reference period, compared with ${formatValue(b, metric.unit)} in ${state.away}.`;
+        polarity = 'neutral';
+      } else if (code === 'IND-LAND-AREA' || name.includes('land area')) {
+        category = 'community';
+        label = 'How much ground the county covers';
         const ratio = b / a;
-        headline = ratio >= 1 ? `The county would be ${ratio.toFixed(ratio >= 10 ? 0 : 1)}× larger by land area.` : `The county would be ${(1 / ratio).toFixed((1 / ratio) >= 10 ? 0 : 1)}× smaller by land area.`;
-      } else if ((lowerName.includes('petrol') || lowerName.includes('fuel')) && unit?.code === 'kes_per_litre') {
-        headline = delta === 0 ? 'Super Petrol would be about the same price.' : `Super Petrol would be KSh ${Math.abs(delta).toFixed(2)}/L ${delta > 0 ? 'more expensive' : 'cheaper'}.`;
-      } else if (unit?.code === 'percent') {
-        headline = delta === 0 ? `${name} would be about the same.` : `${name} would be ${Math.abs(delta).toFixed(1)} percentage points ${direction}.`;
-      } else if (pct !== null) {
-        headline = delta === 0 ? `${name} would be about the same.` : `${name} would be ${Math.abs(pct).toFixed(Math.abs(pct) >= 10 ? 0 : 1)}% ${direction}.`;
-      } else headline = `${name}: ${formatValue(b, unit)} in ${state.away}.`;
+        headline = delta === 0
+          ? 'live in a county covering about the same land area'
+          : ratio >= 1
+            ? `live in a county about ${ratio.toFixed(ratio >= 10 ? 0 : 1)} times larger by land area`
+            : `live in a county about ${(1 / ratio).toFixed((1 / ratio) >= 10 ? 0 : 1)} times smaller by land area`;
+        explanation = `${state.home} covers ${formatValue(a, metric.unit)} and ${state.away} covers ${formatValue(b, metric.unit)}.`;
+        polarity = 'neutral';
+      } else if (name.includes('gross county product') && (name.includes('per capita') || name.includes('per person'))) {
+        category = 'work';
+        label = 'Economic output per resident';
+        headline = delta === 0
+          ? 'live in a county with about the same economic output per resident'
+          : `live in a county where economic output per resident is ${pctAbs?.toFixed(pctAbs >= 10 ? 0 : 1)}% ${delta > 0 ? 'higher' : 'lower'}`;
+        explanation = `${state.home}: ${formatValue(a, metric.unit)} per resident · ${state.away}: ${formatValue(b, metric.unit)} per resident. This is economic output, not personal income.`;
+        polarity = 'neutral';
+      } else if (name.includes('budget') && !name.includes('absorption')) {
+        category = 'local-services';
+        label = 'Money available to county government';
+        headline = delta === 0
+          ? 'live under a county government with about the same budget'
+          : `live under a county government with a ${pctAbs?.toFixed(pctAbs >= 10 ? 0 : 1)}% ${delta > 0 ? 'larger' : 'smaller'} budget`;
+        explanation = `${state.home}'s published county budget was ${formatValue(a, metric.unit)}; ${state.away}'s was ${formatValue(b, metric.unit)}. A larger budget does not automatically mean better services.`;
+        polarity = 'neutral';
+      } else if (name.includes('expenditure') && !name.includes('absorption')) {
+        category = 'local-services';
+        label = 'County government spending';
+        headline = delta === 0
+          ? 'see about the same level of county government spending'
+          : `see ${pctAbs?.toFixed(pctAbs >= 10 ? 0 : 1)}% ${delta > 0 ? 'more' : 'less'} county government spending`;
+        explanation = `${state.home}: ${formatValue(a, metric.unit)} · ${state.away}: ${formatValue(b, metric.unit)}. This describes government spending, not household spending.`;
+        polarity = 'neutral';
+      } else if (name.includes('absorption')) {
+        category = 'local-services';
+        label = 'How much of the county budget gets used';
+        headline = delta === 0
+          ? 'see about the same share of the county budget used'
+          : `see ${pp} percentage points ${delta > 0 ? 'more' : 'less'} of the county budget used`;
+        explanation = `${state.home}'s published absorption rate was ${formatValue(a, metric.unit)}, compared with ${formatValue(b, metric.unit)} in ${state.away}.`;
+        polarity = 'neutral';
+        magnitude = Math.abs(delta);
+      } else if (name.includes('registered voter')) {
+        category = 'community';
+        label = 'Size of the local electorate';
+        headline = delta === 0
+          ? 'be part of an electorate about the same size'
+          : `be part of an electorate with ${pctAbs?.toFixed(0)}% ${delta > 0 ? 'more' : 'fewer'} registered voters`;
+        explanation = `${state.home}: ${formatValue(a, metric.unit)} registered voters · ${state.away}: ${formatValue(b, metric.unit)}.`;
+        polarity = 'neutral';
+      } else {
+        return null;
+      }
 
+      const sourceName = agencyById.get(away.series?.agency_id)?.abbreviation || agencyById.get(away.series?.agency_id)?.name || '';
       return {
         metric,
+        category,
+        label,
         headline,
+        explanation,
+        detailValues,
+        sourceName,
         polarity,
-        magnitude: pct === null ? Math.abs(delta) : Math.abs(pct),
-        detail: `${state.home}: ${formatValue(a, unit)} · ${state.away}: ${formatValue(b, unit)} · ${away.obs.period_label}`
+        magnitude
       };
     }
 
@@ -289,20 +434,50 @@
     function renderLife() {
       renderLifeControls();
       if (state.home === state.away) {
-        $('#life-hero').innerHTML = '<div><h3>Choose two different counties.</h3><p>The elsewhere mode compares place-level conditions only where the Atlas has comparable published observations.</p></div>';
+        $('#life-hero').innerHTML = '<div><h3>Choose two different counties.</h3><p>Pick where you live now and another county to see how familiar parts of everyday life compare.</p></div>';
         $('#life-cards').innerHTML = '';
         return;
       }
+
       const metrics = allMetrics([state.home, state.away]).filter(m => m.matched && m.available === 2);
-      const narratives = metrics.map(m => describeLife(m)).filter(Boolean).sort((a, b) => lifePriority(b.metric) - lifePriority(a.metric) || b.magnitude - a.magnitude);
+      const narratives = metrics.map(makeLifeNarrative).filter(Boolean);
+      narratives.sort((a, b) => LIFE_CATEGORY_ORDER.indexOf(a.category) - LIFE_CATEGORY_ORDER.indexOf(b.category) || b.magnitude - a.magnitude);
+
       const grouped = new Map();
       for (const d of narratives) {
-        if (!grouped.has(d.metric.topic)) grouped.set(d.metric.topic, []);
-        grouped.get(d.metric.topic).push(d);
+        if (!grouped.has(d.category)) grouped.set(d.category, []);
+        grouped.get(d.category).push(d);
       }
-      const biggest = [...narratives].sort((a, b) => b.magnitude - a.magnitude).slice(0, 3);
-      $('#life-hero').innerHTML = `<div><p class="eyebrow">${escapeHtml(state.home)} → ${escapeHtml(state.away)}</p><h3>What changes if <em>${escapeHtml(state.away)}</em> is home?</h3><p>A Kenya-specific “life elsewhere” view built from the Atlas's own traceable county data. It describes measurable differences around you; it does not predict your personal outcome.</p>${biggest.length ? `<div class="life-biggest">${biggest.map(d => `<span>${escapeHtml(d.headline)}</span>`).join('')}</div>` : ''}</div><div class="life-match-count"><strong>${metrics.length}</strong><span>matched county indicators with a common reference period</span><small>${grouped.size} evidence categories</small></div>`;
-      $('#life-cards').innerHTML = narratives.length ? [...grouped.entries()].map(([topic, rows]) => `<section class="life-topic"><div class="life-topic-head"><span>${escapeHtml(TOPIC_LABELS[topic] || topic)}</span><small>${rows.length} comparable metric${rows.length === 1 ? '' : 's'}</small></div><div class="life-topic-grid">${rows.map(d => `<article class="life-card ${d.polarity}">${badgeHtml(d.metric.cells[1].obs.badge)}<small>${escapeHtml(d.metric.indicator.name)}</small><strong>${escapeHtml(d.headline)}</strong><p>${escapeHtml(d.detail)}</p></article>`).join('')}</div></section>`).join('') : '<div class="life-empty">There are not yet enough common-period observations to produce a responsible elsewhere comparison for these two counties.</div>';
+
+      const everyday = narratives.filter(d => ['costs', 'housing', 'health', 'education', 'work'].includes(d.category));
+      const highlights = everyday.slice(0, 5);
+      const summarySentence = highlights.length
+        ? `The clearest measured differences are in ${highlights.map(d => d.label.toLowerCase()).slice(0, -1).join(', ')}${highlights.length > 1 ? ` and ${highlights.at(-1).label.toLowerCase()}` : highlights[0].label.toLowerCase()}.`
+        : 'The Atlas has only a small number of everyday-life measures that can be compared responsibly for this pair.';
+
+      $('#life-hero').innerHTML = `<div>
+        <p class="eyebrow">${escapeHtml(state.home)} → ${escapeHtml(state.away)}</p>
+        <h3>If <em>${escapeHtml(state.away)}</em> were home instead of ${escapeHtml(state.home)}…</h3>
+        <p>${escapeHtml(summarySentence)} These are county statistics, so they describe the place around you—not a prediction of your personal circumstances.</p>
+        ${highlights.length ? `<div class="life-summary-grid">${highlights.map(d => `<div class="life-summary-item"><small>${escapeHtml(LIFE_CATEGORY_LABELS[d.category])}</small><strong>${escapeHtml(d.headline)}</strong></div>`).join('')}</div>` : ''}
+      </div>
+      <div class="life-match-count"><strong>${narratives.length}</strong><span>everyday-life comparisons with matched periods</span><small>${grouped.size} resident-facing categories</small></div>`;
+
+      $('#life-cards').innerHTML = narratives.length
+        ? `<div class="life-breakdown-intro"><p class="eyebrow">${escapeHtml(state.away)} vs. ${escapeHtml(state.home)}</p><h3>If you lived in ${escapeHtml(state.away)} instead of ${escapeHtml(state.home)}, you would:</h3></div>
+          ${LIFE_CATEGORY_ORDER.filter(category => grouped.has(category)).map(category => {
+            const rows = grouped.get(category);
+            return `<section class="life-topic">
+              <div class="life-topic-head"><span>${escapeHtml(LIFE_CATEGORY_LABELS[category])}</span><small>${rows.length} everyday comparison${rows.length === 1 ? '' : 's'}</small></div>
+              <div class="life-topic-list">${rows.map(d => `<article class="life-card ${d.polarity}">
+                <div class="life-card-top"><div><small>${escapeHtml(d.label)}</small><strong>${escapeHtml(d.headline)}</strong></div>${badgeHtml(d.metric.cells[1].obs.badge)}</div>
+                <p class="life-explanation">${escapeHtml(d.explanation)}</p>
+                <div class="life-values"><span><b>${escapeHtml(state.home)}</b>${escapeHtml(formatValue(d.metric.cells[0].obs.value, d.metric.unit))}</span><span class="life-arrow">→</span><span><b>${escapeHtml(state.away)}</b>${escapeHtml(formatValue(d.metric.cells[1].obs.value, d.metric.unit))}</span></div>
+                <p class="life-source-line">${escapeHtml(d.metric.cells[1].obs.period_label)}${d.sourceName ? ` · ${escapeHtml(d.sourceName)}` : ''} · ${escapeHtml(d.metric.indicator.name)}</p>
+              </article>`).join('')}</div>
+            </section>`;
+          }).join('')}`
+        : '<div class="life-empty">There are not yet enough matched county observations that can be translated responsibly into everyday-life comparisons for these two counties. Try Direct Compare for the full statistical view.</div>';
     }
 
     function downloadDirectCsv() {
