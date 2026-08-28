@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P01 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P02 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -27,16 +27,20 @@ Already complete and not to be restarted without a regression/correction:
 - County Life five-family 47/47 package.
 - Main Compare workspace.
 - CountyIQ evidence-first redesign and target-state scaffold.
+- P00 CountyIQ runtime stabilization and source-backed sample fallback.
+- P01 shared registry loader, compact first-paint data product, lazy Geo Explorer/D3 path, deferred heavy registries and initial-load performance budget.
 
-The remaining work is therefore primarily **runtime performance, analytical integration, county data breadth, decision intelligence, action layers and public-launch hardening**.
+The remaining work is therefore primarily **analytical integration, county data breadth, decision intelligence, action layers and public-launch hardening**.
 
 ---
 
 ## P00 — Runtime stabilization + CountyIQ sample fallback
 
+**Status: complete.**
+
 **Purpose:** CountyIQ must remain inspectable even when browser fetches fail.
 
-This phase introduces a bundled six-county source-backed core snapshot and an explicitly synthetic mature-product preview. Production data remains the first choice. A failed production fetch must no longer delete the CountyIQ navigation/roadmap/methodology surface.
+This phase introduced a bundled six-county source-backed core snapshot and an explicitly synthetic mature-product preview. Production data remains the first choice. A failed production fetch no longer deletes the CountyIQ navigation/roadmap/methodology surface.
 
 **Push boundary:** resilience code + sample bundle + styling + runtime validation.
 
@@ -46,24 +50,21 @@ This phase introduces a bundled six-county source-backed core snapshot and an ex
 
 ## P01 — Initial-load performance + shared registry loader
 
-**Why next:** the main Atlas currently has multiple frontend modules capable of loading the same large geography/series/observation registries independently. This is the largest architectural threat to a consistently fast static site.
+**Status: complete.**
 
-Implement in one session:
+P01 introduced one shared cached loader, migrated the main shell/Compare/Geo Explorer away from independent heavy fetch paths, moved D3 and map geometry off first paint, created a deterministic compact national pulse product, and added a measurable asset-budget validator.
 
-1. Introduce one shared cached registry loader, e.g. `assets/data-loader.js`.
-2. Convert `app.js`, `compare.js` and `geo-explorer.js` to reuse it rather than making independent copies of the same requests.
-3. Lazy-start the map/data-heavy explorer only when the map is requested/near the viewport.
-4. Defer the heaviest observation registry where a smaller generated display product can serve the initial shell.
-5. Make D3 failure non-fatal to the rest of the Atlas.
-6. Add a static/runtime smoke validator and document an initial-load asset budget.
+Release evidence: the full Atlas workflow passed deterministic rebuild, seed/output drift checks, all geography/catalogue/indicator/Sprint/County Life validators, and the independent Shapely geometry audit.
 
-**Do not:** redesign the UI, rework geography, or add new indicators in this phase.
+Measured P01 guardrail at release: direct local first-paint JavaScript ≈ 82 KB and first-paint data ≈ 9 KB, while master observations (~8.2 MB), series (~3.0 MB) and ward geometry (~44.4 MB) are deferred.
 
-**Exit gates:** no duplicate master-registry fetch path across main surfaces; shell remains useful if heavy data/D3 fails; map hierarchy still works; `npm test` passes.
+**Do not reopen:** shared loader/lazy-loading architecture unless a regression or later convergence phase requires a deliberate change.
 
 ---
 
 ## P02 — CountyIQ canonical analytical mart
+
+**Status: next.**
 
 **Purpose:** stop CountyIQ from being a special frontend join of Sprint CSVs.
 
