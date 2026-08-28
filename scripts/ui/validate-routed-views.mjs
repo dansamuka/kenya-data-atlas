@@ -26,7 +26,9 @@ try{
 
   for(const token of ['hashchange','popstate','data-view-link','window.KDARouter','canonicalHash','#/explore/'])assert(router.includes(token),`router missing ${token}`);
   assert(router.includes("'#map/'")||router.includes("startsWith('#map/')"),'legacy map hashes are not canonicalised');
-  assert(routed.includes("params.get('places')")&&routed.includes("params.get('from')")&&routed.includes("params.get('to')"),'Compare URL restore state is incomplete');
+  assert(routed.includes("params.get('places')"),'Compare direct-route places restore is missing');
+  assert(routed.includes("[['from','#life-home'],['to','#life-away']]")&&routed.includes("r.params.get(param)"),'Compare life-route from/to restore is missing');
+  assert(routed.includes("params.set('places'")&&routed.includes("params.set('from'")&&routed.includes("params.set('to'"),'Compare state is not written back to shareable URLs');
   assert(routed.includes("KDA.registries(['series','observations','indicators','units','geographies','agencies']"),'Series route is not registry-driven');
   assert(routed.includes('window.KDAGeo')&&routed.includes("r.view==='explore'"),'Explore route does not restore map state');
   console.log('IA_SHAREABLE_STATE_CONTRACT_OK');
