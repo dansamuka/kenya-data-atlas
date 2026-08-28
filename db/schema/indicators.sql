@@ -12,7 +12,7 @@
 --     be emitted by the build pipeline; this is enforced in code, not only
 --     checked afterwards (see scripts/indicators/build-registry.mjs).
 
-CREATE TYPE geographic_method AS ENUM ('direct', 'aggregated', 'interpolated', 'modelled');
+CREATE TYPE geographic_method AS ENUM ('direct', 'aggregated', 'interpolated', 'proxy', 'modelled');
 CREATE TYPE statistical_status AS ENUM ('final', 'provisional', 'revised', 'projected', 'estimated', 'suppressed');
 CREATE TYPE frequency AS ENUM ('daily', 'weekly', 'monthly', 'quarterly', 'annual', 'decennial', 'irregular', 'point_in_time');
 CREATE TYPE period_type AS ENUM ('calendar_year', 'fiscal_year', 'quarter', 'fiscal_quarter', 'month', 'week', 'day', 'point_in_time');
@@ -182,13 +182,14 @@ CREATE TABLE observation (
   sample_size integer,
 
   suppression_reason text,
-  crosswalk_id uuid,                           -- required where geographic_method != 'direct'
+  crosswalk_id uuid,                           -- required for interpolated geographic transforms
 
   notes text,
   pipeline_run_id text,
 
   CHECK (statistical_status <> 'suppressed' OR suppression_reason IS NOT NULL),
-  CHECK (geographic_method IN ('direct', 'aggregated', 'modelled') OR crosswalk_id IS NOT NULL),
+  CHECK (geographic_method <> 'interpolated' OR crosswalk_id IS NOT NULL),
+  CHECK (geographic_method <> 'proxy' OR notes IS NOT NULL),
   UNIQUE (series_id, period_start, period_end, vintage_id)
 );
 
