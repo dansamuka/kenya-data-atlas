@@ -24,7 +24,7 @@
     {
       "id": "P01",
       "title": "Initial-load performance and shared registry loader",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Remove duplicated multi-megabyte registry downloads and ensure the Atlas shell becomes interactive before heavy map/data work begins.",
       "outputs": ["shared registry promise/cache", "lazy Geo Explorer boot", "deferred heavy observation loading where possible", "runtime smoke checks", "documented initial-load asset budget"],
       "acceptance": ["app, compare and map do not independently fetch the same master registries", "map still works at all four geography levels", "main page remains usable if D3 or heavy registries are unavailable", "npm test passes"],
@@ -33,7 +33,7 @@
     {
       "id": "P02",
       "title": "CountyIQ canonical analytical mart",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Generate one 47-county CountyIQ data product from the canonical Atlas registries and stop joining Sprint CSVs in the browser.",
       "outputs": ["scripts/countyiq/build-county-summary.mjs", "data/countyiq/county-summary.json", "47-county coverage validator", "CountyIQ runtime switched to mart"],
       "acceptance": ["47/47 counties", "source period unit provenance retained", "deterministic rebuild", "direct Sprint CSV joins removed from production CountyIQ"],
