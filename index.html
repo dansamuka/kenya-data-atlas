@@ -42,27 +42,27 @@
         <div class="hierarchy" aria-label="Geographic hierarchy"><span>Kenya</span><b>→</b><span>47 counties</span><b>→</b><span>290 constituencies</span><b>→</b><span>1,450 wards</span></div>
       </div>
       <aside class="pulse-card" aria-label="Kenya pulse featured indicator">
-        <div class="pulse-top"><span class="live-dot"></span> Kenya pulse <button class="icon-button" aria-label="More information" data-toast="Values in this prototype are clearly labelled demo data.">i</button></div>
-        <p class="metric-label">Consumer price inflation</p><div class="feature-value">4.6<span>%</span></div>
-        <div class="trend"><span>↓ 0.3 pp</span> from previous period</div>
-        <div class="sparkline" aria-label="Illustrative inflation trend from January to July"><i style="height:62%"></i><i style="height:54%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:48%"></i><i style="height:45%"></i><i style="height:38%"></i></div>
-        <dl><div><dt>Reference period</dt><dd>July 2026</dd></div><div><dt>Source</dt><dd>Demo · KNBS-style</dd></div></dl>
+        <div class="pulse-top"><span class="live-dot"></span> Kenya pulse <button class="icon-button" aria-label="More information" data-toast="Every published value carries source, period and provenance metadata.">i</button></div>
+        <p class="metric-label">Loading national pulse…</p><div class="feature-value">—</div>
+        <div class="trend"><span>Loading source-backed headline</span></div>
+        <div class="sparkline" aria-label="National pulse loading"></div>
+        <dl><div><dt>Reference period</dt><dd>Loading…</dd></div><div><dt>Source</dt><dd>Loading…</dd></div></dl>
         <button class="text-link" data-series="inflation">Open series <span>→</span></button>
       </aside>
     </section>
 
     <section class="section pulse-section" id="explore">
       <div class="section-heading"><div><p class="eyebrow">Kenya at a glance</p><h2>The national pulse</h2></div><p>Key signals in one calm view. Every figure carries its period, source and quality status.</p></div>
-      <div class="metric-grid" id="pulse-grid"></div>
+      <div class="metric-grid" id="pulse-grid"><div class="source-note">Loading compact first-paint data…</div></div>
     </section>
 
     <section class="section geo-section" id="geo-explorer">
       <div class="geo-header">
         <div>
-          <p class="eyebrow" id="geo-eyebrow">47 counties · 2019 Kenya Population and Housing Census</p>
-          <h2 id="geo-heading">How does population vary across Kenya?</h2>
+          <p class="eyebrow" id="geo-eyebrow">Geo Explorer · lazy data loading</p>
+          <h2 id="geo-heading">Map data loads as you approach this section.</h2>
         </div>
-        <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"></select></label>
+        <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"><option>Map data loads on demand…</option></select></label>
       </div>
       <nav class="geo-breadcrumb" id="geo-breadcrumb" aria-label="Geography breadcrumb"></nav>
       <div class="geo-layout">
@@ -72,23 +72,23 @@
             <div class="geo-tooltip" id="geo-tooltip" role="status" hidden></div>
           </div>
           <div class="geo-legend" id="geo-legend" aria-hidden="true"></div>
-          <p class="source-note" id="geo-source-note"></p>
+          <p class="source-note" id="geo-source-note">The map, D3 and boundary files are outside the initial page-load path.</p>
         </div>
         <aside class="geo-ranking-panel" aria-label="Ranking">
-          <h3 id="geo-ranking-title">Ranking (47)</h3>
+          <h3 id="geo-ranking-title">Ranking</h3>
           <p class="geo-ranking-note" id="geo-ranking-note" hidden></p>
-          <ol class="geo-ranking-list" id="geo-ranking-list"></ol>
+          <ol class="geo-ranking-list" id="geo-ranking-list"><li class="geo-rank-nodata" style="padding:1rem">Map rankings load with the explorer.</li></ol>
         </aside>
       </div>
       <div class="geo-selected-summary" id="geo-selected-summary" hidden></div>
     </section>
 
     <section class="section profile-section" id="profile">
-      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> <span id="profile-breadcrumb-county">Nakuru</span></p><label class="select-label" style="margin-top:.6rem">Select county<select id="county-picker" aria-label="Select a county to view its profile"></select></label><p class="eyebrow" id="profile-eyebrow">Area profile · County 032</p><h2 id="profile-title">Nakuru County</h2><p>Real, published facts where they exist; unavailable local data is shown honestly rather than filled in.</p></div><div class="profile-actions"><button id="profile-download">↓ Download</button></div></div>
+      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> <span id="profile-breadcrumb-county">Nakuru</span></p><label class="select-label" style="margin-top:.6rem">Select county<select id="county-picker" aria-label="Select a county to view its profile"></select></label><p class="eyebrow" id="profile-eyebrow">Area profile</p><h2 id="profile-title">County profile</h2><p>Real, published facts where they exist; unavailable local data is shown honestly rather than filled in.</p></div><div class="profile-actions"><button id="profile-download">↓ Download</button></div></div>
       <nav class="topic-tabs" aria-label="Profile topics"><button class="active">Overview</button><button>People</button><button>Economy</button><button>Health</button><button>Finance</button><button>Infrastructure</button></nav>
-      <div class="quick-facts"></div>
+      <div class="quick-facts"><div class="source-note">Loading County Core…</div></div>
       <div class="profile-lower">
-        <article class="chart-card"></article>
+        <article class="chart-card"><p class="source-note">Loading county trend…</p></article>
         <article class="availability-card"><small>Ward-level availability</small><h3>Honest gaps are part of the product.</h3><p>Some socioeconomic statistics are published only at county or administrative-area level. The Atlas does not automatically assign these values to wards.</p><div class="no-data"><span>—</span><div><strong>Ward poverty rate</strong><small>Data not currently available at ward level</small></div></div><button class="text-link" data-toast="Methodology view is represented in this static MVP.">Read the geography methodology →</button></article>
       </div>
     </section>
@@ -108,7 +108,7 @@
         <div class="compare-panel-head"><div><p class="eyebrow">Direct mode</p><h3>Every available metric, one table.</h3><p>Compare two to four counties across all published county indicators. Matched-period values are safe to compare directly; other values remain side by side with an explicit period or coverage warning.</p></div><div class="compare-panel-actions"><button type="button" id="compare-add-place">＋ Add county</button><button type="button" id="compare-download">↓ Download CSV</button></div></div>
         <div class="compare-place-strip" id="compare-place-strip"></div>
         <div id="compare-direct-summary"></div>
-        <div class="compare-matrix-wrap" id="compare-direct-table"><div class="compare-empty">Loading published county indicators…</div></div>
+        <div class="compare-matrix-wrap" id="compare-direct-table"><div class="compare-empty">Comparison data loads on demand.</div></div>
       </section>
 
       <section class="compare-panel compare-life-panel" data-compare-panel="life" aria-label="My life elsewhere comparison" hidden>
@@ -118,7 +118,7 @@
           <button type="button" class="swap-life" id="life-swap" aria-label="Swap counties">⇄</button>
           <label>Elsewhere<select id="life-away" aria-label="Elsewhere county"></select></label>
         </div>
-        <div class="life-hero" id="life-hero"><div><h3>Loading comparison…</h3></div></div>
+        <div class="life-hero" id="life-hero"><div><h3>Comparison data loads when this workspace is opened.</h3></div></div>
         <div class="life-cards" id="life-cards"></div>
         <div class="life-limitations"><strong>Important:</strong> this mode compares place-level statistics, not your personal outcome. It does not infer your salary, rent, grocery bill, safety or healthcare experience unless a suitable county-level dataset is actually published in the Atlas. No county value is copied down from Kenya-level World Bank data.</div>
       </section>
@@ -140,26 +140,22 @@
 
     <section class="series-section section" id="series">
       <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Move from headline to observations, methods, releases and machine-readable data.</p></div>
-      <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">4.6%</div><small>July 2026 · Monthly</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option><option>Change</option><option>Year-on-year change</option><option>Index to 100</option></select><div><button data-toast="CSV download is simulated in this MVP.">CSV</button><button data-toast="The committed JSON registries under data/indicators/registry are the machine-readable API surface.">{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/><path class="series-line" d="M30 175 C70 160 95 195 135 155 S205 130 245 145 S310 95 350 110 S410 65 460 80 S525 55 570 105 S640 150 680 120 S735 85 780 98"/></svg><span class="current-point">4.6%</span></div><div class="series-meta"><span><small>Series ID</small>KDA-CPI-YOY-KEN</span><span><small>Unit</small>Percent</span><span><small>Source</small>Demo · KNBS-style</span><span><small>Updated</small>26 Aug 2026</span></div></div></div>
+      <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">—</div><small>Loading reference period…</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option><option>Change</option><option>Year-on-year change</option><option>Index to 100</option></select><div><button data-toast="CSV download is simulated in this MVP.">CSV</button><button data-toast="The committed JSON registries under data/indicators/registry are the machine-readable API surface.">{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/></svg><span class="current-point">—</span></div><div class="series-meta"><span><small>Series ID</small>Loading…</span><span><small>Unit</small>Percent</span><span><small>Source</small>Loading…</span><span><small>Reference</small>Loading…</span></div></div></div>
     </section>
 
     <section class="catalogue-section section" id="catalogue">
-      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The committed registries are the same machine-readable data used by the site.</p><div class="coverage"><div><strong>13</strong><span>real indicators</span></div><div><strong>Native</strong><span>downloadable registries</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="The downloadable JSON and CSV registries are under data/indicators/registry and data/catalogue/registry.">Browse the catalogue →</button></div>
+      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The committed registries are the same machine-readable data used by the site.</p><div class="coverage"><div><strong>Native</strong><span>indicator registry</span></div><div><strong>Native</strong><span>downloadable registries</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="The downloadable JSON and CSV registries are under data/indicators/registry and data/catalogue/registry.">Browse the catalogue →</button></div>
       <div class="dataset-list" id="dataset-list"></div>
     </section>
   </main>
 
   <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#compare">Compare</a><a href="#catalogue">Data & sources</a><a href="#profile">Methodology</a><a href="#series">Developers</a><a href="README.md">About this MVP</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-  <script src="assets/sprint2-data.js"></script>
+  <script src="assets/data-loader.js"></script>
   <script src="assets/app.js"></script>
   <script src="assets/compare.js"></script>
   <script src="assets/geo-explorer.js"></script>
-  <script src="assets/sprint1-ui.js"></script>
-  <script src="assets/sprint2-ui.js"></script>
   <script src="assets/ux-polish.js"></script>
-  <script src="assets/unit-system.js"></script>
-  <script src="assets/worldbank-integration.js"></script>
+  <script src="assets/lazy-integrations.js"></script>
 </body>
 </html>
