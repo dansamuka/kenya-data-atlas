@@ -17,7 +17,11 @@
 .geo-map-wrap{position:relative;overflow:hidden;isolation:isolate}
 #geo-svg{width:100%;height:auto;display:block}
 #geo-svg text{pointer-events:none}
-.geo-feature{fill:#dce8df;stroke:#fff;stroke-width:.72;cursor:pointer;transition:fill .15s,stroke .15s,opacity .15s}
+
+/* Do not set a base fill here: D3 writes the data-driven choropleth colour on
+   each data-bearing path. A CSS fill would override that SVG presentation
+   attribute and flatten the map into one shade. */
+.geo-feature{stroke:#fff;stroke-width:.72;cursor:pointer;transition:fill .15s,stroke .15s,opacity .15s}
 .geo-feature.no-data{fill:url(#geo-no-data-pattern);cursor:default}
 .geo-feature:hover,.geo-feature:focus-visible{stroke:var(--green);stroke-width:1.6;outline:none}
 .geo-feature.selected{stroke:var(--red);stroke-width:2.2}
