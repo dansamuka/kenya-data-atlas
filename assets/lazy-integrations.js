@@ -28,9 +28,9 @@
 
   const geo=document.querySelector('#geo-explorer');
   if(geo)KDA.whenVisible(geo,loadOptionalIntegrations,{rootMargin:'100px 0px'});
-  if(/^#(?:map\/|series|catalogue)/.test(location.hash))loadOptionalIntegrations();
-  window.addEventListener('hashchange',()=>{
-    if(/^#(?:map\/|series|catalogue)/.test(location.hash))loadOptionalIntegrations();
-  });
+  const routeNeedsOptional=hash=>/^#\/(?:pulse|explore|series|data)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|series|catalogue)/.test(hash);
+  if(routeNeedsOptional(location.hash))loadOptionalIntegrations();
+  window.addEventListener('hashchange',()=>{if(routeNeedsOptional(location.hash))loadOptionalIntegrations();});
+  window.addEventListener('kda:route',event=>{if(['pulse','explore','series','data'].includes(event.detail?.view))loadOptionalIntegrations();});
   window.KDAOptional={load:loadOptionalIntegrations};
 })();
