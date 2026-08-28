@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "schema_version": 1,
+    "purpose": "Compact first-paint display product. Heavy canonical registries remain authoritative and load only on demand.",
+    "generated_from": "data/indicators/seed/observations.json",
+    "card_count": 6
+  },
+  "cards": [
+    {
+      "series_code": "KDA-CPI-YOY-KEN",
+      "label": "Consumer price inflation",
+      "unit_code": "percent",
+      "suffix": "%",
+      "source": "KNBS",
+      "badge": "A",
+      "history": [
+        {
+          "period_label": "June 2026",
+          "period_start": "2026-06-01",
+          "period_end": "2026-06-30",
+          "value": 6.4,
+          "source_url": "https://www.knbs.or.ke/reports/consumer-price-indices-and-inflation-rates-june-2026/"
+        },
+        {
+          "period_label": "July 2026",
+          "period_start": "2026-07-01",
+          "period_end": "2026-07-31",
+          "value": 6.5,
+          "source_url": "https://www.knbs.or.ke/reports/consumer-price-indices-and-inflation-rates-july-2026/"
+        }
+      ]
+    },
+    {
+      "series_code": "KDA-USDKES-KEN",
+      "label": "USD / KES",
+      "unit_code": "kes_per_usd",
+      "suffix": "",
+      "source": "External market reference",
+      "badge": "E",
+      "history": [
+        {
+          "period_label": "26 August 2026",
+          "period_start": "2026-08-26",
+          "period_end": "2026-08-26",
+          "value": 129.4,
+          "source_url": "https://www.xe.com/en-us/currencyconverter/convert/?Amount=1&From=USD&To=KES"
+        }
+      ]
+    },
+    {
+      "series_code": "KDA-CBR-KEN",
+      "label": "Central Bank Rate",
+      "unit_code": "percent",
+      "suffix": "%",
+      "source": "CBK",
+      "badge": "A",
+      "history": [
+        {
+          "period_label": "MPC decision, 11 August 2026",
+          "period_start": "2026-08-11",
+          "period_end": "2026-08-11",
+          "value": 8.75,
+          "source_url": "https://www.centralbank.go.ke/rates/central-bank-rate/"
+        }
+      ]
+    },
+    {
+      "series_code": "KDA-TBILL91-KEN",
+      "label": "91-day Treasury bill",
+      "unit_code": "percent",
+      "suffix": "%",
+      "source": "CBK",
+      "badge": "A",
+      "history": [
+        {
+          "period_label": "Auction, 10 August 2026",
+          "period_start": "2026-08-10",
+          "period_end": "2026-08-10",
+          "value": 8.782,
+          "source_url": "https://www.centralbank.go.ke/uploads/91_day_historical_treasury_bill_results/"
+        }
+      ]
+    },
+    {
+      "series_code": "KDA-POP-TOTAL-KEN",
+      "label": "Population",
+      "unit_code": "persons",
+      "suffix": "",
+      "source": "KNBS",
+      "badge": "A",
+      "history": [
+        {
+          "period_label": "Census night, 24–25 August 2019",
+          "period_start": "2019-08-24",
+          "period_end": "2019-08-25",
+          "value": 47564296,
+          "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/"
+        }
+      ]
+    },
+    {
+      "series_code": "KDA-VOTERS-KEN",
+      "label": "Registered voters",
+      "unit_code": "persons",
+      "suffix": "",
+      "source": "IEBC",
+      "badge": "A",
+      "history": [
+        {
+          "period_label": "Certified register, 20 June 2022",
+          "period_start": "2022-06-20",
+          "period_end": "2022-06-20",
+          "value": 22120458,
+          "source_url": "https://www.iebc.or.ke/uploads/resources/pabjKTV6Xa.pdf"
+        }
+      ]
+    }
+  ]
+}
