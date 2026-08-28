@@ -6,9 +6,9 @@ The repository is being completed through bounded, independently deployable phas
 - Full session scopes and acceptance criteria: [`docs/REPO-COMPLETION-PLAN.md`](docs/REPO-COMPLETION-PLAN.md)
 - CountyIQ-specific product target and gates: [`docs/countyiq/PLAN.md`](docs/countyiq/PLAN.md) and [`docs/countyiq/GATES.md`](docs/countyiq/GATES.md)
 
-## Current phase
+## Completed phase
 
-**P00 — Runtime stabilization + CountyIQ sample fallback** is implemented and awaiting the final release/CI evidence check.
+**P00 — Runtime stabilization + CountyIQ sample fallback** is complete. The full Atlas validation workflow passed the deterministic rebuild, expanded test suite and independent geometry audit, and GitHub Pages deployed the resulting repository successfully.
 
 ## Next phase
 
