@@ -153,6 +153,17 @@
     document.body.appendChild(script);
   }
 
+  function installCountyDashboardLink(){
+    const nav=$('#main-nav');
+    if(!nav||nav.querySelector('[data-county-dashboard-link]')) return;
+    const link=document.createElement('a');
+    link.href='county-dashboard.html';
+    link.textContent='County Dashboard';
+    link.dataset.countyDashboardLink='true';
+    link.setAttribute('aria-label','Open County Dashboard');
+    nav.appendChild(link);
+  }
+
   function installObservers(){
     const spark=$('.sparkline');
     if(spark) new MutationObserver(enhanceSparkline).observe(spark,{childList:true});
@@ -181,9 +192,10 @@
     animateSearchResults();
     enhanceTwoPointSeries();
     colorCatalogue();
+    installCountyDashboardLink();
     installObservers();
     loadPlaceProfile();
-    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();},650);
+    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();installCountyDashboardLink();},650);
   }
 
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
