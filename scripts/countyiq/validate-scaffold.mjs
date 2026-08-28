@@ -59,8 +59,10 @@ function validateWebsite(){
 
 function validateCi(){
   const p=json('package.json');
-  assert(p.scripts?.['countyiq:validate']==='node scripts/countyiq/validate-scaffold.mjs all','package must expose countyiq:validate');
-  assert(String(p.scripts?.test||'').includes('npm run countyiq:validate'),'main test command must include CountyIQ scaffold validation');
+  const countyScript=String(p.scripts?.['countyiq:validate']||'');
+  assert(countyScript.includes('node scripts/countyiq/validate-scaffold.mjs all'),'package must run CountyIQ scaffold validation');
+  assert(countyScript.includes('node scripts/countyiq/validate-runtime.mjs'),'package must run CountyIQ resilience/sample validation');
+  assert(String(p.scripts?.test||'').includes('npm run countyiq:validate'),'main test command must include CountyIQ validation');
   console.log('COUNTYIQ_CI_WIRED_OK');
 }
 
