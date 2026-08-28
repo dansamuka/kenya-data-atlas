@@ -12,6 +12,8 @@ const compare=read('assets/compare.js');
 const geo=read('assets/geo-explorer.js');
 const loader=read('assets/data-loader.js');
 const lazy=read('assets/lazy-integrations.js');
+const router=read('assets/router.js');
+const routed=read('assets/routed-views.js');
 const pulse=JSON.parse(read('data/ui/initial-pulse.json'));
 
 function scriptSources(){
@@ -20,13 +22,14 @@ function scriptSources(){
 
 function validateFirstPaintContract(){
   const scripts=scriptSources();
-  const expected=['assets/data-loader.js','assets/app.js','assets/compare.js','assets/geo-explorer.js','assets/ux-polish.js','assets/lazy-integrations.js'];
+  const expected=['assets/data-loader.js','assets/router.js','assets/app.js','assets/compare.js','assets/geo-explorer.js','assets/ux-polish.js','assets/lazy-integrations.js','assets/routed-views.js'];
   assert(JSON.stringify(scripts)===JSON.stringify(expected),`unexpected direct script list/order: ${scripts.join(', ')}`);
   for(const forbidden of [
     'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js',
     'assets/sprint2-data.js','assets/sprint1-ui.js','assets/sprint2-ui.js','assets/unit-system.js','assets/worldbank-integration.js'
   ]) assert(!scripts.includes(forbidden),`${forbidden} must not be a first-paint script`);
   assert(html.indexOf('assets/data-loader.js')<html.indexOf('assets/app.js'),'shared data loader must execute before the shell');
+  assert(html.indexOf('assets/router.js')<html.indexOf('assets/app.js'),'router must establish the visible view before shell modules initialise');
   console.log('P01_FIRST_PAINT_SCRIPT_CONTRACT_OK');
 }
 
@@ -51,6 +54,8 @@ function validateLazyConsumers(){
 
   assert(lazy.includes("assets/unit-system.js")&&lazy.includes("assets/worldbank-integration.js"),'optional integrations must remain available through lazy loader');
   assert(!lazy.includes('assets/sprint2-data.js')&&!lazy.includes('assets/sprint1-ui.js')&&!lazy.includes('assets/sprint2-ui.js'),'retired runtime overlays must not be lazily resurrected');
+  assert(router.includes("data-view")&&router.includes("#/explore"),'route shell must remain a lightweight visibility layer');
+  assert(routed.includes("KDA.registries(['series','observations'"),'Series may load heavy registries only after its route is active');
   console.log('P01_LAZY_CONSUMERS_OK');
 }
 
@@ -76,11 +81,7 @@ function validateBudgets(){
   assert(jsBytes<=130*1024,`direct local JavaScript is ${jsBytes} bytes; budget is 133120`);
   assert(dataBytes<=24*1024,`first-paint data is ${dataBytes} bytes; budget is 24576`);
   assert(pulseBytes<=12*1024,`initial pulse is ${pulseBytes} bytes; budget is 12288`);
-  const heavy={
-    observations:size('data/indicators/registry/observations.json'),
-    series:size('data/indicators/registry/series.json'),
-    wards:size('data/geography/geometry/wards.geojson')
-  };
+  const heavy={observations:size('data/indicators/registry/observations.json'),series:size('data/indicators/registry/series.json'),wards:size('data/geography/geometry/wards.geojson')};
   console.log(`P01_ASSET_BUDGET_OK direct_js=${jsBytes}B first_data=${dataBytes}B pulse=${pulseBytes}B`);
   console.log(`P01_DEFERRED_REFERENCE observations=${heavy.observations}B series=${heavy.series}B wards=${heavy.wards}B`);
 }
