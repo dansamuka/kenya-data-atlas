@@ -35,10 +35,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/catalogue/registry data/indicators/registry
+          # The full deterministic build also rewrites geography working-tree files.
+          # County Life does not change geography, so discard those unstaged byproducts
+          # while preserving the staged catalogue/indicator registry outputs above.
+          git restore --worktree .
           if git diff --cached --quiet; then
             echo "No generated registry changes."
           else
             git commit -m "build(life): publish county comparison registries"
-            git pull --rebase origin feature/life-elsewhere-county-metrics
             git push origin HEAD:feature/life-elsewhere-county-metrics
           fi
