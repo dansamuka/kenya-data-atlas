@@ -5,6 +5,7 @@
   'use strict';
   const VIEW_IDS=new Set(['home','pulse','explore','compare','series','data']);
   const TITLES={home:'Kenya Data Atlas — Understand Kenya through data',pulse:'National Pulse — Kenya Data Atlas',explore:'Explore places — Kenya Data Atlas',compare:'Compare places — Kenya Data Atlas',series:'Series Explorer — Kenya Data Atlas',data:'Data Catalogue — Kenya Data Atlas'};
+  const DYNAMIC_VIEW_IDS=new Map([['cross-level-compare','explore']]);
   const rawPush=history.pushState.bind(history),rawReplace=history.replaceState.bind(history);
   let current=null,rendering=false;
 
@@ -65,6 +66,14 @@
   }
   function navigate(view,rest='',params=null,options={}){return setHash(build(view,rest,params),options);}
   function replace(view,rest='',params=null,options={}){return navigate(view,rest,params,{...options,replace:true});}
+  function ownDynamicView(node){
+    if(!(node instanceof Element))return;
+    const candidates=[node,...node.querySelectorAll('[id]')];
+    for(const el of candidates){
+      const view=DYNAMIC_VIEW_IDS.get(el.id);if(!view||el.dataset.view)continue;
+      el.dataset.view=view;el.hidden=(current?.view||parse().view)!==view;
+    }
+  }
 
   // Compatibility adapter: old map code may still ask history for #map/...;
   // canonicalise it without forcing the mature Geo Explorer to own site routing.
@@ -72,6 +81,21 @@
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
+
+  // Optional integrations can add UI after the router has rendered. Assign
+  // known dynamic surfaces to their parent route immediately so they cannot
+  // leak into an unrelated view before the next hash transition.
+  new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
+
+  // Search is a global header control, but its input lives on Home. Route home
+  // first, then hand focus to the existing search implementation.
+  document.addEventListener('click',event=>{
+    const trigger=event.target.closest?.('[data-focus-search]');
+    if(!trigger||(current?.view||parse().view)==='home')return;
+    event.preventDefault();event.stopImmediatePropagation();navigate('home');
+    requestAnimationFrame(()=>document.querySelector('#atlas-search')?.focus());
+  },true);
+
   window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
   render({scroll:false});
 })();
