@@ -33,9 +33,6 @@ const requiredIndicators = [
 const indicatorByCode = new Map(indicators.map(i => [i.indicator_code, i]));
 for (const code of requiredIndicators) assert(indicatorByCode.has(code), `native indicator registry missing ${code}`);
 
-// Current main deliberately contains active data indicators AND planned/sourced
-// taxonomy slots. Sprint 3 must extend that registry without erasing lifecycle
-// metadata or forcing a frozen indicator count.
 for (const def of taxonomy.indicators || []) {
   assert(indicatorByCode.has(def.code), `native indicator registry missing taxonomy slot ${def.code}`);
 }
@@ -114,9 +111,6 @@ for (const county of counties) {
   for (const code of budgetIndicators) {
     const rows = ownSeries(code, county.geography_id);
     const values = ownObs(rows);
-    // Sprint 3 adds history to the existing fiscal series. Preserve the original
-    // Sprint 1 contract (one series and an FY2024/25 observation) without
-    // incorrectly requiring the series to contain only one observation forever.
     assert(rows.length === 1, `${county.geo_code}: ${code} should have exactly one native series, found ${rows.length}`);
     assert(values.some(o => o.period_start === '2024-07-01' && o.period_end === '2025-06-30'), `${county.geo_code}: ${code} missing FY 2024/25 observation`);
     budgetCells += 1;
@@ -134,24 +128,21 @@ assert(gcpSeries === 47 && gcpObs === 235, `native GCP coverage ${gcpSeries} ser
 assert(budgetCells === 188, `native county-budget series coverage ${budgetCells} != 188`);
 assert(fuelCounties === 47, `native fuel county-linked coverage ${fuelCounties} != 47`);
 
-// The downloadable registry is now the source consumed by the page. Sprint 1's
-// historical runtime fetch wrapper must never be loaded again.
 assert(!index.includes('<script src="assets/sprint1-data.js"></script>'), 'index.html still loads the retired Sprint 1 runtime injector');
 if (sprint1Loader) assert(!/window\.fetch\s*=/.test(sprint1Loader), 'retired assets/sprint1-data.js still monkey-patches window.fetch');
 
-// Compare is now a first-class, non-ranking product surface. The Geo Explorer
-// remains the sole user-facing ranking surface; the old comparison/ranking DOM
-// may remain only as hidden compatibility markup for older app.js code.
-const compareNavLinks = index.match(/<a href="#compare">/g) || [];
-assert(compareNavLinks.length >= 1, 'dedicated Compare tab is missing from navigation');
-assert(index.includes('id="compare"') && index.includes('class="section compare-hub"'), 'dedicated Compare workspace is missing');
+// Compare is a first-class routed, non-ranking product surface. Geo Explorer
+// remains the sole visible ranking surface; legacy DOM remains hidden only for
+// compatibility with older shell code.
+assert(index.includes('<a href="#/compare" data-view-link="compare">Compare</a>'), 'dedicated routed Compare tab is missing from navigation');
+assert(index.includes('id="compare" data-view="compare"') && index.includes('class="section compare-hub"'), 'dedicated routed Compare workspace is missing');
 assert(index.includes('data-compare-mode="direct"') && index.includes('data-compare-mode="life"'), 'Compare workspace is missing Direct or My Life Elsewhere mode');
 assert(index.includes('<script src="assets/compare.js"></script>') && index.includes('<link rel="stylesheet" href="assets/compare.css">'), 'Compare assets are not loaded by index.html');
-assert(!index.includes('<a href="#rankings">'), 'retired Rankings link is exposed in main navigation');
+assert(!index.includes('<a href="#rankings">') && !index.includes('data-view-link="rankings"'), 'retired Rankings link is exposed in main navigation');
 assert(/id="compare-legacy" hidden/.test(index), 'legacy Compare compatibility section is not hidden');
 assert(/id="rankings" hidden/.test(index), 'legacy Rankings compatibility section is not hidden');
 
 console.log(`PASS: native API contains ${indicators.length} indicators, ${series.length} series and ${observations.length} observations.`);
 console.log('      Lifecycle-aware taxonomy slots and Sprint 3 historical indicators coexist in the native API.');
 console.log('      Sprint 1 invariants remain present while county fiscal series may contain earlier validated history.');
-console.log('      Runtime Sprint 1 fetch injection: disabled. Compare: dedicated two-mode surface. Geo Explorer: sole visible ranking surface.');
+console.log('      Runtime Sprint 1 fetch injection: disabled. Compare: dedicated routed two-mode surface. Geo Explorer: sole visible ranking surface.');
