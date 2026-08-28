@@ -16,12 +16,13 @@ Open `index.html` directly, or serve this folder from any static host. The publi
 - County profiles with source-backed County Core statistics
 - Explicit lower-level missing-data treatment
 - IEBC registered-voter drill-down to constituency and ward where spatial attribution is safe
+- Historical Kenya series for CPI, CBR, USD/KES, 91-day T-bills, EPRA Nairobi pricing-town petrol and county public finance
 - Time-series explorer concept and metadata
 - Native downloadable JSON/CSV data and catalogue registries
 - Data catalogue and provenance/quality badges
 - Responsive layout, keyboard focus, semantic markup and mobile navigation
 
-The earlier standalone Rankings prototype remains retired: the Geo Explorer is the single user-facing ranking surface. Compare is now deliberately separate from ranking. Its Direct mode puts all available county metrics side by side; its My Life Elsewhere mode translates only common-period, genuinely comparable county observations into plain-language differences. Missing data, mismatched periods and geography limitations are shown rather than filled in, and national World Bank values are never inherited to counties.
+The earlier standalone Rankings prototype remains retired: the Geo Explorer is the single user-facing ranking surface. Compare is deliberately separate from ranking. Its Direct mode puts all available county metrics side by side; its My Life Elsewhere mode translates only common-period, genuinely comparable county observations into plain-language differences. Missing data, mismatched periods and geography limitations are shown rather than filled in, and national World Bank values are never inherited to counties.
 
 ## Data status
 
@@ -31,7 +32,7 @@ Quality labels use the Atlas provenance system:
 
 - **A** — official direct
 - **B** — official derived/transformed
-- **C** — spatially derived
+- **C** — spatially derived, including documented geographic proxies
 - **D** — modelled
 - **E** — external
 - **Demo** — illustrative prototype content; not for factual use
@@ -56,10 +57,12 @@ data/catalogue/registry/      Native agencies, sources, datasets, releases and l
 data/indicators/registry/     Native machine-readable units, indicators, series and observations
 data/sprint1/                 Audited County Core source package
 data/sprint2/                 Local Kenya source/provenance package
+data/sprint3/                 Historical Kenya frozen source package and release validation
 db/schema/                    PostgreSQL + PostGIS schema
 scripts/geography/            Build, ingest, dissolve, validate, audit
 scripts/indicators/           Build and release-validation pipeline
 scripts/sprint1/              County Core native-registry promoter
+scripts/sprint3/              Historical acquisition and native-registry promoter
 docs/governance/              Governance and statistical publication system
 docs/methodology/             Published methodology
 CHANGELOG.md                  Release history
@@ -67,7 +70,18 @@ CHANGELOG.md                  Release history
 
 ## Native machine-readable data
 
-As of v0.8.0, the committed registry files are the same County Core data products used by the live site. Sprint 1 is no longer added only inside the browser.
+As of **v0.9.0**, the committed registry files are the same data products used by the live site. Sprint 1 County Core, Sprint 2 Local Kenya, World Bank national indicators and Sprint 3 Historical Kenya coexist in the native registry rather than being added only in the browser.
+
+Sprint 3 adds validated historical observations for:
+
+- KNBS CPI inflation — **259 monthly rows**;
+- CBK Central Bank Rate — **122 decisions**;
+- CBK USD/KES monthly average — **403 rows**;
+- CBK 91-day Treasury bill monthly average — **405 rows**;
+- EPRA Nairobi pricing-town Super Petrol — **6 historical pricing cycles**;
+- Controller of Budget county fiscal history — **517 rows = 47 counties × 11 fiscal years**.
+
+Together with Sprint 1 FY2024/25, each county fiscal series spans **12 fiscal years**. Controller of Budget values are never propagated below county level. EPRA historical Nairobi observations are pricing-town values, not Nairobi County averages. See `data/sprint3/VALIDATION.md` for the release audit.
 
 The principal downloadable files are:
 
@@ -77,7 +91,7 @@ The principal downloadable files are:
 - `data/catalogue/registry/datasets.json` / `.csv`
 - `data/catalogue/registry/releases.json` / `.csv`
 
-`npm run build:data` regenerates these products from their source/seed inputs. `npm run native-api:validate` checks that Sprint 1's complete county coverage is actually present in the committed registry rather than only in a frontend overlay.
+`npm run build:data` regenerates these products from their source/seed inputs. `npm run native-api:validate` checks that the published Sprint data is actually present in the committed registry rather than only in a frontend overlay.
 
 ## Toolchain
 
@@ -101,6 +115,8 @@ npm run geography:audit
 - **Phase 2 — Source, dataset and provenance registry:** Implemented and validated
 - **Data Sprint 1 — County Core:** Native-registry publication complete
 - **Data Sprint 2 — Local Kenya:** IEBC 47/290/1,450 statistical hierarchy ingested; unsafe spatial assignments explicitly held
+- **World Bank national integration:** Published; national-only WDI series remain national and are never inherited to counties
+- **Data Sprint 3 — Historical Kenya:** Validated release package complete; native historical promotion included in v0.9.0
 - **Compare workspace:** Dedicated county comparison surface implemented; Direct mode auto-discovers published county metrics and My Life Elsewhere uses matched-period observations only
 
 ### Geometry integrity
@@ -113,12 +129,12 @@ The independently sourced 2018 county and constituency layers are retained under
 
 ## CI and reproducibility
 
-GitHub Actions now does more than validate whatever happens to be committed. On every PR to `main` and every push to `main`, CI:
+GitHub Actions does more than validate whatever happens to be committed. On every PR to `main` and every push to `main`, CI:
 
 1. installs the Node and Shapely dependencies;
 2. runs `npm run build:data`;
 3. fails if deterministic generated registries/geometry differ from the committed outputs;
-4. runs the UI syntax gate plus the full geography, catalogue, indicator, Sprint 1, native-API and Sprint 2 validators; and
+4. runs the UI syntax gate plus the full geography, catalogue, indicator, Sprint 1, native-API, Sprint 2 and Sprint 3 validators; and
 5. runs the independent Shapely geometry audit.
 
 This makes seed/output drift, comparison-script syntax errors and geometry-audit regressions release-blocking rather than dependent on someone remembering a manual step.
