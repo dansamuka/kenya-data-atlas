@@ -1,0 +1,316 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dansamuka.github.io/kenya-data-atlas/data/countyiq/target-schema.json",
+  "title": "CountyIQ County Analytical Mart",
+  "description": "Target contract for the generated CountyIQ county-summary.json. This is a schema scaffold, not a claim that every optional final-state field is already populated.",
+  "type": "object",
+  "required": ["meta", "counties"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["schema_version", "generated_at", "atlas_data_version", "county_count"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "generated_at": {"type": "string", "format": "date-time"},
+        "atlas_data_version": {"type": "string"},
+        "county_count": {"const": 47},
+        "source_registries": {"type": "array", "items": {"type": "string"}},
+        "build_commit": {"type": "string"},
+        "methodology_version": {"type": "string"}
+      }
+    },
+    "counties": {
+      "type": "array",
+      "minItems": 47,
+      "maxItems": 47,
+      "items": {"$ref": "#/$defs/county"}
+    }
+  },
+  "$defs": {
+    "county": {
+      "type": "object",
+      "required": ["geography", "metrics", "domains", "coverage"],
+      "properties": {
+        "geography": {
+          "type": "object",
+          "required": ["geography_id", "geo_code", "name", "level"],
+          "properties": {
+            "geography_id": {"type": "string"},
+            "geo_code": {"type": "string", "pattern": "^KEN-C\\d{3}$"},
+            "name": {"type": "string"},
+            "level": {"const": "county"},
+            "county_code": {"type": ["integer", "string"]},
+            "aliases": {"type": "array", "items": {"type": "string"}},
+            "boundary_version": {"type": "string"}
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/metric"}
+        },
+        "domains": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/domainSummary"}
+        },
+        "benchmarks": {
+          "type": "object",
+          "properties": {
+            "national": {"$ref": "#/$defs/benchmarkSet"},
+            "peer_group": {"$ref": "#/$defs/peerBenchmark"}
+          }
+        },
+        "indices": {
+          "type": "object",
+          "description": "Optional final-state derived indices. Must remain absent/null until their release gates pass.",
+          "properties": {
+            "county_development_performance": {"$ref": "#/$defs/indexResult"},
+            "county_government_delivery": {"$ref": "#/$defs/indexResult"}
+          }
+        },
+        "administration": {"$ref": "#/$defs/administration"},
+        "development_gaps": {"type": "array", "items": {"$ref": "#/$defs/gap"}},
+        "opportunities": {"type": "array", "items": {"$ref": "#/$defs/opportunityMatch"}},
+        "knowledge": {"type": "array", "items": {"$ref": "#/$defs/document"}},
+        "recognition": {"type": "array", "items": {"$ref": "#/$defs/recognition"}},
+        "coverage": {"$ref": "#/$defs/coverage"}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "required": ["indicator_code", "name", "status"],
+      "properties": {
+        "indicator_id": {"type": "string"},
+        "indicator_code": {"type": "string"},
+        "name": {"type": "string"},
+        "domain": {"type": "string"},
+        "status": {"enum": ["active", "sourced", "planned", "held", "unavailable"]},
+        "latest": {"$ref": "#/$defs/observation"},
+        "history": {"type": "array", "items": {"$ref": "#/$defs/observation"}},
+        "ranking": {"$ref": "#/$defs/ranking"},
+        "trend": {"$ref": "#/$defs/trend"},
+        "eligibility": {
+          "type": "object",
+          "properties": {
+            "ranking_allowed": {"type": "boolean"},
+            "higher_is_better": {"type": ["boolean", "null"]},
+            "minimum_coverage": {"type": ["number", "null"]},
+            "requires_sampling_uncertainty": {"type": "boolean"},
+            "reason_not_eligible": {"type": ["string", "null"]}
+          }
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "required": ["value", "period_label", "unit", "provenance"],
+      "properties": {
+        "observation_id": {"type": "string"},
+        "series_id": {"type": "string"},
+        "value": {"type": ["number", "string", "null"]},
+        "period_start": {"type": ["string", "null"]},
+        "period_end": {"type": ["string", "null"]},
+        "period_label": {"type": "string"},
+        "unit": {"type": "string"},
+        "statistical_status": {"type": ["string", "null"]},
+        "geographic_method": {"type": ["string", "null"]},
+        "transformation": {"type": ["string", "null"]},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "uncertainty": {"$ref": "#/$defs/uncertainty"},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["badge", "source_url"],
+      "properties": {
+        "badge": {"enum": ["A", "B", "C", "D", "E"]},
+        "badge_label": {"type": "string"},
+        "agency_id": {"type": ["string", "null"]},
+        "agency_name": {"type": ["string", "null"]},
+        "dataset_id": {"type": ["string", "null"]},
+        "release_id": {"type": ["string", "null"]},
+        "source_url": {"type": "string"},
+        "source_table": {"type": ["string", "null"]},
+        "source_page": {"type": ["string", "number", "null"]},
+        "methodology_url": {"type": ["string", "null"]},
+        "published_at": {"type": ["string", "null"]},
+        "ingested_at": {"type": ["string", "null"]},
+        "vintage_id": {"type": ["string", "null"]}
+      }
+    },
+    "uncertainty": {
+      "type": ["object", "null"],
+      "properties": {
+        "lower_bound": {"type": ["number", "null"]},
+        "upper_bound": {"type": ["number", "null"]},
+        "confidence_level": {"type": ["number", "null"]},
+        "standard_error": {"type": ["number", "null"]},
+        "sample_size": {"type": ["number", "null"]}
+      }
+    },
+    "ranking": {
+      "type": ["object", "null"],
+      "properties": {
+        "eligible": {"type": "boolean"},
+        "rank": {"type": ["integer", "null"]},
+        "eligible_count": {"type": ["integer", "null"]},
+        "percentile": {"type": ["number", "null"]},
+        "national_median": {"type": ["number", "null"]},
+        "distance_from_median": {"type": ["number", "null"]},
+        "period_key": {"type": ["string", "null"]},
+        "coverage_pct": {"type": ["number", "null"]}
+      }
+    },
+    "trend": {
+      "type": ["object", "null"],
+      "properties": {
+        "eligible": {"type": "boolean"},
+        "one_period_change": {"type": ["number", "null"]},
+        "medium_term_change": {"type": ["number", "null"]},
+        "medium_term_years": {"type": ["integer", "null"]},
+        "national_matched_change": {"type": ["number", "null"]},
+        "peer_matched_change": {"type": ["number", "null"]},
+        "direction": {"enum": ["improving", "stable", "deteriorating", "not_classified", null]},
+        "volatility": {"type": ["number", "null"]},
+        "break_in_series": {"type": "boolean"}
+      }
+    },
+    "domainSummary": {
+      "type": "object",
+      "properties": {
+        "available_indicators": {"type": "integer"},
+        "target_indicators": {"type": "integer"},
+        "coverage_pct": {"type": "number"},
+        "score": {"type": ["number", "null"]},
+        "score_status": {"enum": ["not_published", "research", "beta", "production"]},
+        "strengths": {"type": "array", "items": {"type": "string"}},
+        "weaknesses": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "benchmarkSet": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "median": {"type": ["number", "null"]},
+          "mean": {"type": ["number", "null"]},
+          "p25": {"type": ["number", "null"]},
+          "p75": {"type": ["number", "null"]},
+          "eligible_count": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "peerBenchmark": {
+      "type": ["object", "null"],
+      "properties": {
+        "peer_group_id": {"type": "string"},
+        "peer_group_name": {"type": "string"},
+        "peer_group_version": {"type": "string"},
+        "methodology_url": {"type": "string"},
+        "members": {"type": "array", "items": {"type": "string"}},
+        "metrics": {"$ref": "#/$defs/benchmarkSet"}
+      }
+    },
+    "indexResult": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": {"enum": ["research", "beta", "production"]},
+        "version": {"type": "string"},
+        "score": {"type": "number"},
+        "rank": {"type": "integer"},
+        "percentile": {"type": "number"},
+        "peer_rank": {"type": ["integer", "null"]},
+        "change": {"type": ["number", "null"]},
+        "robust_rank_min": {"type": ["integer", "null"]},
+        "robust_rank_max": {"type": ["integer", "null"]},
+        "pillars": {"type": "object", "additionalProperties": {"type": "number"}},
+        "contributions": {"type": "array", "items": {"type": "object"}},
+        "methodology_url": {"type": "string"}
+      }
+    },
+    "administration": {
+      "type": ["object", "null"],
+      "properties": {
+        "administration_id": {"type": "string"},
+        "term_start": {"type": "string"},
+        "term_end": {"type": ["string", "null"]},
+        "leader_name": {"type": ["string", "null"]},
+        "delivery_score": {"$ref": "#/$defs/indexResult"},
+        "baseline_period": {"type": ["string", "null"]},
+        "attribution_disclaimer": {"type": "string"}
+      }
+    },
+    "gap": {
+      "type": "object",
+      "required": ["metric_code", "benchmark_type", "formula", "result_status"],
+      "properties": {
+        "metric_code": {"type": "string"},
+        "benchmark_type": {"enum": ["national_median", "peer_median", "target"]},
+        "benchmark_value": {"type": ["number", "null"]},
+        "denominator_metric": {"type": ["string", "null"]},
+        "formula": {"type": "string"},
+        "result": {"type": ["number", "null"]},
+        "unit": {"type": ["string", "null"]},
+        "period": {"type": ["string", "null"]},
+        "result_status": {"enum": ["available", "not_available", "not_eligible"]},
+        "methodology_url": {"type": ["string", "null"]}
+      }
+    },
+    "opportunityMatch": {
+      "type": "object",
+      "required": ["opportunity_id", "name", "verification_status", "primary_url"],
+      "properties": {
+        "opportunity_id": {"type": "string"},
+        "name": {"type": "string"},
+        "funder": {"type": "string"},
+        "verification_status": {"enum": ["verified_open", "verified_upcoming", "expired", "unverified"]},
+        "primary_url": {"type": "string"},
+        "opens_at": {"type": ["string", "null"]},
+        "deadline": {"type": ["string", "null"]},
+        "official_amount": {"type": ["string", "number", "null"]},
+        "eligibility": {"type": "array", "items": {"type": "string"}},
+        "match_method": {"enum": ["rule_based", "manual_review"]},
+        "match_rationale": {"type": "string"},
+        "verified_at": {"type": "string"}
+      }
+    },
+    "document": {
+      "type": "object",
+      "required": ["document_id", "document_type", "title", "publisher", "primary_url"],
+      "properties": {
+        "document_id": {"type": "string"},
+        "document_type": {"type": "string"},
+        "title": {"type": "string"},
+        "period": {"type": ["string", "null"]},
+        "published_at": {"type": ["string", "null"]},
+        "publisher": {"type": "string"},
+        "primary_url": {"type": "string"},
+        "archive_status": {"enum": ["linked", "archived", "indexed", "extracted"]}
+      }
+    },
+    "recognition": {
+      "type": "object",
+      "required": ["rule_id", "name", "period", "methodology_url"],
+      "properties": {
+        "rule_id": {"type": "string"},
+        "name": {"type": "string"},
+        "period": {"type": "string"},
+        "rank": {"type": ["integer", "null"]},
+        "methodology_url": {"type": "string"},
+        "eligible_count": {"type": "integer"}
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "active_metric_count": {"type": "integer"},
+        "target_metric_count": {"type": "integer"},
+        "domain_count_with_active_metrics": {"type": "integer"},
+        "last_data_update": {"type": ["string", "null"]},
+        "stale_metric_count": {"type": "integer"},
+        "held_metric_count": {"type": "integer"},
+        "planned_metric_count": {"type": "integer"}
+      }
+    }
+  }
+}
