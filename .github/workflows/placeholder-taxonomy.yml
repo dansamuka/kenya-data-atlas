@@ -1,4 +1,4 @@
-name: Placeholder taxonomy native release
+name: Generated native registries and CountyIQ mart
 
 on:
   push:
@@ -7,9 +7,15 @@ on:
       - '.github/workflows/placeholder-taxonomy.yml'
       - 'data/indicators/seed/placeholder-taxonomy.json'
       - 'data/geography/reference/geography-subsets.json'
+      - 'data/geography/registry/geographies.json'
+      - 'data/catalogue/registry/**'
+      - 'data/indicators/registry/**'
       - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-native-api.mjs'
+      - 'scripts/countyiq/build-mart.mjs'
+      - 'scripts/countyiq/validate-mart.mjs'
+      - 'assets/countyiq-view.js'
       - 'assets/place-profile.js'
       - 'assets/place-profile.css'
       - 'db/schema/indicators.sql'
@@ -34,18 +40,21 @@ jobs:
           node --check assets/place-profile.js
           node --check assets/ux-polish.js
           node --check assets/unit-system.js
+          node --check assets/countyiq-view.js
       - name: Build native indicators with lifecycle taxonomy
         run: npm run indicators:build
-      - name: Validate full Atlas registry
+      - name: Build canonical CountyIQ analytical mart
+        run: npm run countyiq:build
+      - name: Validate full Atlas registry and CountyIQ mart
         run: npm test
-      - name: Commit generated native registries
+      - name: Commit generated native registries and mart
         run: |
-          if git diff --quiet -- data/indicators/registry; then
-            echo "No generated registry changes."
+          if git diff --quiet -- data/indicators/registry data/countyiq/county-summary.json; then
+            echo "No generated registry or CountyIQ mart changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/indicators/registry
-          git commit -m "build(taxonomy): publish lifecycle-aware indicator registry"
+          git add data/indicators/registry data/countyiq/county-summary.json
+          git commit -m "build(countyiq): publish canonical county analytical mart"
           git push
