@@ -24,8 +24,8 @@
 .geo-feature.context{fill:none;stroke:#aebbb3;stroke-width:1.35;pointer-events:none}
 .geo-feature.sibling-muted{fill:#eef1ee;opacity:.7}
 
-/* Tooltip is the only map label. JS clamps its anchor inside the canvas and
-   overflow:hidden prevents it from crossing the map frame. */
+/* Tooltip is the only map label. The map wrapper clips it to the canvas so
+   transient labels cannot spill over the legend, ranking rail or page copy. */
 .geo-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;padding:.62rem .78rem;border-radius:6px;font-size:.72rem;line-height:1.42;box-shadow:var(--shadow);width:max-content;max-width:min(230px,calc(100% - 24px));z-index:5;transform:translate(-50%,-112%)}
 .geo-tooltip strong{display:block;font-family:var(--serif);font-size:.96rem;margin-bottom:.15rem}
 .geo-tooltip .geo-tooltip-badge{display:inline-block;margin-top:.3rem;font-size:.58rem;text-transform:uppercase;letter-spacing:.05em;background:rgba(255,255,255,.16);padding:.1rem .4rem;border-radius:99px}
