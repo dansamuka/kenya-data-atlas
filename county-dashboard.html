@@ -12,10 +12,11 @@
   <link rel="stylesheet" href="assets/styles.css">
   <link rel="stylesheet" href="assets/ux-polish.css">
   <link rel="stylesheet" href="assets/countyiq.css">
+  <link rel="stylesheet" href="assets/countyiq-roadmap.css">
 </head>
 <body class="countyiq-page">
   <a class="skip-link" href="#iq-root">Skip to CountyIQ</a>
-  <div class="demo-banner"><span>CountyIQ analytical view</span> Uses published Atlas data only · composite score disabled until validated.</div>
+  <div class="demo-banner"><span>CountyIQ analytical view</span> Uses published Atlas data only · final target state and unfinished work are now explicitly scaffolded.</div>
   <header class="site-header">
     <a class="brand" href="index.html#home" aria-label="Kenya Data Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Kenya <b>Data Atlas</b></span></a>
     <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
@@ -46,6 +47,7 @@
       <button data-panel="economy-fiscal" type="button">Economy & fiscal</button>
       <button data-panel="rankings" type="button">Rankings</button>
       <button data-panel="readiness" type="button">Data readiness</button>
+      <button data-panel="final-shape" type="button">Final shape</button>
       <button data-panel="methodology" type="button">Methodology</button>
     </nav>
 
@@ -91,8 +93,30 @@
         <article class="readiness-card"><div class="readiness-top"><div><small>Source identified</small><h3>Health & social outcomes</h3></div><span class="badge status-sourced">Sourced</span></div><p>KDHS, KNBS and KMHFR indicators are defined in the registry—stunting, immunisation, skilled birth attendance, HIV prevalence, poverty, literacy and facility counts—but many remain sourced rather than active because observations and uncertainty metadata still need ingestion.</p><div class="readiness-meta"><span>County level</span><span>Sampling uncertainty required</span></div></article>
         <article class="readiness-card"><div class="readiness-top"><div><small>Not ready</small><h3>Overall County Performance Index</h3></div><span class="badge status-blocked">Do not publish</span></div><p>The earlier 35-indicator CCPI and 40/40/20 weighting are not implemented in the Atlas registry as a validated composite. It should remain disabled until weights, missing-data rules, sensitivity tests and historical back-testing are documented.</p><div class="readiness-meta"><span>Methodology gap</span><span>Validation gap</span></div></article>
         <article class="readiness-card"><div class="readiness-top"><div><small>Not ready</small><h3>Governor performance / public trust</h3></div><span class="badge status-blocked">No data layer</span></div><p>The Atlas does not currently contain a defensible governor-performance or quarterly public-trust series. County outcomes can be shown alongside leadership context, but not attributed as a governor score.</p><div class="readiness-meta"><span>Needs primary source</span><span>Attribution risk</span></div></article>
-        <article class="readiness-card"><div class="readiness-top"><div><small>Not ready</small><h3>Awards & funding opportunity</h3></div><span class="badge status-blocked">Remove</span></div><p>No Atlas source supports the demo's Presidential Awards, automatic grant eligibility, or scarcity countdown. These remain excluded from the revised product.</p><div class="readiness-meta"><span>No verified programme</span><span>No publication basis</span></div></article>
+        <article class="readiness-card"><div class="readiness-top"><div><small>Not ready</small><h3>Awards & funding opportunity</h3></div><span class="badge status-blocked">Remove</span></div><p>No Atlas source supports the demo's Presidential Awards, automatic grant eligibility, or scarcity countdown. These remain excluded until replaced by reproducible recognition and verified opportunity records.</p><div class="readiness-meta"><span>Needs rules</span><span>Needs verified programmes</span></div></article>
       </div>
+    </section>
+
+    <section class="iq-panel" id="final-shape">
+      <div class="iq-section-head"><div><p class="eyebrow">Target-state scaffold</p><h2>What 100% CountyIQ is intended to become.</h2></div><p>This view is generated from <code>data/countyiq/roadmap.json</code>. Planned, sourced, research and blocked items are explicitly scaffolding—not measured county results.</p></div>
+      <div class="roadmap-contract"><strong>North star:</strong> <span id="roadmap-contract">Loading target-state contract…</span></div>
+      <div class="roadmap-summary" id="roadmap-summary"><div class="iq-loading">Loading product roadmap…</div></div>
+
+      <div class="roadmap-subhead"><div><p class="eyebrow">Final experience</p><h3>The complete product surface</h3></div><p>The original CountyIQ ambition is retained, but each high-value feature has a defensible replacement contract and an explicit release state.</p></div>
+      <div class="roadmap-experiences" id="roadmap-experiences"></div>
+
+      <div class="roadmap-subhead"><div><p class="eyebrow">Evidence base</p><h3>Seven-domain data scaffold</h3></div><p>Integrated values, sourced-but-not-active indicators and future targets are separated so missing work remains visible.</p></div>
+      <div class="roadmap-domains" id="roadmap-domains"></div>
+
+      <div class="roadmap-subhead"><div><p class="eyebrow">Depth tree</p><h3>Ordered implementation workstreams</h3></div><p>Each workstream shows dependencies and its exit gate. The order prioritises architecture and reusable data breadth before scoring, politics or action features.</p></div>
+      <div class="roadmap-workstreams" id="roadmap-workstreams"></div>
+
+      <div class="roadmap-subhead"><div><p class="eyebrow">Release gates</p><h3>A → G maturity path</h3></div><p>CountyIQ should only claim the maturity level whose observable gates have actually passed.</p></div>
+      <div class="roadmap-stages" id="roadmap-stages"></div>
+
+      <div class="roadmap-subhead"><div><p class="eyebrow">Non-negotiables</p><h3>Guardrails that protect credibility</h3></div><p>The analytical layer is allowed to be more opinionated than the Atlas, but never less traceable.</p></div>
+      <ol class="roadmap-guardrails" id="roadmap-guardrails"></ol>
+      <div class="roadmap-links"><a href="data/countyiq/roadmap.json">Open roadmap JSON →</a><a href="data/countyiq/target-schema.json">Open target schema →</a><a href="docs/countyiq/PLAN.md">Detailed completion plan →</a><a href="docs/countyiq/GATES.md">Acceptance gates →</a></div>
     </section>
 
     <section class="iq-panel" id="methodology">
@@ -111,6 +135,7 @@
 
   <footer class="countyiq-footer"><span>CountyIQ is an analytical view of Kenya Data Atlas · independent private-citizen project.</span><span><a href="index.html">← Kenya Data Atlas</a> · <a href="docs/methodology/indicators.md">Indicator methodology</a></span></footer>
   <script src="assets/countyiq.js"></script>
+  <script src="assets/countyiq-roadmap.js"></script>
   <script src="assets/countyiq-polish.js"></script>
 </body>
 </html>
