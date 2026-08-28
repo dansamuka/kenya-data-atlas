@@ -1,10 +1,12 @@
-/* Kenya Data Atlas — dedicated Compare tab.
+/* Kenya Data Atlas — dedicated Compare workspace.
  *
- * Two modes:
- * 1) Direct Compare: all published county indicators are put side by side.
- * 2) My Life Elsewhere: a narrative county-to-county view inspired by the
- *    question "what would life look like elsewhere?". It uses only matched,
- *    genuinely comparable Atlas observations and never invents missing costs.
+ * Direct mode: every published county metric available for the selected places,
+ * side by side, with common-period discipline, topic filters and metric search.
+ *
+ * My Life Elsewhere mode: a human-readable county-to-county comparison inspired
+ * by the question “what would measurable life around me look like elsewhere?”.
+ * It uses only common-period Atlas observations, shows every responsibly
+ * comparable metric, and never invents personal costs or outcomes.
  */
 (() => {
   const root = document.querySelector('#compare');
@@ -12,6 +14,8 @@
 
   const $ = (s, r = root) => r.querySelector(s);
   const $$ = (s, r = root) => [...r.querySelectorAll(s)];
+  const TOPIC_ORDER = { people: 1, economy: 2, health: 3, finance: 4, representation: 5, infrastructure: 6, resilience: 7 };
+  const TOPIC_LABELS = { people: 'People', economy: 'Economy', health: 'Health', finance: 'Public finance', representation: 'Representation', infrastructure: 'Infrastructure', resilience: 'Resilience' };
 
   const fetchJson = async url => {
     try {
@@ -24,6 +28,7 @@
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[ch]);
   const csvCell = value => `"${String(value ?? '').replaceAll('"', '""')}"`;
+  const normTopic = indicator => String(indicator.tab || indicator.topic || 'other').toLowerCase();
 
   Promise.all([
     fetchJson('data/geography/registry/geographies.json'),
@@ -41,7 +46,6 @@
 
     const countyGeos = geographies.filter(g => g.level === 'county').sort((a, b) => a.name.localeCompare(b.name));
     const geoById = new Map(geographies.map(g => [g.geography_id, g]));
-    const indicatorById = new Map(indicators.map(i => [i.indicator_id, i]));
     const unitById = new Map(units.map(u => [u.unit_id, u]));
     const agencyById = new Map((agencies || []).map(a => [a.agency_id, a]));
     const obsBySeries = new Map();
@@ -69,7 +73,9 @@
     const state = {
       direct: defaults.slice(0, Math.max(2, Math.min(3, defaults.length))),
       home: defaults[0] || countyGeos[0]?.name || '',
-      away: defaults[1] || countyGeos[1]?.name || countyGeos[0]?.name || ''
+      away: defaults[1] || countyGeos[1]?.name || countyGeos[0]?.name || '',
+      topic: 'all',
+      query: ''
     };
 
     const countyOptions = selected => countyGeos.map(g => `<option value="${escapeHtml(g.name)}"${g.name === selected ? ' selected' : ''}>${escapeHtml(g.name)}</option>`).join('');
@@ -81,9 +87,7 @@
       if (value === null || value === undefined || Number.isNaN(Number(value))) return '—';
       const n = Number(value);
       const dp = unit?.decimal_places ?? 1;
-      if (unit?.code === 'persons' || unit?.code === 'count') {
-        return new Intl.NumberFormat('en-KE', { notation: Math.abs(n) >= 100000 ? 'compact' : 'standard', maximumFractionDigits: Math.abs(n) >= 100000 ? 2 : 0 }).format(n);
-      }
+      if (unit?.code === 'persons' || unit?.code === 'count') return new Intl.NumberFormat('en-KE', { notation: Math.abs(n) >= 100000 ? 'compact' : 'standard', maximumFractionDigits: Math.abs(n) >= 100000 ? 2 : 0 }).format(n);
       if (unit?.code === 'kes_million') return `KSh ${new Intl.NumberFormat('en-KE', { maximumFractionDigits: 1 }).format(n)} mn`;
       if (unit?.code === 'kes_per_litre') return `KSh ${n.toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}/L`;
       if (unit?.code === 'percent') return `${n.toLocaleString('en-KE', { minimumFractionDigits: dp, maximumFractionDigits: dp })}%`;
@@ -113,13 +117,12 @@
         if (!groups.has(key)) groups.set(key, []);
         groups.get(key).push(s);
       }
-      const ranked = [...groups.entries()].map(([key, rows]) => ({
+      return [...groups.entries()].map(([key, rows]) => ({
         key,
         rows,
         coverage: new Set(rows.map(s => s.geography_id)).size,
         recency: rows.map(latestObservation).filter(Boolean).map(o => o.period_end).sort().at(-1) || ''
-      })).sort((a, b) => b.coverage - a.coverage || b.recency.localeCompare(a.recency));
-      return ranked[0] || null;
+      })).sort((a, b) => b.coverage - a.coverage || b.recency.localeCompare(a.recency))[0] || null;
     }
 
     function comparableMetric(indicator, selectedNames) {
@@ -152,6 +155,7 @@
 
       return {
         indicator,
+        topic: normTopic(indicator),
         groupKey: group.key,
         unit: unitById.get(group.rows[0]?.unit_id || indicator.unit_id),
         cells,
@@ -167,10 +171,7 @@
         .filter(i => i.lifecycle_status === 'active' && seriesByIndicator.has(i.indicator_id))
         .map(i => comparableMetric(i, selectedNames))
         .filter(Boolean)
-        .sort((a, b) => {
-          const order = { people: 1, economy: 2, health: 3, finance: 4, representation: 5, infrastructure: 6, resilience: 7 };
-          return (order[a.indicator.tab] || 50) - (order[b.indicator.tab] || 50) || a.indicator.name.localeCompare(b.indicator.name);
-        });
+        .sort((a, b) => (TOPIC_ORDER[a.topic] || 50) - (TOPIC_ORDER[b.topic] || 50) || a.indicator.name.localeCompare(b.indicator.name));
     }
 
     function renderPlaceStrip() {
@@ -202,21 +203,27 @@
       const metrics = allMetrics(state.direct);
       const matchedCount = metrics.filter(m => m.matched).length;
       const partialCount = metrics.length - matchedCount;
-      $('#compare-direct-summary').innerHTML = `<div class="compare-coverage-note"><span><strong>${metrics.length}</strong> published county metrics found for the selected places. <strong>${matchedCount}</strong> have a common comparable reference period${partialCount ? `; ${partialCount} are shown with explicit period/gap warnings` : ''}.</span><span class="status-chip${partialCount ? ' partial' : ''}">${partialCount ? 'Matched + transparent gaps' : 'Fully matched'}</span></div>`;
+      const topics = [...new Set(metrics.map(m => m.topic))];
+      const filtered = metrics.filter(m => (state.topic === 'all' || m.topic === state.topic) && (!state.query || `${m.indicator.name} ${m.indicator.subtopic || ''} ${m.indicator.topic || ''}`.toLowerCase().includes(state.query.toLowerCase())));
+
+      $('#compare-direct-summary').innerHTML = `<div class="compare-coverage-note"><span><strong>${metrics.length}</strong> published county metrics available for these places. <strong>${matchedCount}</strong> have a common reference period${partialCount ? `; ${partialCount} remain visible with explicit period/gap warnings` : ''}.</span><span class="status-chip${partialCount ? ' partial' : ''}">${partialCount ? 'Matched + transparent gaps' : 'Fully matched'}</span></div>
+        <div class="compare-tools"><div class="compare-topic-filters"><button type="button" data-topic="all" class="${state.topic === 'all' ? 'active' : ''}">All metrics <span>${metrics.length}</span></button>${topics.map(t => `<button type="button" data-topic="${escapeHtml(t)}" class="${state.topic === t ? 'active' : ''}">${escapeHtml(TOPIC_LABELS[t] || t)} <span>${metrics.filter(m => m.topic === t).length}</span></button>`).join('')}</div><label class="compare-search"><span>Find a metric</span><input type="search" value="${escapeHtml(state.query)}" placeholder="Population, budget, petrol…"></label></div>`;
+
+      $$('[data-topic]', $('#compare-direct-summary')).forEach(btn => btn.addEventListener('click', () => { state.topic = btn.dataset.topic; renderDirect(); }));
+      $('.compare-search input', $('#compare-direct-summary'))?.addEventListener('input', e => { state.query = e.target.value; renderDirect(); });
 
       const grouped = new Map();
-      for (const metric of metrics) {
-        const topic = metric.indicator.tab || metric.indicator.topic || 'Other';
-        if (!grouped.has(topic)) grouped.set(topic, []);
-        grouped.get(topic).push(metric);
+      for (const metric of filtered) {
+        if (!grouped.has(metric.topic)) grouped.set(metric.topic, []);
+        grouped.get(metric.topic).push(metric);
       }
-      if (!metrics.length) {
-        $('#compare-direct-table').innerHTML = '<div class="compare-empty">No published county metrics are available for this selection yet.</div>';
+      if (!filtered.length) {
+        $('#compare-direct-table').innerHTML = '<div class="compare-empty">No published county metrics match this filter.</div>';
         return;
       }
 
       $('#compare-direct-table').innerHTML = [...grouped.entries()].map(([topic, rows]) => `<section class="compare-topic">
-        <div class="compare-topic-title">${escapeHtml(topic)}</div>
+        <div class="compare-topic-title">${escapeHtml(TOPIC_LABELS[topic] || topic)}</div>
         <table class="compare-matrix"><thead><tr><th>Metric</th>${state.direct.map(n => `<th>${escapeHtml(n)}</th>`).join('')}</tr></thead><tbody>
         ${rows.map(metric => `<tr><td><span class="compare-metric-name">${escapeHtml(metric.indicator.name)}</span><span class="compare-metric-meta"><span>${escapeHtml(metric.indicator.subtopic || metric.indicator.topic || '')}</span><span class="compare-status ${metric.matched ? 'matched' : 'partial'}">${metric.matched ? 'Matched period' : 'Period/gap warning'}</span></span></td>
           ${metric.cells.map(cell => cell.obs ? `<td><span class="compare-cell-value">${escapeHtml(formatValue(cell.obs.value, metric.unit))}</span><span class="compare-cell-meta"><span>${escapeHtml(cell.obs.period_label)}</span>${badgeHtml(cell.obs.badge)}<span>${escapeHtml(agencyById.get(cell.series?.agency_id)?.abbreviation || agencyById.get(cell.series?.agency_id)?.name || '')}</span></span></td>` : '<td><span class="compare-cell-missing">—</span><span class="compare-cell-meta">No published value at this geography</span></td>').join('')}
@@ -254,17 +261,20 @@
       if (lowerName.includes('population') && pct !== null) headline = `You would live among ${Math.abs(pct).toFixed(0)}% ${delta >= 0 ? 'more' : 'fewer'} people.`;
       else if (lowerName.includes('area') && a > 0 && b > 0) {
         const ratio = b / a;
-        headline = ratio >= 1 ? `Your county would be ${ratio.toFixed(ratio >= 10 ? 0 : 1)}× larger by land area.` : `Your county would be ${(1 / ratio).toFixed((1 / ratio) >= 10 ? 0 : 1)}× smaller by land area.`;
-      }
-      else if ((lowerName.includes('petrol') || lowerName.includes('fuel')) && unit?.code === 'kes_per_litre') headline = `Super Petrol would be KSh ${Math.abs(delta).toFixed(2)}/L ${delta > 0 ? 'more expensive' : delta < 0 ? 'cheaper' : 'about the same price'}.`;
-      else if (unit?.code === 'percent') headline = `${name} would be ${Math.abs(delta).toFixed(1)} percentage points ${direction === 'about the same' ? 'different' : direction}.`;
-      else if (pct !== null) headline = `${name} would be ${Math.abs(pct).toFixed(Math.abs(pct) >= 10 ? 0 : 1)}% ${direction === 'about the same' ? 'different' : direction}.`;
-      else headline = `${name}: ${formatValue(b, unit)} in ${state.away}.`;
+        headline = ratio >= 1 ? `The county would be ${ratio.toFixed(ratio >= 10 ? 0 : 1)}× larger by land area.` : `The county would be ${(1 / ratio).toFixed((1 / ratio) >= 10 ? 0 : 1)}× smaller by land area.`;
+      } else if ((lowerName.includes('petrol') || lowerName.includes('fuel')) && unit?.code === 'kes_per_litre') {
+        headline = delta === 0 ? 'Super Petrol would be about the same price.' : `Super Petrol would be KSh ${Math.abs(delta).toFixed(2)}/L ${delta > 0 ? 'more expensive' : 'cheaper'}.`;
+      } else if (unit?.code === 'percent') {
+        headline = delta === 0 ? `${name} would be about the same.` : `${name} would be ${Math.abs(delta).toFixed(1)} percentage points ${direction}.`;
+      } else if (pct !== null) {
+        headline = delta === 0 ? `${name} would be about the same.` : `${name} would be ${Math.abs(pct).toFixed(Math.abs(pct) >= 10 ? 0 : 1)}% ${direction}.`;
+      } else headline = `${name}: ${formatValue(b, unit)} in ${state.away}.`;
 
       return {
         metric,
         headline,
         polarity,
+        magnitude: pct === null ? Math.abs(delta) : Math.abs(pct),
         detail: `${state.home}: ${formatValue(a, unit)} · ${state.away}: ${formatValue(b, unit)} · ${away.obs.period_label}`
       };
     }
@@ -284,9 +294,15 @@
         return;
       }
       const metrics = allMetrics([state.home, state.away]).filter(m => m.matched && m.available === 2);
-      const narratives = metrics.map(m => ({ m, d: describeLife(m) })).filter(x => x.d).sort((a, b) => lifePriority(b.m) - lifePriority(a.m)).slice(0, 10).map(x => x.d);
-      $('#life-hero').innerHTML = `<div><p class="eyebrow">${escapeHtml(state.home)} → ${escapeHtml(state.away)}</p><h3>What changes if <em>${escapeHtml(state.away)}</em> is home?</h3><p>This is a Kenya-specific adaptation of the “life elsewhere” idea: simple, human-readable differences using the Atlas's own traceable county data.</p></div><div class="life-match-count"><strong>${metrics.length}</strong><span>matched county indicators with a common reference period</span></div>`;
-      $('#life-cards').innerHTML = narratives.length ? narratives.map(d => `<article class="life-card ${d.polarity}">${badgeHtml(d.metric.cells[1].obs.badge)}<small>${escapeHtml(d.metric.indicator.name)}</small><strong>${escapeHtml(d.headline)}</strong><p>${escapeHtml(d.detail)}</p></article>`).join('') : '<div class="life-empty">There are not yet enough common-period observations to produce a responsible elsewhere comparison for these two counties.</div>';
+      const narratives = metrics.map(m => describeLife(m)).filter(Boolean).sort((a, b) => lifePriority(b.metric) - lifePriority(a.metric) || b.magnitude - a.magnitude);
+      const grouped = new Map();
+      for (const d of narratives) {
+        if (!grouped.has(d.metric.topic)) grouped.set(d.metric.topic, []);
+        grouped.get(d.metric.topic).push(d);
+      }
+      const biggest = [...narratives].sort((a, b) => b.magnitude - a.magnitude).slice(0, 3);
+      $('#life-hero').innerHTML = `<div><p class="eyebrow">${escapeHtml(state.home)} → ${escapeHtml(state.away)}</p><h3>What changes if <em>${escapeHtml(state.away)}</em> is home?</h3><p>A Kenya-specific “life elsewhere” view built from the Atlas's own traceable county data. It describes measurable differences around you; it does not predict your personal outcome.</p>${biggest.length ? `<div class="life-biggest">${biggest.map(d => `<span>${escapeHtml(d.headline)}</span>`).join('')}</div>` : ''}</div><div class="life-match-count"><strong>${metrics.length}</strong><span>matched county indicators with a common reference period</span><small>${grouped.size} evidence categories</small></div>`;
+      $('#life-cards').innerHTML = narratives.length ? [...grouped.entries()].map(([topic, rows]) => `<section class="life-topic"><div class="life-topic-head"><span>${escapeHtml(TOPIC_LABELS[topic] || topic)}</span><small>${rows.length} comparable metric${rows.length === 1 ? '' : 's'}</small></div><div class="life-topic-grid">${rows.map(d => `<article class="life-card ${d.polarity}">${badgeHtml(d.metric.cells[1].obs.badge)}<small>${escapeHtml(d.metric.indicator.name)}</small><strong>${escapeHtml(d.headline)}</strong><p>${escapeHtml(d.detail)}</p></article>`).join('')}</div></section>`).join('') : '<div class="life-empty">There are not yet enough common-period observations to produce a responsible elsewhere comparison for these two counties.</div>';
     }
 
     function downloadDirectCsv() {
@@ -294,7 +310,7 @@
       const header = ['metric', 'topic', 'unit', ...state.direct.flatMap(n => [`${n} value`, `${n} period`, `${n} badge`])];
       const rows = [header.map(csvCell).join(',')];
       for (const m of metrics) {
-        const base = [m.indicator.name, m.indicator.tab || m.indicator.topic || '', m.unit?.name || ''];
+        const base = [m.indicator.name, TOPIC_LABELS[m.topic] || m.topic, m.unit?.name || ''];
         const cells = m.cells.flatMap(c => c.obs ? [c.obs.value, c.obs.period_label, c.obs.badge] : ['', '', '']);
         rows.push([...base, ...cells].map(csvCell).join(','));
       }
@@ -306,10 +322,13 @@
       URL.revokeObjectURL(a.href);
     }
 
-    // Mode tabs.
     $$('[data-compare-mode]').forEach(button => button.addEventListener('click', () => {
       const mode = button.dataset.compareMode;
-      $$('[data-compare-mode]').forEach(b => b.classList.toggle('active', b === button));
+      $$('[data-compare-mode]').forEach(b => {
+        const active = b === button;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
       $$('[data-compare-panel]').forEach(panel => { panel.hidden = panel.dataset.comparePanel !== mode; });
       if (mode === 'life') renderLife();
     }));
