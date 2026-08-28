@@ -11,6 +11,7 @@
 
   function canonicalHash(input){
     let hash=String(input||'');
+    if(hash==='#main')return current?.hash||'#/';
     if(!hash||hash==='#'||hash==='#home')return '#/';
     if(hash.startsWith('#map/'))return '#/explore/'+hash.slice(5);
     const legacy={ '#explore':'#/explore','#geo-explorer':'#/explore','#profile':'#/explore','#compare':'#/compare','#series':'#/series/KDA-CPI-YOY-KEN','#catalogue':'#/data','#data':'#/data' };
@@ -74,6 +75,10 @@
       el.dataset.view=view;el.hidden=(current?.view||parse().view)!==view;
     }
   }
+  function openGlobalSearch(){
+    if((current?.view||parse().view)!=='home')navigate('home');
+    requestAnimationFrame(()=>document.querySelector('#atlas-search')?.focus());
+  }
 
   // Compatibility adapter: old map code may still ask history for #map/...;
   // canonicalise it without forcing the mature Geo Explorer to own site routing.
@@ -87,13 +92,16 @@
   // leak into an unrelated view before the next hash transition.
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 
-  // Search is a global header control, but its input lives on Home. Route home
-  // first, then hand focus to the existing search implementation.
+  // Search is a global header/keyboard control, but its input lives on Home.
+  // Route home first, then hand focus to the existing search implementation.
   document.addEventListener('click',event=>{
     const trigger=event.target.closest?.('[data-focus-search]');
     if(!trigger||(current?.view||parse().view)==='home')return;
-    event.preventDefault();event.stopImmediatePropagation();navigate('home');
-    requestAnimationFrame(()=>document.querySelector('#atlas-search')?.focus());
+    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
+  },true);
+  document.addEventListener('keydown',event=>{
+    if(!(event.ctrlKey||event.metaKey)||String(event.key).toLowerCase()!=='k'||(current?.view||parse().view)==='home')return;
+    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
   },true);
 
   window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
