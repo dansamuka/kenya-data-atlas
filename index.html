@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/ux-polish.css">
   <link rel="stylesheet" href="assets/unit-system.css">
   <link rel="stylesheet" href="assets/worldbank-integration.css">
+  <link rel="stylesheet" href="assets/compare.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -21,7 +22,7 @@
     <a class="brand" href="#home" aria-label="Kenya Data Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Kenya <b>Data Atlas</b></span></a>
     <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
     <nav id="main-nav" aria-label="Main navigation">
-      <a href="#explore">Explore</a><a href="#series">Series</a><a href="#catalogue">Data</a>
+      <a href="#explore">Explore</a><a href="#compare">Compare</a><a href="#series">Series</a><a href="#catalogue">Data</a>
     </nav>
     <button class="header-search" data-focus-search aria-label="Open search">⌕ <span>Search</span></button>
   </header>
@@ -92,10 +93,40 @@
       </div>
     </section>
 
-    <!-- Legacy comparison/ranking DOM is retained only so older app.js builds do not throw.
-         It is no longer a product surface; the Geo Explorer is the single ranking interface. -->
-    <section class="compare-section section" id="compare" hidden aria-hidden="true">
-      <div class="section-heading inverse"><div><p class="eyebrow">Compare places</p><h2>Context changes the picture.</h2></div><p>Retired legacy interface.</p></div>
+    <section class="section compare-hub" id="compare">
+      <div class="section-heading">
+        <div><p class="eyebrow">Compare places</p><h2>See the whole picture, side by side.</h2><p class="compare-kicker">A dedicated comparison workspace with two views: a rigorous metric matrix and a more intuitive “what changes if I lived there?” experience.</p></div>
+        <p>Only published county observations are used. Common-period comparisons are marked clearly; missing or mismatched data stays visible instead of being filled in.</p>
+      </div>
+
+      <div class="compare-mode-switch" role="tablist" aria-label="Comparison mode">
+        <button class="active" type="button" role="tab" aria-selected="true" data-compare-mode="direct">Direct compare</button>
+        <button type="button" role="tab" aria-selected="false" data-compare-mode="life">My life elsewhere</button>
+      </div>
+
+      <section class="compare-panel" data-compare-panel="direct" aria-label="Direct comparison">
+        <div class="compare-panel-head"><div><p class="eyebrow">Direct mode</p><h3>Every available metric, one table.</h3><p>Compare two to four counties across all published county indicators. Matched-period values are safe to compare directly; other values remain side by side with an explicit period or coverage warning.</p></div><div class="compare-panel-actions"><button type="button" id="compare-add-place">＋ Add county</button><button type="button" id="compare-download">↓ Download CSV</button></div></div>
+        <div class="compare-place-strip" id="compare-place-strip"></div>
+        <div id="compare-direct-summary"></div>
+        <div class="compare-matrix-wrap" id="compare-direct-table"><div class="compare-empty">Loading published county indicators…</div></div>
+      </section>
+
+      <section class="compare-panel compare-life-panel" data-compare-panel="life" aria-label="My life elsewhere comparison" hidden>
+        <div class="compare-panel-head"><div><p class="eyebrow">My life elsewhere</p><h3>If another county were home.</h3><p>An intuitive Kenya-to-Kenya view inspired by the “life elsewhere” question: how would the measurable conditions around you differ if you moved from one county to another?</p></div></div>
+        <div class="compare-life-controls">
+          <label>Where I live now<select id="life-home" aria-label="Current county"></select></label>
+          <button type="button" class="swap-life" id="life-swap" aria-label="Swap counties">⇄</button>
+          <label>Elsewhere<select id="life-away" aria-label="Elsewhere county"></select></label>
+        </div>
+        <div class="life-hero" id="life-hero"><div><h3>Loading comparison…</h3></div></div>
+        <div class="life-cards" id="life-cards"></div>
+        <div class="life-limitations"><strong>Important:</strong> this mode compares place-level statistics, not your personal outcome. It does not infer your salary, rent, grocery bill, safety or healthcare experience unless a suitable county-level dataset is actually published in the Atlas. No county value is copied down from Kenya-level World Bank data.</div>
+      </section>
+    </section>
+
+    <!-- Retained only for backward compatibility with the older app.js ranking/comparison code. -->
+    <section class="compare-section section" id="compare-legacy" hidden aria-hidden="true">
+      <div class="section-heading inverse"><div><p class="eyebrow">Legacy compare</p><h2>Retired compatibility interface.</h2></div><p>Not a user-facing product surface.</p></div>
       <div class="compare-controls"><div id="compare-chips"></div><button id="add-place">＋ Add county</button><select id="compare-indicator" aria-label="Comparison indicator"><option>Land area</option></select></div>
       <div class="comparison-chart" id="comparison-chart"></div>
       <div class="benchmark-row"></div>
@@ -118,11 +149,12 @@
     </section>
   </main>
 
-  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#catalogue">Data & sources</a><a href="#profile">Methodology</a><a href="#series">Developers</a><a href="README.md">About this MVP</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
+  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#compare">Compare</a><a href="#catalogue">Data & sources</a><a href="#profile">Methodology</a><a href="#series">Developers</a><a href="README.md">About this MVP</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
   <script src="assets/sprint2-data.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/compare.js"></script>
   <script src="assets/geo-explorer.js"></script>
   <script src="assets/sprint1-ui.js"></script>
   <script src="assets/sprint2-ui.js"></script>
