@@ -1,3 +1,4 @@
+@import url("mobile.css");
 /* Kenya Data Atlas — route-level information architecture polish. */
 [data-view][hidden]{display:none!important}
 #main-nav a.active,#main-nav a[aria-current="page"]{color:var(--green2);position:relative}
