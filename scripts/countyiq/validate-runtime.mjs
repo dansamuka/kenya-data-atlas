@@ -13,23 +13,16 @@ function parseCsv(text){
     const cells=[];let cur='';let quoted=false;
     for(let i=0;i<line.length;i++){
       const ch=line[i];
-      if(ch==='"'){
-        if(quoted&&line[i+1]==='"'){cur+='"';i++;}
-        else quoted=!quoted;
-      }else if(ch===','&&!quoted){cells.push(cur);cur='';}
+      if(ch==='"'){if(quoted&&line[i+1]==='"'){cur+='"';i++;}else quoted=!quoted;}
+      else if(ch===','&&!quoted){cells.push(cur);cur='';}
       else cur+=ch;
     }
-    cells.push(cur);
-    return Object.fromEntries(head.map((h,i)=>[h,cells[i]??'']));
+    cells.push(cur);return Object.fromEntries(head.map((h,i)=>[h,cells[i]??'']));
   });
 }
 
 function loadSample(){
-  const code=read('assets/countyiq-sample.js');
-  const context={window:{}};
-  vm.createContext(context);
-  vm.runInContext(code,context,{filename:'assets/countyiq-sample.js'});
-  return context.window.COUNTYIQ_SAMPLE;
+  const code=read('assets/countyiq-sample.js');const context={window:{}};vm.createContext(context);vm.runInContext(code,context,{filename:'assets/countyiq-sample.js'});return context.window.COUNTYIQ_SAMPLE;
 }
 
 function validateSample(){
@@ -46,7 +39,7 @@ function validateSample(){
   for(const row of sample.rows){
     const gr=gcp.get(row.geo_code),br=budget.get(row.geo_code),vr=voters.get(row.geo_code);
     assert(gr&&br&&vr,`sample county ${row.geo_code} must exist in all three Sprint 1 source files`);
-    for(const year of [2020,2021,2022,2023,2024]) assert(Number(gr[String(year)])===Number(row[`gcp${year}`]),`${row.geo_code} GCP ${year} does not match source snapshot`);
+    for(const year of [2020,2021,2022,2023,2024])assert(Number(gr[String(year)])===Number(row[`gcp${year}`]),`${row.geo_code} GCP ${year} does not match source snapshot`);
     assert(Number(br.budget_total_ksh_mn)===Number(row.budget),`${row.geo_code} budget does not match source snapshot`);
     assert(Number(br.expenditure_total_ksh_mn)===Number(row.expenditure),`${row.geo_code} expenditure does not match source snapshot`);
     assert(Number(br.development_absorption_pct)===Number(row.devAbsorption),`${row.geo_code} development absorption does not match source snapshot`);
@@ -56,20 +49,29 @@ function validateSample(){
   console.log('COUNTYIQ_SAMPLE_SOURCE_MATCH_OK');
 }
 
-function validateResilience(){
+function validateLegacyResilience(){
   const js=read('assets/countyiq.js');
-  for(const token of ['loadProductionRows','loadSampleBundle','state.mode=\'production\'','state.mode=\'sample\'','state.mode=\'unavailable\'','Demo preview','data-mode-note','renderUnavailable']) assert(js.includes(token),`runtime missing resilience token ${token}`);
-  const productionCall=js.indexOf('state.rows=await loadProductionRows()');
-  const fallbackCall=js.indexOf('state.sample=await loadSampleBundle()',productionCall);
-  assert(productionCall>=0&&fallbackCall>productionCall,'production data must be attempted before the bundled fallback is used');
-  assert(!js.includes("const root=$('#iq-root');if(root)root.innerHTML"),'data failure must not replace the entire CountyIQ root');
-  assert(js.includes("script.src='assets/countyiq-sample.js'"),'fallback must be loadable as a local script asset');
-  console.log('COUNTYIQ_NONFATAL_FALLBACK_OK');
+  for(const token of ['loadProductionRows','loadSampleBundle','state.mode=\'production\'','state.mode=\'sample\'','state.mode=\'unavailable\'','Demo preview','data-mode-note','renderUnavailable'])assert(js.includes(token),`legacy runtime missing resilience token ${token}`);
+  const productionCall=js.indexOf('state.rows=await loadProductionRows()');const fallbackCall=js.indexOf('state.sample=await loadSampleBundle()',productionCall);
+  assert(productionCall>=0&&fallbackCall>productionCall,'legacy production data must be attempted before bundled fallback');
+  assert(!js.includes("const root=$('#iq-root');if(root)root.innerHTML"),'legacy data failure must not replace the entire CountyIQ root');
+  console.log('COUNTYIQ_LEGACY_RESILIENCE_OK');
+}
+
+function validateIntegratedRuntime(){
+  const js=read('assets/countyiq-view.js'),lazy=read('assets/lazy-integrations.js'),html=read('index.html'),redirect=read('county-dashboard.html');
+  assert(html.includes('data-view="countyiq"')&&html.includes('id="countyiq-view"'),'CountyIQ is not an Atlas routed view');
+  assert(lazy.includes("KDA.loadScript('assets/countyiq-view.js'")&&lazy.includes("event.detail?.view==='countyiq'"),'CountyIQ route is not lazy loaded');
+  assert(js.includes('const FALLBACK=[')&&js.includes("mode='sample'")&&js.includes("mode='production'"),'integrated runtime lacks production/fallback states');
+  assert(js.includes("KDA.csv('data/sprint1/gcp-2020-2024.csv')")&&js.includes("KDA.csv('data/sprint1/county-budget-fy2024-25.csv')")&&js.includes("KDA.csv('data/sprint1/voters-2022.csv')"),'integrated runtime is not grounded in County Core tables');
+  assert(!js.includes('fetch(')&&!js.includes('roadmap.json')&&!js.includes('window.d3'),'integrated CountyIQ retains an independent fetch/roadmap/D3 dependency');
+  assert(js.includes('renderFailure')&&lazy.includes('countyIqFailure'),'CountyIQ route has no nonfatal failure path');
+  assert(redirect.includes('index.html#/countyiq')&&!redirect.includes('assets/countyiq.js'),'standalone CountyIQ application is still bootable');
+  console.log('COUNTYIQ_INTEGRATED_NONFATAL_OK');
 }
 
 function validateUiLabels(){
-  const js=read('assets/countyiq.js');
-  const css=read('assets/countyiq.css');
+  const js=read('assets/countyiq.js'),css=read('assets/countyiq.css');
   assert(js.includes('Demo only:'),'synthetic preview must contain a visible Demo-only warning');
   assert(js.includes('These are not live programmes.'),'opportunity preview must state that records are not live');
   assert(css.includes('.badge.demo')&&css.includes('.data-mode-note.sample'),'sample/demo visual states must be styled');
@@ -77,11 +79,5 @@ function validateUiLabels(){
 }
 
 try{
-  validateSample();
-  validateResilience();
-  validateUiLabels();
-  console.log('COUNTYIQ_RUNTIME_ALL_OK');
-}catch(error){
-  console.error(error.message||error);
-  process.exit(1);
-}
+  validateSample();validateLegacyResilience();validateIntegratedRuntime();validateUiLabels();console.log('COUNTYIQ_RUNTIME_ALL_OK');
+}catch(error){console.error(error.message||error);process.exit(1);}
