@@ -1,0 +1,22 @@
+/* Kenya Data Atlas — lazy Series dataset browser. */
+.series-browser{margin:0 0 1.25rem;border:1px solid var(--line);background:linear-gradient(135deg,#fff,#f7f8f4);padding:1.35rem;box-shadow:0 10px 30px rgba(22,43,35,.045)}
+.series-browser-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:1rem}
+.series-browser-head .eyebrow{margin-bottom:.35rem}.series-browser-head h3{font-family:var(--serif);font-size:1.7rem;font-weight:500;line-height:1.05;margin:0}.series-browser-head>p{max-width:460px;margin:0;color:var(--muted);font-size:.76rem}
+.series-browser-grid{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(320px,1.15fr);gap:1rem;margin-top:1rem}
+.series-browser-grid label{display:flex;flex-direction:column;gap:.4rem;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--muted)}
+.series-browser-grid select{width:100%;min-height:48px;border:1px solid #cfd5d1;background:#fff;color:var(--ink);padding:.7rem .8rem;text-transform:none;letter-spacing:0;font-weight:600}
+.series-browser-grid select:focus{border-color:var(--green2)}
+.series-dataset-chips{display:flex;gap:.45rem;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding:.05rem 0 .35rem}
+.series-dataset-chips button{flex:0 0 auto;max-width:300px;border:1px solid var(--line);background:#fff;color:#56635d;border-radius:999px;padding:.52rem .78rem;font-size:.66rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.series-dataset-chips button:hover{border-color:#a9b9b0;color:var(--green2)}.series-dataset-chips button.active{background:var(--green);border-color:var(--green);color:#fff}
+.series-browser-meta{display:grid;grid-template-columns:minmax(220px,.75fr) minmax(0,1.25fr);gap:1rem;border-top:1px solid var(--line);margin-top:1rem;padding-top:.9rem;color:var(--muted);font-size:.7rem}
+.series-browser-meta strong{display:block;color:var(--ink);font-size:.78rem;margin-bottom:.15rem}.series-browser-meta span{font-size:.64rem}.series-browser-meta p{margin:0;line-height:1.5}
+.series-browser-error{margin:0 0 1rem;padding:.75rem 1rem;border:1px solid var(--line);background:#fff}
+
+@media(max-width:760px){
+  .series-browser{margin:0 calc(-1 * var(--mobile-gutter)) 1rem;padding:1rem var(--mobile-gutter);border-left:0;border-right:0;box-shadow:none}
+  .series-browser-head{display:block;margin-bottom:.8rem}.series-browser-head h3{font-size:1.5rem}.series-browser-head>p{margin-top:.55rem;font-size:.72rem;line-height:1.5}
+  .series-browser-grid{grid-template-columns:1fr;gap:.75rem;margin-top:.75rem}.series-browser-grid select{min-height:48px;font-size:16px}
+  .series-dataset-chips{margin-inline:calc(-1 * var(--mobile-gutter));padding:.05rem var(--mobile-gutter) .4rem;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}.series-dataset-chips::-webkit-scrollbar{display:none}.series-dataset-chips button{min-height:42px;max-width:78vw;scroll-snap-align:start}
+  .series-browser-meta{grid-template-columns:1fr;gap:.45rem;margin-top:.8rem;padding-top:.75rem}
+}
