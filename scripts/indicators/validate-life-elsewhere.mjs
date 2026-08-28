@@ -81,7 +81,8 @@ for(const [metric,dsCode,relCode,unitCode,tab] of METRICS){
   }
 }
 assert(healthTotal===14366,`Health facility target total ${healthTotal} != 14366`);
-assert(/active.*county metrics/i.test(compareJs)||compareJs.includes("lifecycle_status === 'active'"),'Compare does not auto-discover active county indicators');
+// Compare may format the predicate compactly after P01; validate behaviour-signalling tokens rather than whitespace.
+assert(compareJs.includes('lifecycle_status')&&compareJs.includes("'active'")&&compareJs.includes('seriesByIndicator.has')&&compareJs.includes('allMetrics'),'Compare does not auto-discover active county indicators');
 assert(compareJs.includes('common reference period')||compareJs.includes('common-period'),'My Life Elsewhere common-period discipline missing');
 console.log('PASS County Life: 235 source rows = 5 indicators × 47 counties; all native values, periods and provenance match.');
 console.log('      Health facility target total reconciles to 14,366; no constituency/ward inheritance exists for the five indicators.');
