@@ -62,6 +62,17 @@
       }
     };
   }
+  function keepVoterIndicatorSelectable(){
+    const select=document.querySelector('#geo-indicator');if(!select)return;
+    const option=[...select.options].find(item=>item.value==='IND-REGISTERED-VOTERS');
+    if(option){option.disabled=false;if(/no data at this level/i.test(option.textContent||''))option.textContent='Registered voters';}
+    if(select.dataset.s2VoterObserver==='true')return;
+    select.dataset.s2VoterObserver='true';
+    new MutationObserver(()=>{
+      const voter=[...select.options].find(item=>item.value==='IND-REGISTERED-VOTERS');
+      if(voter){voter.disabled=false;if(/no data at this level/i.test(voter.textContent||''))voter.textContent='Registered voters';}
+    }).observe(select,{subtree:true,childList:true,attributes:true,attributeFilter:['disabled']});
+  }
 
   async function build(){
     if(!KDA)throw new Error('Shared Atlas data loader is unavailable.');
@@ -96,7 +107,7 @@
     }
     assert(mappedCount===1440,`expected 1,440 safely mapped ward values, found ${mappedCount}`);
     assert(state.holds.length===10,`expected 10 held ward rows, found ${state.holds.length}`);
-    state.coverage.crosswalks=state.crosswalks.length;state.error=null;return state;
+    state.coverage.crosswalks=state.crosswalks.length;state.error=null;keepVoterIndicatorSelectable();return state;
   }
 
   state.ready=build().catch(error=>{state.error=String(error?.message||error);console.warn('Sprint 2 voter drill-down:',state.error);return state;});
