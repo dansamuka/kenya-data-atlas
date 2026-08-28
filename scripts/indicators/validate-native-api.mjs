@@ -134,12 +134,24 @@ assert(gcpSeries === 47 && gcpObs === 235, `native GCP coverage ${gcpSeries} ser
 assert(budgetCells === 188, `native county-budget series coverage ${budgetCells} != 188`);
 assert(fuelCounties === 47, `native fuel county-linked coverage ${fuelCounties} != 47`);
 
+// The downloadable registry is now the source consumed by the page. Sprint 1's
+// historical runtime fetch wrapper must never be loaded again.
 assert(!index.includes('<script src="assets/sprint1-data.js"></script>'), 'index.html still loads the retired Sprint 1 runtime injector');
 if (sprint1Loader) assert(!/window\.fetch\s*=/.test(sprint1Loader), 'retired assets/sprint1-data.js still monkey-patches window.fetch');
-assert(!index.includes('<a href="#compare">') && !index.includes('<a href="#rankings">'), 'legacy Compare/Rankings links are still exposed in main navigation');
-assert(/id="compare" hidden/.test(index) && /id="rankings" hidden/.test(index), 'legacy Compare/Rankings compatibility sections are not hidden');
+
+// Compare is now a first-class, non-ranking product surface. The Geo Explorer
+// remains the sole user-facing ranking surface; the old comparison/ranking DOM
+// may remain only as hidden compatibility markup for older app.js code.
+const compareNavLinks = index.match(/<a href="#compare">/g) || [];
+assert(compareNavLinks.length >= 1, 'dedicated Compare tab is missing from navigation');
+assert(index.includes('id="compare"') && index.includes('class="section compare-hub"'), 'dedicated Compare workspace is missing');
+assert(index.includes('data-compare-mode="direct"') && index.includes('data-compare-mode="life"'), 'Compare workspace is missing Direct or My Life Elsewhere mode');
+assert(index.includes('<script src="assets/compare.js"></script>') && index.includes('<link rel="stylesheet" href="assets/compare.css">'), 'Compare assets are not loaded by index.html');
+assert(!index.includes('<a href="#rankings">'), 'retired Rankings link is exposed in main navigation');
+assert(/id="compare-legacy" hidden/.test(index), 'legacy Compare compatibility section is not hidden');
+assert(/id="rankings" hidden/.test(index), 'legacy Rankings compatibility section is not hidden');
 
 console.log(`PASS: native API contains ${indicators.length} indicators, ${series.length} series and ${observations.length} observations.`);
 console.log('      Lifecycle-aware taxonomy slots and Sprint 3 historical indicators coexist in the native API.');
 console.log('      Sprint 1 invariants remain present while county fiscal series may contain earlier validated history.');
-console.log('      Runtime Sprint 1 fetch injection: disabled. Geo Explorer: sole visible ranking surface.');
+console.log('      Runtime Sprint 1 fetch injection: disabled. Compare: dedicated two-mode surface. Geo Explorer: sole visible ranking surface.');
