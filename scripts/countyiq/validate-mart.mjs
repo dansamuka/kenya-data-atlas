@@ -15,7 +15,7 @@ try{
   const rebuiltAgain=buildMart(canonical);
   assert(JSON.stringify(rebuilt)===JSON.stringify(rebuiltAgain),'builder is not deterministic across repeated runs');
   assert(JSON.stringify(committed)===JSON.stringify(rebuilt),'committed county-summary.json diverges from deterministic registry build');
-  assert(committed.meta?.schema_version==='kda.countyiq.county-summary.v1','unexpected schema version');
+  assert(committed.meta?.schema_version==='kda.countyiq.county-summary.v2','unexpected schema version');
   assert(committed.meta?.county_count===47,'meta county_count must equal 47');
   assert(Array.isArray(committed.counties)&&committed.counties.length===47,'mart must contain exactly 47 counties');
   assert(new Set(committed.counties.map(c=>c.geography?.geo_code)).size===47,'county geo_codes must be unique');
