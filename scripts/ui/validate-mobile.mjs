@@ -65,6 +65,18 @@ try{
   assert(mobile.includes('body{overflow-x:clip}'),'horizontal overflow guard missing');
   console.log('MOBILE_OVERFLOW_GUARD_OK');
 
+  for(const token of [
+    'CountyIQ mobile screenshot hardening',
+    '.ciq-fiscal-table{display:table!important',
+    '.ciq-fiscal-table thead{display:table-header-group!important}',
+    '.ciq-fiscal-table td::before{content:none!important',
+    'position:sticky;left:0',
+    '.ciq-fiscal-insights{grid-template-columns:repeat(2,minmax(0,1fr))!important',
+    '.ciq-social-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important',
+    '.ciq-controls .kda-select-search-trigger{position:absolute'
+  ]) assert(mobile.includes(token),`CountyIQ screenshot fix missing ${token}`);
+  console.log('MOBILE_COUNTYIQ_DENSITY_OK fiscal=table-scroll sticky-fy insights=2up outcomes=2up');
+
   console.log('MOBILE_UI_ALL_OK');
 }catch(error){
   console.error(error.message||error);
