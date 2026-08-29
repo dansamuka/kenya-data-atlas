@@ -31,6 +31,7 @@ jobs:
         run: |
           node scripts/p05/apply-p05.mjs
           node scripts/p05/finalize-derived-provenance.mjs
+          node scripts/p05/finalize-price-basis.mjs
       - name: Rebuild published data
         run: npm run build:data
       - name: Run full validation
