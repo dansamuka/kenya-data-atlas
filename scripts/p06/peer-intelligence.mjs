@@ -1,15 +1,10 @@
 // P06 — Peer groups, percentiles and trend intelligence.
 //
-// Two things this module deliberately does NOT do, per the P06 acceptance
-// gates and the CountyIQ guardrails:
-//   - it never implies that being in a given peer group is itself good or
-//     bad (peer_group tier is a population-size fact, not a verdict)
-//   - it never asserts a "better/worse" direction for an indicator whose
-//     higher_is_better rule (see ./direction-rules.mjs) is null; those
-//     indicators still get a rank/percentile (purely positional), but
-//     trend.direction stays purely descriptive ("rising"/"falling"/
-//     "flat") instead of "improving"/"worsening".
-import { directionFor } from './direction-rules.mjs';
+// P12 convergence rule: static indicator semantics come from the canonical
+// indicator-policy layer. This module owns only dynamic cross-county evidence
+// calculations (actual coverage, values, periods, ranks, peer medians and
+// history-derived changes).
+import { directionFor, trendPolicyForIndicator } from '../policy/indicator-policy.mjs';
 
 const POPULATION_CODE = 'IND-POPULATION';
 const PEER_METHODOLOGY_VERSION = 'P06-v1';
@@ -40,12 +35,7 @@ function positionalStats(value, allValues) {
 // already-ingested, sourced IND-POPULATION series. This is the only axis
 // used deliberately: it is 100% reproducible from a single published
 // input already in the registry, and a population-size band is a
-// descriptive fact, not a development judgement. (An ASAL/non-ASAL axis
-// was considered and set aside for this release because no single
-// current, authoritative, unambiguous county-by-county ASAL list could
-// be confirmed against official sources at implementation time — see
-// docs/countyiq/P06-PEER-INTELLIGENCE.md. Missing an authoritative input
-// is treated as a reason to omit the axis, not to approximate it.)
+// descriptive fact, not a development judgement.
 export function assignPeerGroups(rows) {
   const pops = rows.map(r => ({ id: r.county.geography_id, code: r.county.geo_code, value: r.metrics[POPULATION_CODE]?.latest?.value ?? null }));
   const known = pops.filter(p => Number.isFinite(p.value));
@@ -85,36 +75,40 @@ export function computeRankingAndTrend(rows, indicatorById, peerGroups) {
 
     for (const entry of entries) {
       const { metric, county } = entry;
-      if (!metric.eligibility.ranking_allowed) continue; // leave P02-computed ineligibility untouched
-      const value = metric.latest?.value;
-      const national = positionalStats(value, allLatestValues);
-      if (!national) continue;
+      const indicator = indicatorById.get(metric.indicator_id);
+      const rankAllowed = metric.eligibility?.ranking_allowed === true;
+      const trendAllowed = metric.eligibility?.trend_allowed ?? trendPolicyForIndicator(indicator).allowed;
 
-      const peerInfo = peerGroups.byId.get(county.geography_id);
-      const peerEntries = entries.filter(e => peerGroups.byId.get(e.county.geography_id)?.tier === peerInfo?.tier);
-      const peerValues = peerEntries.map(e => e.metric.latest?.value ?? null);
-      const peer = positionalStats(value, peerValues);
+      // Ranking remains a dynamic cross-county decision. A metric may have a
+      // valid county time trend even when it fails the current 47-county rank
+      // gate, so P12 deliberately decouples these two concepts.
+      if (rankAllowed) {
+        const value = metric.latest?.value;
+        const national = positionalStats(value, allLatestValues);
+        if (national) {
+          const peerInfo = peerGroups.byId.get(county.geography_id);
+          const peerEntries = entries.filter(e => peerGroups.byId.get(e.county.geography_id)?.tier === peerInfo?.tier);
+          const peerValues = peerEntries.map(e => e.metric.latest?.value ?? null);
+          const peer = positionalStats(value, peerValues);
 
-      metric.ranking = {
-        eligible: true,
-        rank: national.rank,
-        eligible_count: national.eligible_count,
-        percentile: national.percentile,
-        national_median: national.national_median,
-        distance_from_median: national.distance_from_median,
-        period_key: metric.ranking?.period_key ?? metric.latest?.period_label ?? null,
-        coverage_pct: metric.ranking?.coverage_pct ?? null,
-        higher_is_better: hib,
-        peer_group: peer ? { tier: peerInfo.tier, rank: peer.rank, eligible_count: peer.eligible_count, percentile: peer.percentile, peer_median: peer.national_median, distance_from_peer_median: peer.distance_from_median } : null
-      };
+          metric.ranking = {
+            eligible: true,
+            rank: national.rank,
+            eligible_count: national.eligible_count,
+            percentile: national.percentile,
+            national_median: national.national_median,
+            distance_from_median: national.distance_from_median,
+            period_key: metric.ranking?.period_key ?? metric.latest?.period_label ?? null,
+            coverage_pct: metric.ranking?.coverage_pct ?? null,
+            higher_is_better: hib,
+            peer_group: peer ? { tier: peerInfo.tier, rank: peer.rank, eligible_count: peer.eligible_count, percentile: peer.percentile, peer_median: peer.national_median, distance_from_peer_median: peer.distance_from_median } : null
+          };
+        }
+      }
 
-      // Trend: direction/volatility computed from the metric's own active
-      // history; national/peer matched-change compares this county's
-      // change to how the national and peer medians moved over the same
-      // two periods (never a different, mismatched period).
       const numericHistory = (metric.history || []).filter(o => typeof o.value === 'number' && Number.isFinite(o.value));
       const t = metric.trend || {};
-      if (numericHistory.length >= 2) {
+      if (trendAllowed && numericHistory.length >= 2) {
         const last = numericHistory.at(-1), prev = numericHistory.at(-2), first = numericHistory[0];
         const changes = numericHistory.slice(1).map((o, i) => o.value - numericHistory[i].value);
         t.one_period_change = Number((last.value - prev.value).toFixed(4));
@@ -131,11 +125,21 @@ export function computeRankingAndTrend(rows, indicatorById, peerGroups) {
       } else {
         t.direction = t.direction || 'not_classified';
       }
-      metric.trend = { eligible: numericHistory.length >= 2, one_period_change: t.one_period_change ?? null, medium_term_change: t.medium_term_change ?? null, medium_term_years: t.medium_term_years ?? null, national_matched_change: null, peer_matched_change: null, direction: t.direction, volatility: t.volatility ?? null, break_in_series: t.break_in_series ?? false };
+      metric.trend = {
+        eligible: trendAllowed && numericHistory.length >= 2,
+        one_period_change: t.one_period_change ?? null,
+        medium_term_change: t.medium_term_change ?? null,
+        medium_term_years: t.medium_term_years ?? null,
+        national_matched_change: null,
+        peer_matched_change: null,
+        direction: t.direction,
+        volatility: t.volatility ?? null,
+        break_in_series: t.break_in_series ?? false
+      };
     }
 
     // National / peer matched change: how the median itself moved,
-    // computed only over periods common to every county's active history.
+    // computed only over periods common to the selected observations.
     for (const entry of entries) {
       const trend = entry.metric.trend;
       if (!trend?.eligible) continue;
