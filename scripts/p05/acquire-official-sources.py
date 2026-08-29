@@ -18,7 +18,8 @@ def num(v):
  s=str(v or '').strip().replace(',','')
  if s in {'','-','—'}: return None
  if s.startswith('(') and s.endswith(')'): s='-'+s[1:-1]
- return float(s)
+ try: return float(s)
+ except ValueError: return None
 def counties():
  with open(ROOT/'data/geography/registry/geographies.csv',encoding='utf-8') as f:
   rows=[(r['geo_code'],r['name']) for r in csv.DictReader(f) if r.get('level')=='county']
@@ -74,30 +75,20 @@ def gcp(data):
  return out
 def maize(data):
  doc=pymupdf.open(stream=data,filetype='pdf'); out={}
- pages=[]
  for page in doc:
   text=page.get_text('text')
   if 'Area and Production of Maize by County' not in text: continue
-  pages.append((page,text))
-  for t in page.find_tables().tables:
-   names=list(t.header.names or []); rows=t.extract(); area=next((r for r in rows if len(r)>1 and str(r[0]).strip()=='2023' and 'Area' in str(r[1])),None)
-   if area is None: continue
-   i=rows.index(area); prod=rows[i-1] if i>0 and 'Production' in str(rows[i-1][1]) else None
-   if prod is None: continue
-   for c in range(2,min(len(names),len(area),len(prod))):
-    key=norm(names[c])
-    if key not in NAME: continue
-    geo,_=NAME[key]; a,p=num(area[c]),num(prod[c])
-    if a is not None and p is not None: out[geo]={'maize_area_ha':a,'maize_production_tonnes':p,'maize_yield_t_per_ha':round(p/a,3) if a else None}
- if len(out)!=47:
-  print('AGRI_TEXT_DIAGNOSTIC')
-  for page,text in pages:
-   print(f'PAGE {page.number+1}')
-   for line in [x.strip() for x in text.splitlines() if x.strip()][:180]: print('TXT',line)
-   for t in page.find_tables().tables:
-    print('HEADER',t.header.names)
-    for row in t.extract()[:4]: print('ROW',row)
-  raise RuntimeError(f'Maize rows={len(out)} missing={[n for g,n in COUNTIES if g not in out]}')
+  lines=[x.strip() for x in text.splitlines() if x.strip()]
+  for i,label in enumerate(lines):
+   key=norm(label)
+   if key not in NAME or i+10>=len(lines): continue
+   vals=[num(lines[i+j]) for j in range(1,11)]
+   if any(v is None for v in vals): continue
+   geo,name=NAME[key]; a,p=vals[8],vals[9]
+   rec={'maize_area_ha':a,'maize_production_tonnes':p,'maize_yield_t_per_ha':round(p/a,3) if a else None}
+   if geo in out and out[geo]!=rec: raise RuntimeError(f'Conflicting maize duplicate for {name}: {out[geo]} vs {rec}')
+   out[geo]=rec
+ if len(out)!=47: raise RuntimeError(f'Maize rows={len(out)} missing={[n for g,n in COUNTIES if g not in out]}')
  area=round(sum(x['maize_area_ha'] for x in out.values())); prod=round(sum(x['maize_production_tonnes'] for x in out.values()))
  if (area,prod)!=(2430013,4285206): raise RuntimeError(f'Maize reconciliation failed area={area} prod={prod}')
  return out
