@@ -9,10 +9,10 @@
     "geography:validate": "node scripts/geography/validate-registry.mjs",
     "catalogue:build": "node scripts/catalogue/build-catalogue.mjs && node scripts/sprint1/build-native.mjs catalogue && node scripts/sprint3/build-native.mjs catalogue && node scripts/life/build-native.mjs catalogue",
     "catalogue:validate": "node scripts/catalogue/validate-catalogue.mjs",
-    "build:data": "npm run geography:build && npm run catalogue:build && npm run indicators:build && npm run countyiq:build && npm run ui:build",
+    "build:data": "npm run geography:build && npm run catalogue:build && npm run indicators:build && npm run placefacts:build && npm run countyiq:build && npm run ui:build",
     "ui:build": "node scripts/ui/build-initial-pulse.mjs",
-    "test": "npm run ui:validate && npm run performance:validate && npm run ia:validate && npm run series:validate && npm run mobile:validate && npm run map:validate && npm run countyiq:validate && npm run project:validate && npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate && npm run sprint3:validate && npm run life:validate",
-    "ui:validate": "node --check assets/data-loader.js && node --check assets/router.js && node --check assets/app.js && node --check assets/compare.js && node --check assets/geo-explorer.js && node --check assets/sprint2-voters.js && node --check assets/ux-polish.js && node --check assets/lazy-integrations.js && node --check assets/routed-views.js && node --check assets/series-browser.js && node --check assets/countyiq-view.js && node --check assets/countyiq.js && node --check assets/countyiq-sample.js && node --check assets/countyiq-roadmap.js && node --check assets/countyiq-polish.js",
+    "test": "npm run ui:validate && npm run performance:validate && npm run ia:validate && npm run series:validate && npm run mobile:validate && npm run map:validate && npm run countyiq:validate && npm run project:validate && npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate && npm run sprint3:validate && npm run life:validate && npm run prep05:validate",
+    "ui:validate": "node --check assets/data-loader.js && node --check assets/router.js && node --check assets/app.js && node --check assets/compare.js && node --check assets/geo-explorer.js && node --check assets/sprint2-voters.js && node --check assets/ux-polish.js && node --check assets/lazy-integrations.js && node --check assets/routed-views.js && node --check assets/series-browser.js && node --check assets/countyiq-view.js && node --check assets/countyiq.js && node --check assets/countyiq-sample.js && node --check assets/countyiq-roadmap.js && node --check assets/countyiq-polish.js && node --check assets/pre-p05-hardening.js",
     "performance:validate": "node scripts/performance/validate-p01.mjs",
     "ia:validate": "node scripts/ui/validate-routed-views.mjs",
     "series:validate": "node scripts/ui/validate-series-browser.mjs",
@@ -33,7 +33,9 @@
     "sprint2:validate": "node scripts/indicators/validate-sprint2-release.mjs",
     "sprint3:validate": "node scripts/indicators/validate-sprint3.mjs",
     "life:validate": "node scripts/indicators/validate-life-elsewhere.mjs",
-    "countyiq:p04:validate": "node scripts/countyiq/validate-p04.mjs"
+    "countyiq:p04:validate": "node scripts/countyiq/validate-p04.mjs",
+    "placefacts:build": "node scripts/prep05/build-place-facts.mjs",
+    "prep05:validate": "node scripts/prep05/validate-hardening.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"

@@ -145,17 +145,23 @@ for (const s of seriesSeed) {
 // --- Auto-generated area series: one per feature in the computed area file,
 // covering the country and all 47 counties from a single real computation.
 const areaComputed = await readRoot('data/indicators/seed/derived/area-computed.json');
-const areaIndicator = indicatorByCode.get('IND-LAND-AREA');
-const areaSeriesByGeoCode = new Map();
+const officialAreaCsv = await readFile(path.join(root, 'data/geography/source/official-county-area-2019.csv'), 'utf8');
+const officialAreaByGeoCode = new Map(officialAreaCsv.trim().split(/\r?\n/).slice(1).map(line => {
+  const [countyNumber, geoCode, name, value] = line.split(',');
+  return [geoCode, { countyNumber, geoCode, name, value: Number(value) }];
+}));
+officialAreaByGeoCode.set('KEN', { countyNumber: '', geoCode: 'KEN', name: 'Kenya', value: 580876.3 });
+const areaSeriesMetaByGeoCode = new Map();
 for (const result of areaComputed.results) {
+  const official = (result.level === 'country' || result.level === 'county') ? officialAreaByGeoCode.get(result.geo_code) : null;
   const s = {
     code: `KDA-AREA-${result.geo_code}`, indicator_code: 'IND-LAND-AREA', geo_code: result.geo_code,
-    dataset_code: 'DS-KDA-DERIVED-AREA', frequency: 'irregular', period_type: 'point_in_time',
+    dataset_code: official ? 'DS-KNBS-CENSUS-AREA-2019' : 'DS-KDA-DERIVED-AREA', frequency: official ? 'decennial' : 'irregular', period_type: 'point_in_time',
     unit_code: 'km2', price_basis: 'not_applicable', transformation: 'level',
-    geographic_method: 'aggregated', comparability_group: `AREA-DERIVED-${areaComputed.boundary_version}`
+    geographic_method: official ? 'direct' : 'aggregated', comparability_group: official ? 'AREA-KNBS-2019' : `AREA-DERIVED-${areaComputed.boundary_version}`
   };
   const row = buildSeries(s, { indicatorCode: s.indicator_code, geoCode: s.geo_code, datasetCode: s.dataset_code, unitCode: s.unit_code });
-  if (row) { seriesRows.push(row); areaSeriesByGeoCode.set(result.geo_code, row); }
+  if (row) { seriesRows.push(row); areaSeriesMetaByGeoCode.set(result.geo_code, { row, official, derived: result }); }
 }
 
 const seriesByCode = new Map(seriesRows.map(s => [s.series_code, s]));
@@ -196,18 +202,30 @@ for (const o of observationSeed) {
   buildObservation(o, o.series_code, { geographic_method: o.geographic_method, statistical_status: o.statistical_status, source_class: o.source_class });
 }
 
-// Auto-generated area observations, one per computed feature.
+// Area observations: official KNBS for country/counties; boundary-derived estimates for constituencies/wards.
 for (const result of areaComputed.results) {
   const seriesCode = `KDA-AREA-${result.geo_code}`;
-  if (!seriesByCode.has(seriesCode)) continue;
-  buildObservation({
-    period_start: areaComputed.generated_at.slice(0, 10), period_end: areaComputed.generated_at.slice(0, 10),
-    period_type: 'point_in_time', period_label: `Computed ${areaComputed.generated_at.slice(0, 10)}`,
-    value: result.area_km2, release_code: 'REL-KDA-AREA-2026',
-    source_url: 'https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md',
-    published_at: areaComputed.generated_at.slice(0, 10),
-    notes: `${areaComputed.method}. Estimated error band +/-${areaComputed.estimated_error_band_pct}%. ${areaComputed.note}`
-  }, seriesCode, { geographic_method: 'aggregated', statistical_status: 'estimated' });
+  const meta = areaSeriesMetaByGeoCode.get(result.geo_code);
+  if (!seriesByCode.has(seriesCode) || !meta) continue;
+  if (meta.official) {
+    buildObservation({
+      period_start: '2019-08-24', period_end: '2019-08-24', period_type: 'point_in_time', period_label: '2019 Census land area',
+      value: meta.official.value,
+      source_url: 'https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/',
+      source_table: 'Table 2.4 — Distribution of Population, Land Area and Population Density by County',
+      published_at: '2019-11-04',
+      notes: 'Official KNBS 2019 land-area figure. RCMRD Geoportal is retained as an independent spatial boundary cross-check; it is not used as the numeric area authority.'
+    }, seriesCode, { geographic_method: 'direct', statistical_status: 'final', source_class: 'official' });
+  } else {
+    buildObservation({
+      period_start: areaComputed.generated_at.slice(0, 10), period_end: areaComputed.generated_at.slice(0, 10),
+      period_type: 'point_in_time', period_label: `Boundary-derived ${areaComputed.boundary_version}`,
+      value: result.area_km2, release_code: 'REL-KDA-AREA-2026',
+      source_url: 'https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md',
+      published_at: areaComputed.generated_at.slice(0, 10),
+      notes: `${areaComputed.method}. Estimated error band +/-${areaComputed.estimated_error_band_pct}%. ${areaComputed.note} County values are sourced separately from KNBS and are not inferred from this geometry.`
+    }, seriesCode, { geographic_method: 'aggregated', statistical_status: 'estimated', source_class: 'official' });
+  }
 }
 
 // --------------------------------------------------- roll observations into series

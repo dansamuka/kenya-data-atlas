@@ -306,20 +306,36 @@
     "known_limitations": "Certified national topline as of the 2022 General Election register cutoff (20 June 2022) only. Constituency- and ward-level breakdowns and the ongoing continuous-registration count toward 2027 remain out of scope (see DS-IEBC-VOTERS, blocked, and the ward-level electoral unlock strategy in the product spec)."
   },
   {
-    "dataset_id": "05b4bda9-0468-56bf-a98f-14a6ed74989b",
-    "dataset_code": "DS-KDA-DERIVED-AREA",
-    "source_id": "37a22f81-be94-544b-9794-2518c53b12ed",
-    "title": "County and National Land Area (derived from boundary geometry)",
-    "description": "Approximate land area computed directly from the Atlas's own dissolved ward-boundary geometry (see docs/methodology/geographies.md), using an equirectangular planar-projection approximation.",
+    "dataset_id": "123d6e46-2734-5a5c-89cb-7d75ef322b36",
+    "dataset_code": "DS-KNBS-CENSUS-AREA-2019",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2019 Census — Official County Land Area",
+    "description": "Official county and national land-area figures from the 2019 Kenya Population and Housing Census.",
     "topic": "Geography",
     "geographic_coverage": [
       "country",
       "county"
     ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+    "known_limitations": "County/national land area only. Does not provide electoral-constituency or ward areas. RCMRD is retained as a spatial boundary cross-check, not the numeric area authority."
+  },
+  {
+    "dataset_id": "05b4bda9-0468-56bf-a98f-14a6ed74989b",
+    "dataset_code": "DS-KDA-DERIVED-AREA",
+    "source_id": "37a22f81-be94-544b-9794-2518c53b12ed",
+    "title": "Constituency and Ward Area (derived from validated boundary geometry)",
+    "description": "Approximate small-area size computed from the Atlas validated boundary geometry; county headline area is instead sourced directly from KNBS 2019.",
+    "topic": "Geography",
+    "geographic_coverage": [
+      "constituency",
+      "ward"
+    ],
     "frequency": "irregular",
     "publication_status": "published",
     "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/indicators.md",
-    "known_limitations": "Not a surveyed or IEBC-issued area figure. Computed from externally sourced, provisional boundary geometry (registry_status: provisional) using a planar approximation with an estimated error band of roughly +/-2% at Kenya's latitude range; recorded as geographic_method=aggregated, statistical_status=estimated, badge B (official derived) is therefore not claimed as badge A regardless of the underlying geometry's own status."
+    "known_limitations": "Not a surveyed or official area figure. Used only where the official KNBS county land-area table does not publish the electoral geography. Geometry is externally validated and area is an approximation with the documented error band; county values are no longer sourced from this dataset."
   },
   {
     "dataset_id": "1b35c8c2-bd14-517c-825e-293f0ffbcde1",

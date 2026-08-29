@@ -1,0 +1,1857 @@
+{
+  "schema_version": "kda.prep05.place-facts.v1",
+  "generated_from": [
+    "data/place-facts/source/county-key-facts.csv",
+    "data/geography/source/official-county-area-2019.csv",
+    "data/p04/health-facility-census-2023.json",
+    "data/indicators/seed/derived/area-computed.json"
+  ],
+  "purpose": "Pre-P05 contextual place facts. These values do not count toward the P05 indicator-breadth acceptance gate.",
+  "small_area_rule": "County facts are never inherited to constituencies or wards. At constituency/ward level the UI may show only directly published local facts or explicitly labelled geometry-derived area.",
+  "county_sort_rule": "Formal county number, 001 Mombasa through 047 Nairobi City.",
+  "validation": {
+    "counties": 47,
+    "public_primary_schools_2023": 23274,
+    "primary_classroom_teachers_2023": 183929,
+    "public_secondary_schools_2023": 9246,
+    "secondary_teachers_2023": 108569,
+    "level4_hospitals_2017": 349,
+    "level5_hospitals_2017": 13,
+    "facilities_assessed_2023": 14883
+  },
+  "counties": [
+    {
+      "county_number": "001",
+      "geo_code": "KEN-C001",
+      "geography_id": "d4d620d7-8602-55a8-8c78-774bc9148a70",
+      "name": "Mombasa",
+      "land_area": {
+        "value": 219.9,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 220,
+        "geometry_delta_pct": 0.05,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 443,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 6,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 7,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 134,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 96,
+        "primary_classroom_teachers_2023": 1329,
+        "public_secondary_schools_2023": 52,
+        "secondary_teachers_2023": 944,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "002",
+      "geo_code": "KEN-C002",
+      "geography_id": "66a1bc3d-acfb-5bf1-82a7-14c3e4158e2a",
+      "name": "Kwale",
+      "land_area": {
+        "value": 8267.1,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 8311.1,
+        "geometry_delta_pct": 0.53,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 302,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 3,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 3,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 14,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 415,
+        "primary_classroom_teachers_2023": 3178,
+        "public_secondary_schools_2023": 102,
+        "secondary_teachers_2023": 1162,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "003",
+      "geo_code": "KEN-C003",
+      "geography_id": "6303f3f4-e271-5f8a-a153-730ee1bee865",
+      "name": "Kilifi",
+      "land_area": {
+        "value": 12539.7,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 12672.3,
+        "geometry_delta_pct": 1.06,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 435,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 7,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 7,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 23,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 543,
+        "primary_classroom_teachers_2023": 4935,
+        "public_secondary_schools_2023": 161,
+        "secondary_teachers_2023": 1988,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "004",
+      "geo_code": "KEN-C004",
+      "geography_id": "5359be9e-cb0b-59d6-9561-e48914468109",
+      "name": "Tana River",
+      "land_area": {
+        "value": 37950.5,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 38648.5,
+        "geometry_delta_pct": 1.84,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 108,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 2,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 2,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 5,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 178,
+        "primary_classroom_teachers_2023": 1121,
+        "public_secondary_schools_2023": 35,
+        "secondary_teachers_2023": 398,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "005",
+      "geo_code": "KEN-C005",
+      "geography_id": "0f1ecb4e-f7cf-5a6e-8774-13a1e5350904",
+      "name": "Lamu",
+      "land_area": {
+        "value": 6253.3,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 6299.7,
+        "geometry_delta_pct": 0.74,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 76,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 3,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 3,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": null,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 114,
+        "primary_classroom_teachers_2023": 829,
+        "public_secondary_schools_2023": 28,
+        "secondary_teachers_2023": 363,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "006",
+      "geo_code": "KEN-C006",
+      "geography_id": "4457e0ad-60f9-5d86-abda-241b77ba3f8b",
+      "name": "Taita Taveta",
+      "land_area": {
+        "value": 17152,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 17176.8,
+        "geometry_delta_pct": 0.14,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 126,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 4,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 218,
+        "primary_classroom_teachers_2023": 1679,
+        "public_secondary_schools_2023": 88,
+        "secondary_teachers_2023": 1001,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "007",
+      "geo_code": "KEN-C007",
+      "geography_id": "a7ea7bb6-5575-57dc-947e-650b9091b279",
+      "name": "Garissa",
+      "land_area": {
+        "value": 44736,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 44388.9,
+        "geometry_delta_pct": -0.78,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 210,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 7,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 8,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 12,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 195,
+        "primary_classroom_teachers_2023": 734,
+        "public_secondary_schools_2023": 39,
+        "secondary_teachers_2023": 529,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "008",
+      "geo_code": "KEN-C008",
+      "geography_id": "48bb9364-5557-534e-9ceb-246529626b0f",
+      "name": "Wajir",
+      "land_area": {
+        "value": 56773.1,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 56975.1,
+        "geometry_delta_pct": 0.36,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 178,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 10,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 10,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 5,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 296,
+        "primary_classroom_teachers_2023": 1034,
+        "public_secondary_schools_2023": 61,
+        "secondary_teachers_2023": 575,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "009",
+      "geo_code": "KEN-C009",
+      "geography_id": "14ae35bd-4cdf-553f-ad03-439c502a49e6",
+      "name": "Mandera",
+      "land_area": {
+        "value": 25939.8,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 26091.6,
+        "geometry_delta_pct": 0.59,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 205,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 6,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 6,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 4,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 295,
+        "primary_classroom_teachers_2023": 900,
+        "public_secondary_schools_2023": 58,
+        "secondary_teachers_2023": 547,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "010",
+      "geo_code": "KEN-C010",
+      "geography_id": "758ead44-179a-5d2e-8612-a3aea3ec83b4",
+      "name": "Marsabit",
+      "land_area": {
+        "value": 70944.1,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 71284.1,
+        "geometry_delta_pct": 0.48,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 147,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 4,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 4,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 1,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 180,
+        "primary_classroom_teachers_2023": 1087,
+        "public_secondary_schools_2023": 45,
+        "secondary_teachers_2023": 511,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "011",
+      "geo_code": "KEN-C011",
+      "geography_id": "31c6c13b-4440-5fd6-b5d1-2cbac05963be",
+      "name": "Isiolo",
+      "land_area": {
+        "value": 25350.6,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 25470.8,
+        "geometry_delta_pct": 0.47,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 82,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 3,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 3,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 1,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 112,
+        "primary_classroom_teachers_2023": 877,
+        "public_secondary_schools_2023": 32,
+        "secondary_teachers_2023": 363,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "012",
+      "geo_code": "KEN-C012",
+      "geography_id": "6c320716-08cb-5cfb-b4d1-16ce0a1aed8b",
+      "name": "Meru",
+      "land_area": {
+        "value": 7006.3,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 6966.4,
+        "geometry_delta_pct": -0.57,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 539,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 17,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 18,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 36,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 762,
+        "primary_classroom_teachers_2023": 7266,
+        "public_secondary_schools_2023": 392,
+        "secondary_teachers_2023": 4375,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "013",
+      "geo_code": "KEN-C013",
+      "geography_id": "46d871ad-38a9-5f7f-8caf-fa62cf5efbbe",
+      "name": "Tharaka-Nithi",
+      "land_area": {
+        "value": 2564.4,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2651.8,
+        "geometry_delta_pct": 3.41,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 191,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 6,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 6,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 17,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 431,
+        "primary_classroom_teachers_2023": 3197,
+        "public_secondary_schools_2023": 153,
+        "secondary_teachers_2023": 2116,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "014",
+      "geo_code": "KEN-C014",
+      "geography_id": "73c49e9b-999b-5afe-b5e0-c5df4a48efed",
+      "name": "Embu",
+      "land_area": {
+        "value": 2820.7,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2831.3,
+        "geometry_delta_pct": 0.38,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 212,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 6,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 40,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 390,
+        "primary_classroom_teachers_2023": 3128,
+        "public_secondary_schools_2023": 195,
+        "secondary_teachers_2023": 2290,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "015",
+      "geo_code": "KEN-C015",
+      "geography_id": "efcf0d37-384c-58d0-ba43-bf8937e062a8",
+      "name": "Kitui",
+      "land_area": {
+        "value": 30429.5,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 30662.3,
+        "geometry_delta_pct": 0.77,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 427,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 12,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 12,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 39,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 1382,
+        "primary_classroom_teachers_2023": 8166,
+        "public_secondary_schools_2023": 452,
+        "secondary_teachers_2023": 3684,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "016",
+      "geo_code": "KEN-C016",
+      "geography_id": "110b5a9b-accf-53d3-b558-8d1cc1476690",
+      "name": "Machakos",
+      "land_area": {
+        "value": 6042.7,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 6236.2,
+        "geometry_delta_pct": 3.2,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 505,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 6,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 7,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 41,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 845,
+        "primary_classroom_teachers_2023": 6672,
+        "public_secondary_schools_2023": 369,
+        "secondary_teachers_2023": 3874,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "017",
+      "geo_code": "KEN-C017",
+      "geography_id": "418212dc-0a47-510e-83c3-c30fd9deb53e",
+      "name": "Makueni",
+      "land_area": {
+        "value": 8169.8,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 8048.5,
+        "geometry_delta_pct": -1.48,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 350,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 11,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 11,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 24,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 886,
+        "primary_classroom_teachers_2023": 6641,
+        "public_secondary_schools_2023": 392,
+        "secondary_teachers_2023": 3874,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "018",
+      "geo_code": "KEN-C018",
+      "geography_id": "f1432c15-8450-5e4b-a668-5151dd0e008d",
+      "name": "Nyandarua",
+      "land_area": {
+        "value": 3285.7,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3256.1,
+        "geometry_delta_pct": -0.9,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 254,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 3,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 3,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 27,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 347,
+        "primary_classroom_teachers_2023": 3197,
+        "public_secondary_schools_2023": 178,
+        "secondary_teachers_2023": 2151,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "019",
+      "geo_code": "KEN-C019",
+      "geography_id": "16808e44-6168-57a9-81fd-29dbe2682acb",
+      "name": "Nyeri",
+      "land_area": {
+        "value": 3325,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3350.4,
+        "geometry_delta_pct": 0.76,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 489,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 6,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 7,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 139,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 389,
+        "primary_classroom_teachers_2023": 3126,
+        "public_secondary_schools_2023": 221,
+        "secondary_teachers_2023": 3030,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "020",
+      "geo_code": "KEN-C020",
+      "geography_id": "b183f606-6fbd-55ba-b94c-f4819df0a852",
+      "name": "Kirinyaga",
+      "land_area": {
+        "value": 1478.3,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 1485.6,
+        "geometry_delta_pct": 0.49,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 236,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 17,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 196,
+        "primary_classroom_teachers_2023": 2242,
+        "public_secondary_schools_2023": 150,
+        "secondary_teachers_2023": 2034,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "021",
+      "geo_code": "KEN-C021",
+      "geography_id": "63e6158b-4293-559b-a0b8-cb068735d4a8",
+      "name": "Murang'a",
+      "land_area": {
+        "value": 2524.2,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2569.3,
+        "geometry_delta_pct": 1.79,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 473,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 10,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 10,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 55,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 512,
+        "primary_classroom_teachers_2023": 4700,
+        "public_secondary_schools_2023": 324,
+        "secondary_teachers_2023": 4831,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "022",
+      "geo_code": "KEN-C022",
+      "geography_id": "b4bc133a-fe17-5ab9-8824-af7895fdd276",
+      "name": "Kiambu",
+      "land_area": {
+        "value": 2538.6,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2553.1,
+        "geometry_delta_pct": 0.57,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 754,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 17,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 18,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 108,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 457,
+        "primary_classroom_teachers_2023": 5209,
+        "public_secondary_schools_2023": 290,
+        "secondary_teachers_2023": 5533,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "023",
+      "geo_code": "KEN-C023",
+      "geography_id": "79e6e98b-2569-5520-b4c1-7faa24557250",
+      "name": "Turkana",
+      "land_area": {
+        "value": 68232.9,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 68849.2,
+        "geometry_delta_pct": 0.9,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 251,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 7,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 7,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 3,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 399,
+        "primary_classroom_teachers_2023": 1482,
+        "public_secondary_schools_2023": 60,
+        "secondary_teachers_2023": 643,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "024",
+      "geo_code": "KEN-C024",
+      "geography_id": "321c4e21-8c5a-5baf-ba86-a539c99a5e9b",
+      "name": "West Pokot",
+      "land_area": {
+        "value": 9123.2,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 9178.9,
+        "geometry_delta_pct": 0.61,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 160,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 7,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 654,
+        "primary_classroom_teachers_2023": 2694,
+        "public_secondary_schools_2023": 178,
+        "secondary_teachers_2023": 1439,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "025",
+      "geo_code": "KEN-C025",
+      "geography_id": "2e88f596-ae2e-5298-a295-8078bb369a9d",
+      "name": "Samburu",
+      "land_area": {
+        "value": 21065.1,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 21111.2,
+        "geometry_delta_pct": 0.22,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 155,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 3,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 3,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 9,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 184,
+        "primary_classroom_teachers_2023": 1053,
+        "public_secondary_schools_2023": 50,
+        "secondary_teachers_2023": 532,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "026",
+      "geo_code": "KEN-C026",
+      "geography_id": "1435e02a-7508-5914-9d5c-399adc0ff5f5",
+      "name": "Trans Nzoia",
+      "land_area": {
+        "value": 2495.2,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2496.3,
+        "geometry_delta_pct": 0.04,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 189,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 3,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 376,
+        "primary_classroom_teachers_2023": 4142,
+        "public_secondary_schools_2023": 240,
+        "secondary_teachers_2023": 2546,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "027",
+      "geo_code": "KEN-C027",
+      "geography_id": "550f28f3-a8f8-566e-a458-137789e3f89d",
+      "name": "Uasin Gishu",
+      "land_area": {
+        "value": 3392.2,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3348.9,
+        "geometry_delta_pct": -1.28,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 292,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 3,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 3,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 224,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 492,
+        "primary_classroom_teachers_2023": 4377,
+        "public_secondary_schools_2023": 197,
+        "secondary_teachers_2023": 2551,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "028",
+      "geo_code": "KEN-C028",
+      "geography_id": "f4d743d7-f527-5691-818d-83ca7ae22c14",
+      "name": "Elgeyo/Marakwet",
+      "land_area": {
+        "value": 3032,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3034.7,
+        "geometry_delta_pct": 0.09,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 152,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 8,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 8,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 6,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 406,
+        "primary_classroom_teachers_2023": 3120,
+        "public_secondary_schools_2023": 137,
+        "secondary_teachers_2023": 1753,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "029",
+      "geo_code": "KEN-C029",
+      "geography_id": "bd1f873f-6065-5372-96a9-0849be7e402f",
+      "name": "Nandi",
+      "land_area": {
+        "value": 2855.8,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2886.1,
+        "geometry_delta_pct": 1.06,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 247,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 8,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 774,
+        "primary_classroom_teachers_2023": 4943,
+        "public_secondary_schools_2023": 245,
+        "secondary_teachers_2023": 2484,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "030",
+      "geo_code": "KEN-C030",
+      "geography_id": "c10e40a8-4a0f-5ac9-9a9c-9538938f81fd",
+      "name": "Baringo",
+      "land_area": {
+        "value": 10976.4,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 11042.1,
+        "geometry_delta_pct": 0.6,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 306,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 4,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 4,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 2,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 722,
+        "primary_classroom_teachers_2023": 5511,
+        "public_secondary_schools_2023": 180,
+        "secondary_teachers_2023": 1942,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "031",
+      "geo_code": "KEN-C031",
+      "geography_id": "2929fd5b-add6-5a6b-918b-661d37c1e21a",
+      "name": "Laikipia",
+      "land_area": {
+        "value": 9532.2,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 9497.6,
+        "geometry_delta_pct": -0.36,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 220,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 4,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 4,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 19,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 278,
+        "primary_classroom_teachers_2023": 2186,
+        "public_secondary_schools_2023": 124,
+        "secondary_teachers_2023": 1558,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "032",
+      "geo_code": "KEN-C032",
+      "geography_id": "9dc9005d-2ad9-57f1-9927-c951df4e5cfb",
+      "name": "Nakuru",
+      "land_area": {
+        "value": 7462.4,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 7515,
+        "geometry_delta_pct": 0.7,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 686,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 10,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 11,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 50,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 741,
+        "primary_classroom_teachers_2023": 7875,
+        "public_secondary_schools_2023": 373,
+        "secondary_teachers_2023": 4496,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "033",
+      "geo_code": "KEN-C033",
+      "geography_id": "84932ef0-f570-5d9b-892c-3c561b214be9",
+      "name": "Narok",
+      "land_area": {
+        "value": 17950.3,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 17964.4,
+        "geometry_delta_pct": 0.08,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 224,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 21,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 711,
+        "primary_classroom_teachers_2023": 4700,
+        "public_secondary_schools_2023": 170,
+        "secondary_teachers_2023": 1579,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "034",
+      "geo_code": "KEN-C034",
+      "geography_id": "a91c60cb-b2b4-5cdf-a1fc-fbe89f9f0665",
+      "name": "Kajiado",
+      "land_area": {
+        "value": 21871.1,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 21989.7,
+        "geometry_delta_pct": 0.54,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 405,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 4,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 4,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 9,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 470,
+        "primary_classroom_teachers_2023": 2955,
+        "public_secondary_schools_2023": 96,
+        "secondary_teachers_2023": 1274,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "035",
+      "geo_code": "KEN-C035",
+      "geography_id": "f377dad1-a4e8-5681-af41-07de7a5e66bc",
+      "name": "Kericho",
+      "land_area": {
+        "value": 2436.1,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2443.2,
+        "geometry_delta_pct": 0.29,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 261,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 9,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 9,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 51,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 579,
+        "primary_classroom_teachers_2023": 4483,
+        "public_secondary_schools_2023": 247,
+        "secondary_teachers_2023": 2637,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "036",
+      "geo_code": "KEN-C036",
+      "geography_id": "0b3dac6f-b81a-5ac8-bd57-34f3507c8c14",
+      "name": "Bomet",
+      "land_area": {
+        "value": 2530.9,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2512.5,
+        "geometry_delta_pct": -0.73,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 188,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 6,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 7,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 674,
+        "primary_classroom_teachers_2023": 3935,
+        "public_secondary_schools_2023": 280,
+        "secondary_teachers_2023": 2407,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "037",
+      "geo_code": "KEN-C037",
+      "geography_id": "ce6e7794-14b4-5706-bff1-dd7a12880f11",
+      "name": "Kakamega",
+      "land_area": {
+        "value": 3020,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3016.8,
+        "geometry_delta_pct": -0.11,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 372,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 13,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 14,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 24,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 895,
+        "primary_classroom_teachers_2023": 9273,
+        "public_secondary_schools_2023": 421,
+        "secondary_teachers_2023": 4943,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "038",
+      "geo_code": "KEN-C038",
+      "geography_id": "e6c43924-d70e-57f7-9f0b-03aa5740d7f7",
+      "name": "Vihiga",
+      "land_area": {
+        "value": 563.8,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 564.3,
+        "geometry_delta_pct": 0.09,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 209,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 5,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 5,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 3,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 381,
+        "primary_classroom_teachers_2023": 3439,
+        "public_secondary_schools_2023": 159,
+        "secondary_teachers_2023": 2204,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "039",
+      "geo_code": "KEN-C039",
+      "geography_id": "a4499272-a024-54c9-81a0-3596489b405f",
+      "name": "Bungoma",
+      "land_area": {
+        "value": 3023.9,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3030.5,
+        "geometry_delta_pct": 0.22,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 282,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 10,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 10,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 36,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 777,
+        "primary_classroom_teachers_2023": 7774,
+        "public_secondary_schools_2023": 370,
+        "secondary_teachers_2023": 4364,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "040",
+      "geo_code": "KEN-C040",
+      "geography_id": "ddeb0cc9-7b20-50d0-8a9e-9d5fd98d1131",
+      "name": "Busia",
+      "land_area": {
+        "value": 1696.3,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 1692.1,
+        "geometry_delta_pct": -0.25,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 184,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 7,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 7,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 16,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 439,
+        "primary_classroom_teachers_2023": 4182,
+        "public_secondary_schools_2023": 165,
+        "secondary_teachers_2023": 2001,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "041",
+      "geo_code": "KEN-C041",
+      "geography_id": "ef4a5751-388d-5620-9293-0a16f87395f2",
+      "name": "Siaya",
+      "land_area": {
+        "value": 2529.8,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2526.5,
+        "geometry_delta_pct": -0.13,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 266,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 8,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 8,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 19,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 647,
+        "primary_classroom_teachers_2023": 5008,
+        "public_secondary_schools_2023": 243,
+        "secondary_teachers_2023": 2627,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "042",
+      "geo_code": "KEN-C042",
+      "geography_id": "b480fa47-cda8-5199-afd4-eedc5ebd6a8f",
+      "name": "Kisumu",
+      "land_area": {
+        "value": 2085.4,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2086.1,
+        "geometry_delta_pct": 0.03,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 443,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 14,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 15,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 65,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 608,
+        "primary_classroom_teachers_2023": 5179,
+        "public_secondary_schools_2023": 228,
+        "secondary_teachers_2023": 3060,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "043",
+      "geo_code": "KEN-C043",
+      "geography_id": "9ddae9f2-988b-581a-8282-7230e27be6b7",
+      "name": "Homa Bay",
+      "land_area": {
+        "value": 3152.5,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 3179.8,
+        "geometry_delta_pct": 0.87,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 392,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 14,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 14,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 22,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 873,
+        "primary_classroom_teachers_2023": 5921,
+        "public_secondary_schools_2023": 333,
+        "secondary_teachers_2023": 3194,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "044",
+      "geo_code": "KEN-C044",
+      "geography_id": "9575e583-e49f-5e62-9a5d-e48f053e76e8",
+      "name": "Migori",
+      "land_area": {
+        "value": 2613.5,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 2593.1,
+        "geometry_delta_pct": -0.78,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 376,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 11,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 11,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 23,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 642,
+        "primary_classroom_teachers_2023": 5381,
+        "public_secondary_schools_2023": 283,
+        "secondary_teachers_2023": 2691,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "045",
+      "geo_code": "KEN-C045",
+      "geography_id": "c2c462d1-7f28-5551-952b-482a5cfd3003",
+      "name": "Kisii",
+      "land_area": {
+        "value": 1323,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 1317.3,
+        "geometry_delta_pct": -0.43,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 290,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 14,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 15,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 4,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 707,
+        "primary_classroom_teachers_2023": 6187,
+        "public_secondary_schools_2023": 355,
+        "secondary_teachers_2023": 4565,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "046",
+      "geo_code": "KEN-C046",
+      "geography_id": "d403dba1-a3d3-5e2d-a896-78018f6b7c8e",
+      "name": "Nyamira",
+      "land_area": {
+        "value": 897.3,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 899.5,
+        "geometry_delta_pct": 0.25,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 224,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 8,
+        "level5_hospitals_2017": 0,
+        "level4_5_hospitals_2017": 8,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 6,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 401,
+        "primary_classroom_teachers_2023": 3386,
+        "public_secondary_schools_2023": 193,
+        "secondary_teachers_2023": 2256,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    },
+    {
+      "county_number": "047",
+      "geo_code": "KEN-C047",
+      "geography_id": "bf6864bc-9f15-5e5f-819e-b6c30c83e8e8",
+      "name": "Nairobi City",
+      "land_area": {
+        "value": 703.9,
+        "unit": "km²",
+        "period": "2019",
+        "status": "official_direct",
+        "source": "KNBS 2019 Kenya Population and Housing Census",
+        "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+        "source_table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+        "geometry_cross_check_km2": 697.8,
+        "geometry_delta_pct": -0.87,
+        "rcmrd_cross_check": "RCMRD Geoportal recorded as an independent boundary cross-check; KNBS is the numeric area authority."
+      },
+      "health": {
+        "facilities_assessed_2023": 1367,
+        "facilities_definition": "Use the report's 'Coverage (Total facilities assessed)' county column. This is a dated census assessment snapshot, not a live 2026 KMHFR/NHFR registry count and not a population-adjusted access measure.",
+        "facilities_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+        "level4_hospitals_2017": 14,
+        "level5_hospitals_2017": 1,
+        "level4_5_hospitals_2017": 15,
+        "hospitals_definition": "Historical MoH 2017 infrastructure baseline: actual Level 4 primary-referral + Level 5 secondary-referral facilities.",
+        "hospitals_source_url": "https://api.kmhfr.health.go.ke/media/Health_Infrastructure_Norms_and_Standards_2017.pdf",
+        "approximate_doctors_cra2011": 136,
+        "doctors_definition": "Historical approximate doctor count from CRA 2011, published by KIPPRA in 2013; not a current doctor count.",
+        "doctors_source_url": "https://kippra.or.ke/wp-content/uploads/2021/02/ker2013.pdf"
+      },
+      "education": {
+        "public_primary_schools_2023": 205,
+        "primary_classroom_teachers_2023": 3496,
+        "public_secondary_schools_2023": 102,
+        "secondary_teachers_2023": 2650,
+        "definition": "TSC 2023 public-school establishments and teacher establishments from the Presidential Working Party report appendices; excludes private schools.",
+        "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf"
+      }
+    }
+  ]
+}

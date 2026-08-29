@@ -82,12 +82,15 @@
     const cutoff=new Date(end);cutoff.setFullYear(cutoff.getFullYear()-years);
     const filtered=rows.filter(o=>new Date(o.period_end||o.period_start)>=cutoff);return filtered.length>=2?filtered:rows.slice(-2);
   }
-  function chartSvg(rows){
+  function chartSvg(rows,unit){
     if(!rows.length)return'<div class="series-empty">No published observations.</div>';
     const values=rows.map(o=>Number(o.value)).filter(Number.isFinite);if(!values.length)return'';
     const min=Math.min(...values),max=Math.max(...values),span=Math.max(max-min,1e-9),w=740,h=210;
-    const points=rows.map((o,i)=>`${40+(i/(Math.max(rows.length-1,1)))*(w-80)},${25+((max-Number(o.value))/span)*(h-50)}`).join(' ');
-    return`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Published series history"><path class="grid" d="M40 25H700M40 80H700M40 135H700M40 185H700"/><polyline class="series-line" points="${points}"/></svg>`;
+    const coords=rows.map((o,i)=>({o,x:40+(i/(Math.max(rows.length-1,1)))*(w-80),y:25+((max-Number(o.value))/span)*(h-50)}));
+    const points=coords.map(p=>p.x+','+p.y).join(' ');
+    const circles=coords.map(p=>'<circle data-chart-point="true" cx="'+p.x+'" cy="'+p.y+'" r="5"><title>'+esc(p.o.period_label)+': '+esc(formatSeriesValue(p.o.value,unit))+'</title></circle>').join('');
+    const axisY=esc(unit?.name||unit?.code||'Published value');
+    return'<svg viewBox="0 0 '+w+' '+h+'" role="img" data-axis-x="Reference period" data-axis-y="'+axisY+'" aria-label="Published series history"><path class="grid" d="M40 25H700M40 80H700M40 135H700M40 185H700"/><polyline class="series-line" points="'+points+'"/>'+circles+'</svg>';
   }
   async function renderSeriesRoute(r){
     const key=decodeURIComponent(r.rest||'KDA-CPI-YOY-KEN');if(seriesRouteKey===`${key}|${seriesRange}`&&$('#series')?.dataset.seriesReady==='true')return;
@@ -101,7 +104,7 @@
       const all=data.observations.filter(o=>o.series_id===s.series_id).sort((a,b)=>String(a.period_start).localeCompare(String(b.period_start))||String(a.period_end).localeCompare(String(b.period_end)));
       const shown=filterRange(all,seriesRange),latest=all.at(-1),side=$('.series-side',root),main=$('.series-main',root);
       if(side)side.innerHTML=`<span class="badge ${String(latest?.badge||'missing').toLowerCase()}">${esc(latest?.badge||'N/A')} · ${esc({A:'Official direct',B:'Official derived',C:'Spatially derived',D:'Modelled',E:'External'}[latest?.badge]||'Unavailable')}</span><p>${esc(geo?.name||'')}</p><h3>${esc(indicator?.name||s.series_code)}</h3><div class="series-value">${esc(formatSeriesValue(latest?.value,unit))}</div><small>${esc(latest?.period_label||'')} · ${esc(s.frequency||'')}</small><div class="range-buttons">${['1Y','5Y','10Y','MAX'].map(x=>`<button data-series-range="${x}" class="${x===seriesRange?'active':''}">${x}</button>`).join('')}</div>`;
-      if(main)main.innerHTML=`<div class="series-toolbar"><div><strong>${esc(s.series_code)}</strong><small>${all.length} published observation${all.length===1?'':'s'}</small></div><div><button type="button" data-series-csv>CSV</button><button type="button" data-series-api>{ } API</button></div></div><div class="large-chart">${chartSvg(shown)}<span class="current-point">${esc(formatSeriesValue(latest?.value,unit))}</span></div><div class="series-meta"><span><small>Series ID</small>${esc(s.series_code)}</span><span><small>Unit</small>${esc(unit?.name||unit?.code||'')}</span><span><small>Source</small>${esc(agency?.abbreviation||agency?.name||'Published source')}</span><span><small>Reference</small>${esc(latest?.period_label||'')}</span></div>${latest?.notes?`<p class="source-note">${esc(latest.notes)}</p>`:''}${latest?.source_url?`<a class="text-link" href="${esc(latest.source_url)}" target="_blank" rel="noopener">Open source ↗</a>`:''}`;
+      if(main)main.innerHTML=`<div class="series-toolbar"><div><strong>${esc(s.series_code)}</strong><small>${all.length} published observation${all.length===1?'':'s'}</small></div><div><button type="button" data-series-csv>CSV</button><button type="button" data-series-api>{ } API</button></div></div><div class="large-chart">${chartSvg(shown,unit)}<span class="current-point">${esc(formatSeriesValue(latest?.value,unit))}</span></div><div class="series-meta"><span><small>Series ID</small>${esc(s.series_code)}</span><span><small>Unit</small>${esc(unit?.name||unit?.code||'')}</span><span><small>Source</small>${esc(agency?.abbreviation||agency?.name||'Published source')}</span><span><small>Reference</small>${esc(latest?.period_label||'')}</span></div>${latest?.notes?`<p class="source-note">${esc(latest.notes)}</p>`:''}${latest?.source_url?`<a class="text-link" href="${esc(latest.source_url)}" target="_blank" rel="noopener">Open source ↗</a>`:''}`;
       root.dataset.seriesReady='true';
       if(r.rest!==s.series_code)R.replace('series',s.series_code,r.params,{scroll:false});
       $$('[data-series-range]',root).forEach(btn=>btn.onclick=()=>{seriesRange=btn.dataset.seriesRange;seriesRouteKey='';renderSeriesRoute(route());});

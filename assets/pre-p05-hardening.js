@@ -71,7 +71,7 @@
     if(svg.closest('.ciq-fiscal-chart'))cfg={x:'Fiscal year',y:'Absorption (%)',top:18,bottom:176,left:34,ticks:['100%','50%','0%']};
     else if(svg.closest('.ciq-trend'))cfg={x:'Year',y:'Gross County Product (KES million)',top:24,bottom:248,left:38};
     else if(svg.closest('.chart-card'))cfg={x:'Year',y:'Gross County Product (KES million)',top:45,bottom:180,left:35};
-    else if(svg.closest('.large-chart'))cfg={x:'Reference period',y:'Published value',top:25,bottom:185,left:40};
+    else if(svg.closest('.large-chart'))cfg={x:svg.dataset.axisX||'Reference period',y:svg.dataset.axisY||'Published value',top:25,bottom:185,left:40};
     if(!cfg)return;
     const vb=svg.viewBox?.baseVal,w=vb?.width||740,h=vb?.height||210,mid=(cfg.top+cfg.bottom)/2;
     textNode(svg,{x:w/2,y:h-3,text:cfg.x,cls:'kda-axis-title',anchor:'middle'});

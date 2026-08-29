@@ -247,7 +247,7 @@
     renderSummary(geo,indicator,unit);
   }
   function renderSummary(geo,indicator,unit){
-    const el=$('#geo-selected-summary');if(!el)return;if(!geo.parent_id||!indicator){el.hidden=true;return;}
+    const el=$('#geo-selected-summary');if(!el)return;if(!geo.parent_id||!indicator){el.hidden=true;delete el.dataset.geoCode;delete el.dataset.geoLevel;return;}el.dataset.geoCode=geo.geo_code;el.dataset.geoLevel=geo.level;
     const pair=obsFor(geo.geography_id,indicator.indicator_id),siblingIds=childrenOf.get(geo.parent_id)||[],siblingVals=siblingIds.map(id=>{const p=obsFor(id,indicator.indicator_id);return p?{id,value:p.obs.value}:null;}).filter(Boolean).sort((a,b)=>b.value-a.value),rank=pair?siblingVals.findIndex(s=>s.id===geo.geography_id)+1:null;
     let share='';if(pair&&unit?.dimension==='count'&&siblingVals.length===siblingIds.length){const total=siblingVals.reduce((sum,s)=>sum+s.value,0),parent=geoById.get(geo.parent_id);if(total>0)share=`<div><dt>Share of ${esc(parent?.name||'parent')}</dt><dd>${((pair.obs.value/total)*100).toFixed(1)}%</dd></div>`;}
     const profile=geo.level==='county'&&window.KDASelectCountyProfile?'<div class="geo-summary-source"><button class="text-link" id="geo-view-profile" style="padding:0">View full county profile →</button></div>':'';

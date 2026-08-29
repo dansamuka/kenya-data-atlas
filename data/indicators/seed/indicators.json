@@ -81,7 +81,7 @@
     "code": "IND-LAND-AREA",
     "name": "Land area",
     "short_name": "Area",
-    "description": "Approximate land area, computed from boundary geometry.",
+    "description": "Land area. County and national values use the official KNBS 2019 census land-area table; constituency and ward values are explicitly boundary-derived estimates.",
     "topic": "Geography",
     "subtopic": "Physical geography",
     "unit_code": "km2",

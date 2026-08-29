@@ -42,6 +42,10 @@ All geometry is labelled `validated_external`, never official-direct. Automated 
 
 This is sufficient for the independent MVP's operational Phase 1. It does not mean the polygons were supplied or endorsed by IEBC. An IEBC-issued boundary package can replace the geometry later without changing Atlas geography IDs.
 
+## Area authority and RCMRD cross-check
+
+County headline land area is now sourced directly from KNBS 2019 Census Table 2.4 rather than calculated from the Atlas polygon. `data/geography/county-area-validation.json` compares each official county value with the geometry-derived area and reports the difference without forcing agreement. RCMRD Geoportal is recorded as an independent spatial boundary cross-check; it is not presented as the numeric county-area authority. Constituency and ward area remain clearly labelled boundary-derived estimates because the KNBS county table does not publish those electoral-geography areas.
+
 ## Identity rules
 
 - Permanent IDs are derived from canonical codes, never names.
