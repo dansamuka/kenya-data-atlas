@@ -16,6 +16,13 @@ function parseCsv(text) {
 }
 function num(v) { return v === '' || v === null || v === undefined ? null : Number(v); }
 function assert(condition, message) { if (!condition) throw new Error(message); }
+function formalCountyName(geo) {
+  // The electoral-boundary transcription uses NAIROBI, while the Constitution
+  // First Schedule and KNBS statistical tables use the formal county name
+  // Nairobi City. Keep the geometry key untouched and normalize only display/
+  // source reconciliation here so all 1,450 ward matches remain stable.
+  return geo?.geo_code === 'KEN-C047' ? 'Nairobi City' : geo?.name;
+}
 
 const [areaRowsRaw, factRowsRaw, facilities, derivedArea, geographies] = await Promise.all([
   readText('data/geography/source/official-county-area-2019.csv').then(parseCsv),
@@ -37,12 +44,12 @@ const derivedByCode = new Map(derivedArea.results.map(r => [r.geo_code, r]));
 
 for (let i=0;i<47;i+=1) {
   const expected = String(i+1).padStart(3,'0');
-  const geo = countyGeos[i];
+  const geo = countyGeos[i], displayName=formalCountyName(geo);
   assert(String(geo.county_code).padStart(3,'0') === expected, `county order mismatch at ${expected}: ${geo.name}`);
   const a=areaByCode.get(geo.geo_code), f=factByCode.get(geo.geo_code), hf=facilityByCode.get(geo.geo_code);
   assert(a && f && hf, `missing place fact source for ${geo.geo_code}`);
-  assert(a.name === geo.name, `official area name mismatch ${geo.geo_code}: ${a.name} vs ${geo.name}`);
-  assert(f.name === geo.name, `place fact name mismatch ${geo.geo_code}: ${f.name} vs ${geo.name}`);
+  assert(a.name === displayName, `official area name mismatch ${geo.geo_code}: ${a.name} vs ${displayName}`);
+  assert(f.name === displayName, `place fact name mismatch ${geo.geo_code}: ${f.name} vs ${displayName}`);
 }
 
 const total = (field) => factRowsRaw.reduce((sum,r)=>sum+(num(r[field])||0),0);
@@ -61,7 +68,7 @@ const counties = countyGeos.map(geo => {
     county_number: String(geo.county_code).padStart(3,'0'),
     geo_code: geo.geo_code,
     geography_id: geo.geography_id,
-    name: geo.name,
+    name: formalCountyName(geo),
     land_area: {
       value: officialArea, unit: 'km²', period: '2019', status: 'official_direct',
       source: 'KNBS 2019 Kenya Population and Housing Census',
