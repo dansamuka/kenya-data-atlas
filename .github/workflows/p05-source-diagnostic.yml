@@ -1,0 +1,23 @@
+name: P05 source diagnostic
+
+on:
+  push:
+    branches:
+      - p05-breadth
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install extraction dependencies
+        run: pip install requests openpyxl pymupdf
+      - name: Inspect official source tables
+        run: python scripts/p05/diagnose-official-sources.py
