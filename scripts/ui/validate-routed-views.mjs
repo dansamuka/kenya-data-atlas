@@ -55,7 +55,8 @@ try{
   console.log('IA_CHOROPLETH_RESTORED_OK');
 
   assert(!countyJs.includes('fetch('),'integrated CountyIQ must use the shared Atlas loader, not an independent fetch stack');
-  assert(countyJs.includes("KDA.csv('data/sprint1/gcp-2020-2024.csv')")&&countyJs.includes("KDA.csv('data/sprint1/county-budget-fy2024-25.csv')")&&countyJs.includes("KDA.csv('data/sprint1/voters-2022.csv')"),'CountyIQ is not grounded in the three published County Core tables');
+  assert(countyJs.includes("const MART='data/countyiq/county-summary.json'")&&countyJs.includes('KDA.fetchJson(MART,{required:true})'),'CountyIQ is not grounded in the canonical analytical mart');
+  assert(!countyJs.includes('data/sprint1/')&&!countyJs.includes('KDA.csv('),'CountyIQ still directly joins Sprint 1 CSVs instead of the canonical mart');
   assert(!countyJs.includes('roadmap.json')&&!countyJs.includes('d3'),'CountyIQ still has a brittle roadmap/D3 dependency');
   assert(countyCss.includes('.countyiq-route')&&countyCss.includes('.ciq-metrics'),'CountyIQ route styling is incomplete');
   assert(countyRedirect.includes('index.html#/countyiq')&&!countyRedirect.includes('assets/countyiq.js'),'legacy CountyIQ page still boots the standalone runtime');
