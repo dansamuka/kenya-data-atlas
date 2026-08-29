@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import io
 import re
-import warnings
 import requests
 import urllib3
 from openpyxl import load_workbook
@@ -27,18 +26,33 @@ def get(url: str) -> bytes:
     return r.content
 
 
-def show_xlsx(label: str, content: bytes, needles: list[str]):
+def compact_row(row):
+    vals = []
+    for i, v in enumerate(row, 1):
+        if v is not None and str(v).strip() != "":
+            vals.append(f"C{i}={v}")
+    return " | ".join(vals)
+
+
+def target_xlsx(label: str, content: bytes, targets: list[str]):
     wb = load_workbook(io.BytesIO(content), data_only=True, read_only=True)
-    print(f"XLSX {label} sheets={wb.sheetnames}")
+    print(f"XLSX {label} sheets={len(wb.sheetnames)}")
     for ws in wb.worksheets:
         rows = list(ws.iter_rows(values_only=True))
+        hits = []
         for idx, row in enumerate(rows):
-            joined = " | ".join("" if v is None else str(v) for v in row)
-            if any(n.lower() in joined.lower() for n in needles):
-                print(f"MATCH {label} sheet={ws.title!r} row={idx+1} :: {joined[:1200]}")
-                for j in range(max(0, idx-3), min(len(rows), idx+12)):
-                    line = " | ".join("" if v is None else str(v) for v in rows[j])
-                    print(f"  R{j+1}: {line[:1600]}")
+            joined = " ".join("" if v is None else str(v) for v in row)
+            if any(t.lower() in joined.lower() for t in targets) or any(t.lower() in ws.title.lower() for t in targets):
+                hits.append(idx)
+        if not hits:
+            continue
+        print(f"TARGET_SHEET {label} title={ws.title!r} rows={ws.max_row} cols={ws.max_column} hit_rows={[x+1 for x in hits[:20]]}")
+        lo = max(0, min(hits) - 6)
+        hi = min(len(rows), max(hits) + 60)
+        for j in range(lo, hi):
+            line = compact_row(rows[j])
+            if line:
+                print(f"  R{j+1}: {line[:3000]}")
 
 
 def show_pdf(label: str, content: bytes, needles: list[str]):
@@ -53,10 +67,11 @@ def show_pdf(label: str, content: bytes, needles: list[str]):
 
 
 def main():
-    show_xlsx("housing_ch3", get(URLS["housing_ch3"]), ["Table 3.18", "Used Internet", "Internet", "Table 3.19", "Used a Computer"])
-    show_xlsx("housing_ch5", get(URLS["housing_ch5"]), ["Table 5.11", "Connected to Electricity", "main grid", "electricity"])
-    show_pdf("gcp", get(URLS["gcp"]), ["GCP by Economic Activity at Current Prices, 2024", "Annex I"])
-    show_pdf("agri", get(URLS["agri"]), ["Area and Production of Maize by County", "Annex 1"])
+    target_xlsx("housing_ch3", get(URLS["housing_ch3"]), ["Table 3.18", "Table 3.19", "Used Internet", "Used a Computer"])
+    target_xlsx("housing_ch5", get(URLS["housing_ch5"]), ["Table 5.11", "Connected to Electricity", "Main Grid", "electricity"])
+    # PDFs are already structurally confirmed; keep concise page checks so URLs remain exercised.
+    show_pdf("gcp", get(URLS["gcp"]), ["GCP by Economic Activity at Current Prices, 2024"])
+    show_pdf("agri", get(URLS["agri"]), ["Area and Production of Maize by County"])
     print("P05_SOURCE_DIAGNOSTIC_OK")
 
 
