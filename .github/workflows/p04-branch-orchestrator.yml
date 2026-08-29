@@ -1,0 +1,39 @@
+name: P04 branch orchestrator
+
+on:
+  push:
+    paths:
+      - '.github/workflows/p04-branch-orchestrator.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-p04:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p04-health-living-standards
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Apply P04 package
+        run: node scripts/p04/apply-social-outcomes.mjs
+      - name: Rebuild canonical products
+        run: npm run build:data
+      - name: Validate P04
+        run: npm run countyiq:p04:validate
+      - name: Run full repository tests
+        run: npm test
+      - name: Commit branch outputs
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m 'P04: activate county health and living standards'
+          git push origin HEAD:p04-health-living-standards
