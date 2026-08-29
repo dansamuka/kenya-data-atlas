@@ -122,6 +122,9 @@ js=replaceOnce(js,
 `const CODES={gcp:'IND-GCP-CURRENT',budget:'IND-COUNTY-BUDGET-TOTAL',expenditure:'IND-COUNTY-EXPENDITURE-TOTAL',absorption:'IND-COUNTY-BUDGET-ABSORPTION',development:'IND-COUNTY-DEVELOPMENT-ABSORPTION',voters:'IND-REGISTERED-VOTERS',poverty:'IND-POVERTY-RATE',stunting:'IND-STUNTING-RATE',immunisation:'IND-IMMUNIZATION-RATE',maternal:'IND-MATERNAL-HEALTH',facilities:'IND-HEALTH-FACILITY-COUNT'};`,
 'CountyIQ P04 codes');
 const renderAnchor=`  function render(code=currentCode){`;
+const socialStart='  function precisionText(m){';
+const oldSocialStart=js.indexOf(socialStart);
+if(oldSocialStart>=0){const oldRender=js.indexOf(renderAnchor,oldSocialStart);if(oldRender<0)throw new Error('P04 social renderer cleanup anchor missing');js=js.slice(0,oldSocialStart)+js.slice(oldRender);}
 const socialFns=[
   "  function precisionText(m){const u=m?.latest?.uncertainty||{};if(Number.isFinite(Number(u.standard_error)))return 'Source SE '+Number(u.standard_error).toLocaleString('en-KE',{maximumFractionDigits:2})+' pp';if(Number.isFinite(Number(u.sample_size)))return 'Reported table denominator n='+formatInt(u.sample_size);return 'Census inventory snapshot';}",
   "  function socialMetric(label,m,formatter){const o=m?.latest;if(!o)return '<article class=\"ciq-social-metric missing\"><small>'+esc(label)+'</small><strong>—</strong><span>Not published for this county</span></article>';const url=o.provenance?.source_url||'';return '<article class=\"ciq-social-metric\"><small>'+esc(label)+'</small><strong>'+esc(formatter(o.value))+'</strong><span>'+esc(o.period_label)+' · '+esc(precisionText(m))+'</span><em>'+(m?.ranking?.eligible?'Comparable rank available':'Ranking withheld')+'</em>'+(url?'<a href=\"'+esc(url)+'\" target=\"_blank\" rel=\"noopener\">Source ↗</a>':'')+'</article>';}",
