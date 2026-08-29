@@ -2,7 +2,7 @@ name: Generated native registries and CountyIQ mart
 
 on:
   push:
-    branches: [main]
+    branches: [main, p02-canonical-countyiq-mart]
     paths:
       - '.github/workflows/placeholder-taxonomy.yml'
       - 'data/indicators/seed/placeholder-taxonomy.json'
@@ -49,7 +49,7 @@ jobs:
         run: npm test
       - name: Commit generated native registries and mart
         run: |
-          if git diff --quiet -- data/indicators/registry data/countyiq/county-summary.json; then
+          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json)" ]]; then
             echo "No generated registry or CountyIQ mart changes."
             exit 0
           fi
