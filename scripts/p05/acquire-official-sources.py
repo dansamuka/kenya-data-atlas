@@ -57,16 +57,18 @@ def connectivity(a,b):
  if len(elec)!=47: raise RuntimeError(f'Electricity rows={len(elec)}')
  return {g:{'internet_use_pct':internet[g],'computer_use_pct':computer[g],'main_grid_electricity_pct':elec[g]} for g,_ in COUNTIES}
 def gcp(data):
- doc=pymupdf.open(stream=data,filetype='pdf'); out={}
+ doc=pymupdf.open(stream=data,filetype='pdf'); out={}; active=False
  for page in doc:
   text=page.get_text('text')
-  if 'Annexe I: GCP by Economic Activity at Current Prices, 2024' not in text: continue
+  if 'Annexe I: GCP by Economic Activity at Current Prices, 2024' in text: active=True
+  if not active: continue
   for t in page.find_tables().tables:
    for r in t.extract():
     if len(r)<22 or norm(r[1]) not in NAME: continue
     geo,name=NAME[norm(r[1])]; rec={'agriculture_gva_ksh_m':num(r[2]),'manufacturing_gva_ksh_m':num(r[4]),'gcp_ksh_m':num(r[21])}
     if any(v is None for v in rec.values()): raise RuntimeError(f'Incomplete GCP row {name}')
     rec['agriculture_share_pct']=round(rec['agriculture_gva_ksh_m']/rec['gcp_ksh_m']*100,2); rec['manufacturing_share_pct']=round(rec['manufacturing_gva_ksh_m']/rec['gcp_ksh_m']*100,2); out[geo]=rec
+  if len(out)==47: break
  if len(out)!=47: raise RuntimeError(f'GCP rows={len(out)} missing={[n for g,n in COUNTIES if g not in out]}')
  with open(ROOT/'data/sprint1/gcp-2020-2024.csv',encoding='utf-8') as f: old={r['geo_code']:float(r['2024']) for r in csv.DictReader(f)}
  bad=[(g,out[g]['gcp_ksh_m'],old.get(g)) for g,_ in COUNTIES if out[g]['gcp_ksh_m']!=old.get(g)]
