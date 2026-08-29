@@ -51,6 +51,10 @@ jobs:
             "  function renderSocial(row){const c=row.county;return [socialMetric('Overall poverty',metric(c,CODES.poverty),formatPct),socialMetric('Children under 5 stunted',metric(c,CODES.stunting),formatPct),socialMetric('Basic immunisation',metric(c,CODES.immunisation),formatPct),socialMetric('Skilled birth attendance',metric(c,CODES.maternal),formatPct),socialMetric('Facilities assessed',metric(c,CODES.facilities),formatInt)].join('');}"
           ].join('\n')+'\n\n'+renderAnchor;'''
           s=s[:start]+replacement+s[end:]
+          marker="const renderAnchor=`  function render(code=currentCode){`;\n"
+          cleanup="const socialStart='  function precisionText(m){';\nconst oldSocialStart=js.indexOf(socialStart);\nif(oldSocialStart>=0){const oldRender=js.indexOf(renderAnchor,oldSocialStart);if(oldRender<0)throw new Error('P04 social renderer cleanup anchor missing');js=js.slice(0,oldSocialStart)+js.slice(oldRender);}\n"
+          if 'const socialStart=' not in s:
+              s=s.replace(marker,marker+cleanup)
           anchor='// ---------------- catalogue: narrow, reviewed, published source slices'
           if "code:'count',name:'Count'" not in s:
               units="""// ---------------- units: generic non-person count for inventories\nconst units=readJson('data/indicators/seed/units.json');\nupsert(units,'code',{code:'count',name:'Count',symbol:'',dimension:'count',scale_factor:1,decimal_places:0});\nwriteJson('data/indicators/seed/units.json',units);\n\n"""
@@ -59,6 +63,7 @@ jobs:
           PY
           node --check scripts/p04/apply-social-outcomes.mjs
           node scripts/p04/apply-social-outcomes.mjs
+          node --check assets/countyiq-view.js
           npm run build:data
           npm run countyiq:p04:validate
           git config user.name github-actions[bot]
