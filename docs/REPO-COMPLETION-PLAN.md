@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P03 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P04 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -30,6 +30,7 @@ Already complete and not to be restarted without a regression/correction:
 - P00 CountyIQ runtime stabilization and source-backed sample fallback.
 - P01 shared registry loader, compact first-paint data product, lazy Geo Explorer/D3 path, deferred heavy registries and initial-load performance budget.
 - P02 canonical 47-county CountyIQ analytical mart with deterministic registry-derived build, provenance/eligibility metadata and mart-backed runtime.
+- P03 twelve-year county fiscal experience with common-period rankings, exact 1/3/5-year changes, absorption volatility, responsive history UI and explicit denominator withholding.
 
 The remaining work is therefore primarily **analytical integration, county data breadth, decision intelligence, action layers and public-launch hardening**.
 
@@ -77,25 +78,23 @@ The integrated CountyIQ route now loads the canonical mart through the shared At
 
 ## P03 — Twelve-year fiscal experience + denominator discipline
 
-**Status: next.**
+**Status: complete.**
 
-Use what is already strong before acquiring more data.
+P03 extended the canonical CountyIQ mart with a synchronized 47-county × 12-fiscal-year panel covering FY2013/14–FY2024/25 for total budget, total expenditure, overall budget absorption and development budget absorption. Every annual record retains canonical observation and provenance/source lineage.
 
-Implement:
+The release adds exact 1/3/5-year comparable changes, descriptive twelve-year absorption volatility, and rankings calculated only against all 47 counties in the same fiscal year. Budget/expenditure ranks are explicitly scale positions; absorption ranks are rate positions and are not causal performance scores.
 
-- FY2013/14–FY2024/25 county fiscal history.
-- total budget, expenditure, overall absorption, development absorption.
-- 1/3/5-year change where comparable.
-- volatility/stability presentation where analytically meaningful.
-- explicit population denominator registry/selection for any per-capita measure.
+P03 also publishes machine-readable denominator discipline: county population interpolation is prohibited, Kenya-level population cannot be inherited to counties, and per-capita fiscal measures remain withheld because the active canonical registry does not yet contain an explicitly compatible annual county population series across the full fiscal panel.
 
-**Important:** do not invent a 2024 county population denominator merely to show GCP per capita. Use only an explicit compatible official/projection series.
+Release evidence: the focused P03 validator passed 47 × 12 coverage, canonical traceability, common-period rankings, denominator discipline and responsive fiscal UI checks. The exact PR candidate then passed deterministic rebuild, committed-output drift, the full Atlas validation suite and the independent Shapely geometry audit. The merged generated mart subsequently deployed successfully to GitHub Pages.
 
-**Exit:** every county has the full 12-year fiscal display; common-period rankings only; denominator metadata visible.
+**Do not reopen:** do not introduce interpolated county denominators or browser-side Sprint fiscal joins; future per-capita measures require a separately activated compatible population series.
 
 ---
 
 ## P04 — Health + living-standards activation
+
+**Status: next.**
 
 This session should focus only on social/health source activation, because survey uncertainty and coverage rules need concentrated review.
 

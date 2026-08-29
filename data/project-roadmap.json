@@ -78,7 +78,7 @@
     {
       "id": "P03",
       "title": "County fiscal history and denominator discipline",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Surface the strongest existing historical county dataset and add only defensible population-adjusted measures.",
       "outputs": [
         "12-year fiscal trend per county",
@@ -99,7 +99,7 @@
     {
       "id": "P04",
       "title": "County health and living-standards ingestion",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Activate a coherent first social-outcomes package from already identified official sources.",
       "outputs": [
         "poverty/living-standard observations where available",
