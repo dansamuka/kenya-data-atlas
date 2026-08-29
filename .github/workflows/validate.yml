@@ -60,6 +60,7 @@ jobs:
             data/indicators/registry/series.csv \
             data/indicators/registry/observations.json \
             data/indicators/registry/observations.csv \
+            data/countyiq/county-summary.json \
             data/ui/initial-pulse.json
 
       - name: Validate geography, catalogue, indicators and sprint releases
