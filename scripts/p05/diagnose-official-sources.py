@@ -2,9 +2,13 @@ from __future__ import annotations
 
 import io
 import re
+import warnings
 import requests
+import urllib3
 from openpyxl import load_workbook
-import fitz
+import pymupdf
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 URLS = {
     "housing_ch3": "https://www.knbs.or.ke/wp-content/uploads/2025/04/Chapter-3-Household-Demographic-and-Economic-Characteristics.xlsx",
@@ -15,7 +19,9 @@ URLS = {
 
 
 def get(url: str) -> bytes:
-    r = requests.get(url, timeout=120, headers={"User-Agent": "Kenya-Data-Atlas/0.10 source-validation"})
+    # KNBS currently serves an incomplete public TLS chain to some Linux runners.
+    # This diagnostic reads only the explicitly pinned official knbs.or.ke URLs above.
+    r = requests.get(url, timeout=120, verify=False, headers={"User-Agent": "Kenya-Data-Atlas/0.10 source-validation"})
     r.raise_for_status()
     print(f"DOWNLOAD_OK {url} bytes={len(r.content)} content_type={r.headers.get('content-type')}")
     return r.content
@@ -36,7 +42,7 @@ def show_xlsx(label: str, content: bytes, needles: list[str]):
 
 
 def show_pdf(label: str, content: bytes, needles: list[str]):
-    doc = fitz.open(stream=content, filetype="pdf")
+    doc = pymupdf.open(stream=content, filetype="pdf")
     print(f"PDF {label} pages={doc.page_count}")
     for pno in range(doc.page_count):
         text = doc[pno].get_text("text")
