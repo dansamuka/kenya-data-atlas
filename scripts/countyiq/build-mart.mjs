@@ -106,6 +106,46 @@ function trendView(history){
   const last=numeric.at(-1), prev=numeric.at(-2), first=numeric[0];
   return {eligible:true,one_period_change:last.value-prev.value,medium_term_change:last.value-first.value,medium_term_years:null,national_matched_change:null,peer_matched_change:null,direction:'not_classified',volatility:null,break_in_series:false};
 }
+const FISCAL_CODES={budget:'IND-COUNTY-BUDGET-TOTAL',expenditure:'IND-COUNTY-EXPENDITURE-TOTAL',overall_absorption:'IND-COUNTY-BUDGET-ABSORPTION',development_absorption:'IND-COUNTY-DEVELOPMENT-ABSORPTION'};
+const EXPECTED_FISCAL_YEARS=Array.from({length:12},(_,i)=>{const y=2013+i;return `${y}/${String(y+1).slice(-2)}`;});
+function fiscalKey(o){
+  const label=String(o?.period_label||'');const match=label.match(/(\d{4})\s*\/\s*(\d{2,4})/);
+  if(match)return `${match[1]}/${match[2].slice(-2)}`;
+  const start=String(o?.period_start||'');const y=Number(start.slice(0,4));return Number.isFinite(y)&&y>0?`${y}/${String(y+1).slice(-2)}`:null;
+}
+function finiteValue(o){const x=Number(o?.value);return Number.isFinite(x)?x:null;}
+function stdev(values){const a=values.filter(Number.isFinite);if(a.length<2)return null;const mean=a.reduce((s,v)=>s+v,0)/a.length;return Number(Math.sqrt(a.reduce((s,v)=>s+(v-mean)**2,0)/a.length).toFixed(2));}
+function rankInPeriod(value,values){if(!Number.isFinite(value)||values.length!==47)return null;return 1+values.filter(v=>Number.isFinite(v)&&v>value).length;}
+function fiscalChange(history,field,lag,kind){
+  const last=history.at(-1),base=history.at(-(lag+1));if(!last||!base)return null;const current=last[field]?.value,prior=base[field]?.value;if(!Number.isFinite(current)||!Number.isFinite(prior))return null;
+  const raw=kind==='percent'?prior===0?null:((current/prior)-1)*100:current-prior;if(raw===null||!Number.isFinite(raw))return null;
+  return {lag_years:lag,from_period:base.fiscal_year,to_period:last.fiscal_year,value:Number(raw.toFixed(2)),unit:kind==='percent'?'percent':'percentage_points'};
+}
+function fiscalExperience(row,allRows){
+  const maps={};for(const [key,code] of Object.entries(FISCAL_CODES)){maps[key]=new Map((row.metrics[code]?.history||[]).map(o=>[fiscalKey(o),o]).filter(([k])=>k));}
+  const history=EXPECTED_FISCAL_YEARS.map(fy=>{
+    const found={};for(const key of Object.keys(FISCAL_CODES)){found[key]=maps[key].get(fy);if(!found[key])throw new Error(`${row.county.geo_code}: missing ${key} for fiscal year ${fy}`);}
+    const measure=key=>({value:finiteValue(found[key]),observation_id:found[key].observation_id,series_id:found[key].series_id,period_label:found[key].period_label,provenance:found[key].provenance});
+    return {fiscal_year:fy,period_start:found.budget.period_start,period_end:found.budget.period_end,budget:measure('budget'),expenditure:measure('expenditure'),overall_absorption:measure('overall_absorption'),development_absorption:measure('development_absorption'),rankings:{}};
+  });
+  for(const fyRow of history){for(const [key,code] of Object.entries(FISCAL_CODES)){
+    const peers=allRows.map(peer=>(peer.metrics[code]?.history||[]).find(o=>fiscalKey(o)===fyRow.fiscal_year)).map(finiteValue).filter(Number.isFinite);
+    if(peers.length!==47)throw new Error(`${fyRow.fiscal_year}/${key}: common-period county coverage ${peers.length}/47`);
+    const rate=key.includes('absorption');fyRow.rankings[key]={rank:rankInPeriod(fyRow[key].value,peers),eligible_count:47,period_key:fyRow.fiscal_year,common_period:true,interpretation:rate?'higher_rate_position':'scale_only'};
+  }}
+  const population=row.metrics['IND-POPULATION'];const availablePopulationPeriods=[...new Set((population?.history||[]).map(o=>String(o.period_label||o.period_start||'')).filter(Boolean))];
+  return {
+    period_start:history[0].fiscal_year,period_end:history.at(-1).fiscal_year,fiscal_year_count:history.length,
+    measures:Object.fromEntries(Object.entries(FISCAL_CODES).map(([k,v])=>[k,{indicator_code:v}])),history,
+    changes:{
+      budget:{one_year:fiscalChange(history,'budget',1,'percent'),three_year:fiscalChange(history,'budget',3,'percent'),five_year:fiscalChange(history,'budget',5,'percent')},
+      expenditure:{one_year:fiscalChange(history,'expenditure',1,'percent'),three_year:fiscalChange(history,'expenditure',3,'percent'),five_year:fiscalChange(history,'expenditure',5,'percent')},
+      overall_absorption:{one_year:fiscalChange(history,'overall_absorption',1,'points'),three_year:fiscalChange(history,'overall_absorption',3,'points'),five_year:fiscalChange(history,'overall_absorption',5,'points')},
+      development_absorption:{one_year:fiscalChange(history,'development_absorption',1,'points'),three_year:fiscalChange(history,'development_absorption',3,'points'),five_year:fiscalChange(history,'development_absorption',5,'points')}},
+    volatility:{period_count:history.length,overall_absorption_sd_pp:stdev(history.map(x=>x.overall_absorption.value)),development_absorption_sd_pp:stdev(history.map(x=>x.development_absorption.value)),interpretation:'Population standard deviation across the twelve published annual absorption rates; descriptive only.'},
+    denominators:{policy:'exact_or_explicitly_compatible_period_only',population:{indicator_code:'IND-POPULATION',compatible_annual_series:false,available_periods:availablePopulationPeriods,required_periods:EXPECTED_FISCAL_YEARS,interpolation_allowed:false,national_inheritance_allowed:false,reason:'No active canonical county population series provides an explicit compatible annual denominator for every fiscal year from FY2013/14 through FY2024/25.'},per_capita:{published:false,measures:[],reason:'Per-capita fiscal measures are withheld until a compatible official county population denominator series is activated.'}}
+  };
+}
 function generatedAt(observations,releases){
   const candidates=[...observations.map(o=>o.ingested_at),...releases.map(r=>r.ingested_at||r.discovered_at)].filter(v=>v&&/^\d{4}-\d{2}-\d{2}T/.test(v)).sort();
   return candidates.at(-1)||'2026-08-28T00:00:00.000Z';
@@ -182,16 +222,17 @@ export function buildMart(input){
       domains[id]={available_indicators:count,target_indicators:target,coverage_pct:Number(((count/target)*100).toFixed(1)),score:null,score_status:'not_published',strengths:[],weaknesses:[]};
     }
     const last=Object.values(metrics).map(m=>m.latest?.provenance?.ingested_at||m.latest?.period_end||m.latest?.period_start).filter(Boolean).sort().at(-1)||null;
+    const fiscal=fiscalExperience({county,metrics},rows);
     return {
       geography:{geography_id:county.geography_id,geo_code:county.geo_code,name:county.name,level:'county',county_code:county.county_code,boundary_version:county.boundary_version||'2012-01'},
-      metrics,domains,benchmarks:{national:{},peer_group:null},
+      metrics,fiscal,domains,benchmarks:{national:{},peer_group:null},
       coverage:{active_metric_count:Object.keys(metrics).length,target_metric_count:Object.values(TARGETS).reduce((a,b)=>a+b,0),domain_count_with_active_metrics:Object.values(domains).filter(d=>d.available_indicators>0).length,last_data_update:last,stale_metric_count:0,held_metric_count:0,planned_metric_count:0}
     };
   });
 
   return {
-    meta:{schema_version:'kda.countyiq.county-summary.v1',generated_at:generatedAt(observations,releases),atlas_data_version:atlasVersion,county_count:47,
-      source_registries:['data/geography/registry/geographies.json','data/indicators/registry/indicators.json','data/indicators/registry/series.json','data/indicators/registry/observations.json','data/indicators/registry/units.json','data/catalogue/registry/datasets.json','data/catalogue/registry/releases.json','data/catalogue/registry/sources.json','data/catalogue/registry/agencies.json'],methodology_version:'P02-v1'},
+    meta:{schema_version:'kda.countyiq.county-summary.v2',generated_at:generatedAt(observations,releases),atlas_data_version:atlasVersion,county_count:47,
+      source_registries:['data/geography/registry/geographies.json','data/indicators/registry/indicators.json','data/indicators/registry/series.json','data/indicators/registry/observations.json','data/indicators/registry/units.json','data/catalogue/registry/datasets.json','data/catalogue/registry/releases.json','data/catalogue/registry/sources.json','data/catalogue/registry/agencies.json'],methodology_version:'P03-v1'},
     counties:outputCounties
   };
 }
