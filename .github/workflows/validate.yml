@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate:
@@ -17,7 +17,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -35,44 +34,6 @@ jobs:
         run: |
           npm ci
           python -m pip install --disable-pip-version-check shapely
-
-      - name: Materialize P04 source package
-        if: github.event_name == 'pull_request' && github.head_ref == 'p04-health-living-standards'
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('scripts/p04/apply-social-outcomes.mjs')
-          s=p.read_text()
-          start=s.index('const socialFns=')
-          end=s.index('\njs=replaceOnce(js,renderAnchor',start)
-          replacement=r'''const socialFns=[
-            "  function precisionText(m){const u=m?.latest?.uncertainty||{};if(Number.isFinite(Number(u.standard_error)))return 'Source SE '+Number(u.standard_error).toLocaleString('en-KE',{maximumFractionDigits:2})+' pp';if(Number.isFinite(Number(u.sample_size)))return 'Reported table denominator n='+formatInt(u.sample_size);return 'Census inventory snapshot';}",
-            "  function socialMetric(label,m,formatter){const o=m?.latest;if(!o)return '<article class=\"ciq-social-metric missing\"><small>'+esc(label)+'</small><strong>—</strong><span>Not published for this county</span></article>';const url=o.provenance?.source_url||'';return '<article class=\"ciq-social-metric\"><small>'+esc(label)+'</small><strong>'+esc(formatter(o.value))+'</strong><span>'+esc(o.period_label)+' · '+esc(precisionText(m))+'</span><em>'+(m?.ranking?.eligible?'Comparable rank available':'Ranking withheld')+'</em>'+(url?'<a href=\"'+esc(url)+'\" target=\"_blank\" rel=\"noopener\">Source ↗</a>':'')+'</article>';}",
-            "  function renderSocial(row){const c=row.county;return [socialMetric('Overall poverty',metric(c,CODES.poverty),formatPct),socialMetric('Children under 5 stunted',metric(c,CODES.stunting),formatPct),socialMetric('Basic immunisation',metric(c,CODES.immunisation),formatPct),socialMetric('Skilled birth attendance',metric(c,CODES.maternal),formatPct),socialMetric('Facilities assessed',metric(c,CODES.facilities),formatInt)].join('');}"
-          ].join('\n')+'\n\n'+renderAnchor;'''
-          s=s[:start]+replacement+s[end:]
-          marker="const renderAnchor=`  function render(code=currentCode){`;\n"
-          cleanup="const socialStart='  function precisionText(m){';\nconst oldSocialStart=js.indexOf(socialStart);\nif(oldSocialStart>=0){const oldRender=js.indexOf(renderAnchor,oldSocialStart);if(oldRender<0)throw new Error('P04 social renderer cleanup anchor missing');js=js.slice(0,oldSocialStart)+js.slice(oldRender);}\n"
-          if 'const socialStart=' not in s:
-              s=s.replace(marker,marker+cleanup)
-          anchor='// ---------------- catalogue: narrow, reviewed, published source slices'
-          if "code:'count',name:'Count'" not in s:
-              units="""// ---------------- units: generic non-person count for inventories\nconst units=readJson('data/indicators/seed/units.json');\nupsert(units,'code',{code:'count',name:'Count',symbol:'',dimension:'count',scale_factor:1,decimal_places:0});\nwriteJson('data/indicators/seed/units.json',units);\n\n"""
-              s=s.replace(anchor,units+anchor)
-          p.write_text(s)
-          PY
-          node --check scripts/p04/apply-social-outcomes.mjs
-          node scripts/p04/apply-social-outcomes.mjs
-          node --check assets/countyiq-view.js
-          npm run build:data
-          npm run countyiq:p04:validate
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m 'P04: activate county health and living standards'
-            git push origin HEAD:p04-health-living-standards
-          fi
 
       - name: Rebuild all published data products
         run: npm run build:data
