@@ -1,0 +1,81 @@
+name: P09-P11 validated publication
+
+on:
+  push:
+    branches:
+      - p091011-publishable-20260829
+    paths:
+      - '.github/workflows/p091011-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout release branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Reconstruct and verify validated source patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .release-p091011/chunk-* > /tmp/p091011.patch.gz.b64
+          echo '6b87e15904d99e64310d452656e00cc0762729f739398c304fbf380e76add5e0  /tmp/p091011.patch.gz.b64' | sha256sum --check --strict
+          base64 --decode /tmp/p091011.patch.gz.b64 > /tmp/p091011.patch.gz
+          gunzip -c /tmp/p091011.patch.gz > /tmp/p091011.patch
+          echo '52512985a3781911310fbe64dc396b0d0d65880fecd0132c428b76d01853faaa  /tmp/p091011.patch' | sha256sum --check --strict
+
+          # Remove the failed earlier transport before applying the real release.
+          rm -rf .p0x-release
+          rm -f .github/workflows/p0x-release-bootstrap.yml
+
+          git apply --check /tmp/p091011.patch
+          git apply /tmp/p091011.patch
+
+          # One-shot transport/workflow must not survive the release commit.
+          rm -rf .release-p091011
+          rm -f .github/workflows/p091011-release.yml
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install geometry audit dependency
+        run: python -m pip install --disable-pip-version-check shapely
+
+      - name: Rebuild canonical published data
+        run: npm run build:data
+
+      - name: Run full repository validation
+        run: npm test
+
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+
+      - name: Commit validated P09-P11 release
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'P09-P11: publish robust snapshot, fiscal delivery and administration scorecards'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
