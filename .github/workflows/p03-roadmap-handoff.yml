@@ -1,0 +1,89 @@
+name: P03 roadmap handoff
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p03-roadmap-handoff.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Mark P03 complete and advance to P04
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          roadmap_path = Path('data/project-roadmap.json')
+          roadmap = json.loads(roadmap_path.read_text())
+          phases = {p['id']: p for p in roadmap['phases']}
+          assert phases['P03']['status'] == 'next'
+          assert phases['P04']['status'] == 'planned'
+          phases['P03']['status'] = 'complete'
+          phases['P04']['status'] = 'next'
+          roadmap_path.write_text(json.dumps(roadmap, indent=2) + '\n')
+
+          docs_path = Path('docs/REPO-COMPLETION-PLAN.md')
+          docs = docs_path.read_text()
+          assert '> Complete P03 from `docs/REPO-COMPLETION-PLAN.md`.' in docs
+          docs = docs.replace('> Complete P03 from `docs/REPO-COMPLETION-PLAN.md`.', '> Complete P04 from `docs/REPO-COMPLETION-PLAN.md`.', 1)
+
+          baseline = '- P02 canonical 47-county CountyIQ analytical mart with deterministic registry-derived build, provenance/eligibility metadata and mart-backed runtime.'
+          assert baseline in docs
+          docs = docs.replace(baseline, baseline + '\n- P03 twelve-year county fiscal experience with common-period rankings, exact 1/3/5-year changes, absorption volatility, responsive history UI and explicit denominator withholding.', 1)
+
+          start = docs.index('## P03 — Twelve-year fiscal experience + denominator discipline')
+          end = docs.index('\n---\n\n## P04 — Health + living-standards activation', start)
+          p03 = '\n'.join([
+              '## P03 — Twelve-year fiscal experience + denominator discipline',
+              '',
+              '**Status: complete.**',
+              '',
+              'P03 extended the canonical CountyIQ mart with a synchronized 47-county × 12-fiscal-year panel covering FY2013/14–FY2024/25 for total budget, total expenditure, overall budget absorption and development budget absorption. Every annual record retains canonical observation and provenance/source lineage.',
+              '',
+              'The release adds exact 1/3/5-year comparable changes, descriptive twelve-year absorption volatility, and rankings calculated only against all 47 counties in the same fiscal year. Budget/expenditure ranks are explicitly scale positions; absorption ranks are rate positions and are not causal performance scores.',
+              '',
+              'P03 also publishes machine-readable denominator discipline: county population interpolation is prohibited, Kenya-level population cannot be inherited to counties, and per-capita fiscal measures remain withheld because the active canonical registry does not yet contain an explicitly compatible annual county population series across the full fiscal panel.',
+              '',
+              'Release evidence: the focused P03 validator passed 47 × 12 coverage, canonical traceability, common-period rankings, denominator discipline and responsive fiscal UI checks. The exact PR candidate then passed deterministic rebuild, committed-output drift, the full Atlas validation suite and the independent Shapely geometry audit. The merged generated mart subsequently deployed successfully to GitHub Pages.',
+              '',
+              '**Do not reopen:** do not introduce interpolated county denominators or browser-side Sprint fiscal joins; future per-capita measures require a separately activated compatible population series.',
+              ''
+          ])
+          docs = docs[:start] + p03 + docs[end:]
+
+          p04_header = '## P04 — Health + living-standards activation\n\n'
+          assert p04_header in docs
+          docs = docs.replace(p04_header, p04_header + '**Status: next.**\n\n', 1)
+          docs_path.write_text(docs)
+
+          validator_path = Path('scripts/project/validate-roadmap.mjs')
+          validator = validator_path.read_text()
+          replacements = [
+              ("assert(next.length===1&&next[0].id==='P03','exactly P03 must be the next phase after P02');", "assert(next.length===1&&next[0].id==='P04','exactly P04 must be the next phase after P03');"),
+              ("assert(roadmap.phases[2].status==='complete','P02 must be complete');", "assert(roadmap.phases[2].status==='complete','P02 must be complete');\n  assert(roadmap.phases[3].status==='complete','P03 must be complete');"),
+              ("for(const token of ['## P00','## P01','## P02','## P03','## P17','Session completion protocol','Complete P03'])", "for(const token of ['## P00','## P01','## P02','## P03','## P04','## P17','Session completion protocol','Complete P04'])"),
+              ("console.log('PROJECT_P02_COMPLETE_OK');\n  console.log('PROJECT_NEXT_PHASE_P03_OK');", "console.log('PROJECT_P03_COMPLETE_OK');\n  console.log('PROJECT_NEXT_PHASE_P04_OK');")
+          ]
+          for old, new in replacements:
+              assert old in validator, old
+              validator = validator.replace(old, new, 1)
+          validator_path.write_text(validator)
+          PY
+
+          node scripts/project/validate-roadmap.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/p03-roadmap-handoff.yml
+          git add data/project-roadmap.json docs/REPO-COMPLETION-PLAN.md scripts/project/validate-roadmap.mjs
+          git commit -m "docs: mark P03 complete and advance to P04"
+          git push origin main
