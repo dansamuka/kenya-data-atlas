@@ -25,14 +25,12 @@ def counties():
  if len(rows)!=47: raise RuntimeError(f'Expected 47 registry counties, got {len(rows)}')
  return rows
 COUNTIES=counties(); NAME={norm(n):(g,n) for g,n in COUNTIES}
-# Exact source-label aliases only; no fuzzy county matching.
 for alias,target in {'NAIROBICITY':'Nairobi'}.items():
  hit=next((x for x in COUNTIES if x[1]==target),None)
  if not hit: raise RuntimeError(f'Alias target missing: {target}')
  NAME[alias]=hit
 
 def get(url):
- # KNBS currently presents an incomplete TLS chain to some Linux runners; URLs are pinned official HTTPS endpoints.
  r=requests.get(url,timeout=120,verify=False,headers={'User-Agent':'Kenya-Data-Atlas/0.10 P05-acquisition'}); r.raise_for_status(); return r.content
 def put(out,label,raw):
  key=norm(label)
@@ -76,8 +74,11 @@ def gcp(data):
  return out
 def maize(data):
  doc=pymupdf.open(stream=data,filetype='pdf'); out={}
+ pages=[]
  for page in doc:
-  if 'Area and Production of Maize by County' not in page.get_text('text'): continue
+  text=page.get_text('text')
+  if 'Area and Production of Maize by County' not in text: continue
+  pages.append((page,text))
   for t in page.find_tables().tables:
    names=list(t.header.names or []); rows=t.extract(); area=next((r for r in rows if len(r)>1 and str(r[0]).strip()=='2023' and 'Area' in str(r[1])),None)
    if area is None: continue
@@ -89,10 +90,13 @@ def maize(data):
     geo,_=NAME[key]; a,p=num(area[c]),num(prod[c])
     if a is not None and p is not None: out[geo]={'maize_area_ha':a,'maize_production_tonnes':p,'maize_yield_t_per_ha':round(p/a,3) if a else None}
  if len(out)!=47:
-  print('AGRI_HEADER_DIAGNOSTIC')
-  for page in doc:
-   if 'Area and Production of Maize by County' in page.get_text('text'):
-    for t in page.find_tables().tables: print(t.header.names)
+  print('AGRI_TEXT_DIAGNOSTIC')
+  for page,text in pages:
+   print(f'PAGE {page.number+1}')
+   for line in [x.strip() for x in text.splitlines() if x.strip()][:180]: print('TXT',line)
+   for t in page.find_tables().tables:
+    print('HEADER',t.header.names)
+    for row in t.extract()[:4]: print('ROW',row)
   raise RuntimeError(f'Maize rows={len(out)} missing={[n for g,n in COUNTIES if g not in out]}')
  area=round(sum(x['maize_area_ha'] for x in out.values())); prod=round(sum(x['maize_production_tonnes'] for x in out.values()))
  if (area,prod)!=(2430013,4285206): raise RuntimeError(f'Maize reconciliation failed area={area} prod={prod}')
