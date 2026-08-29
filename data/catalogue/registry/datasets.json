@@ -454,6 +454,66 @@
     "known_limitations": "Dated August–September 2023 census assessment snapshot, not a live 2026 KMHFR/NHFR registry total. Raw counts are not population-adjusted and are not ranked in P04."
   },
   {
+    "dataset_id": "ed216a33-ec17-566f-a9f7-177a18a534f8",
+    "dataset_code": "DS-MOE-TSC-COUNTY-2023",
+    "source_id": "71fe9667-1348-56df-8582-2ce4831b53d2",
+    "title": "Presidential Working Party on Education Reform 2023 — TSC County Establishments",
+    "description": "County public primary and secondary school establishments and TSC teacher establishments from Appendices 4.5 and 4.6.",
+    "topic": "Education",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "one_off",
+    "publication_status": "published",
+    "methodology_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+    "known_limitations": "Public-school and TSC establishment counts only; not all public/private schools or all education workers."
+  },
+  {
+    "dataset_id": "a535c54b-0af9-5f01-b54e-6cc11a2c954c",
+    "dataset_code": "DS-KNBS-GCP-STRUCTURE-2024",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Gross County Product 2025 release — 2024 Economic Activity",
+    "description": "County agriculture and manufacturing gross value added at current prices from the 2024 GCP economic-activity annex.",
+    "topic": "Economy",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2025/12/2025-Gross-County-Product.pdf",
+    "known_limitations": "Current-price sector values and shares describe economic structure, not welfare or county-government performance."
+  },
+  {
+    "dataset_id": "ae40640c-382a-5196-b600-097c592dc82f",
+    "dataset_code": "DS-KNBS-MAIZE-2023",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "National Agriculture Production Report 2024 — 2023 Maize by County",
+    "description": "County maize area and production for 2023 from Annex 1; Atlas yield is transparent arithmetic from the same source row.",
+    "topic": "Agriculture",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf",
+    "known_limitations": "2023 crop production snapshot. Yield is an Atlas-derived ratio of reported production tonnes to reported area hectares."
+  },
+  {
+    "dataset_id": "e094b83f-9252-543f-9c14-b4bba352f649",
+    "dataset_code": "DS-KNBS-KHS-CONNECTIVITY-2023-24",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2023/24 Kenya Housing Survey — County Connectivity and Main-grid Electricity",
+    "description": "County internet use, computer use and household connection to main-grid electricity from the 2023/24 Kenya Housing Survey data tables.",
+    "topic": "Infrastructure",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "periodic",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
+    "known_limitations": "Survey reference period 2023/24. Internet/computer measures are for individuals aged 3+; main-grid electricity is a household measure and must not be conflated with the individual denominator."
+  },
+  {
     "dataset_id": "08535fcc-2e2a-5c44-8f1a-1e136b8b9f32",
     "dataset_code": "DS-KNBS-CENSUS-2009-COUNTY-S1",
     "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",

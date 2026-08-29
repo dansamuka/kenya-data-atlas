@@ -1,0 +1,23 @@
+{
+  "sources": {
+    "housing_ch3": "https://www.knbs.or.ke/wp-content/uploads/2025/04/Chapter-3-Household-Demographic-and-Economic-Characteristics.xlsx",
+    "housing_ch5": "https://www.knbs.or.ke/wp-content/uploads/2025/04/Chapter-5-Housing-Characteristics-Amenities-and-Adequacy.xlsx",
+    "gcp": "https://www.knbs.or.ke/wp-content/uploads/2025/12/2025-Gross-County-Product.pdf",
+    "agri": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf"
+  },
+  "county_count": 47,
+  "reconciliations": {
+    "education": {
+      "public_primary_schools": 23274,
+      "primary_classroom_teachers": 183929,
+      "public_secondary_schools": 9246,
+      "secondary_teachers": 108569
+    },
+    "maize_2023": {
+      "area_ha": 2430013,
+      "production_tonnes": 4285206
+    },
+    "gcp_2024": "reconciled exactly to data/sprint1/gcp-2020-2024.csv",
+    "connectivity": "47 county rows per metric"
+  }
+}

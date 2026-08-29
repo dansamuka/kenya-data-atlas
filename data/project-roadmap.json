@@ -121,7 +121,7 @@
     {
       "id": "P05",
       "title": "County education, economy, agriculture and infrastructure breadth",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Close the largest domain gaps using only county-comparable primary data.",
       "outputs": [
         "education package",
@@ -142,7 +142,7 @@
     {
       "id": "P06",
       "title": "Peer groups, percentiles and trend intelligence",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Make county comparison structurally fair and time-aware before any overall index is published.",
       "outputs": [
         "versioned peer-group definition",

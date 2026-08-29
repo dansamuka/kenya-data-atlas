@@ -1,0 +1,17 @@
+/* CountyIQ P05 — county education, economy, agriculture and connectivity breadth */
+.ciq-p05-card{grid-column:1/-1}
+.ciq-p05-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.85rem;margin-top:.35rem}
+.ciq-p05-group{border:1px solid var(--line,#dfe5e1);border-radius:16px;padding:1rem;background:var(--surface,#fff);min-width:0}
+.ciq-p05-group>header{display:flex;align-items:baseline;justify-content:space-between;gap:.65rem;margin-bottom:.75rem;padding-bottom:.65rem;border-bottom:1px solid var(--line,#e5e9e7)}
+.ciq-p05-group>header h3{font-size:1rem;margin:0;color:var(--ink,#15332c)}
+.ciq-p05-group>header span{font-size:.72rem;color:var(--muted,#66756f);white-space:nowrap}
+.ciq-p05-metric{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.12rem .6rem;padding:.55rem 0;border-bottom:1px solid color-mix(in srgb,var(--line,#dfe5e1) 70%,transparent)}
+.ciq-p05-metric:last-child{border-bottom:0;padding-bottom:0}
+.ciq-p05-metric small{grid-column:1;color:var(--muted,#66756f);font-size:.76rem;line-height:1.25}
+.ciq-p05-metric strong{grid-column:2;grid-row:1/3;align-self:center;font-size:1.02rem;color:var(--ink,#15332c);text-align:right}
+.ciq-p05-metric span{grid-column:1;font-size:.68rem;color:var(--muted,#66756f)}
+.ciq-p05-metric a{grid-column:1;font-size:.68rem;width:max-content;color:var(--green,#156b52);text-decoration:none}
+.ciq-p05-metric a:hover,.ciq-p05-metric a:focus{text-decoration:underline}
+.ciq-p05-note{margin:.85rem 0 0;font-size:.76rem;line-height:1.45;color:var(--muted,#66756f)}
+@media(max-width:980px){.ciq-p05-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ciq-p05-grid{grid-template-columns:1fr}.ciq-p05-group{padding:.85rem}.ciq-p05-metric{padding:.48rem 0}}
