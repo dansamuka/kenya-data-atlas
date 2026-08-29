@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import io
-import re
 import requests
 import urllib3
 from openpyxl import load_workbook
@@ -60,11 +59,15 @@ def diagnose_agri(content: bytes):
         text = doc[pno].get_text("text")
         if "Area and Production of Maize by County, 2019-2023" not in text:
             continue
+        print(f"AGRI_PAGE_TEXT page={pno+1}")
+        for line in [x.strip() for x in text.splitlines() if x.strip()][:120]:
+            print(f"  TXT: {line}")
         finder = doc[pno].find_tables()
         print(f"AGRI_TABLE_PAGE page={pno+1} tables={len(finder.tables)}")
         for ti, table in enumerate(finder.tables):
             rows = table.extract()
             print(f"AGRI_TABLE idx={ti} rows={len(rows)} cols={max((len(r) for r in rows), default=0)}")
+            print(f"AGRI_HEADER idx={ti}: {table.header.names}")
             for ri, row in enumerate(rows[:8]):
                 print(f"  A{ti}R{ri}: {row}")
 
