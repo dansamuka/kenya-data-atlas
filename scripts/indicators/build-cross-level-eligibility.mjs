@@ -2,6 +2,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { INDICATOR_POLICY_VERSION, crossLevelPolicyForSeries } from '../policy/indicator-policy.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = async p => JSON.parse(await readFile(path.join(root, p), 'utf8'));
@@ -19,29 +20,12 @@ const geoById = new Map(geography.map(g => [g.geography_id, g]));
 const obsCount = new Map();
 for (const o of observations) obsCount.set(o.series_id, (obsCount.get(o.series_id) || 0) + 1);
 
-const NORMALIZED_TRANSFORM = /(^|[_\s-])(rate|share|ratio|percent|percentage|per[_\s-]?(?:capita|person)|density|index)(?:$|[_\s-])/i;
-const NORMALIZED_DIMENSIONS = new Set(['ratio', 'rate', 'index']);
-
-function transformationIsNormalized(seriesRow) {
-  return NORMALIZED_TRANSFORM.test([seriesRow.transformation, seriesRow.aggregation].filter(Boolean).join(' '));
-}
-
 function classifySeries(seriesRow) {
   const indicator = indicatorById.get(seriesRow.indicator_id);
   if (!indicator) throw new Error(`Series ${seriesRow.series_code || seriesRow.series_id} references missing indicator ${seriesRow.indicator_id}`);
   const unit = unitById.get(seriesRow.unit_id || indicator.unit_id);
   const geo = geoById.get(seriesRow.geography_id);
-  const normalizedByUnit = NORMALIZED_DIMENSIONS.has(unit?.dimension);
-  const normalizedByTransform = transformationIsNormalized(seriesRow);
-  const areaException = indicator.indicator_code === 'IND-LAND-AREA';
-  const eligible = areaException || normalizedByUnit || normalizedByTransform;
-  const ruleBasis = areaException
-    ? 'physical-area exception'
-    : normalizedByUnit
-      ? `unit.dimension=${unit.dimension}`
-      : normalizedByTransform
-        ? `series transformation=${seriesRow.transformation || seriesRow.aggregation}`
-        : 'raw count/currency/other total — same-level only';
+  const policy = crossLevelPolicyForSeries(seriesRow, indicator, unit);
 
   return {
     series_code: seriesRow.series_code,
@@ -56,8 +40,8 @@ function classifySeries(seriesRow) {
     unit_dimension: unit?.dimension || '',
     transformation: seriesRow.transformation || '',
     aggregation: seriesRow.aggregation || '',
-    cross_level_eligible: eligible,
-    rule_basis: ruleBasis
+    cross_level_eligible: policy.eligible,
+    rule_basis: policy.rule_basis
   };
 }
 
@@ -90,11 +74,12 @@ const indicatorRows = [...byIndicator.values()].map(own => ({
 })).sort((a, b) => a.name.localeCompare(b.name));
 
 await writeFile(path.join(root, 'data/indicators/registry/cross-level-eligibility.json'), JSON.stringify({
-  schema_version: '2.0.0',
+  schema_version: '2.1.0',
+  policy_version: INDICATOR_POLICY_VERSION,
   generated_from_registry: true,
   granularity: 'series',
-  rule: 'Cross-level comparison is decided for the concrete selected series. Unit dimension ratio/rate/index or that series own rate/share/ratio/percent/per-capita/per-person/density/index transformation is eligible. IND-LAND-AREA is the sole physical-area exception. Raw counts and currency totals remain same-level only; sibling transformations never promote them.',
+  rule: 'Cross-level comparison is decided for the concrete selected series by the canonical P12 indicator-policy layer. Ratio/rate/index units or the selected series own rate/share/ratio/percent/per-capita/per-person/density/index transformation are eligible. IND-LAND-AREA is the sole physical-area exception. Raw counts and currency totals remain same-level only; sibling transformations never promote them.',
   series: seriesRows,
   indicators: indicatorRows
 }, null, 2) + '\n');
-console.log(`Cross-level eligibility derived for ${seriesRows.length} published series; ${seriesRows.filter(r => r.cross_level_eligible).length} eligible in principle.`);
+console.log(`Cross-level eligibility derived for ${seriesRows.length} published series; ${seriesRows.filter(r => r.cross_level_eligible).length} eligible in principle; policy=${INDICATOR_POLICY_VERSION}.`);
