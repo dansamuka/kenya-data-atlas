@@ -1,0 +1,34 @@
+name: P05 acquire official sources
+
+on:
+  push:
+    branches:
+      - p05-breadth
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  acquire:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install extraction dependencies
+        run: pip install requests openpyxl pymupdf
+      - name: Acquire and validate P05 snapshots
+        run: python scripts/p05/acquire-official-sources.py
+      - name: Commit validated source snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p05/source
+          git diff --cached --quiet && exit 0
+          git commit -m "data(p05): materialize validated county breadth sources"
+          git push origin HEAD:p05-breadth
