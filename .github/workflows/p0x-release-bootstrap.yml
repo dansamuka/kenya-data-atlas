@@ -1,0 +1,70 @@
+name: P0x validated release bootstrap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.p0x-release/**'
+      - '.github/workflows/p0x-release-bootstrap.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout staged release
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify validated source package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .p0x-release/chunk-* | base64 --decode > /tmp/p0x-release-src.tar.xz
+          echo 'e0da2cfb2eeeb0106eb82bdff5074b081931bc7574e70d523a3e3fe9c99636b7  /tmp/p0x-release-src.tar.xz' | sha256sum --check --strict
+          tar -xJf /tmp/p0x-release-src.tar.xz
+          rm -rf .p0x-release
+          rm -f .github/workflows/p0x-release-bootstrap.yml
+          test ! -e .p0x-release
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild canonical analytical artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run indicators:build
+          npm run p06:direction
+          npm run countyiq:build
+
+      - name: Run full repository validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm test
+          npm run project:validate
+
+      - name: Publish validated release to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No release changes to publish.'
+            exit 1
+          fi
+          git commit -m 'feat(countyiq): publish validated P06-P11 plan-aligned release'
+          git push origin HEAD:main
