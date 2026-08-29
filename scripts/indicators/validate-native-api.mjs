@@ -42,7 +42,7 @@ for (const i of indicators) {
   assert(Array.isArray(i.applies_to_levels), `${i.indicator_code}: applies_to_levels is not an array in native API`);
 }
 assert(indicatorByCode.get('IND-POP-2009')?.lifecycle_status === 'active', 'native API missing active IND-POP-2009 profile slot');
-assert(indicatorByCode.get('IND-HEALTH-FACILITY-COUNT')?.lifecycle_status === 'sourced', 'native API missing sourced health-facility placeholder');
+assert(indicatorByCode.get('IND-HEALTH-FACILITY-COUNT')?.lifecycle_status === 'active', 'native API missing active P04 health-facility indicator');
 assert(indicatorByCode.get('IND-MOBILE-MONEY-VOLUME')?.lifecycle_status === 'planned', 'native API missing planned national mobile-money slot');
 
 const requiredDatasets = [

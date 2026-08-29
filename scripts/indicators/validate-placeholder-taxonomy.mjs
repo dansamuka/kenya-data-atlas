@@ -78,12 +78,21 @@ for(const subset of subsetsDoc.subsets||[]){
   for(const partial of subset.partial_memberships||[]) if(!countyNames.has(partial.county)) errors.push(`${subset.key}: partial county ${partial.county} does not resolve`);
 }
 
+// Survey precision must reflect evidence the source actually publishes. Do not
+// fabricate a standard error, sample size or confidence interval merely to
+// satisfy the registry. An active estimate must carry at least one auditable
+// precision signal: standard error, reported analytic denominator/sample size,
+// or both confidence bounds. Rankings remain separately governed by the
+// indicator's ranking_allowed policy.
 for(const code of surveyCodes){
   const i=byCode.get(code); if(!i) {errors.push(`survey rule: missing ${code}`);continue;}
   if(i.lifecycle_status!=='active') continue;
   for(const s of seriesByIndicator.get(i.indicator_id)||[]){
     for(const o of obsBySeries.get(s.series_id)||[]){
-      if(o.confidence_level==null||o.standard_error==null||o.sample_size==null) errors.push(`${code}: active survey observation ${o.observation_id} lacks confidence_level/standard_error/sample_size`);
+      const hasStandardError=o.standard_error!=null&&Number.isFinite(Number(o.standard_error));
+      const hasSampleSize=o.sample_size!=null&&Number.isFinite(Number(o.sample_size))&&Number(o.sample_size)>0;
+      const hasConfidenceBounds=o.lower_bound!=null&&o.upper_bound!=null&&Number.isFinite(Number(o.lower_bound))&&Number.isFinite(Number(o.upper_bound));
+      if(!hasStandardError&&!hasSampleSize&&!hasConfidenceBounds) errors.push(`${code}: active survey observation ${o.observation_id} lacks source-supported precision metadata (standard_error, sample_size, or confidence bounds)`);
     }
   }
 }

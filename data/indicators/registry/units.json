@@ -110,6 +110,16 @@
     "currency_code": ""
   },
   {
+    "unit_id": "2b7566ee-fd7f-510a-90da-d0b4f60268c7",
+    "code": "count",
+    "name": "Count",
+    "symbol": "",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  {
     "unit_id": "301fb81d-4436-5309-8fc5-547d222b8ffe",
     "code": "kes_million",
     "name": "Kenya Shillings, million",
@@ -118,16 +128,6 @@
     "scale_factor": 1000000,
     "decimal_places": 2,
     "currency_code": "KES"
-  },
-  {
-    "unit_id": "2b7566ee-fd7f-510a-90da-d0b4f60268c7",
-    "code": "count",
-    "name": "Count",
-    "symbol": "count",
-    "dimension": "count",
-    "scale_factor": 1,
-    "decimal_places": 0,
-    "currency_code": ""
   },
   {
     "unit_id": "6590aac1-b204-58cd-a9f0-8fab3fed5cdc",
