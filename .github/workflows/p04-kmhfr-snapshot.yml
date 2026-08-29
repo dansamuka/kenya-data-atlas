@@ -1,0 +1,82 @@
+name: P04 KMHFR snapshot
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/p04-kmhfr-snapshot.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p04-health-living-standards
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and aggregate official KMHFR facilities
+        run: |
+          python - <<'PY'
+          import json, urllib.request, urllib.parse, time
+          from collections import Counter
+          base='https://api.kmhfr.health.go.ke/api/public/facilities/'
+          url=base+'?page_size=1000'
+          counts=Counter(); total=0; pages=0; seen=set()
+          sample_keys=[]
+          while url:
+              if url in seen: raise RuntimeError('KMHFR pagination loop')
+              seen.add(url)
+              req=urllib.request.Request(url,headers={'User-Agent':'Kenya-Data-Atlas/1.0','Accept':'application/json'})
+              with urllib.request.urlopen(req,timeout=60) as r:
+                  payload=json.load(r)
+              pages+=1
+              if isinstance(payload,list): rows=payload; nxt=None
+              else:
+                  rows=payload.get('results') or payload.get('data') or payload.get('facilities') or []
+                  nxt=payload.get('next')
+              if rows and not sample_keys: sample_keys=sorted(rows[0].keys())
+              for row in rows:
+                  county=row.get('county_name') or row.get('county') or row.get('county_name_text')
+                  if isinstance(county,dict): county=county.get('name') or county.get('county_name')
+                  if not county:
+                      admin=row.get('administrative_area') or row.get('location') or {}
+                      if isinstance(admin,dict): county=admin.get('county_name') or admin.get('county')
+                  if not county: continue
+                  status=str(row.get('operation_status_name') or row.get('operation_status') or row.get('status') or '').lower()
+                  # The public registry itself is the population. Count published records; retain status note rather than infer exclusions.
+                  counts[str(county).strip()]+=1; total+=1
+              if nxt and str(nxt).startswith('/'):
+                  nxt=urllib.parse.urljoin(base,nxt)
+              url=nxt
+              if pages>100: raise RuntimeError('Unexpected KMHFR page count >100')
+              time.sleep(.05)
+          out={
+            'schema_version':'kda.p04.kmhfr-facility-counts.v1',
+            'source_url':base,
+            'retrieved_at':'2026-08-29',
+            'counting_rule':'Count each facility record returned by the official KMHFR public facilities endpoint once. No population normalization; no operational-status inference is applied in the snapshot.',
+            'api_pages':pages,
+            'records_with_county':total,
+            'sample_record_keys':sample_keys,
+            'county_counts':dict(sorted(counts.items()))
+          }
+          if len(counts)!=47:
+              raise RuntimeError(f'Expected 47 county labels, got {len(counts)}: {sorted(counts)}')
+          import os
+          os.makedirs('data/p04',exist_ok=True)
+          with open('data/p04/kmhfr-facility-counts.json','w') as f: json.dump(out,f,indent=2,ensure_ascii=False); f.write('\n')
+          print('KMHFR_SNAPSHOT_OK',total,'facilities',pages,'pages')
+          PY
+      - name: Commit snapshot
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/p04/kmhfr-facility-counts.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(p04): freeze KMHFR county facility counts'
+          git push origin HEAD:p04-health-living-standards
