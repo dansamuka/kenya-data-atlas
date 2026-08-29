@@ -62,7 +62,9 @@ assert(hard.includes('not inherited to this'),'small-area UI inheritance warning
 assert(geoJs.includes('el.dataset.geoCode=geo.geo_code'),'Geo Explorer does not expose selected geography identity');
 console.log('PREP05_PLACE_FACTS_UI_OK');
 
-const p04=roadmap.phases.find(p=>p.id==='P04'),p05=roadmap.phases.find(p=>p.id==='P05');
-assert(p04?.status==='complete','P04 must remain complete');assert(p05?.status==='next','P05 must remain next; hardening must not advance the roadmap');
-console.log('PREP05_ROADMAP_UNCHANGED_OK P05=next');
+const p04=roadmap.phases.find(p=>p.id==='P04'),p05=roadmap.phases.find(p=>p.id==='P05'),p06=roadmap.phases.find(p=>p.id==='P06');
+assert(p04?.status==='complete','P04 must remain complete');
+assert(['next','complete'].includes(p05?.status),'pre-P05 hardening must remain valid before and after P05 release');
+if(p05?.status==='complete')assert(p06?.status==='next','once P05 is complete, P06 must be next');
+console.log(`PREP05_HARDENING_ROADMAP_OK P05=${p05?.status} P06=${p06?.status}`);
 console.log('PREP05_HARDENING_ALL_OK');
