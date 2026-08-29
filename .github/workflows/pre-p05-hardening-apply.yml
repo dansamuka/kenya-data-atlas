@@ -1,0 +1,52 @@
+name: Pre-P05 hardening materialization
+
+on:
+  push:
+    branches: [pre-p05-ux-place-facts]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: pre-p05-ux-place-facts
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+      - name: Apply hardening patch
+        run: node scripts/prep05/apply-hardening.mjs
+      - name: Rebuild published data
+        run: npm run build:data
+      - name: Run full validation
+        run: npm test
+      - name: Independent geometry audit
+        run: npm run geography:audit
+      - name: Commit validated materialization
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+          else
+            git commit -m 'prep05: materialize UX and place-fact hardening'
+            git push origin HEAD:pre-p05-ux-place-facts
+          fi
