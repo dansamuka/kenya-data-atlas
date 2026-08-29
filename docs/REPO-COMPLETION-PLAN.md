@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P12 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P13 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -34,7 +34,7 @@ Already complete and not to be restarted without a regression/correction:
 - P04 47-county health and living-standards package with 2022 poverty/KDHS survey precision metadata, withheld survey rankings, and the 2023 Health Facility Census assessed-facility inventory.
 - P05 47-county education, economic-structure, agriculture and infrastructure breadth package, adding 14 source-backed county indicators and taking CountyIQ to 34 fully county-covered indicators across 7 domains.
 
-The remaining work is therefore primarily **peer comparison, decision intelligence, action layers, analytical governance and public-launch hardening**.
+With P06–P12 now complete, the remaining work is primarily **county evidence/document depth, a verified action layer, public data distribution and real-browser launch hardening**.
 
 ---
 
@@ -237,57 +237,51 @@ Replace “Presidential Awards” with algorithmic **CountyIQ Recognition** cate
 
 ---
 
-## P12 — Verified County Opportunity Finder
+## P12 — Canonical Convergence & Governance
 
-**Status: next.**
+**Status: complete.**
 
-Create a proper opportunity registry with:
+P12 makes static indicator semantics a governed product rather than scattered implementation detail. The versioned executable policy in `scripts/policy/indicator-policy.mjs` now owns domain, direction, composite eligibility, ranking mode, uncertainty requirement, trend permission, parent-value inheritance, publication state and cross-level normalisation rules.
 
-- programme/funder;
-- primary URL;
-- eligibility;
-- opening/deadline;
-- official amount where available;
-- sectors/counties/entities;
-- verification date;
-- status;
-- match rationale.
+The generated `data/policy/indicator-policy.json` exposes the policy publicly for all indicators and observed series. CountyIQ, P06 direction/trend logic and the cross-level eligibility builder consume the same canonical layer, while dynamic evidence checks such as coverage, common periods, provenance and actual history remain independently validated.
 
-**Exit:** expired or unverified records cannot appear as live; no scarcity countdown without source evidence.
+Release evidence: all 98 indicator policies, all 3,370 published observed-series cross-level decisions and all 47 CountyIQ county records passed the P12 convergence validator; P03–P11 remained green; full `npm test` and the independent Shapely geometry audit passed.
+
+**Exit:** no main analytical path carries a duplicate domain/direction/cross-level policy, parent geography values remain non-inheritable, and policy drift is a test failure. See `docs/P12-CANONICAL-CONVERGENCE.md`.
 
 ---
 
-## P13 — County Knowledge Hub
+## P13 — County Evidence & Knowledge Hub
 
-Build the county document layer:
+**Status: next.**
+
+Build the durable county document layer, with 47/47 CIDP coverage as the first target and additional official document families wherever they are published:
 
 - CIDP;
 - ADP;
 - CFSP;
 - CBROP;
-- approved budgets;
+- approved and supplementary budgets;
 - Controller of Budget reports;
-- Auditor-General reports;
+- Auditor-General county executive/assembly reports;
 - statistical abstracts/profiles;
-- sector/climate/investment plans where official.
+- sector, spatial, climate and investment plans where official.
 
-**Exit:** no `href="#"` placeholder; each document has county, period, type, source URL and verification metadata.
+Each document record must distinguish `verified`, `not_published`, `not_found` and `inaccessible` rather than collapsing those states into missing. Record county, document type, period, publication date where known, source agency, source page, direct document URL, last verification and link-health state.
+
+**Exit:** 47/47 counties have a verified CIDP record or explicit evidence-state reason; at least three additional core document families are indexed wherever officially published; no `href="#"` placeholder is presented as evidence.
 
 ---
 
-## P14 — Atlas-wide UI/data convergence
+## P14 — Action & Opportunity Finder Beta
 
-Technical-debt cleanup after the new CountyIQ/data products exist.
+**Status: planned.**
 
-Audit every user-facing factual number and every data-loading surface. Remove stale comments, hidden dependencies on retired interfaces, duplicate browser overlays and hardcoded values that now have canonical equivalents.
+Build the action layer after the canonical/evidence foundations rather than as a small national-programme list. Connect published P07 gaps and P10/P11 context to a verified, date-aware programme registry.
 
-Target state:
+Each live record needs programme/funder, primary URL, beneficiary and geographic eligibility, sector, application method, opening/deadline or rolling status, verification date, next-review date and explicit live/paused/closed/unknown state. Amounts, rates and deadlines are shown only when source-backed.
 
-`canonical registries → generated display products → UI`
-
-rather than many UI-specific datasets.
-
-**Exit:** Compare, profiles, map, series and CountyIQ share the same provenance/missing-period conventions.
+**Exit:** stale or unverified programmes cannot appear as live, and every match rationale is reproducible from programme rules plus displayed county evidence. Ship this surface as Beta because freshness requires continuing maintenance.
 
 ---
 
@@ -348,11 +342,11 @@ Then:
 
 ## Recommended session order
 
-Run sequentially:
+The core sequence is now:
 
-`P00 → P01 → P02 → P03 → P04 → P05 → P06 → P07 → P08 → P09`
+`P00 → P01 → P02 → P03 → P04 → P05 → P06 → P07 → P08 → P09 → P10 → P11 → P12 → P13 → P14 → P15 → P16 → P17`
 
-After P07, `P12` and `P13` can be done independently while index/accountability work continues. `P10` can begin after sufficient fiscal/accountability data is active. Finish with `P14 → P15 → P16 → P17`.
+P14 is intentionally a Beta action layer; P17 should not weaken evidence or browser gates merely to make the action layer appear more complete.
 
 ## Session completion protocol
 

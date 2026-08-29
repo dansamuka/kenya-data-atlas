@@ -269,108 +269,119 @@
     },
     {
       "id": "P12",
-      "title": "County Opportunity Finder",
-      "status": "next",
-      "session_goal": "Create a verified, date-aware opportunity database rather than speculative funding countdowns.",
+      "title": "Canonical Convergence & Governance",
+      "status": "complete",
+      "session_goal": "Centralize static indicator semantics so every Atlas build, analytical product and comparison surface derives domain, direction, ranking mode, uncertainty, trend, inheritance, publication and cross-level rules from one versioned policy layer.",
       "outputs": [
-        "opportunity schema",
-        "verified programme records",
-        "eligibility/match logic",
-        "deadline/verification handling",
-        "county opportunity UI"
+        "versioned canonical indicator policy module",
+        "generated public indicator-policy registry",
+        "CountyIQ mart policy convergence",
+        "cross-level comparison policy convergence",
+        "policy drift validator wired into npm test"
       ],
       "acceptance": [
-        "every live record has primary URL and verification date",
-        "deadlines are source-backed",
-        "expired/unverified records cannot appear as live"
+        "all 98 indicator policy rows reproduce from one executable policy module",
+        "all CountyIQ metrics mirror canonical static policy",
+        "all published series-level cross-geography decisions mirror canonical normalisation rules",
+        "parent-to-child value inheritance remains prohibited",
+        "full Atlas validation and independent geometry audit pass"
       ],
       "depends_on": [
-        "P07"
+        "P01",
+        "P02",
+        "P11"
       ]
     },
     {
       "id": "P13",
-      "title": "County Knowledge Hub and document evidence layer",
-      "status": "planned",
-      "session_goal": "Make each county profile the fastest route to its planning, budget, audit and statistical source documents.",
+      "title": "County Evidence & Knowledge Hub",
+      "status": "next",
+      "session_goal": "Make every county profile a durable evidence doorway to official planning, budget, accountability and statistical documents, with explicit found/not-published/not-found/inaccessible states.",
       "outputs": [
-        "document registry",
-        "CIDP/ADP/CFSP/CBROP/budget/audit links",
-        "verification metadata",
-        "county document UI"
+        "county document registry",
+        "47-county CIDP coverage target",
+        "ADP/CFSP/CBROP/budget/audit document families",
+        "verification and link-health metadata",
+        "county evidence UI and search hooks"
       ],
       "acceptance": [
-        "no placeholder # links",
-        "document type/county/period/source recorded",
-        "broken-link audit documented"
+        "47/47 counties have a verified CIDP record or an explicit evidence-state reason",
+        "at least three additional core document families are indexed wherever officially published",
+        "document type county period source page and verification state are recorded",
+        "no placeholder links are presented as evidence",
+        "broken or inaccessible links are distinguished from documents not found or not published"
       ],
       "depends_on": [
-        "P02"
+        "P12"
       ]
     },
     {
       "id": "P14",
-      "title": "Atlas-wide UI/data convergence",
+      "title": "Action & Opportunity Finder Beta",
       "status": "planned",
-      "session_goal": "Retire stale overlays and ensure every major surface reads the canonical registry or a generated product derived from it.",
+      "session_goal": "Connect CountyIQ gaps and county context to a verified, date-aware opportunity registry without presenting stale or speculative funding information as live.",
       "outputs": [
-        "legacy overlay audit",
-        "stale comment/content cleanup",
-        "single-source loading conventions",
-        "consistent badges/periods/missing states"
+        "opportunity registry and freshness policy",
+        "verified programme records",
+        "beneficiary/sector/geography eligibility model",
+        "gap-to-opportunity relevance logic",
+        "Beta county opportunity UI"
       ],
       "acceptance": [
-        "no user-facing hardcoded factual figures where canonical values exist",
-        "legacy hidden interfaces do not drive current UX",
-        "Compare, profiles, map, series and CountyIQ follow the same provenance rules"
+        "every live record has a primary URL verification date and next-review state",
+        "expired paused unknown and closed programmes cannot appear as live",
+        "deadline and amount claims are source-backed",
+        "match rationale is reproducible from published county gaps and programme rules"
       ],
       "depends_on": [
-        "P01",
-        "P02"
+        "P07",
+        "P12"
       ]
     },
     {
       "id": "P15",
       "title": "Data distribution and developer surface",
       "status": "planned",
-      "session_goal": "Turn the existing registries/schema into a documented, stable public data interface without requiring a full server product.",
+      "session_goal": "Package canonical registries, policy and analytical products into a stable public data interface with versioned machine-readable contracts.",
       "outputs": [
         "versioned downloadable bundles",
-        "developer documentation",
-        "example queries",
-        "schema/version contract",
-        "optional lightweight API design"
+        "JSON Schema contracts",
+        "CSV/JSON/NDJSON/Parquet distributions where practical",
+        "county and indicator subset products",
+        "developer documentation and reproducible example queries"
       ],
       "acceptance": [
-        "downloads map to documented releases",
-        "schema changes versioned",
+        "downloads map to documented releases and checksums",
+        "canonical data and analytical methodology versions are distinguishable",
+        "schema changes are versioned",
         "developer examples reproduce published values"
       ],
       "depends_on": [
-        "P14"
+        "P12",
+        "P13"
       ]
     },
     {
       "id": "P16",
-      "title": "Accessibility, browser, SEO and performance release audit",
+      "title": "Real-browser accessibility, SEO and performance release audit",
       "status": "planned",
-      "session_goal": "Harden the static product for public launch quality.",
+      "session_goal": "Harden the public product with real-browser, accessibility, performance and link-integrity gates rather than DOM-only smoke checks.",
       "outputs": [
-        "WCAG 2.2 AA audit/fixes",
-        "Chrome/Firefox/Safari/Edge smoke matrix",
-        "mobile checks",
-        "metadata/SEO",
-        "asset/performance audit",
-        "broken-link audit"
+        "Playwright browser smoke matrix",
+        "axe/WCAG 2.2 AA audit and fixes",
+        "mobile keyboard and focus checks",
+        "Lighthouse/performance budgets",
+        "deduplicated external-link audit",
+        "metadata and crawlability review"
       ],
       "acceptance": [
-        "critical accessibility failures closed",
-        "core journeys work without console-fatal errors",
-        "Pages deploy passes",
-        "known browser limitations documented"
+        "critical journeys pass in Chromium Firefox and WebKit without uncaught runtime errors",
+        "critical accessibility failures are closed",
+        "performance budgets pass for core cold-load routes",
+        "broken-link audit is reproducible",
+        "known browser and SEO limitations are documented"
       ],
       "depends_on": [
-        "P14",
         "P15"
       ]
     },
@@ -378,21 +389,22 @@
       "id": "P17",
       "title": "Final reproducibility, governance and v1.0 release",
       "status": "planned",
-      "session_goal": "Close the repository against one final completion ledger and publish a defensible v1.0 state.",
+      "session_goal": "Close the repository against one final completion ledger and publish a defensible v1.0 state only after reproducibility, real-browser and deployment gates pass.",
       "outputs": [
         "full deterministic rebuild",
-        "all validators",
+        "all validators and browser release gates",
         "data-quality/revision review",
         "README/status rewrite",
-        "v1.0 changelog/release notes",
+        "v1.0 changelog and release manifest",
         "final unresolved-items register"
       ],
       "acceptance": [
-        "build:data clean",
-        "npm test clean",
+        "build:data clean with no committed-output drift",
+        "npm test and real-browser release audit clean",
         "geometry audit clean",
-        "Pages deployment successful",
-        "no required completion gate silently deferred"
+        "GitHub Pages deploys the exact release commit successfully",
+        "post-deployment smoke test passes",
+        "no required completion gate is silently deferred"
       ],
       "depends_on": [
         "P09",
