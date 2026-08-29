@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P05 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P06 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -32,8 +32,9 @@ Already complete and not to be restarted without a regression/correction:
 - P02 canonical 47-county CountyIQ analytical mart with deterministic registry-derived build, provenance/eligibility metadata and mart-backed runtime.
 - P03 twelve-year county fiscal experience with common-period rankings, exact 1/3/5-year changes, absorption volatility, responsive history UI and explicit denominator withholding.
 - P04 47-county health and living-standards package with 2022 poverty/KDHS survey precision metadata, withheld survey rankings, and the 2023 Health Facility Census assessed-facility inventory.
+- P05 47-county education, economic-structure, agriculture and infrastructure breadth package, adding 14 source-backed county indicators and taking CountyIQ to 34 fully county-covered indicators across 7 domains.
 
-The remaining work is therefore primarily **analytical integration, county data breadth, decision intelligence, action layers and public-launch hardening**.
+The remaining work is therefore primarily **peer comparison, decision intelligence, action layers, analytical governance and public-launch hardening**.
 
 ---
 
@@ -109,19 +110,23 @@ Release evidence: the exact PR candidate passed deterministic rebuild, committed
 
 ## P05 — Education + economic structure + agriculture + infrastructure
 
-**Status: next.**
+**Status: complete.**
 
-Close the remaining domain breadth gap through primary county-comparable data only.
+P05 closed the Stage-B domain-breadth gap with four compact official-source packages, all entered through catalogue → indicator → series → observation → CountyIQ rather than as browser-only data.
 
-Target the smallest coherent source packages rather than chasing dozens of one-off indicators. Every new family must enter catalogue → indicator → series → observation → validation, not just the browser.
+The release adds 14 county indicators across all 47 counties (658 county metrics): public primary and secondary school establishments and TSC teacher establishments; agriculture and manufacturing GVA plus transparent shares of 2024 GCP; 2023 maize area, production and Atlas-derived yield; and 2023/24 internet use, computer use and household main-grid electricity connection. Derived sector shares and maize yield remain explicitly distinguished from directly published values.
 
-**Stage-B target:** at least **20 active CountyIQ-eligible indicators across at least 5 domains**.
+The completed CountyIQ mart has at least 34 fully county-covered active indicators across 7 domains, exceeding the Stage-B target of at least 20 indicators across at least 5 domains. The package preserves source reference periods, provenance and denominator meaning, and introduces zero national-to-county or county-to-lower-geography inheritance.
 
-**Exit:** breadth threshold met; all new indicators documented; zero national-to-county inheritance.
+Release evidence before PR: the focused P05 validator passed source reconciliation, four dataset-provenance packages, 47 × 14 coverage, non-inheritance, derived-value badge checks, UI integration and the breadth gate. The full registry then passed with 21 units, 98 indicators, 3,370 series and 6,864 observations; the independent Shapely geometry audit reported 0 critical issues and 0 warnings.
+
+**Do not reopen:** do not convert these mixed-period breadth measures into an ungoverned composite score or ranking. Peer comparison, percentiles and trend logic belong to P06.
 
 ---
 
 ## P06 — Peer groups + percentile + trend engine
+
+**Status: next.**
 
 Do this before a composite score.
 
