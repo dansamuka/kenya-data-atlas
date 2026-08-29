@@ -18,8 +18,6 @@ URLS = {
 
 
 def get(url: str) -> bytes:
-    # KNBS currently serves an incomplete public TLS chain to some Linux runners.
-    # This diagnostic reads only the explicitly pinned official knbs.or.ke URLs above.
     r = requests.get(url, timeout=120, verify=False, headers={"User-Agent": "Kenya-Data-Atlas/0.10 source-validation"})
     r.raise_for_status()
     print(f"DOWNLOAD_OK {url} bytes={len(r.content)} content_type={r.headers.get('content-type')}")
@@ -27,51 +25,55 @@ def get(url: str) -> bytes:
 
 
 def compact_row(row):
-    vals = []
-    for i, v in enumerate(row, 1):
-        if v is not None and str(v).strip() != "":
-            vals.append(f"C{i}={v}")
-    return " | ".join(vals)
+    return " | ".join(f"C{i}={v}" for i, v in enumerate(row, 1) if v is not None and str(v).strip() != "")
 
 
-def target_xlsx(label: str, content: bytes, targets: list[str]):
+def target_xlsx(label: str, content: bytes, sheets: list[str]):
     wb = load_workbook(io.BytesIO(content), data_only=True, read_only=True)
-    print(f"XLSX {label} sheets={len(wb.sheetnames)}")
-    for ws in wb.worksheets:
-        rows = list(ws.iter_rows(values_only=True))
-        hits = []
-        for idx, row in enumerate(rows):
-            joined = " ".join("" if v is None else str(v) for v in row)
-            if any(t.lower() in joined.lower() for t in targets) or any(t.lower() in ws.title.lower() for t in targets):
-                hits.append(idx)
-        if not hits:
-            continue
-        print(f"TARGET_SHEET {label} title={ws.title!r} rows={ws.max_row} cols={ws.max_column} hit_rows={[x+1 for x in hits[:20]]}")
-        lo = max(0, min(hits) - 6)
-        hi = min(len(rows), max(hits) + 60)
-        for j in range(lo, hi):
-            line = compact_row(rows[j])
+    for sheet in sheets:
+        ws = wb[sheet]
+        print(f"TARGET_SHEET {label} title={ws.title!r} rows={ws.max_row} cols={ws.max_column}")
+        for j, row in enumerate(ws.iter_rows(values_only=True), 1):
+            line = compact_row(row)
             if line:
-                print(f"  R{j+1}: {line[:3000]}")
+                print(f"  R{j}: {line[:3000]}")
 
 
-def show_pdf(label: str, content: bytes, needles: list[str]):
+def diagnose_gcp(content: bytes):
     doc = pymupdf.open(stream=content, filetype="pdf")
-    print(f"PDF {label} pages={doc.page_count}")
     for pno in range(doc.page_count):
         text = doc[pno].get_text("text")
-        compact = re.sub(r"\s+", " ", text)
-        if any(n.lower() in compact.lower() for n in needles):
-            print(f"MATCH {label} page={pno+1}")
-            print(text[:9000])
+        if "GCP by Economic Activity at Current Prices, 2024" not in text and "Annexe I:" not in text:
+            continue
+        finder = doc[pno].find_tables()
+        print(f"GCP_TABLE_PAGE page={pno+1} tables={len(finder.tables)}")
+        for ti, table in enumerate(finder.tables):
+            rows = table.extract()
+            print(f"GCP_TABLE idx={ti} rows={len(rows)} cols={max((len(r) for r in rows), default=0)}")
+            for ri, row in enumerate(rows[:12]):
+                print(f"  T{ti}R{ri}: {row}")
+
+
+def diagnose_agri(content: bytes):
+    doc = pymupdf.open(stream=content, filetype="pdf")
+    for pno in range(doc.page_count):
+        text = doc[pno].get_text("text")
+        if "Area and Production of Maize by County, 2019-2023" not in text:
+            continue
+        finder = doc[pno].find_tables()
+        print(f"AGRI_TABLE_PAGE page={pno+1} tables={len(finder.tables)}")
+        for ti, table in enumerate(finder.tables):
+            rows = table.extract()
+            print(f"AGRI_TABLE idx={ti} rows={len(rows)} cols={max((len(r) for r in rows), default=0)}")
+            for ri, row in enumerate(rows[:8]):
+                print(f"  A{ti}R{ri}: {row}")
 
 
 def main():
-    target_xlsx("housing_ch3", get(URLS["housing_ch3"]), ["Table 3.18", "Table 3.19", "Used Internet", "Used a Computer"])
-    target_xlsx("housing_ch5", get(URLS["housing_ch5"]), ["Table 5.11", "Connected to Electricity", "Main Grid", "electricity"])
-    # PDFs are already structurally confirmed; keep concise page checks so URLs remain exercised.
-    show_pdf("gcp", get(URLS["gcp"]), ["GCP by Economic Activity at Current Prices, 2024"])
-    show_pdf("agri", get(URLS["agri"]), ["Area and Production of Maize by County"])
+    target_xlsx("housing_ch3", get(URLS["housing_ch3"]), ["Table 3.18", "Table 3.19"])
+    target_xlsx("housing_ch5", get(URLS["housing_ch5"]), ["Table 5.11"])
+    diagnose_gcp(get(URLS["gcp"]))
+    diagnose_agri(get(URLS["agri"]))
     print("P05_SOURCE_DIAGNOSTIC_OK")
 
 
