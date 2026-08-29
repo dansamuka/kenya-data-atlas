@@ -26,16 +26,12 @@ try{
     for(const dependency of phase.depends_on) assert(ids.includes(dependency),`${phase.id} depends on unknown phase ${dependency}`);
   }
   const next=roadmap.phases.filter(p=>p.status==='next');
-  assert(next.length===1&&next[0].id==='P05','exactly P05 must be the next phase after P04');
-  assert(roadmap.phases[0].status==='complete','P00 must be complete');
-  assert(roadmap.phases[1].status==='complete','P01 must be complete');
-  assert(roadmap.phases[2].status==='complete','P02 must be complete');
-  assert(roadmap.phases[3].status==='complete','P03 must be complete');
-  assert(roadmap.phases[4].status==='complete','P04 must be complete');
-  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P17','Session completion protocol','Complete P05']) assert(docs.includes(token),`completion plan missing ${token}`);
+  assert(next.length===1&&next[0].id==='P06','exactly P06 must be the next phase after P05');
+  for(let i=0;i<=5;i++)assert(roadmap.phases[i].status==='complete',`P${String(i).padStart(2,'0')} must be complete`);
+  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol']) assert(docs.includes(token),`completion plan missing ${token}`);
   console.log('PROJECT_PHASES_P00_P17_OK');
-  console.log('PROJECT_P04_COMPLETE_OK');
-  console.log('PROJECT_NEXT_PHASE_P05_OK');
+  console.log('PROJECT_P05_COMPLETE_OK');
+  console.log('PROJECT_NEXT_PHASE_P06_OK');
   console.log('PROJECT_SESSION_PLAN_OK');
 }catch(error){
   console.error(error.message||error);
