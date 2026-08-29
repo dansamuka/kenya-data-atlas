@@ -22,7 +22,7 @@ function scriptSources(){
 
 function validateFirstPaintContract(){
   const scripts=scriptSources();
-  const expected=['assets/data-loader.js','assets/router.js','assets/app.js','assets/compare.js','assets/geo-explorer.js','assets/ux-polish.js','assets/lazy-integrations.js','assets/routed-views.js'];
+  const expected=['assets/data-loader.js','assets/router.js','assets/app.js','assets/compare.js','assets/geo-explorer.js','assets/ux-polish.js','assets/lazy-integrations.js','assets/routed-views.js','assets/pre-p05-hardening.js'];
   assert(JSON.stringify(scripts)===JSON.stringify(expected),`unexpected direct script list/order: ${scripts.join(', ')}`);
   for(const forbidden of [
     'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js',
