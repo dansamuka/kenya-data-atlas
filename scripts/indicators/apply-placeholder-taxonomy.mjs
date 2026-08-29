@@ -49,6 +49,7 @@ for (const u of taxonomy.units || []) {
 
 const explicitByCode = new Map((taxonomy.indicators || []).map(i => [i.code, i]));
 const existingByCode = new Map(indicators.map(i => [i.indicator_code, i]));
+const publishedIndicatorIds = new Set(series.filter(s => Number(s.observation_count || 0) > 0).map(s => s.indicator_id));
 
 function defaultPlacement(code) {
   if (['IND-CPI-INFLATION','IND-USD-KES','IND-CBR','IND-TBILL-91'].includes(code)) return { tab:'economy', levels:[] };
@@ -59,15 +60,20 @@ function defaultPlacement(code) {
 function enrichExisting(row) {
   const def = explicitByCode.get(row.indicator_code);
   const placement = def || defaultPlacement(row.indicator_code);
-  row.lifecycle_status = def?.status || 'active';
+  // A real published series outranks placeholder lifecycle metadata. Once an
+  // indicator has observations in the canonical registry it is active; a
+  // placeholder "sourced" status must not demote released data on rebuild.
+  row.lifecycle_status = publishedIndicatorIds.has(row.indicator_id) ? 'active' : (def?.status || 'active');
   row.expected_source = def?.source || row.expected_source || '';
   row.expected_source_url = def?.source_url || row.expected_source_url || '';
   row.expected_availability_note = def?.note || row.expected_availability_note || '';
   row.tab = placement.tab || row.tab || 'economy';
   row.applies_to_levels = placement.levels || row.applies_to_levels || [];
   row.applies_to_geography_subset = def?.subset || row.applies_to_geography_subset || '';
-  row.requires_sampling_uncertainty = surveyCodes.has(row.indicator_code);
-  row.ranking_allowed = !noRankingCodes.has(row.indicator_code);
+  row.requires_sampling_uncertainty = row.requires_sampling_uncertainty === true || surveyCodes.has(row.indicator_code);
+  // Preserve an explicit release-level ranking prohibition. Taxonomy may add
+  // further prohibitions but must never turn a false policy back to true.
+  row.ranking_allowed = row.ranking_allowed === false ? false : !noRankingCodes.has(row.indicator_code);
   row.active = row.lifecycle_status === 'active';
   return row;
 }
