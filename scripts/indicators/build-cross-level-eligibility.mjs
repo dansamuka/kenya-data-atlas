@@ -74,7 +74,7 @@ const indicatorRows = [...byIndicator.values()].map(own => ({
 })).sort((a, b) => a.name.localeCompare(b.name));
 
 await writeFile(path.join(root, 'data/indicators/registry/cross-level-eligibility.json'), JSON.stringify({
-  schema_version: '2.1.0',
+  schema_version: '2.0.0',
   policy_version: INDICATOR_POLICY_VERSION,
   generated_from_registry: true,
   granularity: 'series',
