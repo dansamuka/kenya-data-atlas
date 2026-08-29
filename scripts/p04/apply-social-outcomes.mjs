@@ -126,7 +126,7 @@ const socialFns=[
   "  function precisionText(m){const u=m?.latest?.uncertainty||{};if(Number.isFinite(Number(u.standard_error)))return 'Source SE '+Number(u.standard_error).toLocaleString('en-KE',{maximumFractionDigits:2})+' pp';if(Number.isFinite(Number(u.sample_size)))return 'Reported table denominator n='+formatInt(u.sample_size);return 'Census inventory snapshot';}",
   "  function socialMetric(label,m,formatter){const o=m?.latest;if(!o)return '<article class=\"ciq-social-metric missing\"><small>'+esc(label)+'</small><strong>—</strong><span>Not published for this county</span></article>';const url=o.provenance?.source_url||'';return '<article class=\"ciq-social-metric\"><small>'+esc(label)+'</small><strong>'+esc(formatter(o.value))+'</strong><span>'+esc(o.period_label)+' · '+esc(precisionText(m))+'</span><em>'+(m?.ranking?.eligible?'Comparable rank available':'Ranking withheld')+'</em>'+(url?'<a href=\"'+esc(url)+'\" target=\"_blank\" rel=\"noopener\">Source ↗</a>':'')+'</article>';}",
   "  function renderSocial(row){const c=row.county;return [socialMetric('Overall poverty',metric(c,CODES.poverty),formatPct),socialMetric('Children under 5 stunted',metric(c,CODES.stunting),formatPct),socialMetric('Basic immunisation',metric(c,CODES.immunisation),formatPct),socialMetric('Skilled birth attendance',metric(c,CODES.maternal),formatPct),socialMetric('Facilities assessed',metric(c,CODES.facilities),formatInt)].join('');}"
-].join('\\n')+'\\n\\n'+renderAnchor;
+].join('\n')+'\n\n'+renderAnchor;
 js=replaceOnce(js,renderAnchor,socialFns,'CountyIQ social renderer');
 js=replaceOnce(js,
 `  }\n\n  function wirePicker(){`,
