@@ -1,9 +1,6 @@
 name: P05 source diagnostic
 
 on:
-  push:
-    branches:
-      - p05-breadth
   workflow_dispatch:
 
 permissions:
