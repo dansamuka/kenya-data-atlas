@@ -1,0 +1,99 @@
+name: P02 roadmap handoff
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/p02-roadmap-handoff.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mark P02 complete and advance to P03
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          roadmap_path = Path('data/project-roadmap.json')
+          roadmap = json.loads(roadmap_path.read_text())
+          phases = {p['id']: p for p in roadmap['phases']}
+          assert phases['P02']['status'] == 'next'
+          assert phases['P03']['status'] == 'planned'
+          phases['P02']['status'] = 'complete'
+          phases['P02']['outputs'][0] = 'scripts/countyiq/build-mart.mjs'
+          phases['P03']['status'] = 'next'
+          roadmap_path.write_text(json.dumps(roadmap, indent=2) + '\n')
+
+          docs_path = Path('docs/REPO-COMPLETION-PLAN.md')
+          docs = docs_path.read_text()
+          old_prompt = '> Complete P02 from `docs/REPO-COMPLETION-PLAN.md`.'
+          new_prompt = '> Complete P03 from `docs/REPO-COMPLETION-PLAN.md`.'
+          assert old_prompt in docs
+          docs = docs.replace(old_prompt, new_prompt, 1)
+
+          baseline = '- P01 shared registry loader, compact first-paint data product, lazy Geo Explorer/D3 path, deferred heavy registries and initial-load performance budget.'
+          assert baseline in docs
+          docs = docs.replace(
+              baseline,
+              baseline + '\n- P02 canonical 47-county CountyIQ analytical mart with deterministic registry-derived build, provenance/eligibility metadata and mart-backed runtime.',
+              1,
+          )
+
+          start = docs.index('## P02 — CountyIQ canonical analytical mart')
+          end = docs.index('\n---\n\n## P03 — Twelve-year fiscal experience + denominator discipline', start)
+          p02 = '''## P02 — CountyIQ canonical analytical mart
+
+**Status: complete.**
+
+P02 introduced `scripts/countyiq/build-mart.mjs` and the generated `data/countyiq/county-summary.json`, derived from canonical geography, catalogue, indicator, series and observation registries. The mart contains exactly 47 counties and retains latest/history, unit, provenance/source lineage, uncertainty and ranking-eligibility metadata.
+
+The integrated CountyIQ route now loads the canonical mart through the shared Atlas loader instead of joining Sprint CSVs in the browser. Deterministic rebuild, committed-output drift checks, the full Atlas validation suite and the independent Shapely geometry audit passed before merge; GitHub Pages then deployed the generated mart successfully.
+
+**Do not reopen:** direct Sprint CSV joins in production CountyIQ are retired; later analytical constructs remain gated to their own phases.
+'''
+          docs = docs[:start] + p02 + docs[end:]
+
+          p03_header = '## P03 — Twelve-year fiscal experience + denominator discipline\n\n'
+          assert p03_header in docs
+          docs = docs.replace(p03_header, p03_header + '**Status: next.**\n\n', 1)
+          docs_path.write_text(docs)
+
+          validator_path = Path('scripts/project/validate-roadmap.mjs')
+          validator = validator_path.read_text()
+          replacements = [
+              (
+                  "assert(next.length===1&&next[0].id==='P02','exactly P02 must be the next phase after P01');",
+                  "assert(next.length===1&&next[0].id==='P03','exactly P03 must be the next phase after P02');",
+              ),
+              (
+                  "assert(roadmap.phases[1].status==='complete','P01 must be complete');",
+                  "assert(roadmap.phases[1].status==='complete','P01 must be complete');\n  assert(roadmap.phases[2].status==='complete','P02 must be complete');",
+              ),
+              (
+                  "for(const token of ['## P00','## P01','## P02','## P17','Session completion protocol','Complete P02'])",
+                  "for(const token of ['## P00','## P01','## P02','## P03','## P17','Session completion protocol','Complete P03'])",
+              ),
+              (
+                  "console.log('PROJECT_P01_COMPLETE_OK');\n  console.log('PROJECT_NEXT_PHASE_P02_OK');",
+                  "console.log('PROJECT_P02_COMPLETE_OK');\n  console.log('PROJECT_NEXT_PHASE_P03_OK');",
+              ),
+          ]
+          for old, new in replacements:
+              assert old in validator, old
+              validator = validator.replace(old, new, 1)
+          validator_path.write_text(validator)
+          PY
+
+          node scripts/project/validate-roadmap.mjs
+          git rm .github/workflows/p02-roadmap-handoff.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/project-roadmap.json docs/REPO-COMPLETION-PLAN.md scripts/project/validate-roadmap.mjs
+          git commit -m "docs: mark P02 complete and advance to P03"
+          git push
