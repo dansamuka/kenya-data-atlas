@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.countyiq.p10-fiscal-accountability.v1",
+  "reference_fiscal_year": "2024/25",
+  "sources": {
+    "treasury_brop": {
+      "source_name": "National Treasury — 2025 Budget Review and Outlook Paper",
+      "source_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
+      "primary_data_agency": "Office of the Controller of Budget",
+      "osr_table": "Table 8 / Annex Table 7",
+      "pending_bills_table": "Table 10",
+      "wage_figure": "Figure 7",
+      "period": "FY 2024/25"
+    },
+    "oag_summary": {
+      "source_name": "Office of the Auditor-General — Summary Report on County Governments 2023/2024",
+      "source_url": "https://www.oagkenya.go.ke/wp-content/uploads/2025/04/Auditor-Generals-summary-Report-on-County-Governments-2023-2024.pdf",
+      "audit_table": "Appendix 1(a)",
+      "period": "FY 2023/24"
+    },
+    "pfm_regulations": {
+      "source_name": "Public Finance Management (County Governments) Regulations, 2015 — Regulation 25(1)(b)",
+      "source_url": "https://new.kenyalaw.org/akn/ke/act/ln/2015/35/eng@2022-12-31",
+      "wage_ceiling_pct_of_total_revenue": 35
+    }
+  },
+  "method_notes": [
+    "OSR attainment is full-year total own-source revenue including FIF/AiA divided by the published target, as reported by the National Treasury using Controller of Budget data.",
+    "Pending-bills burden is the published total pending bills as a percentage of the FY 2024/25 approved county budget. Narok is null because the final table records no submitted pending-bills value.",
+    "Wage compliance is a categorical accountability signal, not a scored index component. The final BROP states that only eight counties were at or below the statutory 35% ceiling; their rounded ratios are retained exactly as stated in the text.",
+    "Audit opinion is a categorical accountability signal, not a scored component. The OAG summary states that no County Executive recorded an unqualified opinion in FY 2023/24. Exact 'Qualified' labels are stored only for the 25 counties explicitly visible in Appendix 1(a)'s indexed table extract; other exact modified-opinion classes are left null rather than guessed."
+  ],
+  "counties": {
+    "KEN-C001": {"osr_target_attainment_pct": 74, "pending_bills_pct_budget": 22.3},
+    "KEN-C002": {"osr_target_attainment_pct": 82, "pending_bills_pct_budget": 12.8, "wage_ratio_pct": 31, "wage_ceiling_compliant": true},
+    "KEN-C003": {"osr_target_attainment_pct": 77, "pending_bills_pct_budget": 43.2, "wage_ratio_pct": 24, "wage_ceiling_compliant": true},
+    "KEN-C004": {"osr_target_attainment_pct": 133, "pending_bills_pct_budget": 25.9, "wage_ratio_pct": 27, "wage_ceiling_compliant": true},
+    "KEN-C005": {"osr_target_attainment_pct": 92, "pending_bills_pct_budget": 0.6},
+    "KEN-C006": {"osr_target_attainment_pct": 64, "pending_bills_pct_budget": 25.1},
+    "KEN-C007": {"osr_target_attainment_pct": 120, "pending_bills_pct_budget": 21.5},
+    "KEN-C008": {"osr_target_attainment_pct": 123, "pending_bills_pct_budget": 27.5},
+    "KEN-C009": {"osr_target_attainment_pct": 123, "pending_bills_pct_budget": 17.2},
+    "KEN-C010": {"osr_target_attainment_pct": 74, "pending_bills_pct_budget": 13.9},
+    "KEN-C011": {"osr_target_attainment_pct": 58, "pending_bills_pct_budget": 14.9},
+    "KEN-C012": {"osr_target_attainment_pct": 106, "pending_bills_pct_budget": 13.3},
+    "KEN-C013": {"osr_target_attainment_pct": 99, "pending_bills_pct_budget": 10.6},
+    "KEN-C014": {"osr_target_attainment_pct": 70, "pending_bills_pct_budget": 20.7},
+    "KEN-C015": {"osr_target_attainment_pct": 88, "pending_bills_pct_budget": 1.6},
+    "KEN-C016": {"osr_target_attainment_pct": 56, "pending_bills_pct_budget": 43.1},
+    "KEN-C017": {"osr_target_attainment_pct": 87, "pending_bills_pct_budget": 7.1},
+    "KEN-C018": {"osr_target_attainment_pct": 77, "pending_bills_pct_budget": 17.2, "wage_ratio_pct": 33, "wage_ceiling_compliant": true},
+    "KEN-C019": {"osr_target_attainment_pct": 89, "pending_bills_pct_budget": 3.9},
+    "KEN-C020": {"osr_target_attainment_pct": 122, "pending_bills_pct_budget": 10.1},
+    "KEN-C021": {"osr_target_attainment_pct": 82, "pending_bills_pct_budget": 18.6},
+    "KEN-C022": {"osr_target_attainment_pct": 70, "pending_bills_pct_budget": 33.6},
+    "KEN-C023": {"osr_target_attainment_pct": 100, "pending_bills_pct_budget": 7.7},
+    "KEN-C024": {"osr_target_attainment_pct": 99, "pending_bills_pct_budget": 3.8},
+    "KEN-C025": {"osr_target_attainment_pct": 110, "pending_bills_pct_budget": 3.1},
+    "KEN-C026": {"osr_target_attainment_pct": 79, "pending_bills_pct_budget": 14.4},
+    "KEN-C027": {"osr_target_attainment_pct": 84, "pending_bills_pct_budget": 7.4},
+    "KEN-C028": {"osr_target_attainment_pct": 104, "pending_bills_pct_budget": 0.2},
+    "KEN-C029": {"osr_target_attainment_pct": 91, "pending_bills_pct_budget": 9.7, "wage_ratio_pct": 33, "wage_ceiling_compliant": true},
+    "KEN-C030": {"osr_target_attainment_pct": 77, "pending_bills_pct_budget": 3.9},
+    "KEN-C031": {"osr_target_attainment_pct": 88, "pending_bills_pct_budget": 22.0},
+    "KEN-C032": {"osr_target_attainment_pct": 82, "pending_bills_pct_budget": 15.3, "wage_ratio_pct": 30, "wage_ceiling_compliant": true},
+    "KEN-C033": {"osr_target_attainment_pct": 94, "pending_bills_pct_budget": null, "pending_bills_status": "not_submitted", "wage_ratio_pct": 35, "wage_ceiling_compliant": true},
+    "KEN-C034": {"osr_target_attainment_pct": 55, "pending_bills_pct_budget": 20.7},
+    "KEN-C035": {"osr_target_attainment_pct": 88, "pending_bills_pct_budget": 21.3},
+    "KEN-C036": {"osr_target_attainment_pct": 76, "pending_bills_pct_budget": 15.5},
+    "KEN-C037": {"osr_target_attainment_pct": 65, "pending_bills_pct_budget": 12.3},
+    "KEN-C038": {"osr_target_attainment_pct": 117, "pending_bills_pct_budget": 11.7},
+    "KEN-C039": {"osr_target_attainment_pct": 65, "pending_bills_pct_budget": 21.6},
+    "KEN-C040": {"osr_target_attainment_pct": 73, "pending_bills_pct_budget": 30.3},
+    "KEN-C041": {"osr_target_attainment_pct": 47, "pending_bills_pct_budget": 17.3, "wage_ratio_pct": 26, "wage_ceiling_compliant": true},
+    "KEN-C042": {"osr_target_attainment_pct": 65, "pending_bills_pct_budget": 8.8},
+    "KEN-C043": {"osr_target_attainment_pct": 101, "pending_bills_pct_budget": 12.5},
+    "KEN-C044": {"osr_target_attainment_pct": 86, "pending_bills_pct_budget": 8.7},
+    "KEN-C045": {"osr_target_attainment_pct": 178, "pending_bills_pct_budget": 6.8},
+    "KEN-C046": {"osr_target_attainment_pct": 87, "pending_bills_pct_budget": 4.2},
+    "KEN-C047": {"osr_target_attainment_pct": 66, "pending_bills_pct_budget": 199.2}
+  },
+  "wage_compliance": {
+    "ceiling_pct": 35,
+    "compliant_geo_codes": ["KEN-C003", "KEN-C041", "KEN-C004", "KEN-C032", "KEN-C002", "KEN-C029", "KEN-C018", "KEN-C033"],
+    "statement": "The final 2025 BROP states that only eight county governments adhered to the 35 percent ceiling in FY 2024/25."
+  },
+  "audit_context_2023_24": {
+    "no_county_executive_unqualified": true,
+    "exact_qualified_geo_codes_from_indexed_appendix_extract": [
+      "KEN-C001", "KEN-C002", "KEN-C003", "KEN-C005", "KEN-C006", "KEN-C007", "KEN-C008", "KEN-C009", "KEN-C010", "KEN-C011", "KEN-C012", "KEN-C013", "KEN-C014", "KEN-C015", "KEN-C016", "KEN-C017", "KEN-C018", "KEN-C019", "KEN-C020", "KEN-C021", "KEN-C023", "KEN-C024", "KEN-C025", "KEN-C026", "KEN-C027"
+    ]
+  }
+}

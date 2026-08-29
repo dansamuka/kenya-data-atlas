@@ -81,7 +81,65 @@
   function formatHa(v){return Number.isFinite(Number(v))?formatInt(v)+' ha':'—';}
   function formatTonnes(v){return Number.isFinite(Number(v))?formatInt(v)+' t':'—';}
   function formatYield(v){return Number.isFinite(Number(v))?Number(v).toLocaleString('en-KE',{minimumFractionDigits:2,maximumFractionDigits:2})+' t/ha':'—';}
+  function peerTierLine(c){const p=c?.benchmarks?.peer_group;if(!p)return'';return `<p class="ciq-peer-note">Peer group: <strong>${esc(p.tier_label||`Tier ${p.tier}`)}</strong> (population-size quartile, methodology ${esc(p.definition_version||'')}). Peer grouping is a size classification only — it is not a quality judgement.</p>`;}
+  function peerMetricRow(label,m){const r=m?.ranking;if(!r?.eligible)return'';const dirWord=r.higher_is_better===true?'higher is better':r.higher_is_better===false?'lower is better':'no value judgement implied';const peer=r.peer_group?` · peer rank #${r.peer_group.rank} of ${r.peer_group.eligible_count} (${r.peer_group.percentile.toFixed(0)}th pct in tier)`:'';return `<div class="ciq-p05-metric"><small>${esc(label)}</small><strong>#${r.rank} of ${r.eligible_count}</strong><span>national ${r.percentile.toFixed(0)}th percentile${peer} · ${esc(dirWord)}</span></div>`;}
+  function renderPeerIntelligence(row){const c=row.county;if(!c)return'';
+    const ranked=Object.entries(c.metrics||{}).filter(([,m])=>m.ranking?.eligible).sort((a,b)=>(b[1].ranking.percentile??0)-(a[1].ranking.percentile??0));
+    if(!ranked.length)return'';
+    const top=ranked.slice(0,3),bottom=ranked.slice(-3).reverse().filter(r=>!top.includes(r));
+    const items=[...top,...bottom].map(([,m])=>peerMetricRow(m.name,m)).filter(Boolean);
+    if(!items.length)return'';
+    return '<section class="ciq-p05-group ciq-peer-group"><header><h3>Peer &amp; national standing (P06)</h3><span>ranked indicators only</span></header>'+peerTierLine(c)+items.join('')+'</section>';
+  }
+  function renderGapPanel(row){const c=row.county;const g=c?.gaps,nar=c?.narrative;if(!g||!nar)return'';
+    const money=g.monetary_counterfactual;
+    const moneyHtml=money?`<p class="ciq-gap-money"><strong>${esc(money.interpretation)}</strong><br><small>${esc(money.formula)} · ${esc(money.period)} · vs ${esc(money.benchmark_source)} benchmark · <a href="${esc(money.source_url||'')}" target="_blank" rel="noopener">source ↗</a></small></p>`:'';
+    const list=(items,label)=>items.length?`<div class="ciq-gap-list"><h4>${esc(label)}</h4><ul>${items.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>`:'';
+    return `<section class="ciq-p05-group ciq-gap-panel"><header><h3>Gaps &amp; evidence narrative (P07)</h3><span>peer/national benchmark, ${esc(g.benchmark_selection_rule)}</span></header>${moneyHtml}${list(nar.working_well,'Working well')}${list(nar.needs_attention,'Needs attention')}${list(nar.what_changed,'What changed')}<p class="ciq-peer-note">Every line above is generated directly from the ranking and trend figures shown elsewhere on this page — nothing here is a separate claim.</p></section>`;
+  }
+  function renderPerformanceIndexPanel(row){const c=row.county;const pi=c?.performanceIndex;if(!pi)return'';
+    const snap=pi.snapshot,decision=pi.release_decision;
+    if(!snap)return'';
+    const plausible=decision?.snapshot_release?.plausible_weighting_scenarios||[];
+    const diagnostics=plausible.map(id=>{const x=pi.scenarios?.[id];return x?`<tr><td>${esc(id.replace(/_/g,' '))}</td><td>${esc(Number(x.score).toFixed(1))}</td><td>#${esc(x.rank)} <small>diagnostic</small></td></tr>`:'';}).join('');
+    const stress=decision?.extreme_stress_test?.scenario,stressRow=stress&&pi.scenarios?.[stress]?`<tr><td>${esc(stress.replace(/_/g,' '))} · stress test</td><td>${esc(Number(pi.scenarios[stress].score).toFixed(1))}</td><td>#${esc(pi.scenarios[stress].rank)} <small>diagnostic</small></td></tr>`:'';
+    const longitudinal=decision?.longitudinal_release;
+    return `<section class="ciq-p05-group ciq-index-panel"><header><h3>County development snapshot <span class="ciq-beta-pill ciq-pill-published">Published snapshot</span></h3><span>P09 · latest cross-section only</span></header>
+      <div class="ciq-fiscal"><div><small>Snapshot score</small><strong>${esc(Number(snap.score).toFixed(1))}</strong><span>0–100 · equal-domain weighting</span></div><div><small>Relative position</small><strong>${esc(snap.relative_position_label)}</strong><span>Band ${esc(snap.relative_position_band)} of 5</span></div><div><small>Weighting robustness</small><strong>${esc(snap.robustness.replace(/_/g,' '))}</strong><span>plausible rank range #${esc(snap.plausible_weighting_rank_range.min_rank)}–#${esc(snap.plausible_weighting_rank_range.max_rank)}</span></div></div>
+      <p class="ciq-peer-note"><strong>What is published:</strong> the current 0–100 snapshot and broad relative-position band. Exact ranks below are sensitivity diagnostics, not a league-table headline. The snapshot uses ${esc(pi.indicators_used.length)} currently eligible indicators and is not a comprehensive measure of every aspect of county development.</p>
+      <table class="ciq-index-table"><thead><tr><th>Specification</th><th>Score</th><th>Exact rank status</th></tr></thead><tbody>${diagnostics}${stressRow}</tbody></table>
+      <p class="ciq-peer-note"><strong>P09 snapshot gate: ${esc(decision?.snapshot_release?.decision?.toUpperCase()||'—')}.</strong> ${esc(Math.round((decision?.snapshot_release?.same_or_adjacent_share||0)*100))}% of counties remain in the same or an adjacent broad band across the two plausible full-composite weightings.</p>
+      <p class="ciq-peer-note"><strong>Longitudinal composite: ${esc(longitudinal?.decision?.toUpperCase()||'—')} / withheld.</strong> ${esc(longitudinal?.reasons_if_no_go?.join(' ')||'Historical composite movement is not published.')}</p>
+      </section>`;
+  }
+  function renderDeliveryLayer(row){const c=row.county;const dl=c?.deliveryLayer;if(!dl)return'';
+    const p=dl.pillars||{},w=dl.accountability_signals?.wage_ceiling||{},a=dl.accountability_signals?.audit_opinion||{};
+    const scoreLine=Number.isFinite(dl.score)?`<strong>${esc(dl.score.toFixed(1))}</strong><span>rank #${esc(dl.rank)} of ${esc(dl.eligible_count)}</span>`:`<strong>Score withheld</strong><span>${esc((dl.missing_data||[]).join(', ')||'incomplete scored pillar')}</span>`;
+    const osr=p.revenue_mobilisation?.measures?.osr_target_attainment_pct,pending=p.arrears_control?.measures?.pending_bills_pct_budget;
+    const treasury=dl.source_urls?.treasury_brop||'',oag=dl.source_urls?.oag_summary||'',law=dl.source_urls?.pfm_regulations||'';
+    return `<section class="ciq-p05-group ciq-delivery-panel"><header><h3>Fiscal delivery &amp; accountability (P10)</h3><span>${esc(dl.reference_fiscal_year)}</span></header>
+      <div class="ciq-fiscal"><div><small>Fiscal delivery score</small>${scoreLine}</div><div><small>Execution pillar</small><strong>${Number.isFinite(p.execution?.score)?esc(p.execution.score.toFixed(1)):'—'}</strong><span>overall + development absorption</span></div><div><small>Revenue mobilisation</small><strong>${Number.isFinite(p.revenue_mobilisation?.score)?esc(p.revenue_mobilisation.score.toFixed(1)):'—'}</strong><span>OSR target attainment ${Number.isFinite(osr)?esc(formatPct(osr)):'—'}</span></div><div><small>Arrears control</small><strong>${Number.isFinite(p.arrears_control?.score)?esc(p.arrears_control.score.toFixed(1)):'—'}</strong><span>pending bills ${Number.isFinite(pending)?esc(formatPct(pending))+' of budget':'not submitted'}</span></div></div>
+      <p class="ciq-peer-note"><strong>Accountability signals are not scored:</strong> wage ceiling — ${w.compliant===true?'compliant':'not in the eight counties reported compliant'}${Number.isFinite(w.exact_ratio_pct_if_explicitly_reported)?` (${esc(formatPct(w.exact_ratio_pct_if_explicitly_reported))})`:''}; audit — ${a.exact_opinion_if_verified?esc(a.exact_opinion_if_verified):'modified opinion; exact class not extracted'} (${esc(a.period||'2023/24')}).</p>
+      <p class="ciq-peer-note">No imputation. OSR above 100% remains visible but is capped at 100% for scoring. ${treasury?`<a href="${esc(treasury)}" target="_blank" rel="noopener">Treasury BROP ↗</a>`:''} ${oag?`· <a href="${esc(oag)}" target="_blank" rel="noopener">Auditor-General ↗</a>`:''} ${law?`· <a href="${esc(law)}" target="_blank" rel="noopener">35% wage rule ↗</a>`:''}</p>
+      <p class="ciq-peer-note"><strong>Attribution limit.</strong> ${esc(dl.attribution_note)}</p>
+      </section>`;
+  }
+  function renderRecognitionPanel(row){const c=row.county;const rec=c?.recognition,admin=c?.administrationScorecard;if(!rec||!admin)return'';
+    const o=admin.fiscal_changes?.overall_absorption_pp,d=admin.fiscal_changes?.development_absorption_pp;
+    const items=rec.entries.filter(e=>e.qualifies).map(e=>`<li>${esc(e.label)}${Number.isFinite(e.rank)?` — #${esc(e.rank)}`:''}${Number.isFinite(e.value)?` · ${esc(e.value.toLocaleString('en-KE',{maximumFractionDigits:1}))}${e.unit==='percentage_points'?' pp':e.unit==='percent'?'%':''}`:''}</li>`).join('');
+    return `<section class="ciq-p05-group ciq-recognition-panel"><header><h3>Administration-period scorecard &amp; recognition (P11)</h3><span>cycle anchored to 9 Aug 2022 election</span></header>
+      <div class="ciq-fiscal"><div><small>Overall absorption</small><strong>${esc(signed(o?.baseline_to_latest_change,' pp'))}</strong><span>${esc(admin.baseline_fiscal_year)} → ${esc(admin.latest_full_cycle_fiscal_year)}</span></div><div><small>Development absorption</small><strong>${esc(signed(d?.baseline_to_latest_change,' pp'))}</strong><span>${esc(admin.baseline_fiscal_year)} → ${esc(admin.latest_full_cycle_fiscal_year)}</span></div><div><small>Current P10 fiscal score</small><strong>${Number.isFinite(admin.current_fiscal_accountability?.p10_score)?esc(admin.current_fiscal_accountability.p10_score.toFixed(1)):'withheld'}</strong><span>${esc(admin.latest_full_cycle_fiscal_year)}</span></div></div>
+      <p class="ciq-peer-note"><strong>Transition treatment:</strong> FY2022/23 is visible as context but excluded from the baseline-to-latest change because it straddles the August 2022 election and administration transition. FY2021/22 is the last full pre-election baseline; FY2023/24 is the first full post-election fiscal year.</p>
+      ${items?`<h4>CountyIQ Recognition</h4><ul class="ciq-recognition-list">${items}</ul>`:'<p class="ciq-peer-note">This county does not currently qualify for a published P11 recognition category.</p>'}
+      <p class="ciq-peer-note"><strong>No personal attribution.</strong> ${esc(admin.attribution_caution)}</p>
+      </section>`;
+  }
   function renderBreadth(row){const c=row.county;return [
+    renderPeerIntelligence(row),
+    renderGapPanel(row),
+    renderPerformanceIndexPanel(row),
+    renderDeliveryLayer(row),
+    renderRecognitionPanel(row),
     breadthGroup('Education','TSC 2023',[breadthMetric('Public primary schools',metric(c,CODES.primarySchools),formatInt),breadthMetric('Primary classroom teachers',metric(c,CODES.primaryTeachers),formatInt),breadthMetric('Public secondary schools',metric(c,CODES.secondarySchools),formatInt),breadthMetric('Secondary teachers',metric(c,CODES.secondaryTeachers),formatInt)]),
     breadthGroup('Economic structure','GCP 2024',[breadthMetric('Agriculture GVA',metric(c,CODES.agriGva),formatKesMn),breadthMetric('Agriculture share of GCP',metric(c,CODES.agriShare),formatPct),breadthMetric('Manufacturing GVA',metric(c,CODES.manufacturingGva),formatKesMn),breadthMetric('Manufacturing share of GCP',metric(c,CODES.manufacturingShare),formatPct)]),
     breadthGroup('Agriculture','Maize 2023',[breadthMetric('Maize area',metric(c,CODES.maizeArea),formatHa),breadthMetric('Maize production',metric(c,CODES.maizeProduction),formatTonnes),breadthMetric('Maize yield · Atlas derived',metric(c,CODES.maizeYield),formatYield)]),
