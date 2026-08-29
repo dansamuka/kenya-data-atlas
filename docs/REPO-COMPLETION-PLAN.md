@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P02 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P03 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -29,6 +29,7 @@ Already complete and not to be restarted without a regression/correction:
 - CountyIQ evidence-first redesign and target-state scaffold.
 - P00 CountyIQ runtime stabilization and source-backed sample fallback.
 - P01 shared registry loader, compact first-paint data product, lazy Geo Explorer/D3 path, deferred heavy registries and initial-load performance budget.
+- P02 canonical 47-county CountyIQ analytical mart with deterministic registry-derived build, provenance/eligibility metadata and mart-backed runtime.
 
 The remaining work is therefore primarily **analytical integration, county data breadth, decision intelligence, action layers and public-launch hardening**.
 
@@ -64,25 +65,19 @@ Measured P01 guardrail at release: direct local first-paint JavaScript ≈ 82 KB
 
 ## P02 — CountyIQ canonical analytical mart
 
-**Status: next.**
+**Status: complete.**
 
-**Purpose:** stop CountyIQ from being a special frontend join of Sprint CSVs.
+P02 introduced `scripts/countyiq/build-mart.mjs` and the generated `data/countyiq/county-summary.json`, derived from canonical geography, catalogue, indicator, series and observation registries. The mart contains exactly 47 counties and retains latest/history, unit, provenance/source lineage, uncertainty and ranking-eligibility metadata.
 
-Implement:
+The integrated CountyIQ route now loads the canonical mart through the shared Atlas loader instead of joining Sprint CSVs in the browser. Deterministic rebuild, committed-output drift checks, the full Atlas validation suite and the independent Shapely geometry audit passed before merge; GitHub Pages then deployed the generated mart successfully.
 
-- `scripts/countyiq/build-county-summary.mjs`.
-- `data/countyiq/county-summary.json` generated from canonical geography/indicator/series/observation/catalogue registries.
-- latest + history + provenance + ranking eligibility + uncertainty + transformation metadata.
-- 47-county deterministic coverage validator.
-- CountyIQ runtime switched from direct Sprint CSV joins to the mart.
-
-**Push boundary:** builder + generated mart + validator + runtime migration.
-
-**Exit:** 47/47; deterministic rebuild; source/period/unit/badge retained; direct production Sprint CSV joins gone.
+**Do not reopen:** direct Sprint CSV joins in production CountyIQ are retired; later analytical constructs remain gated to their own phases.
 
 ---
 
 ## P03 — Twelve-year fiscal experience + denominator discipline
+
+**Status: next.**
 
 Use what is already strong before acquiring more data.
 
