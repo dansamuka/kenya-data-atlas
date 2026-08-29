@@ -28,7 +28,11 @@ try{
   const next=roadmap.phases.filter(p=>p.status==='next');
   assert(next.length===1&&next[0].id==='P06','exactly P06 must be the next phase after P05');
   for(let i=0;i<=5;i++)assert(roadmap.phases[i].status==='complete',`P${String(i).padStart(2,'0')} must be complete`);
-  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol']) assert(docs.includes(token),`completion plan missing ${token}`);
+  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol','Complete P06']) assert(docs.includes(token),`completion plan missing ${token}`);
+  const p05Section=docs.split('## P05 —')[1]?.split('\n---\n')[0]||'';
+  const p06Section=docs.split('## P06 —')[1]?.split('\n---\n')[0]||'';
+  assert(p05Section.includes('**Status: complete.**'),'P05 documentation must be marked complete');
+  assert(p06Section.includes('**Status: next.**'),'P06 documentation must be marked next');
   console.log('PROJECT_PHASES_P00_P17_OK');
   console.log('PROJECT_P05_COMPLETE_OK');
   console.log('PROJECT_NEXT_PHASE_P06_OK');
