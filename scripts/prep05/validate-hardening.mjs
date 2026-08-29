@@ -52,7 +52,7 @@ assert(hard.includes('countyLabel(name)')&&hard.includes('countyOrdered'),'forma
 assert(hard.includes('kda-select-search-dialog'),'searchable dropdown dialog missing');
 console.log('PREP05_SEARCHABLE_SELECTS_OK county_order=001-047');
 
-assert(hard.includes('kda-axis-title')&&hard.includes('data-chart-point'),'chart axes/point interaction enhancement missing');
+assert(hard.includes('kda-axis-title')&&hard.includes('point.dataset.chartPoint'),'chart axes/point interaction enhancement missing');
 assert(routed.includes('data-chart-point="true"')&&routed.includes('<title>'),'generic Series chart points lack disclosure');
 assert(hard.includes("point.addEventListener('click'")&&hard.includes("point.addEventListener('pointerenter'")&&hard.includes("point.addEventListener('focus'"),'chart point hover/tap/focus handlers missing');
 console.log('PREP05_CHART_DISCLOSURE_OK axes=labelled points=hover-tap-focus');
