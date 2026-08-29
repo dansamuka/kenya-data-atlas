@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -17,6 +17,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
           fetch-depth: 0
 
       - name: Set up Node.js
@@ -34,6 +35,20 @@ jobs:
         run: |
           npm ci
           python -m pip install --disable-pip-version-check shapely
+
+      - name: Materialize P04 source package
+        if: github.event_name == 'pull_request' && github.head_ref == 'p04-health-living-standards'
+        run: |
+          node scripts/p04/apply-social-outcomes.mjs
+          npm run build:data
+          npm run countyiq:p04:validate
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'P04: activate county health and living standards'
+            git push origin HEAD:p04-health-living-standards
+          fi
 
       - name: Rebuild all published data products
         run: npm run build:data
