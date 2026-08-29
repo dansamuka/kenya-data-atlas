@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.16.1 — 29 August 2026 — CountyIQ P09–P11 publication hardening
+
+Promotes P09–P11 from analytical preview to a publication-safe release without overstating what the evidence can support.
+
+- **P09 — published current snapshot, longitudinal composite withheld.** The 0–100 County Development Snapshot is public only as a latest cross-section with five broad relative-position bands. The snapshot passes the published robustness gate: all 47 counties remain in the same or an adjacent band across the two plausible full-composite weighting specifications. Exact ranks remain sensitivity diagnostics, not a settled league table. A historical composite trend remains withheld because only 2 of 5 inputs have multi-year county history and the reconstructable fiscal sub-index has weak (~0.43) average year-over-year Spearman rank stability.
+- **P10 — published fiscal delivery & accountability layer.** Uses a common FY2024/25 reference period and three equally weighted pillars: budget execution, OSR target attainment, and arrears control. Wage-ceiling and audit evidence are disclosed but deliberately not assigned arbitrary score points. No missing values are imputed; 46 counties receive complete scores and Narok's overall score is explicitly withheld because the final pending-bills source does not contain a submitted county value.
+- **P11 — published administration-period scorecards and recognition.** All 47 counties receive a county-administration-period record using FY2021/22 as the last full pre-election baseline, FY2022/23 as transition context only, and FY2024/25 as the latest full fiscal year. The model keeps `office_holder_name: null` and `person_attribution: false`; recognition is generated mechanically from published fiscal rules, not from a personal governor score or a historical development composite.
+
+See `docs/countyiq/P09-HISTORICAL-VALIDATION.md`, `docs/countyiq/P10-DELIVERY-LAYER.md`, and `docs/countyiq/P11-RECOGNITION.md`.
+
+## 0.13.0 — 29 August 2026 — CountyIQ P08: Performance Index (Research/Beta)
+
+Ships the composite index as a research product, explicitly labelled Research/Beta and not cleared for production. Headline finding, disclosed rather than hidden: only 5 of 98 indicators (fiscal budget/development absorption, rent burden, school attendance, labour-force participation) currently meet the inclusion rule for all 47 counties — 4 of 7 domains contribute nothing yet, and the index must not be described as comprehensive. Three published weighting scenarios, a correlation/multicollinearity review, and a per-county rank-robustness band (several counties swing 20+ places out of 47 depending on weighting alone). See `docs/countyiq/P08-PERFORMANCE-INDEX.md`.
+
+## 0.12.0 — 29 August 2026 — CountyIQ P07: gap calculator and evidence narrative
+
+Peer/national benchmark gaps for every P06-ranked indicator, each exposing its own formula, benchmark source, period and denominator. One real monetary counterfactual (overall budget-absorption gap × total budget, in KES) — deliberately not extended to development absorption, which has no active development-budget denominator to multiply against. Template-generated "working well / needs attention / what changed" narrative, reconstructible from the same displayed numbers. See `docs/countyiq/P07-GAPS-AND-NARRATIVE.md`, including a direction-wording bug caught and fixed during this phase.
+
+## 0.11.0 — 29 August 2026 — CountyIQ P04–P06: health, breadth and peer intelligence
+
+Closes a changelog gap: P04 and P05 shipped in the prior session without a changelog entry, and this release adds P06 on top of them.
+
+- **P04 — County health and living-standards ingestion.** Poverty, stunting, immunisation, skilled-birth-attendance and health-facility-count indicators for all 47 counties, sourced with full survey-precision metadata; league-table ranking withheld per the Atlas indicator taxonomy where sampling uncertainty applies.
+- **P05 — County education, economy, agriculture and infrastructure breadth.** Fourteen additional indicators (658 county-metric rows) covering TSC school/teacher counts, GCP economic structure, maize production and KHS connectivity, each reconciled against its official source total.
+- **P06 — Peer groups, percentiles and trend intelligence.** Every indicator's `ranking` and `trend` slots are now populated: national and population-quartile-peer rank/percentile, and direction/volatility trend classification. Ships a published, versioned direction/composite-eligibility ruleset for all 98 registry indicators (`scripts/p06/direction-rules.mjs`). See `docs/countyiq/P06-PEER-INTELLIGENCE.md`.
+
 ## 0.10.0 — 28 August 2026 — County Life / My Life Elsewhere
 
 Publishes five complete county-level comparison families for the dedicated Compare workspace. Direct Compare can place the new metrics side by side across counties; My Life Elsewhere can translate matched observations into plain-language differences without inventing a composite quality-of-life score.

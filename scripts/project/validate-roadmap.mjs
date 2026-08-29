@@ -26,16 +26,19 @@ try{
     for(const dependency of phase.depends_on) assert(ids.includes(dependency),`${phase.id} depends on unknown phase ${dependency}`);
   }
   const next=roadmap.phases.filter(p=>p.status==='next');
-  assert(next.length===1&&next[0].id==='P06','exactly P06 must be the next phase after P05');
-  for(let i=0;i<=5;i++)assert(roadmap.phases[i].status==='complete',`P${String(i).padStart(2,'0')} must be complete`);
-  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol','Complete P06']) assert(docs.includes(token),`completion plan missing ${token}`);
-  const p05Section=docs.split('## P05 —')[1]?.split('\n---\n')[0]||'';
-  const p06Section=docs.split('## P06 —')[1]?.split('\n---\n')[0]||'';
-  assert(p05Section.includes('**Status: complete.**'),'P05 documentation must be marked complete');
-  assert(p06Section.includes('**Status: next.**'),'P06 documentation must be marked next');
+  assert(next.length===1,`exactly one phase must be marked next, found ${next.length}`);
+  const nextIndex=ids.indexOf(next[0].id);
+  for(let i=0;i<nextIndex;i++)assert(roadmap.phases[i].status==='complete',`${roadmap.phases[i].id} must be complete before ${next[0].id} can be next`);
+  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol',`Complete ${next[0].id}`]) assert(docs.includes(token),`completion plan missing ${token}`);
+  const sectionOf=(id)=>{const heading=new RegExp(`^## ${id} —`,'m');const parts=docs.split(heading);return parts.length>1?parts[1].split('\n---\n')[0]:'';};
+  for(let i=0;i<nextIndex;i++){
+    const id=roadmap.phases[i].id;
+    assert(sectionOf(id).includes('**Status: complete.**'),`${id} documentation must be marked complete`);
+  }
+  assert(sectionOf(next[0].id).includes('**Status: next.**'),`${next[0].id} documentation must be marked next`);
   console.log('PROJECT_PHASES_P00_P17_OK');
-  console.log('PROJECT_P05_COMPLETE_OK');
-  console.log('PROJECT_NEXT_PHASE_P06_OK');
+  console.log(`PROJECT_${ids[nextIndex-1]}_COMPLETE_OK`);
+  console.log(`PROJECT_NEXT_PHASE_${next[0].id}_OK`);
   console.log('PROJECT_SESSION_PLAN_OK');
 }catch(error){
   console.error(error.message||error);

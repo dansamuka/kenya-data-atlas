@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P06 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P12 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -126,7 +126,7 @@ Release evidence before PR: the focused P05 validator passed source reconciliati
 
 ## P06 — Peer groups + percentile + trend engine
 
-**Status: next.**
+**Status: complete.**
 
 Do this before a composite score.
 
@@ -147,6 +147,8 @@ A later statistical clustering method may replace/augment rule-based groups, but
 
 ## P07 — Development Gap Calculator + evidence narratives
 
+**Status: complete.**
+
 Restore the best part of the old “opportunity cost” concept without speculative claims.
 
 Build transparent counterfactuals such as:
@@ -161,6 +163,8 @@ Then generate the county “what is working / what needs attention / what change
 ---
 
 ## P08 — County Development & Performance Index research release
+
+**Status: complete.**
 
 A dedicated methodology session.
 
@@ -184,6 +188,8 @@ Ship as **Research/Beta**, not as a definitive county/governor score.
 
 ## P09 — Historical index validation + production decision
 
+**Status: complete.**
+
 Test whether P08 deserves promotion.
 
 Run historical versions where data permits, analyse stability, investigate implausible rank movements, and document whether the index remains research-only or becomes a normal CountyIQ result.
@@ -193,6 +199,8 @@ Run historical versions where data permits, analyse stability, investigate impla
 ---
 
 ## P10 — County Government Delivery + Accountability
+
+**Status: complete.**
 
 Build a second analytical construct that is narrower than county outcomes.
 
@@ -211,6 +219,8 @@ Candidate components:
 
 ## P11 — Administration scorecards + CountyIQ Recognition
 
+**Status: complete.**
+
 Reintroduce leadership-period presentation only after P10.
 
 Show:
@@ -228,6 +238,8 @@ Replace “Presidential Awards” with algorithmic **CountyIQ Recognition** cate
 ---
 
 ## P12 — Verified County Opportunity Finder
+
+**Status: next.**
 
 Create a proper opportunity registry with:
 

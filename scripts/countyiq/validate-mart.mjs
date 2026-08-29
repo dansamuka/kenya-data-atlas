@@ -66,7 +66,18 @@ try{
     const domainTotal=Object.values(county.domains||{}).reduce((sum,d)=>sum+(d.available_indicators||0),0);
     assert(domainTotal===Object.keys(county.metrics||{}).length,`${county.geography.geo_code}: domain coverage does not reconcile to metrics`);
     assert(county.coverage?.active_metric_count===Object.keys(county.metrics||{}).length,`${county.geography.geo_code}: coverage active metric count mismatch`);
-    assert(!('indices' in county)&&!('administration' in county)&&!('development_gaps' in county)&&!('opportunities' in county)&&!('recognition' in county),'P02 must not publish gated analytical outputs');
+    // P02 itself must never publish an ungated analytical output. P07-P11
+    // have since shipped gaps/narrative, performanceIndex, deliveryLayer
+    // and recognition — each is checked here for its own specific safety
+    // marker rather than being blocked outright, so this stays a real
+    // gate (a field present WITHOUT its marker still fails) rather than
+    // being deleted outright now that later phases legitimately exist.
+    assert(!('indices' in county)&&!('administration' in county)&&!('opportunities' in county),'P02 must not publish gated analytical outputs that have no corresponding completed phase (P12/P13 not yet shipped, and administration-period data must never appear per P11)');
+    if('gaps' in county)assert(county.gaps.methodology_version,`${county.geography.geo_code}: gaps present without a published methodology_version`);
+    if('performanceIndex' in county)assert(['research','published','published_snapshot'].includes(county.performanceIndex.status),`${county.geography.geo_code}: performanceIndex present without a valid gated status`);
+    if('deliveryLayer' in county)assert(county.deliveryLayer.methodology_version&&county.deliveryLayer.attribution_note,`${county.geography.geo_code}: deliveryLayer present without methodology/attribution guardrail`);
+    if('recognition' in county)assert(county.recognition.person_attribution===false,`${county.geography.geo_code}: recognition present without person_attribution:false`);
+    if('administrationScorecard' in county)assert(county.administrationScorecard.person_attribution===false&&county.administrationScorecard.subject==='county_administration_period',`${county.geography.geo_code}: administrationScorecard present without period-level no-person-attribution markers`);
   }
   console.log(`COUNTYIQ_MART_TRACEABILITY_OK metrics=${metricCount} history=${historyCount} rankable_records=${rankable}`);
 

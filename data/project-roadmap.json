@@ -142,7 +142,7 @@
     {
       "id": "P06",
       "title": "Peer groups, percentiles and trend intelligence",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Make county comparison structurally fair and time-aware before any overall index is published.",
       "outputs": [
         "versioned peer-group definition",
@@ -164,7 +164,7 @@
     {
       "id": "P07",
       "title": "Development Gap Calculator and evidence narrative engine",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Turn differences from national/peer benchmarks into transparent, non-causal decision intelligence.",
       "outputs": [
         "gap formulas",
@@ -184,7 +184,7 @@
     {
       "id": "P08",
       "title": "County Development & Performance Index research release",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Build the composite as a research product with explicit statistical diagnostics rather than as a marketing score.",
       "outputs": [
         "normalization specification",
@@ -209,7 +209,7 @@
     {
       "id": "P09",
       "title": "Historical index validation and release decision",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Determine whether the composite is stable enough to become a normal CountyIQ result.",
       "outputs": [
         "historical/back-test package",
@@ -229,7 +229,7 @@
     {
       "id": "P10",
       "title": "County government delivery and accountability layer",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Separate government-linked delivery from broad county outcomes.",
       "outputs": [
         "OSR/pending-bills/wage/audit measures",
@@ -249,7 +249,7 @@
     {
       "id": "P11",
       "title": "Administration scorecards and evidence-based recognition",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Restore leadership/recognition features using reproducible rules and strong attribution cautions.",
       "outputs": [
         "administration-period pages",
@@ -270,7 +270,7 @@
     {
       "id": "P12",
       "title": "County Opportunity Finder",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Create a verified, date-aware opportunity database rather than speculative funding countdowns.",
       "outputs": [
         "opportunity schema",

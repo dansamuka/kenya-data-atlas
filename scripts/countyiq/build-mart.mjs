@@ -1,6 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { assignPeerGroups, computeRankingAndTrend, benchmarksFor, PEER_METHODOLOGY_VERSION } from '../p06/peer-intelligence.mjs';
+import { buildGapsAndNarrative } from '../p07/gap-calculator.mjs';
+import { buildPerformanceIndex } from '../p08/performance-index.mjs';
+import { buildHistoricalValidation } from '../p09/historical-validation.mjs';
+import { buildDeliveryLayer } from '../p10/delivery-layer.mjs';
+import { buildRecognition } from '../p11/recognition.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const readJson = p => JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
@@ -13,6 +19,9 @@ function domainFor(indicator){
   const text=[indicator.topic,indicator.subtopic,indicator.tab,indicator.name].filter(Boolean).join(' ').toLowerCase();
   if(/education|school|learning/.test(text)) return 'education';
   if(/health|hiv|stunting|immun|birth|pregnan|facility/.test(text)) return 'health';
+  // Household rent/expenditure is a living-standards measure, not public finance.
+  // Keep this explicit exception ahead of the generic fiscal keyword matcher.
+  if(/rent|household expenditure/.test(text)) return 'living';
   if(/public finance|fiscal|budget|revenue|expenditure|absorption|pending bill|audit|wage/.test(text)) return 'fiscal';
   if(/representation|election|governance|voter|administration/.test(text)) return 'governance';
   if(/infrastructure|digital|electric|energy|road|water|internet|resilience|environment|land area/.test(text)) return 'infrastructure';
@@ -215,6 +224,13 @@ export function buildMart(input){
     }
   }
 
+  // P06 — peer groups, percentiles and trend intelligence. Runs after
+  // eligibility is decided above, so it only ever computes positional
+  // and trend statistics for metrics P02's own taxonomy already allows
+  // to be ranked; it never overrides an ineligibility decision.
+  const peerGroups=assignPeerGroups(rows);
+  computeRankingAndTrend(rows,indicatorById,peerGroups);
+
   const outputCounties=rows.map(({county,metrics})=>{
     const domains={};
     for(const id of DOMAIN_ORDER){
@@ -225,14 +241,28 @@ export function buildMart(input){
     const fiscal=fiscalExperience({county,metrics},rows);
     return {
       geography:{geography_id:county.geography_id,geo_code:county.geo_code,name:county.name,level:'county',county_code:county.county_code,boundary_version:county.boundary_version||'2012-01'},
-      metrics,fiscal,domains,benchmarks:{national:{},peer_group:null},
+      metrics,fiscal,domains,benchmarks:benchmarksFor(county,peerGroups,peerGroups.tierLabel),
       coverage:{active_metric_count:Object.keys(metrics).length,target_metric_count:Object.values(TARGETS).reduce((a,b)=>a+b,0),domain_count_with_active_metrics:Object.values(domains).filter(d=>d.available_indicators>0).length,last_data_update:last,stale_metric_count:0,held_metric_count:0,planned_metric_count:0}
     };
   });
 
+  // P07 — development gap calculator and evidence narrative engine. Runs
+  // last, on the assembled county records, since it reads across
+  // metrics/fiscal/domains and writes back gaps + narrative + populates
+  // the domain strengths/weaknesses arrays P02 left empty.
+  buildGapsAndNarrative(outputCounties,indicatorById);
+  const performanceIndexMethodology=buildPerformanceIndex(outputCounties,indicatorById);
+  const releaseDecision=buildHistoricalValidation(outputCounties,performanceIndexMethodology);
+  performanceIndexMethodology.status=releaseDecision.resulting_status;
+  performanceIndexMethodology.label=releaseDecision.resulting_status==='published_snapshot'?'Published snapshot — P09 cleared the latest cross-sectional score for banded display; exact ranks remain diagnostic and longitudinal composite movement is withheld.':'Research/Beta — not cleared for public composite display by the P09 snapshot gate.';
+  for(const county of outputCounties){county.performanceIndex.status=releaseDecision.resulting_status;county.performanceIndex.release_decision=releaseDecision;}
+  performanceIndexMethodology.release_decision=releaseDecision;
+  const deliveryMethodology=buildDeliveryLayer(outputCounties);
+  const recognitionMethodology=buildRecognition(outputCounties);
+
   return {
     meta:{schema_version:'kda.countyiq.county-summary.v2',generated_at:generatedAt(observations,releases),atlas_data_version:atlasVersion,county_count:47,
-      source_registries:['data/geography/registry/geographies.json','data/indicators/registry/indicators.json','data/indicators/registry/series.json','data/indicators/registry/observations.json','data/indicators/registry/units.json','data/catalogue/registry/datasets.json','data/catalogue/registry/releases.json','data/catalogue/registry/sources.json','data/catalogue/registry/agencies.json'],methodology_version:'P03-v1'},
+      source_registries:['data/geography/registry/geographies.json','data/indicators/registry/indicators.json','data/indicators/registry/series.json','data/indicators/registry/observations.json','data/indicators/registry/units.json','data/catalogue/registry/datasets.json','data/catalogue/registry/releases.json','data/catalogue/registry/sources.json','data/catalogue/registry/agencies.json'],methodology_version:PEER_METHODOLOGY_VERSION,peer_group_definition:peerGroups.definition,performance_index_methodology:performanceIndexMethodology,delivery_layer_methodology:deliveryMethodology,recognition_methodology:recognitionMethodology},
     counties:outputCounties
   };
 }

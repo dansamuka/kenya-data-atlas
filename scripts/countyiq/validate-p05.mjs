@@ -80,9 +80,12 @@ try{
  assert(css.includes('.ciq-p05-grid{')&&css.includes('@media(max-width:560px)'),'responsive P05 CSS missing');
  console.log('COUNTYIQ_P05_UI_OK');
 
- const phase05=roadmap.phases.find(x=>x.id==='P05'),phase06=roadmap.phases.find(x=>x.id==='P06');
- assert(phase05?.status==='complete','P05 roadmap must be complete');assert(phase06?.status==='next','P06 must be next');
- assert(!roadmap.phases.some(x=>x.id!=='P06'&&x.status==='next'),'no later/other phase may be next');
- console.log('COUNTYIQ_P05_ROADMAP_OK next=P06');
+ const phase05=roadmap.phases.find(x=>x.id==='P05');
+ assert(phase05?.status==='complete','P05 roadmap must be complete');
+ const order=roadmap.phases.map(x=>x.id);
+ const nextPhases=roadmap.phases.filter(x=>x.status==='next');
+ assert(nextPhases.length===1,`exactly one phase must be marked next, found ${nextPhases.length}`);
+ assert(order.indexOf(nextPhases[0].id)>order.indexOf('P05'),`the next phase (${nextPhases[0].id}) must come after P05 — roadmap must only move forward`);
+ console.log(`COUNTYIQ_P05_ROADMAP_OK next=${nextPhases[0].id}`);
  console.log('COUNTYIQ_P05_ALL_OK');
 }catch(error){console.error(error.message||error);process.exit(1);}
