@@ -168,7 +168,7 @@
       "id": "economy",
       "name": "Economy & opportunity",
       "target_indicator_count": 6,
-      "current_readiness": "strong",
+      "current_readiness": "broad_county_structure_active",
       "indicators": [
         {
           "code": "IND-GCP-CURRENT",
@@ -194,9 +194,9 @@
         {
           "code": "CQ-SECTOR-MIX",
           "name": "County economic sector composition",
-          "status": "planned",
-          "dependency": "Official comparable GCP sector tables",
-          "priority": 4
+          "status": "integrated",
+          "priority": 4,
+          "coverage": "47/47 counties · 2024 GCP economic-activity annex"
         },
         {
           "code": "IND-BUSINESS-LICENSES",
@@ -208,9 +208,9 @@
         {
           "code": "IND-AGRI-PRODUCTION",
           "name": "Agricultural production/productivity",
-          "status": "planned",
-          "dependency": "Indicator-specific official tables",
-          "priority": 6
+          "status": "integrated",
+          "priority": 6,
+          "coverage": "47/47 counties · 2023 maize area, production and derived yield"
         }
       ]
     },
@@ -341,9 +341,9 @@
         {
           "code": "CQ-ELECTRICITY-ACCESS",
           "name": "Electricity access",
-          "status": "planned",
-          "dependency": "County source; national WDI cannot be inherited",
-          "priority": 3
+          "status": "integrated",
+          "priority": 3,
+          "coverage": "47/47 counties · household main-grid connection · 2023/24 Kenya Housing Survey"
         }
       ]
     },
@@ -408,7 +408,7 @@
       "id": "education",
       "name": "Education & human capital",
       "target_indicator_count": 5,
-      "current_readiness": "weak",
+      "current_readiness": "county_establishment_package_active",
       "indicators": [
         {
           "code": "CQ-ENROLMENT",
@@ -444,6 +444,34 @@
           "status": "planned",
           "dependency": "Primary-source coverage assessment",
           "priority": 7
+        },
+        {
+          "code": "IND-PUBLIC-PRIMARY-SCHOOLS",
+          "name": "Public primary schools",
+          "status": "integrated",
+          "coverage": "47/47 counties · TSC 2023",
+          "priority": 2
+        },
+        {
+          "code": "IND-PRIMARY-CLASSROOM-TEACHERS",
+          "name": "Primary classroom teachers",
+          "status": "integrated",
+          "coverage": "47/47 counties · TSC 2023",
+          "priority": 2
+        },
+        {
+          "code": "IND-PUBLIC-SECONDARY-SCHOOLS",
+          "name": "Public secondary schools",
+          "status": "integrated",
+          "coverage": "47/47 counties · TSC 2023",
+          "priority": 2
+        },
+        {
+          "code": "IND-SECONDARY-TEACHERS",
+          "name": "Secondary teachers",
+          "status": "integrated",
+          "coverage": "47/47 counties · TSC 2023",
+          "priority": 2
         }
       ]
     },
@@ -451,7 +479,7 @@
       "id": "infrastructure_resilience",
       "name": "Infrastructure & resilience",
       "target_indicator_count": 6,
-      "current_readiness": "mixed",
+      "current_readiness": "county_connectivity_package_active",
       "indicators": [
         {
           "code": "IND-LAND-AREA",
@@ -494,6 +522,27 @@
           "status": "integrated",
           "note": "Pricing-town context only; not county performance",
           "priority": 7
+        },
+        {
+          "code": "IND-INTERNET-USE",
+          "name": "Internet use",
+          "status": "integrated",
+          "coverage": "47/47 counties · 2023/24 Kenya Housing Survey",
+          "priority": 2
+        },
+        {
+          "code": "IND-COMPUTER-USE",
+          "name": "Computer use",
+          "status": "integrated",
+          "coverage": "47/47 counties · 2023/24 Kenya Housing Survey",
+          "priority": 3
+        },
+        {
+          "code": "IND-MAIN-GRID-ELECTRICITY",
+          "name": "Main-grid electricity connection",
+          "status": "integrated",
+          "coverage": "47/47 counties · 2023/24 Kenya Housing Survey",
+          "priority": 2
         }
       ]
     },

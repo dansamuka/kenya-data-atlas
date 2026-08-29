@@ -120,14 +120,44 @@
     "currency_code": ""
   },
   {
-    "unit_id": "301fb81d-4436-5309-8fc5-547d222b8ffe",
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
     "code": "kes_million",
-    "name": "Kenya Shillings, million",
-    "symbol": "KSh mn",
+    "name": "Kenya shillings, million",
+    "symbol": "KES mn",
     "dimension": "currency",
     "scale_factor": 1000000,
-    "decimal_places": 2,
+    "decimal_places": 0,
     "currency_code": "KES"
+  },
+  {
+    "unit_id": "c29ad2b5-6600-5015-a501-ffcd28458740",
+    "code": "hectares",
+    "name": "Hectares",
+    "symbol": "ha",
+    "dimension": "area",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "d6785a41-d89d-575d-9608-b72b9896df7b",
+    "code": "tonnes",
+    "name": "Tonnes",
+    "symbol": "t",
+    "dimension": "mass",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  {
+    "unit_id": "0ea5caca-cb59-50ef-ab8c-d2628e192d70",
+    "code": "tonnes_per_hectare",
+    "name": "Tonnes per hectare",
+    "symbol": "t/ha",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 2,
+    "currency_code": ""
   },
   {
     "unit_id": "6590aac1-b204-58cd-a9f0-8fab3fed5cdc",

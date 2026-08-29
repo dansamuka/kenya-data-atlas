@@ -19,7 +19,7 @@
     "mobile:validate": "node scripts/ui/validate-mobile.mjs",
     "map:validate": "node scripts/indicators/validate-map-cascade.mjs",
     "countyiq:build": "node scripts/countyiq/build-mart.mjs",
-    "countyiq:validate": "node scripts/countyiq/validate-scaffold.mjs all && node scripts/countyiq/validate-mart.mjs && node scripts/countyiq/validate-runtime.mjs && node scripts/countyiq/validate-p03.mjs && node scripts/countyiq/validate-p04.mjs",
+    "countyiq:validate": "node scripts/countyiq/validate-scaffold.mjs all && node scripts/countyiq/validate-mart.mjs && node scripts/countyiq/validate-runtime.mjs && node scripts/countyiq/validate-p03.mjs && node scripts/countyiq/validate-p04.mjs && node scripts/countyiq/validate-p05.mjs",
     "countyiq:p03:validate": "node scripts/countyiq/validate-p03.mjs",
     "project:validate": "node scripts/project/validate-roadmap.mjs",
     "geography:derive": "node --max-old-space-size=4096 scripts/geography/derive-parents.mjs",
@@ -35,7 +35,8 @@
     "life:validate": "node scripts/indicators/validate-life-elsewhere.mjs",
     "countyiq:p04:validate": "node scripts/countyiq/validate-p04.mjs",
     "placefacts:build": "node scripts/prep05/build-place-facts.mjs",
-    "prep05:validate": "node scripts/prep05/validate-hardening.mjs"
+    "prep05:validate": "node scripts/prep05/validate-hardening.mjs",
+    "countyiq:p05:validate": "node scripts/countyiq/validate-p05.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"
