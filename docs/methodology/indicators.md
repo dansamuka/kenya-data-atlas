@@ -156,3 +156,11 @@ npm run indicators:validate   # or: npm test (runs geography, catalogue, indicat
 
 `indicators:build` depends on the geography and catalogue registries already being
 built (`npm run build:data` runs all three in the correct order).
+
+## Pre-P05 area and place-fact hardening
+
+- County/national land area uses the official KNBS 2019 Census land-area table and is published as direct official evidence.
+- Constituency/ward area remains a boundary-derived estimate and retains the geometry method/error disclosure.
+- RCMRD Geoportal is a spatial cross-check, not the numeric county-area authority.
+- Contextual school, teacher, facility, historical hospital and historical approximate doctor facts are date/definition labelled and are not silently inherited to lower geographies.
+- These contextual facts do not count toward the P05 active-indicator breadth gate until P05 performs full catalogue/indicator promotion.

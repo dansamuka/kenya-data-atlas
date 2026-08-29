@@ -1,0 +1,403 @@
+{
+  "schema_version": "kda.prep05.area-validation.v1",
+  "numeric_authority": {
+    "agency": "Kenya National Bureau of Statistics (KNBS)",
+    "publication": "2019 Kenya Population and Housing Census",
+    "table": "Table 2.4 — Distribution of Population, Land Area and Population Density by County",
+    "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+    "national_land_area_km2": 580876.3
+  },
+  "spatial_cross_checks": [
+    {
+      "agency": "Regional Centre for Mapping of Resources for Development (RCMRD)",
+      "resource": "RCMRD Geoportal",
+      "url": "https://geoportal.rcmrd.org/",
+      "role": "independent county-boundary cross-check; not used as numeric area authority"
+    },
+    {
+      "agency": "Kenya Ministry of Lands / Survey of Kenya",
+      "role": "official national mapping/boundary authority; retained as a second spatial authority where an accessible boundary service is available"
+    }
+  ],
+  "derived_geometry_method": "equirectangular planar projection, mean-latitude reference per feature, shoelace formula",
+  "derived_geometry_error_band_pct": 2,
+  "interpretation": "Differences are reported rather than forced to zero. KNBS land area is the county headline. Geometry-derived area remains an estimate and is retained for constituency/ward spatial context.",
+  "counties": [
+    {
+      "county_number": "001",
+      "geo_code": "KEN-C001",
+      "name": "Mombasa",
+      "official_knbs_land_area_km2": 219.9,
+      "geometry_area_km2": 220,
+      "delta_pct": 0.05
+    },
+    {
+      "county_number": "002",
+      "geo_code": "KEN-C002",
+      "name": "Kwale",
+      "official_knbs_land_area_km2": 8267.1,
+      "geometry_area_km2": 8311.1,
+      "delta_pct": 0.53
+    },
+    {
+      "county_number": "003",
+      "geo_code": "KEN-C003",
+      "name": "Kilifi",
+      "official_knbs_land_area_km2": 12539.7,
+      "geometry_area_km2": 12672.3,
+      "delta_pct": 1.06
+    },
+    {
+      "county_number": "004",
+      "geo_code": "KEN-C004",
+      "name": "Tana River",
+      "official_knbs_land_area_km2": 37950.5,
+      "geometry_area_km2": 38648.5,
+      "delta_pct": 1.84
+    },
+    {
+      "county_number": "005",
+      "geo_code": "KEN-C005",
+      "name": "Lamu",
+      "official_knbs_land_area_km2": 6253.3,
+      "geometry_area_km2": 6299.7,
+      "delta_pct": 0.74
+    },
+    {
+      "county_number": "006",
+      "geo_code": "KEN-C006",
+      "name": "Taita Taveta",
+      "official_knbs_land_area_km2": 17152,
+      "geometry_area_km2": 17176.8,
+      "delta_pct": 0.14
+    },
+    {
+      "county_number": "007",
+      "geo_code": "KEN-C007",
+      "name": "Garissa",
+      "official_knbs_land_area_km2": 44736,
+      "geometry_area_km2": 44388.9,
+      "delta_pct": -0.78
+    },
+    {
+      "county_number": "008",
+      "geo_code": "KEN-C008",
+      "name": "Wajir",
+      "official_knbs_land_area_km2": 56773.1,
+      "geometry_area_km2": 56975.1,
+      "delta_pct": 0.36
+    },
+    {
+      "county_number": "009",
+      "geo_code": "KEN-C009",
+      "name": "Mandera",
+      "official_knbs_land_area_km2": 25939.8,
+      "geometry_area_km2": 26091.6,
+      "delta_pct": 0.59
+    },
+    {
+      "county_number": "010",
+      "geo_code": "KEN-C010",
+      "name": "Marsabit",
+      "official_knbs_land_area_km2": 70944.1,
+      "geometry_area_km2": 71284.1,
+      "delta_pct": 0.48
+    },
+    {
+      "county_number": "011",
+      "geo_code": "KEN-C011",
+      "name": "Isiolo",
+      "official_knbs_land_area_km2": 25350.6,
+      "geometry_area_km2": 25470.8,
+      "delta_pct": 0.47
+    },
+    {
+      "county_number": "012",
+      "geo_code": "KEN-C012",
+      "name": "Meru",
+      "official_knbs_land_area_km2": 7006.3,
+      "geometry_area_km2": 6966.4,
+      "delta_pct": -0.57
+    },
+    {
+      "county_number": "013",
+      "geo_code": "KEN-C013",
+      "name": "Tharaka-Nithi",
+      "official_knbs_land_area_km2": 2564.4,
+      "geometry_area_km2": 2651.8,
+      "delta_pct": 3.41
+    },
+    {
+      "county_number": "014",
+      "geo_code": "KEN-C014",
+      "name": "Embu",
+      "official_knbs_land_area_km2": 2820.7,
+      "geometry_area_km2": 2831.3,
+      "delta_pct": 0.38
+    },
+    {
+      "county_number": "015",
+      "geo_code": "KEN-C015",
+      "name": "Kitui",
+      "official_knbs_land_area_km2": 30429.5,
+      "geometry_area_km2": 30662.3,
+      "delta_pct": 0.77
+    },
+    {
+      "county_number": "016",
+      "geo_code": "KEN-C016",
+      "name": "Machakos",
+      "official_knbs_land_area_km2": 6042.7,
+      "geometry_area_km2": 6236.2,
+      "delta_pct": 3.2
+    },
+    {
+      "county_number": "017",
+      "geo_code": "KEN-C017",
+      "name": "Makueni",
+      "official_knbs_land_area_km2": 8169.8,
+      "geometry_area_km2": 8048.5,
+      "delta_pct": -1.48
+    },
+    {
+      "county_number": "018",
+      "geo_code": "KEN-C018",
+      "name": "Nyandarua",
+      "official_knbs_land_area_km2": 3285.7,
+      "geometry_area_km2": 3256.1,
+      "delta_pct": -0.9
+    },
+    {
+      "county_number": "019",
+      "geo_code": "KEN-C019",
+      "name": "Nyeri",
+      "official_knbs_land_area_km2": 3325,
+      "geometry_area_km2": 3350.4,
+      "delta_pct": 0.76
+    },
+    {
+      "county_number": "020",
+      "geo_code": "KEN-C020",
+      "name": "Kirinyaga",
+      "official_knbs_land_area_km2": 1478.3,
+      "geometry_area_km2": 1485.6,
+      "delta_pct": 0.49
+    },
+    {
+      "county_number": "021",
+      "geo_code": "KEN-C021",
+      "name": "Murang'a",
+      "official_knbs_land_area_km2": 2524.2,
+      "geometry_area_km2": 2569.3,
+      "delta_pct": 1.79
+    },
+    {
+      "county_number": "022",
+      "geo_code": "KEN-C022",
+      "name": "Kiambu",
+      "official_knbs_land_area_km2": 2538.6,
+      "geometry_area_km2": 2553.1,
+      "delta_pct": 0.57
+    },
+    {
+      "county_number": "023",
+      "geo_code": "KEN-C023",
+      "name": "Turkana",
+      "official_knbs_land_area_km2": 68232.9,
+      "geometry_area_km2": 68849.2,
+      "delta_pct": 0.9
+    },
+    {
+      "county_number": "024",
+      "geo_code": "KEN-C024",
+      "name": "West Pokot",
+      "official_knbs_land_area_km2": 9123.2,
+      "geometry_area_km2": 9178.9,
+      "delta_pct": 0.61
+    },
+    {
+      "county_number": "025",
+      "geo_code": "KEN-C025",
+      "name": "Samburu",
+      "official_knbs_land_area_km2": 21065.1,
+      "geometry_area_km2": 21111.2,
+      "delta_pct": 0.22
+    },
+    {
+      "county_number": "026",
+      "geo_code": "KEN-C026",
+      "name": "Trans Nzoia",
+      "official_knbs_land_area_km2": 2495.2,
+      "geometry_area_km2": 2496.3,
+      "delta_pct": 0.04
+    },
+    {
+      "county_number": "027",
+      "geo_code": "KEN-C027",
+      "name": "Uasin Gishu",
+      "official_knbs_land_area_km2": 3392.2,
+      "geometry_area_km2": 3348.9,
+      "delta_pct": -1.28
+    },
+    {
+      "county_number": "028",
+      "geo_code": "KEN-C028",
+      "name": "Elgeyo/Marakwet",
+      "official_knbs_land_area_km2": 3032,
+      "geometry_area_km2": 3034.7,
+      "delta_pct": 0.09
+    },
+    {
+      "county_number": "029",
+      "geo_code": "KEN-C029",
+      "name": "Nandi",
+      "official_knbs_land_area_km2": 2855.8,
+      "geometry_area_km2": 2886.1,
+      "delta_pct": 1.06
+    },
+    {
+      "county_number": "030",
+      "geo_code": "KEN-C030",
+      "name": "Baringo",
+      "official_knbs_land_area_km2": 10976.4,
+      "geometry_area_km2": 11042.1,
+      "delta_pct": 0.6
+    },
+    {
+      "county_number": "031",
+      "geo_code": "KEN-C031",
+      "name": "Laikipia",
+      "official_knbs_land_area_km2": 9532.2,
+      "geometry_area_km2": 9497.6,
+      "delta_pct": -0.36
+    },
+    {
+      "county_number": "032",
+      "geo_code": "KEN-C032",
+      "name": "Nakuru",
+      "official_knbs_land_area_km2": 7462.4,
+      "geometry_area_km2": 7515,
+      "delta_pct": 0.7
+    },
+    {
+      "county_number": "033",
+      "geo_code": "KEN-C033",
+      "name": "Narok",
+      "official_knbs_land_area_km2": 17950.3,
+      "geometry_area_km2": 17964.4,
+      "delta_pct": 0.08
+    },
+    {
+      "county_number": "034",
+      "geo_code": "KEN-C034",
+      "name": "Kajiado",
+      "official_knbs_land_area_km2": 21871.1,
+      "geometry_area_km2": 21989.7,
+      "delta_pct": 0.54
+    },
+    {
+      "county_number": "035",
+      "geo_code": "KEN-C035",
+      "name": "Kericho",
+      "official_knbs_land_area_km2": 2436.1,
+      "geometry_area_km2": 2443.2,
+      "delta_pct": 0.29
+    },
+    {
+      "county_number": "036",
+      "geo_code": "KEN-C036",
+      "name": "Bomet",
+      "official_knbs_land_area_km2": 2530.9,
+      "geometry_area_km2": 2512.5,
+      "delta_pct": -0.73
+    },
+    {
+      "county_number": "037",
+      "geo_code": "KEN-C037",
+      "name": "Kakamega",
+      "official_knbs_land_area_km2": 3020,
+      "geometry_area_km2": 3016.8,
+      "delta_pct": -0.11
+    },
+    {
+      "county_number": "038",
+      "geo_code": "KEN-C038",
+      "name": "Vihiga",
+      "official_knbs_land_area_km2": 563.8,
+      "geometry_area_km2": 564.3,
+      "delta_pct": 0.09
+    },
+    {
+      "county_number": "039",
+      "geo_code": "KEN-C039",
+      "name": "Bungoma",
+      "official_knbs_land_area_km2": 3023.9,
+      "geometry_area_km2": 3030.5,
+      "delta_pct": 0.22
+    },
+    {
+      "county_number": "040",
+      "geo_code": "KEN-C040",
+      "name": "Busia",
+      "official_knbs_land_area_km2": 1696.3,
+      "geometry_area_km2": 1692.1,
+      "delta_pct": -0.25
+    },
+    {
+      "county_number": "041",
+      "geo_code": "KEN-C041",
+      "name": "Siaya",
+      "official_knbs_land_area_km2": 2529.8,
+      "geometry_area_km2": 2526.5,
+      "delta_pct": -0.13
+    },
+    {
+      "county_number": "042",
+      "geo_code": "KEN-C042",
+      "name": "Kisumu",
+      "official_knbs_land_area_km2": 2085.4,
+      "geometry_area_km2": 2086.1,
+      "delta_pct": 0.03
+    },
+    {
+      "county_number": "043",
+      "geo_code": "KEN-C043",
+      "name": "Homa Bay",
+      "official_knbs_land_area_km2": 3152.5,
+      "geometry_area_km2": 3179.8,
+      "delta_pct": 0.87
+    },
+    {
+      "county_number": "044",
+      "geo_code": "KEN-C044",
+      "name": "Migori",
+      "official_knbs_land_area_km2": 2613.5,
+      "geometry_area_km2": 2593.1,
+      "delta_pct": -0.78
+    },
+    {
+      "county_number": "045",
+      "geo_code": "KEN-C045",
+      "name": "Kisii",
+      "official_knbs_land_area_km2": 1323,
+      "geometry_area_km2": 1317.3,
+      "delta_pct": -0.43
+    },
+    {
+      "county_number": "046",
+      "geo_code": "KEN-C046",
+      "name": "Nyamira",
+      "official_knbs_land_area_km2": 897.3,
+      "geometry_area_km2": 899.5,
+      "delta_pct": 0.25
+    },
+    {
+      "county_number": "047",
+      "geo_code": "KEN-C047",
+      "name": "Nairobi City",
+      "official_knbs_land_area_km2": 703.9,
+      "geometry_area_km2": 697.8,
+      "delta_pct": -0.87
+    }
+  ]
+}
