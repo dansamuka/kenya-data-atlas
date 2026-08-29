@@ -37,3 +37,5 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m 'P04: activate county health and living standards'
           git push origin HEAD:p04-health-living-standards
+
+# Registered on main; this second revision triggers the branch build.
