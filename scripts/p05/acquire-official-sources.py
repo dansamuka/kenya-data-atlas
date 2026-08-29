@@ -33,7 +33,7 @@ def canonical_counties():
     rows = []
     with open(ROOT/'data/geography/registry/geographies.csv', encoding='utf-8') as f:
         for r in csv.DictReader(f):
-            if r.get('geo_level') == 'county':
+            if r.get('level') == 'county':
                 rows.append((r['geo_code'], r['name']))
     if len(rows) != 47:
         raise RuntimeError(f'Expected 47 registry counties, got {len(rows)}')
@@ -41,10 +41,7 @@ def canonical_counties():
 
 COUNTIES = canonical_counties()
 NAME_TO_GEO = {norm(name): (geo, name) for geo, name in COUNTIES}
-# Explicit source spelling variants that differ beyond punctuation/spacing.
-for alias, target in {
-    'HOMABAY': 'Homa Bay', 'TAITATAVETA': 'Taita Taveta', 'NAIROBI': 'Nairobi City',
-}.items():
+for alias, target in {'HOMABAY':'Homa Bay','NAIROBI':'Nairobi City'}.items():
     tgt = next((x for x in COUNTIES if x[1] == target), None)
     if tgt:
         NAME_TO_GEO[alias] = tgt
@@ -67,11 +64,14 @@ def number(v):
     return float(s)
 
 
-def put_county(out, source_name, value):
+def put_county(out, source_name, raw_value):
     key = norm(source_name)
     if key not in NAME_TO_GEO:
         return False
     geo, name = NAME_TO_GEO[key]
+    value = number(raw_value)
+    if value is None:
+        raise RuntimeError(f'Missing numeric value for {name}')
     if geo in out and out[geo] != value:
         raise RuntimeError(f'Conflicting duplicate for {name}: {out[geo]} vs {value}')
     out[geo] = value
@@ -82,13 +82,9 @@ def parse_two_panel_sheet(ws, value_left_col, value_right_col):
     out = {}
     for row in ws.iter_rows(values_only=True):
         if len(row) >= value_left_col:
-            name = row[0]
-            val = row[value_left_col-1]
-            put_county(out, name, number(val))
+            put_county(out, row[0], row[value_left_col-1])
         if len(row) >= value_right_col:
-            name = row[5]
-            val = row[value_right_col-1]
-            put_county(out, name, number(val))
+            put_county(out, row[5], row[value_right_col-1])
     if len(out) != 47:
         missing = [n for g,n in COUNTIES if g not in out]
         raise RuntimeError(f'{ws.title}: expected 47 counties, got {len(out)} missing={missing}')
@@ -103,9 +99,9 @@ def parse_connectivity(ch3_bytes, ch5_bytes):
     electricity = {}
     for row in wb5['Table 5.11'].iter_rows(values_only=True):
         if len(row) >= 2:
-            put_county(electricity, row[0], number(row[1]))
+            put_county(electricity, row[0], row[1])
     if len(electricity) != 47:
-        raise RuntimeError(f'Population electricity rows={len(electricity)}')
+        raise RuntimeError(f'Electricity expected 47 rows, got {len(electricity)}')
     return internet, computer, electricity
 
 
@@ -121,8 +117,7 @@ def parse_gcp(pdf_bytes):
         except Exception:
             continue
         for table in tables:
-            rows = table.extract()
-            for row in rows:
+            for row in table.extract():
                 if len(row) < 22:
                     continue
                 key = norm(row[1])
@@ -142,10 +137,10 @@ def parse_gcp(pdf_bytes):
     if len(out) != 47:
         missing = [n for g,n in COUNTIES if g not in out]
         raise RuntimeError(f'GCP expected 47, got {len(out)} missing={missing}')
-    # Independent reconciliation against the already-published 2024 GCP county total.
     existing = {}
     with open(ROOT/'data/sprint1/gcp-2020-2024.csv', encoding='utf-8') as f:
-        for r in csv.DictReader(f): existing[r['geo_code']] = float(r['2024'])
+        for r in csv.DictReader(f):
+            existing[r['geo_code']] = float(r['2024'])
     mismatches = [(g,out[g]['gcp_ksh_m'],existing.get(g)) for g,_ in COUNTIES if out[g]['gcp_ksh_m'] != existing.get(g)]
     if mismatches:
         raise RuntimeError(f'GCP 2024 reconciliation mismatch: {mismatches[:5]}')
@@ -166,23 +161,25 @@ def parse_maize(pdf_bytes):
             prod = None
             if area is not None:
                 ai = rows.index(area)
-                if ai > 0 and 'Production' in str(rows[ai-1][1]): prod = rows[ai-1]
+                if ai > 0 and 'Production' in str(rows[ai-1][1]):
+                    prod = rows[ai-1]
             if area is None or prod is None:
                 continue
             for i in range(2, min(len(names), len(area), len(prod))):
                 key = norm(names[i])
                 if key not in NAME_TO_GEO:
                     continue
-                geo, name = NAME_TO_GEO[key]
+                geo, _ = NAME_TO_GEO[key]
                 a, p = number(area[i]), number(prod[i])
                 if a is None or p is None:
                     continue
-                out[geo] = {'maize_area_ha': a, 'maize_production_tonnes': p, 'maize_yield_t_per_ha': round(p/a, 3) if a else None}
+                out[geo] = {'maize_area_ha':a,'maize_production_tonnes':p,'maize_yield_t_per_ha':round(p/a,3) if a else None}
     if len(out) != 47:
         print('AGRI_HEADER_DIAGNOSTIC')
         for page in doc:
             if 'Area and Production of Maize by County' in page.get_text('text'):
-                for table in page.find_tables().tables: print(table.header.names)
+                for table in page.find_tables().tables:
+                    print(table.header.names)
         missing = [n for g,n in COUNTIES if g not in out]
         raise RuntimeError(f'Maize expected 47, got {len(out)} missing={missing}')
     total_area = round(sum(r['maize_area_ha'] for r in out.values()))
@@ -197,31 +194,32 @@ def parse_education():
     with open(ROOT/'data/place-facts/source/county-key-facts.csv', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             out[r['geo_code']] = {
-                'public_primary_schools': int(r['public_primary_schools']),
-                'primary_classroom_teachers': int(r['primary_classroom_teachers']),
-                'public_secondary_schools': int(r['public_secondary_schools']),
-                'secondary_teachers': int(r['secondary_teachers']),
+                'public_primary_schools':int(r['public_primary_schools']),
+                'primary_classroom_teachers':int(r['primary_classroom_teachers']),
+                'public_secondary_schools':int(r['public_secondary_schools']),
+                'secondary_teachers':int(r['secondary_teachers']),
             }
-    if len(out) != 47: raise RuntimeError('Education source must contain 47 counties')
+    if len(out) != 47:
+        raise RuntimeError('Education source must contain 47 counties')
     totals = {k:sum(x[k] for x in out.values()) for k in next(iter(out.values()))}
     expected = {'public_primary_schools':23274,'primary_classroom_teachers':183929,'public_secondary_schools':9246,'secondary_teachers':108569}
-    if totals != expected: raise RuntimeError(f'Education reconciliation failed {totals}')
+    if totals != expected:
+        raise RuntimeError(f'Education reconciliation failed {totals}')
     return out
 
 
 def write_csv(path, fields, by_geo):
     with open(path, 'w', newline='', encoding='utf-8') as f:
-        w=csv.DictWriter(f, fieldnames=['county_number','geo_code','name']+fields)
+        w = csv.DictWriter(f, fieldnames=['county_number','geo_code','name']+fields)
         w.writeheader()
         for idx,(geo,name) in enumerate(COUNTIES,1):
-            row={'county_number':f'{idx:03d}','geo_code':geo,'name':name,**by_geo[geo]}
-            w.writerow(row)
+            w.writerow({'county_number':f'{idx:03d}','geo_code':geo,'name':name,**by_geo[geo]})
 
 
 def main():
     ch3, ch5 = fetch(URLS['housing_ch3']), fetch(URLS['housing_ch5'])
     internet, computer, electricity = parse_connectivity(ch3,ch5)
-    connectivity={g:{'internet_use_pct':internet[g],'computer_use_pct':computer[g],'main_grid_electricity_pct':electricity[g]} for g,_ in COUNTIES}
+    connectivity = {g:{'internet_use_pct':internet[g],'computer_use_pct':computer[g],'main_grid_electricity_pct':electricity[g]} for g,_ in COUNTIES}
     gcp = parse_gcp(fetch(URLS['gcp']))
     maize = parse_maize(fetch(URLS['agri']))
     education = parse_education()
@@ -230,7 +228,7 @@ def main():
     write_csv(OUT/'economic-structure-gcp-2024.csv', list(next(iter(gcp.values())).keys()), gcp)
     write_csv(OUT/'maize-2023.csv', list(next(iter(maize.values())).keys()), maize)
     write_csv(OUT/'connectivity-housing-survey-2023-24.csv', list(next(iter(connectivity.values())).keys()), connectivity)
-    manifest={'sources':URLS,'county_count':47,'reconciliations':{
+    manifest = {'sources':URLS,'county_count':47,'reconciliations':{
         'education':{'public_primary_schools':23274,'primary_classroom_teachers':183929,'public_secondary_schools':9246,'secondary_teachers':108569},
         'maize_2023':{'area_ha':2430013,'production_tonnes':4285206},
         'gcp_2024':'reconciled exactly to data/sprint1/gcp-2020-2024.csv',
@@ -243,4 +241,5 @@ def main():
     print('P05_MAIZE_RECONCILIATION_OK area=2430013 production_tonnes=4285206')
     print('P05_CONNECTIVITY_RECONCILIATION_OK')
 
-if __name__=='__main__': main()
+if __name__=='__main__':
+    main()
