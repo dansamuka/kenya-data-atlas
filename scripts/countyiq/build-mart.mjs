@@ -7,27 +7,12 @@ import { buildPerformanceIndex } from '../p08/performance-index.mjs';
 import { buildHistoricalValidation } from '../p09/historical-validation.mjs';
 import { buildDeliveryLayer } from '../p10/delivery-layer.mjs';
 import { buildRecognition } from '../p11/recognition.mjs';
+import { INDICATOR_POLICY_VERSION, DOMAIN_ORDER, DOMAIN_TARGETS as TARGETS, domainForIndicator, policyForIndicator, rankingPolicyForIndicator } from '../policy/indicator-policy.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const readJson = p => JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 
 const BADGE_LABELS={A:'Official direct',B:'Official derived',C:'Spatially derived',D:'Modelled',E:'External'};
-const TARGETS={economic:8,fiscal:8,health:8,education:6,living:7,infrastructure:6,governance:4};
-const DOMAIN_ORDER=['economic','fiscal','health','education','living','infrastructure','governance'];
-
-function domainFor(indicator){
-  const text=[indicator.topic,indicator.subtopic,indicator.tab,indicator.name].filter(Boolean).join(' ').toLowerCase();
-  if(/education|school|learning/.test(text)) return 'education';
-  if(/health|hiv|stunting|immun|birth|pregnan|facility/.test(text)) return 'health';
-  // Household rent/expenditure is a living-standards measure, not public finance.
-  // Keep this explicit exception ahead of the generic fiscal keyword matcher.
-  if(/rent|household expenditure/.test(text)) return 'living';
-  if(/public finance|fiscal|budget|revenue|expenditure|absorption|pending bill|audit|wage/.test(text)) return 'fiscal';
-  if(/representation|election|governance|voter|administration/.test(text)) return 'governance';
-  if(/infrastructure|digital|electric|energy|road|water|internet|resilience|environment|land area/.test(text)) return 'infrastructure';
-  if(/demograph|housing|population|poverty|living|rent|household/.test(text)) return 'living';
-  return 'economic';
-}
 function dateKey(o){return [o.period_end||'',o.period_start||'',o.period_label||'',o.observation_id||''].join('|');}
 function badgeOf(o){return o.badge||o.provenance_badge||o.provenance?.badge||'';}
 function releaseIdOf(o){return o.source_release_id||o.release_id||null;}
@@ -100,14 +85,13 @@ function rankingDecision(indicator, metricCode, latestByCounty){
   const periods=new Set(rows.map(x=>x.latest?.period_label).filter(Boolean));
   const badges=new Set(rows.map(x=>x.latest?.provenance?.badge).filter(Boolean));
   const validValues=rows.filter(x=>typeof x.latest?.value==='number'&&Number.isFinite(x.latest.value));
-  let reason=null;
-  if(indicator.ranking_allowed===false) reason='Indicator taxonomy disallows ranking.';
-  else if(indicator.comparable===false) reason='Indicator is not marked comparable.';
-  else if(rows.length!==47||validValues.length!==47) reason='Current comparable value is not available for all 47 counties.';
-  else if(periods.size!==1) reason='Latest county observations do not share one comparable period.';
-  else if([...badges].some(b=>!['A','B','C'].includes(b))) reason='Ranking is limited to A/B/C provenance in P02.';
-  else if(indicator.requires_sampling_uncertainty===true&&rows.some(x=>!x.latest?.uncertainty)) reason='Required sampling uncertainty is not available for every county.';
-  return {eligible:!reason,reason,period_key:periods.size===1?[...periods][0]:null,coverage_pct:Number(((rows.length/47)*100).toFixed(1))};
+  const staticPolicy=rankingPolicyForIndicator(indicator);
+  let reason=staticPolicy.static_reason_not_allowed;
+  if(!reason&&rows.length!==47||!reason&&validValues.length!==47) reason='Current comparable value is not available for all 47 counties.';
+  else if(!reason&&periods.size!==1) reason='Latest county observations do not share one comparable period.';
+  else if(!reason&&[...badges].some(b=>!['A','B','C'].includes(b))) reason='Ranking is limited to A/B/C provenance in P02.';
+  else if(!reason&&staticPolicy.requires_sampling_uncertainty&&rows.some(x=>!x.latest?.uncertainty)) reason='Required sampling uncertainty is not available for every county.';
+  return {eligible:!reason,reason,period_key:periods.size===1?[...periods][0]:null,coverage_pct:Number(((rows.length/47)*100).toFixed(1)),policy_version:INDICATOR_POLICY_VERSION};
 }
 function trendView(history){
   const numeric=history.filter(x=>typeof x.value==='number'&&Number.isFinite(x.value));
@@ -200,13 +184,16 @@ export function buildMart(input){
       if(!latest.period_label)throw new Error(`${selected.series_code}: missing period label`);
       if(!unitById.has(selected.unit_id))throw new Error(`${selected.series_code}: missing unit ${selected.unit_id}`);
       const code=indicator.indicator_code;
+      const policy=policyForIndicator(indicator);
       const metric={
-        indicator_id:indicator.indicator_id,indicator_code:code,name:indicator.name,domain:domainFor(indicator),status:'active',
+        indicator_id:indicator.indicator_id,indicator_code:code,name:indicator.name,domain:domainForIndicator(indicator),status:'active',
         latest,history,
         ranking:null,
         trend:trendView(history),
-        eligibility:{ranking_allowed:false,higher_is_better:indicator.higher_is_better??null,minimum_coverage:100,
-          requires_sampling_uncertainty:indicator.requires_sampling_uncertainty===true,reason_not_eligible:'P02 ranking eligibility pending cross-county check.'}
+        eligibility:{ranking_allowed:false,higher_is_better:policy.direction.higher_is_better,minimum_coverage:100,
+          requires_sampling_uncertainty:policy.uncertainty.required_for_ranking,trend_allowed:policy.trend.allowed,composite_eligible:policy.composite.eligible,
+          publication_status:policy.publication_status,parent_value_inheritance_allowed:policy.inheritance.parent_value_inheritance_allowed,
+          policy_version:INDICATOR_POLICY_VERSION,reason_not_eligible:'P02 ranking eligibility pending cross-county check.'}
       };
       metrics[code]=metric;
       if(!latestByCounty.has(code))latestByCounty.set(code,[]);
@@ -262,7 +249,7 @@ export function buildMart(input){
 
   return {
     meta:{schema_version:'kda.countyiq.county-summary.v2',generated_at:generatedAt(observations,releases),atlas_data_version:atlasVersion,county_count:47,
-      source_registries:['data/geography/registry/geographies.json','data/indicators/registry/indicators.json','data/indicators/registry/series.json','data/indicators/registry/observations.json','data/indicators/registry/units.json','data/catalogue/registry/datasets.json','data/catalogue/registry/releases.json','data/catalogue/registry/sources.json','data/catalogue/registry/agencies.json'],methodology_version:PEER_METHODOLOGY_VERSION,peer_group_definition:peerGroups.definition,performance_index_methodology:performanceIndexMethodology,delivery_layer_methodology:deliveryMethodology,recognition_methodology:recognitionMethodology},
+      source_registries:['data/geography/registry/geographies.json','data/indicators/registry/indicators.json','data/indicators/registry/series.json','data/indicators/registry/observations.json','data/indicators/registry/units.json','data/catalogue/registry/datasets.json','data/catalogue/registry/releases.json','data/catalogue/registry/sources.json','data/catalogue/registry/agencies.json','data/policy/indicator-policy.json'],indicator_policy_version:INDICATOR_POLICY_VERSION,methodology_version:PEER_METHODOLOGY_VERSION,peer_group_definition:peerGroups.definition,performance_index_methodology:performanceIndexMethodology,delivery_layer_methodology:deliveryMethodology,recognition_methodology:recognitionMethodology},
     counties:outputCounties
   };
 }

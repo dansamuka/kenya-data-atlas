@@ -1,8 +1,9 @@
 {
   "schema_version": "2.0.0",
+  "policy_version": "P12-policy-v1",
   "generated_from_registry": true,
   "granularity": "series",
-  "rule": "Cross-level comparison is decided for the concrete selected series. Unit dimension ratio/rate/index or that series own rate/share/ratio/percent/per-capita/per-person/density/index transformation is eligible. IND-LAND-AREA is the sole physical-area exception. Raw counts and currency totals remain same-level only; sibling transformations never promote them.",
+  "rule": "Cross-level comparison is decided for the concrete selected series by the canonical P12 indicator-policy layer. Ratio/rate/index units or the selected series own rate/share/ratio/percent/per-capita/per-person/density/index transformation are eligible. IND-LAND-AREA is the sole physical-area exception. Raw counts and currency totals remain same-level only; sibling transformations never promote them.",
   "series": [
     {
       "series_code": "KDA-TBILL91-MONTHLY-AVG-KEN",
