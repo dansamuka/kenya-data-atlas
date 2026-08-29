@@ -59,7 +59,8 @@ def connectivity(a,b):
 def gcp(data):
  doc=pymupdf.open(stream=data,filetype='pdf'); out={}
  for page in doc:
-  if 'GCP' not in page.get_text('text'): continue
+  text=page.get_text('text')
+  if 'Annexe I: GCP by Economic Activity at Current Prices, 2024' not in text: continue
   for t in page.find_tables().tables:
    for r in t.extract():
     if len(r)<22 or norm(r[1]) not in NAME: continue
