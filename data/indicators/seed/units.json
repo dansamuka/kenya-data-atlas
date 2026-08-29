@@ -84,5 +84,13 @@
     "symbol": "per 100k",
     "dimension": "rate",
     "decimal_places": 1
+  },
+  {
+    "code": "count",
+    "name": "Count",
+    "symbol": "",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0
   }
 ]

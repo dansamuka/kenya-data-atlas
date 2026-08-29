@@ -97,7 +97,8 @@ const indicators = indicatorSeed.map(i => {
     higher_is_better: i.higher_is_better === undefined ? null : i.higher_is_better,
     preferred_frequency: i.preferred_frequency ?? '', minimum_geo_level: i.minimum_geo_level ?? '',
     minimum_denominator: i.minimum_denominator ?? null, methodology_url: i.methodology_url ?? '',
-    comparable: true, active: true
+    comparable: i.comparable ?? true, active: i.active ?? true,
+    ranking_allowed: i.ranking_allowed ?? true, requires_sampling_uncertainty: i.requires_sampling_uncertainty ?? false
   };
 });
 const indicatorByCode = new Map(indicators.map(i => [i.indicator_code, i]));
@@ -225,7 +226,7 @@ await mkdir(outputDir, { recursive: true });
 await writeFile(path.join(outputDir, 'units.json'), JSON.stringify(units, null, 2) + '\n');
 await writeFile(path.join(outputDir, 'units.csv'), csv(units, ['unit_id', 'code', 'name', 'symbol', 'dimension', 'scale_factor', 'decimal_places', 'currency_code']));
 await writeFile(path.join(outputDir, 'indicators.json'), JSON.stringify(indicators, null, 2) + '\n');
-await writeFile(path.join(outputDir, 'indicators.csv'), csv(indicators, ['indicator_id', 'indicator_code', 'name', 'short_name', 'description', 'topic', 'subtopic', 'unit_id', 'higher_is_better', 'preferred_frequency', 'minimum_geo_level', 'minimum_denominator', 'methodology_url', 'comparable', 'active']));
+await writeFile(path.join(outputDir, 'indicators.csv'), csv(indicators, ['indicator_id', 'indicator_code', 'name', 'short_name', 'description', 'topic', 'subtopic', 'unit_id', 'higher_is_better', 'preferred_frequency', 'minimum_geo_level', 'minimum_denominator', 'methodology_url', 'comparable', 'active', 'ranking_allowed', 'requires_sampling_uncertainty']));
 await writeFile(path.join(outputDir, 'series.json'), JSON.stringify(seriesRows, null, 2) + '\n');
 await writeFile(path.join(outputDir, 'series.csv'), csv(seriesRows, ['series_id', 'series_code', 'indicator_id', 'geography_id', 'geography_taxonomy', 'boundary_version', 'frequency', 'period_type', 'unit_id', 'price_basis', 'base_period', 'currency', 'seasonal_adjustment', 'transformation', 'geographic_method', 'comparability_group', 'dataset_id', 'agency_id', 'start_period', 'end_period', 'latest_observation_id', 'observation_count', 'status']));
 await writeFile(path.join(outputDir, 'observations.json'), JSON.stringify(observations, null, 2) + '\n');

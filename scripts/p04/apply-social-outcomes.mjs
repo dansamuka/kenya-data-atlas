@@ -16,6 +16,11 @@ if(social.counties.length!==47||new Set(social.counties.map(x=>x.geo_code)).size
 if(facilities.counties.length!==47||facilities.counties.reduce((s,x)=>s+x.value,0)!==14883)throw new Error('P04 facility snapshot must reconcile to 14,883 assessed facilities');
 const facilityByGeo=new Map(facilities.counties.map(x=>[x.geo_code,x]));
 
+// ---------------- units: generic non-person count for inventories
+const units=readJson('data/indicators/seed/units.json');
+upsert(units,'code',{code:'count',name:'Count',symbol:'',dimension:'count',scale_factor:1,decimal_places:0});
+writeJson('data/indicators/seed/units.json',units);
+
 // ---------------- catalogue: narrow, reviewed, published source slices
 const datasets=readJson('data/catalogue/seed/datasets.json');
 upsert(datasets,'code',{
@@ -117,7 +122,11 @@ js=replaceOnce(js,
 `const CODES={gcp:'IND-GCP-CURRENT',budget:'IND-COUNTY-BUDGET-TOTAL',expenditure:'IND-COUNTY-EXPENDITURE-TOTAL',absorption:'IND-COUNTY-BUDGET-ABSORPTION',development:'IND-COUNTY-DEVELOPMENT-ABSORPTION',voters:'IND-REGISTERED-VOTERS',poverty:'IND-POVERTY-RATE',stunting:'IND-STUNTING-RATE',immunisation:'IND-IMMUNIZATION-RATE',maternal:'IND-MATERNAL-HEALTH',facilities:'IND-HEALTH-FACILITY-COUNT'};`,
 'CountyIQ P04 codes');
 const renderAnchor=`  function render(code=currentCode){`;
-const socialFns=`  function precisionText(m){const u=m?.latest?.uncertainty||{};if(Number.isFinite(Number(u.standard_error)))return \`Source SE ${Number(u.standard_error).toLocaleString('en-KE',{maximumFractionDigits:2})} pp\`;if(Number.isFinite(Number(u.sample_size)))return \`Reported table denominator n=${formatInt(u.sample_size)}\`;return 'Census inventory snapshot';}\n  function socialMetric(label,m,formatter){const o=m?.latest;if(!o)return \`<article class="ciq-social-metric missing"><small>${esc(label)}</small><strong>—</strong><span>Not published for this county</span></article>\`;const url=o.provenance?.source_url||'';return \`<article class="ciq-social-metric"><small>${esc(label)}</small><strong>${esc(formatter(o.value))}</strong><span>${esc(o.period_label)} · ${esc(precisionText(m))}</span><em>${m?.ranking?.eligible?'Comparable rank available':'Ranking withheld'}</em>${url?\`<a href="${esc(url)}" target="_blank" rel="noopener">Source ↗</a>\`:''}</article>\`;}\n  function renderSocial(row){const c=row.county;return [socialMetric('Overall poverty',metric(c,CODES.poverty),formatPct),socialMetric('Children under 5 stunted',metric(c,CODES.stunting),formatPct),socialMetric('Basic immunisation',metric(c,CODES.immunisation),formatPct),socialMetric('Skilled birth attendance',metric(c,CODES.maternal),formatPct),socialMetric('Facilities assessed',metric(c,CODES.facilities),formatInt)].join('');}\n\n`+renderAnchor;
+const socialFns=[
+  "  function precisionText(m){const u=m?.latest?.uncertainty||{};if(Number.isFinite(Number(u.standard_error)))return 'Source SE '+Number(u.standard_error).toLocaleString('en-KE',{maximumFractionDigits:2})+' pp';if(Number.isFinite(Number(u.sample_size)))return 'Reported table denominator n='+formatInt(u.sample_size);return 'Census inventory snapshot';}",
+  "  function socialMetric(label,m,formatter){const o=m?.latest;if(!o)return '<article class=\"ciq-social-metric missing\"><small>'+esc(label)+'</small><strong>—</strong><span>Not published for this county</span></article>';const url=o.provenance?.source_url||'';return '<article class=\"ciq-social-metric\"><small>'+esc(label)+'</small><strong>'+esc(formatter(o.value))+'</strong><span>'+esc(o.period_label)+' · '+esc(precisionText(m))+'</span><em>'+(m?.ranking?.eligible?'Comparable rank available':'Ranking withheld')+'</em>'+(url?'<a href=\"'+esc(url)+'\" target=\"_blank\" rel=\"noopener\">Source ↗</a>':'')+'</article>';}",
+  "  function renderSocial(row){const c=row.county;return [socialMetric('Overall poverty',metric(c,CODES.poverty),formatPct),socialMetric('Children under 5 stunted',metric(c,CODES.stunting),formatPct),socialMetric('Basic immunisation',metric(c,CODES.immunisation),formatPct),socialMetric('Skilled birth attendance',metric(c,CODES.maternal),formatPct),socialMetric('Facilities assessed',metric(c,CODES.facilities),formatInt)].join('');}"
+].join('\\n')+'\\n\\n'+renderAnchor;
 js=replaceOnce(js,renderAnchor,socialFns,'CountyIQ social renderer');
 js=replaceOnce(js,
 `  }\n\n  function wirePicker(){`,

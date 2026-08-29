@@ -22,21 +22,40 @@
       "name": "County profile",
       "purpose": "Source-auditable county context across economy, people, services, infrastructure, public finance and institutions.",
       "status": "integrated",
-      "target_features": ["headline facts", "domain navigation", "source drill-through", "historical context", "download/export"]
+      "target_features": [
+        "headline facts",
+        "domain navigation",
+        "source drill-through",
+        "historical context",
+        "download/export"
+      ]
     },
     {
       "id": "trend",
       "name": "Trend intelligence",
       "purpose": "Answer whether a county is improving using matched-period historical observations.",
       "status": "ready_to_surface",
-      "target_features": ["latest", "one-period change", "3/5-year change", "national matched trend", "peer matched trend", "revision flags"]
+      "target_features": [
+        "latest",
+        "one-period change",
+        "3/5-year change",
+        "national matched trend",
+        "peer matched trend",
+        "revision flags"
+      ]
     },
     {
       "id": "peers",
       "name": "Peer benchmarking",
       "purpose": "Compare counties against structurally similar counties as well as the national distribution.",
       "status": "research",
-      "target_features": ["versioned peer groups", "peer median", "peer rank", "national percentile", "distance to benchmark"]
+      "target_features": [
+        "versioned peer groups",
+        "peer median",
+        "peer rank",
+        "national percentile",
+        "distance to benchmark"
+      ]
     },
     {
       "id": "performance_index",
@@ -44,14 +63,31 @@
       "purpose": "Transparent multi-domain composite of county outcomes and structural performance.",
       "status": "blocked",
       "blocker": "Insufficient validated domain breadth and no published sensitivity/back-testing package yet.",
-      "target_features": ["overall score", "pillar scores", "rank", "percentile", "trend", "peer rank", "contribution breakdown", "robustness range"]
+      "target_features": [
+        "overall score",
+        "pillar scores",
+        "rank",
+        "percentile",
+        "trend",
+        "peer rank",
+        "contribution breakdown",
+        "robustness range"
+      ]
     },
     {
       "id": "delivery_score",
       "name": "County Government Delivery & Accountability",
       "purpose": "Separate government-linked delivery and accountability from broad county outcomes.",
       "status": "planned",
-      "target_features": ["fiscal execution", "OSR performance", "pending bills", "wage burden", "audit findings", "service delivery", "project evidence"]
+      "target_features": [
+        "fiscal execution",
+        "OSR performance",
+        "pending bills",
+        "wage burden",
+        "audit findings",
+        "service delivery",
+        "project evidence"
+      ]
     },
     {
       "id": "administration_scorecards",
@@ -59,35 +95,72 @@
       "purpose": "Show administration-period evidence without attributing all county outcomes to one political office-holder.",
       "status": "blocked",
       "blocker": "Delivery-layer breadth and defensible attribution rules must exist first.",
-      "target_features": ["term baseline", "latest delivery metrics", "peer changes", "fiscal/accountability record", "attribution disclaimer"]
+      "target_features": [
+        "term baseline",
+        "latest delivery metrics",
+        "peer changes",
+        "fiscal/accountability record",
+        "attribution disclaimer"
+      ]
     },
     {
       "id": "gap_calculator",
       "name": "Development Gap Calculator",
       "purpose": "Replace speculative opportunity-cost values with transparent benchmark counterfactuals.",
       "status": "planned",
-      "target_features": ["formula disclosure", "peer/national benchmark", "explicit denominator", "period", "source", "non-causal wording"]
+      "target_features": [
+        "formula disclosure",
+        "peer/national benchmark",
+        "explicit denominator",
+        "period",
+        "source",
+        "non-causal wording"
+      ]
     },
     {
       "id": "opportunity_finder",
       "name": "County Opportunity Finder",
       "purpose": "Match counties to verified programmes, grants, facilities and technical-assistance opportunities.",
       "status": "planned",
-      "target_features": ["verified primary URL", "eligibility", "opening/deadline", "amount if official", "verification date", "match rationale"]
+      "target_features": [
+        "verified primary URL",
+        "eligibility",
+        "opening/deadline",
+        "amount if official",
+        "verification date",
+        "match rationale"
+      ]
     },
     {
       "id": "knowledge_hub",
       "name": "County Knowledge Hub",
       "purpose": "Provide the fastest path to county plans, budgets, audits, statistics and sector documents.",
       "status": "planned",
-      "target_features": ["CIDP", "ADP", "CFSP", "CBROP", "budgets", "Controller of Budget", "Auditor-General", "statistical abstracts", "sector plans"]
+      "target_features": [
+        "CIDP",
+        "ADP",
+        "CFSP",
+        "CBROP",
+        "budgets",
+        "Controller of Budget",
+        "Auditor-General",
+        "statistical abstracts",
+        "sector plans"
+      ]
     },
     {
       "id": "recognition",
       "name": "Evidence-based recognition",
       "purpose": "Retain the motivational awards concept using reproducible CountyIQ rules rather than unofficial state honours.",
       "status": "planned",
-      "target_features": ["most improved", "fiscal execution leader", "human development leader", "economic momentum", "peer-group leader", "data transparency"]
+      "target_features": [
+        "most improved",
+        "fiscal execution leader",
+        "human development leader",
+        "economic momentum",
+        "peer-group leader",
+        "data transparency"
+      ]
     }
   ],
   "data_domains": [
@@ -97,12 +170,48 @@
       "target_indicator_count": 6,
       "current_readiness": "strong",
       "indicators": [
-        {"code": "IND-GCP-CURRENT", "name": "Gross County Product", "status": "integrated", "coverage": "47/47 counties, 2020-2024", "priority": 1},
-        {"code": "CQ-GCP-GROWTH", "name": "GCP growth", "status": "integrated", "coverage": "Derived from 2020-2024 GCP", "priority": 1},
-        {"code": "CQ-GCP-PER-CAPITA", "name": "GCP per person", "status": "planned", "dependency": "Period-compatible population denominator", "priority": 2},
-        {"code": "CQ-SECTOR-MIX", "name": "County economic sector composition", "status": "planned", "dependency": "Official comparable GCP sector tables", "priority": 4},
-        {"code": "IND-BUSINESS-LICENSES", "name": "Business activity", "status": "planned", "dependency": "Comparable county primary series", "priority": 6},
-        {"code": "IND-AGRI-PRODUCTION", "name": "Agricultural production/productivity", "status": "planned", "dependency": "Indicator-specific official tables", "priority": 6}
+        {
+          "code": "IND-GCP-CURRENT",
+          "name": "Gross County Product",
+          "status": "integrated",
+          "coverage": "47/47 counties, 2020-2024",
+          "priority": 1
+        },
+        {
+          "code": "CQ-GCP-GROWTH",
+          "name": "GCP growth",
+          "status": "integrated",
+          "coverage": "Derived from 2020-2024 GCP",
+          "priority": 1
+        },
+        {
+          "code": "CQ-GCP-PER-CAPITA",
+          "name": "GCP per person",
+          "status": "planned",
+          "dependency": "Period-compatible population denominator",
+          "priority": 2
+        },
+        {
+          "code": "CQ-SECTOR-MIX",
+          "name": "County economic sector composition",
+          "status": "planned",
+          "dependency": "Official comparable GCP sector tables",
+          "priority": 4
+        },
+        {
+          "code": "IND-BUSINESS-LICENSES",
+          "name": "Business activity",
+          "status": "planned",
+          "dependency": "Comparable county primary series",
+          "priority": 6
+        },
+        {
+          "code": "IND-AGRI-PRODUCTION",
+          "name": "Agricultural production/productivity",
+          "status": "planned",
+          "dependency": "Indicator-specific official tables",
+          "priority": 6
+        }
       ]
     },
     {
@@ -111,46 +220,188 @@
       "target_indicator_count": 10,
       "current_readiness": "very_strong",
       "indicators": [
-        {"code": "IND-COUNTY-BUDGET-TOTAL", "name": "Approved county budget", "status": "integrated", "coverage": "47/47 counties", "priority": 1},
-        {"code": "IND-COUNTY-EXPENDITURE-TOTAL", "name": "County expenditure", "status": "integrated", "coverage": "47/47 counties", "priority": 1},
-        {"code": "IND-COUNTY-BUDGET-ABSORPTION", "name": "Overall budget absorption", "status": "integrated", "coverage": "47/47 counties", "priority": 1},
-        {"code": "IND-COUNTY-DEVELOPMENT-ABSORPTION", "name": "Development budget absorption", "status": "integrated", "coverage": "47/47 counties", "priority": 1},
-        {"code": "CQ-FISCAL-HISTORY", "name": "12-year fiscal trend", "status": "ready_to_surface", "coverage": "All 47 counties, FY2013/14-FY2024/25", "priority": 1},
-        {"code": "CQ-OSR", "name": "Own-source revenue", "status": "planned", "dependency": "Controller of Budget/Treasury ingestion", "priority": 3},
-        {"code": "CQ-OSR-TARGET", "name": "OSR target attainment", "status": "planned", "dependency": "Target and actual OSR series", "priority": 3},
-        {"code": "CQ-PENDING-BILLS", "name": "Pending bills", "status": "planned", "dependency": "Consistent county history", "priority": 3},
-        {"code": "CQ-WAGE-BURDEN", "name": "Compensation/wage burden", "status": "planned", "dependency": "Comparable fiscal component series", "priority": 4},
-        {"code": "CQ-DEVELOPMENT-SHARE", "name": "Development share of expenditure", "status": "planned", "dependency": "Published fiscal components", "priority": 4}
+        {
+          "code": "IND-COUNTY-BUDGET-TOTAL",
+          "name": "Approved county budget",
+          "status": "integrated",
+          "coverage": "47/47 counties",
+          "priority": 1
+        },
+        {
+          "code": "IND-COUNTY-EXPENDITURE-TOTAL",
+          "name": "County expenditure",
+          "status": "integrated",
+          "coverage": "47/47 counties",
+          "priority": 1
+        },
+        {
+          "code": "IND-COUNTY-BUDGET-ABSORPTION",
+          "name": "Overall budget absorption",
+          "status": "integrated",
+          "coverage": "47/47 counties",
+          "priority": 1
+        },
+        {
+          "code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
+          "name": "Development budget absorption",
+          "status": "integrated",
+          "coverage": "47/47 counties",
+          "priority": 1
+        },
+        {
+          "code": "CQ-FISCAL-HISTORY",
+          "name": "12-year fiscal trend",
+          "status": "ready_to_surface",
+          "coverage": "All 47 counties, FY2013/14-FY2024/25",
+          "priority": 1
+        },
+        {
+          "code": "CQ-OSR",
+          "name": "Own-source revenue",
+          "status": "planned",
+          "dependency": "Controller of Budget/Treasury ingestion",
+          "priority": 3
+        },
+        {
+          "code": "CQ-OSR-TARGET",
+          "name": "OSR target attainment",
+          "status": "planned",
+          "dependency": "Target and actual OSR series",
+          "priority": 3
+        },
+        {
+          "code": "CQ-PENDING-BILLS",
+          "name": "Pending bills",
+          "status": "planned",
+          "dependency": "Consistent county history",
+          "priority": 3
+        },
+        {
+          "code": "CQ-WAGE-BURDEN",
+          "name": "Compensation/wage burden",
+          "status": "planned",
+          "dependency": "Comparable fiscal component series",
+          "priority": 4
+        },
+        {
+          "code": "CQ-DEVELOPMENT-SHARE",
+          "name": "Development share of expenditure",
+          "status": "planned",
+          "dependency": "Published fiscal components",
+          "priority": 4
+        }
       ]
     },
     {
       "id": "human_development",
       "name": "Human development & living standards",
       "target_indicator_count": 7,
-      "current_readiness": "source_identified",
+      "current_readiness": "first_county_outcome_package_active",
       "indicators": [
-        {"code": "IND-POVERTY-RATE", "name": "Monetary poverty", "status": "sourced", "dependency": "County observations + sampling uncertainty", "priority": 2},
-        {"code": "IND-LITERACY-RATE", "name": "Literacy", "status": "sourced", "dependency": "Activate valid county observations", "priority": 3},
-        {"code": "IND-HOUSEHOLD-SIZE", "name": "Average household size", "status": "sourced", "priority": 4},
-        {"code": "IND-HOUSING-MATERIAL", "name": "Housing quality/material", "status": "sourced", "priority": 5},
-        {"code": "CQ-WATER-ACCESS", "name": "Water access", "status": "planned", "dependency": "Verify primary county source and denominator", "priority": 3},
-        {"code": "CQ-SANITATION-ACCESS", "name": "Sanitation access", "status": "planned", "dependency": "Verify primary county source and denominator", "priority": 3},
-        {"code": "CQ-ELECTRICITY-ACCESS", "name": "Electricity access", "status": "planned", "dependency": "County source; national WDI cannot be inherited", "priority": 3}
+        {
+          "code": "IND-POVERTY-RATE",
+          "name": "Monetary poverty",
+          "status": "integrated",
+          "priority": 2,
+          "coverage": "47/47 counties · 2022 Kenya Poverty Report · source SE retained"
+        },
+        {
+          "code": "IND-LITERACY-RATE",
+          "name": "Literacy",
+          "status": "sourced",
+          "dependency": "Activate valid county observations",
+          "priority": 3
+        },
+        {
+          "code": "IND-HOUSEHOLD-SIZE",
+          "name": "Average household size",
+          "status": "sourced",
+          "priority": 4
+        },
+        {
+          "code": "IND-HOUSING-MATERIAL",
+          "name": "Housing quality/material",
+          "status": "sourced",
+          "priority": 5
+        },
+        {
+          "code": "CQ-WATER-ACCESS",
+          "name": "Water access",
+          "status": "planned",
+          "dependency": "Verify primary county source and denominator",
+          "priority": 3
+        },
+        {
+          "code": "CQ-SANITATION-ACCESS",
+          "name": "Sanitation access",
+          "status": "planned",
+          "dependency": "Verify primary county source and denominator",
+          "priority": 3
+        },
+        {
+          "code": "CQ-ELECTRICITY-ACCESS",
+          "name": "Electricity access",
+          "status": "planned",
+          "dependency": "County source; national WDI cannot be inherited",
+          "priority": 3
+        }
       ]
     },
     {
       "id": "health",
       "name": "Health & wellbeing",
       "target_indicator_count": 7,
-      "current_readiness": "source_identified",
+      "current_readiness": "strong_first_package",
       "indicators": [
-        {"code": "IND-HEALTH-FACILITY-COUNT", "name": "Health facility count", "status": "sourced", "dependency": "Derive county counts from KMHFR records", "priority": 2},
-        {"code": "IND-STUNTING-RATE", "name": "Stunting", "status": "sourced", "dependency": "KDHS county estimates + uncertainty", "priority": 2},
-        {"code": "IND-IMMUNIZATION-RATE", "name": "Full immunisation", "status": "sourced", "dependency": "KDHS county estimates + uncertainty", "priority": 2},
-        {"code": "IND-MATERNAL-HEALTH", "name": "Skilled birth attendance", "status": "sourced", "dependency": "KDHS county estimates + uncertainty", "priority": 2},
-        {"code": "IND-HIV-PREVALENCE", "name": "HIV prevalence", "status": "sourced", "dependency": "County estimates + uncertainty", "priority": 4},
-        {"code": "IND-TEENAGE-PREGNANCY", "name": "Teenage pregnancy", "status": "sourced", "dependency": "KDHS estimate; ranking restriction retained", "priority": 5},
-        {"code": "IND-FACILITY-INFRASTRUCTURE", "name": "Facility infrastructure", "status": "planned", "dependency": "Health Facility Census activation", "priority": 5}
+        {
+          "code": "IND-HEALTH-FACILITY-COUNT",
+          "name": "Health facility count",
+          "status": "integrated",
+          "priority": 2,
+          "coverage": "47/47 counties · 2023 Health Facility Census assessed-facility snapshot"
+        },
+        {
+          "code": "IND-STUNTING-RATE",
+          "name": "Stunting",
+          "status": "integrated",
+          "priority": 2,
+          "coverage": "47/47 counties · KDHS 2022 · reported table denominator retained"
+        },
+        {
+          "code": "IND-IMMUNIZATION-RATE",
+          "name": "Full immunisation",
+          "status": "integrated",
+          "priority": 2,
+          "coverage": "47/47 counties · KDHS 2022 · reported table denominator retained"
+        },
+        {
+          "code": "IND-MATERNAL-HEALTH",
+          "name": "Skilled birth attendance",
+          "status": "integrated",
+          "priority": 2,
+          "coverage": "47/47 counties · KDHS 2022 · reported table denominator retained"
+        },
+        {
+          "code": "IND-HIV-PREVALENCE",
+          "name": "HIV prevalence",
+          "status": "sourced",
+          "dependency": "County estimates + uncertainty",
+          "priority": 4
+        },
+        {
+          "code": "IND-TEENAGE-PREGNANCY",
+          "name": "Teenage pregnancy",
+          "status": "sourced",
+          "dependency": "KDHS estimate; ranking restriction retained",
+          "priority": 5
+        },
+        {
+          "code": "IND-FACILITY-INFRASTRUCTURE",
+          "name": "Facility infrastructure",
+          "status": "planned",
+          "dependency": "Health Facility Census activation",
+          "priority": 5
+        }
       ]
     },
     {
@@ -159,11 +410,41 @@
       "target_indicator_count": 5,
       "current_readiness": "weak",
       "indicators": [
-        {"code": "CQ-ENROLMENT", "name": "School enrolment/participation", "status": "planned", "dependency": "Comparable Ministry/KNBS table", "priority": 5},
-        {"code": "CQ-COMPLETION", "name": "Completion/transition", "status": "planned", "dependency": "Comparable primary table", "priority": 5},
-        {"code": "IND-LITERACY-RATE", "name": "Literacy", "status": "sourced", "dependency": "Valid county observations", "priority": 3},
-        {"code": "IND-EXAM-PERFORMANCE", "name": "Examination outcomes", "status": "planned", "dependency": "Genuine KNEC county primary table", "priority": 7},
-        {"code": "CQ-TVET-ACCESS", "name": "TVET/tertiary access", "status": "planned", "dependency": "Primary-source coverage assessment", "priority": 7}
+        {
+          "code": "CQ-ENROLMENT",
+          "name": "School enrolment/participation",
+          "status": "planned",
+          "dependency": "Comparable Ministry/KNBS table",
+          "priority": 5
+        },
+        {
+          "code": "CQ-COMPLETION",
+          "name": "Completion/transition",
+          "status": "planned",
+          "dependency": "Comparable primary table",
+          "priority": 5
+        },
+        {
+          "code": "IND-LITERACY-RATE",
+          "name": "Literacy",
+          "status": "sourced",
+          "dependency": "Valid county observations",
+          "priority": 3
+        },
+        {
+          "code": "IND-EXAM-PERFORMANCE",
+          "name": "Examination outcomes",
+          "status": "planned",
+          "dependency": "Genuine KNEC county primary table",
+          "priority": 7
+        },
+        {
+          "code": "CQ-TVET-ACCESS",
+          "name": "TVET/tertiary access",
+          "status": "planned",
+          "dependency": "Primary-source coverage assessment",
+          "priority": 7
+        }
       ]
     },
     {
@@ -172,12 +453,48 @@
       "target_indicator_count": 6,
       "current_readiness": "mixed",
       "indicators": [
-        {"code": "IND-LAND-AREA", "name": "Land area", "status": "integrated", "coverage": "47 counties and lower eligible geographies", "priority": 4},
-        {"code": "CQ-ROAD-NETWORK", "name": "Road/network access", "status": "planned", "dependency": "Authoritative county-comparable source", "priority": 5},
-        {"code": "CQ-DIGITAL-ACCESS", "name": "Digital access", "status": "planned", "dependency": "County official measure", "priority": 5},
-        {"code": "IND-FOOD-SECURITY-PHASE", "name": "Food-security phase", "status": "sourced", "dependency": "Seasonal assessment ingestion", "priority": 5},
-        {"code": "CQ-CLIMATE-EXPOSURE", "name": "Climate/environment exposure", "status": "planned", "dependency": "Transparent physical indicators", "priority": 7},
-        {"code": "IND-FUEL-PETROL", "name": "Fuel pricing context", "status": "integrated", "note": "Pricing-town context only; not county performance", "priority": 7}
+        {
+          "code": "IND-LAND-AREA",
+          "name": "Land area",
+          "status": "integrated",
+          "coverage": "47 counties and lower eligible geographies",
+          "priority": 4
+        },
+        {
+          "code": "CQ-ROAD-NETWORK",
+          "name": "Road/network access",
+          "status": "planned",
+          "dependency": "Authoritative county-comparable source",
+          "priority": 5
+        },
+        {
+          "code": "CQ-DIGITAL-ACCESS",
+          "name": "Digital access",
+          "status": "planned",
+          "dependency": "County official measure",
+          "priority": 5
+        },
+        {
+          "code": "IND-FOOD-SECURITY-PHASE",
+          "name": "Food-security phase",
+          "status": "sourced",
+          "dependency": "Seasonal assessment ingestion",
+          "priority": 5
+        },
+        {
+          "code": "CQ-CLIMATE-EXPOSURE",
+          "name": "Climate/environment exposure",
+          "status": "planned",
+          "dependency": "Transparent physical indicators",
+          "priority": 7
+        },
+        {
+          "code": "IND-FUEL-PETROL",
+          "name": "Fuel pricing context",
+          "status": "integrated",
+          "note": "Pricing-town context only; not county performance",
+          "priority": 7
+        }
       ]
     },
     {
@@ -186,41 +503,276 @@
       "target_indicator_count": 6,
       "current_readiness": "weak",
       "indicators": [
-        {"code": "CQ-AUDIT", "name": "Audit opinion/findings", "status": "planned", "dependency": "Structured Auditor-General county outputs", "priority": 4},
-        {"code": "CQ-PENDING-BILLS", "name": "Pending bills", "status": "planned", "dependency": "County history", "priority": 3},
-        {"code": "CQ-BUDGET-CREDIBILITY", "name": "Budget credibility", "status": "planned", "dependency": "Approved/revised/executed fiscal series", "priority": 4},
-        {"code": "CQ-PROJECT-DELIVERY", "name": "Project delivery", "status": "planned", "dependency": "Defensible primary project dataset", "priority": 8},
-        {"code": "CQ-DATA-TRANSPARENCY", "name": "Data transparency", "status": "planned", "dependency": "Published reproducible rubric", "priority": 6},
-        {"code": "CQ-PUBLIC-TRUST", "name": "Public trust", "status": "blocked", "dependency": "Defensible repeated county public-opinion series", "priority": 9}
+        {
+          "code": "CQ-AUDIT",
+          "name": "Audit opinion/findings",
+          "status": "planned",
+          "dependency": "Structured Auditor-General county outputs",
+          "priority": 4
+        },
+        {
+          "code": "CQ-PENDING-BILLS",
+          "name": "Pending bills",
+          "status": "planned",
+          "dependency": "County history",
+          "priority": 3
+        },
+        {
+          "code": "CQ-BUDGET-CREDIBILITY",
+          "name": "Budget credibility",
+          "status": "planned",
+          "dependency": "Approved/revised/executed fiscal series",
+          "priority": 4
+        },
+        {
+          "code": "CQ-PROJECT-DELIVERY",
+          "name": "Project delivery",
+          "status": "planned",
+          "dependency": "Defensible primary project dataset",
+          "priority": 8
+        },
+        {
+          "code": "CQ-DATA-TRANSPARENCY",
+          "name": "Data transparency",
+          "status": "planned",
+          "dependency": "Published reproducible rubric",
+          "priority": 6
+        },
+        {
+          "code": "CQ-PUBLIC-TRUST",
+          "name": "Public trust",
+          "status": "blocked",
+          "dependency": "Defensible repeated county public-opinion series",
+          "priority": 9
+        }
       ]
     }
   ],
   "workstreams": [
-    {"id": "WS1", "name": "Generated CountyIQ mart", "stage": "A", "priority": 1, "status": "planned", "depends_on": [], "exit_gate": "CQ-A-G1..G4"},
-    {"id": "WS2", "name": "12-year fiscal experience", "stage": "B", "priority": 2, "status": "ready_to_surface", "depends_on": ["WS1"], "exit_gate": "CQ-B-G2"},
-    {"id": "WS3", "name": "Matched population denominators", "stage": "B", "priority": 3, "status": "planned", "depends_on": ["WS1"], "exit_gate": "CQ-B-G3"},
-    {"id": "WS4", "name": "Poverty and health ingestion", "stage": "B", "priority": 4, "status": "sourced", "depends_on": ["WS1"], "exit_gate": "CQ-B-G1,CQ-B-G4"},
-    {"id": "WS5", "name": "Fiscal accountability breadth", "stage": "B", "priority": 5, "status": "planned", "depends_on": ["WS1"], "exit_gate": "CQ-B-G1"},
-    {"id": "WS6", "name": "Education/infrastructure/agriculture/business breadth", "stage": "B", "priority": 6, "status": "planned", "depends_on": ["WS1"], "exit_gate": "CQ-G-G1"},
-    {"id": "WS7", "name": "Versioned peer groups", "stage": "C", "priority": 7, "status": "research", "depends_on": ["WS3", "WS4"], "exit_gate": "CQ-C-G1"},
-    {"id": "WS8", "name": "Trend and benchmark intelligence", "stage": "C", "priority": 8, "status": "planned", "depends_on": ["WS2", "WS7"], "exit_gate": "CQ-C-G2,CQ-C-G3"},
-    {"id": "WS9", "name": "Development Gap Calculator", "stage": "C", "priority": 9, "status": "planned", "depends_on": ["WS7", "WS8"], "exit_gate": "CQ-C-G4"},
-    {"id": "WS10", "name": "County Performance Index research", "stage": "D", "priority": 10, "status": "blocked", "depends_on": ["WS4", "WS5", "WS6", "WS7", "WS8"], "exit_gate": "CQ-D-G1..G4"},
-    {"id": "WS11", "name": "County Government Delivery Score", "stage": "E", "priority": 11, "status": "planned", "depends_on": ["WS5"], "exit_gate": "CQ-E-G1"},
-    {"id": "WS12", "name": "Administration scorecards", "stage": "E", "priority": 12, "status": "blocked", "depends_on": ["WS11"], "exit_gate": "CQ-E-G2,CQ-E-G3"},
-    {"id": "WS13", "name": "Opportunity Finder", "stage": "F", "priority": 13, "status": "planned", "depends_on": ["WS1"], "exit_gate": "CQ-F-G1,CQ-F-G2"},
-    {"id": "WS14", "name": "County Knowledge Hub", "stage": "F", "priority": 14, "status": "planned", "depends_on": ["WS1"], "exit_gate": "CQ-F-G3"},
-    {"id": "WS15", "name": "Evidence-based recognition", "stage": "F", "priority": 15, "status": "planned", "depends_on": ["WS8", "WS10"], "exit_gate": "CQ-F-G4"},
-    {"id": "WS16", "name": "Production hardening and automated freshness", "stage": "G", "priority": 16, "status": "planned", "depends_on": ["WS1", "WS8", "WS10", "WS11", "WS13", "WS14"], "exit_gate": "CQ-G-G1..G4"}
+    {
+      "id": "WS1",
+      "name": "Generated CountyIQ mart",
+      "stage": "A",
+      "priority": 1,
+      "status": "planned",
+      "depends_on": [],
+      "exit_gate": "CQ-A-G1..G4"
+    },
+    {
+      "id": "WS2",
+      "name": "12-year fiscal experience",
+      "stage": "B",
+      "priority": 2,
+      "status": "ready_to_surface",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-B-G2"
+    },
+    {
+      "id": "WS3",
+      "name": "Matched population denominators",
+      "stage": "B",
+      "priority": 3,
+      "status": "planned",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-B-G3"
+    },
+    {
+      "id": "WS4",
+      "name": "Poverty and health ingestion",
+      "stage": "B",
+      "priority": 4,
+      "status": "sourced",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-B-G1,CQ-B-G4"
+    },
+    {
+      "id": "WS5",
+      "name": "Fiscal accountability breadth",
+      "stage": "B",
+      "priority": 5,
+      "status": "planned",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-B-G1"
+    },
+    {
+      "id": "WS6",
+      "name": "Education/infrastructure/agriculture/business breadth",
+      "stage": "B",
+      "priority": 6,
+      "status": "planned",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-G-G1"
+    },
+    {
+      "id": "WS7",
+      "name": "Versioned peer groups",
+      "stage": "C",
+      "priority": 7,
+      "status": "research",
+      "depends_on": [
+        "WS3",
+        "WS4"
+      ],
+      "exit_gate": "CQ-C-G1"
+    },
+    {
+      "id": "WS8",
+      "name": "Trend and benchmark intelligence",
+      "stage": "C",
+      "priority": 8,
+      "status": "planned",
+      "depends_on": [
+        "WS2",
+        "WS7"
+      ],
+      "exit_gate": "CQ-C-G2,CQ-C-G3"
+    },
+    {
+      "id": "WS9",
+      "name": "Development Gap Calculator",
+      "stage": "C",
+      "priority": 9,
+      "status": "planned",
+      "depends_on": [
+        "WS7",
+        "WS8"
+      ],
+      "exit_gate": "CQ-C-G4"
+    },
+    {
+      "id": "WS10",
+      "name": "County Performance Index research",
+      "stage": "D",
+      "priority": 10,
+      "status": "blocked",
+      "depends_on": [
+        "WS4",
+        "WS5",
+        "WS6",
+        "WS7",
+        "WS8"
+      ],
+      "exit_gate": "CQ-D-G1..G4"
+    },
+    {
+      "id": "WS11",
+      "name": "County Government Delivery Score",
+      "stage": "E",
+      "priority": 11,
+      "status": "planned",
+      "depends_on": [
+        "WS5"
+      ],
+      "exit_gate": "CQ-E-G1"
+    },
+    {
+      "id": "WS12",
+      "name": "Administration scorecards",
+      "stage": "E",
+      "priority": 12,
+      "status": "blocked",
+      "depends_on": [
+        "WS11"
+      ],
+      "exit_gate": "CQ-E-G2,CQ-E-G3"
+    },
+    {
+      "id": "WS13",
+      "name": "Opportunity Finder",
+      "stage": "F",
+      "priority": 13,
+      "status": "planned",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-F-G1,CQ-F-G2"
+    },
+    {
+      "id": "WS14",
+      "name": "County Knowledge Hub",
+      "stage": "F",
+      "priority": 14,
+      "status": "planned",
+      "depends_on": [
+        "WS1"
+      ],
+      "exit_gate": "CQ-F-G3"
+    },
+    {
+      "id": "WS15",
+      "name": "Evidence-based recognition",
+      "stage": "F",
+      "priority": 15,
+      "status": "planned",
+      "depends_on": [
+        "WS8",
+        "WS10"
+      ],
+      "exit_gate": "CQ-F-G4"
+    },
+    {
+      "id": "WS16",
+      "name": "Production hardening and automated freshness",
+      "stage": "G",
+      "priority": 16,
+      "status": "planned",
+      "depends_on": [
+        "WS1",
+        "WS8",
+        "WS10",
+        "WS11",
+        "WS13",
+        "WS14"
+      ],
+      "exit_gate": "CQ-G-G1..G4"
+    }
   ],
   "release_stages": [
-    {"id": "A", "name": "Architecture complete", "definition": "Generated mart, schema, deterministic build and CI validation."},
-    {"id": "B", "name": "Evidence breadth", "definition": ">=20 useful active county indicators across >=5 domains, including full fiscal history and matched denominator rules."},
-    {"id": "C", "name": "Benchmark intelligence", "definition": "Versioned peers, matched trends, percentiles and auditable development-gap calculations."},
-    {"id": "D", "name": "Composite research release", "definition": "County Development & Performance Index published only with sensitivity, robustness and historical validation."},
-    {"id": "E", "name": "Accountability release", "definition": "County Government Delivery Score and administration context with attribution safeguards."},
-    {"id": "F", "name": "Action layer", "definition": "Verified Opportunity Finder, Knowledge Hub and reproducible recognition."},
-    {"id": "G", "name": "Mature CountyIQ", "definition": ">=30 robust indicators across all seven domains; complete drill-through, automated freshness/revisions and production validation."}
+    {
+      "id": "A",
+      "name": "Architecture complete",
+      "definition": "Generated mart, schema, deterministic build and CI validation."
+    },
+    {
+      "id": "B",
+      "name": "Evidence breadth",
+      "definition": ">=20 useful active county indicators across >=5 domains, including full fiscal history and matched denominator rules."
+    },
+    {
+      "id": "C",
+      "name": "Benchmark intelligence",
+      "definition": "Versioned peers, matched trends, percentiles and auditable development-gap calculations."
+    },
+    {
+      "id": "D",
+      "name": "Composite research release",
+      "definition": "County Development & Performance Index published only with sensitivity, robustness and historical validation."
+    },
+    {
+      "id": "E",
+      "name": "Accountability release",
+      "definition": "County Government Delivery Score and administration context with attribution safeguards."
+    },
+    {
+      "id": "F",
+      "name": "Action layer",
+      "definition": "Verified Opportunity Finder, Knowledge Hub and reproducible recognition."
+    },
+    {
+      "id": "G",
+      "name": "Mature CountyIQ",
+      "definition": ">=30 robust indicators across all seven domains; complete drill-through, automated freshness/revisions and production validation."
+    }
   ],
   "guardrails": [
     "No national statistic is inherited to a county, constituency or ward.",

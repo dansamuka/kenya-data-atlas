@@ -19,7 +19,7 @@
     "mobile:validate": "node scripts/ui/validate-mobile.mjs",
     "map:validate": "node scripts/indicators/validate-map-cascade.mjs",
     "countyiq:build": "node scripts/countyiq/build-mart.mjs",
-    "countyiq:validate": "node scripts/countyiq/validate-scaffold.mjs all && node scripts/countyiq/validate-mart.mjs && node scripts/countyiq/validate-runtime.mjs && node scripts/countyiq/validate-p03.mjs",
+    "countyiq:validate": "node scripts/countyiq/validate-scaffold.mjs all && node scripts/countyiq/validate-mart.mjs && node scripts/countyiq/validate-runtime.mjs && node scripts/countyiq/validate-p03.mjs && node scripts/countyiq/validate-p04.mjs",
     "countyiq:p03:validate": "node scripts/countyiq/validate-p03.mjs",
     "project:validate": "node scripts/project/validate-roadmap.mjs",
     "geography:derive": "node --max-old-space-size=4096 scripts/geography/derive-parents.mjs",
@@ -32,7 +32,8 @@
     "sprint2:diagnose": "node scripts/indicators/diagnose-sprint2-geography.mjs",
     "sprint2:validate": "node scripts/indicators/validate-sprint2-release.mjs",
     "sprint3:validate": "node scripts/indicators/validate-sprint3.mjs",
-    "life:validate": "node scripts/indicators/validate-life-elsewhere.mjs"
+    "life:validate": "node scripts/indicators/validate-life-elsewhere.mjs",
+    "countyiq:p04:validate": "node scripts/countyiq/validate-p04.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"

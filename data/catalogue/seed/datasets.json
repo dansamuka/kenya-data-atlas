@@ -365,5 +365,47 @@
     "description": "National institutional, digital, public-safety, representation and investment indicators for Kenya retrieved from the World Bank WDI API.",
     "topic": "Institutions",
     "known_limitations": "National only. Composite/index indicators require explicit methodology disclosure. Internet-use alternates must not be linked to Communications Authority data until a CA series is actually ingested."
+  },
+  {
+    "code": "DS-KNBS-POVERTY-2022",
+    "source_code": "KNBS-STATISTICS",
+    "title": "Kenya Poverty Report 2022 — County Overall Poverty Headcount",
+    "description": "County overall individual poverty headcount estimates from the 2022 Kenya Continuous Household Survey, including source-reported standard errors.",
+    "topic": "Living Standards",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "periodic",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2024/10/The-Kenya-Poverty-Report-2022.pdf",
+    "known_limitations": "Survey estimates. P04 publishes county point estimates with source-reported standard errors but withholds league-table ranking; 2022 reference period must remain visible."
+  },
+  {
+    "code": "DS-KNBS-KDHS-2022-COUNTY",
+    "source_code": "KNBS-STATISTICS",
+    "title": "Kenya Demographic and Health Survey 2022 — Selected County Indicators",
+    "description": "Selected 2022 KDHS county estimates for child nutrition, basic immunisation and skilled birth attendance, with the source table denominator retained as precision metadata.",
+    "topic": "Health",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "periodic",
+    "publication_status": "published",
+    "methodology_url": "https://dhsprogram.com/pubs/pdf/FR380/FR380.pdf",
+    "known_limitations": "Survey estimates from distinct analytic universes. Reported table denominators are retained; P04 withholds point-estimate county ranking pending P06 comparison methodology."
+  },
+  {
+    "code": "DS-MOH-HEALTH-FACILITY-CENSUS-2023",
+    "source_code": "MOH-HEALTH",
+    "title": "Kenya Health Facility Census 2023 — County Facilities Assessed",
+    "description": "County counts of health facilities assessed in the 2023 Ministry of Health Health Facility Census.",
+    "topic": "Health Infrastructure",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "one_off",
+    "publication_status": "published",
+    "methodology_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+    "known_limitations": "Dated August–September 2023 census assessment snapshot, not a live 2026 KMHFR/NHFR registry total. Raw counts are not population-adjusted and are not ranked in P04."
   }
 ]
