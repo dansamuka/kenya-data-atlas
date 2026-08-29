@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 22
       - name: Apply mobile CountyIQ fixes
-        shell: python
+        shell: python {0}
         run: |
           from pathlib import Path
 
