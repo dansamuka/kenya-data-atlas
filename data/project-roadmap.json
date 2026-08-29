@@ -99,7 +99,7 @@
     {
       "id": "P04",
       "title": "County health and living-standards ingestion",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Activate a coherent first social-outcomes package from already identified official sources.",
       "outputs": [
         "poverty/living-standard observations where available",
@@ -121,7 +121,7 @@
     {
       "id": "P05",
       "title": "County education, economy, agriculture and infrastructure breadth",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Close the largest domain gaps using only county-comparable primary data.",
       "outputs": [
         "education package",

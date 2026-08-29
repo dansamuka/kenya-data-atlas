@@ -8,7 +8,7 @@ Goal: finish the repository through bounded, independently deployable phases tha
 
 Start each future session with one phase ID, for example:
 
-> Complete P04 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
+> Complete P05 from `docs/REPO-COMPLETION-PLAN.md`. Do not restart completed phases. Implement the full phase, run its acceptance checks, push to `main`, and report any unmet gate explicitly.
 
 A phase is deliberately scoped so the session ends with a coherent release rather than a half-built cross-cutting change. If a phase reveals a material blocker, record it instead of silently substituting demo or lower-quality data.
 
@@ -31,6 +31,7 @@ Already complete and not to be restarted without a regression/correction:
 - P01 shared registry loader, compact first-paint data product, lazy Geo Explorer/D3 path, deferred heavy registries and initial-load performance budget.
 - P02 canonical 47-county CountyIQ analytical mart with deterministic registry-derived build, provenance/eligibility metadata and mart-backed runtime.
 - P03 twelve-year county fiscal experience with common-period rankings, exact 1/3/5-year changes, absorption volatility, responsive history UI and explicit denominator withholding.
+- P04 47-county health and living-standards package with 2022 poverty/KDHS survey precision metadata, withheld survey rankings, and the 2023 Health Facility Census assessed-facility inventory.
 
 The remaining work is therefore primarily **analytical integration, county data breadth, decision intelligence, action layers and public-launch hardening**.
 
@@ -94,27 +95,21 @@ Release evidence: the focused P03 validator passed 47 × 12 coverage, canonical 
 
 ## P04 — Health + living-standards activation
 
-**Status: next.**
+**Status: complete.**
 
-This session should focus only on social/health source activation, because survey uncertainty and coverage rules need concentrated review.
+P04 activated a coherent five-indicator county social-outcomes package across all 47 counties: 2022 overall poverty with KNBS source-reported standard errors; 2022 KDHS stunting, basic immunisation and skilled birth attendance with source table denominators retained as precision metadata; and the 2023 Ministry of Health Health Facility Census assessed-facility inventory, reconciling to 14,883 assessed facilities.
 
-Priority candidates already identified in the CountyIQ scaffold:
+Survey point estimates and raw facility counts remain deliberately unranked in this phase. CountyIQ exposes source, period and available precision evidence without inventing confidence intervals or presenting a composite health score. P04 does not introduce HIV estimates, per-capita facility rates, governor scores or causal performance claims.
 
-- monetary poverty;
-- stunting;
-- immunisation;
-- skilled birth attendance;
-- HIV prevalence;
-- health facility count;
-- literacy/household/housing measures where source tables support county comparability.
+Release evidence: the exact PR candidate passed deterministic rebuild, committed-output drift checks, the full Atlas validation suite and the independent Shapely geometry audit. PR #12 merged to `main`; the generated-data workflow then published the canonical CountyIQ mart, and the resulting publish head deployed successfully to GitHub Pages.
 
-For survey indicators capture estimate, reference period, sample/standard error or confidence interval where available, and ranking eligibility.
-
-**Exit:** no survey statistic becomes headline/rankable without the required uncertainty metadata and coverage rule.
+**Do not reopen:** survey rankings remain gated to later comparison methodology; source precision must remain explicit and no missing uncertainty field may be fabricated.
 
 ---
 
 ## P05 — Education + economic structure + agriculture + infrastructure
+
+**Status: next.**
 
 Close the remaining domain breadth gap through primary county-comparable data only.
 
