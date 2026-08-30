@@ -1,5 +1,5 @@
-/* Kenya Data Atlas — Placeholder Category Specification v2 profiles.
- * Registry-driven County / Constituency / Ward tabs. No parent values are inherited.
+/* Kenya Data Atlas — registry-driven place profiles.
+ * County / Constituency / Ward tabs. Parent values are never inherited.
  */
 (function(){
   'use strict';
@@ -8,8 +8,16 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let state=null,currentGeo=null,currentTab='overview',rankingQueued=false;
 
+  function ensureStyles(){
+    if(document.getElementById('kda-place-profile-css')||document.querySelector('link[href="assets/place-profile.css"]'))return;
+    if(window.KDAData?.loadStyle){window.KDAData.loadStyle('assets/place-profile.css',{id:'kda-place-profile-css'}).catch(()=>{});return;}
+    const link=document.createElement('link');link.id='kda-place-profile-css';link.rel='stylesheet';link.href='assets/place-profile.css';document.head.appendChild(link);
+  }
+  ensureStyles();
+
   const json=async url=>{try{const r=await fetch(url);return r.ok?await r.json():null;}catch{return null;}};
   const TAB_LABEL={overview:'Overview',people:'People',economy:'Economy',health:'Health',finance:'Finance',representation:'Representation',infrastructure:'Infrastructure',resilience:'Resilience & Environment'};
+  const BADGE_LABEL={A:'Official direct',B:'Official derived',C:'Spatially derived',D:'Modelled',E:'External source'};
 
   function unitLabel(unit){
     if(!unit)return '';
@@ -24,6 +32,10 @@
   function agencyFor(series){
     const dataset=state.datasetById.get(series?.dataset_id); const source=dataset?state.sourceById.get(dataset.source_id):null; const agency=source?state.agencyById.get(source.agency_id):null;
     return agency?.abbreviation||agency?.name||'Source';
+  }
+  function qualityBadge(badge){
+    const code=String(badge||'A').toUpperCase(),label=BADGE_LABEL[code]||'Evidence status';
+    return `<span class="badge ${esc(code.toLowerCase())}" title="${esc(label)}" aria-label="${esc(label)}">${esc(code)}</span>`;
   }
   function latestPair(geoId,indicator){
     if(!indicator)return null; const list=state.seriesByGeoIndicator.get(`${geoId}|${indicator.indicator_id}`)||[];
@@ -61,37 +73,39 @@
   function cardHtml(code,geo,tab){
     const ind=state.indicatorByCode.get(code); if(!ind)return '';
     const unit=unitFor(ind),pair=latestPair(geo.geography_id,ind),life=ind.lifecycle_status||'active';
-    const unitChip=unitLabel(unit)?`<span class="unit-chip" title="Unit of measurement: ${esc(unit.name)}">${esc(unitLabel(unit))}</span>`:'';
+    const unitChip=unitLabel(unit)?`<span class="unit-chip" title="Unit of measurement: ${esc(unit?.name||unitLabel(unit))}">${esc(unitLabel(unit))}</span>`:'';
     if(life==='active'&&pair){
-      return `<article class="place-profile-card lifecycle-active"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge ${esc(String(pair.obs.badge||'').toLowerCase())}">${esc(pair.obs.badge||'A')}</span></div>${unitChip}<div class="place-card-value">${esc(formatValue(pair.obs.value,unit))}</div><div class="place-card-meta"><strong>${esc(pair.obs.period_label)}</strong> · ${esc(agencyFor(pair.series))}</div>${uncertaintyHtml(ind,pair,unit)}</article>`;
+      const source=agencyFor(pair.series);
+      return `<article class="place-profile-card lifecycle-active"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-card-value-row"><div class="place-card-value">${esc(formatValue(pair.obs.value,unit))}</div>${unitChip}</div><div class="place-card-meta place-card-source"><strong>${esc(pair.obs.period_label)}</strong><span>${esc(source)}</span></div>${uncertaintyHtml(ind,pair,unit)}</article>`;
     }
     if(life==='active'){
       const note=ind.expected_availability_note||`No observation is currently available for ${geo.name} at ${geo.level} level.`;
-      return `<article class="place-profile-card lifecycle-missing"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge missing">N/A</span></div>${unitChip}<div class="place-card-value missing">—</div><div class="place-card-meta">${esc(note)}</div></article>`;
+      return `<article class="place-profile-card lifecycle-missing"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge missing">N/A</span></div><div class="place-card-value-row"><div class="place-card-value missing">—</div>${unitChip}</div><div class="place-card-meta">${esc(note)}</div></article>`;
     }
     const status=life==='sourced'?'Sourced':'Planned';
     const levels=(ind.applies_to_levels||[]).map(x=>x[0].toUpperCase()+x.slice(1)).join(', ')||'National only';
     const source=ind.expected_source||'Source not yet confirmed';
     const link=life==='sourced'&&ind.expected_source_url?`<a href="${esc(ind.expected_source_url)}" target="_blank" rel="noopener">Open source ↗</a>`:'';
-    return `<article class="place-profile-card lifecycle-${esc(life)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge lifecycle ${esc(life)}">${status}</span></div>${unitChip}<div class="place-card-value missing">—</div><div class="place-card-meta"><strong>${status}</strong> · ${esc(source)}</div><button class="placeholder-explain" type="button" aria-expanded="false">Why this is here ↓</button><div class="placeholder-detail" hidden><b>${esc(TAB_LABEL[tab]||tab)} · ${esc(status)}</b><div>Intended levels: ${esc(levels)}</div><div>${esc(ind.expected_availability_note||'No additional availability note.')}</div>${link}</div></article>`;
+    return `<article class="place-profile-card lifecycle-${esc(life)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge lifecycle ${esc(life)}">${status}</span></div><div class="place-card-value-row"><div class="place-card-value missing">—</div>${unitChip}</div><div class="place-card-meta"><strong>${status}</strong> · ${esc(source)}</div><button class="placeholder-explain" type="button" aria-expanded="false">More about availability ↓</button><div class="placeholder-detail" hidden><b>${esc(TAB_LABEL[tab]||tab)} · ${esc(status)}</b><div>Intended levels: ${esc(levels)}</div><div>${esc(ind.expected_availability_note||'No additional availability note.')}</div>${link}</div></article>`;
   }
 
   function renderTab(){
     if(!currentGeo)return; const section=$('#profile'); if(!section)return;
     const codes=slotCodes(currentGeo,currentTab);
     const available=codes.filter(code=>{const i=state.indicatorByCode.get(code);return i?.lifecycle_status==='active'&&latestPair(currentGeo.geography_id,i);}).length;
-    $$('.place-profile-tabs button',section).forEach(b=>{const active=b.dataset.profileTab===currentTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));});
+    $$('.place-profile-tabs button',section).forEach(b=>{const active=b.dataset.profileTab===currentTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
     const label=TAB_LABEL[currentTab]||currentTab;
-    const head=$('.place-profile-tab-head',section); if(head)head.innerHTML=`<h3>${esc(label)}</h3><p class="place-profile-coverage">${esc(label)} · ${available} of ${codes.length} ${currentTab==='overview'?'headline ':''}indicators available at ${esc(currentGeo.level)} level</p>`;
-    const grid=$('.place-profile-grid',section); if(grid)grid.innerHTML=codes.length?codes.map(code=>cardHtml(code,currentGeo,currentTab)).join(''):`<div class="place-profile-empty">No valid indicator slots are defined for this tab at ${esc(currentGeo.level)} level.</div>`;
+    const head=$('.place-profile-tab-head',section); if(head)head.innerHTML=`<h3>${esc(label)}</h3><p class="place-profile-coverage">${available}/${codes.length} available · ${esc(currentGeo.level)}</p>`;
+    const grid=$('.place-profile-grid',section); if(grid)grid.innerHTML=codes.length?codes.map(code=>cardHtml(code,currentGeo,currentTab)).join(''):`<div class="place-profile-empty">No published indicator slots are defined for this topic at ${esc(currentGeo.level)} level.</div>`;
   }
 
   function renderProfile(geoId,preferredTab){
     const geo=state.geoById.get(geoId); if(!geo||!['county','constituency','ward'].includes(geo.level))return;
     currentGeo=geo; const tabs=tabsFor(geo); currentTab=(preferredTab&&tabs.includes(preferredTab))?preferredTab:(tabs.includes(currentTab)?currentTab:'overview');
     const section=$('#profile'); if(!section)return; section.dataset.placeProfile='true';
-    const chain=chainFor(geo).map((g,i,a)=>`${i?'<span>›</span>':''}${esc(g.name)}`).join('');
-    section.innerHTML=`<div class="place-profile-head"><div class="place-profile-copy"><p class="place-profile-breadcrumb">${chain}</p><span class="place-profile-level">${esc(geo.level)} · ${esc(geo.geo_code)}</span><h2>${esc(geo.name)}${geo.level==='county'?' County':geo.level==='constituency'?' Constituency':' Ward'}</h2><p>Real observations are shown where they exist. Defined but not-yet-ingested indicators remain visible as honest planned or sourced slots; parent values are never inherited.</p></div><div class="place-profile-actions"><button type="button" id="place-profile-download">↓ Download current tab</button></div></div><nav class="place-profile-tabs" role="tablist" aria-label="${esc(geo.name)} profile topics">${tabs.map(tab=>`<button type="button" role="tab" data-profile-tab="${esc(tab)}">${esc(TAB_LABEL[tab]||tab)}</button>`).join('')}</nav><div class="place-profile-tab-head"></div><div class="place-profile-grid"></div>`;
+    const chain=chainFor(geo).map((g,i)=>`${i?'<span>›</span>':''}${esc(g.name)}`).join('');
+    const placeLabel=`${geo.name}${geo.level==='county'?' County':geo.level==='constituency'?' Constituency':' Ward'}`;
+    section.innerHTML=`<div class="place-profile-head"><div class="place-profile-copy"><p class="place-profile-breadcrumb">${chain}</p><span class="place-profile-level">${esc(geo.level)} · ${esc(geo.geo_code)}</span><h2>${esc(placeLabel)}</h2><p>Published observations for this place, with source and reference period kept visible. Missing local values stay missing — broader-area figures are never substituted.</p></div><div class="place-profile-actions"><button type="button" id="place-profile-download" aria-label="Download ${esc(placeLabel)} ${esc(TAB_LABEL[currentTab]||currentTab)} data as CSV">↓ Download CSV</button></div></div><nav class="place-profile-tabs" role="tablist" aria-label="${esc(geo.name)} profile topics">${tabs.map(tab=>`<button type="button" role="tab" data-profile-tab="${esc(tab)}">${esc(TAB_LABEL[tab]||tab)}</button>`).join('')}</nav><div class="place-profile-tab-head"></div><div class="place-profile-grid" role="region" aria-live="polite"></div>`;
     renderTab();
   }
 
@@ -108,6 +122,11 @@
       const tab=e.target.closest('[data-profile-tab]'); if(tab){currentTab=tab.dataset.profileTab;renderTab();return;}
       const explain=e.target.closest('.placeholder-explain'); if(explain){const detail=explain.nextElementSibling,open=detail?.hidden!==false;$$('.placeholder-detail',section).forEach(d=>d.hidden=true);$$('.placeholder-explain',section).forEach(b=>b.setAttribute('aria-expanded','false'));if(detail){detail.hidden=!open;explain.setAttribute('aria-expanded',String(open));}return;}
       if(e.target.closest('#place-profile-download'))downloadCurrent();
+    });
+    section.addEventListener('keydown',e=>{
+      const tab=e.target.closest('[data-profile-tab]');if(!tab||!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+      const tabs=$$('[data-profile-tab]',section),index=tabs.indexOf(tab);if(index<0)return;e.preventDefault();
+      const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(index+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[next]?.focus();tabs[next]?.click();
     });
   }
 
