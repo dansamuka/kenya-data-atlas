@@ -6,7 +6,6 @@
   const VIEW_IDS=new Set(['home','pulse','explore','compare','series','data','rankings','countyiq']);
   const TITLES={home:'Kenya Data Atlas — Understand Kenya through data',pulse:'National Pulse — Kenya Data Atlas',explore:'Explore places — Kenya Data Atlas',compare:'Compare places — Kenya Data Atlas',series:'Series Explorer — Kenya Data Atlas',data:'Data Catalogue — Kenya Data Atlas',rankings:'County Rankings & Insights — Kenya Data Atlas',countyiq:'CountyIQ — Kenya Data Atlas'};
   const DYNAMIC_VIEW_IDS=new Map([['cross-level-compare','explore']]);
-  const INITIAL_STABILITY_GATES=new Set(['compare','countyiq']);
   const rawPush=history.pushState.bind(history),rawReplace=history.replaceState.bind(history);
   let current=null,rendering=false;
 
@@ -38,24 +37,6 @@
   function dispatch(route){
     try{window.dispatchEvent(new CustomEvent('kda:route',{detail:route}));}catch(_){/* test/minimal browser fallback */}
   }
-  function armInitialStabilityGate(){
-    const initial=parse();
-    if(!INITIAL_STABILITY_GATES.has(initial.view))return;
-    document.body.hidden=true;
-    document.body.dataset.initialRouteGate='pending';
-    document.body.dataset.initialRouteView=initial.view;
-    /* Fail open if an optional route module is ever unable to signal readiness. */
-    setTimeout(()=>releaseInitialGate(initial.view),4500);
-  }
-  function releaseInitialGate(view){
-    if(document.body.dataset.initialRouteGate!=='pending')return false;
-    if(document.body.dataset.initialRouteView!==view)return false;
-    const active=current?.view||parse().view;
-    if(active!==view)return false;
-    document.body.dataset.initialRouteGate='ready';
-    document.body.hidden=false;
-    return true;
-  }
   function render(options={}){
     if(rendering)return current;
     rendering=true;
@@ -68,8 +49,7 @@
       link.classList.toggle('active',active);
       if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
     });
-    const keepInitialGate=document.body.dataset.initialRouteGate==='pending'&&document.body.dataset.initialRouteView===next.view;
-    if(!keepInitialGate)document.body.hidden=false;
+    document.body.hidden=false;
     document.body.dataset.view=next.view;
     if(document.title!==TITLES[next.view])document.title=TITLES[next.view];
     current=next;rendering=false;
@@ -152,8 +132,7 @@
     event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
   },true);
 
-  armInitialStabilityGate();
-  window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash,releaseInitialGate};
+  window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
   render({scroll:false});
   protectCompareCriticalPaint();
 })();
