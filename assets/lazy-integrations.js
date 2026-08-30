@@ -37,11 +37,6 @@
     if(!route)return;
     try{window.dispatchEvent(new CustomEvent('kda:route',{detail:route}));}catch(_){/* minimal browser fallback */}
   }
-  function releaseInitialRoute(view){
-    const release=window.KDARouter?.releaseInitialGate;
-    if(typeof release!=='function')return Promise.resolve(false);
-    return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(release(view)))));
-  }
   function styles(entries){return Promise.all(entries.map(([href,id])=>KDA.loadStyle(href,{id})));}
 
   function loadPolish(){
@@ -88,7 +83,7 @@
     return promise;
   }
   function loadCompare(){
-    if(window.KDACompare)return Promise.resolve(window.KDACompare.boot?.()).then(async value=>{await releaseInitialRoute('compare');return value||window.KDACompare;});
+    if(window.KDACompare)return Promise.resolve(window.KDACompare.boot?.()).then(()=>window.KDACompare);
     if(comparePromise)return comparePromise;
     comparePromise=Promise.all([
       styles([['assets/compare.css','kda-compare-css'],['assets/compare-life-natural.css','kda-compare-life-css']]),
@@ -96,8 +91,8 @@
       loadPolish()
     ]).then(()=>KDA.loadScript('assets/compare.js',{id:'kda-compare'}))
       .then(()=>window.KDACompare?.boot?.()||null)
-      .then(async value=>{redriveRoute();await releaseInitialRoute('compare');return value;})
-      .catch(async error=>{console.warn('Compare load:',error?.message||error);await releaseInitialRoute('compare');return null;});
+      .then(value=>{redriveRoute();return value;})
+      .catch(error=>{console.warn('Compare load:',error?.message||error);return null;});
     return comparePromise;
   }
   function loadMapVoters(){
@@ -171,9 +166,7 @@
   }
   function loadCountyIQ(){
     installCountyIQDataGuard();
-    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot())
-      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening()]))
-      .then(async value=>{await releaseInitialRoute('countyiq');return value;});
+    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening()]));
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=Promise.all([
       styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),
@@ -181,8 +174,8 @@
     ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))
       .then(()=>window.KDACountyIQ?.boot?.()||null)
       .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup()]))
-      .then(async value=>{redriveRoute();await releaseInitialRoute('countyiq');return value;})
-      .catch(async error=>{countyIqFailure(error);await releaseInitialRoute('countyiq');return null;});
+      .then(value=>{redriveRoute();return value;})
+      .catch(countyIqFailure);
     return countyIqPromise;
   }
 
