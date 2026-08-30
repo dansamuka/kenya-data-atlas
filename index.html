@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="assets/worldbank-integration.css">
   <link rel="stylesheet" href="assets/compare.css">
   <link rel="stylesheet" href="assets/countyiq-view.css">
+  <link rel="stylesheet" href="assets/evidence-hub.css">
   <link rel="stylesheet" href="assets/pre-p05-hardening.css">
   <link rel="stylesheet" href="assets/p05-breadth.css">
   <link rel="stylesheet" href="assets/routed-views.css">
@@ -160,6 +161,16 @@
           <article class="ciq-card ciq-fiscal-card"><div class="ciq-card-head"><div><small>Public finance</small><h2>Twelve-year fiscal experience</h2></div><p>One consolidated table · FY2013/14–FY2024/25 · common-period county comparisons only.</p></div><div class="ciq-fiscal" id="ciq-fiscal"></div><div class="ciq-fiscal-insights" id="ciq-fiscal-insights"></div><div class="ciq-fiscal-history" id="ciq-fiscal-history"></div><div class="ciq-denominator" id="ciq-denominator"></div></article>
           <article class="ciq-card ciq-social-card"><div class="ciq-card-head"><div><small>Health & living standards</small><h2>Official county outcomes</h2></div><p>2022 survey outcomes plus the 2023 facility-census inventory. Precision is visible; survey league tables are withheld.</p></div><div class="ciq-social-grid" id="ciq-social"></div><p class="ciq-trend-note">P04 shows source-backed county estimates, not a health score. Survey point estimates are not ranked in this phase.</p></article>
           <article class="ciq-card ciq-p05-card"><div class="ciq-card-head"><div><small>P05 breadth</small><h2>Education, economy, agriculture & connectivity</h2></div><p>County-comparable primary data across four additional domains. Values retain their source period; peer scoring waits for P06.</p></div><div class="ciq-p05-grid" id="ciq-p05-breadth"></div><p class="ciq-p05-note">P05 broadens the evidence base; it does not convert raw school counts, sector size, crop output or connectivity rates into an overall county score.</p></article>
+          <article class="ciq-card ciq-evidence-hub-card" id="ciq-evidence-hub">
+            <div class="ciq-card-head"><div><small>P13 · official documents</small><h2>County Evidence &amp; Knowledge Hub</h2></div><p>Planning, budget and accountability evidence with explicit verification states. A source collection is never presented as a pinned file.</p></div>
+            <div class="evidence-hub-tools">
+              <label>Search evidence<input id="ciq-evidence-search" type="search" placeholder="Title, publisher, period…" autocomplete="off"></label>
+              <label>Document family<select id="ciq-evidence-family" aria-label="Filter county evidence by document family"><option value="all">All document families</option></select></label>
+            </div>
+            <div class="evidence-summary" id="ciq-evidence-summary" aria-label="Evidence coverage summary"></div>
+            <p class="evidence-hub-note" id="ciq-evidence-note">Official evidence loads with CountyIQ.</p>
+            <div class="evidence-hub-list" id="ciq-evidence-list"><div class="source-note">Loading county evidence registry…</div></div>
+          </article>
           <article class="ciq-card"><div class="ciq-card-head"><div><small>Evidence discipline</small><h2>What this view does—and does not do</h2></div></div><div class="ciq-evidence"><article><strong>Source-backed</strong><p>Visible figures come from the same committed Atlas county tables used elsewhere on the site.</p></article><article><strong>No synthetic score</strong><p>No overall county or governor score is published before a validated methodology exists.</p></article><article><strong>No silent inheritance</strong><p>Kenya-level values are never presented as county, constituency or ward observations.</p></article></div></article>
         </div>
       </div>

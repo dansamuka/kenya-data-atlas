@@ -13,7 +13,7 @@
   const KDA=window.KDAData;
   if(!KDA)return;
 
-  let promise=null,countyIqPromise=null,mapVotersPromise=null,seriesBrowserPromise=null;
+  let promise=null,countyIqPromise=null,evidenceHubPromise=null,mapVotersPromise=null,seriesBrowserPromise=null;
   function loadOptionalIntegrations(){
     if(promise)return promise;
     promise=Promise.allSettled([
@@ -51,11 +51,20 @@
     if(root)root.innerHTML='<div class="ciq-error" style="grid-column:1/-1"><strong>CountyIQ could not initialize.</strong><br>The rest of Kenya Data Atlas remains available.</div>';
     return null;
   }
+  function loadEvidenceHub(){
+    if(window.KDAEvidenceHub)return window.KDAEvidenceHub.boot();
+    if(evidenceHubPromise)return evidenceHubPromise;
+    evidenceHubPromise=KDA.loadScript('assets/evidence-hub.js',{id:'kda-evidence-hub'})
+      .then(()=>window.KDAEvidenceHub?.boot?.()||null)
+      .catch(error=>{console.warn('P13 Evidence Hub load:',error?.message||error);return null;});
+    return evidenceHubPromise;
+  }
   function loadCountyIQ(){
-    if(window.KDACountyIQ)return window.KDACountyIQ.boot();
+    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>loadEvidenceHub());
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'})
       .then(()=>window.KDACountyIQ?.boot?.()||null)
+      .then(()=>loadEvidenceHub())
       .catch(countyIqFailure);
     return countyIqPromise;
   }
