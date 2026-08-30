@@ -28,7 +28,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["loan range", "group eligibility", "application method", "revolving/no deadline"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MAIZE-YIELD", "IND-INTERNET-USE", "IND-COMPUTER-USE", "IND-MANUFACTURING-GCP-SHARE"], "label": "Enterprise-capacity relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Livelihood and enterprise relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-UWEZO-ENDELEZA",
@@ -49,7 +49,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["repeat-borrower eligibility", "maximum amount", "application method", "revolving/no deadline"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MAIZE-YIELD", "IND-INTERNET-USE", "IND-COMPUTER-USE", "IND-MANUFACTURING-GCP-SHARE"], "label": "Enterprise-growth relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Livelihood and enterprise-growth relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-WEF-TUINUKE",
@@ -70,7 +70,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["loan cycles", "eligibility", "application method", "all-constituency service coverage"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MAIZE-YIELD", "IND-INTERNET-USE", "IND-COMPUTER-USE", "IND-MANUFACTURING-GCP-SHARE"], "label": "Women-enterprise relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Women-enterprise and livelihoods relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-YEDF-GROUP",
@@ -91,7 +91,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["group eligibility", "loan graduation", "application forms", "county access route"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MAIZE-YIELD", "IND-INTERNET-USE", "IND-COMPUTER-USE", "IND-MANUFACTURING-GCP-SHARE"], "label": "Youth-enterprise relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Youth-enterprise and livelihoods relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-YEDF-ASSET",
@@ -112,7 +112,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["maximum amount", "financing share", "asset eligibility", "security structure"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MANUFACTURING-GCP-SHARE", "IND-MAIZE-YIELD", "IND-MAIN-GRID-ELECTRICITY", "IND-COMPUTER-USE"], "label": "Productive-asset relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Productive enterprise and livelihoods relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-YEDF-VIBE",
@@ -133,7 +133,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["sector scope", "loan range", "loan term"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MAIZE-YIELD", "IND-AGRICULTURE-GCP-SHARE"], "label": "Natural-resource enterprise relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Blue-economy livelihoods relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-KIE-CREDIT",
@@ -155,7 +155,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["active funding form", "business eligibility", "industrial-credit purpose"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-MANUFACTURING-GCP-SHARE", "IND-MANUFACTURING-GVA", "IND-MAIN-GRID-ELECTRICITY", "IND-COMPUTER-USE"], "label": "Industrial-capacity relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Industrial enterprise and livelihoods relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     },
     {
       "id": "P14-AGPO",
@@ -176,7 +176,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["registration availability", "beneficiary groups", "procurement-purpose rules"],
-      "relevance": {"mode": "contextual", "trigger_indicators": [], "label": "Nationwide procurement-access context"}
+      "relevance": {"mode": "contextual", "trigger_indicators": [], "label": "Nationwide procurement-access context", "basis": "Shown as nationwide context only; it is not presented as a response to a measured county gap."}
     },
     {
       "id": "P14-HUSTLER-GROUP",
@@ -197,7 +197,7 @@
       "verified_at": "2026-08-30",
       "next_review_at": "2026-09-30",
       "source_claims": ["group access", "minimum group size", "maximum group limit", "USSD channel"],
-      "relevance": {"mode": "gap", "trigger_indicators": ["IND-INTERNET-USE", "IND-COMPUTER-USE", "IND-MAIZE-YIELD", "IND-MANUFACTURING-GCP-SHARE"], "label": "Micro-enterprise relevance"}
+      "relevance": {"mode": "gap", "trigger_indicators": ["IND-LABOUR-FORCE-PARTICIPATION"], "label": "Micro-enterprise and livelihoods relevance", "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."}
     }
   ]
 }
