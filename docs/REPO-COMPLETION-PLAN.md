@@ -33,8 +33,9 @@ Already complete and not to be restarted without a regression/correction:
 - P03 twelve-year county fiscal experience with common-period rankings, exact 1/3/5-year changes, absorption volatility, responsive history UI and explicit denominator withholding.
 - P04 47-county health and living-standards package with 2022 poverty/KDHS survey precision metadata, withheld survey rankings, and the 2023 Health Facility Census assessed-facility inventory.
 - P05 47-county education, economic-structure, agriculture and infrastructure breadth package, adding 14 source-backed county indicators and taking CountyIQ to 34 fully county-covered indicators across 7 domains.
+- P16 real-browser/accessibility/SEO/performance release audit, including Chromium/Firefox/WebKit smoke and axe checks, Lighthouse budgets, mobile focus/overflow checks, crawlability and reproducible link auditing.
 
-With P00–P13 complete and P15 now released, the remaining v1.0 work is **real-browser/accessibility/SEO/performance hardening (P16) and final release closeout (P17)**. P14 Opportunity Finder is explicitly deferred to v1.1 Beta because programme freshness requires continuing maintenance.
+With P00–P13, P15 and P16 complete, the only remaining v1.0 phase is **final reproducibility, governance, deployment and release closeout (P17)**. P14 Opportunity Finder is explicitly deferred to v1.1 Beta because programme freshness requires continuing maintenance.
 
 ---
 
@@ -299,29 +300,31 @@ Release evidence is documented in `docs/P15-DATA-DISTRIBUTION.md`; consumer exam
 
 ## P16 — Accessibility + browser + SEO + performance release audit
 
-**Status: next.**
+**Status: complete.**
 
-Recommended next-session instruction: **Complete P16** from `data/project-roadmap.json`. Do not restart completed phases.
+P16 hardened the public product with reproducible real-browser and public-launch gates rather than DOM-only smoke checks.
 
-A dedicated public-launch hardening session:
+Completed release surface:
 
-- WCAG 2.2 AA review;
-- keyboard/focus/contrast/labels;
-- Chrome/Firefox/Safari/Edge smoke checks;
-- mobile layout;
-- broken links;
-- metadata/social cards/SEO;
-- JS console errors;
-- page/asset weight;
-- slow-network degradation.
+- Playwright smoke tests across Chromium, Firefox and WebKit;
+- axe automated critical-impact accessibility gate;
+- 390px mobile keyboard/focus/overflow checks;
+- Lighthouse cold-load budgets for Home, Compare and CountyIQ;
+- deterministic internal-link and external-link health inventory;
+- metadata, robots.txt and sitemap crawlability checks;
+- retained release-audit evidence artifacts and known-limitations documentation.
 
-**Exit:** critical issues fixed; remaining limitations documented.
+The final CountyIQ layout-shift regression was closed by reserving the asynchronous Place Facts geometry before hydration. Compare’s direct-entry LCP regression was closed by moving its large registry transfer off the critical paint path. Thresholds were not relaxed.
+
+**Exit:** critical browser, accessibility, performance and crawlability gates pass; external link volatility remains explicitly classified rather than silently ignored.
 
 ---
 
 ## P17 — Final reproducibility + governance + v1.0
 
-**Status: planned.**
+**Status: next.**
+
+Recommended next-session instruction: **Complete P17** from `data/project-roadmap.json`. Do not restart completed phases.
 
 Final closeout session.
 
@@ -340,7 +343,9 @@ Then:
 - review corrections/revisions/data quality;
 - rewrite README from “static MVP” to the actual v1.0 state;
 - update CHANGELOG/release notes;
-- list genuinely unresolved external-data constraints rather than hiding them.
+- list genuinely unresolved external-data constraints rather than hiding them;
+- verify GitHub Pages serves the exact release commit;
+- perform the post-deployment smoke test before publishing v1.0.
 
 **v1.0 should mean:** the declared product is reproducible, source-auditable, usable, performant and methodologically honest—not that every desirable Kenyan dataset exists.
 
@@ -348,7 +353,7 @@ Then:
 
 The v1.0 sequence is now:
 
-`P00–P13 complete → P15 complete → P16 next → P17 → v1.0`
+`P00–P13 complete → P15 complete → P16 complete → P17 next → v1.0`
 
 P14 is explicitly deferred to `v1.1 Beta`; P17 must not weaken evidence or browser gates merely to pull that maintenance-heavy action layer into v1.0.
 
