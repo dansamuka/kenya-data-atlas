@@ -54,7 +54,7 @@ function validateLegacyResilience(){
 function validateIntegratedRuntime(){
   const js=read('assets/countyiq-view.js'),lazy=read('assets/lazy-integrations.js'),html=read('index.html');
   assert(html.includes('data-view="countyiq"')&&html.includes('id="countyiq-view"'),'CountyIQ is not an Atlas routed view');
-  assert(lazy.includes("KDA.loadScript('assets/countyiq-view.js'")&&lazy.includes("event.detail?.view==='countyiq'"),'CountyIQ route is not lazy loaded');
+  assert(lazy.includes("KDA.loadScript('assets/countyiq-view.js'")&&lazy.includes("view==='countyiq'"),'CountyIQ route is not lazy loaded');
   assert(js.includes('const FALLBACK=[')&&js.includes("mode='sample'")&&js.includes("mode='production'"),'integrated runtime lacks production/fallback states');
   assert(js.includes("const MART='data/countyiq/county-summary.json'")&&js.includes('KDA.fetchJson(MART,{required:true})'),'integrated runtime is not grounded in canonical CountyIQ mart');
   assert(!js.includes('data/sprint1/')&&!js.includes('KDA.csv('),'integrated CountyIQ still directly joins Sprint CSV files');

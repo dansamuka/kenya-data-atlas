@@ -3,7 +3,7 @@
   'use strict';
   const KDA=window.KDAData;if(!KDA)return;
   const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
   const norm=v=>String(v??'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
   let booted=false,indexPromise=null,lastQuery='';
 
@@ -75,21 +75,28 @@
   }
   function setCounty(code){
     if(!code)return;
-    let tries=0;const run=()=>{const select=$('#ciq-county-select');if(select&&[...select.options].some(o=>o.value===code)){select.value=code;select.dispatchEvent(new Event('change',{bubbles:true}));return;}if(tries++<20)setTimeout(run,120);};run();
+    let tries=0;const run=()=>{const select=$('#ciq-county-select');if(select&&[...select.options].some(o=>o.value===code)){select.value=code;select.dispatchEvent(new Event('change',{bubbles:true}));return;}if(tries++<30)setTimeout(run,120);};run();
+  }
+  function selectGeography(geoId){
+    if(!geoId)return;
+    let tries=0;const run=async()=>{
+      if(window.KDAGeo?.selectGeography){try{await window.KDAGeo.selectGeography(geoId);return;}catch(_){/* retry while the route is still initializing */}}
+      if(tries++<40)setTimeout(run,100);
+    };run();
   }
   function activate(item){
     if(!item)return;const root=$('#search-results'),input=$('#atlas-search');if(root)root.hidden=true;if(input)input.value=item.label;
     location.hash=item.route||'#/';
-    if(item.kind==='geo'&&item.geoId){setTimeout(()=>window.KDAGeo?.selectGeography?.(item.geoId).catch?.(()=>{}),80);}
+    if(item.kind==='geo'&&item.geoId)selectGeography(item.geoId);
     if(item.kind==='evidence'){
-      setCounty(item.countyCode);let tries=0;const reveal=()=>{const field=$('#ciq-evidence-search');if(field){field.value=item.searchText||item.label;field.dispatchEvent(new Event('input',{bubbles:true}));field.scrollIntoView({behavior:'smooth',block:'center'});return;}if(tries++<20)setTimeout(reveal,120);};reveal();
+      setCounty(item.countyCode);let tries=0;const reveal=()=>{const field=$('#ciq-evidence-search');if(field){field.value=item.searchText||item.label;field.dispatchEvent(new Event('input',{bubbles:true}));field.scrollIntoView({behavior:'smooth',block:'center'});return;}if(tries++<30)setTimeout(reveal,120);};reveal();
     }
-    if(item.kind==='opportunity'){let tries=0;const reveal=()=>{const card=$('#ciq-opportunity-finder');if(card){card.scrollIntoView({behavior:'smooth',block:'start'});return;}if(tries++<20)setTimeout(reveal,120);};reveal();}
+    if(item.kind==='opportunity'){let tries=0;const reveal=()=>{const card=$('#ciq-opportunity-finder');if(card){card.scrollIntoView({behavior:'smooth',block:'start'});return;}if(tries++<30)setTimeout(reveal,120);};reveal();}
   }
   function open(){const input=$('#atlas-search');if(!input)return;if((window.KDARouter?.current?.()?.view||'home')!=='home')location.hash='#/';setTimeout(()=>{input.focus();if(input.value)search(input.value);},0);}
   function boot(){
     if(booted)return;booted=true;const input=$('#atlas-search'),root=$('#search-results');if(!input||!root)return;
-    input.placeholder='Search places, indicators, datasets, documents…';
+    input.placeholder='Search places, indicators, datasets or documents…';
     input.oninput=e=>search(e.target.value);input.onfocus=()=>{if(input.value)search(input.value);};
     $$('[data-search]').forEach(button=>button.onclick=()=>{input.value=button.dataset.search||'';input.focus();search(input.value);});
     $$('[data-focus-search]').forEach(button=>button.onclick=open);

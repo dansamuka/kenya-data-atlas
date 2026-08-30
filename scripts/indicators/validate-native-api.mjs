@@ -7,7 +7,7 @@ const read = async p => JSON.parse(await readFile(path.join(root, p), 'utf8'));
 const text = async p => readFile(path.join(root, p), 'utf8');
 const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
 
-const [geos, units, indicators, series, observations, datasets, releases, taxonomy, index, sprint1Loader] = await Promise.all([
+const [geos, units, indicators, series, observations, datasets, releases, taxonomy, index, lazy, sprint1Loader] = await Promise.all([
   read('data/geography/registry/geographies.json'),
   read('data/indicators/registry/units.json'),
   read('data/indicators/registry/indicators.json'),
@@ -17,6 +17,7 @@ const [geos, units, indicators, series, observations, datasets, releases, taxono
   read('data/catalogue/registry/releases.json'),
   read('data/indicators/seed/placeholder-taxonomy.json'),
   text('index.html'),
+  text('assets/lazy-integrations.js'),
   text('assets/sprint1-data.js').catch(() => '')
 ]);
 
@@ -137,7 +138,8 @@ if (sprint1Loader) assert(!/window\.fetch\s*=/.test(sprint1Loader), 'retired ass
 assert(index.includes('<a href="#/compare" data-view-link="compare">Compare</a>'), 'dedicated routed Compare tab is missing from navigation');
 assert(index.includes('id="compare" data-view="compare"') && index.includes('class="section compare-hub"'), 'dedicated routed Compare workspace is missing');
 assert(index.includes('data-compare-mode="direct"') && index.includes('data-compare-mode="life"'), 'Compare workspace is missing Direct or My Life Elsewhere mode');
-assert(index.includes('<script src="assets/compare.js"></script>') && index.includes('<link rel="stylesheet" href="assets/compare.css">'), 'Compare assets are not loaded by index.html');
+assert(lazy.includes("assets/compare.js") && lazy.includes("assets/compare.css") && lazy.includes("view==='compare'"), 'Compare assets are not route-loaded by lazy-integrations.js');
+assert(!index.includes('<script src="assets/compare.js"></script>') && !index.includes('<link rel="stylesheet" href="assets/compare.css">'), 'Compare assets must stay off the homepage cold-load path');
 assert(index.includes('<a href="#/rankings" data-view-link="rankings">Rankings</a>'), 'canonical routed Rankings results tab is missing from navigation');
 assert(!index.includes('<a href="#rankings">'), 'retired legacy #rankings link is exposed in navigation');
 assert(/id="compare-legacy" hidden/.test(index), 'legacy Compare compatibility section is not hidden');

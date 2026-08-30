@@ -3,7 +3,7 @@
  * The shell no longer downloads the multi-megabyte master series/observation
  * registries at startup. National pulse cards come from a compact generated
  * display product; county profile basics come from the frozen Sprint 1 CSVs.
- * Search loads geography + indicator metadata only when the user asks for it.
+ * Universal search is loaded only after explicit search interaction.
  * Compare and the Geo Explorer own their heavier on-demand data lifecycles.
  */
 (function(){
@@ -44,8 +44,11 @@
 
   const menu=$('.menu-button'),nav=$('#main-nav');
   if(menu&&nav){
+    const closeMenu=({focus=false}={})=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(focus)menu.focus();};
     menu.onclick=()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));};
-    nav.onclick=()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');};
+    nav.onclick=()=>closeMenu();
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open')){event.preventDefault();closeMenu({focus:true});}});
+    window.addEventListener('kda:route',()=>closeMenu());
   }
 
   function renderPulse(cards){
@@ -167,34 +170,36 @@
 
   function wireSearch(){
     const input=$('#atlas-search'),results=$('#search-results');if(!input||!results||!KDA)return;
-    let searchDataPromise=null;
-    const loadSearchData=()=>searchDataPromise||(searchDataPromise=KDA.registries(['geographies','indicators']).then(([geographies,indicators])=>({geographies:Array.isArray(geographies)?geographies:[],indicators:Array.isArray(indicators)?indicators:[]})));
-    async function search(q){
-      const query=String(q||'').trim().toLowerCase();if(!query){results.hidden=true;return;}
-      results.innerHTML='<div class="search-result"><span>Searching…</span><small>Loading place and indicator metadata only</small></div>';results.hidden=false;
-      const {geographies,indicators}=await loadSearchData();
-      const geos=geographies.filter(g=>`${g.name} ${g.level} ${g.geo_code}`.toLowerCase().includes(query)).slice(0,6).map(g=>({label:g.name,sub:`${g.level[0].toUpperCase()+g.level.slice(1)} · ${g.geo_code}`,code:g.geo_code,geoId:g.geography_id,kind:'geo'}));
-      const inds=indicators.filter(i=>`${i.name} ${i.short_name||''} ${i.topic||''}`.toLowerCase().includes(query)).slice(0,4).map(i=>({label:i.name,sub:`Indicator · ${i.topic||''}`,code:i.indicator_code,geoId:'',kind:'indicator'}));
-      const found=[...geos,...inds].slice(0,10);
-      results.innerHTML=found.map(x=>`<button class="search-result" role="option" data-result="${esc(x.label)}" data-code="${esc(x.code)}" data-geo-id="${esc(x.geoId)}" data-kind="${x.kind}"><span>${esc(x.label)}</span><small>${esc(x.sub)}</small></button>`).join('')||'<div class="search-result"><span>No matching geography or indicator</span><small>Try another term</small></div>';
-      $$('[data-result]',results).forEach(button=>button.onclick=async()=>{
-        input.value=button.dataset.result;results.hidden=true;
-        if(button.dataset.kind==='indicator'){location.hash='series';toast(`Opened the ${button.dataset.result} indicator (${button.dataset.code}).`);return;}
-        if(window.KDAGeo&&button.dataset.geoId){
-          try{await window.KDAGeo.selectGeography(button.dataset.geoId);document.getElementById('geo-explorer')?.scrollIntoView({behavior:'smooth',block:'start'});}catch{toast('The map could not be initialized. The rest of the Atlas remains available.');}
-        }
-      });
-    }
-    input.oninput=e=>search(e.target.value);
-    input.onfocus=()=>{if(input.value)search(input.value);};
-    document.addEventListener('click',e=>{if(!e.target.closest('.search-shell'))results.hidden=true;});
-    $$('[data-search]').forEach(b=>b.onclick=()=>{input.value=b.dataset.search;input.focus();search(input.value);});
-    $$('[data-focus-search]').forEach(b=>b.onclick=()=>{input.focus();scrollTo({top:0,behavior:'smooth'});});
-    document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();input.focus();scrollTo({top:0,behavior:'smooth'});}});
+    input.placeholder='Search places, indicators, datasets or documents…';
+    let activated=false,activationPromise=null;
+    const activate=()=>{
+      if(window.KDASiteSearch){window.KDASiteSearch.boot?.();return Promise.resolve(window.KDASiteSearch);}
+      if(activationPromise)return activationPromise;
+      activated=true;
+      const loader=window.KDAOptional?.loadSiteSearch?window.KDAOptional.loadSiteSearch():KDA.loadScript('assets/site-search.js',{id:'kda-site-search'}).then(()=>window.KDASiteSearch||null);
+      activationPromise=Promise.resolve(loader).then(api=>{api?.boot?.();return api;}).catch(error=>{console.warn('Atlas search:',error?.message||error);return null;});
+      return activationPromise;
+    };
+    const firstFocus=()=>{input.removeEventListener('focus',firstFocus);activate();};
+    const firstInput=async event=>{input.removeEventListener('input',firstInput);const api=await activate();api?.search?.(event.target.value);};
+    input.addEventListener('focus',firstFocus);
+    input.addEventListener('input',firstInput);
+    $$('[data-search]').forEach(button=>button.onclick=async()=>{input.value=button.dataset.search||'';input.focus();const api=await activate();api?.search?.(input.value);});
+    $$('[data-focus-search]').forEach(button=>button.onclick=async()=>{await activate();input.focus();scrollTo({top:0,behavior:'smooth'});});
+    document.addEventListener('keydown',async event=>{
+      if((event.ctrlKey||event.metaKey)&&String(event.key).toLowerCase()==='k'){
+        event.preventDefault();await activate();input.focus();scrollTo({top:0,behavior:'smooth'});
+      }
+    });
+    if(!activated)results.hidden=true;
   }
 
   async function boot(){
     if(!KDA){document.body.dataset.bootError='Shared data loader missing';return;}
+    /* Search and catalogue wiring must exist before any asynchronous first-paint
+     * data completes. Otherwise a fast keyboard/focus interaction can happen
+     * before the lazy search trigger has been attached (observed in Firefox). */
+    wireCatalogue();wireSearch();
     const grid=$('#pulse-grid');if(grid)grid.innerHTML='<div class="source-note">Loading compact first-paint data…</div>';
     const [pulse,gcp,budget,voters]=await Promise.all([
       KDA.initialPulse().catch(()=>null),
@@ -205,7 +210,6 @@
     renderPulse(pulse?.cards||[]);
     wireCountyProfiles(makeCountyRows(gcp,budget,voters));
     renderSeries(pulse?.cards||[]);
-    wireCatalogue();wireSearch();
     document.body.dataset.shellReady='true';
   }
 
@@ -213,6 +217,5 @@
     console.error('Atlas shell:',error);
     document.body.dataset.bootError=error?.message||String(error);
     const grid=$('#pulse-grid');if(grid)grid.innerHTML='<div class="source-note">Some headline data could not load. Search, navigation and the remaining Atlas sections are still available.</div>';
-    wireCatalogue();wireSearch();
   });
 })();

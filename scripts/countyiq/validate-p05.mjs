@@ -14,7 +14,7 @@ const mart=j('data/countyiq/county-summary.json');
 const indicators=j('data/indicators/registry/indicators.json');
 const datasets=j('data/catalogue/registry/datasets.json');
 const roadmap=j('data/project-roadmap.json');
-const html=read('index.html'),ui=read('assets/countyiq-view.js'),css=read('assets/p05-breadth.css');
+const html=read('index.html'),ui=read('assets/countyiq-view.js'),css=read('assets/p05-breadth.css'),lazy=read('assets/lazy-integrations.js');
 const P05=[
  ['IND-PUBLIC-PRIMARY-SCHOOLS','education','public_primary_schools','A'],
  ['IND-PRIMARY-CLASSROOM-TEACHERS','education','primary_classroom_teachers','A'],
@@ -74,7 +74,9 @@ try{
  assert(domains.size>=5,`breadth gate requires >=5 domains; got ${domains.size}: ${[...domains].join(', ')}`);
  console.log(`COUNTYIQ_P05_BREADTH_GATE_OK indicators=${full.length} domains=${domains.size}`);
 
- for(const token of ['id="ciq-p05-breadth"','Education, economy, agriculture & connectivity','assets/p05-breadth.css'])assert(html.includes(token),`HTML missing ${token}`);
+ for(const token of ['id="ciq-p05-breadth"','Education, economy, agriculture & connectivity'])assert(html.includes(token),`HTML missing ${token}`);
+ assert(lazy.includes('assets/p05-breadth.css'),'P05 breadth stylesheet is not route-loaded with CountyIQ');
+ assert(!html.includes('<link rel="stylesheet" href="assets/p05-breadth.css">'),'P05 breadth stylesheet must stay off the homepage cold-load path');
  for(const token of P05.map(x=>x[0]))assert(ui.includes(token),`CountyIQ UI missing ${token}`);
  for(const token of ['renderBreadth(row)','Maize yield · Atlas derived','Internet use · age 3+','Households on main grid'])assert(ui.includes(token),`CountyIQ breadth renderer missing ${token}`);
  assert(css.includes('.ciq-p05-grid{')&&css.includes('@media(max-width:560px)'),'responsive P05 CSS missing');
