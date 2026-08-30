@@ -62,6 +62,7 @@ jobs:
             data/indicators/registry/observations.csv \
             data/countyiq/county-summary.json \
             data/opportunities/opportunity-registry.json \
+            data/completeness \
             data/distribution \
             data/release \
             data/ui/initial-pulse.json
