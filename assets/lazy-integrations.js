@@ -13,7 +13,7 @@
   const KDA=window.KDAData;
   if(!KDA)return;
 
-  let promise=null,countyIqPromise=null,evidenceHubPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null;
+  let promise=null,countyIqPromise=null,evidenceHubPromise=null,opportunityPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null;
   function loadOptionalIntegrations(){
     if(promise)return promise;
     promise=Promise.allSettled([
@@ -67,12 +67,20 @@
       .catch(error=>{console.warn('P13 Evidence Hub load:',error?.message||error);return null;});
     return evidenceHubPromise;
   }
+  function loadOpportunityFinder(){
+    if(window.KDAOpportunityFinder)return window.KDAOpportunityFinder.boot();
+    if(opportunityPromise)return opportunityPromise;
+    opportunityPromise=KDA.loadScript('assets/opportunity-finder.js',{id:'kda-opportunity-finder'})
+      .then(()=>window.KDAOpportunityFinder?.boot?.()||null)
+      .catch(error=>{console.warn('P14 Opportunity Finder load:',error?.message||error);return null;});
+    return opportunityPromise;
+  }
   function loadCountyIQ(){
-    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>loadEvidenceHub());
+    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder()]));
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'})
       .then(()=>window.KDACountyIQ?.boot?.()||null)
-      .then(()=>loadEvidenceHub())
+      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder()]))
       .catch(countyIqFailure);
     return countyIqPromise;
   }
@@ -97,5 +105,5 @@
     if(event.detail?.view==='rankings')loadRankings();
     if(event.detail?.view==='countyiq')loadCountyIQ();
   });
-  window.KDAOptional={load:loadOptionalIntegrations,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ};
+  window.KDAOptional={load:loadOptionalIntegrations,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder};
 })();

@@ -10,12 +10,17 @@ on:
       - 'data/geography/registry/geographies.json'
       - 'data/catalogue/registry/**'
       - 'data/indicators/registry/**'
+      - 'data/opportunities/programmes.seed.json'
       - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-native-api.mjs'
       - 'scripts/countyiq/build-mart.mjs'
       - 'scripts/countyiq/validate-mart.mjs'
+      - 'scripts/p14/**'
       - 'assets/countyiq-view.js'
+      - 'assets/opportunity-finder.js'
+      - 'assets/opportunity-finder.css'
+      - 'assets/lazy-integrations.js'
       - 'assets/place-profile.js'
       - 'assets/place-profile.css'
       - 'db/schema/indicators.sql'
@@ -41,20 +46,25 @@ jobs:
           node --check assets/ux-polish.js
           node --check assets/unit-system.js
           node --check assets/countyiq-view.js
+          node --check assets/opportunity-finder.js
       - name: Build native indicators with lifecycle taxonomy
         run: npm run indicators:build
       - name: Build canonical CountyIQ analytical mart
         run: npm run countyiq:build
-      - name: Validate full Atlas registry and CountyIQ mart
+      - name: Build P14 opportunity registry
+        run: npm run opportunities:build
+      - name: Validate full Atlas registry, CountyIQ mart and P14 Beta
         run: npm test
-      - name: Commit generated native registries and mart
+      - name: Mark P14 complete after evidence gates
+        run: node scripts/p14/mark-complete.mjs
+      - name: Commit generated products and P14 completion ledger
         run: |
-          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json)" ]]; then
-            echo "No generated registry or CountyIQ mart changes."
+          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/project-roadmap.json docs/REPO-COMPLETION-PLAN.md)" ]]; then
+            echo "No generated registry, CountyIQ mart, P14 opportunity or completion-ledger changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/indicators/registry data/countyiq/county-summary.json
-          git commit -m "build(countyiq): publish canonical county analytical mart"
+          git add data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/project-roadmap.json docs/REPO-COMPLETION-PLAN.md
+          git commit -m "build(p14): publish opportunity registry and completion ledger"
           git push

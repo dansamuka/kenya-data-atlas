@@ -27,6 +27,9 @@ jobs:
       - name: Install Atlas dependencies
         run: npm ci
 
+      - name: Build P14 opportunity registry for browser audit
+        run: npm run opportunities:build
+
       - name: Install pinned P16 audit tools without changing lockfile
         run: npm install --no-save --package-lock=false @playwright/test@1.55.0 @axe-core/playwright@4.10.2 lighthouse@13.4.1
 
