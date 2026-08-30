@@ -6,7 +6,9 @@ Kenya Data Atlas is an independent, source-auditable public data product for exp
 
 ## Current release state
 
-The repository is no longer the early static MVP described by older releases. P00–P13 are complete, P15 is the current data-distribution release, P16 is the next v1.0 hardening phase, and the high-maintenance Opportunity Finder has been deliberately deferred to a v1.1 Beta rather than made a v1.0 blocker.
+<!-- P17_RELEASE_STATE_START -->
+**Release state: v1.0 release candidate.** P00–P16 are complete, including the separately governed P14 Action & Opportunity Finder Beta. P17 is the final evidence gate: the repository will be marked v1.0.0 released only after the exact `main` release commit passes deterministic rebuild, the full validation suite, independent geometry audit, Chromium/Firefox/WebKit + axe checks, Lighthouse budgets, GitHub Pages deployment and a live post-deployment smoke test.
+<!-- P17_RELEASE_STATE_END -->
 
 Current canonical registry coverage:
 
@@ -20,7 +22,8 @@ Current canonical registry coverage:
 - **47 current development snapshots**;
 - **46 complete FY2024/25 fiscal-delivery scores** — Narok remains explicitly unscored where a required source input is absent;
 - **47 administration-period scorecards** and six reproducible recognition categories;
-- **247 county evidence records** across seven official-document families.
+- **247 county evidence records** across seven official-document families;
+- **9 verified P14 Beta programme records**, governed by verification and next-review dates.
 
 ## Public product
 
@@ -52,9 +55,13 @@ The dedicated results surface publishes the analytical outputs of CountyIQ rathe
 
 CountyIQ brings together fiscal history, health and living standards, education, economy, agriculture, connectivity, peer context, trends and official county evidence. It does not assign personal governor causal scores.
 
+### Action & Opportunity Finder Beta
+
+P14 adds a bounded, date-aware programme layer inside CountyIQ. Programme status, amount and window claims are source-backed; stale records are downgraded after their review date. A county relevance match is an evidence-based thematic signal and **does not establish personal eligibility**.
+
 ## Data distribution
 
-P15 adds a stable developer entry point at:
+The stable developer entry point is:
 
 - `data/distribution/manifest.json`
 - `data/distribution/checksums.sha256`
@@ -63,7 +70,7 @@ P15 adds a stable developer entry point at:
 - `data/distribution/subsets/counties/`
 - `data/distribution/subsets/indicators/`
 
-The canonical JSON and CSV registries remain the same products used by the website. P15 additionally publishes NDJSON streams, record-level JSON Schemas, flattened county-results/evidence CSVs, 47 query-sized county bundles and 98 query-sized indicator bundles.
+The canonical JSON and CSV registries are the same products used by the website. P15 additionally publishes NDJSON streams, record-level JSON Schemas, flattened county-results/evidence CSVs, 47 query-sized county bundles and 98 query-sized indicator bundles.
 
 See **[`docs/DEVELOPER.md`](docs/DEVELOPER.md)** for data contracts, version pinning and example queries.
 
@@ -76,7 +83,10 @@ See **[`docs/DEVELOPER.md`](docs/DEVELOPER.md)** for data contracts, version pin
 - `data/catalogue/registry/datasets.json` / `.csv`
 - `data/results/county-results.json`
 - `data/evidence/county-documents.json`
+- `data/opportunities/opportunity-registry.json`
 - `data/policy/indicator-policy.json`
+
+The v1.0 release manifest is `data/release/v1.0.0.json`.
 
 ## Quality and methodological controls
 
@@ -88,6 +98,9 @@ The Atlas deliberately distinguishes between what the data can support and what 
 - Parent-geography values are never copied to child geographies.
 - Cross-level comparison is limited to series whose units and transformations support it.
 - County administration scorecards describe observed administration-period records; they do not claim personal causal attribution.
+- External programme freshness and personal eligibility are not inferred from county-level statistics.
+
+Known release limitations and their resolution paths are maintained in [`docs/releases/v1.0.0-unresolved.md`](docs/releases/v1.0.0-unresolved.md).
 
 ## Build and validation
 
@@ -100,7 +113,7 @@ npm test
 npm run geography:audit
 ```
 
-`npm run build:data` rebuilds geography, catalogue, indicators, CountyIQ, evidence, results and the P15 distribution surface. CI fails if generated outputs drift from committed products. The independent geometry audit uses Python/Shapely.
+`npm run build:data` rebuilds geography, catalogue, indicators, CountyIQ, evidence, results, P14 opportunities, the P15 distribution surface and the P17 release manifest. CI fails when committed generated products diverge from their deterministic rebuild.
 
 Useful focused commands:
 
@@ -108,19 +121,29 @@ Useful focused commands:
 npm run results:validate
 npm run distribution:validate
 npm run countyiq:validate
-npm run indicators:validate
-npm run evidence:validate
+npm run opportunities:validate
+npm run p17:validate
 ```
+
+The P16 release workflow additionally runs Chromium, Firefox and WebKit, axe accessibility checks, mobile keyboard/focus checks and Lighthouse budgets.
 
 ## Versioning
 
 Three versions are intentionally distinct:
 
-1. **Application/data release version** — the repository/package release, currently `0.18.0` after P15.
-2. **Data contract version** — currently `1.0.0`; changes only when the public distribution contract breaks.
+1. **Application/data release version** — `0.18.0` while the P17 release candidate is being verified; the evidence-gated publisher changes this to `1.0.0` only after candidate gates pass.
+2. **Data contract version** — `1.0.0`; changes only when the public distribution contract breaks.
 3. **Methodology versions** — e.g. the canonical indicator policy and analytical result schemas, which can evolve independently of raw data refreshes.
 
-For reproducible analysis, pin a Git commit or release tag rather than consuming `main` indefinitely.
+For reproducible analysis, pin a Git commit or release tag rather than consuming `main` indefinitely. The final P17 publisher creates the immutable `v1.0.0` tag only after the exact release commit has deployed successfully.
+
+## Release documentation
+
+- [`docs/releases/v1.0.0.md`](docs/releases/v1.0.0.md) — v1.0 scope and release gates
+- [`docs/releases/v1.0.0-unresolved.md`](docs/releases/v1.0.0-unresolved.md) — explicit known limitations
+- [`data/release/v1.0.0.json`](data/release/v1.0.0.json) — machine-readable release manifest
+- [`CHANGELOG.md`](CHANGELOG.md) — release history
+- [`CITATION.cff`](CITATION.cff) — citation metadata
 
 ## Licensing, source rights and citation
 
@@ -128,18 +151,14 @@ Software code in this repository is licensed under the **MIT License**; see [`LI
 
 The MIT license does **not** relicense third-party source data. Source-specific rights, terms and attribution requirements continue to govern underlying datasets. See [`DATA-NOTICE.md`](DATA-NOTICE.md) and the catalogue/source metadata before redistribution.
 
-Citation metadata is provided in [`CITATION.cff`](CITATION.cff).
-
 ## Governance and roadmap
 
-- [`ROADMAP.md`](ROADMAP.md) — concise phase status
-- [`data/project-roadmap.json`](data/project-roadmap.json) — machine-readable completion ledger
+- [`ROADMAP.md`](ROADMAP.md) — concise completion/release status
+- [`data/project-roadmap.json`](data/project-roadmap.json) — machine-readable P00–P17 completion ledger
 - [`docs/REPO-COMPLETION-PLAN.md`](docs/REPO-COMPLETION-PLAN.md) — phase acceptance criteria
 - [`docs/USER-FACING-RESULTS.md`](docs/USER-FACING-RESULTS.md) — public analytical-output boundary
 - [`docs/governance/`](docs/governance/) — statistical publication and governance controls
 - [`docs/methodology/`](docs/methodology/) — published methodologies
-
-The remaining v1.0 path is **P16 real-browser/accessibility/SEO/performance hardening → P17 final reproducibility/governance/release**. P14 Opportunity Finder is intentionally targeted to v1.1 Beta because programme freshness requires ongoing maintenance.
 
 ## Independence notice
 

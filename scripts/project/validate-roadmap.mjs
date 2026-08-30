@@ -25,26 +25,36 @@ try{
     assert(allowed.has(phase.status),`${phase.id} has unsupported status ${phase.status}`);
     for(const dependency of phase.depends_on) assert(ids.includes(dependency),`${phase.id} depends on unknown phase ${dependency}`);
   }
-  const next=roadmap.phases.filter(p=>p.status==='next');
-  assert(next.length===1,`exactly one phase must be marked next, found ${next.length}`);
-  const nextIndex=ids.indexOf(next[0].id);
-  for(let i=0;i<nextIndex;i++){
-    const prior=roadmap.phases[i];
-    assert(['complete','deferred'].includes(prior.status),`${prior.id} must be complete or explicitly deferred before ${next[0].id} can be next`);
-    if(prior.status==='deferred'){assert(prior.target_release&&prior.defer_reason,`${prior.id} deferred phase requires target_release and defer_reason`);}
-  }
-  for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol',`Complete ${next[0].id}`]) assert(docs.includes(token),`completion plan missing ${token}`);
+
   const sectionOf=(id)=>{const heading=new RegExp(`^## ${id} —`,'m');const parts=docs.split(heading);return parts.length>1?parts[1].split('\n---\n')[0]:'';};
-  for(let i=0;i<nextIndex;i++){
-    const prior=roadmap.phases[i];
-    const expectedStatus=prior.status==='deferred'?'**Status: deferred.**':'**Status: complete.**';
-    assert(sectionOf(prior.id).includes(expectedStatus),`${prior.id} documentation must be marked ${prior.status}`);
+  const next=roadmap.phases.filter(p=>p.status==='next');
+  assert(next.length<=1,`at most one phase may be marked next, found ${next.length}`);
+
+  if(next.length===1){
+    const nextIndex=ids.indexOf(next[0].id);
+    for(let i=0;i<nextIndex;i++){
+      const prior=roadmap.phases[i];
+      assert(['complete','deferred'].includes(prior.status),`${prior.id} must be complete or explicitly deferred before ${next[0].id} can be next`);
+      if(prior.status==='deferred') assert(prior.target_release&&prior.defer_reason,`${prior.id} deferred phase requires target_release and defer_reason`);
+      const expectedStatus=prior.status==='deferred'?'**Status: deferred.**':'**Status: complete.**';
+      assert(sectionOf(prior.id).includes(expectedStatus),`${prior.id} documentation must be marked ${prior.status}`);
+    }
+    assert(next[0].id==='P17','P17 must be the only remaining next phase at repository closeout');
+    assert(sectionOf('P17').includes('**Status: next.**'),'P17 documentation must be marked next before release gates close');
+    for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol','Complete P17']) assert(docs.includes(token),`completion plan missing ${token}`);
+    console.log('PROJECT_PHASES_P00_P17_OK');
+    console.log('PROJECT_P16_COMPLETE_OK');
+    console.log('PROJECT_NEXT_PHASE_P17_OK');
+    console.log('PROJECT_SESSION_PLAN_OK');
+  } else {
+    assert(roadmap.phases.every(p=>p.status==='complete'),'terminal roadmap state requires P00–P17 all complete');
+    assert(roadmap.phases.at(-1).id==='P17'&&roadmap.phases.at(-1).status==='complete','P17 must close the terminal roadmap state');
+    for(const phase of roadmap.phases) assert(sectionOf(phase.id).includes('**Status: complete.**'),`${phase.id} documentation must be marked complete in terminal state`);
+    assert(docs.includes('completed v1.0 release ledger'),'completion plan must identify the terminal v1.0 ledger');
+    console.log('PROJECT_PHASES_P00_P17_OK');
+    console.log('PROJECT_TERMINAL_STATE_V1_OK');
+    console.log('PROJECT_ALL_PHASES_COMPLETE_OK');
   }
-  assert(sectionOf(next[0].id).includes('**Status: next.**'),`${next[0].id} documentation must be marked next`);
-  console.log('PROJECT_PHASES_P00_P17_OK');
-  console.log(`PROJECT_${ids[nextIndex-1]}_COMPLETE_OK`);
-  console.log(`PROJECT_NEXT_PHASE_${next[0].id}_OK`);
-  console.log('PROJECT_SESSION_PLAN_OK');
 }catch(error){
   console.error(error.message||error);
   process.exit(1);
