@@ -1,236 +1,120 @@
-/* Kenya Data Atlas — UX polish layer
- * Presentation-only enhancements. No registry/data values are modified.
- */
+/* Kenya Data Atlas — UX polish layer. */
 (function(){
   'use strict';
   const $=(s,r)=>(r||document).querySelector(s);
   const $$=(s,r)=>[...(r||document).querySelectorAll(s)];
+  const KDA=window.KDAData;
   const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-  function installMapMeta(){
-    const panel=$('.geo-map-panel'), wrap=$('.geo-map-wrap'), legend=$('#geo-legend'), source=$('#geo-source-note');
-    if(!panel||!wrap||!legend||!source) return;
-    let meta=$('.geo-map-meta',panel);
-    if(!meta){
-      meta=document.createElement('div');
-      meta.className='geo-map-meta';
-      meta.setAttribute('aria-label','Map legend and source');
-      wrap.insertAdjacentElement('afterend',meta);
-    }
-    legend.removeAttribute('aria-hidden');
-    if(legend.parentElement!==meta) meta.appendChild(legend);
-    if(source.parentElement!==meta) meta.appendChild(source);
-    const coverage=$('#sprint1-coverage');
-    if(coverage&&coverage.parentElement!==meta) meta.appendChild(coverage);
-    const old=$('.geo-map-overlay',panel);
-    if(old) old.remove();
+  function loadRefinementStyles(){
+    if(document.querySelector('link[data-mobile-refinements]'))return;
+    const link=document.createElement('link');
+    link.rel='stylesheet';link.href='assets/mobile-refinements.css';link.dataset.mobileRefinements='true';
+    document.head.appendChild(link);
+  }
+  function loadPublicCleanup(){
+    if(window.KDAPublicCleanup)return Promise.resolve(window.KDAPublicCleanup.clean?.());
+    if(!KDA)return Promise.resolve(null);
+    return KDA.loadScript('assets/public-cleanup.js',{id:'kda-public-cleanup'}).then(()=>window.KDAPublicCleanup?.clean?.()||null).catch(()=>null);
   }
 
+  let searchPromise=null;
+  function loadSiteSearch(query){
+    if(window.KDASiteSearch){window.KDASiteSearch.boot?.();if(query)window.KDASiteSearch.search?.(query);return Promise.resolve(window.KDASiteSearch);}
+    if(!KDA)return Promise.resolve(null);
+    searchPromise=searchPromise||KDA.loadScript('assets/site-search.js',{id:'kda-site-search'}).then(()=>{window.KDASiteSearch?.boot?.();return window.KDASiteSearch||null;}).catch(error=>{console.warn('Atlas search:',error?.message||error);return null;});
+    return searchPromise.then(api=>{if(query)api?.search?.(query);return api;});
+  }
+  function installSiteSearchLoader(){
+    const input=$('#atlas-search');if(!input||input.dataset.siteSearchLoader)return;
+    input.dataset.siteSearchLoader='true';
+    input.addEventListener('focus',()=>loadSiteSearch(input.value));
+    input.addEventListener('input',()=>loadSiteSearch(input.value),{once:true});
+    $$('[data-search]').forEach(button=>button.addEventListener('click',()=>requestAnimationFrame(()=>loadSiteSearch(button.dataset.search||input.value))));
+    $$('[data-focus-search]').forEach(button=>button.addEventListener('click',()=>loadSiteSearch(input.value)));
+  }
+
+  function installMapMeta(){
+    const panel=$('.geo-map-panel'),wrap=$('.geo-map-wrap'),legend=$('#geo-legend'),source=$('#geo-source-note');
+    if(!panel||!wrap||!legend||!source)return;
+    let meta=$('.geo-map-meta',panel);
+    if(!meta){meta=document.createElement('div');meta.className='geo-map-meta';meta.setAttribute('aria-label','Map legend and source');wrap.insertAdjacentElement('afterend',meta);}
+    legend.removeAttribute('aria-hidden');
+    if(legend.parentElement!==meta)meta.appendChild(legend);
+    if(source.parentElement!==meta)meta.appendChild(source);
+    const coverage=$('#sprint1-coverage');if(coverage&&coverage.parentElement!==meta)meta.appendChild(coverage);
+    $('.geo-map-overlay',panel)?.remove();
+  }
   function clearMapHover(){
-    const tip=$('#geo-tooltip');
-    if(tip){
-      tip.hidden=true;
-      tip.innerHTML='';
-      tip.style.removeProperty('left');
-      tip.style.removeProperty('top');
-    }
+    const tip=$('#geo-tooltip');if(tip){tip.hidden=true;tip.innerHTML='';tip.style.removeProperty('left');tip.style.removeProperty('top');}
     $$('.geo-feature.hovered-linked').forEach(el=>el.classList.remove('hovered-linked'));
     $$('.geo-ranking-list button.hovered').forEach(el=>el.classList.remove('hovered'));
   }
-
   function installHoverCleanup(){
-    const section=$('#geo-explorer'), wrap=$('.geo-map-wrap'), svg=$('#geo-svg'), ranking=$('.geo-ranking-panel');
-    if(!section||section.dataset.hoverCleanup==='true') return;
+    const section=$('#geo-explorer'),wrap=$('.geo-map-wrap'),svg=$('#geo-svg'),ranking=$('.geo-ranking-panel');
+    if(!section||section.dataset.hoverCleanup==='true')return;
     section.dataset.hoverCleanup='true';
-    wrap?.addEventListener('pointerleave',clearMapHover);
-    svg?.addEventListener('pointerleave',clearMapHover);
-    ranking?.addEventListener('pointerleave',clearMapHover);
-    section.addEventListener('mouseleave',clearMapHover);
-    section.addEventListener('focusout',event=>{
-      if(!section.contains(event.relatedTarget)) clearMapHover();
-    });
-    $('#geo-indicator')?.addEventListener('change',clearMapHover);
-    window.addEventListener('hashchange',clearMapHover);
-    document.addEventListener('pointermove',event=>{
-      const tip=$('#geo-tooltip');
-      if(tip&&!tip.hidden&&!event.target.closest('.geo-feature')) clearMapHover();
-    },{passive:true});
-    if(svg){
-      new MutationObserver(clearMapHover).observe(svg,{childList:true});
-    }
+    wrap?.addEventListener('pointerleave',clearMapHover);svg?.addEventListener('pointerleave',clearMapHover);ranking?.addEventListener('pointerleave',clearMapHover);section.addEventListener('mouseleave',clearMapHover);
+    section.addEventListener('focusout',event=>{if(!section.contains(event.relatedTarget))clearMapHover();});
+    $('#geo-indicator')?.addEventListener('change',clearMapHover);window.addEventListener('hashchange',clearMapHover);
+    document.addEventListener('pointermove',event=>{const tip=$('#geo-tooltip');if(tip&&!tip.hidden&&!event.target.closest('.geo-feature'))clearMapHover();},{passive:true});
+    if(svg)new MutationObserver(clearMapHover).observe(svg,{childList:true});
   }
-
   function enhanceSparkline(){
-    const el=$('.sparkline');
-    if(!el||el.classList.contains('is-sparse')) return;
-    const bars=$$('i',el);
-    if(bars.length>0&&bars.length<4){
-      const n=bars.length;
-      el.classList.add('is-sparse');
-      el.innerHTML=`<span class="sparkline-sparse-note"><b>${n} observations on file</b><span>Trend chart appears once more history accumulates.</span></span>`;
-      el.setAttribute('aria-label',`Insufficient history for a trend chart; ${n} observations on file.`);
-    }
+    const el=$('.sparkline');if(!el||el.classList.contains('is-sparse'))return;
+    const bars=$$('i',el);if(bars.length>0&&bars.length<4){const n=bars.length;el.classList.add('is-sparse');el.innerHTML=`<span class="sparkline-sparse-note"><b>${n} observations on file</b><span>Trend chart appears once more history accumulates.</span></span>`;el.setAttribute('aria-label',`Insufficient history for a trend chart; ${n} observations on file.`);}
   }
-
   function enhanceSummary(){
-    const el=$('#geo-selected-summary');
-    if(!el) return;
-    el.classList.add('kda-card');
-    el.setAttribute('aria-live','polite');
-    const empty=!el.hidden&&/Data not currently available/i.test(el.textContent||'');
-    el.classList.toggle('is-empty',empty);
-    let badge=$('.geo-empty-badge',el);
-    if(empty&&!badge){
-      badge=document.createElement('span');
-      badge.className='badge missing geo-empty-badge';
-      badge.textContent='N/A';
-      el.prepend(badge);
-    }else if(!empty&&badge){badge.remove();}
+    const el=$('#geo-selected-summary');if(!el)return;
+    el.classList.add('kda-card');el.setAttribute('aria-live','polite');
+    const empty=!el.hidden&&/Data not currently available/i.test(el.textContent||'');el.classList.toggle('is-empty',empty);
+    let badge=$('.geo-empty-badge',el);if(empty&&!badge){badge=document.createElement('span');badge.className='badge missing geo-empty-badge';badge.textContent='N/A';el.prepend(badge);}else if(!empty&&badge)badge.remove();
   }
-
-  function applyCardSystem(){
-    $$('.metric-card,.quick-facts article,.dataset,.chart-card,.availability-card,#geo-selected-summary').forEach(el=>el.classList.add('kda-card'));
-  }
-
+  function applyCardSystem(){$$('.metric-card,.quick-facts article,.dataset,.chart-card,.availability-card,#geo-selected-summary').forEach(el=>el.classList.add('kda-card'));}
   function animateNewMapNodes(){
-    const svg=$('#geo-svg');
-    if(!svg||svg.dataset.uxMotion==='true') return;
-    svg.dataset.uxMotion='true';
-    const animate=nodes=>{
-      if(reduced) return;
-      nodes.forEach(node=>{
-        const paths=node.matches?.('.geo-feature')?[node]:$$('.geo-feature',node);
-        paths.forEach(path=>{
-          if(path.dataset.uxAnimated) return;
-          path.dataset.uxAnimated='true';
-          path.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});
-        });
-      });
-    };
-    new MutationObserver(ms=>ms.forEach(m=>animate([...m.addedNodes].filter(n=>n.nodeType===1))))
-      .observe(svg,{childList:true,subtree:true});
+    const svg=$('#geo-svg');if(!svg||svg.dataset.uxMotion==='true')return;svg.dataset.uxMotion='true';
+    const animate=nodes=>{if(reduced)return;nodes.forEach(node=>{const paths=node.matches?.('.geo-feature')?[node]:$$('.geo-feature',node);paths.forEach(path=>{if(path.dataset.uxAnimated)return;path.dataset.uxAnimated='true';path.animate([{opacity:0},{opacity:1}],{duration:180,easing:'ease-out'});});});};
+    new MutationObserver(ms=>ms.forEach(m=>animate([...m.addedNodes].filter(n=>n.nodeType===1)))).observe(svg,{childList:true,subtree:true});
   }
-
   function animateSearchResults(){
-    const el=$('#search-results');
-    if(!el||el.dataset.uxMotion==='true') return;
-    el.dataset.uxMotion='true';
-    new MutationObserver(()=>{
-      if(!el.hidden&&!reduced){
-        el.animate([{opacity:0,transform:'translateY(-4px) scale(.985)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:150,easing:'ease-out'});
-      }
-    }).observe(el,{attributes:true,attributeFilter:['hidden']});
+    const el=$('#search-results');if(!el||el.dataset.uxMotion==='true')return;el.dataset.uxMotion='true';
+    new MutationObserver(()=>{if(!el.hidden&&!reduced)el.animate([{opacity:0,transform:'translateY(-4px) scale(.985)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:150,easing:'ease-out'});}).observe(el,{attributes:true,attributeFilter:['hidden']});
   }
-
   function enhanceTwoPointSeries(){
-    const wrap=$('.large-chart'), svg=$('.large-chart svg');
-    if(!wrap||!svg) return;
-    const circles=$$('circle',svg);
-    wrap.classList.toggle('two-point-series',circles.length===2);
-    if(circles.length===2){
-      wrap.setAttribute('role','img');
-      wrap.setAttribute('aria-label','Two observations on file; points shown without interpolation.');
-    }
+    const wrap=$('.large-chart'),svg=$('.large-chart svg');if(!wrap||!svg)return;
+    const circles=$$('circle',svg);wrap.classList.toggle('two-point-series',circles.length===2);if(circles.length===2){wrap.setAttribute('role','img');wrap.setAttribute('aria-label','Two observations on file; points shown without interpolation.');}
   }
-
   function colorCatalogue(){
     const palette=['#537f70','#b86b4b','#697da8','#9b7a45','#6c8f4f','#866c9f','#4c8992'];
-    $$('.dataset').forEach(card=>{
-      const topic=(card.querySelector('p')?.textContent||card.querySelector('.dataset-icon')?.textContent||'data').split('·')[0].trim();
-      let hash=0; for(const ch of topic) hash=(hash*31+ch.charCodeAt(0))>>>0;
-      card.style.setProperty('--dataset-accent',palette[hash%palette.length]);
-      card.dataset.topic=topic.toLowerCase().replace(/[^a-z0-9]+/g,'-');
-      card.classList.add('kda-card');
-    });
+    $$('.dataset').forEach(card=>{const topic=(card.querySelector('p')?.textContent||card.querySelector('.dataset-icon')?.textContent||'data').split('·')[0].trim();let hash=0;for(const ch of topic)hash=(hash*31+ch.charCodeAt(0))>>>0;card.style.setProperty('--dataset-accent',palette[hash%palette.length]);card.dataset.topic=topic.toLowerCase().replace(/[^a-z0-9]+/g,'-');card.classList.add('kda-card');});
   }
-
   function loadPlaceProfile(){
-    if(document.querySelector('script[data-place-profile-loader]')) return;
-    const script=document.createElement('script');
-    script.src='assets/place-profile.js';
-    script.async=false;
-    script.dataset.placeProfileLoader='true';
-    document.body.appendChild(script);
+    if(document.querySelector('script[data-place-profile-loader]'))return;
+    const script=document.createElement('script');script.src='assets/place-profile.js';script.async=false;script.dataset.placeProfileLoader='true';document.body.appendChild(script);
   }
-
-  function installCountyDashboardLink(){
-    const nav=$('#main-nav');
-    if(!nav||nav.querySelector('[data-county-dashboard-link]')) return;
-    const link=document.createElement('a');
-    link.href='county-dashboard.html';
-    link.textContent='County Dashboard';
-    link.dataset.countyDashboardLink='true';
-    link.setAttribute('aria-label','Open County Dashboard');
-    nav.appendChild(link);
-  }
-
   function installMobileNavigation(){
-    const menu=$('.menu-button'),nav=$('#main-nav'),header=$('.site-header');
-    if(!menu||!nav||!header||header.dataset.mobileNavPolish==='true') return;
+    const menu=$('.menu-button'),nav=$('#main-nav'),header=$('.site-header');if(!menu||!nav||!header||header.dataset.mobileNavPolish==='true')return;
     header.dataset.mobileNavPolish='true';
-    const sync=()=>{
-      const open=nav.classList.contains('open');
-      menu.setAttribute('aria-expanded',String(open));
-      menu.textContent=open?'Close':'Menu';
-      menu.setAttribute('aria-label',open?'Close main navigation':'Open main navigation');
-    };
-    const close=({focus=false}={})=>{
-      if(!nav.classList.contains('open')){sync();return;}
-      nav.classList.remove('open');
-      sync();
-      if(focus)menu.focus({preventScroll:true});
-    };
-    new MutationObserver(sync).observe(nav,{attributes:true,attributeFilter:['class']});
-    menu.addEventListener('click',()=>queueMicrotask(sync));
-    document.addEventListener('pointerdown',event=>{
-      if(nav.classList.contains('open')&&!header.contains(event.target))close();
-    },{passive:true});
-    document.addEventListener('keydown',event=>{
-      if(event.key==='Escape'&&nav.classList.contains('open')){event.preventDefault();close({focus:true});}
-    });
+    const sync=()=>{const open=nav.classList.contains('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close':'Menu';menu.setAttribute('aria-label',open?'Close main navigation':'Open main navigation');};
+    const close=({focus=false}={})=>{if(!nav.classList.contains('open')){sync();return;}nav.classList.remove('open');sync();if(focus)menu.focus({preventScroll:true});};
+    new MutationObserver(sync).observe(nav,{attributes:true,attributeFilter:['class']});menu.addEventListener('click',()=>queueMicrotask(sync));
+    document.addEventListener('pointerdown',event=>{if(nav.classList.contains('open')&&!header.contains(event.target))close();},{passive:true});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open')){event.preventDefault();close({focus:true});}});
     window.addEventListener('kda:route',()=>close());
-    const desktop=window.matchMedia?.('(min-width:901px)');
-    const onDesktop=event=>{if(event.matches)close();};
-    if(desktop?.addEventListener)desktop.addEventListener('change',onDesktop);
-    else if(desktop?.addListener)desktop.addListener(onDesktop);
-    sync();
+    const desktop=window.matchMedia?.('(min-width:901px)'),onDesktop=event=>{if(event.matches)close();};if(desktop?.addEventListener)desktop.addEventListener('change',onDesktop);else if(desktop?.addListener)desktop.addListener(onDesktop);sync();
   }
-
   function installObservers(){
-    const spark=$('.sparkline');
-    if(spark) new MutationObserver(enhanceSparkline).observe(spark,{childList:true});
-    const summary=$('#geo-selected-summary');
-    if(summary) new MutationObserver(enhanceSummary).observe(summary,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
-    const pulse=$('#pulse-grid');
-    if(pulse) new MutationObserver(applyCardSystem).observe(pulse,{childList:true});
-    const facts=$('.quick-facts');
-    if(facts) new MutationObserver(applyCardSystem).observe(facts,{childList:true});
-    const datasets=$('#dataset-list');
-    if(datasets) new MutationObserver(()=>{applyCardSystem();colorCatalogue();}).observe(datasets,{childList:true});
-    const chart=$('.large-chart svg');
-    if(chart) new MutationObserver(enhanceTwoPointSeries).observe(chart,{childList:true,subtree:true});
-    const panel=$('.geo-map-panel');
-    if(panel) new MutationObserver(installMapMeta).observe(panel,{childList:true,subtree:true});
+    const spark=$('.sparkline');if(spark)new MutationObserver(enhanceSparkline).observe(spark,{childList:true});
+    const summary=$('#geo-selected-summary');if(summary)new MutationObserver(enhanceSummary).observe(summary,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});
+    const pulse=$('#pulse-grid');if(pulse)new MutationObserver(applyCardSystem).observe(pulse,{childList:true});
+    const facts=$('.quick-facts');if(facts)new MutationObserver(applyCardSystem).observe(facts,{childList:true});
+    const datasets=$('#dataset-list');if(datasets)new MutationObserver(()=>{applyCardSystem();colorCatalogue();}).observe(datasets,{childList:true});
+    const chart=$('.large-chart svg');if(chart)new MutationObserver(enhanceTwoPointSeries).observe(chart,{childList:true,subtree:true});
+    const panel=$('.geo-map-panel');if(panel)new MutationObserver(installMapMeta).observe(panel,{childList:true,subtree:true});
   }
-
   function boot(){
-    installMapMeta();
-    installHoverCleanup();
-    clearMapHover();
-    applyCardSystem();
-    enhanceSparkline();
-    enhanceSummary();
-    animateNewMapNodes();
-    animateSearchResults();
-    enhanceTwoPointSeries();
-    colorCatalogue();
-    installCountyDashboardLink();
-    installMobileNavigation();
-    installObservers();
-    loadPlaceProfile();
-    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();installCountyDashboardLink();installMobileNavigation();},650);
+    loadRefinementStyles();loadPublicCleanup();installSiteSearchLoader();installMapMeta();installHoverCleanup();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();animateNewMapNodes();animateSearchResults();enhanceTwoPointSeries();colorCatalogue();installMobileNavigation();installObservers();loadPlaceProfile();
+    setTimeout(()=>{installMapMeta();clearMapHover();applyCardSystem();enhanceSparkline();enhanceSummary();enhanceTwoPointSeries();colorCatalogue();installMobileNavigation();loadPublicCleanup();installSiteSearchLoader();},650);
   }
-
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true});
-  else boot();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();

@@ -1,12 +1,5 @@
-/* Kenya Data Atlas — optional integration loader (P01).
- *
- * Unit annotations and the World Bank/cross-level layer remain available, but
- * they no longer participate in first paint. CountyIQ is also loaded only when
- * its route is requested and uses the shared Atlas data loader rather than a
- * separate application stack. The small Sprint 2 voter drill-down adapter is
- * Explore-only and does not reinstate the retired registry fetch overlay.
- * Series discovery is likewise route-only: its dataset browser reuses the
- * canonical catalogue/series registries through the shared loader.
+/* Kenya Data Atlas — optional integration loader.
+ * Heavy integrations load only when the relevant route needs them.
  */
 (function(){
   'use strict';
@@ -14,6 +7,33 @@
   if(!KDA)return;
 
   let promise=null,countyIqPromise=null,evidenceHubPromise=null,opportunityPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null;
+  let countyIqDataGuardInstalled=false;
+
+  function finiteValue(value){
+    return value!==null&&value!==undefined&&value!==''&&Number.isFinite(Number(value));
+  }
+  function hardenCountyIQMart(mart){
+    if(!mart||!Array.isArray(mart.counties))return mart;
+    for(const county of mart.counties){
+      for(const metric of Object.values(county?.metrics||{})){
+        const ranking=metric?.ranking;
+        if(!ranking)continue;
+        if(ranking.eligible===true&&!finiteValue(ranking.percentile))ranking.eligible=false;
+        if(ranking.peer_group&&!finiteValue(ranking.peer_group.percentile))ranking.peer_group=null;
+      }
+    }
+    return mart;
+  }
+  function installCountyIQDataGuard(){
+    if(countyIqDataGuardInstalled||typeof KDA.fetchJson!=='function')return;
+    const original=KDA.fetchJson.bind(KDA);
+    KDA.fetchJson=async function(url,options){
+      const result=await original(url,options);
+      return String(url||'').includes('data/countyiq/county-summary.json')?hardenCountyIQMart(result):result;
+    };
+    countyIqDataGuardInstalled=true;
+  }
+
   function loadOptionalIntegrations(){
     if(promise)return promise;
     promise=Promise.allSettled([
@@ -55,8 +75,8 @@
     console.warn('CountyIQ route load:',error?.message||error);
     const root=document.querySelector('#ciq-metrics');
     const mode=document.querySelector('#ciq-mode');
-    if(mode){mode.className='ciq-mode error';mode.innerHTML='<i></i><span>CountyIQ view unavailable</span>';}
-    if(root)root.innerHTML='<div class="ciq-error" style="grid-column:1/-1"><strong>CountyIQ could not initialize.</strong><br>The rest of Kenya Data Atlas remains available.</div>';
+    if(mode){mode.className='ciq-mode error';mode.innerHTML='<i></i><span>County data unavailable</span>';}
+    if(root)root.innerHTML='<div class="ciq-error" style="grid-column:1/-1"><strong>County details are temporarily unavailable.</strong><br>Please refresh the page or choose another county.</div>';
     return null;
   }
   function loadEvidenceHub(){
@@ -64,7 +84,7 @@
     if(evidenceHubPromise)return evidenceHubPromise;
     evidenceHubPromise=KDA.loadScript('assets/evidence-hub.js',{id:'kda-evidence-hub'})
       .then(()=>window.KDAEvidenceHub?.boot?.()||null)
-      .catch(error=>{console.warn('P13 Evidence Hub load:',error?.message||error);return null;});
+      .catch(error=>{console.warn('Evidence Hub load:',error?.message||error);return null;});
     return evidenceHubPromise;
   }
   function loadOpportunityFinder(){
@@ -72,10 +92,11 @@
     if(opportunityPromise)return opportunityPromise;
     opportunityPromise=KDA.loadScript('assets/opportunity-finder.js',{id:'kda-opportunity-finder'})
       .then(()=>window.KDAOpportunityFinder?.boot?.()||null)
-      .catch(error=>{console.warn('P14 Opportunity Finder load:',error?.message||error);return null;});
+      .catch(error=>{console.warn('Opportunity Finder load:',error?.message||error);return null;});
     return opportunityPromise;
   }
   function loadCountyIQ(){
+    installCountyIQDataGuard();
     if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder()]));
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'})
@@ -91,7 +112,7 @@
   const routeNeedsExplore=hash=>/^#\/explore(?:\/|\?|$)/.test(hash)||/^#map\//.test(hash);
   const routeNeedsSeries=hash=>/^#\/series(?:\/|\?|$)/.test(hash)||/^#series(?:\/|\?|$)/.test(hash);
   const routeNeedsRankings=hash=>/^#\/rankings(?:\/|\?|$)/.test(hash)||/^#rankings$/.test(hash);
-  const routeNeedsCountyIQ=hash=>/^#\/countyiq(?:\/|\?|$)/.test(hash)||/^#(?:countyiq|county-dashboard)$/.test(hash);
+  const routeNeedsCountyIQ=hash=>/^#\/countyiq(?:\/|\?|$)/.test(hash)||/^#countyiq$/.test(hash);
   if(routeNeedsOptional(location.hash))loadOptionalIntegrations();
   if(routeNeedsExplore(location.hash))loadMapVoters();
   if(routeNeedsSeries(location.hash))loadSeriesBrowser();

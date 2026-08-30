@@ -77,3 +77,46 @@ test('search is keyboard reachable from a routed view', async ({ page }) => {
   await expect(page.locator('body')).toHaveAttribute('data-view', 'home');
   await expect(page.locator('#atlas-search')).toBeFocused();
 });
+
+test('universal search covers pages, places, indicators and datasets', async ({ page }) => {
+  await page.goto('/#/', { waitUntil: 'domcontentloaded' });
+  const input=page.locator('#atlas-search');
+  await input.focus();
+  await expect.poll(async()=>page.evaluate(()=>Boolean(window.KDASiteSearch))).toBe(true);
+
+  await input.fill('rankings');
+  await expect(page.locator('#search-results')).toContainText('County Rankings & Insights');
+
+  await input.fill('Nakuru');
+  await expect(page.locator('#search-results')).toContainText('Nakuru');
+  await expect(page.locator('#search-results')).toContainText(/County/i);
+
+  await input.fill('inflation');
+  await expect(page.locator('#search-results')).toContainText(/Consumer price inflation/i);
+
+  await input.fill('2019 census');
+  await expect(page.locator('#search-results')).toContainText(/2019 Census/i);
+});
+
+test('header and searchable-select buttons perform their intended search actions', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#/compare', { waitUntil: 'domcontentloaded' });
+  const global=page.locator('[data-focus-search]');
+  await global.click();
+  await expect(page.locator('body')).toHaveAttribute('data-view','home');
+  await expect(page.locator('#atlas-search')).toBeFocused();
+
+  await page.goto('/#/compare', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('#compare-place-strip select').first()).toBeVisible({timeout:10000});
+  const trigger=page.locator('#compare-place-strip .kda-select-search-trigger').first();
+  await expect(trigger).toBeVisible({timeout:10000});
+  await trigger.click();
+  const dialog=page.locator('.kda-select-search-dialog');
+  await expect(dialog).toBeVisible();
+  const filter=dialog.locator('input[type="search"]');
+  await filter.fill('Nairobi');
+  const option=dialog.locator('.kda-select-search-option').filter({hasText:'Nairobi'}).first();
+  await expect(option).toBeVisible();
+  await option.click();
+  await expect(dialog).toBeHidden();
+});

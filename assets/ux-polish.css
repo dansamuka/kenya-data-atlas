@@ -1,32 +1,25 @@
-/* Kenya Data Atlas — UX polish layer
- * Implements the 27 Aug 2026 UI/UX review without changing data semantics.
- */
+/* Kenya Data Atlas — UX polish layer */
+.demo-banner,.footer-note,#compare-legacy,#rankings-legacy{display:none!important}
 :root{
   --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
   --space-6:1.5rem;--space-8:2rem;--space-12:3rem;--space-16:4rem;
   --radius-sm:8px;--radius-md:12px;--focus:#0b1f18;
 }
 
-/* Canonical interaction treatment for fact/data cards. Existing layout borders
-   remain intact; this layer makes equivalent components behave consistently. */
 .kda-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;background-color:#fff}
 .kda-card:focus-within{outline:3px solid rgba(31,90,73,.16);outline-offset:2px}
 .metric-card.kda-card:hover,.quick-facts article.kda-card:hover,.dataset.kda-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(22,43,35,.08)}
 
-/* Stronger A/B separation and flagged-card glanceability. */
 .badge.a{background:#dcebdd;color:#205b39;border:1px solid #a8cbb0}
 .badge.b{background:#e2e9f5;color:#294f7a;border:1px solid #b4c5df}
 .badge.c{border:1px solid #c8bce0}.badge.d{border:1px solid #e1b993}.badge.e{border:1px solid #d8a4a0}
 .metric-card:has(.badge.e){box-shadow:inset 0 0 0 1px rgba(182,65,55,.18)}
 
-/* Hero sparse history: intentional empty state instead of two giant bars. */
 .sparkline.is-sparse{height:auto;min-height:78px;align-items:center;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-sm);padding:var(--space-4);background:rgba(255,255,255,.045)}
 .sparkline-sparse-note{display:flex;flex-direction:column;gap:.2rem;font-size:.76rem;color:#d9e5df;line-height:1.35}
 .sparkline-sparse-note b{font-family:var(--serif);font-size:1.35rem;color:#fff;font-weight:500}
 .sparkline-sparse-note span{color:#a9bbb3;font-size:.7rem}
 
-/* Map fit: the legend/source now live in a dedicated strip below the SVG.
-   Nothing overlays the geography, so every county remains fully visible. */
 .geo-layout{grid-template-columns:minmax(0,1.7fr) minmax(260px,.72fr)!important;gap:var(--space-6)!important;align-items:stretch!important}
 .geo-map-panel{padding:.75rem!important;border-radius:var(--radius-md);box-shadow:0 10px 30px rgba(22,43,35,.055);overflow:hidden;display:flex;flex-direction:column;background:#fff}
 .geo-map-wrap{position:relative;display:grid;place-items:center;min-width:0;background:linear-gradient(180deg,#fbfcfa,#f4f7f3);overflow:hidden;border-radius:8px 8px 0 0}
@@ -45,34 +38,28 @@
 .geo-feature:focus-visible{outline:none;stroke:var(--focus)!important;stroke-width:3.25px!important;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 3px rgba(11,31,24,.55))}
 .geo-tooltip[hidden]{display:none!important}
 
-/* Deliberate selected-place empty state. */
 .geo-selected-summary.kda-card{position:relative;border-radius:var(--radius-md);padding:var(--space-6);margin-top:var(--space-6);border:1px solid var(--line);box-shadow:0 8px 24px rgba(22,43,35,.05)}
 .geo-selected-summary.is-empty{background:linear-gradient(135deg,#fff,#f7f8f5);border-style:solid;min-height:140px;padding-right:5.5rem}
 .geo-selected-summary .geo-empty-badge{position:absolute;right:var(--space-6);top:var(--space-6)}
 .geo-selected-summary.is-empty h4{margin-top:0}
 .geo-selected-summary.is-empty dd{color:#78827d}
 
-/* Search/result motion and polished focus states. */
 .search-results{transform-origin:top center;will-change:transform,opacity}
 .search-result{transition:background-color .14s ease,padding-left .14s ease}
 .search-result:hover,.search-result:focus{padding-left:1.08rem}
 button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid rgba(31,90,73,.22);outline-offset:2px}
 
-/* Fix the occasional vertically stretched/floating quality badge in chart heads. */
 .card-head{align-items:flex-start;gap:var(--space-4)}
 .card-head>.badge{position:static!important;flex:0 0 auto;writing-mode:horizontal-tb!important;transform:none!important;min-width:2rem;align-self:flex-start}
 
-/* Topic tabs gain responsive polish without pretending unavailable tab content exists. */
 .topic-tabs button{position:relative;transition:color .16s ease,background-color .16s ease}
 .topic-tabs button:hover{color:var(--green2);background:linear-gradient(180deg,transparent 70%,rgba(31,90,73,.05))}
 
-/* Series with only two observations: points are the evidence; no implied line. */
 .large-chart.two-point-series .series-line{display:none}
 .large-chart.two-point-series circle{filter:drop-shadow(0 2px 2px rgba(22,43,35,.12))}
 .large-chart.two-point-series:after{content:"2 observations on file · points shown without interpolation";position:absolute;left:1rem;bottom:.35rem;font-size:.65rem;color:var(--muted)}
 .large-chart{position:relative}
 
-/* Catalogue category accents: muted but scannable. JS supplies --dataset-accent. */
 .dataset-icon{background:color-mix(in srgb,var(--dataset-accent,#c9b98c) 20%,white)!important;color:color-mix(in srgb,var(--dataset-accent,#705d2e) 78%,#17211d)!important;border:1px solid color-mix(in srgb,var(--dataset-accent,#c9b98c) 42%,white)}
 .dataset.kda-card{border-left:3px solid color-mix(in srgb,var(--dataset-accent,#c9b98c) 60%,white)}
 
