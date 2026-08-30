@@ -1,0 +1,50 @@
+{
+  "schema_version": "kda.release-manifest.v1",
+  "release_version": "1.0.0",
+  "release_status": "release_candidate",
+  "release_date": "2026-08-30",
+  "source_ref": "v1.0.0",
+  "application_version": "0.18.0",
+  "data_contract_version": "1.0.0",
+  "completed_phase_count": 17,
+  "counts": {
+    "units": 21,
+    "indicators": 98,
+    "series": 3370,
+    "observations": 6864,
+    "geographies": 1788,
+    "counties": 47,
+    "datasets": 50,
+    "evidence_records": 247,
+    "public_county_results": 47,
+    "opportunity_programmes": 9
+  },
+  "methodology_versions": {
+    "indicator_policy": "P12-policy-v1",
+    "public_results": "kda.public-results.v1",
+    "county_evidence": "kda.county-evidence.v1"
+  },
+  "release_evidence": {
+    "deterministic_build": "npm run build:data",
+    "validation_suite": "npm test",
+    "geometry_audit": "npm run geography:audit",
+    "browser_release_audit": ".github/workflows/release-audit.yml",
+    "exact_commit_deployment_gate": ".github/workflows/p17-publish.yml",
+    "distribution_manifest": "data/distribution/manifest.json",
+    "distribution_checksums": "data/distribution/checksums.sha256",
+    "unresolved_items": "docs/releases/v1.0.0-unresolved.md",
+    "release_notes": "docs/releases/v1.0.0.md"
+  },
+  "canonical_products": [
+    "data/geography/registry/geographies.json",
+    "data/catalogue/registry/datasets.json",
+    "data/indicators/registry/indicators.json",
+    "data/indicators/registry/series.json",
+    "data/indicators/registry/observations.json",
+    "data/countyiq/county-summary.json",
+    "data/results/county-results.json",
+    "data/evidence/county-documents.json",
+    "data/opportunities/opportunity-registry.json",
+    "data/policy/indicator-policy.json"
+  ]
+}

@@ -63,6 +63,7 @@ jobs:
             data/countyiq/county-summary.json \
             data/opportunities/opportunity-registry.json \
             data/distribution \
+            data/release \
             data/ui/initial-pulse.json
 
       - name: Validate geography, catalogue, indicators and sprint releases
