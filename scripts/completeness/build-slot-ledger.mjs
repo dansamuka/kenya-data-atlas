@@ -175,7 +175,6 @@ const resolved=rows.filter(r=>r.resolved).length;
 const uniqueIndicators=new Set(rows.map(r=>r.indicator_code)).size;
 const summary={
   schema_version:'kda.completeness.summary.v1',
-  generated_at:new Date().toISOString(),
   definition:'A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation. Sourced-but-uningested and planned slots remain unresolved until a later phase or an explicit evidence-state/retirement rule resolves them.',
   total_slots:rows.length,
   resolved_slots:resolved,
@@ -190,7 +189,6 @@ const summary={
 };
 const ledger={
   schema_version:'kda.completeness.slot-ledger.v1',
-  generated_at:summary.generated_at,
   target_definition:'Every public data slot must end in a defensible resolved evidence state; parent values are never inherited to fill child geographies.',
   expected_slot_instances:20115,
   rows
