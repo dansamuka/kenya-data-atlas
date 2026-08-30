@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "0ff22470-c390-5493-b28f-680eb20e083b",
+    "indicator_code": "IND-COUNTY-AUDIT-OPINION",
+    "name": "Auditor-General opinion",
+    "short_name": "Auditor-General opinion",
+    "description": "County audit opinion: unqualified, qualified, adverse or disclaimer.",
+    "topic": "Public Finance",
+    "subtopic": "finance",
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.oagkenya.go.ke/document-library/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "Office of the Auditor-General Summary Report on County Governments 2024/2025",
+    "expected_source_url": "https://www.oagkenya.go.ke/document-library/",
+    "expected_availability_note": "Categorical audit opinion; do not turn into an unsupported composite score.",
+    "tab": "finance",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

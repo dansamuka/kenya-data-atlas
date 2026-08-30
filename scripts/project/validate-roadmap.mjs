@@ -16,7 +16,7 @@ try{
   const expected=Array.from({length:18},(_,i)=>`P${String(i).padStart(2,'0')}`);
   assert(ids.join('|')===expected.join('|'),'phase IDs must be sequential P00 through P17');
   assert(new Set(ids).size===ids.length,'phase IDs must be unique');
-  const allowed=new Set(['implemented_pending_release_check','next','planned','complete','blocked']);
+  const allowed=new Set(['implemented_pending_release_check','next','planned','complete','blocked','deferred']);
   for(const phase of roadmap.phases){
     assert(phase.title&&phase.session_goal,`${phase.id} requires title and session_goal`);
     assert(Array.isArray(phase.outputs)&&phase.outputs.length>=2,`${phase.id} requires concrete outputs`);
@@ -28,12 +28,17 @@ try{
   const next=roadmap.phases.filter(p=>p.status==='next');
   assert(next.length===1,`exactly one phase must be marked next, found ${next.length}`);
   const nextIndex=ids.indexOf(next[0].id);
-  for(let i=0;i<nextIndex;i++)assert(roadmap.phases[i].status==='complete',`${roadmap.phases[i].id} must be complete before ${next[0].id} can be next`);
+  for(let i=0;i<nextIndex;i++){
+    const prior=roadmap.phases[i];
+    assert(['complete','deferred'].includes(prior.status),`${prior.id} must be complete or explicitly deferred before ${next[0].id} can be next`);
+    if(prior.status==='deferred'){assert(prior.target_release&&prior.defer_reason,`${prior.id} deferred phase requires target_release and defer_reason`);}
+  }
   for(const token of ['## P00','## P01','## P02','## P03','## P04','## P05','## P06','## P17','Session completion protocol',`Complete ${next[0].id}`]) assert(docs.includes(token),`completion plan missing ${token}`);
   const sectionOf=(id)=>{const heading=new RegExp(`^## ${id} —`,'m');const parts=docs.split(heading);return parts.length>1?parts[1].split('\n---\n')[0]:'';};
   for(let i=0;i<nextIndex;i++){
-    const id=roadmap.phases[i].id;
-    assert(sectionOf(id).includes('**Status: complete.**'),`${id} documentation must be marked complete`);
+    const prior=roadmap.phases[i];
+    const expectedStatus=prior.status==='deferred'?'**Status: deferred.**':'**Status: complete.**';
+    assert(sectionOf(prior.id).includes(expectedStatus),`${prior.id} documentation must be marked ${prior.status}`);
   }
   assert(sectionOf(next[0].id).includes('**Status: next.**'),`${next[0].id} documentation must be marked next`);
   console.log('PROJECT_PHASES_P00_P17_OK');

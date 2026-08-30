@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dansamuka.github.io/kenya-data-atlas/data/distribution/schemas/evidence-record.schema.json",
+  "title": "Kenya Data Atlas county evidence record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "record_id",
+    "geo_code",
+    "county_name",
+    "family",
+    "title",
+    "period",
+    "publisher",
+    "verification_state",
+    "verified_at"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "geo_code": {
+      "type": "string"
+    },
+    "county_name": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "verification_state": {
+      "type": "string"
+    },
+    "verified_at": {
+      "type": "string"
+    }
+  },
+  "x-kda-contract-version": "1.0.0"
+}

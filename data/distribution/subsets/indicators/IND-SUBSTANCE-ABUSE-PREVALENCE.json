@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "e49d739a-c488-5baa-990a-99df5da7d0f3",
+    "indicator_code": "IND-SUBSTANCE-ABUSE-PREVALENCE",
+    "name": "Drug and substance use prevalence",
+    "short_name": "Drug and substance use prevalence",
+    "description": "Published prevalence from the NACADA national survey, subject to verification of county coverage.",
+    "topic": "Health",
+    "subtopic": "health",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": false,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://nacada.go.ke/publications?page=1",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "NACADA National Survey on the Status of Drugs and Substance Use in Kenya 2022",
+    "expected_source_url": "https://nacada.go.ke/publications?page=1",
+    "expected_availability_note": "Do not activate until the newest round's county coverage is verified; sampling uncertainty is mandatory.",
+    "tab": "health",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": true,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

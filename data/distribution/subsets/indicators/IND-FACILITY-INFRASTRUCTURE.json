@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "4a5f0e08-784f-53ac-adab-a7c3764c206d",
+    "indicator_code": "IND-FACILITY-INFRASTRUCTURE",
+    "name": "Facilities with electricity/water (%)",
+    "short_name": "Facilities with electricity/water (%)",
+    "description": "Share of facilities with electricity/water in the Kenya Health Facility Census snapshot.",
+    "topic": "Health",
+    "subtopic": "health",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "Kenya Health Facility Census 2023",
+    "expected_source_url": "",
+    "expected_availability_note": "One-off snapshot; label prominently as a snapshot if activated.",
+    "tab": "health",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

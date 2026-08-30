@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "b96bffe6-33ef-5a3f-95c4-d86e76efbccf",
+    "indicator_code": "IND-CONTRACEPTIVE-USE",
+    "name": "Modern contraceptive use rate",
+    "short_name": "Modern contraceptive use rate",
+    "description": "Published modern contraceptive use rate.",
+    "topic": "Health",
+    "subtopic": "health",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KDHS 2022",
+    "expected_source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "expected_availability_note": "Sample survey; confidence interval/SE/sample size required when active.",
+    "tab": "health",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": true,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

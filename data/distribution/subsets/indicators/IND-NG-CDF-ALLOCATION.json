@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "c21ddd7a-0fb0-5aa2-9553-2c74967530fe",
+    "indicator_code": "IND-NG-CDF-ALLOCATION",
+    "name": "NG-CDF allocation (financial year)",
+    "short_name": "NG-CDF allocation (financial year)",
+    "description": "Constituency NG-CDF allocation for the financial year.",
+    "topic": "Representation",
+    "subtopic": "representation",
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "constituency",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "NG-CDF Board",
+    "expected_source_url": "",
+    "expected_availability_note": "Do not promote until a specific citable report/page is identified.",
+    "tab": "representation",
+    "applies_to_levels": [
+      "constituency"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "code": "kes_million",
+    "name": "Kenya shillings, million",
+    "symbol": "KES mn",
+    "dimension": "currency",
+    "scale_factor": 1000000,
+    "decimal_places": 0,
+    "currency_code": "KES"
+  },
+  "series": [],
+  "observations": []
+}

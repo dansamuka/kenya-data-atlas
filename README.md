@@ -1,166 +1,146 @@
-# Kenya Data Atlas — static MVP
+# Kenya Data Atlas
 
-A polished, responsive static prototype implementing the central product ideas in the **Kenya Data Atlas Product & Technical Specification v1.0**.
+Kenya Data Atlas is an independent, source-auditable public data product for exploring Kenya from **country → county → constituency → ward**, comparing counties, following historical series, inspecting county rankings and fiscal delivery, and tracing published results back to source evidence.
 
-## View it
+**Live site:** https://dansamuka.github.io/kenya-data-atlas/
 
-Open `index.html` directly, or serve this folder from any static host. The published application has no server-side dependency and is ready for GitHub Pages from the root of the default branch.
+## Current release state
 
-## Included in the prototype
+The repository is no longer the early static MVP described by older releases. P00–P13 are complete, P15 is the current data-distribution release, P16 is the next v1.0 hardening phase, and the high-maintenance Opportunity Finder has been deliberately deferred to a v1.1 Beta rather than made a v1.0 blocker.
 
-- Universal search across places and indicators
-- Kenya → County → Constituency → Ward hierarchy
-- Kenya Pulse with source, period, change and quality labels
-- Real D3 geographic explorer with one authoritative ranking panel
-- Dedicated **Compare** workspace with **Direct Compare** and **My Life Elsewhere** modes
-- County profiles with source-backed County Core statistics
-- County Life comparison metrics covering cost & affordability, housing, health access/supply, education and employment
-- Explicit lower-level missing-data treatment
-- IEBC registered-voter drill-down to constituency and ward where spatial attribution is safe
-- Historical Kenya series for CPI, CBR, USD/KES, 91-day T-bills, EPRA Nairobi pricing-town petrol and county public finance
-- Time-series explorer concept and metadata
-- Native downloadable JSON/CSV data and catalogue registries
-- Data catalogue and provenance/quality badges
-- Responsive layout, keyboard focus, semantic markup and mobile navigation
+Current canonical registry coverage:
 
-The earlier standalone Rankings prototype remains retired: the Geo Explorer is the single user-facing ranking surface. Compare is deliberately separate from ranking. Its Direct mode puts all available county metrics side by side; its My Life Elsewhere mode translates only common-period, genuinely comparable county observations into plain-language differences. Missing data, mismatched periods and geography limitations are shown rather than filled in, and national World Bank values are never inherited to counties.
+- **1,788 geographies** — 1 country, 47 counties, 290 constituencies, 1,450 wards;
+- **98 indicators**;
+- **3,370 series**;
+- **6,864 observations**;
+- **50 datasets** and governed source/release lineage;
+- **47 CountyIQ county profiles**;
+- **14 complete 47-county indicator leaderboards** (658 ranked county records);
+- **47 current development snapshots**;
+- **46 complete FY2024/25 fiscal-delivery scores** — Narok remains explicitly unscored where a required source input is absent;
+- **47 administration-period scorecards** and six reproducible recognition categories;
+- **247 county evidence records** across seven official-document families.
 
-## Data status
+## Public product
 
-Kenya Data Atlas is an **independent demonstration/public-interest data project**, not an official statistical publication. Real source-backed observations are explicitly traceable; remaining illustrative UI figures are labelled as demo content.
+### Explore
 
-Quality labels use the Atlas provenance system:
+Browse the canonical Kenya geography hierarchy and published indicators. Lower-level values are shown only where a real series exists; national or county values are never silently inherited downward.
 
-- **A** — official direct
-- **B** — official derived/transformed
-- **C** — spatially derived, including documented geographic proxies
-- **D** — modelled
-- **E** — external
-- **Demo** — illustrative prototype content; not for factual use
+### Compare
 
-The Atlas deliberately shows unavailable values as `—` and never copies county values down to constituency or ward level.
+Compare counties directly or use **My Life Elsewhere** for matched-period, genuinely comparable county observations. Missing values and incompatible periods remain visible rather than being filled in.
 
-## Structure
+### Series
 
-```text
-index.html                    Main GitHub Pages entry point
-assets/styles.css             Visual system and responsive layout
-assets/app.js                 Base UI interactions
-assets/compare.js             Dedicated two-mode county comparison engine
-assets/compare.css            Compare workspace visual/responsive system
-assets/geo-explorer.js        Canonical geographic map/ranking explorer
-assets/sprint1-ui.js          County Core profile/coverage presentation
-data/geography/registry/      Canonical registry, aliases, boundary versions, corrections
-data/geography/geometry/      Published geometry (wards canonical, parents dissolved)
-data/geography/reference/     Independently sourced layers retained as cross-checks
-data/geography/source/        Immutable source files, hashes and manifest
-data/catalogue/registry/      Native agencies, sources, datasets, releases and lineage outputs
-data/indicators/registry/     Native machine-readable units, indicators, series and observations
-data/sprint1/                 Audited County Core source package
-data/sprint2/                 Local Kenya source/provenance package
-data/sprint3/                 Historical Kenya frozen source package and release validation
-data/life-elsewhere/          Five-family county comparison source package and validation
-scripts/life/                 County Life native-registry promoter
-scripts/geography/            Build, ingest, dissolve, validate, audit
-scripts/indicators/           Build and release-validation pipeline
-scripts/sprint1/              County Core native-registry promoter
-scripts/sprint3/              Historical acquisition and native-registry promoter
-db/schema/                    PostgreSQL + PostGIS schema
-docs/governance/              Governance and statistical publication system
-docs/methodology/             Published methodology
-CHANGELOG.md                  Release history
-```
+Inspect historical statistical series with period, source, unit, provenance and observation history.
 
-## Native machine-readable data
+### Rankings & Insights
 
-As of **v0.10.0**, the committed registry files are the same data products used by the live site. Sprint 1 County Core, Sprint 2 Local Kenya, World Bank national indicators, Sprint 3 Historical Kenya and County Life coexist in the native registry rather than being added only in the browser.
+The dedicated results surface publishes the analytical outputs of CountyIQ rather than backend implementation detail:
 
-Sprint 3 adds validated historical observations for:
+- national indicator leaderboards and peer position;
+- current development snapshot and robustness range;
+- FY2024/25 fiscal-delivery ranking;
+- county strengths, gaps and observed change;
+- administration-period scorecards;
+- reproducible CountyIQ Recognition;
+- links back to official county evidence.
 
-- KNBS CPI inflation — **259 monthly rows**;
-- CBK Central Bank Rate — **122 decisions**;
-- CBK USD/KES monthly average — **403 rows**;
-- CBK 91-day Treasury bill monthly average — **405 rows**;
-- EPRA Nairobi pricing-town Super Petrol — **6 historical pricing cycles**;
-- Controller of Budget county fiscal history — **517 rows = 47 counties × 11 fiscal years**.
+### CountyIQ
 
-Together with Sprint 1 FY2024/25, each county fiscal series spans **12 fiscal years**. Controller of Budget values are never propagated below county level. EPRA historical Nairobi observations are pricing-town values, not Nairobi County averages. See `data/sprint3/VALIDATION.md` for the release audit.
+CountyIQ brings together fiscal history, health and living standards, education, economy, agriculture, connectivity, peer context, trends and official county evidence. It does not assign personal governor causal scores.
 
-County Life v0.10.0 adds **235 direct county observations = 5 indicators × 47 counties** for:
+## Data distribution
 
-- **Cost & affordability:** rent as a share of household expenditure, 2024;
-- **Housing:** households owning their main dwelling, 2021 survey;
-- **Health access / supply:** health facilities in the 2023 census target;
-- **Education:** population age 3+ at school / learning institution, 2019 census;
-- **Employment:** labour-force participation rate, age 15–64, 2019 census.
+P15 adds a stable developer entry point at:
 
-These measures remain separate statistics and are not combined into a synthetic quality-of-life score. No County Life value is inherited to a constituency or ward. The v0.10.0 deterministic release validated **84 indicators, 2,477 series and 5,971 observations**. See `data/life-elsewhere/VALIDATION.md` for the release audit and interpretation controls.
+- `data/distribution/manifest.json`
+- `data/distribution/checksums.sha256`
+- `data/distribution/schemas/`
+- `data/distribution/ndjson/`
+- `data/distribution/subsets/counties/`
+- `data/distribution/subsets/indicators/`
 
-The principal downloadable files are:
+The canonical JSON and CSV registries remain the same products used by the website. P15 additionally publishes NDJSON streams, record-level JSON Schemas, flattened county-results/evidence CSVs, 47 query-sized county bundles and 98 query-sized indicator bundles.
+
+See **[`docs/DEVELOPER.md`](docs/DEVELOPER.md)** for data contracts, version pinning and example queries.
+
+### Core canonical files
 
 - `data/indicators/registry/indicators.json` / `.csv`
 - `data/indicators/registry/series.json` / `.csv`
 - `data/indicators/registry/observations.json` / `.csv`
+- `data/geography/registry/geographies.json` / `.csv`
 - `data/catalogue/registry/datasets.json` / `.csv`
-- `data/catalogue/registry/releases.json` / `.csv`
+- `data/results/county-results.json`
+- `data/evidence/county-documents.json`
+- `data/policy/indicator-policy.json`
 
-`npm run build:data` regenerates these products from their source/seed inputs. `npm run native-api:validate` checks that the published Sprint data is actually present in the committed registry rather than only in a frontend overlay.
+## Quality and methodological controls
 
-## Toolchain
+The Atlas deliberately distinguishes between what the data can support and what would merely make the product look more complete.
 
-The published site itself is static. The **data pipeline** uses Node with `polygon-clipping` for dissolve, geometry validity repair and containment measurement. The independent geometry audit uses Python with `shapely`.
+- Survey outcomes requiring sampling uncertainty are not forced into unsafe league tables.
+- The current County Development Snapshot is published as a cross-sectional result; a longitudinal composite remains withheld because the historical evidence does not pass the stated stability gate.
+- Missing fiscal inputs are not imputed simply to complete a ranking.
+- Parent-geography values are never copied to child geographies.
+- Cross-level comparison is limited to series whose units and transformations support it.
+- County administration scorecards describe observed administration-period records; they do not claim personal causal attribution.
 
-Useful commands:
+## Build and validation
+
+The public site is static, while the data pipeline is deterministic and release-blocking.
 
 ```bash
+npm ci
 npm run build:data
 npm test
 npm run geography:audit
 ```
 
-`npm test` also runs `node --check assets/compare.js`, so syntax regressions in the dedicated comparison engine are release-blocking. The County Life validator additionally enforces 47/47 coverage for all five new indicators, source/value/period equality with the frozen package, the Ministry of Health 14,366-facility reconciliation and zero lower-level inheritance.
+`npm run build:data` rebuilds geography, catalogue, indicators, CountyIQ, evidence, results and the P15 distribution surface. CI fails if generated outputs drift from committed products. The independent geometry audit uses Python/Shapely.
 
-## Project status
+Useful focused commands:
 
-- **Static product prototype:** Complete
-- **Phase 0 — Governance and statistical policy:** Implemented
-- **Phase 1 — Canonical geography foundation:** Operationally complete for the independent MVP (1/47/290/1,450 hierarchy plus externally sourced, hashed and validated WGS84 geometry; explicitly not IEBC-issued)
-- **Phase 2 — Source, dataset and provenance registry:** Implemented and validated
-- **Data Sprint 1 — County Core:** Native-registry publication complete
-- **Data Sprint 2 — Local Kenya:** IEBC 47/290/1,450 statistical hierarchy ingested; unsafe spatial assignments explicitly held
-- **World Bank national integration:** Published; national-only WDI series remain national and are never inherited to counties
-- **Data Sprint 3 — Historical Kenya:** Published and validated in the native registry
-- **County Life v0.10.0:** Five requested county comparison families complete at 47/47 coverage each
-- **Compare workspace:** Dedicated county comparison surface implemented; Direct mode auto-discovers published county metrics and My Life Elsewhere uses matched-period observations only
+```bash
+npm run results:validate
+npm run distribution:validate
+npm run countyiq:validate
+npm run indicators:validate
+npm run evidence:validate
+```
 
-### Geometry integrity
+## Versioning
 
-County, constituency and country polygons are **derived by dissolving the canonical ward layer**, so the hierarchy nests by construction rather than by coincidence. All 1,450 wards sit at least 99% inside their constituency, all 290 constituencies at least 99% inside their county, and ward-union coverage of every constituency is 1.000 with zero spill. Every polygon is valid OGC geometry.
+Three versions are intentionally distinct:
 
-The independently sourced 2018 county and constituency layers are retained under `data/geography/reference/` as cross-checks. Where they disagree with the registry, the registry governs and the divergence is published rather than hidden.
+1. **Application/data release version** — the repository/package release, currently `0.18.0` after P15.
+2. **Data contract version** — currently `1.0.0`; changes only when the public distribution contract breaks.
+3. **Methodology versions** — e.g. the canonical indicator policy and analytical result schemas, which can evolve independently of raw data refreshes.
 
-`boundary_version` records the legal delimitation era (`2012-01`), never the source file. Geometry provenance lives in `geometry_source_id` and `geometry_revision`, so replacing coordinates does not imply that the legal boundary changed.
+For reproducible analysis, pin a Git commit or release tag rather than consuming `main` indefinitely.
 
-## CI and reproducibility
+## Licensing, source rights and citation
 
-GitHub Actions does more than validate whatever happens to be committed. On every PR to `main` and every push to `main`, CI:
+Software code in this repository is licensed under the **MIT License**; see [`LICENSE`](LICENSE).
 
-1. installs the Node and Shapely dependencies;
-2. runs `npm run build:data`;
-3. fails if deterministic generated registries/geometry differ from the committed outputs;
-4. runs the UI syntax gate plus the full geography, catalogue, indicator, Sprint 1, native-API, Sprint 2, Sprint 3 and County Life validators; and
-5. runs the independent Shapely geometry audit.
+The MIT license does **not** relicense third-party source data. Source-specific rights, terms and attribution requirements continue to govern underlying datasets. See [`DATA-NOTICE.md`](DATA-NOTICE.md) and the catalogue/source metadata before redistribution.
 
-This makes seed/output drift, comparison-script syntax errors, County Life coverage/provenance regressions and geometry-audit regressions release-blocking rather than dependent on someone remembering a manual step.
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff).
 
-## Ownership model
+## Governance and roadmap
 
-Kenya Data Atlas is currently an independent public-interest project created and published by a private citizen using publicly available, attributed data. It is not affiliated with or endorsed by the Government of Kenya, KNBS, IEBC, CBK, the United Nations, UNDP or any other source organization. The governance package is designed to scale into an institutional model if the project is later acquired, sponsored or operated by an NGO or public-interest organization.
+- [`ROADMAP.md`](ROADMAP.md) — concise phase status
+- [`data/project-roadmap.json`](data/project-roadmap.json) — machine-readable completion ledger
+- [`docs/REPO-COMPLETION-PLAN.md`](docs/REPO-COMPLETION-PLAN.md) — phase acceptance criteria
+- [`docs/USER-FACING-RESULTS.md`](docs/USER-FACING-RESULTS.md) — public analytical-output boundary
+- [`docs/governance/`](docs/governance/) — statistical publication and governance controls
+- [`docs/methodology/`](docs/methodology/) — published methodologies
 
-## GitHub Pages
+The remaining v1.0 path is **P16 real-browser/accessibility/SEO/performance hardening → P17 final reproducibility/governance/release**. P14 Opportunity Finder is intentionally targeted to v1.1 Beta because programme freshness requires ongoing maintenance.
 
-In the repository settings, choose **Pages → Deploy from a branch**, select the default branch and `/ (root)`. The site has no server-side requirements.
+## Independence notice
 
-## Accessibility and browser support
-
-The MVP uses semantic landmarks, a skip link, visible focus states, responsive tables and keyboard-accessible controls. Before a formal public launch, run a WCAG 2.2 AA audit and test current Chrome, Firefox, Safari and Edge versions.
+Kenya Data Atlas is an independent public-interest project using publicly available, attributed data. It is not affiliated with or endorsed by the Government of Kenya, KNBS, IEBC, CBK, the United Nations, UNDP or any other source organisation.

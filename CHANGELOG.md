@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.18.0 — 30 August 2026 — P15 data distribution and developer surface
+
+Turns the validated Atlas registries and CountyIQ outputs into a stable public developer interface.
+
+- Publishes `data/distribution/manifest.json` with application/data version, independent data-contract version, product counts, methodology versions, byte sizes and SHA-256 hashes.
+- Adds NDJSON distributions for core registry/catalogue/results/evidence products while keeping canonical JSON/CSV as the source of truth.
+- Adds Draft 2020-12 JSON Schemas for indicators, series, observations, geographies, datasets, county results and evidence records.
+- Generates 47 county bundles and 98 indicator bundles for query-sized consumption.
+- Adds `checksums.sha256`, developer examples, MIT software licensing, a source-data rights notice and citation metadata.
+- Explicitly defers P14 Opportunity Finder to v1.1 Beta and advances P16 real-browser/accessibility/SEO/performance hardening as the next v1.0 gate.
+
+See `docs/P15-DATA-DISTRIBUTION.md` and `docs/DEVELOPER.md`.
+
 ## 0.16.1 — 29 August 2026 — CountyIQ P09–P11 publication hardening
 
 Promotes P09–P11 from analytical preview to a publication-safe release without overstating what the evidence can support.

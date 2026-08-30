@@ -2,7 +2,7 @@
   "meta": {
     "schema_version": "kda.countyiq.county-summary.v2",
     "generated_at": "2026-08-28T00:00:00.000Z",
-    "atlas_data_version": "0.17.0",
+    "atlas_data_version": "0.18.0",
     "county_count": 47,
     "source_registries": [
       "data/geography/registry/geographies.json",

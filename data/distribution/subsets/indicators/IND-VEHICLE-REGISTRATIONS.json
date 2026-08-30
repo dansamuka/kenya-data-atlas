@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "34e52611-58fa-575c-8a94-b468c593a7bd",
+    "indicator_code": "IND-VEHICLE-REGISTRATIONS",
+    "name": "Registered vehicles (count, per capita)",
+    "short_name": "Registered vehicles (count, per capita)",
+    "description": "Registered vehicles by county if a public county breakdown is confirmed.",
+    "topic": "Infrastructure",
+    "subtopic": "infrastructure",
+    "unit_id": "2b7566ee-fd7f-510a-90da-d0b4f60268c7",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "National Transport and Safety Authority (NTSA)",
+    "expected_source_url": "",
+    "expected_availability_note": "Public county breakdown not confirmed; remain planned.",
+    "tab": "infrastructure",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2b7566ee-fd7f-510a-90da-d0b4f60268c7",
+    "code": "count",
+    "name": "Count",
+    "symbol": "",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "980e4da9-bca5-5897-84cb-9fa79c84c2ed",
+    "indicator_code": "IND-TURNOUT-HISTORY",
+    "name": "Turnout, prior general elections",
+    "short_name": "Turnout, prior general elections",
+    "description": "Voter turnout in prior general elections.",
+    "topic": "Representation",
+    "subtopic": "representation",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "constituency",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "IEBC",
+    "expected_source_url": "",
+    "expected_availability_note": "Natural extension of the Sprint 2 electoral architecture; not yet ingested.",
+    "tab": "representation",
+    "applies_to_levels": [
+      "constituency",
+      "ward"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

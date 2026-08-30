@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "547116cd-9a24-59c1-a17c-d96f8bf547d4",
+    "indicator_code": "IND-AGRI-PRODUCTION",
+    "name": "Key crop production (county-dominant crop only)",
+    "short_name": "Key crop production (county-dominant crop only)",
+    "description": "Production of the county-dominant crop where a comparable official table exists.",
+    "topic": "Economy",
+    "subtopic": "economy",
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "KNBS Economic Survey / Ministry of Agriculture",
+    "expected_source_url": "",
+    "expected_availability_note": "Crop and unit vary; requires indicator-specific ingestion before activation.",
+    "tab": "economy",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

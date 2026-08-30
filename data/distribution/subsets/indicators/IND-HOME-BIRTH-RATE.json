@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "0d66657f-1bfd-5f5f-9824-d27fe007b5ba",
+    "indicator_code": "IND-HOME-BIRTH-RATE",
+    "name": "Home births (vs. facility births)",
+    "short_name": "Home births (vs. facility births)",
+    "description": "Share of births occurring at home.",
+    "topic": "Health",
+    "subtopic": "health",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": false,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KDHS 2022",
+    "expected_source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "expected_availability_note": "Sample survey; confidence interval/SE/sample size required when active.",
+    "tab": "health",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": true,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

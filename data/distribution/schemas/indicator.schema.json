@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dansamuka.github.io/kenya-data-atlas/data/distribution/schemas/indicator.schema.json",
+  "title": "Kenya Data Atlas indicator record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "indicator_id",
+    "indicator_code",
+    "name",
+    "topic",
+    "unit_id",
+    "active"
+  ],
+  "properties": {
+    "indicator_id": {
+      "type": "string"
+    },
+    "indicator_code": {
+      "type": "string",
+      "pattern": "^IND-"
+    },
+    "name": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "unit_id": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    }
+  },
+  "x-kda-contract-version": "1.0.0"
+}

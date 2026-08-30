@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "3c319609-8ed8-56d5-9557-010888befc70",
+    "indicator_code": "IND-MCA-IDENTITY",
+    "name": "Member of County Assembly (name, party)",
+    "short_name": "Member of County Assembly (name, party)",
+    "description": "Current ward MCA identity and party, once a checkable source is curated.",
+    "topic": "Representation",
+    "subtopic": "representation",
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "ward",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "County assemblies / IEBC",
+    "expected_source_url": "",
+    "expected_availability_note": "No single confirmed machine-readable source; remain planned.",
+    "tab": "representation",
+    "applies_to_levels": [
+      "ward"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

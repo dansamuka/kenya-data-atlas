@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "0c17290a-5b5b-55e0-8056-040415deb9b0",
+    "indicator_code": "IND-EXAM-PERFORMANCE",
+    "name": "Mean KCPE / KCSE score",
+    "short_name": "Mean KCPE / KCSE score",
+    "description": "County-level mean examination performance, only if a genuine KNEC primary table is located.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "04b90096-6bfb-521e-957b-e8b0f4cf1988",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "KNEC",
+    "expected_source_url": "",
+    "expected_availability_note": "Do not source from blogs/news aggregations; retire if no primary county table exists.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "04b90096-6bfb-521e-957b-e8b0f4cf1988",
+    "code": "index_score",
+    "name": "Score",
+    "symbol": "score",
+    "dimension": "index",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

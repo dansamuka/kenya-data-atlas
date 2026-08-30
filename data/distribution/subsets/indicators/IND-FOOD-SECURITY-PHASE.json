@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "2c8b8be0-26aa-5740-ac13-2010cb1e9a25",
+    "indicator_code": "IND-FOOD-SECURITY-PHASE",
+    "name": "Food security phase classification (IPC-style)",
+    "short_name": "Food security phase classification (IPC-style)",
+    "description": "Acute food insecurity phase classification from seasonal assessments.",
+    "topic": "Resilience & Environment",
+    "subtopic": "resilience",
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "higher_is_better": false,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://knowledgeweb.ndma.go.ke/Content/LibraryDocuments/Long_Rains_National_Report-_202220230510110248.pdf",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "National Drought Management Authority (NDMA) seasonal food security assessment",
+    "expected_source_url": "https://knowledgeweb.ndma.go.ke/Content/LibraryDocuments/Long_Rains_National_Report-_202220230510110248.pdf",
+    "expected_availability_note": "County conditional; NDMA assessment coverage is institutional, not a temporary data gap.",
+    "tab": "resilience",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "ASAL_COUNTIES",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}
