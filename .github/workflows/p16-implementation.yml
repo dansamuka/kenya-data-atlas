@@ -34,7 +34,9 @@ jobs:
           python-version: '3.12'
 
       - name: Apply P16 release migration
-        run: node scripts/p16/apply-release.mjs
+        run: |
+          node scripts/p16/apply-release.mjs
+          node scripts/p16/advance-p15-validator.mjs
 
       - name: Install Node dependencies and refresh lockfile
         run: npm install
@@ -69,6 +71,7 @@ jobs:
       - name: Remove one-shot implementation tooling
         run: |
           rm -f scripts/p16/apply-release.mjs
+          rm -f scripts/p16/advance-p15-validator.mjs
           rm -f .github/workflows/p16-implementation.yml
           git diff --check
 
