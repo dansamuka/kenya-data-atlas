@@ -2,6 +2,11 @@
 .demo-banner,.footer-note{display:none!important}
 #compare-legacy,#rankings-legacy{display:none!important}
 
+.site-search-result>span{display:flex;align-items:center;gap:.45rem;min-width:0}
+.site-search-result>span b{font:inherit;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.site-search-result>span em{flex:0 0 auto;font-style:normal;text-transform:uppercase;letter-spacing:.06em;font-size:.52rem;padding:.16rem .34rem;border-radius:999px;background:#edf3ef;color:#315b4d}
+.site-search-empty{cursor:default}
+
 @media(max-width:760px){
   body{font-size:16px;line-height:1.55}
   .section{padding-top:2.35rem;padding-bottom:2.35rem}
@@ -15,6 +20,26 @@
   .menu-button{border-radius:999px;padding-inline:.9rem}
   .header-search{border-radius:999px}
   .site-header nav{z-index:50}
+  .search-results{max-height:min(64dvh,520px);overflow:auto;-webkit-overflow-scrolling:touch}
+  .site-search-result{min-height:58px;align-items:center}
+  .site-search-result small{max-width:45%;line-height:1.35}
+
+  /* Searchable selects read as one control instead of a select plus a floating strip. */
+  .select-label,.profile-head label,.compare-place-card label,.compare-life-controls label,.ri-controls label,.ciq-controls label,.evidence-hub-tools label,.opportunity-tools label,.series-browser-grid label{position:relative;display:block}
+  .select-label select,.profile-head label select,.compare-place-card label select,.compare-life-controls label select,.ri-controls label select,.ciq-controls label select,.evidence-hub-tools label select,.opportunity-tools label select,.series-browser-grid label select{padding-right:3.15rem!important}
+  .select-label>.kda-select-search-trigger,.profile-head label>.kda-select-search-trigger,.compare-place-card label>.kda-select-search-trigger,.compare-life-controls label>.kda-select-search-trigger,.ri-controls label>.kda-select-search-trigger,.ciq-controls label>.kda-select-search-trigger,.evidence-hub-tools label>.kda-select-search-trigger,.opportunity-tools label>.kda-select-search-trigger,.series-browser-grid label>.kda-select-search-trigger{position:absolute!important;right:.28rem!important;bottom:.28rem!important;width:40px!important;height:40px!important;min-width:40px!important;margin:0!important;padding:0!important;display:grid!important;place-items:center;border-radius:8px!important;background:#f5f4ee!important;z-index:3}
+  .kda-select-search-dialog{padding:.8rem!important}
+  .kda-select-search-card{max-height:min(76dvh,620px)!important;border-radius:12px!important}
+  .kda-select-search-option{min-height:48px!important}
+
+  /* National Pulse: use a compact two-column card grid on phones. */
+  [data-view="pulse"] #pulse-grid,[data-view="pulse"] #wb-national-indicators .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.65rem!important}
+  [data-view="pulse"] .metric-card{min-height:126px!important;padding:.85rem!important}
+  [data-view="pulse"] .metric-card .label{max-width:76%!important;font-size:.69rem!important;line-height:1.3}
+  [data-view="pulse"] .metric-card strong{font-size:1.5rem!important;line-height:1.04;margin:.34rem 0!important}
+  [data-view="pulse"] .metric-card .delta{font-size:.59rem!important;line-height:1.35}
+  [data-view="pulse"] .metric-card small{font-size:.56rem!important;line-height:1.35;margin-top:.55rem!important}
+  [data-view="pulse"] #wb-national-indicators{margin-top:1.6rem!important}
 
   /* County profile: use the width of a phone instead of producing a one-card-per-row feed. */
   .profile-section{padding-top:2.15rem}
@@ -89,11 +114,20 @@
   .series-section .section-heading h2{font-size:clamp(2.35rem,10vw,3rem)}
   .series-card{margin-top:.75rem}
   .series-main{padding-top:.8rem!important}
+  .series-browser{padding:1rem!important;margin:1rem 0!important}
+  .series-browser-head{gap:.5rem!important;margin-bottom:.8rem!important}
+  .series-browser-head h3{font-size:1.35rem!important}
+  .series-browser-head>p{font-size:.72rem!important;line-height:1.45}
+  .series-dataset-chips{display:flex!important;overflow-x:auto!important;flex-wrap:nowrap!important;gap:.4rem!important;scrollbar-width:none}
+  .series-dataset-chips::-webkit-scrollbar{display:none}
+  .series-dataset-chips button{flex:0 0 auto;max-width:72vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .series-browser-grid{grid-template-columns:1fr!important;gap:.55rem!important}
 
   /* Compare cards should feel like results, not documentation blocks. */
   .compare-kicker,.compare-coverage-note,.life-limitations{font-size:.74rem!important;line-height:1.5}
   .life-card{min-height:132px!important;padding-top:.9rem!important;padding-bottom:.9rem!important}
   .life-card p{line-height:1.48}
+  .compare-place-card{min-width:min(78vw,270px)!important}
 
   footer{padding-top:2rem!important;padding-bottom:calc(2rem + env(safe-area-inset-bottom))!important}
   .footer-brand p{font-size:.72rem}
@@ -104,4 +138,7 @@
   .ri-summary,.ri-phase-strip{grid-template-columns:1fr 1fr!important}
   .ri-summary article,.ri-phase-strip article{min-height:104px!important}
   .coverage strong{font-size:1.35rem!important}
+  [data-view="pulse"] #pulse-grid,[data-view="pulse"] #wb-national-indicators .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  [data-view="pulse"] .metric-card{padding:.72rem!important;min-height:120px!important}
+  [data-view="pulse"] .metric-card strong{font-size:1.35rem!important}
 }
