@@ -82,3 +82,13 @@ Release evidence on the exact P12 candidate:
 P12 is an architecture/governance phase, not a new end-user feature. Existing P09–P11 published outputs and numerical methodology are preserved. The phase reduces the probability that later work produces contradictory classifications, direction labels, rank eligibility or inheritance behaviour across surfaces.
 
 The next phase is P13 — County Evidence & Knowledge Hub.
+
+## User-facing Methods & Comparability surface
+
+The canonical policy is now exposed in a dedicated `#/methods` website section. It provides three public views without redefining any analytical rule in browser code:
+
+- all 98 indicator policy records;
+- all CountyIQ P06 ranking/trend outputs by county, including withholding reasons;
+- all 3,370 observed-series cross-level decisions and their rule basis.
+
+This resolves the earlier product gap where the policy was public as machine-readable JSON but not discoverable as a first-class website surface.

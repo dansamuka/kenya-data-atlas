@@ -20,14 +20,14 @@ const schema=read('db/schema/indicators.sql');
 const compare=read('assets/compare.js');
 
 try{
-  const routeLinks=['#/pulse','#/explore','#/compare','#/series/KDA-CPI-YOY-KEN','#/data','#/countyiq'];
+  const routeLinks=['#/pulse','#/explore','#/compare','#/series/KDA-CPI-YOY-KEN','#/data','#/methods','#/countyiq'];
   for(const href of routeLinks)assert(html.includes(`href="${href}"`),`missing navigation route ${href}`);
-  for(const view of ['home','pulse','explore','compare','series','data','countyiq'])assert(html.includes(`data-view="${view}"`),`missing data-view ${view}`);
+  for(const view of ['home','pulse','explore','compare','series','data','methods','countyiq'])assert(html.includes(`data-view="${view}"`),`missing data-view ${view}`);
   assert(html.includes('id="home-glance-grid"'),'home is missing the short at-a-glance teaser');
   assert(html.includes('id="pulse-filters"')&&['core','economy','social','environment','institutions'].every(x=>html.includes(`data-pulse-filter="${x}"`)),'Pulse category picker is incomplete');
   assert(html.includes('class="geo-context-rail"')&&html.includes('class="geo-workspace"'),'Explore persistent context rail is missing');
   assert(html.includes('id="countyiq-view"')&&html.includes('id="ciq-county-select"'),'integrated CountyIQ route is incomplete');
-  console.log('IA_SEVEN_ROUTE_STRUCTURE_OK');
+  console.log('IA_EIGHT_ROUTE_STRUCTURE_OK');
 
   for(const token of ['hashchange','popstate','data-view-link','window.KDARouter','canonicalHash','#/explore/','countyiq'])assert(router.includes(token),`router missing ${token}`);
   assert(router.includes("'#map/'")||router.includes("startsWith('#map/')"),'legacy map hashes are not canonicalised');

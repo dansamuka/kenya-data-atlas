@@ -3,8 +3,8 @@
  */
 (function(){
   'use strict';
-  const VIEW_IDS=new Set(['home','pulse','explore','compare','series','data','countyiq']);
-  const TITLES={home:'Kenya Data Atlas — Understand Kenya through data',pulse:'National Pulse — Kenya Data Atlas',explore:'Explore places — Kenya Data Atlas',compare:'Compare places — Kenya Data Atlas',series:'Series Explorer — Kenya Data Atlas',data:'Data Catalogue — Kenya Data Atlas',countyiq:'CountyIQ — Kenya Data Atlas'};
+  const VIEW_IDS=new Set(['home','pulse','explore','compare','series','data','methods','countyiq']);
+  const TITLES={home:'Kenya Data Atlas — Understand Kenya through data',pulse:'National Pulse — Kenya Data Atlas',explore:'Explore places — Kenya Data Atlas',compare:'Compare places — Kenya Data Atlas',series:'Series Explorer — Kenya Data Atlas',data:'Data Catalogue — Kenya Data Atlas',methods:'Methods & Comparability — Kenya Data Atlas',countyiq:'CountyIQ — Kenya Data Atlas'};
   const DYNAMIC_VIEW_IDS=new Map([['cross-level-compare','explore']]);
   const rawPush=history.pushState.bind(history),rawReplace=history.replaceState.bind(history);
   let current=null,rendering=false;
@@ -14,7 +14,7 @@
     if(hash==='#main')return current?.hash||'#/';
     if(!hash||hash==='#'||hash==='#home')return '#/';
     if(hash.startsWith('#map/'))return '#/explore/'+hash.slice(5);
-    const legacy={ '#explore':'#/explore','#geo-explorer':'#/explore','#profile':'#/explore','#compare':'#/compare','#series':'#/series/KDA-CPI-YOY-KEN','#catalogue':'#/data','#data':'#/data','#countyiq':'#/countyiq','#county-dashboard':'#/countyiq' };
+    const legacy={ '#explore':'#/explore','#geo-explorer':'#/explore','#profile':'#/explore','#compare':'#/compare','#series':'#/series/KDA-CPI-YOY-KEN','#catalogue':'#/data','#data':'#/data','#methods':'#/methods','#countyiq':'#/countyiq','#county-dashboard':'#/countyiq' };
     return legacy[hash]||hash;
   }
   function canonicalUrl(url){
