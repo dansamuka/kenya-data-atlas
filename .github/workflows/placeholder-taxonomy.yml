@@ -55,14 +55,16 @@ jobs:
         run: npm run opportunities:build
       - name: Validate full Atlas registry, CountyIQ mart and P14 Beta
         run: npm test
-      - name: Commit generated native registries, mart and opportunity registry
+      - name: Mark P14 complete after evidence gates
+        run: node scripts/p14/mark-complete.mjs
+      - name: Commit generated products and P14 completion ledger
         run: |
-          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json)" ]]; then
-            echo "No generated registry, CountyIQ mart or P14 opportunity changes."
+          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/project-roadmap.json docs/REPO-COMPLETION-PLAN.md)" ]]; then
+            echo "No generated registry, CountyIQ mart, P14 opportunity or completion-ledger changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json
-          git commit -m "build(p14): publish opportunity registry"
+          git add data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/project-roadmap.json docs/REPO-COMPLETION-PLAN.md
+          git commit -m "build(p14): publish opportunity registry and completion ledger"
           git push
