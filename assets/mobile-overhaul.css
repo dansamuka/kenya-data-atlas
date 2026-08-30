@@ -6,6 +6,13 @@
 @font-face{font-family:"DM Sans";font-style:normal;font-weight:400 700;font-display:optional;src:url("https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K6z9mXg.woff2") format("woff2")}
 @font-face{font-family:"Newsreader";font-style:normal;font-weight:500 600;font-display:optional;src:url("https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2") format("woff2")}
 
+/* P16 desktop CLS hardening. Compare and CountyIQ are data-dense, dynamically
+ * hydrated workspaces. Pin their text metrics to local fonts so the optional
+ * brand webfonts can never reflow the analytical canvas after first paint. */
+.compare-hub *,.countyiq-route *{font-family:Arial,sans-serif!important}
+.compare-hub h1,.compare-hub h2,.compare-hub h3,.compare-hub .compare-cell-value,.compare-hub .life-match-count strong,
+.countyiq-route h1,.countyiq-route h2,.countyiq-route h3,.countyiq-route .ciq-metric strong,.countyiq-route .ciq-fiscal strong,.countyiq-route .ciq-social-metric strong{font-family:Georgia,serif!important}
+
 @media(max-width:760px){
   /* Home: keep the value proposition, search and pulse visible within a much shorter first screen. */
   .hero{padding:1.9rem var(--mobile-gutter) 1.75rem;gap:1.15rem;align-items:start}
