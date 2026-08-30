@@ -51,7 +51,7 @@
     "p16:static": "node scripts/p16/validate-release.mjs && node scripts/p16/audit-links.mjs",
     "p16:links": "node scripts/p16/audit-links.mjs",
     "p16:browser": "playwright test",
-    "p16:lighthouse": "lhci autorun",
+    "p16:lighthouse": "node scripts/p16/lighthouse-audit.mjs",
     "p16:release": "npm run p16:static && npm run p16:browser && npm run p16:lighthouse"
   },
   "dependencies": {
