@@ -43,14 +43,15 @@ try{
   assert(css.includes('.geo-context-rail{position:sticky'),'Explore rail is not sticky on desktop');
   assert(css.includes('[data-view="pulse"] .metric-grid'),'Pulse compact-card treatment missing');
   assert(css.includes('.pulse-filter-bar'),'Pulse filter styling missing');
-  assert(lazy.includes("['pulse','explore','series','data']"),'optional integrations are not route-aware');
-  assert(lazy.includes("assets/countyiq-view.js")&&lazy.includes("event.detail?.view==='countyiq'"),'CountyIQ is not lazy-loaded from its route');
-  assert(lazy.includes("assets/rankings-insights.js")&&lazy.includes("event.detail?.view==='rankings'"),'Rankings & Insights is not lazy-loaded from its route');
-  console.log('IA_VIEW_POLISH_OK');
+  for(const token of ["view==='explore'","view==='compare'","view==='series'","view==='data'","assets/geo-explorer.js","assets/compare.js","assets/unit-system.js","assets/worldbank-integration.js"]){assert(lazy.includes(token),`optional integration route loading missing ${token}`);}
+  assert(lazy.includes("assets/countyiq-view.js")&&lazy.includes("view==='countyiq'"),'CountyIQ is not lazy-loaded from its route');
+  assert(lazy.includes("assets/rankings-insights.js")&&lazy.includes("view==='rankings'"),'Rankings & Insights is not lazy-loaded from its route');
+  console.log('IA_VIEW_POLISH_OK route_specific_assets=deferred');
 
   for(const required of ['.geo-feature.no-data{fill:url(#geo-no-data-pattern)','.geo-ranking-list button{','.geo-tooltip{','.geo-selected-summary{'])assert(geoCss.includes(required),`real choropleth styling missing ${required}`);
   assert(geoCss.includes('.geo-map-wrap{position:relative;overflow:hidden'),'map canvas does not contain transient labels');
-  assert(html.indexOf('assets/geo-explorer.css')<html.indexOf('assets/ux-polish.css'),'Geo Explorer foundation must load before UX polish');
+  assert(!html.includes('<link rel="stylesheet" href="assets/geo-explorer.css">'),'Geo Explorer CSS must remain off the homepage cold-load path');
+  assert(lazy.includes("KDA.loadStyle('assets/geo-explorer.css'"),'Geo Explorer foundation stylesheet must load with the Explore route');
   for(const dead of ['.county-cell{','.kenya-map{','.map-tooltip{','.map-panel{','.map-section{']){
     assert(!baseCss.includes(dead),`dead schematic-map CSS remains in base stylesheet: ${dead}`);
     assert(!geoCss.includes(dead),`dead schematic-map CSS was resurrected in Geo stylesheet: ${dead}`);
@@ -70,7 +71,7 @@ try{
   console.log('IA_PHASE0_CLEANUP_OK');
 
   assert(schema.includes("'proxy'")&&schema.includes("geographic_method <> 'proxy' OR notes IS NOT NULL"),'governed proxy geographic method is not formalised');
-  assert(compare.includes('assets/compare-life-natural.css'),'current natural-language Life Elsewhere treatment is not loaded from main');
+  assert(compare.includes('assets/compare-life-natural.css')||lazy.includes('assets/compare-life-natural.css'),'current natural-language Life Elsewhere treatment is not available from the Compare route');
   console.log('IA_BRANCH_RECONCILIATION_OK');
   console.log('IA_ROUTED_VIEWS_ALL_OK');
 }catch(error){
