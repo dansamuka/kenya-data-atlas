@@ -367,7 +367,7 @@
     {
       "id": "P16",
       "title": "Real-browser accessibility, SEO and performance release audit",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Harden the public product with real-browser, accessibility, performance and link-integrity gates rather than DOM-only smoke checks.",
       "outputs": [
         "Playwright browser smoke matrix",
@@ -392,7 +392,7 @@
     {
       "id": "P17",
       "title": "Final reproducibility, governance and v1.0 release",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Close the repository against one final completion ledger and publish a defensible v1.0 state only after reproducibility, real-browser and deployment gates pass.",
       "outputs": [
         "full deterministic rebuild",
