@@ -35,7 +35,7 @@ Already complete and not to be restarted without a regression/correction:
 - P05 47-county education, economic-structure, agriculture and infrastructure breadth package, adding 14 source-backed county indicators and taking CountyIQ to 34 fully county-covered indicators across 7 domains.
 - P16 real-browser/accessibility/SEO/performance release audit, including Chromium/Firefox/WebKit smoke and axe checks, Lighthouse budgets, mobile focus/overflow checks, crawlability and reproducible link auditing.
 
-With P00–P13, P15 and P16 complete, the only remaining v1.0 phase is **final reproducibility, governance, deployment and release closeout (P17)**. P14 Opportunity Finder is explicitly deferred to v1.1 Beta because programme freshness requires continuing maintenance.
+With P00–P16 complete (including P14 as a separately governed **v1.1 Beta** action layer), the only remaining v1.0 phase is **final reproducibility, governance, deployment and release closeout (P17)**. P14 programme freshness remains an ongoing maintenance obligation but is not a v1.0 blocker.
 
 ---
 
@@ -268,15 +268,26 @@ Release evidence: 47/47 CIDP coverage, at least four non-CIDP 47-county evidence
 
 ## P14 — Action & Opportunity Finder Beta
 
-**Status: deferred.**
+**Status: complete.**
 
-**Target:** v1.1 Beta. This phase is intentionally not a v1.0 blocker because live opportunity/deadline accuracy requires an ongoing freshness operation after launch.
+**Target:** v1.1 Beta. P14 is implemented but remains separately governed from the v1.0 statistical release because live programme accuracy requires continuing freshness review.
 
-Build the action layer after the canonical/evidence foundations rather than as a small national-programme list. Connect published P07 gaps and P10/P11 context to a verified, date-aware programme registry.
+P14 adds a verified, date-aware programme registry and a lazy CountyIQ Action & Opportunity Finder. The initial Beta uses a bounded set of official programme/application surfaces rather than attempting an unmaintainable national directory.
 
-Each live record needs programme/funder, primary URL, beneficiary and geographic eligibility, sector, application method, opening/deadline or rolling status, verification date, next-review date and explicit live/paused/closed/unknown state. Amounts, rates and deadlines are shown only when source-backed.
+Implemented release surface:
 
-**Exit:** stale or unverified programmes cannot appear as live, and every match rationale is reproducible from programme rules plus displayed county evidence. Ship this surface as Beta because freshness requires continuing maintenance.
+- versioned programme seed and generated public registry;
+- explicit live/paused/closed/expired/unknown states plus browser-side review-due downgrade after the next-review date;
+- beneficiary, sector, geography and application-method eligibility fields;
+- source-backed amount/window claims, with conflicting official terms withheld rather than guessed;
+- reproducible P07 gap-to-programme matching through declarative indicator triggers;
+- contextual nationwide opportunities clearly separated from measured county-gap matches;
+- lazy CountyIQ Beta UI that preserves the P01 first-paint architecture;
+- dedicated P14 build/validation and maintenance protocol.
+
+Release evidence: the P14 validator proves trigger indicators exist in the canonical CountyIQ mart, reproduces matches from unfavourable P07 gap objects, enforces freshness/source rules and checks the responsive UI. The existing Atlas deterministic rebuild, full validation suite, geometry audit and P16 real-browser gates remain required before merge.
+
+**Exit:** stale or unverified programmes cannot appear as currently verified live; every match rationale is reconstructible from the programme registry plus displayed P07 county evidence; county relevance never establishes personal eligibility. See `docs/P14-ACTION-OPPORTUNITY-FINDER.md`.
 
 ---
 
@@ -353,9 +364,9 @@ Then:
 
 The v1.0 sequence is now:
 
-`P00–P13 complete → P15 complete → P16 complete → P17 next → v1.0`
+`P00–P16 complete → P17 next → v1.0`
 
-P14 is explicitly deferred to `v1.1 Beta`; P17 must not weaken evidence or browser gates merely to pull that maintenance-heavy action layer into v1.0.
+P14 is complete as a separately governed `v1.1 Beta` action layer. Its ongoing programme-freshness operation remains outside the v1.0 release gate; P17 must preserve all evidence, reproducibility and browser thresholds.
 
 ## Session completion protocol
 

@@ -1,0 +1,471 @@
+{
+  "schema_version": "kda.opportunity-registry.v1",
+  "meta": {
+    "phase": "P14",
+    "release_label": "v1.1 Beta",
+    "verification_date": "2026-08-30",
+    "programme_count": 9,
+    "live_count": 9,
+    "freshness_policy": {
+      "review_interval_days": 31,
+      "live_states": [
+        "live"
+      ],
+      "non_live_states": [
+        "paused",
+        "closed",
+        "expired",
+        "unknown"
+      ],
+      "rule": "A programme may be labelled live only when an official primary source currently exposes an application, registration or active product surface. Live records require verified_at and next_review_at. Amounts, fees, rates and deadlines are displayed only when a cited primary source supports the claim.",
+      "stale_rule": "If next_review_at is in the past, the public UI must downgrade the record to review_due and must not present it as currently live until re-verified."
+    },
+    "matching_policy": {
+      "version": "P14-match-v1",
+      "gap_match": "A programme with relevance.mode=gap is relevant when the selected county has an unfavourable P07 gap whose indicator_code appears in trigger_indicators.",
+      "contextual_match": "A programme with relevance.mode=contextual is shown as nationwide context, not as evidence that the county has a measured gap.",
+      "personal_eligibility": "County relevance never implies that a person, group or business is eligible. Users must check the programme rules on the official primary source."
+    }
+  },
+  "programmes": [
+    {
+      "id": "P14-HUSTLER-GROUP",
+      "name": "Hustler Fund — Group Loan",
+      "provider": "Financial Inclusion Fund (Hustler Fund)",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "digital_continuous_access",
+      "window_note": "The official Hustler Fund currently exposes the Group Loan product and USSD access path.",
+      "beneficiaries": [
+        "groups of Kenyan adults",
+        "micro and small enterprise groups"
+      ],
+      "sectors": [
+        "enterprise",
+        "trade",
+        "services",
+        "agriculture"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "digital"
+      },
+      "eligibility_summary": "Group members must meet the published Hustler Fund onboarding requirements; groups have at least 10 members and use the supported mobile-network/USSD process.",
+      "application_method": "Create or join a group and apply digitally through USSD *254# / the supported Hustler Fund channel.",
+      "amount": {
+        "currency": "KES",
+        "max": 1000000,
+        "label": "Group limit up to KES 1,000,000, subject to scoring and product rules"
+      },
+      "terms_note": null,
+      "primary_url": "https://www.hustlerfund.go.ke/group-loan-product",
+      "application_url": "https://www.hustlerfund.go.ke/group-loan-product",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "group access",
+        "minimum group size",
+        "maximum group limit",
+        "USSD channel"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Micro-enterprise and livelihoods relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-KIE-CREDIT",
+      "name": "Kenya Industrial Estates — Industrial Credit",
+      "provider": "Kenya Industrial Estates",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "no_fixed_deadline_published",
+      "window_note": "KIE currently exposes an online funding form and industrial-credit service; no fixed closing date is stated.",
+      "beneficiaries": [
+        "micro enterprises",
+        "small and medium enterprises",
+        "manufacturing and value-add businesses"
+      ],
+      "sectors": [
+        "manufacturing",
+        "agro-industry",
+        "value addition",
+        "industrial services"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "KIE branch / online"
+      },
+      "eligibility_summary": "Businesses in manufacturing/value addition and qualifying services; working-capital applicants generally require an operating track record and appraisal under KIE rules.",
+      "application_method": "Submit the official KIE online funding form or engage a KIE branch for appraisal.",
+      "amount": null,
+      "terms_note": "Official KIE pages currently show differing loan-range figures. The Finder therefore withholds a single headline amount and directs applicants to confirm current terms with KIE.",
+      "primary_url": "https://kenyaindustrialestates.go.ke/get-loan/",
+      "application_url": "https://kenyaindustrialestates.go.ke/get-loan/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "active funding form",
+        "business eligibility",
+        "industrial-credit purpose"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Industrial enterprise and livelihoods relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-AGPO",
+      "name": "Access to Government Procurement Opportunities (AGPO)",
+      "provider": "National Treasury",
+      "opportunity_type": "procurement_access",
+      "status": "live",
+      "window_type": "registration_open",
+      "window_note": "The official AGPO portal currently exposes account registration and access to tender information.",
+      "beneficiaries": [
+        "youth-owned enterprises",
+        "women-owned enterprises",
+        "enterprises owned by persons with disabilities"
+      ],
+      "sectors": [
+        "government procurement",
+        "goods",
+        "works",
+        "services"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "online"
+      },
+      "eligibility_summary": "Eligible Kenyan enterprises owned by youth, women or persons with disabilities and meeting the published business-registration, ownership and compliance requirements.",
+      "application_method": "Register through the AGPO portal and complete business and compliance information; certification enables access to preference and reservation opportunities.",
+      "amount": null,
+      "terms_note": null,
+      "primary_url": "https://agpo.go.ke/",
+      "application_url": "https://agpo.go.ke/register/verify-info",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "registration availability",
+        "beneficiary groups",
+        "procurement-purpose rules"
+      ],
+      "relevance": {
+        "mode": "contextual",
+        "trigger_indicators": [],
+        "label": "Nationwide procurement-access context",
+        "basis": "Shown as nationwide context only; it is not presented as a response to a measured county gap."
+      }
+    },
+    {
+      "id": "P14-UWEZO-ENDELEZA",
+      "name": "Uwezo Fund — Endeleza Loan",
+      "provider": "Uwezo Fund Oversight Board",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "rolling",
+      "window_note": "Uwezo Fund states that there is no application deadline because it is a revolving fund.",
+      "beneficiaries": [
+        "repeat Uwezo borrowers",
+        "youth groups",
+        "women groups",
+        "persons with disabilities groups"
+      ],
+      "sectors": [
+        "enterprise",
+        "agriculture",
+        "services",
+        "trade"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "constituency"
+      },
+      "eligibility_summary": "Repeat borrowers that completed and properly used the Wezesha loan and meet the published group requirements.",
+      "application_method": "Complete the Uwezo Fund application and submit it through the constituency process with evidence of completion of the initial loan.",
+      "amount": {
+        "currency": "KES",
+        "max": 500000,
+        "label": "Graduated repeat financing up to KES 500,000"
+      },
+      "terms_note": null,
+      "primary_url": "https://uwezo.go.ke/loan-products",
+      "application_url": "https://loans.uwezo.go.ke/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "repeat-borrower eligibility",
+        "maximum amount",
+        "application method",
+        "revolving/no deadline"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Livelihood and enterprise-growth relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-UWEZO-WEZESHA",
+      "name": "Uwezo Fund — Wezesha Loan",
+      "provider": "Uwezo Fund Oversight Board",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "rolling",
+      "window_note": "Uwezo Fund states that there is no application deadline because it is a revolving fund.",
+      "beneficiaries": [
+        "youth groups",
+        "women groups",
+        "persons with disabilities groups"
+      ],
+      "sectors": [
+        "enterprise",
+        "agriculture",
+        "services",
+        "trade"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "constituency"
+      },
+      "eligibility_summary": "Registered eligible groups applying through their constituency, with a group bank account and the required youth/women/PWD membership and leadership composition.",
+      "application_method": "Complete the Uwezo Fund loan application and submit it to the relevant constituency office; the online Uwezo loan portal also exposes a Start Applying path.",
+      "amount": {
+        "currency": "KES",
+        "min": 50000,
+        "max": 100000,
+        "label": "KES 50,000–100,000 for first-time Wezesha borrowers"
+      },
+      "terms_note": null,
+      "primary_url": "https://uwezo.go.ke/loan-products",
+      "application_url": "https://loans.uwezo.go.ke/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "loan range",
+        "group eligibility",
+        "application method",
+        "revolving/no deadline"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Livelihood and enterprise relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-WEF-TUINUKE",
+      "name": "Women Enterprise Fund — Tuinuke Chama Loan",
+      "provider": "Women Enterprise Fund",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "no_fixed_deadline_published",
+      "window_note": "The official product page currently invites eligible groups to apply through WEF constituency offices; no fixed closing date is stated on that page.",
+      "beneficiaries": [
+        "registered women self-help groups"
+      ],
+      "sectors": [
+        "enterprise",
+        "agriculture",
+        "services",
+        "trade"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "constituency",
+        "coverage_note": "WEF states that services are available in all 290 constituencies."
+      },
+      "eligibility_summary": "Registered self-help groups of 10–30 women aged 18+, registered for at least three months, with an active commercial bank account and WEF financial-literacy training.",
+      "application_method": "Visit the nearest Women Enterprise Fund constituency office, complete the loan form and submit the required group and bank documents.",
+      "amount": {
+        "currency": "KES",
+        "min": 100000,
+        "max": 750000,
+        "label": "KES 100,000–750,000 across published graduation cycles"
+      },
+      "terms_note": null,
+      "primary_url": "https://wef.go.ke/tuinuke-loan/",
+      "application_url": "https://wef.go.ke/tuinuke-loan/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "loan cycles",
+        "eligibility",
+        "application method",
+        "all-constituency service coverage"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Women-enterprise and livelihoods relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-YEDF-ASSET",
+      "name": "Youth Enterprise Development Fund — Asset Finance Loan",
+      "provider": "Youth Enterprise Development Fund",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "no_fixed_deadline_published",
+      "window_note": "The official product page currently publishes the asset-finance facility; no fixed closing date is stated.",
+      "beneficiaries": [
+        "youth entrepreneurs",
+        "existing youth-owned businesses"
+      ],
+      "sectors": [
+        "enterprise",
+        "transport",
+        "agriculture",
+        "manufacturing",
+        "services"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "county"
+      },
+      "eligibility_summary": "Youth entrepreneurs seeking business assets; financed assets serve as primary security and additional security may apply for some asset classes.",
+      "application_method": "Access Youth Fund services through county offices and the published loan application process.",
+      "amount": {
+        "currency": "KES",
+        "max": 5000000,
+        "label": "Up to KES 5,000,000; YEDF finances up to 75% of eligible asset value"
+      },
+      "terms_note": null,
+      "primary_url": "https://www.youthfund.go.ke/savings-based-loans/",
+      "application_url": "https://www.youthfund.go.ke/loan-application-forms/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "maximum amount",
+        "financing share",
+        "asset eligibility",
+        "security structure"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Productive enterprise and livelihoods relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-YEDF-GROUP",
+      "name": "Youth Enterprise Development Fund — Group Loans",
+      "provider": "Youth Enterprise Development Fund",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "no_fixed_deadline_published",
+      "window_note": "The official YEDF product and application-form pages currently expose group loans and application forms; no fixed closing date is stated.",
+      "beneficiaries": [
+        "youth groups",
+        "youth-owned enterprises"
+      ],
+      "sectors": [
+        "enterprise",
+        "agriculture",
+        "services",
+        "trade"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "county"
+      },
+      "eligibility_summary": "Registered groups with at least five members, at least 70% youth aged 18–34 and 100% youth leadership, plus a group bank account and required application documents.",
+      "application_method": "Use YEDF loan application forms and submit through Youth Fund county offices; YEDF states that county offices guide vetting, training and repayment steps.",
+      "amount": {
+        "currency": "KES",
+        "min": 100000,
+        "max": 1000000,
+        "label": "Group financing graduates from KES 100,000 up to KES 1,000,000"
+      },
+      "terms_note": null,
+      "primary_url": "https://www.youthfund.go.ke/constituency-based-loan/",
+      "application_url": "https://www.youthfund.go.ke/loan-application-forms/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "group eligibility",
+        "loan graduation",
+        "application forms",
+        "county access route"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Youth-enterprise and livelihoods relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    },
+    {
+      "id": "P14-YEDF-VIBE",
+      "name": "Youth Enterprise Development Fund — VIBE Blue Economy Loan",
+      "provider": "Youth Enterprise Development Fund",
+      "opportunity_type": "loan",
+      "status": "live",
+      "window_type": "no_fixed_deadline_published",
+      "window_note": "The official YEDF VIBE product page is currently published; no fixed closing date is stated.",
+      "beneficiaries": [
+        "youth entrepreneurs in blue-economy activities"
+      ],
+      "sectors": [
+        "fisheries",
+        "aquaculture",
+        "marine tourism",
+        "maritime transport",
+        "coastal conservation",
+        "blue economy"
+      ],
+      "geography": {
+        "scope": "national",
+        "application_level": "county"
+      },
+      "eligibility_summary": "Youth seeking to start or grow qualifying blue-economy ventures, including fisheries, aquaculture, marine tourism, maritime transport and related activities.",
+      "application_method": "Use the Youth Fund loan application process and county offices for assessment and submission.",
+      "amount": {
+        "currency": "KES",
+        "min": 50000,
+        "max": 1000000,
+        "label": "KES 50,000–1,000,000"
+      },
+      "terms_note": null,
+      "primary_url": "https://www.youthfund.go.ke/vijana-baharia-loan/",
+      "application_url": "https://www.youthfund.go.ke/loan-application-forms/",
+      "verified_at": "2026-08-30",
+      "next_review_at": "2026-09-30",
+      "source_claims": [
+        "sector scope",
+        "loan range",
+        "loan term"
+      ],
+      "relevance": {
+        "mode": "gap",
+        "trigger_indicators": [
+          "IND-LABOUR-FORCE-PARTICIPATION"
+        ],
+        "label": "Blue-economy livelihoods relevance",
+        "basis": "Shown as a gap match only when the selected county's published P07 labour-force participation measure is below its selected peer/national benchmark; this is a relevance signal, not a causal claim."
+      }
+    }
+  ]
+}

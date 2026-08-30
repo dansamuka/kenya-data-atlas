@@ -318,7 +318,7 @@
     {
       "id": "P14",
       "title": "Action & Opportunity Finder Beta",
-      "status": "deferred",
+      "status": "complete",
       "session_goal": "Connect CountyIQ gaps and county context to a verified, date-aware opportunity registry without presenting stale or speculative funding information as live.",
       "outputs": [
         "opportunity registry and freshness policy",
@@ -338,7 +338,7 @@
         "P12"
       ],
       "target_release": "v1.1-beta",
-      "defer_reason": "Opportunity and funding programme freshness creates a continuing maintenance obligation; the core Atlas can reach a defensible v1.0 without making this Beta action layer a launch blocker."
+      "completion_note": "Implemented as a bounded v1.1 Beta on 2026-08-30 with an evidence-gated programme registry, monthly freshness review, reproducible P07 gap matching and lazy CountyIQ UI. Ongoing programme freshness remains a maintenance obligation and does not become a v1.0/P17 blocker."
     },
     {
       "id": "P15",
