@@ -1,5 +1,5 @@
 name: Rankings and results release
-# rerun after nested county-evidence join correction
+# rerun after results/evidence and legacy-validator corrections
 on:
   push:
     branches: [feature/rankings-results-release]
@@ -25,6 +25,8 @@ jobs:
           python-version: '3.12'
       - name: Apply results-first route migration
         run: node scripts/results/apply-rankings-release.mjs
+      - name: Update retired-ranking regression guard
+        run: node scripts/results/patch-native-rankings-validator.mjs
       - name: Install dependencies
         run: npm ci
       - name: Install geometry audit dependency
@@ -38,7 +40,7 @@ jobs:
       - name: Remove retired UI and one-shot tooling
         run: |
           rm -f assets/methods-comparability.js assets/methods-comparability.css scripts/ui/validate-methods-comparability.mjs
-          rm -f scripts/results/apply-rankings-release.mjs .github/workflows/rankings-results-release.yml
+          rm -f scripts/results/apply-rankings-release.mjs scripts/results/patch-native-rankings-validator.mjs .github/workflows/rankings-results-release.yml
           git diff --check
       - name: Commit validated rankings release candidate
         run: |
