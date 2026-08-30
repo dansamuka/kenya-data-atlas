@@ -46,8 +46,9 @@ try{
   assert(nonCidp.length>=3,`requires at least three additional document families, found ${nonCidp.length}`);
   for(const required of ['budget_implementation','audit','cfsp','cbrop'])assert(familyCounties.get(required)?.size===47,`${required} evidence doorway must cover 47 counties`);
   assert(registry.meta.family_coverage.cidp?.county_count===47,'meta CIDP coverage must be 47');
-  for(const token of ['id="ciq-evidence-hub"','id="ciq-evidence-search"','id="ciq-evidence-family"','assets/evidence-hub.css'])assert(index.includes(token),`index missing ${token}`);
-  for(const token of ['assets/evidence-hub.js','KDAEvidenceHub'])assert(lazy.includes(token),`lazy CountyIQ loader missing ${token}`);
+  for(const token of ['id="ciq-evidence-hub"','id="ciq-evidence-search"','id="ciq-evidence-family"'])assert(index.includes(token),`index missing ${token}`);
+  for(const token of ['assets/evidence-hub.js','assets/evidence-hub.css','KDAEvidenceHub'])assert(lazy.includes(token),`lazy CountyIQ loader missing ${token}`);
+  assert(!index.includes('<link rel="stylesheet" href="assets/evidence-hub.css">'),'Evidence Hub CSS must stay off the homepage cold-load path');
   for(const token of ['verified_document','verified_source_page','verified_source_collection','not_published','not_found','inaccessible'])assert(ui.includes(token),`UI must distinguish state ${token}`);
   assert(css.includes('.evidence-hub-list')&&css.includes('.evidence-state'),'Evidence Hub styling missing');
   assert(pkg.scripts['evidence:build']&&pkg.scripts['evidence:validate'],'package scripts must expose P13 build/validate');
