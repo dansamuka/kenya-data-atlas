@@ -4,6 +4,7 @@ import vm from 'node:vm';
 
 const root=process.cwd();
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const exists=p=>fs.existsSync(path.join(root,p));
 const assert=(condition,message)=>{if(!condition)throw new Error(`CountyIQ runtime validation: ${message}`);};
 
 function parseCsv(text){
@@ -51,7 +52,7 @@ function validateLegacyResilience(){
   console.log('COUNTYIQ_LEGACY_RESILIENCE_OK');
 }
 function validateIntegratedRuntime(){
-  const js=read('assets/countyiq-view.js'),lazy=read('assets/lazy-integrations.js'),html=read('index.html'),redirect=read('county-dashboard.html');
+  const js=read('assets/countyiq-view.js'),lazy=read('assets/lazy-integrations.js'),html=read('index.html');
   assert(html.includes('data-view="countyiq"')&&html.includes('id="countyiq-view"'),'CountyIQ is not an Atlas routed view');
   assert(lazy.includes("KDA.loadScript('assets/countyiq-view.js'")&&lazy.includes("event.detail?.view==='countyiq'"),'CountyIQ route is not lazy loaded');
   assert(js.includes('const FALLBACK=[')&&js.includes("mode='sample'")&&js.includes("mode='production'"),'integrated runtime lacks production/fallback states');
@@ -59,8 +60,9 @@ function validateIntegratedRuntime(){
   assert(!js.includes('data/sprint1/')&&!js.includes('KDA.csv('),'integrated CountyIQ still directly joins Sprint CSV files');
   assert(!js.includes('roadmap.json')&&!js.includes('window.d3'),'integrated CountyIQ retains independent roadmap/D3 dependency');
   assert(js.includes('renderFailure')&&lazy.includes('countyIqFailure'),'CountyIQ route has no nonfatal failure path');
-  assert(redirect.includes('index.html#/countyiq')&&!redirect.includes('assets/countyiq.js'),'standalone CountyIQ application is still bootable');
-  console.log('COUNTYIQ_INTEGRATED_MART_NONFATAL_OK');
+  assert(lazy.includes('hardenCountyIQMart')&&lazy.includes('ranking.eligible===true')&&lazy.includes('ranking.peer_group=null'),'CountyIQ loader must neutralise null ranking percentiles before rendering');
+  assert(!exists('county-dashboard.html'),'retired standalone County Dashboard page must not exist');
+  console.log('COUNTYIQ_INTEGRATED_MART_NONFATAL_OK null_percentile_guard=on');
 }
 function validateUiLabels(){const js=read('assets/countyiq.js'),css=read('assets/countyiq.css');assert(js.includes('Demo only:'),'synthetic preview missing Demo-only warning');assert(js.includes('These are not live programmes.'),'opportunity preview must state records are not live');assert(css.includes('.badge.demo')&&css.includes('.data-mode-note.sample'),'sample/demo visual states must be styled');console.log('COUNTYIQ_DEMO_LABELS_OK');}
 try{validateSample();validateLegacyResilience();validateIntegratedRuntime();validateUiLabels();console.log('COUNTYIQ_RUNTIME_ALL_OK');}catch(error){console.error(error.message||error);process.exit(1);}
