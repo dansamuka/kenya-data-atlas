@@ -17,6 +17,16 @@
 .compare-hub h1,.compare-hub h2,.compare-hub h3,.compare-hub .compare-cell-value,.compare-hub .life-match-count strong,
 .countyiq-route h1,.countyiq-route h2,.countyiq-route h3,.countyiq-route .ciq-metric strong,.countyiq-route .ciq-fiscal strong,.countyiq-route .ciq-social-metric strong{font-family:Georgia,serif!important}
 
+/* The place-facts panel is inserted by a lazy hardening module after its JSON
+ * resolves. Its reservation must exist in a critical stylesheet, not only in
+ * that same lazy module's CSS, otherwise script/CSS arrival order can create a
+ * desktop layout shift. No extra request is introduced by duplicating these two
+ * structural rules here. */
+@media(min-width:761px){
+  #ciq-metrics:not(:has(+ #ciq-place-facts)){margin-bottom:360px}
+  #ciq-place-facts{display:flow-root;min-height:360px}
+}
+
 @media(max-width:760px){
   /* Home: keep the value proposition, search and pulse visible within a much shorter first screen. */
   .hero{padding:1.9rem var(--mobile-gutter) 1.75rem;gap:1.15rem;align-items:start}
