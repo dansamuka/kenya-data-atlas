@@ -33,6 +33,7 @@ try{
 
   for(const token of ['hashchange','popstate','data-view-link','window.KDARouter','canonicalHash','#/explore/','countyiq'])assert(router.includes(token),`router missing ${token}`);
   assert(router.includes("'#map/'")||router.includes("startsWith('#map/')"),'legacy map hashes are not canonicalised');
+  assert(router.includes('releaseInitialGate')&&router.includes("INITIAL_STABILITY_GATES=new Set(['compare','countyiq'])"),'direct heavy-route stability gate missing');
   assert(routed.includes("params.get('places')"),'Compare direct-route places restore is missing');
   assert(routed.includes("[['from','#life-home'],['to','#life-away']]")&&routed.includes("r.params.get(param)"),'Compare life-route from/to restore is missing');
   assert(routed.includes("params.set('places'")&&routed.includes("params.set('from'")&&routed.includes("params.set('to'"),'Compare state is not written back to shareable URLs');
@@ -43,9 +44,10 @@ try{
   assert(css.includes('.geo-context-rail{position:sticky'),'Explore rail is not sticky on desktop');
   assert(css.includes('[data-view="pulse"] .metric-grid'),'Pulse compact-card treatment missing');
   assert(css.includes('.pulse-filter-bar'),'Pulse filter styling missing');
-  for(const token of ["view==='explore'","view==='compare'","view==='series'","view==='data'","assets/geo-explorer.js","assets/compare.js","assets/unit-system.js","assets/worldbank-integration.js"]){assert(lazy.includes(token),`optional integration route loading missing ${token}`);}
+  for(const token of ["view==='explore'","view==='compare'","view==='series'","['pulse','series','data'].includes(view)","assets/geo-explorer.js","assets/compare.js","assets/unit-system.js","assets/worldbank-integration.js"]){assert(lazy.includes(token),`optional integration route loading missing ${token}`);}
   assert(lazy.includes("assets/countyiq-view.js")&&lazy.includes("view==='countyiq'"),'CountyIQ is not lazy-loaded from its route');
   assert(lazy.includes("assets/rankings-insights.js")&&lazy.includes("view==='rankings'"),'Rankings & Insights is not lazy-loaded from its route');
+  assert(lazy.includes("releaseInitialRoute('compare')")&&lazy.includes("releaseInitialRoute('countyiq')"),'stable heavy-route reveal hooks missing');
   console.log('IA_VIEW_POLISH_OK route_specific_assets=deferred');
 
   for(const required of ['.geo-feature.no-data{fill:url(#geo-no-data-pattern)','.geo-ranking-list button{','.geo-tooltip{','.geo-selected-summary{'])assert(geoCss.includes(required),`real choropleth styling missing ${required}`);
