@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   browser-diagnostic:
-    if: ${{ !contains(github.event.head_commit.message, 'P16 debug browser failure') }}
+    if: ${{ !contains(github.event.head_commit.message, 'P16 debug browser summary') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
@@ -37,13 +37,19 @@ jobs:
       - name: Install Playwright browser matrix
         run: npx playwright install --with-deps chromium firefox webkit
 
-      - name: Run browser gate and capture exact output
+      - name: Run browser gate and capture compact failure summary
         id: browser
         shell: bash
         run: |
           set +e
-          npm run p16:browser 2>&1 | tee P16-BROWSER-FAILURE.txt
+          npm run p16:browser 2>&1 | tee /tmp/p16-browser.log
           code=${PIPESTATUS[0]}
+          {
+            echo "P16 browser diagnostic"
+            echo "exit_code=$code"
+            echo
+            grep -E -A 16 -B 6 '([0-9]+ failed|Error:|Expected:|Received:|color-contrast|scrollWidth|console:|strict mode violation|TimeoutError|toBeLessThanOrEqual|toEqual\(\[\]\))' /tmp/p16-browser.log | tail -n 900 || true
+          } > P16-BROWSER-SUMMARY.txt
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit 0
 
@@ -52,8 +58,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add P16-BROWSER-FAILURE.txt
-          git commit -m "P16 debug browser failure"
+          rm -f P16-BROWSER-FAILURE.txt
+          git add -A P16-BROWSER-SUMMARY.txt P16-BROWSER-FAILURE.txt
+          git commit -m "P16 debug browser summary"
           git push origin HEAD:p16-release-hardening-20260830
           exit 1
 
