@@ -9,9 +9,18 @@
 button{min-height:44px}
 .icon-button{min-width:44px;min-height:44px}
 .source-note,.search-shell>p,.metric-card small,.search-box kbd{color:#59645f!important}
-.geo-map-meta,.geo-map-meta span,#geo-unit-context>span{color:#59645f!important}
+.geo-map-meta,.geo-map-meta span,#geo-unit-context>span,.geo-ranking-list .geo-rank-nodata{color:#59645f!important}
+
+/* Light-background secondary copy must clear the normal-text 4.5:1 gate. */
+.rankings-route :where(.ri-table td small,.ri-recognition-card small,.ri-evidence-card small,.ri-evidence-card span,.ri-empty){color:#59645f!important}
+#compare [data-compare-panel="direct"] :where(.compare-metric-meta,.compare-cell-meta,.compare-cell-missing,small){color:#59645f!important}
+#series :where(small,.series-meta small,.source-note){color:#59645f!important}
+#catalogue :where(small,.source-note){color:#59645f!important}
+
 .ciq-metric small,.ciq-card-head small,.ciq-benchmark small,.ciq-fiscal small,.ciq-fiscal-insights small,.ciq-fiscal-insights span,.ciq-fiscal-legend,.ciq-fiscal-years,.ciq-denominator p,.ciq-denominator small{color:#59645f!important}
-.evidence-item-foot small{color:#59645f!important}
+.evidence-item-foot small,#ciq-evidence-summary span{color:#59645f!important}
+/* Published snapshot pill sits on the dark CountyIQ green treatment. */
+#countyiq-view .ciq-beta-pill{color:#ffffff!important}
 
 /* Keep deliberately wide CountyIQ tables scrollable locally, not at document root. */
 #countyiq-view{max-width:100%;overflow-x:clip}
