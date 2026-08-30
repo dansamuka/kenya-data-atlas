@@ -1,0 +1,22 @@
+/* P16 release-hardening layer: keyboard focus, reduced motion and high-contrast resilience. */
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{
+  outline:3px solid #0b6b55;
+  outline-offset:3px;
+}
+.skip-link{color:#17211d;text-decoration:none;font-weight:700;border:2px solid #17211d;border-radius:6px}
+#main:focus{outline:none}
+button{min-height:44px}
+.icon-button{min-width:44px;min-height:44px}
+.source-note{color:#59645f!important}
+.search-shell>p{color:#59645f}
+.metric-card small{color:#59645f}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .pulse-card{transform:none}
+}
+@media (prefers-contrast:more){
+  :root{--muted:#46504b;--line:#aeb7b1}
+  a{text-decoration-thickness:2px}
+  button,select,input{border-color:#59645f!important}
+}
