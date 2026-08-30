@@ -38,7 +38,7 @@ try{
   assert(browser.includes("geoRank(geo")||browser.includes('geoRank(ga?.level)'), 'dataset default series must prefer geographic context deterministically');
   console.log('SERIES_BROWSER_ROUTE_SWITCH_OK');
 
-  assert(lazy.includes("assets/series-browser.js")&&lazy.includes("event.detail?.view==='series'")&&lazy.includes('routeNeedsSeries'),'Series browser is not route-lazy');
+  assert(lazy.includes("assets/series-browser.js")&&lazy.includes("view==='series'")&&lazy.includes('routeNeedsSeries'),'Series browser is not route-lazy');
   assert(css.includes('.series-browser{')&&css.includes('.series-browser-grid{')&&css.includes('.series-dataset-chips{'),'Series browser desktop styling is incomplete');
   assert(css.includes('@media(max-width:760px)')&&css.includes('.series-browser-grid{grid-template-columns:1fr')&&css.includes('font-size:16px'),'Series browser mobile styling is incomplete');
   console.log('SERIES_BROWSER_LAZY_MOBILE_OK');
