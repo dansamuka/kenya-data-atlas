@@ -10,22 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
-  <link rel="stylesheet" href="assets/geo-explorer.css">
   <link rel="stylesheet" href="assets/ux-polish.css">
-  <link rel="stylesheet" href="assets/unit-system.css">
-  <link rel="stylesheet" href="assets/worldbank-integration.css">
-  <link rel="stylesheet" href="assets/compare.css">
-  <link rel="stylesheet" href="assets/countyiq-view.css">
-  <link rel="stylesheet" href="assets/evidence-hub.css">
-  <link rel="stylesheet" href="assets/rankings-insights.css">
-  <link rel="stylesheet" href="assets/pre-p05-hardening.css">
-  <link rel="stylesheet" href="assets/p05-breadth.css">
   <link rel="stylesheet" href="assets/routed-views.css">
   <link rel="stylesheet" href="assets/mobile.css">
+  <link rel="stylesheet" href="assets/mobile-overhaul.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="demo-banner"><span>Independent demonstration</span> Private-citizen project · illustrative figures are clearly labelled.</div>
   <header class="site-header">
     <a class="brand" href="#/" aria-label="Kenya Data Atlas home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Kenya <b>Data Atlas</b></span></a>
     <button class="menu-button" aria-expanded="false" aria-controls="main-nav">Menu</button>
@@ -46,10 +37,10 @@
       <div class="hero-copy">
         <p class="eyebrow">One country · every place · traceable evidence</p>
         <h1>Understand Kenya.<br><em>Place by place.</em></h1>
-        <p class="hero-intro">Explore public data from Kenya to county, constituency and ward—then compare places, follow trends and inspect every source.</p>
+        <p class="hero-intro">Explore public data from Kenya to ward level, compare places and trace each figure back to its source.</p>
         <div class="search-shell" role="search">
           <label for="atlas-search">Search Kenya</label>
-          <div class="search-box"><span aria-hidden="true">⌕</span><input id="atlas-search" autocomplete="off" placeholder="County, constituency, ward or indicator…" aria-describedby="search-help"><kbd>⌘ K</kbd></div>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input id="atlas-search" autocomplete="off" placeholder="Search places, indicators, datasets or documents…" aria-describedby="search-help"><kbd>⌘ K</kbd></div>
           <div class="search-results" id="search-results" role="listbox" hidden></div>
           <p id="search-help">Try <button data-search="Nakuru">Nakuru</button>, <button data-search="Kaimbaga">Kaimbaga Ward</button> or <button data-search="Inflation">Inflation</button></p>
         </div>
@@ -66,7 +57,7 @@
     </section>
 
     <section class="section home-glance" id="home-glance" data-view="home">
-      <div class="section-heading"><div><p class="eyebrow">At a glance</p><h2>A short national snapshot.</h2></div><p>Six source-backed signals for orientation. The complete indicator collection has its own Pulse view.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">At a glance</p><h2>A short national snapshot.</h2></div><p>Six source-backed signals for quick orientation. Open National Pulse for the full collection.</p></div>
       <div class="metric-grid" id="home-glance-grid"><div class="source-note">Loading national snapshot…</div></div>
       <div class="home-glance-actions"><a href="#/pulse">Open the full National Pulse →</a></div>
     </section>
@@ -81,15 +72,15 @@
         <button type="button" data-pulse-filter="environment" aria-pressed="false">Environment</button>
         <button type="button" data-pulse-filter="institutions" aria-pressed="false">Institutions</button>
       </div>
-      <div class="metric-grid" id="pulse-grid"><div class="source-note">Loading compact first-paint data…</div></div>
+      <div class="metric-grid" id="pulse-grid"><div class="source-note">Loading national indicators…</div></div>
     </section>
 
     <section class="section geo-section" id="geo-explorer" data-view="explore" hidden>
       <div class="geo-workspace">
         <aside class="geo-context-rail" aria-label="Explore context">
           <div class="geo-header">
-            <div><p class="eyebrow" id="geo-eyebrow">Geo Explorer · lazy data loading</p><h2 id="geo-heading">Map data loads when Explore opens.</h2></div>
-            <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"><option>Map data loads on demand…</option></select></label>
+            <div><p class="eyebrow" id="geo-eyebrow">Explore Kenya</p><h2 id="geo-heading">Choose a place and indicator.</h2></div>
+            <label class="select-label">Indicator<select id="geo-indicator" aria-label="Select indicator to map"><option>Choose an indicator…</option></select></label>
           </div>
           <nav class="geo-breadcrumb" id="geo-breadcrumb" aria-label="Geography breadcrumb"></nav>
         </aside>
@@ -98,9 +89,9 @@
             <div class="geo-map-panel">
               <div class="geo-map-wrap"><svg id="geo-svg" viewBox="0 0 800 780" role="img" aria-label="Kenya statistical map"></svg><div class="geo-tooltip" id="geo-tooltip" role="status" hidden></div></div>
               <div class="geo-legend" id="geo-legend" aria-hidden="true"></div>
-              <p class="source-note" id="geo-source-note">The map, D3 and boundary files remain outside the initial page-load path.</p>
+              <p class="source-note" id="geo-source-note">Select an indicator to view available place-level data.</p>
             </div>
-            <aside class="geo-ranking-panel" aria-label="Ranking"><h3 id="geo-ranking-title">Ranking</h3><p class="geo-ranking-note" id="geo-ranking-note" hidden></p><ol class="geo-ranking-list" id="geo-ranking-list"><li class="geo-rank-nodata" style="padding:1rem">Map rankings load with the explorer.</li></ol></aside>
+            <aside class="geo-ranking-panel" aria-label="Ranking"><h3 id="geo-ranking-title">Ranking</h3><p class="geo-ranking-note" id="geo-ranking-note" hidden></p><ol class="geo-ranking-list" id="geo-ranking-list"><li class="geo-rank-nodata" style="padding:1rem">Choose an indicator to see comparable places.</li></ol></aside>
           </div>
           <div class="geo-selected-summary" id="geo-selected-summary" hidden></div>
         </div>
@@ -108,27 +99,27 @@
     </section>
 
     <section class="section profile-section" id="profile" data-view="explore" hidden>
-      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> <span id="profile-breadcrumb-county">Nakuru</span></p><label class="select-label" style="margin-top:.6rem">Select county<select id="county-picker" aria-label="Select a county to view its profile"></select></label><p class="eyebrow" id="profile-eyebrow">Area profile</p><h2 id="profile-title">County profile</h2><p>Real, published facts where they exist; unavailable local data is shown honestly rather than filled in.</p></div><div class="profile-actions"><button id="profile-download">↓ Download</button></div></div>
+      <div class="profile-head"><div><p class="breadcrumb">Kenya <span>›</span> <span id="profile-breadcrumb-county">Nakuru</span></p><label class="select-label" style="margin-top:.6rem">Select county<select id="county-picker" aria-label="Select a county to view its profile"></select></label><p class="eyebrow" id="profile-eyebrow">Area profile</p><h2 id="profile-title">County profile</h2><p>Published facts are shown where available; missing local statistics remain visibly unavailable.</p></div><div class="profile-actions"><button id="profile-download">↓ Download</button></div></div>
       <nav class="topic-tabs" aria-label="Profile topics"><button class="active">Overview</button><button>People</button><button>Economy</button><button>Health</button><button>Finance</button><button>Infrastructure</button></nav>
-      <div class="quick-facts"><div class="source-note">Loading County Core…</div></div>
+      <div class="quick-facts"><div class="source-note">Loading county facts…</div></div>
       <div class="profile-lower">
         <article class="chart-card"><p class="source-note">Loading county trend…</p></article>
-        <article class="availability-card"><small>Ward-level availability</small><h3>Honest gaps are part of the product.</h3><p>Some socioeconomic statistics are published only at county or administrative-area level. The Atlas does not automatically assign these values to wards.</p><div class="no-data"><span>—</span><div><strong>Ward poverty rate</strong><small>Data not currently available at ward level</small></div></div><button class="text-link" data-toast="Methodology view is represented in this static MVP.">Read the geography methodology →</button></article>
+        <article class="availability-card"><small>Ward-level availability</small><h3>Some data is only available at county level.</h3><p>Where a local statistic is not published, the Atlas leaves it blank rather than assigning a broader-area value.</p><div class="no-data"><span>—</span><div><strong>Ward poverty rate</strong><small>Data not currently available at ward level</small></div></div><button class="text-link" data-toast="Geographic coverage rules are documented in the Atlas methodology.">Read the geography methodology →</button></article>
       </div>
     </section>
 
     <section class="section compare-hub" id="compare" data-view="compare" hidden>
-      <div class="section-heading"><div><p class="eyebrow">Compare places</p><h2>See the whole picture, side by side.</h2><p class="compare-kicker">A dedicated comparison workspace with two views: a rigorous metric matrix and a more intuitive “what changes if I lived there?” experience.</p></div><p>Only published county observations are used. Common-period comparisons are marked clearly; missing or mismatched data stays visible instead of being filled in.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">Compare places</p><h2>See the whole picture, side by side.</h2><p class="compare-kicker">Compare published county metrics directly, or see how measurable conditions differ between two counties.</p></div><p>Common-period comparisons are marked clearly; missing or mismatched data stays visible instead of being filled in.</p></div>
       <div class="compare-mode-switch" role="tablist" aria-label="Comparison mode"><button class="active" type="button" role="tab" aria-selected="true" data-compare-mode="direct">Direct compare</button><button type="button" role="tab" aria-selected="false" data-compare-mode="life">My life elsewhere</button></div>
       <section class="compare-panel" data-compare-panel="direct" aria-label="Direct comparison">
         <div class="compare-panel-head"><div><p class="eyebrow">Direct mode</p><h3>Every available metric, one table.</h3><p>Compare two to four counties across all published county indicators. Matched-period values are safe to compare directly; other values remain side by side with an explicit period or coverage warning.</p></div><div class="compare-panel-actions"><button type="button" id="compare-add-place">＋ Add county</button><button type="button" id="compare-download">↓ Download CSV</button></div></div>
         <div class="compare-place-strip" id="compare-place-strip"></div><div id="compare-direct-summary"></div><div class="compare-matrix-wrap" id="compare-direct-table"><div class="compare-empty">Comparison data loads on demand.</div></div>
       </section>
       <section class="compare-panel compare-life-panel" data-compare-panel="life" aria-label="My life elsewhere comparison" hidden>
-        <div class="compare-panel-head"><div><p class="eyebrow">My life elsewhere</p><h3>If another county were home.</h3><p>An intuitive Kenya-to-Kenya view: how would the measurable conditions around you differ if you moved from one county to another?</p></div></div>
+        <div class="compare-panel-head"><div><p class="eyebrow">My life elsewhere</p><h3>If another county were home.</h3><p>An intuitive Kenya-to-Kenya view of how measurable county conditions differ.</p></div></div>
         <div class="compare-life-controls"><label>Where I live now<select id="life-home" aria-label="Current county"></select></label><button type="button" class="swap-life" id="life-swap" aria-label="Swap counties">⇄</button><label>Elsewhere<select id="life-away" aria-label="Elsewhere county"></select></label></div>
-        <div class="life-hero" id="life-hero"><div><h3>Comparison data loads when this workspace is opened.</h3></div></div><div class="life-cards" id="life-cards"></div>
-        <div class="life-limitations"><strong>Important:</strong> this mode compares place-level statistics, not your personal outcome. It does not infer your salary, rent, grocery bill, safety or healthcare experience unless a suitable county-level dataset is actually published in the Atlas. No county value is copied down from Kenya-level World Bank data.</div>
+        <div class="life-hero" id="life-hero"><div><h3>Choose two counties to compare.</h3></div></div><div class="life-cards" id="life-cards"></div>
+        <div class="life-limitations">This view compares published county statistics only. It does not predict your personal salary, costs, safety or healthcare experience.</div>
       </section>
     </section>
 
@@ -136,14 +127,14 @@
     <section class="section rankings-section" id="rankings-legacy" hidden aria-hidden="true"><div class="section-heading"><div><p class="eyebrow">Rankings</p><h2>Retired legacy interface.</h2></div><button class="outline-button" id="download-ranking">Download table ↓</button></div><div class="ranking-toolbar"><label>Indicator<select id="ranking-indicator"><option>Land area</option></select></label><span></span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>County</th><th>Value</th><th>Percentile</th><th>Reference</th><th>Quality</th></tr></thead><tbody id="ranking-body"></tbody></table></div></section>
 
     <section class="series-section section" id="series" data-view="series" hidden>
-      <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Every published series now has its own linkable URL, alongside observations, methods and source metadata.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Every published series has its own linkable URL, observations, methods and source metadata.</p></div>
       <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">—</div><small>Loading reference period…</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option></select><div><button>CSV</button><button>{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/></svg><span class="current-point">—</span></div><div class="series-meta"><span><small>Series ID</small>Loading…</span><span><small>Unit</small>Loading…</span><span><small>Source</small>Loading…</span><span><small>Reference</small>Loading…</span></div></div></div>
     </section>
 
     <section class="rankings-route" id="rankings-results" data-view="rankings" hidden>
       <div class="ri-hero">
-        <div><p class="eyebrow">County Rankings &amp; Insights</p><h1>See how Kenya's counties <em>compare and change.</em></h1><p>Explore the actual results produced by the Atlas: complete indicator rankings, the current development snapshot, fiscal-delivery scores, strengths and gaps, administration-period recognition and official county evidence.</p></div>
-        <aside class="ri-hero-note"><small>Current release</small><strong>47 counties · source-backed outputs</strong><span>Results are shown where the underlying evidence supports them. Missing inputs remain visibly unscored rather than estimated.</span></aside>
+        <div><p class="eyebrow">County Rankings &amp; Insights</p><h1>See how Kenya's counties <em>compare and change.</em></h1><p>Explore indicator rankings, the current development snapshot, fiscal delivery, strengths and gaps, administration-period recognition and official county evidence.</p></div>
+        <aside class="ri-hero-note"><small>Coverage</small><strong>47 counties</strong><span>Results are shown where the underlying evidence supports them; missing inputs remain visibly unscored.</span></aside>
       </div>
       <div class="ri-summary" id="ri-summary"><article><small>Loading rankings</small><strong>—</strong><span id="ri-load-state">Results load on demand.</span></article></div>
       <div class="ri-phase-strip" aria-label="Available results">
@@ -163,25 +154,25 @@
       </div>
 
       <section class="ri-panel" data-ri-panel="development">
-        <div class="ri-panel-head"><div><p class="eyebrow">Current county development snapshot</p><h2>All 47 counties, one current view.</h2><p>The broad position band is the published comparison. The exact position is shown as a diagnostic so users can inspect the underlying ordering without treating it as a settled league table.</p></div><span class="ri-count" id="ri-development-count"></span></div>
+        <div class="ri-panel-head"><div><p class="eyebrow">Current county development snapshot</p><h2>All 47 counties, one current view.</h2><p>The broad position band is the published comparison. Exact position is shown as a diagnostic so the underlying ordering remains inspectable.</p></div><span class="ri-count" id="ri-development-count"></span></div>
         <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>County</th><th>Score</th><th>Relative position</th><th>Exact position*</th><th>Plausible range</th></tr></thead><tbody id="ri-development-body"><tr><td colspan="5">Loading development snapshot…</td></tr></tbody></table></div>
-        <p class="ri-note">* Exact composite position is diagnostic. The snapshot remains constrained to the indicators that currently meet the publication requirements; historical composite movement is not published.</p>
+        <p class="ri-note">* Exact composite position is diagnostic. Historical composite movement is not published.</p>
       </section>
 
       <section class="ri-panel" data-ri-panel="fiscal" hidden>
-        <div class="ri-panel-head"><div><p class="eyebrow">County fiscal delivery · FY2024/25</p><h2>Execution, revenue and arrears control.</h2><p>Complete scores are ranked nationally. A county with a missing required published input remains in the table but is not scored.</p></div><span class="ri-count" id="ri-fiscal-count"></span></div>
+        <div class="ri-panel-head"><div><p class="eyebrow">County fiscal delivery · FY2024/25</p><h2>Execution, revenue and arrears control.</h2><p>Complete scores are ranked nationally. A county with a missing required published input remains visible but unscored.</p></div><span class="ri-count" id="ri-fiscal-count"></span></div>
         <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>Rank</th><th>County</th><th>Score</th><th>Execution</th><th>Revenue mobilisation</th><th>Arrears control</th></tr></thead><tbody id="ri-fiscal-body"><tr><td colspan="6">Loading fiscal delivery…</td></tr></tbody></table></div>
       </section>
 
       <section class="ri-panel" data-ri-panel="indicator" hidden>
-        <div class="ri-panel-head"><div><p class="eyebrow">Complete indicator leaderboards</p><h2>Every county ranking that clears the evidence gate.</h2><p>Choose an indicator to see all 47 counties with national rank, percentile, peer position and trend where history is available.</p></div></div>
+        <div class="ri-panel-head"><div><p class="eyebrow">Complete indicator leaderboards</p><h2>Every county ranking supported by the available evidence.</h2><p>Choose an indicator to see all counties with national rank, percentile, peer position and trend where history is available.</p></div></div>
         <div class="ri-controls"><label>Indicator<select id="ri-indicator-select"><option>Loading ranked indicators…</option></select></label><label>Find county<input id="ri-indicator-search" type="search" placeholder="Nakuru, Kiambu, Turkana…"></label></div>
         <div class="ri-indicator-meta" id="ri-indicator-meta"></div>
         <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>Rank</th><th>County</th><th>Latest value</th><th>Percentile</th><th>Peer rank</th><th>Trend</th><th>Interpretation</th></tr></thead><tbody id="ri-indicator-body"><tr><td colspan="7">Loading indicator rankings…</td></tr></tbody></table></div>
       </section>
 
       <section class="ri-panel" data-ri-panel="gaps" hidden>
-        <div class="ri-panel-head"><div><p class="eyebrow">County strengths and gaps</p><h2>What stands out for each county.</h2><p>These statements are generated from the same displayed county statistics and benchmark comparisons—not from separate qualitative scoring.</p></div></div>
+        <div class="ri-panel-head"><div><p class="eyebrow">County strengths and gaps</p><h2>What stands out for each county.</h2><p>Highlights use the county statistics and benchmark comparisons shown in the Atlas.</p></div></div>
         <div class="ri-controls"><label>County<select id="ri-gap-county"><option>Loading counties…</option></select></label><div></div></div>
         <div id="ri-gap-content"></div>
       </section>
@@ -189,11 +180,11 @@
       <section class="ri-panel" data-ri-panel="administration" hidden>
         <div class="ri-panel-head"><div><p class="eyebrow">Administration-period scorecards</p><h2>Baseline-to-latest fiscal change for all 47 counties.</h2><p>Compare the last full pre-election fiscal year with the latest full current-cycle year. The transition year is not used in the baseline-to-latest change.</p></div><span class="ri-count">47 county scorecards</span></div>
         <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>Current fiscal rank</th><th>County</th><th>Current fiscal score</th><th>Overall absorption change</th><th>Development absorption change</th><th>Comparison period</th></tr></thead><tbody id="ri-administration-body"><tr><td colspan="6">Loading administration scorecards…</td></tr></tbody></table></div>
-        <p class="ri-note">These are county administration-period records, not personal governor causal scores. FY2022/23 is treated as a transition/context year rather than the baseline.</p>
+        <p class="ri-note">These are county administration-period records, not personal causal scores. FY2022/23 is treated as a transition year.</p>
       </section>
 
       <section class="ri-panel" data-ri-panel="recognition" hidden>
-        <div class="ri-panel-head"><div><p class="eyebrow">Administration-period recognition</p><h2>Six reproducible county recognition categories.</h2><p>Recognition reflects published fiscal results and observed change during the administration period. It is not a personal governor causal score.</p></div></div>
+        <div class="ri-panel-head"><div><p class="eyebrow">Administration-period recognition</p><h2>Reproducible county recognition categories.</h2><p>Recognition reflects published fiscal results and observed change during the administration period.</p></div></div>
         <div class="ri-recognition-grid" id="ri-recognition-grid"></div>
       </section>
 
@@ -209,54 +200,49 @@
         <div>
           <p class="eyebrow">County intelligence · evidence first</p>
           <h1><em id="ciq-county-title">Nakuru</em> in context.</h1>
-          <p class="ciq-intro">CountyIQ turns the Atlas's published county facts into concise comparative context—without inventing a score, copying national statistics downward or attributing outcomes to an office-holder.</p>
+          <p class="ciq-intro">Published county facts, trends, peer comparisons and official source links in one concise view.</p>
         </div>
         <aside class="ciq-controls">
           <label>County<select id="ciq-county-select" aria-label="Select CountyIQ county"><option>Loading counties…</option></select></label>
-          <div class="ciq-mode" id="ciq-mode"><i></i><span>Loading source-backed county tables…</span></div>
+          <div class="ciq-mode" id="ciq-mode"><i></i><span>Loading county data…</span></div>
         </aside>
       </div>
       <div class="section ciq-body">
-        <div class="ciq-principle"><span><strong>Atlas tells you what is true.</strong> CountyIQ adds context, comparison and signal.</span><span>Current release combines published economic, fiscal, voter, health, living-standard, education, agriculture and connectivity facts; contextual place facts retain their own source dates.</span></div>
-        <div class="ciq-metrics" id="ciq-metrics"><div class="source-note" style="padding:1.5rem;grid-column:1/-1">CountyIQ loads only when this route is opened.</div></div>
+        <div class="ciq-principle"><span><strong>County data, with context.</strong> Compare the selected county with national and peer benchmarks.</span><span>Source periods stay visible so unlike dates are not silently treated as equivalent.</span></div>
+        <div class="ciq-metrics" id="ciq-metrics"><div class="source-note" style="padding:1.5rem;grid-column:1/-1">Loading county indicators…</div></div>
         <div class="ciq-grid">
-          <article class="ciq-card"><div class="ciq-card-head"><div><small>Economic trajectory</small><h2>Gross County Product</h2></div><p>Five published annual observations at current prices.</p></div><div id="ciq-trend"></div></article>
-          <article class="ciq-card"><div class="ciq-card-head"><div><small>County context</small><h2>Where it sits</h2></div><p>Ranks and medians use only the loaded county observations.</p></div><div class="ciq-benchmarks" id="ciq-benchmarks"></div></article>
+          <article class="ciq-card"><div class="ciq-card-head"><div><small>Economic trajectory</small><h2>Gross County Product</h2></div><p>Published annual observations at current prices.</p></div><div id="ciq-trend"></div></article>
+          <article class="ciq-card"><div class="ciq-card-head"><div><small>County context</small><h2>Where it sits</h2></div><p>Ranks and medians use comparable county observations.</p></div><div class="ciq-benchmarks" id="ciq-benchmarks"></div></article>
         </div>
         <div class="ciq-grid ciq-lower">
-          <article class="ciq-card ciq-fiscal-card"><div class="ciq-card-head"><div><small>Public finance</small><h2>Twelve-year fiscal experience</h2></div><p>One consolidated table · FY2013/14–FY2024/25 · common-period county comparisons only.</p></div><div class="ciq-fiscal" id="ciq-fiscal"></div><div class="ciq-fiscal-insights" id="ciq-fiscal-insights"></div><div class="ciq-fiscal-history" id="ciq-fiscal-history"></div><div class="ciq-denominator" id="ciq-denominator"></div></article>
-          <article class="ciq-card ciq-social-card"><div class="ciq-card-head"><div><small>Health & living standards</small><h2>Official county outcomes</h2></div><p>2022 survey outcomes plus the 2023 facility-census inventory. Precision is visible; survey league tables are withheld.</p></div><div class="ciq-social-grid" id="ciq-social"></div><p class="ciq-trend-note">P04 shows source-backed county estimates, not a health score. Survey point estimates are not ranked in this phase.</p></article>
-          <article class="ciq-card ciq-p05-card"><div class="ciq-card-head"><div><small>P05 breadth</small><h2>Education, economy, agriculture & connectivity</h2></div><p>County-comparable primary data across four additional domains. Values retain their source period; peer scoring waits for P06.</p></div><div class="ciq-p05-grid" id="ciq-p05-breadth"></div><p class="ciq-p05-note">P05 broadens the evidence base; it does not convert raw school counts, sector size, crop output or connectivity rates into an overall county score.</p></article>
+          <article class="ciq-card ciq-fiscal-card"><div class="ciq-card-head"><div><small>Public finance</small><h2>Twelve-year fiscal experience</h2></div><p>FY2013/14–FY2024/25, with common-period county comparisons.</p></div><div class="ciq-fiscal" id="ciq-fiscal"></div><div class="ciq-fiscal-insights" id="ciq-fiscal-insights"></div><div class="ciq-fiscal-history" id="ciq-fiscal-history"></div><div class="ciq-denominator" id="ciq-denominator"></div></article>
+          <article class="ciq-card ciq-social-card"><div class="ciq-card-head"><div><small>Health & living standards</small><h2>Official county outcomes</h2></div><p>Survey outcomes and facility inventory with source periods visible.</p></div><div class="ciq-social-grid" id="ciq-social"></div><p class="ciq-trend-note">Survey point estimates are shown with their precision and are not ranked.</p></article>
+          <article class="ciq-card ciq-p05-card"><div class="ciq-card-head"><div><small>Broader county indicators</small><h2>Education, economy, agriculture & connectivity</h2></div><p>Published county data across four additional domains.</p></div><div class="ciq-p05-grid" id="ciq-p05-breadth"></div><p class="ciq-p05-note">Counts and rates remain in their published units and are not combined into a single overall score.</p></article>
           <article class="ciq-card ciq-evidence-hub-card" id="ciq-evidence-hub">
-            <div class="ciq-card-head"><div><small>P13 · official documents</small><h2>County Evidence &amp; Knowledge Hub</h2></div><p>Planning, budget and accountability evidence with explicit verification states. A source collection is never presented as a pinned file.</p></div>
+            <div class="ciq-card-head"><div><small>Official documents</small><h2>County Evidence &amp; Knowledge Hub</h2></div><p>Planning, budget and accountability documents linked to their official sources.</p></div>
             <div class="evidence-hub-tools">
               <label>Search evidence<input id="ciq-evidence-search" type="search" placeholder="Title, publisher, period…" autocomplete="off"></label>
               <label>Document family<select id="ciq-evidence-family" aria-label="Filter county evidence by document family"><option value="all">All document families</option></select></label>
             </div>
             <div class="evidence-summary" id="ciq-evidence-summary" aria-label="Evidence coverage summary"></div>
-            <p class="evidence-hub-note" id="ciq-evidence-note">Official evidence loads with CountyIQ.</p>
-            <div class="evidence-hub-list" id="ciq-evidence-list"><div class="source-note">Loading county evidence registry…</div></div>
+            <p class="evidence-hub-note" id="ciq-evidence-note">Loading official evidence…</p>
+            <div class="evidence-hub-list" id="ciq-evidence-list"><div class="source-note">Loading county evidence…</div></div>
           </article>
-          <article class="ciq-card"><div class="ciq-card-head"><div><small>Evidence discipline</small><h2>What this view does—and does not do</h2></div></div><div class="ciq-evidence"><article><strong>Source-backed</strong><p>Visible figures come from the same committed Atlas county tables used elsewhere on the site.</p></article><article><strong>No synthetic score</strong><p>No overall county or governor score is published before a validated methodology exists.</p></article><article><strong>No silent inheritance</strong><p>Kenya-level values are never presented as county, constituency or ward observations.</p></article></div></article>
         </div>
       </div>
     </section>
 
     <section class="catalogue-section section" id="catalogue" data-view="data" hidden>
-      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download observations. The committed registries are the same machine-readable data used by the site.</p><div class="coverage"><div><strong>Native</strong><span>indicator registry</span></div><div><strong>Native</strong><span>downloadable registries</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="The downloadable JSON and CSV registries are under data/indicators/registry and data/catalogue/registry.">Browse the catalogue →</button></div><div class="dataset-list" id="dataset-list"></div>
+      <div class="catalogue-copy"><p class="eyebrow">Data catalogue</p><h2>Follow the number<br>back to its source.</h2><p>Browse documented datasets, inspect coverage and download the observations used across the Atlas.</p><div class="coverage"><div><strong>Public</strong><span>indicator catalogue</span></div><div><strong>Open</strong><span>downloadable data</span></div><div><strong>4</strong><span>geographic levels</span></div></div><button class="primary-button" data-toast="Downloadable JSON and CSV registries are available in the data catalogue.">Browse the catalogue →</button></div><div class="dataset-list" id="dataset-list"></div>
     </section>
   </main>
 
-  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="#/rankings">Rankings</a><a href="#/countyiq">CountyIQ</a><a href="README.md">About</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
+  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="#/rankings">Rankings</a><a href="#/countyiq">CountyIQ</a><a href="README.md">About</a></div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/data-loader.js"></script>
   <script src="assets/router.js"></script>
   <script src="assets/app.js"></script>
-  <script src="assets/compare.js"></script>
-  <script src="assets/geo-explorer.js"></script>
-  <script src="assets/ux-polish.js"></script>
   <script src="assets/lazy-integrations.js"></script>
   <script src="assets/routed-views.js"></script>
-  <script src="assets/pre-p05-hardening.js"></script>
 </body>
 </html>
