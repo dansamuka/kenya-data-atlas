@@ -1,0 +1,107 @@
+/* Kenya Data Atlas — final mobile refinement layer. */
+.demo-banner,.footer-note{display:none!important}
+#compare-legacy,#rankings-legacy{display:none!important}
+
+@media(max-width:760px){
+  body{font-size:16px;line-height:1.55}
+  .section{padding-top:2.35rem;padding-bottom:2.35rem}
+  .section-heading{margin-bottom:1.25rem}
+  .section-heading h2,.profile-head h2,.catalogue-copy h2{font-size:clamp(2.15rem,9vw,2.8rem);line-height:.98;letter-spacing:-.025em}
+  .section-heading>p,.catalogue-copy>p,.profile-head>div>p:last-child{font-size:.92rem;line-height:1.58}
+
+  /* Keep the header calm and compact on small screens. */
+  .site-header{box-shadow:0 1px 0 rgba(20,48,39,.08)}
+  .brand{white-space:nowrap}
+  .menu-button{border-radius:999px;padding-inline:.9rem}
+  .header-search{border-radius:999px}
+  .site-header nav{z-index:50}
+
+  /* County profile: use the width of a phone instead of producing a one-card-per-row feed. */
+  .profile-section{padding-top:2.15rem}
+  .profile-head{margin-bottom:1rem}
+  .quick-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.65rem;background:transparent!important}
+  .quick-facts article{min-height:108px!important;padding:.9rem!important;border:1px solid var(--line)!important;border-radius:10px;background:#fff}
+  .quick-facts strong{font-size:1.38rem!important;line-height:1.1}
+  .quick-facts small{font-size:.61rem;line-height:1.4}
+  .profile-lower{margin-top:1rem}
+  .availability-card h3{font-size:1.35rem}
+
+  /* Rankings: 2-up summaries, horizontal tabs and readable tables. */
+  .rankings-route{padding-bottom:2.5rem}
+  .ri-hero{padding:2.35rem 1rem 1.35rem!important;gap:1rem!important}
+  .ri-hero h1{font-size:clamp(2.55rem,11.3vw,3.35rem)!important;line-height:.95!important;letter-spacing:-.035em}
+  .ri-hero>div>p:last-child{font-size:.93rem;line-height:1.55}
+  .ri-hero-note{padding:1rem!important;border-radius:13px!important}
+  .ri-hero-note strong{font-size:1.18rem!important;line-height:1.25}
+  .ri-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.65rem!important;padding:0 1rem!important}
+  .ri-summary article{min-height:108px!important;padding:.9rem!important;border-radius:11px!important}
+  .ri-summary article strong{font-size:1.7rem!important}
+  .ri-phase-strip{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.65rem!important;margin:1rem!important}
+  .ri-phase-strip article{padding:.85rem!important;min-height:112px}
+  .ri-phase-strip span{font-size:.69rem!important;line-height:1.45}
+  .ri-tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;padding:.25rem 1rem .55rem!important;margin:0!important;gap:.45rem!important}
+  .ri-tabs::-webkit-scrollbar{display:none}
+  .ri-tabs button{flex:0 0 auto!important;min-height:42px!important;white-space:nowrap;scroll-snap-align:start;padding:.55rem .8rem!important}
+  .ri-panel{padding:1.25rem 1rem!important}
+  .ri-panel-head{gap:.8rem!important;margin-bottom:1rem!important}
+  .ri-panel-head h2{font-size:clamp(2rem,8.7vw,2.65rem)!important;line-height:1!important}
+  .ri-panel-head p{font-size:.86rem;line-height:1.52}
+  .ri-controls{grid-template-columns:1fr!important;gap:.65rem!important}
+  .ri-controls select,.ri-controls input{width:100%;min-height:46px}
+  .ri-table-wrap{max-width:100%;overflow-x:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;border-radius:10px}
+  .ri-table{min-width:650px;font-size:.72rem}
+  .ri-table th,.ri-table td{padding:.68rem .62rem!important}
+  .ri-table th:first-child,.ri-table td:first-child{position:sticky;left:0;z-index:1;background:#fff}
+  .ri-note{font-size:.7rem!important;line-height:1.5}
+  .ri-recognition-grid,.ri-gap-grid{grid-template-columns:1fr!important;gap:.7rem!important}
+
+  /* CountyIQ: shorten explanatory scaffolding and keep key content dense. */
+  .ciq-hero{padding-top:2.1rem!important}
+  .ciq-hero h1{font-size:clamp(2.55rem,11.5vw,3.35rem)!important;line-height:.96!important}
+  .ciq-intro{font-size:.92rem!important}
+  .ciq-principle{padding:.8rem!important;border-radius:10px}
+  .ciq-card{padding:.95rem!important}
+  .ciq-card-head h2{font-size:1.45rem!important}
+  .ciq-card-head p{font-size:.74rem!important;line-height:1.48}
+  .ciq-p05-group{padding:.85rem!important}
+  .ciq-p05-group header{gap:.45rem!important}
+  .ciq-p05-group header h3{font-size:1rem!important;line-height:1.25}
+  .ciq-peer-note,.ciq-trend-note,.ciq-p05-note{font-size:.66rem!important;line-height:1.5}
+  .ciq-p05-metric{padding:.7rem!important}
+  .ciq-p05-metric strong{font-size:1.1rem!important}
+  .ciq-p05-metric span{font-size:.61rem!important;line-height:1.42}
+  .evidence-hub-tools,.opportunity-tools{grid-template-columns:1fr!important;gap:.65rem!important}
+  .evidence-summary,.opportunity-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.55rem!important}
+  .evidence-item,.opportunity-card{padding:.85rem!important}
+  .opportunity-details{grid-template-columns:1fr!important}
+  .opportunity-disclaimer{font-size:.7rem!important;line-height:1.5;padding:.8rem!important}
+
+  /* Data catalogue and series use more compact opening screens. */
+  .catalogue-section{padding-top:2.15rem!important;gap:1.5rem!important}
+  .catalogue-copy h2{font-size:clamp(2.45rem,10.5vw,3.1rem)!important}
+  .catalogue-copy>p{margin-top:1rem!important}
+  .coverage{margin:1.35rem 0!important;gap:.55rem!important}
+  .coverage>div{min-height:82px;padding:.7rem!important}
+  .dataset{padding:.85rem!important}
+  .dataset h3{font-size:.92rem!important}
+  .dataset p{font-size:.66rem!important}
+  .series-section{padding-top:2.15rem}
+  .series-section .section-heading h2{font-size:clamp(2.35rem,10vw,3rem)}
+  .series-card{margin-top:.75rem}
+  .series-main{padding-top:.8rem!important}
+
+  /* Compare cards should feel like results, not documentation blocks. */
+  .compare-kicker,.compare-coverage-note,.life-limitations{font-size:.74rem!important;line-height:1.5}
+  .life-card{min-height:132px!important;padding-top:.9rem!important;padding-bottom:.9rem!important}
+  .life-card p{line-height:1.48}
+
+  footer{padding-top:2rem!important;padding-bottom:calc(2rem + env(safe-area-inset-bottom))!important}
+  .footer-brand p{font-size:.72rem}
+}
+
+@media(max-width:380px){
+  .quick-facts{grid-template-columns:1fr 1fr!important}
+  .ri-summary,.ri-phase-strip{grid-template-columns:1fr 1fr!important}
+  .ri-summary article,.ri-phase-strip article{min-height:104px!important}
+  .coverage strong{font-size:1.35rem!important}
+}
