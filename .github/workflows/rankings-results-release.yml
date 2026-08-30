@@ -1,0 +1,48 @@
+name: Rankings and results release
+on:
+  push:
+    branches: [feature/rankings-results-release]
+permissions:
+  contents: write
+jobs:
+  build-validate-finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/rankings-results-release
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply results-first route migration
+        run: node scripts/results/apply-rankings-release.mjs
+      - name: Install dependencies
+        run: npm ci
+      - name: Install geometry audit dependency
+        run: pip install shapely
+      - name: Build public rankings output
+        run: npm run results:build
+      - name: Validate public results and full Atlas
+        run: npm test
+      - name: Independent geometry audit
+        run: npm run geography:audit
+      - name: Remove retired UI and one-shot tooling
+        run: |
+          rm -f assets/methods-comparability.js assets/methods-comparability.css scripts/ui/validate-methods-comparability.mjs
+          rm -f scripts/results/apply-rankings-release.mjs .github/workflows/rankings-results-release.yml
+          git diff --check
+      - name: Commit validated rankings release candidate
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat(results): publish county rankings and insights" || exit 0
+          git push origin HEAD:feature/rankings-results-release
