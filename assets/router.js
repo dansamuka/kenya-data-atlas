@@ -43,12 +43,13 @@
     const canonical=canonicalHash(location.hash);
     if(canonical!==location.hash)rawReplace(null,'',canonical);
     const next=parse(canonical),previous=current?.view;
-    document.querySelectorAll('[data-view]').forEach(el=>{el.hidden=el.dataset.view!==next.view;});
+    document.querySelectorAll('main [data-view]').forEach(el=>{el.hidden=el.dataset.view!==next.view;});
     document.querySelectorAll('[data-view-link]').forEach(link=>{
       const active=link.dataset.viewLink===next.view;
       link.classList.toggle('active',active);
       if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
     });
+    document.body.hidden=false;
     document.body.dataset.view=next.view;
     if(document.title!==TITLES[next.view])document.title=TITLES[next.view];
     current=next;rendering=false;
@@ -84,9 +85,6 @@
   }
   function openGlobalSearch(){
     if((current?.view||parse().view)!=='home')navigate('home');
-    // Route listeners can finish rendering/search hydration after navigation. Focus
-    // once immediately, once in a microtask and once on the next paint so the
-    // keyboard shortcut is reliable across Chromium, Firefox and WebKit.
     focusGlobalSearch();
     queueMicrotask(focusGlobalSearch);
     requestAnimationFrame(focusGlobalSearch);
