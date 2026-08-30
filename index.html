@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="assets/compare.css">
   <link rel="stylesheet" href="assets/countyiq-view.css">
   <link rel="stylesheet" href="assets/evidence-hub.css">
-  <link rel="stylesheet" href="assets/methods-comparability.css">
+  <link rel="stylesheet" href="assets/rankings-insights.css">
   <link rel="stylesheet" href="assets/pre-p05-hardening.css">
   <link rel="stylesheet" href="assets/p05-breadth.css">
   <link rel="stylesheet" href="assets/routed-views.css">
@@ -35,7 +35,7 @@
       <a href="#/compare" data-view-link="compare">Compare</a>
       <a href="#/series/KDA-CPI-YOY-KEN" data-view-link="series">Series</a>
       <a href="#/data" data-view-link="data">Data</a>
-      <a href="#/methods" data-view-link="methods">Methods</a>
+      <a href="#/rankings" data-view-link="rankings">Rankings</a>
       <a href="#/countyiq" data-view-link="countyiq">CountyIQ</a>
     </nav>
     <button class="header-search" data-focus-search aria-label="Open search">⌕ <span>Search</span></button>
@@ -133,47 +133,67 @@
     </section>
 
     <section class="compare-section section" id="compare-legacy" hidden aria-hidden="true"><div class="section-heading inverse"><div><p class="eyebrow">Legacy compare</p><h2>Retired compatibility interface.</h2></div><p>Not a user-facing product surface.</p></div><div class="compare-controls"><div id="compare-chips"></div><button id="add-place">＋ Add county</button><select id="compare-indicator" aria-label="Comparison indicator"><option>Land area</option></select></div><div class="comparison-chart" id="comparison-chart"></div><div class="benchmark-row"></div></section>
-    <section class="section rankings-section" id="rankings" hidden aria-hidden="true"><div class="section-heading"><div><p class="eyebrow">Rankings</p><h2>Retired legacy interface.</h2></div><button class="outline-button" id="download-ranking">Download table ↓</button></div><div class="ranking-toolbar"><label>Indicator<select id="ranking-indicator"><option>Land area</option></select></label><span></span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>County</th><th>Value</th><th>Percentile</th><th>Reference</th><th>Quality</th></tr></thead><tbody id="ranking-body"></tbody></table></div></section>
+    <section class="section rankings-section" id="rankings-legacy" hidden aria-hidden="true"><div class="section-heading"><div><p class="eyebrow">Rankings</p><h2>Retired legacy interface.</h2></div><button class="outline-button" id="download-ranking">Download table ↓</button></div><div class="ranking-toolbar"><label>Indicator<select id="ranking-indicator"><option>Land area</option></select></label><span></span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>County</th><th>Value</th><th>Percentile</th><th>Reference</th><th>Quality</th></tr></thead><tbody id="ranking-body"></tbody></table></div></section>
 
     <section class="series-section section" id="series" data-view="series" hidden>
       <div class="section-heading"><div><p class="eyebrow">Series explorer</p><h2>Every statistic has a history.</h2></div><p>Every published series now has its own linkable URL, alongside observations, methods and source metadata.</p></div>
       <div class="series-card"><div class="series-side"><span class="badge a">A · Official direct</span><p>Kenya</p><h3>Consumer price inflation</h3><div class="series-value">—</div><small>Loading reference period…</small><div class="range-buttons"><button>1Y</button><button class="active">5Y</button><button>10Y</button><button>MAX</button></div></div><div class="series-main"><div class="series-toolbar"><select aria-label="Transformation"><option>Original value</option></select><div><button>CSV</button><button>{ } API</button></div></div><div class="large-chart"><svg viewBox="0 0 800 260"><path class="grid" d="M30 40H780M30 100H780M30 160H780M30 220H780"/></svg><span class="current-point">—</span></div><div class="series-meta"><span><small>Series ID</small>Loading…</span><span><small>Unit</small>Loading…</span><span><small>Source</small>Loading…</span><span><small>Reference</small>Loading…</span></div></div></div>
     </section>
 
-    <section class="section methods-section" id="methods" data-view="methods" hidden>
-      <div class="methods-hero">
-        <div><p class="eyebrow">Methods &amp; Comparability · policy made visible</p><h1>See what can be <em>ranked, trended and compared.</em></h1><p>The Atlas exposes the same canonical rules used by CountyIQ and cross-level comparison. Inspect all 98 indicator policies, every P06 county ranking/trend decision and all 3,370 observed-series comparability decisions.</p></div>
-        <aside class="methods-hero-note"><small>Canonical policy</small><strong id="methods-policy-version">Loading…</strong><span id="methods-principle-note">Loading the policy registry…</span><a class="text-link" href="data/policy/indicator-policy.json" target="_blank" rel="noopener">Open raw policy JSON ↗</a></aside>
+    <section class="rankings-route" id="rankings-results" data-view="rankings" hidden>
+      <div class="ri-hero">
+        <div><p class="eyebrow">County Rankings &amp; Insights</p><h1>See how Kenya's counties <em>compare and change.</em></h1><p>Explore the actual results produced by the Atlas: complete indicator rankings, the current development snapshot, fiscal-delivery scores, strengths and gaps, administration-period recognition and official county evidence.</p></div>
+        <aside class="ri-hero-note"><small>Current release</small><strong>47 counties · source-backed outputs</strong><span>Results are shown where the underlying evidence supports them. Missing inputs remain visibly unscored rather than estimated.</span></aside>
       </div>
-      <div class="methods-summary" id="methods-summary" aria-label="Methods coverage summary"><article><small>Loading policy</small><strong>—</strong><span id="methods-load-state">Canonical registry loads on demand.</span></article></div>
-      <div class="methods-guidance">
-        <article><strong>Static policy ≠ published result</strong><p>A ranking or trend can be permitted in principle and still be withheld when coverage, common periods, provenance, history or required uncertainty fail.</p></article>
-        <article><strong>Positional ≠ better or worse</strong><p>Raw scale measures may be shown as highest/lowest without implying that a larger value is desirable.</p></article>
-        <article><strong>No downward copying</strong><p>Kenya- or county-level values are never copied into child geographies. Cross-level comparison requires a genuinely compatible concrete series.</p></article>
+      <div class="ri-summary" id="ri-summary"><article><small>Loading rankings</small><strong>—</strong><span id="ri-load-state">Results load on demand.</span></article></div>
+      <div class="ri-phase-strip" aria-label="Available results">
+        <article><strong>Rankings &amp; trends</strong><span>National and peer positions for every eligible county indicator.</span></article>
+        <article><strong>Development snapshot</strong><span>A current 0–100 score with broad five-band relative position.</span></article>
+        <article><strong>Fiscal delivery</strong><span>FY2024/25 execution, revenue mobilisation and arrears-control results.</span></article>
+        <article><strong>Evidence &amp; recognition</strong><span>County strengths, administration-period recognition and official documents.</span></article>
       </div>
-      <div class="methods-tabs" id="methods-tabs" role="tablist" aria-label="Methods explorer views">
-        <button type="button" class="active" role="tab" aria-selected="true" data-methods-tab="policy">Indicator policy catalogue</button>
-        <button type="button" role="tab" aria-selected="false" data-methods-tab="ranking">County rankings &amp; trends</button>
-        <button type="button" role="tab" aria-selected="false" data-methods-tab="series">Cross-level decisions</button>
+      <div class="ri-tabs" id="ri-tabs" role="tablist" aria-label="County results views">
+        <button type="button" class="active" role="tab" aria-selected="true" data-ri-tab="development">Development snapshot</button>
+        <button type="button" role="tab" aria-selected="false" data-ri-tab="fiscal">Fiscal delivery</button>
+        <button type="button" role="tab" aria-selected="false" data-ri-tab="indicator">Indicator rankings</button>
+        <button type="button" role="tab" aria-selected="false" data-ri-tab="gaps">Strengths &amp; gaps</button>
+        <button type="button" role="tab" aria-selected="false" data-ri-tab="recognition">Recognition</button>
+        <button type="button" role="tab" aria-selected="false" data-ri-tab="evidence">Official evidence</button>
       </div>
 
-      <section class="methods-panel" id="methods-policy-panel" data-methods-panel="policy">
-        <div class="methods-panel-head"><div><h2>98-indicator policy catalogue</h2><p>Domain, ranking mode, direction, trend permission, composite eligibility, publication status and cross-level series coverage—straight from P12.</p></div><span class="methods-count" id="methods-policy-count"></span></div>
-        <div class="methods-controls"><label>Search indicators<input id="methods-policy-search" type="search" placeholder="Poverty, voters, absorption…" autocomplete="off"></label><label>Domain<select id="methods-domain-filter"><option value="all">All domains</option><option value="economic">Economic</option><option value="fiscal">Fiscal</option><option value="health">Health</option><option value="education">Education</option><option value="living">Living standards</option><option value="infrastructure">Infrastructure</option><option value="governance">Governance</option></select></label><label>Rule<select id="methods-rule-filter"><option value="all">All rules</option><option value="rankable">Ranking permitted</option><option value="directional">Directional</option><option value="positional">Positional only</option><option value="trend">Trend permitted</option><option value="composite">Composite eligible</option><option value="cross-level">Has cross-level series</option><option value="withheld">Any key restriction</option></select></label></div>
-        <div class="methods-table-wrap"><table class="methods-table"><thead><tr><th>Indicator</th><th>Domain</th><th>Ranking</th><th>Direction</th><th>Trend</th><th>Composite</th><th>Cross-level</th><th>Publication</th></tr></thead><tbody id="methods-policy-body"><tr><td colspan="8">Loading canonical policy…</td></tr></tbody></table></div>
+      <section class="ri-panel" data-ri-panel="development">
+        <div class="ri-panel-head"><div><p class="eyebrow">Current county development snapshot</p><h2>All 47 counties, one current view.</h2><p>The broad position band is the published comparison. The exact position is shown as a diagnostic so users can inspect the underlying ordering without treating it as a settled league table.</p></div><span class="ri-count" id="ri-development-count"></span></div>
+        <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>County</th><th>Score</th><th>Relative position</th><th>Exact position*</th><th>Plausible range</th></tr></thead><tbody id="ri-development-body"><tr><td colspan="5">Loading development snapshot…</td></tr></tbody></table></div>
+        <p class="ri-note">* Exact composite position is diagnostic. The snapshot remains constrained to the indicators that currently meet the publication requirements; historical composite movement is not published.</p>
       </section>
 
-      <section class="methods-panel" id="methods-ranking-panel" data-methods-panel="ranking" hidden>
-        <div class="methods-panel-head"><div><h2>County rankings &amp; trend evidence</h2><p>P06 values for every CountyIQ metric—not just the top three and bottom three surfaced on the compact CountyIQ page. Withheld results show their dynamic gate reason.</p></div><span class="methods-count" id="methods-ranking-count"></span></div>
-        <div class="methods-county-toolbar"><label>County<select id="methods-county-select"><option>Loading counties…</option></select></label><label>Search metrics<input id="methods-ranking-search" type="search" placeholder="Absorption, poverty, internet…"></label><label>Evidence<select id="methods-ranking-filter"><option value="all">All CountyIQ metrics</option><option value="ranked">Ranked</option><option value="trend">Trend available</option><option value="withheld">Both withheld</option></select></label></div>
-        <div class="methods-county-meta" id="methods-county-meta"><strong>CountyIQ mart loads when this tab opens.</strong></div>
-        <div class="methods-table-wrap"><table class="methods-table"><thead><tr><th>Metric</th><th>Latest</th><th>National rank</th><th>Peer rank</th><th>Trend</th><th>Direction</th></tr></thead><tbody id="methods-ranking-body"><tr><td colspan="6">Open this tab to load P06 evidence.</td></tr></tbody></table></div>
+      <section class="ri-panel" data-ri-panel="fiscal" hidden>
+        <div class="ri-panel-head"><div><p class="eyebrow">County fiscal delivery · FY2024/25</p><h2>Execution, revenue and arrears control.</h2><p>Complete scores are ranked nationally. A county with a missing required published input remains in the table but is not scored.</p></div><span class="ri-count" id="ri-fiscal-count"></span></div>
+        <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>Rank</th><th>County</th><th>Score</th><th>Execution</th><th>Revenue mobilisation</th><th>Arrears control</th></tr></thead><tbody id="ri-fiscal-body"><tr><td colspan="6">Loading fiscal delivery…</td></tr></tbody></table></div>
       </section>
 
-      <section class="methods-panel" id="methods-series-panel" data-methods-panel="series" hidden>
-        <div class="methods-panel-head"><div><h2>3,370 observed-series decisions</h2><p>Search the concrete series-level decisions that power County ↔ constituency ↔ ward comparison. A normalized sibling never makes a raw total safe to compare across levels.</p></div><span class="methods-count" id="methods-series-count"></span></div>
-        <div class="methods-controls"><label>Search series<input id="methods-series-search" type="search" placeholder="Series code, indicator, place, unit…"></label><label>Comparability<select id="methods-series-filter"><option value="all">All decisions</option><option value="eligible">Cross-level eligible</option><option value="same-level">Same-level only</option></select></label><div></div></div>
-        <div class="methods-series-list" id="methods-series-list"><div class="methods-empty">Loading series policy…</div></div><button class="methods-series-more" id="methods-series-more" type="button" hidden>Show more decisions</button>
+      <section class="ri-panel" data-ri-panel="indicator" hidden>
+        <div class="ri-panel-head"><div><p class="eyebrow">Complete indicator leaderboards</p><h2>Every county ranking that clears the evidence gate.</h2><p>Choose an indicator to see all 47 counties with national rank, percentile, peer position and trend where history is available.</p></div></div>
+        <div class="ri-controls"><label>Indicator<select id="ri-indicator-select"><option>Loading ranked indicators…</option></select></label><label>Find county<input id="ri-indicator-search" type="search" placeholder="Nakuru, Kiambu, Turkana…"></label></div>
+        <div class="ri-indicator-meta" id="ri-indicator-meta"></div>
+        <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>Rank</th><th>County</th><th>Latest value</th><th>Percentile</th><th>Peer rank</th><th>Trend</th><th>Interpretation</th></tr></thead><tbody id="ri-indicator-body"><tr><td colspan="7">Loading indicator rankings…</td></tr></tbody></table></div>
+      </section>
+
+      <section class="ri-panel" data-ri-panel="gaps" hidden>
+        <div class="ri-panel-head"><div><p class="eyebrow">County strengths and gaps</p><h2>What stands out for each county.</h2><p>These statements are generated from the same displayed county statistics and benchmark comparisons—not from separate qualitative scoring.</p></div></div>
+        <div class="ri-controls"><label>County<select id="ri-gap-county"><option>Loading counties…</option></select></label><div></div></div>
+        <div id="ri-gap-content"></div>
+      </section>
+
+      <section class="ri-panel" data-ri-panel="recognition" hidden>
+        <div class="ri-panel-head"><div><p class="eyebrow">Administration-period recognition</p><h2>Six reproducible county recognition categories.</h2><p>Recognition reflects published fiscal results and observed change during the administration period. It is not a personal governor causal score.</p></div></div>
+        <div class="ri-recognition-grid" id="ri-recognition-grid"></div>
+      </section>
+
+      <section class="ri-panel" data-ri-panel="evidence" hidden>
+        <div class="ri-panel-head"><div><p class="eyebrow">Official county evidence</p><h2>Follow results back to county documents.</h2><p>Open verified CIDP, budget, fiscal-strategy, implementation and audit source doorways indexed for each county.</p></div></div>
+        <div class="ri-controls"><label>County<select id="ri-evidence-county"><option>Loading counties…</option></select></label><div></div></div>
+        <div class="ri-evidence-meta" id="ri-evidence-meta"></div><div class="ri-evidence-list" id="ri-evidence-list"></div>
       </section>
     </section>
 
@@ -220,7 +240,7 @@
     </section>
   </main>
 
-  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="#/methods">Methods</a><a href="#/countyiq">CountyIQ</a><a href="README.md">About</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
+  <footer><div class="footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><div><strong>Kenya Data Atlas</strong><p>Understand Kenya. Compare places. Follow the data.</p></div></div><div class="footer-links"><a href="#/pulse">Pulse</a><a href="#/explore">Explore</a><a href="#/compare">Compare</a><a href="#/series/KDA-CPI-YOY-KEN">Series</a><a href="#/data">Data & sources</a><a href="#/rankings">Rankings</a><a href="#/countyiq">CountyIQ</a><a href="README.md">About</a></div><p class="footer-note">Independent private-citizen project · not affiliated with or endorsed by the Government of Kenya, the United Nations, UNDP or any source organization.</p></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/data-loader.js"></script>
   <script src="assets/router.js"></script>

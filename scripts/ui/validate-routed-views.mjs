@@ -20,13 +20,14 @@ const schema=read('db/schema/indicators.sql');
 const compare=read('assets/compare.js');
 
 try{
-  const routeLinks=['#/pulse','#/explore','#/compare','#/series/KDA-CPI-YOY-KEN','#/data','#/methods','#/countyiq'];
+  const routeLinks=['#/pulse','#/explore','#/compare','#/series/KDA-CPI-YOY-KEN','#/data','#/rankings','#/countyiq'];
   for(const href of routeLinks)assert(html.includes(`href="${href}"`),`missing navigation route ${href}`);
-  for(const view of ['home','pulse','explore','compare','series','data','methods','countyiq'])assert(html.includes(`data-view="${view}"`),`missing data-view ${view}`);
+  for(const view of ['home','pulse','explore','compare','series','data','rankings','countyiq'])assert(html.includes(`data-view="${view}"`),`missing data-view ${view}`);
   assert(html.includes('id="home-glance-grid"'),'home is missing the short at-a-glance teaser');
   assert(html.includes('id="pulse-filters"')&&['core','economy','social','environment','institutions'].every(x=>html.includes(`data-pulse-filter="${x}"`)),'Pulse category picker is incomplete');
   assert(html.includes('class="geo-context-rail"')&&html.includes('class="geo-workspace"'),'Explore persistent context rail is missing');
   assert(html.includes('id="countyiq-view"')&&html.includes('id="ciq-county-select"'),'integrated CountyIQ route is incomplete');
+  assert(html.includes('id="rankings-results"')&&html.includes('id="ri-indicator-body"'),'rankings/results route is incomplete');
   console.log('IA_EIGHT_ROUTE_STRUCTURE_OK');
 
   for(const token of ['hashchange','popstate','data-view-link','window.KDARouter','canonicalHash','#/explore/','countyiq'])assert(router.includes(token),`router missing ${token}`);
@@ -43,6 +44,7 @@ try{
   assert(css.includes('.pulse-filter-bar'),'Pulse filter styling missing');
   assert(lazy.includes("['pulse','explore','series','data']"),'optional integrations are not route-aware');
   assert(lazy.includes("assets/countyiq-view.js")&&lazy.includes("event.detail?.view==='countyiq'"),'CountyIQ is not lazy-loaded from its route');
+  assert(lazy.includes("assets/rankings-insights.js")&&lazy.includes("event.detail?.view==='rankings'"),'Rankings & Insights is not lazy-loaded from its route');
   console.log('IA_VIEW_POLISH_OK');
 
   for(const required of ['.geo-feature.no-data{fill:url(#geo-no-data-pattern)','.geo-ranking-list button{','.geo-tooltip{','.geo-selected-summary{'])assert(geoCss.includes(required),`real choropleth styling missing ${required}`);
