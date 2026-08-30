@@ -1,4 +1,5 @@
-/* P16 release-hardening layer: keyboard focus, reduced motion and high-contrast resilience. */
+/* P16 release-hardening layer: keyboard focus, contrast, overflow and motion resilience. */
+:root{--muted:#59645f}
 :where(a,button,input,select,textarea,[tabindex]):focus-visible{
   outline:3px solid #0b6b55;
   outline-offset:3px;
@@ -7,9 +8,16 @@
 #main:focus{outline:none}
 button{min-height:44px}
 .icon-button{min-width:44px;min-height:44px}
-.source-note{color:#59645f!important}
-.search-shell>p{color:#59645f}
-.metric-card small{color:#59645f}
+.source-note,.search-shell>p,.metric-card small,.search-box kbd{color:#59645f!important}
+.geo-map-meta,.geo-map-meta span,#geo-unit-context>span{color:#59645f!important}
+.ciq-metric small,.ciq-card-head small,.ciq-benchmark small,.ciq-fiscal small,.ciq-fiscal-insights small,.ciq-fiscal-insights span,.ciq-fiscal-legend,.ciq-fiscal-years,.ciq-denominator p,.ciq-denominator small{color:#59645f!important}
+.evidence-item-foot small{color:#59645f!important}
+
+/* Keep deliberately wide CountyIQ tables scrollable locally, not at document root. */
+#countyiq-view{max-width:100%;overflow-x:clip}
+#countyiq-view :where(.ciq-body,.ciq-grid,.ciq-card,.ciq-fiscal-card,.ciq-evidence-hub-card,.ciq-evidence-hub-card>*,.evidence-hub-list,.evidence-item){min-width:0;max-width:100%}
+#countyiq-view :where(.ciq-fiscal-history,.ciq-fiscal-table-wrap){max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
