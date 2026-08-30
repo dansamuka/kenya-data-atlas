@@ -16,6 +16,7 @@ on:
       - 'scripts/indicators/validate-native-api.mjs'
       - 'scripts/countyiq/build-mart.mjs'
       - 'scripts/countyiq/validate-mart.mjs'
+      - 'scripts/completeness/**'
       - 'scripts/p14/**'
       - 'assets/countyiq-view.js'
       - 'assets/opportunity-finder.js'
@@ -53,7 +54,9 @@ jobs:
         run: npm run countyiq:build
       - name: Build P14 opportunity registry
         run: npm run opportunities:build
-      - name: Validate full Atlas registry, CountyIQ mart and P14 Beta
+      - name: Build P18 completeness ledger
+        run: npm run completeness:build
+      - name: Validate full Atlas registry, CountyIQ mart, P14 Beta and P18 ledger
         run: npm test
       - name: Confirm P14 completion ledger is immutable
         shell: bash
@@ -69,12 +72,12 @@ jobs:
           NODE
       - name: Commit generated products when they change
         run: |
-          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json)" ]]; then
-            echo "No generated registry, CountyIQ mart or P14 opportunity changes."
+          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness)" ]]; then
+            echo "No generated registry, CountyIQ mart, P14 opportunity or P18 completeness changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json
-          git commit -m "build: refresh generated registries and CountyIQ products"
+          git add data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness
+          git commit -m "build: refresh generated registries and completeness ledger"
           git push
