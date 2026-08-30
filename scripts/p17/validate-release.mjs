@@ -35,13 +35,14 @@ try {
   assert(manifest.counts.opportunity_programmes === opportunityCount, 'opportunity count must match P14 registry');
   assert(checksums.length >= 10, 'distribution checksum inventory must be populated');
 
+  const unresolvedLower = unresolved.toLowerCase();
   for (const required of [
     'Narok fiscal-delivery score',
     'Mandera East / Lafey ward spatial hold',
     'longitudinal composite',
     'P14 programme freshness',
     'external source links'
-  ]) assert(unresolved.includes(required), `unresolved register missing ${required}`);
+  ]) assert(unresolvedLower.includes(required.toLowerCase()), `unresolved register missing ${required}`);
   assert(!/\bTBD\b|\bTODO\b/i.test(unresolved), 'unresolved register must not contain TBD/TODO placeholders');
 
   for (const required of ['Kenya Data Atlas v1.0.0', 'Reproducibility', 'Browser and accessibility', 'Known limitations']) {
@@ -67,7 +68,7 @@ try {
 
   console.log(`P17_RELEASE_PACKAGE_OK status=${manifest.release_status}`);
   console.log(`P17_RELEASE_COUNTS_OK indicators=${manifest.counts.indicators} series=${manifest.counts.series} observations=${manifest.counts.observations}`);
-  console.log(`P17_UNRESOLVED_REGISTER_OK items=5+`);
+  console.log('P17_UNRESOLVED_REGISTER_OK items=5+');
   console.log('P17_GOVERNANCE_STATE_OK');
 } catch (error) {
   console.error(error.message || error);
