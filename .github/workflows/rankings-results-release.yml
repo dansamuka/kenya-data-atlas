@@ -1,4 +1,5 @@
 name: Rankings and results release
+# rerun after nested county-evidence join correction
 on:
   push:
     branches: [feature/rankings-results-release]
