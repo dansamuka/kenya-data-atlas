@@ -15,7 +15,8 @@
   const jsonCache=new Map();
   const textCache=new Map();
   const scriptCache=new Map();
-  const metrics={networkJson:0,cacheHits:0,networkText:0,scripts:0};
+  const styleCache=new Map();
+  const metrics={networkJson:0,cacheHits:0,networkText:0,scripts:0,styles:0};
 
   const REGISTRY={
     geographies:'data/geography/registry/geographies.json',
@@ -143,6 +144,29 @@
     return fetchJson('data/ui/initial-pulse.json',{required:true});
   }
 
+  function loadStyle(href,{id}={}){
+    const key=id||href;
+    if(styleCache.has(key)) return styleCache.get(key);
+    const promise=new Promise((resolve,reject)=>{
+      const existing=id?document.getElementById(id):document.querySelector(`link[data-kda-href="${CSS.escape(href)}"]`);
+      if(existing){
+        if(existing.dataset.loaded==='true'||existing.sheet) return resolve(existing);
+        existing.addEventListener('load',()=>resolve(existing),{once:true});
+        existing.addEventListener('error',()=>reject(new Error(`Stylesheet failed: ${href}`)),{once:true});
+        return;
+      }
+      metrics.styles+=1;
+      const link=document.createElement('link');
+      if(id) link.id=id;
+      link.rel='stylesheet';link.href=href;link.dataset.kdaHref=href;
+      link.addEventListener('load',()=>{link.dataset.loaded='true';resolve(link);},{once:true});
+      link.addEventListener('error',()=>reject(new Error(`Stylesheet failed: ${href}`)),{once:true});
+      document.head.appendChild(link);
+    });
+    styleCache.set(key,promise);
+    return promise;
+  }
+
   function loadScript(src,{id}={}){
     const key=id||src;
     if(scriptCache.has(key)) return scriptCache.get(key);
@@ -199,7 +223,7 @@
   }
 
   function stats(){
-    return {...metrics,jsonCacheEntries:jsonCache.size,textCacheEntries:textCache.size,scriptCacheEntries:scriptCache.size};
+    return {...metrics,jsonCacheEntries:jsonCache.size,textCacheEntries:textCache.size,scriptCacheEntries:scriptCache.size,styleCacheEntries:styleCache.size};
   }
 
   /* Compatibility bridge for legacy, lazily loaded integrations. Any GET for
@@ -219,7 +243,7 @@
   window.KDAData={
     paths:{registry:{...REGISTRY},geometry:{...GEOMETRY}},
     fetchJson,fetchText,csv,parseCsv,registry,registries,geometry,initialPulse,
-    loadScript,ensureD3,whenVisible,stats,
+    loadStyle,loadScript,ensureD3,whenVisible,stats,
     clear(url){
       const key=normalizeUrl(url);
       jsonCache.delete(key);textCache.delete(key);
