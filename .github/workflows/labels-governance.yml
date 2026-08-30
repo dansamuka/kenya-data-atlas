@@ -1,0 +1,74 @@
+name: Repository label governance
+
+on:
+  push:
+    paths:
+      - '.github/workflows/labels-governance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  normalize-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collapse labels to the maintained taxonomy
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const desired = [
+              { name: 'bug', color: 'd73a4a', description: 'Confirmed defect or regression' },
+              { name: 'enhancement', color: 'a2eeef', description: 'Product or feature improvement' },
+              { name: 'data-quality', color: 'fbca04', description: 'Source, provenance, coverage or validation issue' },
+              { name: 'documentation', color: '0075ca', description: 'Documentation, methodology or explanatory copy' },
+              { name: 'maintenance', color: 'c5def5', description: 'CI, dependency, cleanup or repository maintenance' },
+              { name: 'release', color: '5319e7', description: 'Release, governance or deployment work' }
+            ];
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const keep = new Set(desired.map(label => label.name));
+            const before = await github.paginate(github.rest.issues.listLabelsForRepo, {
+              owner,
+              repo,
+              per_page: 100
+            });
+
+            core.info(`Labels before cleanup (${before.length}): ${before.map(label => label.name).join(', ') || '(none)'}`);
+
+            for (const label of before) {
+              if (!keep.has(label.name)) {
+                core.info(`Deleting obsolete/redundant label: ${label.name}`);
+                await github.rest.issues.deleteLabel({ owner, repo, name: label.name });
+              }
+            }
+
+            for (const label of desired) {
+              const existing = before.find(item => item.name === label.name);
+              if (existing) {
+                await github.rest.issues.updateLabel({
+                  owner,
+                  repo,
+                  name: label.name,
+                  new_name: label.name,
+                  color: label.color,
+                  description: label.description
+                });
+              } else {
+                await github.rest.issues.createLabel({ owner, repo, ...label });
+              }
+            }
+
+            const after = await github.paginate(github.rest.issues.listLabelsForRepo, {
+              owner,
+              repo,
+              per_page: 100
+            });
+            const names = after.map(label => label.name).sort();
+            const expected = [...keep].sort();
+            core.info(`Labels after cleanup (${after.length}): ${names.join(', ')}`);
+            if (JSON.stringify(names) !== JSON.stringify(expected)) {
+              core.setFailed(`Label taxonomy mismatch. Expected ${expected.join(', ')}; got ${names.join(', ')}`);
+            }
