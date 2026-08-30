@@ -10,7 +10,7 @@ const evidence=read('data/evidence/county-documents.json');
 const counties=mart.counties||[];
 if(counties.length!==47)throw new Error(`Results release requires 47 CountyIQ counties, found ${counties.length}`);
 
-const evidenceRows=Array.isArray(evidence)?evidence:(evidence.records||[]);
+const evidenceRows=Array.isArray(evidence)?evidence:Array.isArray(evidence.records)?evidence.records:Array.isArray(evidence.counties)?evidence.counties.flatMap(c=>c.documents||[]):[];
 const evidenceByCounty=new Map();
 for(const r of evidenceRows){if(!evidenceByCounty.has(r.geo_code))evidenceByCounty.set(r.geo_code,[]);evidenceByCounty.get(r.geo_code).push(r);}
 const round=(v,d=2)=>Number.isFinite(Number(v))?Number(Number(v).toFixed(d)):null;
