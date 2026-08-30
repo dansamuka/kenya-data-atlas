@@ -1,0 +1,903 @@
+P16 browser diagnostic
+exit_code=1
+
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>diagnostic exact position</small>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#7b837f",
+    +               "fontSize": "7.8pt (10.4px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>0–100</small>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#7b837f",
+    +               "fontSize": "7.8pt (10.4px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>diagnostic exact position</small>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#7b837f",
+    +               "fontSize": "7.8pt (10.4px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>0–100</small>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#7b837f",
+    +               "fontSize": "7.8pt (10.4px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>diagnostic exact position</small>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#7b837f",
+    +               "fontSize": "7.8pt (10.4px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>0–100</small>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#7b837f",
+    +               "fontSize": "7.8pt (10.4px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<table class=\"ri-table\">",
+    +                 "target": Array [
+    +                   "section[data-ri-panel=\"development\"] > .ri-table-wrap > .ri-table",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.89 (foreground color: #7b837f, background color: #ffffff, font size: 7.8pt (10.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<small>diagnostic exact position</small>",
+    +         "impact": "serious",
+--
+    +     ],
+    +   },
+    + ]
+
+      45 |         .analyze();
+      46 |       const blockers = results.violations.filter(item => item.impact === 'critical' || item.impact === 'serious');
+    > 47 |       expect(blockers, JSON.stringify(blockers, null, 2)).toEqual([]);
+         |                                                           ^
+      48 |     });
+      49 |   }
+      50 | });
+        at /home/runner/work/kenya-data-atlas/kenya-data-atlas/tests/browser/release.spec.mjs:47:59
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-60a09--or-critical-axe-violations-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-60a09--or-critical-axe-violations-chromium-retry1/video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-60a09--or-critical-axe-violations-chromium-retry1/video.webm
+--
+[WebServer] 127.0.0.1 - - [30/Aug/2026 07:08:08] "GET /data/evidence/county-documents.json HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [30/Aug/2026 07:08:10] "GET /place-profile.css HTTP/1.1" 200 -
+
+  6) [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/countyiq has no serious or critical axe violations 
+
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#59645f",
+                  "bgColor": "#123c32",
+                  "contrastRatio": 1.98,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "bold",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"ciq-beta-pill ciq-pill-published\">Published snapshot</span>",
+                    "target": [
+                      ".ciq-beta-pill"
+                    ]
+                  }
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #59645f, background color: #123c32, font size: 8.6pt (11.52px), font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>5</strong><span>evidence records</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(1)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>1</strong><span>pinned documents</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(2)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>1</strong><span>verified source pages</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(3)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>3</strong><span>official collections</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(4)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>0</strong><span>unavailable states</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(5)"
+                    ]
+                  },
+--
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#123c32",
+    +               "contrastRatio": 1.98,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#59645f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "bold",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 1.98 (foreground color: #59645f, background color: #123c32, font size: 8.6pt (11.52px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<span class=\"ciq-beta-pill ciq-pill-published\">Published snapshot</span>",
+    +                 "target": Array [
+    +                   ".ciq-beta-pill",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.98 (foreground color: #59645f, background color: #123c32, font size: 8.6pt (11.52px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"ciq-beta-pill ciq-pill-published\">Published snapshot</span>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>5</strong><span>evidence records</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(1)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>1</strong><span>pinned documents</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(2)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>1</strong><span>verified source pages</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(3)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>3</strong><span>official collections</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(4)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>0</strong><span>unavailable states</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(5)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +     ],
+    +   },
+    + ]
+
+      45 |         .analyze();
+      46 |       const blockers = results.violations.filter(item => item.impact === 'critical' || item.impact === 'serious');
+    > 47 |       expect(blockers, JSON.stringify(blockers, null, 2)).toEqual([]);
+         |                                                           ^
+      48 |     });
+      49 |   }
+      50 | });
+        at /home/runner/work/kenya-data-atlas/kenya-data-atlas/tests/browser/release.spec.mjs:47:59
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium/video-1.webm
+--
+        npx playwright show-trace test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#59645f",
+                  "bgColor": "#123c32",
+                  "contrastRatio": 1.98,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "bold",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<span class=\"ciq-beta-pill ciq-pill-published\">Published snapshot</span>",
+                    "target": [
+                      ".ciq-beta-pill"
+                    ]
+                  }
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.98 (foreground color: #59645f, background color: #123c32, font size: 8.6pt (11.52px), font weight: bold). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>5</strong><span>evidence records</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(1)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>1</strong><span>pinned documents</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(2)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>1</strong><span>verified source pages</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(3)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>3</strong><span>official collections</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(4)"
+                    ]
+                  },
+--
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#66766f",
+                  "bgColor": "#f5f7f6",
+                  "contrastRatio": 4.45,
+                  "fontSize": "8.6pt (11.52px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div><strong>0</strong><span>unavailable states</span></div>",
+                    "target": [
+                      "#ciq-evidence-summary > div:nth-child(5)"
+                    ]
+                  },
+--
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#123c32",
+    +               "contrastRatio": 1.98,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#59645f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "bold",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 1.98 (foreground color: #59645f, background color: #123c32, font size: 8.6pt (11.52px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<span class=\"ciq-beta-pill ciq-pill-published\">Published snapshot</span>",
+    +                 "target": Array [
+    +                   ".ciq-beta-pill",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 1.98 (foreground color: #59645f, background color: #123c32, font size: 8.6pt (11.52px), font weight: bold). Expected contrast ratio of 4.5:1",
+    +         "html": "<span class=\"ciq-beta-pill ciq-pill-published\">Published snapshot</span>",
+    +         "impact": "serious",
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>5</strong><span>evidence records</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(1)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>1</strong><span>pinned documents</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(2)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>1</strong><span>verified source pages</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(3)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>3</strong><span>official collections</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(4)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#66766f",
+    +               "fontSize": "8.6pt (11.52px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.45 (foreground color: #66766f, background color: #f5f7f6, font size: 8.6pt (11.52px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<div><strong>0</strong><span>unavailable states</span></div>",
+    +                 "target": Array [
+    +                   "#ciq-evidence-summary > div:nth-child(5)",
+    +                 ],
+    +               },
+    +               Object {
+    +                 "html": "<article class=\"ciq-card ciq-evidence-hub-card\" id=\"ciq-evidence-hub\" data-ready=\"true\">",
+    +                 "target": Array [
+    +                   "#ciq-evidence-hub",
+    +                 ],
+    +               },
+    +             ],
+--
+    +     ],
+    +   },
+    + ]
+
+      45 |         .analyze();
+      46 |       const blockers = results.violations.filter(item => item.impact === 'critical' || item.impact === 'serious');
+    > 47 |       expect(blockers, JSON.stringify(blockers, null, 2)).toEqual([]);
+         |                                                           ^
+      48 |     });
+      49 |   }
+      50 | });
+        at /home/runner/work/kenya-data-atlas/kenya-data-atlas/tests/browser/release.spec.mjs:47:59
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium-retry1/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/release-WCAG-automated-gat-84a47--or-critical-axe-violations-chromium-retry1/video-1.webm
+--
+[WebServer] 127.0.0.1 - - [30/Aug/2026 07:08:19] "GET /data/countyiq/county-summary.json HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [30/Aug/2026 07:08:19] "GET /assets/evidence-hub.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [30/Aug/2026 07:08:20] "GET /data/evidence/county-documents.json HTTP/1.1" 200 -
+
+  6 failed
+    [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/explore has no serious or critical axe violations 
+    [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/compare has no serious or critical axe violations 
+    [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/series/KDA-CPI-YOY-KEN has no serious or critical axe violations 
+    [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/data has no serious or critical axe violations 
+    [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/rankings has no serious or critical axe violations 
+    [chromium] › tests/browser/release.spec.mjs:38:5 › WCAG automated gate › /#/countyiq has no serious or critical axe violations 
+  28 skipped
+  46 passed (2.6m)
