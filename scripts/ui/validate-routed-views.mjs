@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root=process.cwd();
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const exists=p=>fs.existsSync(path.join(root,p));
 const assert=(ok,msg)=>{if(!ok)throw new Error(`Routed IA validation: ${msg}`);};
 
 const html=read('index.html');
@@ -13,11 +14,11 @@ const baseCss=read('assets/styles.css');
 const geoCss=read('assets/geo-explorer.css');
 const countyCss=read('assets/countyiq-view.css');
 const countyJs=read('assets/countyiq-view.js');
-const countyRedirect=read('county-dashboard.html');
 const units=read('assets/unit-system.js');
 const lazy=read('assets/lazy-integrations.js');
 const schema=read('db/schema/indicators.sql');
 const compare=read('assets/compare.js');
+const ux=read('assets/ux-polish.js');
 
 try{
   const routeLinks=['#/pulse','#/explore','#/compare','#/series/KDA-CPI-YOY-KEN','#/data','#/rankings','#/countyiq'];
@@ -61,8 +62,9 @@ try{
   assert(!countyJs.includes('data/sprint1/')&&!countyJs.includes('KDA.csv('),'CountyIQ still directly joins Sprint 1 CSVs instead of the canonical mart');
   assert(!countyJs.includes('roadmap.json')&&!countyJs.includes('d3'),'CountyIQ still has a brittle roadmap/D3 dependency');
   assert(countyCss.includes('.countyiq-route')&&countyCss.includes('.ciq-metrics'),'CountyIQ route styling is incomplete');
-  assert(countyRedirect.includes('index.html#/countyiq')&&!countyRedirect.includes('assets/countyiq.js'),'legacy CountyIQ page still boots the standalone runtime');
-  console.log('IA_COUNTYIQ_INTEGRATED_OK');
+  assert(!exists('county-dashboard.html'),'legacy County Dashboard page must remain removed');
+  assert(!ux.includes('installCountyDashboardLink'),'UX layer must not recreate the retired County Dashboard link');
+  console.log('IA_COUNTYIQ_INTEGRATED_OK legacy_page=removed');
 
   assert(!units.includes("$('.series-unit-chip','.series-side')"),'unit-system.js still passes a selector string as querySelector root');
   console.log('IA_PHASE0_CLEANUP_OK');
