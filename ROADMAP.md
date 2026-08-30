@@ -4,7 +4,7 @@ The repository is being completed through bounded, independently deployable phas
 
 ## Completed core phases
 
-**P00–P13 are complete. P15 is complete.** The core geography, provenance, indicator registry, historical data, CountyIQ analytics, rankings/results, canonical policy, county evidence and developer distribution surface are now implemented and validated.
+**P00–P13, P15 and P16 are complete.** The core geography, provenance, indicator registry, historical data, CountyIQ analytics, rankings/results, canonical policy, county evidence and developer distribution surface are implemented and validated. P16 also closes the public-launch browser, accessibility, SEO, performance and link-integrity audit: Chromium, Firefox and WebKit smoke/axe gates pass, core Lighthouse budgets pass, and reproducible crawlability/link-health evidence is retained.
 
 Key current products include 1,788 geographies, 98 indicators, 3,370 series, 6,864 observations, 47 CountyIQ profiles, 14 complete county indicator leaderboards, 47 development snapshots, 46 complete fiscal-delivery scores and 247 county evidence records.
 
@@ -12,19 +12,15 @@ Key current products include 1,788 geographies, 98 indicators, 3,370 series, 6,8
 
 **P14 — Action & Opportunity Finder Beta** is explicitly **deferred to v1.1 Beta**. Programme freshness, deadlines and eligibility require continuing maintenance; this useful action layer is not necessary to make the underlying Atlas source-auditable, reproducible and release-ready.
 
-## Next phase
+## Next and final v1.0 phase
 
-**P16 — Real-browser accessibility, SEO and performance release audit**
+**P17 — Final reproducibility, governance and v1.0 release**
 
-Run the public product through Chromium, Firefox and WebKit; close critical WCAG 2.2 AA issues; test keyboard/focus/mobile journeys; enforce Lighthouse/performance budgets; and run a reproducible external-link and crawlability audit.
+Run the final deterministic rebuild, reconcile data and revision status, complete release notes/manifests and the unresolved-items register, verify that GitHub Pages serves the exact release commit, and perform the post-deployment smoke test before publishing v1.0.
 
 Recommended next-session instruction:
 
-> Complete P16 from `data/project-roadmap.json`. Do not restart completed phases. Run real-browser, accessibility, link-integrity, SEO and performance gates and report any unmet release blocker explicitly.
-
-## Final v1.0 phase
-
-**P17 — Final reproducibility, governance and v1.0 release** follows P16. It will run the final deterministic rebuild, reconcile data/revision status, finish release notes/manifests and verify that GitHub Pages serves the exact release commit.
+> Complete P17 from `data/project-roadmap.json`. Do not restart completed phases. Run the final deterministic rebuild, governance/revision review, release manifest and exact-commit deployment checks; do not publish v1.0 while any required gate is red.
 
 ## Release sequence
 
