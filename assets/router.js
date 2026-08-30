@@ -89,6 +89,31 @@
     queueMicrotask(focusGlobalSearch);
     requestAnimationFrame(focusGlobalSearch);
   }
+  function protectCompareCriticalPaint(){
+    const KDA=window.KDAData;
+    if(!KDA||KDA.__compareCriticalPaintGuard||typeof KDA.registries!=='function')return;
+    const original=KDA.registries.bind(KDA);
+    let guarded=false;
+    KDA.registries=async function(names,options){
+      const list=Array.isArray(names)?names:[];
+      const heavy=list.includes('series')&&list.includes('observations');
+      const compare=(current?.view||parse().view)==='compare';
+      if(heavy&&compare&&!guarded){
+        guarded=true;
+        /* Direct Compare entry previously started multi-megabyte master-registry
+         * transfers before the route heading completed critical paint. Let the
+         * shell finish loading first; user-triggered work after load still starts
+         * after only two animation frames. This changes scheduling, not data. */
+        if(document.readyState!=='complete'){
+          await new Promise(resolve=>window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(resolve)),{once:true}));
+        }else{
+          await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+        }
+      }
+      return original(names,options);
+    };
+    KDA.__compareCriticalPaintGuard=true;
+  }
 
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
@@ -109,4 +134,5 @@
 
   window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
   render({scroll:false});
+  protectCompareCriticalPaint();
 })();
