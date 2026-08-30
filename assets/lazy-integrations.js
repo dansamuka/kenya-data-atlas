@@ -87,6 +87,7 @@
     if(comparePromise)return comparePromise;
     comparePromise=Promise.all([
       styles([['assets/compare.css','kda-compare-css'],['assets/compare-life-natural.css','kda-compare-life-css']]),
+      loadHardening(),
       loadPolish()
     ]).then(()=>KDA.loadScript('assets/compare.js',{id:'kda-compare'}))
       .then(()=>window.KDACompare?.boot?.()||null)
