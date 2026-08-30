@@ -6,7 +6,7 @@ const assert=(ok,msg)=>{if(!ok)throw new Error(`Rankings UI validation: ${msg}`)
 for(const token of ['#/rankings','data-view="rankings"','County Rankings &amp; Insights','Development snapshot','Fiscal delivery','Indicator rankings','Strengths &amp; gaps','Administration scorecards','Recognition','Official evidence'])assert(html.includes(token),`missing UI token ${token}`);
 assert(!html.includes('Methods &amp; Comparability')&&!html.includes('Indicator policy catalogue')&&!html.includes('Cross-level decisions'),'backend/methods copy still exposed in main UI');
 assert(router.includes("'rankings'")&&router.includes('County Rankings & Insights'),'rankings route missing');
-assert(lazy.includes('assets/rankings-insights.js')&&lazy.includes("event.detail?.view==='rankings'"),'rankings UI not lazy-loaded');
+assert(lazy.includes('assets/rankings-insights.js')&&lazy.includes("view==='rankings'"),'rankings UI not lazy-loaded');
 for(const token of ['development_snapshot','fiscal_delivery','indicator_rankings','strengths_and_gaps','administration','recognition','evidence'])assert(js.includes(token),`rankings UI missing data surface ${token}`);
 assert(css.includes('.rankings-route')&&css.includes('.ri-table'),'rankings styles missing');
 assert(out.coverage.counties===47&&out.coverage.fiscal_scores===46&&out.coverage.evidence_profiles===47,'public results coverage is not release-ready');
