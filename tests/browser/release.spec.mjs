@@ -21,6 +21,14 @@ function runtimeGuard(page) {
   return errors;
 }
 
+function axeSummary(blockers) {
+  return blockers.flatMap(violation => violation.nodes.map(node => {
+    const target = node.target?.join(' > ') || 'unknown target';
+    const message = node.any?.[0]?.message || node.failureSummary || violation.help;
+    return `${violation.id} [${violation.impact}] ${target}: ${message}`;
+  })).join('\n');
+}
+
 for (const route of routes) {
   test(`${route.path} renders without runtime errors`, async ({ page }) => {
     const errors = runtimeGuard(page);
@@ -44,7 +52,7 @@ test.describe('WCAG automated gate', () => {
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
         .analyze();
       const blockers = results.violations.filter(item => item.impact === 'critical' || item.impact === 'serious');
-      expect(blockers, JSON.stringify(blockers, null, 2)).toEqual([]);
+      expect(blockers, axeSummary(blockers)).toEqual([]);
     });
   }
 });
