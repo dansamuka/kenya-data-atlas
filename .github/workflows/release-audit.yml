@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Install pinned P16 audit tools without changing lockfile
-        run: npm install --no-save --package-lock=false @playwright/test@1.55.0 @axe-core/playwright@4.10.2 @lhci/cli@0.15.1
+        run: npm install --no-save --package-lock=false @playwright/test@1.55.0 @axe-core/playwright@4.10.2 lighthouse@13.4.1
 
       - name: Install Chromium Firefox and WebKit
         run: npx playwright install --with-deps chromium firefox webkit
