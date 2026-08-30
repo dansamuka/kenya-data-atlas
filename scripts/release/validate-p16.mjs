@@ -7,6 +7,8 @@ const requiredFiles = [
   'scripts/release/audit-links.mjs',
   'scripts/release/validate-seo.mjs',
   'assets/release-hardening.css',
+  'favicon.svg',
+  'place-profile.css',
   'robots.txt',
   'sitemap.xml',
   'docs/P16-RELEASE-HARDENING.md',
@@ -27,6 +29,7 @@ const html = fs.readFileSync('index.html', 'utf8');
 if (!html.includes('assets/release-hardening.css')) throw new Error('P16 release-hardening CSS is not loaded');
 if (!html.includes('class="skip-link"')) throw new Error('P16 skip-link contract missing');
 if (!/<main id="main" tabindex="-1">/.test(html)) throw new Error('P16 main focus target missing tabindex=-1');
+if (!html.includes('rel="icon" href="favicon.svg"')) throw new Error('P16 explicit favicon metadata missing');
 
 const roadmap = JSON.parse(fs.readFileSync('data/project-roadmap.json', 'utf8'));
 const p16 = roadmap.phases.find(p => p.id === 'P16');
@@ -35,13 +38,14 @@ if (p16?.status !== 'complete') throw new Error(`P16 roadmap status must be comp
 if (p17?.status !== 'next') throw new Error(`P17 roadmap status must be next, found ${p17?.status}`);
 
 const workflow = fs.readFileSync('.github/workflows/release-hardening.yml', 'utf8');
-for (const gate of ['playwright install --with-deps chromium firefox webkit', 'npm run p16:browser', 'npm run p16:lighthouse', 'npm run p16:links']) {
+for (const gate of ['npm audit --omit=dev --audit-level=high', 'playwright install --with-deps chromium firefox webkit', 'npm run p16:browser', 'npm run p16:lighthouse', 'npm run p16:links']) {
   if (!workflow.includes(gate)) throw new Error(`P16 permanent workflow missing gate: ${gate}`);
 }
 
 console.log('P16_BROWSER_MATRIX_WIRED_OK chromium=1 firefox=1 webkit=1 mobile=chromium');
 console.log('P16_ACCESSIBILITY_GATE_WIRED_OK axe=wcag22aa keyboard=1 focus=1 reduced_motion=1');
 console.log('P16_PERFORMANCE_GATE_WIRED_OK lighthouse=4-routes');
-console.log('P16_LINK_AND_SEO_GATE_WIRED_OK');
+console.log('P16_LINK_AND_SEO_GATE_WIRED_OK favicon=1');
+console.log('P16_PRODUCTION_DEPENDENCY_AUDIT_WIRED_OK');
 console.log('P16_ROADMAP_HANDOFF_OK next=P17');
 console.log('P16_RELEASE_HARDENING_ALL_OK');
