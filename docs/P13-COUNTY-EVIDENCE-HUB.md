@@ -1,6 +1,6 @@
 # P13 — County Evidence & Knowledge Hub
 
-**Status: implementation candidate.**
+**Status: complete.**
 
 P13 turns the Atlas county profile into an evidence doorway for official planning, budget and accountability documents. It is intentionally a document-discovery layer, not another analytical score.
 

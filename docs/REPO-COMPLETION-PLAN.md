@@ -253,29 +253,23 @@ Release evidence: all 98 indicator policies, all 3,370 published observed-series
 
 ## P13 — County Evidence & Knowledge Hub
 
-**Status: next.**
+**Status: complete.**
 
-Build the durable county document layer, with 47/47 CIDP coverage as the first target and additional official document families wherever they are published:
+P13 adds a generated, county-scoped official-document registry and searchable Evidence Hub inside CountyIQ. All 47 counties have a verified 2023–2027 CIDP document or official source page. Common evidence doorways cover Controller of Budget implementation reporting, Auditor-General county audit collections, CFSP and CBROP discovery, with richer official ADP/CFSP/CBROP/budget source hubs where separately verified.
 
-- CIDP;
-- ADP;
-- CFSP;
-- CBROP;
-- approved and supplementary budgets;
-- Controller of Budget reports;
-- Auditor-General county executive/assembly reports;
-- statistical abstracts/profiles;
-- sector, spatial, climate and investment plans where official.
+The registry distinguishes `verified_document`, `verified_source_page`, `verified_source_collection`, `not_published`, `not_found` and `inaccessible`. A collection link is never labelled as an exact county file, unavailable states require a reason, and placeholder/fragment links are rejected.
 
-Each document record must distinguish `verified`, `not_published`, `not_found` and `inaccessible` rather than collapsing those states into missing. Record county, document type, period, publication date where known, source agency, source page, direct document URL, last verification and link-health state.
+Release evidence: 47/47 CIDP coverage, at least four non-CIDP 47-county evidence doorways, full Atlas tests and the independent geometry audit pass.
 
-**Exit:** 47/47 counties have a verified CIDP record or explicit evidence-state reason; at least three additional core document families are indexed wherever officially published; no `href="#"` placeholder is presented as evidence.
+**Exit:** every county has a durable official-document doorway and evidence-state drift fails CI. See `docs/P13-COUNTY-EVIDENCE-HUB.md`.
 
 ---
 
 ## P14 — Action & Opportunity Finder Beta
 
-**Status: planned.**
+**Status: next.**
+
+Recommended next-session instruction: **Complete P14** from `data/project-roadmap.json`. Do not restart completed phases; implement the full Beta action layer and run its acceptance checks.
 
 Build the action layer after the canonical/evidence foundations rather than as a small national-programme list. Connect published P07 gaps and P10/P11 context to a verified, date-aware programme registry.
 

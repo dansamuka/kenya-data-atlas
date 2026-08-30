@@ -8,7 +8,7 @@ The repository is being completed through bounded, independently deployable phas
 
 ## Completed phases
 
-P00 through P12 are complete. See `data/project-roadmap.json` (the authoritative, machine-readable ledger) for full outputs/acceptance criteria per phase; per-phase detail docs live in `docs/countyiq/`.
+P00 through P13 are complete. See `data/project-roadmap.json` (the authoritative, machine-readable ledger) for full outputs/acceptance criteria per phase; per-phase detail docs live in `docs/countyiq/`.
 
 - **P00** — Runtime stabilization + CountyIQ sample fallback
 - **P01** — Initial-load performance + shared registry loader
@@ -23,15 +23,16 @@ P00 through P12 are complete. See `data/project-roadmap.json` (the authoritative
 - **P10** — County fiscal delivery and accountability layer (`docs/countyiq/P10-DELIVERY-LAYER.md`) — **published.** Common-period FY2024/25 score across execution, OSR target attainment and arrears control; wage-ceiling and audit evidence remain non-scored accountability signals. Missing data are never imputed: 46 counties receive complete scores and Narok is explicitly incomplete.
 - **P11** — Administration-period scorecards and evidence-based recognition (`docs/countyiq/P11-RECOGNITION.md`) — **published for all 47 counties.** Uses FY2021/22 as the last full pre-election baseline, treats FY2022/23 as transition context, and compares to FY2024/25 without assigning a personal governor causal score. Recognition is reproducible from published fiscal rules.
 - **P12** — Canonical Convergence & Governance (`docs/P12-CANONICAL-CONVERGENCE.md`) — **complete.** One versioned policy now governs domain, direction, composite/ranking/trend semantics, uncertainty, inheritance and cross-level normalisation across CountyIQ and registry products; drift is mechanically tested.
+- **P13** — County Evidence & Knowledge Hub (`docs/P13-COUNTY-EVIDENCE-HUB.md`) — **complete.** 47/47 third-generation CIDP evidence coverage plus source-honest budget, audit, CFSP/CBROP and county planning-document doorways with explicit verification states.
 
 ## Next phase
 
-**P13 — County Evidence & Knowledge Hub**
+**P14 — Action & Opportunity Finder Beta**
 
-Build the durable official-document layer: 47/47 CIDP coverage or explicit evidence-state reasons, then ADP, CFSP, CBROP, budgets, Controller of Budget, Auditor-General and statistical/sector plans wherever officially published. Missing evidence must distinguish not published, not found and inaccessible.
+Build the action layer on top of the governed CountyIQ and county evidence foundations. Every live programme must have a primary URL, verification date and reproducible match rationale; expired, paused, unknown and closed programmes cannot appear as live.
 
 Recommended next-session instruction:
 
-> Complete P13 from `data/project-roadmap.json`. Do not restart completed phases. Implement the full phase, run its acceptance checks, and report any unmet gate explicitly.
+> Complete P14 from `data/project-roadmap.json`. Do not restart completed phases. Implement the full phase, run its acceptance checks, and report any unmet gate explicitly.
 
 After a phase passes its evidence checks, update `data/project-roadmap.json` and this file together — both are considered part of the same handoff, not one authoritative and one optional.

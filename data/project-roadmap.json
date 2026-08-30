@@ -295,7 +295,7 @@
     {
       "id": "P13",
       "title": "County Evidence & Knowledge Hub",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Make every county profile a durable evidence doorway to official planning, budget, accountability and statistical documents, with explicit found/not-published/not-found/inaccessible states.",
       "outputs": [
         "county document registry",
@@ -318,7 +318,7 @@
     {
       "id": "P14",
       "title": "Action & Opportunity Finder Beta",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Connect CountyIQ gaps and county context to a verified, date-aware opportunity registry without presenting stale or speculative funding information as live.",
       "outputs": [
         "opportunity registry and freshness policy",
