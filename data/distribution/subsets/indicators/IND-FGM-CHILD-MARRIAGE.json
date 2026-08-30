@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "7e030d9e-67ae-521f-a606-879abe7a6d1a",
+    "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+    "name": "FGM prevalence / child marriage rate",
+    "short_name": "FGM prevalence / child marriage rate",
+    "description": "Published prevalence measure, presented neutrally without editorial ranking.",
+    "topic": "Health",
+    "subtopic": "health",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KDHS 2022",
+    "expected_source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "expected_availability_note": "Sample survey; never render as a shame/worst-offender ranking.",
+    "tab": "health",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": true,
+    "ranking_allowed": false
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

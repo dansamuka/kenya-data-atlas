@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dansamuka.github.io/kenya-data-atlas/data/distribution/schemas/series.schema.json",
+  "title": "Kenya Data Atlas series record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "series_id",
+    "series_code",
+    "indicator_id",
+    "geography_id",
+    "unit_id",
+    "dataset_id",
+    "status"
+  ],
+  "properties": {
+    "series_id": {
+      "type": "string"
+    },
+    "series_code": {
+      "type": "string"
+    },
+    "indicator_id": {
+      "type": "string"
+    },
+    "geography_id": {
+      "type": "string"
+    },
+    "unit_id": {
+      "type": "string"
+    },
+    "dataset_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "x-kda-contract-version": "1.0.0"
+}

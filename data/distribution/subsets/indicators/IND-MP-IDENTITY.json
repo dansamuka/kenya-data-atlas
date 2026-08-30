@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "a181ac44-f24a-58c2-9434-6742d19c8b44",
+    "indicator_code": "IND-MP-IDENTITY",
+    "name": "Member of Parliament (name, party)",
+    "short_name": "Member of Parliament (name, party)",
+    "description": "Current constituency Member of Parliament identity and party, once a checkable source is curated.",
+    "topic": "Representation",
+    "subtopic": "representation",
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "constituency",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "IEBC / Parliament of Kenya",
+    "expected_source_url": "",
+    "expected_availability_note": "No single confirmed machine-readable source; remain planned.",
+    "tab": "representation",
+    "applies_to_levels": [
+      "constituency"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

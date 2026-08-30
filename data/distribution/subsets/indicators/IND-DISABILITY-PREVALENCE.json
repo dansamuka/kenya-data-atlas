@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "d5416864-ca49-5a2d-8b29-e59dc3a3ba60",
+    "indicator_code": "IND-DISABILITY-PREVALENCE",
+    "name": "Disability prevalence (Washington Group short set)",
+    "short_name": "Disability prevalence (Washington Group short set)",
+    "description": "Prevalence using the Washington Group short-set disability identification questions.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KNBS 2019 census",
+    "expected_source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "expected_availability_note": "County census indicator.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

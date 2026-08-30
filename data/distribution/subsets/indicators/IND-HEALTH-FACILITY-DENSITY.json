@@ -1,0 +1,47 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "c1627a1b-2bba-57af-a8d1-89c94336876f",
+    "indicator_code": "IND-HEALTH-FACILITY-DENSITY",
+    "name": "Health facilities per 10,000 population",
+    "short_name": "Health facilities per 10,000 population",
+    "description": "Atlas-derived facility density from KMHFR geocoded facilities and canonical geography polygons.",
+    "topic": "Infrastructure",
+    "subtopic": "infrastructure",
+    "unit_id": "390aea4f-9e25-5bd3-82ff-84463986de5e",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://kmhfr.health.go.ke/public/facilities",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "Kenya Master Health Facility Registry (KMHFR)",
+    "expected_source_url": "https://kmhfr.health.go.ke/public/facilities",
+    "expected_availability_note": "When activated, badge B: transparent aggregation of official facility points; never presented as a KMHFR-published area table.",
+    "tab": "infrastructure",
+    "applies_to_levels": [
+      "county",
+      "constituency",
+      "ward"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "390aea4f-9e25-5bd3-82ff-84463986de5e",
+    "code": "per_10000_persons",
+    "name": "Per 10,000 population",
+    "symbol": "per 10k",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "5402f120-b912-561b-9827-c51709d8793e",
+    "indicator_code": "IND-SOCIAL-PROTECTION-BENEFICIARIES",
+    "name": "Inua Jamii cash-transfer beneficiaries",
+    "short_name": "Inua Jamii cash-transfer beneficiaries",
+    "description": "Beneficiaries of Older Persons, OVC, Persons with Severe Disability and HSNP schemes.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "3add048e-c42d-5b05-994c-dad9c6812cc4",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "State Department for Social Protection",
+    "expected_source_url": "",
+    "expected_availability_note": "No citable per-county publication identified; must not be promoted to sourced without one.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "3add048e-c42d-5b05-994c-dad9c6812cc4",
+    "code": "persons",
+    "name": "Persons",
+    "symbol": "",
+    "dimension": "count",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

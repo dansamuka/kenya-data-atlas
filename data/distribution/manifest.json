@@ -1,0 +1,337 @@
+{
+  "schema_version": "kda.distribution-manifest.v1",
+  "application_version": "0.18.0",
+  "data_contract_version": "1.0.0",
+  "release_date": "2026-08-30",
+  "generated_at": "2026-08-28T00:00:00.000Z",
+  "counts": {
+    "units": 21,
+    "indicators": 98,
+    "series": 3370,
+    "observations": 6864,
+    "geographies": 1788,
+    "counties": 47,
+    "datasets": 50,
+    "evidence_records": 247,
+    "public_county_results": 47
+  },
+  "methodology_versions": {
+    "indicator_policy": "P12-policy-v1",
+    "public_results": "kda.public-results.v1",
+    "county_evidence": "kda.county-evidence.v1"
+  },
+  "products": [
+    {
+      "id": "units",
+      "description": "Unit definitions",
+      "record_count": 21,
+      "schema": null,
+      "formats": {
+        "json": {
+          "path": "data/indicators/registry/units.json",
+          "bytes": 5133,
+          "sha256": "ed2121dbd7f1acd61bdd3f0f29a170d7fdeae94669e549f79deab156eda449df"
+        },
+        "csv": {
+          "path": "data/indicators/registry/units.csv",
+          "bytes": 2162,
+          "sha256": "8553c23d176f7b0ab08b17942338c788a927f30d77d9703ea103a6ac859dfa3e"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/units.ndjson",
+          "bytes": 3996,
+          "sha256": "2ed772b7ec72ad6bd2445cfd399629cc07e98955b5024b9637ad6e70809d7223"
+        }
+      }
+    },
+    {
+      "id": "indicators",
+      "description": "Canonical indicator definitions",
+      "record_count": 98,
+      "schema": "data/distribution/schemas/indicator.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/indicators/registry/indicators.json",
+          "bytes": 109913,
+          "sha256": "47ea409ca9c11619d0178f8b655d3ffcf57e6a3bcde36fd35e52034b50c7b9c3"
+        },
+        "csv": {
+          "path": "data/indicators/registry/indicators.csv",
+          "bytes": 53836,
+          "sha256": "50c221301dace347cd2df590baa1c3a5e153a703f0b533c0dd08f1ca991bb5af"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/indicators.ndjson",
+          "bytes": 94216,
+          "sha256": "3d6f09cce1e25b7dbf8f58a714f69056b31ba5fe825b11ed69c0560cbaf5abb3"
+        }
+      }
+    },
+    {
+      "id": "series",
+      "description": "Concrete geography-specific statistical series",
+      "record_count": 3370,
+      "schema": "data/distribution/schemas/series.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/indicators/registry/series.json",
+          "bytes": 4060732,
+          "sha256": "8928f466f977eeb632bd66363c5b0a5f41db40d645937195808e454fe9bfbd97"
+        },
+        "csv": {
+          "path": "data/indicators/registry/series.csv",
+          "bytes": 2034626,
+          "sha256": "22c9c783cd50c369ee2bc71a0290ca1a4ea996a9ff8ac7a45bd80d4323d4696e"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/series.ndjson",
+          "bytes": 3497341,
+          "sha256": "3af35ead63cc8acf9ce174b6d3c25ea4fc7a383e0b25b2bb332d3070aa0af0bc"
+        }
+      }
+    },
+    {
+      "id": "observations",
+      "description": "Published observations with provenance and uncertainty fields",
+      "record_count": 6864,
+      "schema": "data/distribution/schemas/observation.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/indicators/registry/observations.json",
+          "bytes": 9522672,
+          "sha256": "7525d8204ebc695d086b87dd46f89daf27fcc3c464adf2aa9107a8b284c8b87d"
+        },
+        "csv": {
+          "path": "data/indicators/registry/observations.csv",
+          "bytes": 4664145,
+          "sha256": "487859f6b9651a2e95e62ce8c68de8e260b4f90ab872c32a79b1bfc319cf875c"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/observations.ndjson",
+          "bytes": 8163597,
+          "sha256": "a5211ffb38b0227e8c38d871c764044f9a367886b2f2abfd49c4bf6e8bbd4b96"
+        }
+      }
+    },
+    {
+      "id": "geographies",
+      "description": "Kenya → County → Constituency → Ward registry",
+      "record_count": 1788,
+      "schema": "data/distribution/schemas/geography.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/geography/registry/geographies.json",
+          "bytes": 911731,
+          "sha256": "5cc75cf0bbe3ac522b9bbc51a491a3fb4aacaba7ae0110d63cc6638694011f8c"
+        },
+        "csv": {
+          "path": "data/geography/registry/geographies.csv",
+          "bytes": 409697,
+          "sha256": "430d1b37d64c0af0c3854c5b5d2c473f02a3eac73895544f0fed6afab423f3f3"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/geographies.ndjson",
+          "bytes": 740080,
+          "sha256": "34732389ac84ded293b224a40bcfb3d2910f423f408f0bbbb03d16db92b34fa2"
+        }
+      }
+    },
+    {
+      "id": "agencies",
+      "description": "Publishing/source agencies",
+      "record_count": 14,
+      "schema": null,
+      "formats": {
+        "json": {
+          "path": "data/catalogue/registry/agencies.json",
+          "bytes": 5810,
+          "sha256": "f9ddbe52a74700cdd53057b79f7dc0ce85bc33ead284bc2b0735143c30112db9"
+        },
+        "csv": {
+          "path": "data/catalogue/registry/agencies.csv",
+          "bytes": 2273,
+          "sha256": "e7e008136f7894a5b60f9caa74d6eeaadaff634fb2e22ba34ea453e6c064c2a1"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/agencies.ndjson",
+          "bytes": 4967,
+          "sha256": "80cbb14cec68a02c16f20e13f4a17777a21ff2eef82376e95df659cc60a64b52"
+        }
+      }
+    },
+    {
+      "id": "sources",
+      "description": "Source registry",
+      "record_count": 14,
+      "schema": null,
+      "formats": {
+        "json": {
+          "path": "data/catalogue/registry/sources.json",
+          "bytes": 10673,
+          "sha256": "c52dabe04641ae8411275593af8ba2ab46ae08e4f4f8f67a5eaca3f1e954dbfb"
+        },
+        "csv": {
+          "path": "data/catalogue/registry/sources.csv",
+          "bytes": 4962,
+          "sha256": "bb7afe9bb184bf5b144834e67fc0c8d9f4d1c4ba65787ecabb415f0234a5554c"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/sources.ndjson",
+          "bytes": 9242,
+          "sha256": "ea08f6a420f5451fec142dbdefa394bc07e1ac893c4f6806e6860ec364d3fbd7"
+        }
+      }
+    },
+    {
+      "id": "datasets",
+      "description": "Dataset catalogue",
+      "record_count": 50,
+      "schema": "data/distribution/schemas/dataset.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/catalogue/registry/datasets.json",
+          "bytes": 35900,
+          "sha256": "1d527ecb0c1af68e64c068defa0ef1053d98ea7c57f6a417a576ac17e209b7b1"
+        },
+        "csv": {
+          "path": "data/catalogue/registry/datasets.csv",
+          "bytes": 23812,
+          "sha256": "0c495c7f44486c5ee567dc6114f8778a07e4eeb47c8dcbfd6dd84cbcaf5eaf7a"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/datasets.ndjson",
+          "bytes": 31649,
+          "sha256": "9540280cb50e9a4ce1e3780f6737e4e3cdb7cdc2642696e28feeeae457eb4bfc"
+        }
+      }
+    },
+    {
+      "id": "releases",
+      "description": "Source release catalogue",
+      "record_count": 39,
+      "schema": null,
+      "formats": {
+        "json": {
+          "path": "data/catalogue/registry/releases.json",
+          "bytes": 30689,
+          "sha256": "c266c0dd4c5a33d766bad65fc960d12c507304a2596d6f571bdfb7e8355480cb"
+        },
+        "csv": {
+          "path": "data/catalogue/registry/releases.csv",
+          "bytes": 18368,
+          "sha256": "b6bc811b1e5dc2b5a7b12befc15d583fc238bb98f5df39e56b1b66b9efa9e690"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/releases.ndjson",
+          "bytes": 27176,
+          "sha256": "c02ec0e7af43475ce1c91c237d428191c09aa9abc8cedb1ce2b72a2ce3ce61dd"
+        }
+      }
+    },
+    {
+      "id": "county-results",
+      "description": "Published CountyIQ rankings, snapshots, fiscal delivery, scorecards and recognition inputs",
+      "record_count": 47,
+      "schema": "data/distribution/schemas/county-result.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/results/county-results.json",
+          "bytes": 1423523,
+          "sha256": "d14849df0fc42066373618343d448492c4bb7b3a983dcd5aa34c0e94c010e168"
+        },
+        "csv": {
+          "path": "data/distribution/csv/county-results.csv",
+          "bytes": 3922,
+          "sha256": "3ee52dcd910e53981ac4ed9276190e1e26b8ee7e27197be0975faea67bd7e9f3"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/county-results.ndjson",
+          "bytes": 540616,
+          "sha256": "419c2ee8b07a322540d10143681bcc4f498c26fffb386956311afce1e5878cf7"
+        }
+      }
+    },
+    {
+      "id": "county-evidence",
+      "description": "Verified county planning, budget and accountability evidence records",
+      "record_count": 247,
+      "schema": "data/distribution/schemas/evidence-record.schema.json",
+      "formats": {
+        "json": {
+          "path": "data/evidence/county-documents.json",
+          "bytes": 244067,
+          "sha256": "e6b8edb54d06f24a8f184d6d4131a24752461dd5d10ac8100568b2efc76b0ce3"
+        },
+        "csv": {
+          "path": "data/distribution/csv/evidence-records.csv",
+          "bytes": 132317,
+          "sha256": "9d432f75f02889cc26f0093b8b0911f513542352aa86e6cfc79207511e5ba06b"
+        },
+        "ndjson": {
+          "path": "data/distribution/ndjson/evidence-records.ndjson",
+          "bytes": 183919,
+          "sha256": "7360063166e3b62472b17346d94323078fe7c9c97fb0ea767ec075d88020059f"
+        }
+      }
+    },
+    {
+      "id": "indicator-policy",
+      "description": "Canonical methodology/governance policy registry",
+      "record_count": 98,
+      "schema": null,
+      "formats": {
+        "json": {
+          "path": "data/policy/indicator-policy.json",
+          "bytes": 1416609,
+          "sha256": "9c75a465f5b8801c78a4919c32e71a00e2e335a909134f5b4d1e11c0483f3e73"
+        }
+      }
+    }
+  ],
+  "subsets": {
+    "counties": {
+      "count": 47,
+      "index": {
+        "path": "data/distribution/subsets/counties/index.json",
+        "bytes": 9457,
+        "sha256": "33e84724b45b80986436bc10c5f04c694b2a50de2a05464234de327c214a0365"
+      },
+      "path_pattern": "data/distribution/subsets/counties/{geo_code}.json"
+    },
+    "indicators": {
+      "count": 98,
+      "index": {
+        "path": "data/distribution/subsets/indicators/index.json",
+        "bytes": 22927,
+        "sha256": "605df94bfe7733667a018ccfe252ea9d481fcfc38c099edbd289f577656018a0"
+      },
+      "path_pattern": "data/distribution/subsets/indicators/{indicator_code}.json"
+    }
+  },
+  "format_availability": {
+    "json": {
+      "status": "published",
+      "note": "Canonical JSON arrays plus query-sized subset JSON."
+    },
+    "csv": {
+      "status": "published",
+      "note": "Canonical registry CSV plus flattened county-results and evidence CSV."
+    },
+    "ndjson": {
+      "status": "published",
+      "note": "Streaming-friendly one-record-per-line distributions."
+    },
+    "parquet": {
+      "status": "not_committed",
+      "note": "Not committed in P15 to avoid adding a heavy binary build dependency to the deterministic static pipeline. Developer documentation includes a reproducible local conversion recipe from the published CSV/NDJSON."
+    }
+  },
+  "versioning": {
+    "contract_rule": "Breaking field/semantic changes increment data_contract_version; data refreshes may increment application/data release version without breaking the contract.",
+    "pinning": "For reproducible research, pin a Git commit or release tag rather than consuming main."
+  },
+  "licensing": {
+    "code": "MIT — see LICENSE.",
+    "data": "No blanket relicensing of third-party source data. See DATA-NOTICE.md and each dataset/source record."
+  }
+}

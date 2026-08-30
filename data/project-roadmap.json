@@ -318,7 +318,7 @@
     {
       "id": "P14",
       "title": "Action & Opportunity Finder Beta",
-      "status": "next",
+      "status": "deferred",
       "session_goal": "Connect CountyIQ gaps and county context to a verified, date-aware opportunity registry without presenting stale or speculative funding information as live.",
       "outputs": [
         "opportunity registry and freshness policy",
@@ -336,12 +336,14 @@
       "depends_on": [
         "P07",
         "P12"
-      ]
+      ],
+      "target_release": "v1.1-beta",
+      "defer_reason": "Opportunity and funding programme freshness creates a continuing maintenance obligation; the core Atlas can reach a defensible v1.0 without making this Beta action layer a launch blocker."
     },
     {
       "id": "P15",
       "title": "Data distribution and developer surface",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Package canonical registries, policy and analytical products into a stable public data interface with versioned machine-readable contracts.",
       "outputs": [
         "versioned downloadable bundles",
@@ -359,12 +361,13 @@
       "depends_on": [
         "P12",
         "P13"
-      ]
+      ],
+      "target_release": "v1.0"
     },
     {
       "id": "P16",
       "title": "Real-browser accessibility, SEO and performance release audit",
-      "status": "planned",
+      "status": "next",
       "session_goal": "Harden the public product with real-browser, accessibility, performance and link-integrity gates rather than DOM-only smoke checks.",
       "outputs": [
         "Playwright browser smoke matrix",
@@ -383,7 +386,8 @@
       ],
       "depends_on": [
         "P15"
-      ]
+      ],
+      "target_release": "v1.0"
     },
     {
       "id": "P17",
@@ -412,7 +416,8 @@
         "P12",
         "P13",
         "P16"
-      ]
+      ],
+      "target_release": "v1.0"
     }
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "123157aa-64af-597a-917a-b2e070af3871",
+    "indicator_code": "IND-DROUGHT-EARLY-WARNING",
+    "name": "Drought early warning bulletin status",
+    "short_name": "Drought early warning bulletin status",
+    "description": "Monthly drought early warning status from NDMA bulletins.",
+    "topic": "Resilience & Environment",
+    "subtopic": "resilience",
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "NDMA monthly drought early warning bulletins",
+    "expected_source_url": "",
+    "expected_availability_note": "Machine-readable table structure not yet reviewed.",
+    "tab": "resilience",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "ASAL_COUNTIES",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
+    "code": "category",
+    "name": "Categorical value",
+    "symbol": "",
+    "dimension": "category",
+    "scale_factor": 1,
+    "decimal_places": 0,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

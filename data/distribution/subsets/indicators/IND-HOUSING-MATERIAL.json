@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "8d0b143c-b99c-5c08-a73a-afc311a7c3db",
+    "indicator_code": "IND-HOUSING-MATERIAL",
+    "name": "Dwelling wall/roof material (% permanent)",
+    "short_name": "Dwelling wall/roof material (% permanent)",
+    "description": "Share of dwellings classified as permanent by the published census material definition.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KNBS 2019 census, Volume IV",
+    "expected_source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "expected_availability_note": "County only.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

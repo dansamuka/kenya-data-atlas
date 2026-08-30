@@ -1,0 +1,21 @@
+{"unit_id":"3add048e-c42d-5b05-994c-dad9c6812cc4","code":"persons","name":"Persons","symbol":"","dimension":"count","scale_factor":1,"decimal_places":0,"currency_code":""}
+{"unit_id":"09db3d3a-c7b1-51f3-9909-d94d80106e82","code":"percent","name":"Percent","symbol":"%","dimension":"ratio","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"a2522f73-34eb-5b5e-a1d4-383888213b20","code":"kes_per_usd","name":"Kenya Shillings per US Dollar","symbol":"KES/USD","dimension":"ratio","scale_factor":1,"decimal_places":2,"currency_code":"KES"}
+{"unit_id":"288f3c4c-858c-5be1-8803-0529c2870ab7","code":"km2","name":"Square kilometres","symbol":"km²","dimension":"area","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"c378415c-0864-5d65-9772-35dda6b0fb78","code":"kes_per_litre","name":"Kenya Shillings per litre","symbol":"KES/L","dimension":"currency","scale_factor":1,"decimal_places":2,"currency_code":"KES"}
+{"unit_id":"04b90096-6bfb-521e-957b-e8b0f4cf1988","code":"index_score","name":"Score","symbol":"score","dimension":"index","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"e0d1cd62-62cd-51c5-9ff8-06f51401fad5","code":"years","name":"Years","symbol":"years","dimension":"duration","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"f69ebbd6-3aef-59c4-b7dd-f49eb2c99d69","code":"usd","name":"US dollars","symbol":"US$","dimension":"currency","scale_factor":1,"decimal_places":0,"currency_code":"USD"}
+{"unit_id":"f53cce64-4a0b-55d9-ab82-77787d376297","code":"usd_per_person","name":"US dollars per person","symbol":"US$/person","dimension":"rate","scale_factor":1,"decimal_places":2,"currency_code":"USD"}
+{"unit_id":"2c20ee7c-243a-5104-b8d7-79f8590eff06","code":"tonnes_per_person","name":"Tonnes per person","symbol":"t/person","dimension":"rate","scale_factor":1,"decimal_places":2,"currency_code":""}
+{"unit_id":"54fe9ccc-1a14-5704-b5f8-ea50e599dfae","code":"per_100000_persons","name":"Per 100,000 population","symbol":"per 100k","dimension":"rate","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"2b7566ee-fd7f-510a-90da-d0b4f60268c7","code":"count","name":"Count","symbol":"","dimension":"count","scale_factor":1,"decimal_places":0,"currency_code":""}
+{"unit_id":"5861b255-10c3-53f8-a3a2-96aa4bd4e3fb","code":"kes_million","name":"Kenya shillings, million","symbol":"KES mn","dimension":"currency","scale_factor":1000000,"decimal_places":0,"currency_code":"KES"}
+{"unit_id":"c29ad2b5-6600-5015-a501-ffcd28458740","code":"hectares","name":"Hectares","symbol":"ha","dimension":"area","scale_factor":1,"decimal_places":0,"currency_code":""}
+{"unit_id":"d6785a41-d89d-575d-9608-b72b9896df7b","code":"tonnes","name":"Tonnes","symbol":"t","dimension":"mass","scale_factor":1,"decimal_places":0,"currency_code":""}
+{"unit_id":"0ea5caca-cb59-50ef-ab8c-d2628e192d70","code":"tonnes_per_hectare","name":"Tonnes per hectare","symbol":"t/ha","dimension":"rate","scale_factor":1,"decimal_places":2,"currency_code":""}
+{"unit_id":"6590aac1-b204-58cd-a9f0-8fab3fed5cdc","code":"persons_per_household","name":"Persons per household","symbol":"persons/household","dimension":"rate","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"2c409624-a5da-51da-9394-3cd07cf5b2a9","code":"category","name":"Categorical value","symbol":"","dimension":"category","scale_factor":1,"decimal_places":0,"currency_code":""}
+{"unit_id":"3ac76693-4ae7-5fa1-a35f-019af2d4a642","code":"km","name":"Kilometres","symbol":"km","dimension":"length","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"390aea4f-9e25-5bd3-82ff-84463986de5e","code":"per_10000_persons","name":"Per 10,000 population","symbol":"per 10k","dimension":"rate","scale_factor":1,"decimal_places":1,"currency_code":""}
+{"unit_id":"05877091-2fa7-5ff3-af23-1fe97ba689b1","code":"climate_measure","name":"Rainfall / temperature measure","symbol":"mm / °C","dimension":"climate","scale_factor":1,"decimal_places":1,"currency_code":""}

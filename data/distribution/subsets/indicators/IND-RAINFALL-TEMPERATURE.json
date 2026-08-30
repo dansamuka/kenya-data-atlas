@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "6b0aa945-79a5-5679-a9c7-2a7d2b9b7388",
+    "indicator_code": "IND-RAINFALL-TEMPERATURE",
+    "name": "Rainfall and temperature (historical series)",
+    "short_name": "Rainfall and temperature (historical series)",
+    "description": "Historical rainfall and temperature where an official open-data channel exists.",
+    "topic": "Resilience & Environment",
+    "subtopic": "resilience",
+    "unit_id": "05877091-2fa7-5ff3-af23-1fe97ba689b1",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "Kenya Meteorological Department",
+    "expected_source_url": "",
+    "expected_availability_note": "Remain planned unless a genuine historical-data channel is confirmed.",
+    "tab": "resilience",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "ASAL_COUNTIES",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "05877091-2fa7-5ff3-af23-1fe97ba689b1",
+    "code": "climate_measure",
+    "name": "Rainfall / temperature measure",
+    "symbol": "mm / °C",
+    "dimension": "climate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

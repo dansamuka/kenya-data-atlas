@@ -1,0 +1,43 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "2b06830e-010c-5e49-9385-806f40105fa5",
+    "indicator_code": "IND-MOBILE-MONEY-VOLUME",
+    "name": "Mobile money transaction volume",
+    "short_name": "Mobile money transaction volume",
+    "description": "National mobile-money transaction volume for the Kenya Pulse.",
+    "topic": "Economy",
+    "subtopic": "economy",
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "country",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "Central Bank of Kenya / Communications Authority",
+    "expected_source_url": "",
+    "expected_availability_note": "National-only Pulse slot; no county breakdown identified.",
+    "tab": "economy",
+    "applies_to_levels": [],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "code": "kes_million",
+    "name": "Kenya shillings, million",
+    "symbol": "KES mn",
+    "dimension": "currency",
+    "scale_factor": 1000000,
+    "decimal_places": 0,
+    "currency_code": "KES"
+  },
+  "series": [],
+  "observations": []
+}

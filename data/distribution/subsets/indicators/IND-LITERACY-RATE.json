@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "644c8bee-deec-5cd1-acda-d28a992f5b93",
+    "indicator_code": "IND-LITERACY-RATE",
+    "name": "Literacy rate",
+    "short_name": "Literacy rate",
+    "description": "Share of the relevant population meeting the published literacy definition.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KNBS 2019 census / KDHS 2022",
+    "expected_source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "expected_availability_note": "County only until a valid lower-level tabulation is confirmed.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

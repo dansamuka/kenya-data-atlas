@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dansamuka.github.io/kenya-data-atlas/data/distribution/schemas/county-result.schema.json",
+  "title": "Kenya Data Atlas county analytical result",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "geo_code",
+    "name",
+    "metrics",
+    "fiscal_delivery",
+    "administration",
+    "evidence"
+  ],
+  "properties": {
+    "geo_code": {
+      "type": "string",
+      "pattern": "^KEN-C[0-9]{3}$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "array"
+    },
+    "fiscal_delivery": {
+      "type": "object"
+    },
+    "administration": {
+      "type": "object"
+    },
+    "evidence": {
+      "type": "object"
+    }
+  },
+  "x-kda-contract-version": "1.0.0"
+}

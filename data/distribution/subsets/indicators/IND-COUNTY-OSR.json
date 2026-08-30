@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "c690a64c-1366-55fe-804e-8383a0dbb9de",
+    "indicator_code": "IND-COUNTY-OSR",
+    "name": "Own-source revenue vs. target",
+    "short_name": "Own-source revenue vs. target",
+    "description": "County own-source revenue performance against target.",
+    "topic": "Public Finance",
+    "subtopic": "finance",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "Office of the Controller of Budget County Budget Implementation Review Report FY2024/25",
+    "expected_source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
+    "expected_availability_note": "Same trusted report family as budget/expenditure; first-priority sourced promotion.",
+    "tab": "finance",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

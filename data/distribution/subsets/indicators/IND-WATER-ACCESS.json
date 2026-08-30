@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "32276bb2-5ccf-5eb3-9db4-ca7e964e34de",
+    "indicator_code": "IND-WATER-ACCESS",
+    "name": "Households with access to improved water source (%)",
+    "short_name": "Households with access to improved water source (%)",
+    "description": "Share of households with access to an improved water source.",
+    "topic": "Infrastructure",
+    "subtopic": "infrastructure",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "WASREB annual reports",
+    "expected_source_url": "",
+    "expected_availability_note": "Utility service areas do not align cleanly with counties; crosswalk required before promotion.",
+    "tab": "infrastructure",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

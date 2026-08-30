@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "2b445da9-6454-55cb-b6a6-3411fb4dd78f",
+    "indicator_code": "IND-COUNTY-PENDING-BILLS",
+    "name": "Pending bills",
+    "short_name": "Pending bills",
+    "description": "County pending bills reported by the Controller of Budget.",
+    "topic": "Public Finance",
+    "subtopic": "finance",
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "higher_is_better": false,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "Office of the Controller of Budget County Budget Implementation Review Report FY2024/25",
+    "expected_source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
+    "expected_availability_note": "Same trusted report family as budget/expenditure; first-priority sourced promotion.",
+    "tab": "finance",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "code": "kes_million",
+    "name": "Kenya shillings, million",
+    "symbol": "KES mn",
+    "dimension": "currency",
+    "scale_factor": 1000000,
+    "decimal_places": 0,
+    "currency_code": "KES"
+  },
+  "series": [],
+  "observations": []
+}

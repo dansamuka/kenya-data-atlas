@@ -1,0 +1,688 @@
+[
+  {
+    "indicator_code": "IND-AGRI-PRODUCTION",
+    "name": "Key crop production (county-dominant crop only)",
+    "path": "data/distribution/subsets/indicators/IND-AGRI-PRODUCTION.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-AGRICULTURE-GCP-SHARE",
+    "name": "Agriculture share of GCP",
+    "path": "data/distribution/subsets/indicators/IND-AGRICULTURE-GCP-SHARE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-AGRICULTURE-GVA",
+    "name": "Agriculture gross value added",
+    "path": "data/distribution/subsets/indicators/IND-AGRICULTURE-GVA.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-BUSINESS-LICENSES",
+    "name": "Licensed businesses (count, year-on-year change)",
+    "path": "data/distribution/subsets/indicators/IND-BUSINESS-LICENSES.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-CBR",
+    "name": "Central Bank Rate",
+    "path": "data/distribution/subsets/indicators/IND-CBR.json",
+    "series_count": 1,
+    "observation_count": 122
+  },
+  {
+    "indicator_code": "IND-CO2-PER-CAPITA",
+    "name": "CO2 emissions per capita (excl. LULUCF)",
+    "path": "data/distribution/subsets/indicators/IND-CO2-PER-CAPITA.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-COMPUTER-USE",
+    "name": "Individuals using a computer",
+    "path": "data/distribution/subsets/indicators/IND-COMPUTER-USE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-CONTRACEPTIVE-USE",
+    "name": "Modern contraceptive use rate",
+    "path": "data/distribution/subsets/indicators/IND-CONTRACEPTIVE-USE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-COUNTY-AUDIT-OPINION",
+    "name": "Auditor-General opinion",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-AUDIT-OPINION.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",
+    "name": "County budget absorption rate",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-BUDGET-ABSORPTION.json",
+    "series_count": 47,
+    "observation_count": 564
+  },
+  {
+    "indicator_code": "IND-COUNTY-BUDGET-TOTAL",
+    "name": "County budget",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-BUDGET-TOTAL.json",
+    "series_count": 47,
+    "observation_count": 564
+  },
+  {
+    "indicator_code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
+    "name": "Development budget absorption rate",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-DEVELOPMENT-ABSORPTION.json",
+    "series_count": 47,
+    "observation_count": 564
+  },
+  {
+    "indicator_code": "IND-COUNTY-EXPENDITURE-TOTAL",
+    "name": "County expenditure",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-EXPENDITURE-TOTAL.json",
+    "series_count": 47,
+    "observation_count": 564
+  },
+  {
+    "indicator_code": "IND-COUNTY-OSR",
+    "name": "Own-source revenue vs. target",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-OSR.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-COUNTY-PENDING-BILLS",
+    "name": "Pending bills",
+    "path": "data/distribution/subsets/indicators/IND-COUNTY-PENDING-BILLS.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-CPI-INFLATION",
+    "name": "Consumer price inflation",
+    "path": "data/distribution/subsets/indicators/IND-CPI-INFLATION.json",
+    "series_count": 1,
+    "observation_count": 259
+  },
+  {
+    "indicator_code": "IND-CPI-INFLATION-WB-ANNUAL",
+    "name": "Inflation, consumer prices (annual %)",
+    "path": "data/distribution/subsets/indicators/IND-CPI-INFLATION-WB-ANNUAL.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-DISABILITY-PREVALENCE",
+    "name": "Disability prevalence (Washington Group short set)",
+    "path": "data/distribution/subsets/indicators/IND-DISABILITY-PREVALENCE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-DROUGHT-EARLY-WARNING",
+    "name": "Drought early warning bulletin status",
+    "path": "data/distribution/subsets/indicators/IND-DROUGHT-EARLY-WARNING.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-ELECTRICITY-ACCESS",
+    "name": "Households with electricity (%)",
+    "path": "data/distribution/subsets/indicators/IND-ELECTRICITY-ACCESS.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-ELECTRICITY-ACCESS-WB",
+    "name": "Access to electricity (% of population)",
+    "path": "data/distribution/subsets/indicators/IND-ELECTRICITY-ACCESS-WB.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-EXAM-PERFORMANCE",
+    "name": "Mean KCPE / KCSE score",
+    "path": "data/distribution/subsets/indicators/IND-EXAM-PERFORMANCE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-FACILITY-INFRASTRUCTURE",
+    "name": "Facilities with electricity/water (%)",
+    "path": "data/distribution/subsets/indicators/IND-FACILITY-INFRASTRUCTURE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-FDI-NET-INFLOWS",
+    "name": "Foreign direct investment, net inflows (% of GDP)",
+    "path": "data/distribution/subsets/indicators/IND-FDI-NET-INFLOWS.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+    "name": "FGM prevalence / child marriage rate",
+    "path": "data/distribution/subsets/indicators/IND-FGM-CHILD-MARRIAGE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-FOOD-SECURITY-PHASE",
+    "name": "Food security phase classification (IPC-style)",
+    "path": "data/distribution/subsets/indicators/IND-FOOD-SECURITY-PHASE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-FOREST-AREA",
+    "name": "Forest area (% of land area)",
+    "path": "data/distribution/subsets/indicators/IND-FOREST-AREA.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-FRESHWATER-WITHDRAWAL",
+    "name": "Freshwater withdrawals (% of internal resources)",
+    "path": "data/distribution/subsets/indicators/IND-FRESHWATER-WITHDRAWAL.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-FUEL-PETROL",
+    "name": "Super Petrol pump price",
+    "path": "data/distribution/subsets/indicators/IND-FUEL-PETROL.json",
+    "series_count": 47,
+    "observation_count": 53
+  },
+  {
+    "indicator_code": "IND-GCP-CURRENT",
+    "name": "Gross County Product (current prices)",
+    "path": "data/distribution/subsets/indicators/IND-GCP-CURRENT.json",
+    "series_count": 47,
+    "observation_count": 235
+  },
+  {
+    "indicator_code": "IND-GDP-GROWTH",
+    "name": "GDP growth (annual %)",
+    "path": "data/distribution/subsets/indicators/IND-GDP-GROWTH.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-GDP-NATIONAL",
+    "name": "GDP (current US$)",
+    "path": "data/distribution/subsets/indicators/IND-GDP-NATIONAL.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-GDP-PER-CAPITA-NATIONAL",
+    "name": "GDP per capita (current US$)",
+    "path": "data/distribution/subsets/indicators/IND-GDP-PER-CAPITA-NATIONAL.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-GINI-WB",
+    "name": "GINI index",
+    "path": "data/distribution/subsets/indicators/IND-GINI-WB.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-HEALTH-FACILITY-COUNT",
+    "name": "Health facilities assessed in the 2023 Health Facility Census",
+    "path": "data/distribution/subsets/indicators/IND-HEALTH-FACILITY-COUNT.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-HEALTH-FACILITY-DENSITY",
+    "name": "Health facilities per 10,000 population",
+    "path": "data/distribution/subsets/indicators/IND-HEALTH-FACILITY-DENSITY.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-HEALTH-FACILITY-STOCK",
+    "name": "Health facility count",
+    "path": "data/distribution/subsets/indicators/IND-HEALTH-FACILITY-STOCK.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-HIV-PREVALENCE",
+    "name": "HIV prevalence",
+    "path": "data/distribution/subsets/indicators/IND-HIV-PREVALENCE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-HOME-BIRTH-RATE",
+    "name": "Home births (vs. facility births)",
+    "path": "data/distribution/subsets/indicators/IND-HOME-BIRTH-RATE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-HOMICIDE-RATE",
+    "name": "Intentional homicides (per 100,000 people)",
+    "path": "data/distribution/subsets/indicators/IND-HOMICIDE-RATE.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-HOSPITAL-BED-UTILIZATION",
+    "name": "Hospital bed occupancy/utilisation rate",
+    "path": "data/distribution/subsets/indicators/IND-HOSPITAL-BED-UTILIZATION.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-HOUSEHOLD-SIZE",
+    "name": "Average household size",
+    "path": "data/distribution/subsets/indicators/IND-HOUSEHOLD-SIZE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-HOUSING-MATERIAL",
+    "name": "Dwelling wall/roof material (% permanent)",
+    "path": "data/distribution/subsets/indicators/IND-HOUSING-MATERIAL.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-HOUSING-OWNER-OCCUPIED",
+    "name": "Households owning their main dwelling",
+    "path": "data/distribution/subsets/indicators/IND-HOUSING-OWNER-OCCUPIED.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-HUMAN-CAPITAL-INDEX",
+    "name": "Human Capital Index (overall)",
+    "path": "data/distribution/subsets/indicators/IND-HUMAN-CAPITAL-INDEX.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-IMMUNIZATION-RATE",
+    "name": "Children 12–23 months fully vaccinated with basic antigens",
+    "path": "data/distribution/subsets/indicators/IND-IMMUNIZATION-RATE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-INTERNET-USE",
+    "name": "Individuals using internet",
+    "path": "data/distribution/subsets/indicators/IND-INTERNET-USE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-INTERNET-USERS-WB",
+    "name": "Individuals using the Internet (% of population)",
+    "path": "data/distribution/subsets/indicators/IND-INTERNET-USERS-WB.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-LABOUR-FORCE-PARTICIPATION",
+    "name": "Labour-force participation rate, age 15–64",
+    "path": "data/distribution/subsets/indicators/IND-LABOUR-FORCE-PARTICIPATION.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-LAND-AREA",
+    "name": "Land area",
+    "path": "data/distribution/subsets/indicators/IND-LAND-AREA.json",
+    "series_count": 1788,
+    "observation_count": 1788
+  },
+  {
+    "indicator_code": "IND-LIFE-EXPECTANCY",
+    "name": "Life expectancy at birth",
+    "path": "data/distribution/subsets/indicators/IND-LIFE-EXPECTANCY.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-LITERACY-RATE",
+    "name": "Literacy rate",
+    "path": "data/distribution/subsets/indicators/IND-LITERACY-RATE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-MAIN-GRID-ELECTRICITY",
+    "name": "Households connected to main-grid electricity",
+    "path": "data/distribution/subsets/indicators/IND-MAIN-GRID-ELECTRICITY.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MAIZE-AREA",
+    "name": "Maize area",
+    "path": "data/distribution/subsets/indicators/IND-MAIZE-AREA.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MAIZE-PRODUCTION",
+    "name": "Maize production",
+    "path": "data/distribution/subsets/indicators/IND-MAIZE-PRODUCTION.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MAIZE-YIELD",
+    "name": "Maize yield",
+    "path": "data/distribution/subsets/indicators/IND-MAIZE-YIELD.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MANUFACTURING-GCP-SHARE",
+    "name": "Manufacturing share of GCP",
+    "path": "data/distribution/subsets/indicators/IND-MANUFACTURING-GCP-SHARE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MANUFACTURING-GVA",
+    "name": "Manufacturing gross value added",
+    "path": "data/distribution/subsets/indicators/IND-MANUFACTURING-GVA.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MATERNAL-HEALTH",
+    "name": "Skilled birth attendance",
+    "path": "data/distribution/subsets/indicators/IND-MATERNAL-HEALTH.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-MCA-IDENTITY",
+    "name": "Member of County Assembly (name, party)",
+    "path": "data/distribution/subsets/indicators/IND-MCA-IDENTITY.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-MOBILE-MONEY-VOLUME",
+    "name": "Mobile money transaction volume",
+    "path": "data/distribution/subsets/indicators/IND-MOBILE-MONEY-VOLUME.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-MP-IDENTITY",
+    "name": "Member of Parliament (name, party)",
+    "path": "data/distribution/subsets/indicators/IND-MP-IDENTITY.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-NET-MIGRATION",
+    "name": "Net migration",
+    "path": "data/distribution/subsets/indicators/IND-NET-MIGRATION.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-NG-CDF-ALLOCATION",
+    "name": "NG-CDF allocation (financial year)",
+    "path": "data/distribution/subsets/indicators/IND-NG-CDF-ALLOCATION.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-NG-CDF-UTILIZATION",
+    "name": "NG-CDF utilization rate",
+    "path": "data/distribution/subsets/indicators/IND-NG-CDF-UTILIZATION.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-POP-2009",
+    "name": "Population, 2009 census",
+    "path": "data/distribution/subsets/indicators/IND-POP-2009.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-POPULATION",
+    "name": "Population",
+    "path": "data/distribution/subsets/indicators/IND-POPULATION.json",
+    "series_count": 48,
+    "observation_count": 95
+  },
+  {
+    "indicator_code": "IND-POPULATION-GROWTH",
+    "name": "Population growth (annual %)",
+    "path": "data/distribution/subsets/indicators/IND-POPULATION-GROWTH.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-POPULATION-WB",
+    "name": "Population, total — UN projection via World Bank",
+    "path": "data/distribution/subsets/indicators/IND-POPULATION-WB.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-POVERTY-RATE",
+    "name": "Overall poverty headcount rate",
+    "path": "data/distribution/subsets/indicators/IND-POVERTY-RATE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-POVERTY-RATE-INTL",
+    "name": "Poverty headcount ratio at $3.00/day (2021 PPP)",
+    "path": "data/distribution/subsets/indicators/IND-POVERTY-RATE-INTL.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-PRIMARY-CLASSROOM-TEACHERS",
+    "name": "Primary classroom teachers",
+    "path": "data/distribution/subsets/indicators/IND-PRIMARY-CLASSROOM-TEACHERS.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-PUBLIC-PRIMARY-SCHOOLS",
+    "name": "Public primary schools",
+    "path": "data/distribution/subsets/indicators/IND-PUBLIC-PRIMARY-SCHOOLS.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-PUBLIC-SECONDARY-SCHOOLS",
+    "name": "Public secondary schools",
+    "path": "data/distribution/subsets/indicators/IND-PUBLIC-SECONDARY-SCHOOLS.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-RAINFALL-TEMPERATURE",
+    "name": "Rainfall and temperature (historical series)",
+    "path": "data/distribution/subsets/indicators/IND-RAINFALL-TEMPERATURE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-REGISTERED-VOTERS",
+    "name": "Registered voters",
+    "path": "data/distribution/subsets/indicators/IND-REGISTERED-VOTERS.json",
+    "series_count": 48,
+    "observation_count": 48
+  },
+  {
+    "indicator_code": "IND-REMITTANCES-GDP",
+    "name": "Personal remittances received (% of GDP)",
+    "path": "data/distribution/subsets/indicators/IND-REMITTANCES-GDP.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-RENEWABLE-ELECTRICITY",
+    "name": "Renewable electricity share, excluding hydro",
+    "path": "data/distribution/subsets/indicators/IND-RENEWABLE-ELECTRICITY.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-RENT-BURDEN",
+    "name": "Rent as a share of household expenditure",
+    "path": "data/distribution/subsets/indicators/IND-RENT-BURDEN.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-ROAD-NETWORK-LENGTH",
+    "name": "Classified road length (km)",
+    "path": "data/distribution/subsets/indicators/IND-ROAD-NETWORK-LENGTH.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-SAFE-SANITATION",
+    "name": "Safely managed sanitation services (% of population)",
+    "path": "data/distribution/subsets/indicators/IND-SAFE-SANITATION.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-SCHOOL-ATTENDANCE-RATE",
+    "name": "Population age 3+ at school or learning institution",
+    "path": "data/distribution/subsets/indicators/IND-SCHOOL-ATTENDANCE-RATE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-SECONDARY-TEACHERS",
+    "name": "Secondary teachers",
+    "path": "data/distribution/subsets/indicators/IND-SECONDARY-TEACHERS.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-SOCIAL-PROTECTION-BENEFICIARIES",
+    "name": "Inua Jamii cash-transfer beneficiaries",
+    "path": "data/distribution/subsets/indicators/IND-SOCIAL-PROTECTION-BENEFICIARIES.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-STATISTICAL-PERFORMANCE",
+    "name": "Statistical Performance Indicators — Overall score",
+    "path": "data/distribution/subsets/indicators/IND-STATISTICAL-PERFORMANCE.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-STUNTING-RATE",
+    "name": "Children under 5 stunted",
+    "path": "data/distribution/subsets/indicators/IND-STUNTING-RATE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-SUBSTANCE-ABUSE-PREVALENCE",
+    "name": "Drug and substance use prevalence",
+    "path": "data/distribution/subsets/indicators/IND-SUBSTANCE-ABUSE-PREVALENCE.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-TBILL-91",
+    "name": "91-day Treasury bill rate",
+    "path": "data/distribution/subsets/indicators/IND-TBILL-91.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-TBILL-91-MONTHLY-AVG",
+    "name": "91-day Treasury bill monthly average rate",
+    "path": "data/distribution/subsets/indicators/IND-TBILL-91-MONTHLY-AVG.json",
+    "series_count": 1,
+    "observation_count": 405
+  },
+  {
+    "indicator_code": "IND-TEENAGE-PREGNANCY",
+    "name": "Teenage pregnancy rate, age 15–19",
+    "path": "data/distribution/subsets/indicators/IND-TEENAGE-PREGNANCY.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-TURNOUT-HISTORY",
+    "name": "Turnout, prior general elections",
+    "path": "data/distribution/subsets/indicators/IND-TURNOUT-HISTORY.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-UNEMPLOYMENT-MODELLED",
+    "name": "Unemployment, total (modeled ILO estimate)",
+    "path": "data/distribution/subsets/indicators/IND-UNEMPLOYMENT-MODELLED.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-USD-KES",
+    "name": "USD/KES exchange rate",
+    "path": "data/distribution/subsets/indicators/IND-USD-KES.json",
+    "series_count": 1,
+    "observation_count": 1
+  },
+  {
+    "indicator_code": "IND-USD-KES-MONTHLY-AVG",
+    "name": "USD/KES monthly period-average exchange rate",
+    "path": "data/distribution/subsets/indicators/IND-USD-KES-MONTHLY-AVG.json",
+    "series_count": 1,
+    "observation_count": 403
+  },
+  {
+    "indicator_code": "IND-VEHICLE-REGISTRATIONS",
+    "name": "Registered vehicles (count, per capita)",
+    "path": "data/distribution/subsets/indicators/IND-VEHICLE-REGISTRATIONS.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-WARD-FUND-ALLOCATION",
+    "name": "Ward-level development fund allocation",
+    "path": "data/distribution/subsets/indicators/IND-WARD-FUND-ALLOCATION.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-WATER-ACCESS",
+    "name": "Households with access to improved water source (%)",
+    "path": "data/distribution/subsets/indicators/IND-WATER-ACCESS.json",
+    "series_count": 0,
+    "observation_count": 0
+  },
+  {
+    "indicator_code": "IND-WOMEN-PARLIAMENT-SEATS",
+    "name": "Seats held by women in national parliament (%)",
+    "path": "data/distribution/subsets/indicators/IND-WOMEN-PARLIAMENT-SEATS.json",
+    "series_count": 1,
+    "observation_count": 1
+  }
+]

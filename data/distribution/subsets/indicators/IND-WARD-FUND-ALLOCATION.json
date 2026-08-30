@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "2b654f2f-26dc-5b52-864d-5d7eeee14965",
+    "indicator_code": "IND-WARD-FUND-ALLOCATION",
+    "name": "Ward-level development fund allocation",
+    "short_name": "Ward-level development fund allocation",
+    "description": "Ward-level development fund allocation where separately and officially reported.",
+    "topic": "Representation",
+    "subtopic": "representation",
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "ward",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "County-specific publications",
+    "expected_source_url": "",
+    "expected_availability_note": "Never divide county budgets mechanically by ward count.",
+    "tab": "representation",
+    "applies_to_levels": [
+      "ward"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
+    "code": "kes_million",
+    "name": "Kenya shillings, million",
+    "symbol": "KES mn",
+    "dimension": "currency",
+    "scale_factor": 1000000,
+    "decimal_places": 0,
+    "currency_code": "KES"
+  },
+  "series": [],
+  "observations": []
+}

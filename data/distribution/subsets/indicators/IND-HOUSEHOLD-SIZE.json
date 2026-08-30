@@ -1,0 +1,46 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "efc508a8-738b-5d99-873b-96c60b312e13",
+    "indicator_code": "IND-HOUSEHOLD-SIZE",
+    "name": "Average household size",
+    "short_name": "Average household size",
+    "description": "Average number of persons per household.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "6590aac1-b204-58cd-a9f0-8fab3fed5cdc",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "sourced",
+    "expected_source": "KNBS 2019 census, Volume II",
+    "expected_source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "expected_availability_note": "Constituency alignment must be verified before activation.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county",
+      "constituency"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "6590aac1-b204-58cd-a9f0-8fab3fed5cdc",
+    "code": "persons_per_household",
+    "name": "Persons per household",
+    "symbol": "persons/household",
+    "dimension": "rate",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

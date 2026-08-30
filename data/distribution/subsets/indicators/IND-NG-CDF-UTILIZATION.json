@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.indicator-subset.v1",
+  "data_contract_version": "1.0.0",
+  "application_version": "0.18.0",
+  "indicator": {
+    "indicator_id": "54f620d5-b6a3-5d4f-b991-e2073484073f",
+    "indicator_code": "IND-NG-CDF-UTILIZATION",
+    "name": "NG-CDF utilization rate",
+    "short_name": "NG-CDF utilization rate",
+    "description": "Constituency NG-CDF utilization rate.",
+    "topic": "Representation",
+    "subtopic": "representation",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": true,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "constituency",
+    "minimum_denominator": null,
+    "methodology_url": "",
+    "comparable": true,
+    "active": false,
+    "lifecycle_status": "planned",
+    "expected_source": "NG-CDF Board",
+    "expected_source_url": "",
+    "expected_availability_note": "Do not promote until a specific citable report/page is identified.",
+    "tab": "representation",
+    "applies_to_levels": [
+      "constituency"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": true
+  },
+  "unit": {
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "code": "percent",
+    "name": "Percent",
+    "symbol": "%",
+    "dimension": "ratio",
+    "scale_factor": 1,
+    "decimal_places": 1,
+    "currency_code": ""
+  },
+  "series": [],
+  "observations": []
+}

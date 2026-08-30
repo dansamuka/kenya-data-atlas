@@ -34,7 +34,7 @@ Already complete and not to be restarted without a regression/correction:
 - P04 47-county health and living-standards package with 2022 poverty/KDHS survey precision metadata, withheld survey rankings, and the 2023 Health Facility Census assessed-facility inventory.
 - P05 47-county education, economic-structure, agriculture and infrastructure breadth package, adding 14 source-backed county indicators and taking CountyIQ to 34 fully county-covered indicators across 7 domains.
 
-With P06–P12 now complete, the remaining work is primarily **county evidence/document depth, a verified action layer, public data distribution and real-browser launch hardening**.
+With P00–P13 complete and P15 now released, the remaining v1.0 work is **real-browser/accessibility/SEO/performance hardening (P16) and final release closeout (P17)**. P14 Opportunity Finder is explicitly deferred to v1.1 Beta because programme freshness requires continuing maintenance.
 
 ---
 
@@ -267,9 +267,9 @@ Release evidence: 47/47 CIDP coverage, at least four non-CIDP 47-county evidence
 
 ## P14 — Action & Opportunity Finder Beta
 
-**Status: next.**
+**Status: deferred.**
 
-Recommended next-session instruction: **Complete P14** from `data/project-roadmap.json`. Do not restart completed phases; implement the full Beta action layer and run its acceptance checks.
+**Target:** v1.1 Beta. This phase is intentionally not a v1.0 blocker because live opportunity/deadline accuracy requires an ongoing freshness operation after launch.
 
 Build the action layer after the canonical/evidence foundations rather than as a small national-programme list. Connect published P07 gaps and P10/P11 context to a verified, date-aware programme registry.
 
@@ -281,19 +281,27 @@ Each live record needs programme/funder, primary URL, beneficiary and geographic
 
 ## P15 — Data distribution + developer surface
 
-The repository already has good machine-readable registries and PostgreSQL/PostGIS schema. Package them into a stable developer experience:
+**Status: complete.**
+
+P15 packages the canonical registries, CountyIQ results and county evidence into a stable static developer experience without creating a parallel data store. It publishes a versioned manifest, checksums, JSON Schemas, NDJSON, flattened result/evidence CSVs and query-sized county/indicator bundles.
+
+Implemented release surface:
 
 - versioned downloadable data bundle;
 - schema/version documentation;
 - example queries;
 - release metadata;
-- optional lightweight API architecture if a static data API is insufficient.
+- static manifest/subset API as the primary developer interface; server infrastructure remains unnecessary for v1.0.
 
-Do not deploy server infrastructure merely for appearance; the static JSON/CSV release can remain the primary API if it satisfies the use case.
+Release evidence is documented in `docs/P15-DATA-DISTRIBUTION.md`; consumer examples and versioning rules are in `docs/DEVELOPER.md`. Parquet remains a reproducible consumer-side conversion rather than a second canonical binary store.
 
 ---
 
 ## P16 — Accessibility + browser + SEO + performance release audit
+
+**Status: next.**
+
+Recommended next-session instruction: **Complete P16** from `data/project-roadmap.json`. Do not restart completed phases.
 
 A dedicated public-launch hardening session:
 
@@ -312,6 +320,8 @@ A dedicated public-launch hardening session:
 ---
 
 ## P17 — Final reproducibility + governance + v1.0
+
+**Status: planned.**
 
 Final closeout session.
 
@@ -336,11 +346,11 @@ Then:
 
 ## Recommended session order
 
-The core sequence is now:
+The v1.0 sequence is now:
 
-`P00 → P01 → P02 → P03 → P04 → P05 → P06 → P07 → P08 → P09 → P10 → P11 → P12 → P13 → P14 → P15 → P16 → P17`
+`P00–P13 complete → P15 complete → P16 next → P17 → v1.0`
 
-P14 is intentionally a Beta action layer; P17 should not weaken evidence or browser gates merely to make the action layer appear more complete.
+P14 is explicitly deferred to `v1.1 Beta`; P17 must not weaken evidence or browser gates merely to pull that maintenance-heavy action layer into v1.0.
 
 ## Session completion protocol
 
