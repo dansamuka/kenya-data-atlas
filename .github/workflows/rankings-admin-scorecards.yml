@@ -1,0 +1,40 @@
+name: Rankings administration scorecards
+on:
+  push:
+    branches: [feature/rankings-admin-scorecards]
+permissions:
+  contents: write
+jobs:
+  validate-finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/rankings-admin-scorecards
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Add scorecards UI
+        run: node scripts/results/add-administration-scorecards.mjs
+      - run: npm ci
+      - run: pip install shapely
+      - name: Validate complete Atlas
+        run: npm test
+      - name: Geometry audit
+        run: npm run geography:audit
+      - name: Remove one-shot tooling
+        run: |
+          rm -f scripts/results/add-administration-scorecards.mjs .github/workflows/rankings-admin-scorecards.yml
+          git diff --check
+      - name: Commit validated candidate
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat(results): expose administration scorecards" || exit 0
+          git push origin HEAD:feature/rankings-admin-scorecards
