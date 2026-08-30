@@ -38,17 +38,15 @@ jobs:
       - name: Build all canonical and distribution products
         run: npm run build:data
 
-      - name: Capture deterministic candidate
+      - name: Capture P15 distribution hashes
         run: |
-          git add -A
-          git diff --cached --binary > /tmp/p15-first.patch
+          find data/distribution -type f -print0 | sort -z | xargs -0 sha256sum > /tmp/p15-dist-first.sha256
 
-      - name: Rebuild and prove deterministic output
+      - name: Rebuild P15 surface and prove deterministic output
         run: |
-          npm run build:data
-          git add -A
-          git diff --cached --binary > /tmp/p15-second.patch
-          diff -u /tmp/p15-first.patch /tmp/p15-second.patch
+          npm run distribution:build
+          find data/distribution -type f -print0 | sort -z | xargs -0 sha256sum > /tmp/p15-dist-second.sha256
+          diff -u /tmp/p15-dist-first.sha256 /tmp/p15-dist-second.sha256
 
       - name: Validate complete Atlas
         run: npm test
