@@ -134,11 +134,11 @@ try {
   const p15=roadmap.phases.find(p=>p.id==='P15');
   const p16=roadmap.phases.find(p=>p.id==='P16');
   const p17=roadmap.phases.find(p=>p.id==='P17');
-  assert(p14?.status==='deferred','P14 must be explicitly deferred rather than silently skipped');
+  assert(['deferred','complete'].includes(p14?.status),'P14 must be explicitly deferred to v1.1 Beta or complete; it cannot be silently skipped');
   assert(p15?.status==='complete','P15 must be complete');
   assert(p16?.status==='complete','P16 must be complete before the final v1.0 phase');
   assert(p17?.status==='next','P17 must be the next v1.0 phase');
-  console.log('P15_ROADMAP_HANDOFF_OK complete=P16 next=P17 deferred=P14');
+  console.log(`P15_ROADMAP_HANDOFF_OK complete=P16 next=P17 p14=${p14.status}`);
   console.log(`P15_DATA_DISTRIBUTION_ALL_OK version=${pkg.version} contract=${manifest.data_contract_version}`);
 }catch(error){
   console.error(error.message||error);
