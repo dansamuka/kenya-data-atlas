@@ -196,6 +196,10 @@
 
   async function boot(){
     if(!KDA){document.body.dataset.bootError='Shared data loader missing';return;}
+    /* Search and catalogue wiring must exist before any asynchronous first-paint
+     * data completes. Otherwise a fast keyboard/focus interaction can happen
+     * before the lazy search trigger has been attached (observed in Firefox). */
+    wireCatalogue();wireSearch();
     const grid=$('#pulse-grid');if(grid)grid.innerHTML='<div class="source-note">Loading compact first-paint data…</div>';
     const [pulse,gcp,budget,voters]=await Promise.all([
       KDA.initialPulse().catch(()=>null),
@@ -206,7 +210,6 @@
     renderPulse(pulse?.cards||[]);
     wireCountyProfiles(makeCountyRows(gcp,budget,voters));
     renderSeries(pulse?.cards||[]);
-    wireCatalogue();wireSearch();
     document.body.dataset.shellReady='true';
   }
 
@@ -214,6 +217,5 @@
     console.error('Atlas shell:',error);
     document.body.dataset.bootError=error?.message||String(error);
     const grid=$('#pulse-grid');if(grid)grid.innerHTML='<div class="source-note">Some headline data could not load. Search, navigation and the remaining Atlas sections are still available.</div>';
-    wireCatalogue();wireSearch();
   });
 })();
