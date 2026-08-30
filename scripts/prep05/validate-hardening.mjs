@@ -6,10 +6,10 @@ const read=file=>readFile(path.join(root,file),'utf8');
 const json=async file=>JSON.parse(await read(file));
 const assert=(x,m)=>{if(!x)throw new Error(m);};
 
-const [facts,areaAudit,geos,indicators,series,observations,datasets,roadmap,index,hard,routed,geoJs,ciq] = await Promise.all([
+const [facts,areaAudit,geos,indicators,series,observations,datasets,roadmap,index,hard,lazy,routed,geoJs,ciq] = await Promise.all([
   json('data/place-facts/county-key-facts.json'),json('data/geography/county-area-validation.json'),json('data/geography/registry/geographies.json'),
   json('data/indicators/registry/indicators.json'),json('data/indicators/registry/series.json'),json('data/indicators/registry/observations.json'),json('data/catalogue/registry/datasets.json'),json('data/project-roadmap.json'),
-  read('index.html'),read('assets/pre-p05-hardening.js'),read('assets/routed-views.js'),read('assets/geo-explorer.js'),read('assets/countyiq-view.js')
+  read('index.html'),read('assets/pre-p05-hardening.js'),read('assets/lazy-integrations.js'),read('assets/routed-views.js'),read('assets/geo-explorer.js'),read('assets/countyiq-view.js')
 ]);
 
 assert(facts.counties?.length===47,'place facts must cover 47 counties');
@@ -41,8 +41,9 @@ const wardArea=areaSeries.filter(s=>geoById.get(s.geography_id)?.level==='ward')
 for(const s of wardArea.slice(0,20)){const o=obsById.get(s.latest_observation_id);assert(o?.badge==='B'&&o?.statistical_status==='estimated',`ward area must remain derived estimate: ${s.series_code}`);}
 console.log('PREP05_AREA_SEMANTICS_OK county=A ward=B');
 
-assert(index.includes('assets/pre-p05-hardening.css')&&index.includes('assets/pre-p05-hardening.js'),'hardening assets not loaded');
-assert(index.includes('One consolidated table · FY2013/14–FY2024/25'),'fiscal consolidated-table copy missing');
+assert(lazy.includes("assets/pre-p05-hardening.css")&&lazy.includes("assets/pre-p05-hardening.js"),'hardening assets must remain available through the route-aware lazy loader');
+assert(!index.includes('<script src="assets/pre-p05-hardening.js"></script>'),'hardening JavaScript must remain off the homepage cold-load path');
+assert(index.includes('Twelve-year fiscal experience')&&index.includes('FY2013/14–FY2024/25'),'fiscal consolidated-table copy missing');
 assert((ciq.match(/<table class=\\?"ciq-fiscal-table\\?"/g)||[]).length===1,'CountyIQ must render one canonical fiscal-history table');
 assert(ciq.includes('f.history.slice().reverse().map'),'fiscal table must span full history');
 console.log('PREP05_FISCAL_ONE_TABLE_OK');
