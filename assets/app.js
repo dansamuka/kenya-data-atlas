@@ -44,8 +44,11 @@
 
   const menu=$('.menu-button'),nav=$('#main-nav');
   if(menu&&nav){
+    const closeMenu=({focus=false}={})=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(focus)menu.focus();};
     menu.onclick=()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));};
-    nav.onclick=()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');};
+    nav.onclick=()=>closeMenu();
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open')){event.preventDefault();closeMenu({focus:true});}});
+    window.addEventListener('kda:route',()=>closeMenu());
   }
 
   function renderPulse(cards){
