@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dansamuka.github.io/kenya-data-atlas/sitemap.xml
