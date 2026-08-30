@@ -2,14 +2,14 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const routes = [
-  { path: '/#/', selector: '[data-view="home"]' },
+  { path: '/#/', selector: '#home' },
   { path: '/#/pulse', selector: '[data-view="pulse"]' },
-  { path: '/#/explore', selector: '[data-view="explore"]' },
-  { path: '/#/compare', selector: '[data-view="compare"]' },
-  { path: '/#/series/KDA-CPI-YOY-KEN', selector: '[data-view="series"]' },
-  { path: '/#/data', selector: '[data-view="data"]' },
+  { path: '/#/explore', selector: '#geo-explorer' },
+  { path: '/#/compare', selector: '#compare' },
+  { path: '/#/series/KDA-CPI-YOY-KEN', selector: '#series' },
+  { path: '/#/data', selector: '#catalogue' },
   { path: '/#/rankings', selector: '[data-view="rankings"]' },
-  { path: '/#/countyiq', selector: '[data-view="countyiq"]' }
+  { path: '/#/countyiq', selector: '#countyiq-view' }
 ];
 
 function runtimeGuard(page) {
@@ -63,7 +63,7 @@ test('desktop navigation is keyboard reachable', async ({ page }, testInfo) => {
   await page.locator('a[href="#/compare"]').first().focus();
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/#\/compare$/);
-  await expect(page.locator('[data-view="compare"]')).toBeVisible();
+  await expect(page.locator('#compare')).toBeVisible();
 });
 
 test('mobile menu exposes navigation and keeps focus visible', async ({ page }, testInfo) => {
@@ -81,5 +81,5 @@ test('mobile menu exposes navigation and keeps focus visible', async ({ page }, 
 test('reduced-motion preference does not hide core content', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/#/countyiq', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('[data-view="countyiq"]')).toBeVisible();
+  await expect(page.locator('#countyiq-view')).toBeVisible();
 });
