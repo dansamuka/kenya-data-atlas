@@ -9,6 +9,43 @@
 [data-view="pulse"] .metric-grid{grid-template-columns:repeat(5,minmax(0,1fr))}[data-view="pulse"] .metric-card{min-height:154px;padding:1rem}[data-view="pulse"] .metric-card strong{font-size:1.65rem;margin:.35rem 0}[data-view="pulse"] .metric-card small{margin-top:1rem}[data-view="pulse"] .metric-card .badge{top:.75rem;right:.75rem}[data-view="pulse"] .wb-pulse-block{margin-top:2rem}[data-view="pulse"] .wb-more>summary{display:none}[data-view="pulse"] .wb-more[open]>.wb-more-grid{display:grid}
 .geo-workspace{display:grid;grid-template-columns:minmax(220px,280px) minmax(0,1fr);gap:1.5rem;align-items:start}.geo-context-rail{position:sticky;top:96px;border:1px solid var(--line);background:#fff;padding:1.15rem;z-index:2}.geo-context-rail .geo-header{display:block;margin:0}.geo-context-rail .geo-header h2{font-family:var(--serif);font-size:1.45rem;line-height:1.08;margin:0}.geo-context-rail .select-label{margin-top:1.35rem}.geo-context-rail .geo-breadcrumb{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}.geo-main-column{min-width:0}.geo-main-column .geo-layout{margin-top:0}
 .series-empty{border:1px solid var(--line);background:var(--paper);padding:2rem;color:var(--muted)}.series-toolbar>div:first-child{display:flex;flex-direction:column;gap:.15rem}.series-toolbar small{color:var(--muted)}.series-line{fill:none;stroke:var(--red);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+
+/* P16 route-first geometry: Compare and CountyIQ hydrate their heavier CSS/data lazily.
+ * Keep the initial routed shell at essentially its final dimensions so late
+ * hydration cannot move visible content and trigger Lighthouse CLS failures. */
+.compare-hub{background:linear-gradient(180deg,#f7f8f4 0,#fff 26%,#f6f5ef 100%);border-top:1px solid var(--line);min-height:100vh}
+.compare-hub>.section-heading h2{font-family:Georgia,"Times New Roman",serif}
+.compare-hub .section-heading{align-items:flex-start}
+.compare-mode-switch{display:inline-flex;min-height:54px;padding:.3rem;background:#e8ece8;border:1px solid #d8ded9;border-radius:999px;margin-bottom:2rem}
+.compare-mode-switch button{border:0;background:transparent;padding:.7rem 1rem;border-radius:999px;font-weight:700}
+.compare-mode-switch button.active{background:var(--green);color:#fff}
+.compare-panel{border:1px solid var(--line);background:#fff;min-height:620px}
+.compare-panel-head{min-height:126px;padding:1.5rem 1.6rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:2rem;align-items:flex-start}
+.compare-place-strip{display:flex;gap:.8rem;padding:1.2rem 1.6rem;background:#f8f8f4;border-bottom:1px solid var(--line);overflow-x:auto;min-height:104px}
+#compare-direct-summary{min-height:116px}
+.compare-matrix-wrap{min-height:300px;overflow:auto}
+
+.countyiq-route{--serif:Georgia,"Times New Roman",serif;background:linear-gradient(180deg,#eef3ef 0,#fbfbf8 24rem,#fbfbf8 100%);min-height:calc(100vh - 76px)}
+.ciq-hero{padding-bottom:3.2rem;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.55fr);gap:5vw;align-items:end}
+.ciq-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.1rem,5.1vw,5.5rem);letter-spacing:-.045em;line-height:.96;margin:0;max-width:880px}
+.ciq-intro{max-width:760px;color:#56635d;font-size:1rem;margin:1.2rem 0 0}
+.ciq-controls{background:rgba(255,255,255,.88);border:1px solid var(--line);padding:1.1rem;min-height:116px}
+.ciq-controls label{display:flex;flex-direction:column;gap:.45rem;font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--muted)}
+.ciq-controls select{border:1px solid var(--line);background:#fff;padding:.85rem;color:var(--ink)}
+.ciq-body{padding-top:0}
+.ciq-principle{display:flex;justify-content:space-between;gap:1.5rem;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin-bottom:1.6rem;min-height:60px;color:var(--muted);font-size:.78rem}
+.ciq-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);background:#fff;min-height:230px}
+.ciq-metric{min-height:230px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* The place-facts node is injected asynchronously. Reserve its measured final
+ * desktop height in the always-loaded stylesheet, not in the lazy hardening CSS. */
+#ciq-metrics:not(:has(+ #ciq-place-facts)){margin-bottom:360px}
+#ciq-place-facts{display:flow-root;min-height:360px}
+.ciq-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);gap:1.25rem;margin-top:1.25rem}
+.ciq-grid>.ciq-card{min-height:390px}
+.ciq-lower{grid-template-columns:1fr}
+
 @media(max-width:1180px){[data-view="pulse"] .metric-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:900px){.geo-workspace{grid-template-columns:1fr}.geo-context-rail{position:static}.geo-context-rail .geo-header{display:grid;grid-template-columns:1fr minmax(220px,.45fr);gap:1rem}.home-glance .metric-grid,[data-view="pulse"] .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:640px){#main-nav a.active:after,#main-nav a[aria-current="page"]:after{display:none}.geo-context-rail .geo-header{display:block}.home-glance .metric-grid,[data-view="pulse"] .metric-grid{grid-template-columns:1fr}.pulse-filter-bar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:.25rem}.pulse-filter-bar button{white-space:nowrap}}
+@media(max-width:1050px){.ciq-metrics{grid-template-columns:repeat(2,1fr);min-height:460px}.ciq-grid,.ciq-lower{grid-template-columns:1fr}}
+@media(max-width:900px){.geo-workspace{grid-template-columns:1fr}.geo-context-rail{position:static}.geo-context-rail .geo-header{display:grid;grid-template-columns:1fr minmax(220px,.45fr);gap:1rem}.home-glance .metric-grid,[data-view="pulse"] .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.compare-panel-head{flex-direction:column}.ciq-hero{grid-template-columns:1fr}}
+@media(max-width:680px){#ciq-metrics:not(:has(+ #ciq-place-facts)){margin-bottom:720px}#ciq-place-facts{min-height:720px}}
+@media(max-width:640px){#main-nav a.active:after,#main-nav a[aria-current="page"]:after{display:none}.geo-context-rail .geo-header{display:block}.home-glance .metric-grid,[data-view="pulse"] .metric-grid{grid-template-columns:1fr}.pulse-filter-bar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:.25rem}.pulse-filter-bar button{white-space:nowrap}.compare-hub{padding-left:4vw!important;padding-right:4vw!important}.compare-mode-switch{width:100%}.compare-mode-switch button{flex:1}.compare-place-strip{padding:1rem;min-height:100px}}
