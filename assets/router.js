@@ -43,12 +43,13 @@
     const canonical=canonicalHash(location.hash);
     if(canonical!==location.hash)rawReplace(null,'',canonical);
     const next=parse(canonical),previous=current?.view;
-    document.querySelectorAll('[data-view]').forEach(el=>{el.hidden=el.dataset.view!==next.view;});
+    document.querySelectorAll('main [data-view]').forEach(el=>{el.hidden=el.dataset.view!==next.view;});
     document.querySelectorAll('[data-view-link]').forEach(link=>{
       const active=link.dataset.viewLink===next.view;
       link.classList.toggle('active',active);
       if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');
     });
+    document.body.hidden=false;
     document.body.dataset.view=next.view;
     if(document.title!==TITLES[next.view])document.title=TITLES[next.view];
     current=next;rendering=false;
@@ -76,9 +77,42 @@
       el.dataset.view=view;el.hidden=(current?.view||parse().view)!==view;
     }
   }
+  function focusGlobalSearch(){
+    const input=document.querySelector('#atlas-search');
+    if(!input||input.closest('[hidden]'))return false;
+    try{input.focus({preventScroll:true});}catch(_){input.focus();}
+    return document.activeElement===input;
+  }
   function openGlobalSearch(){
     if((current?.view||parse().view)!=='home')navigate('home');
-    requestAnimationFrame(()=>document.querySelector('#atlas-search')?.focus());
+    focusGlobalSearch();
+    queueMicrotask(focusGlobalSearch);
+    requestAnimationFrame(focusGlobalSearch);
+  }
+  function protectCompareCriticalPaint(){
+    const KDA=window.KDAData;
+    if(!KDA||KDA.__compareCriticalPaintGuard||typeof KDA.registries!=='function')return;
+    const original=KDA.registries.bind(KDA);
+    let guarded=false;
+    KDA.registries=async function(names,options){
+      const list=Array.isArray(names)?names:[];
+      const heavy=list.includes('series')&&list.includes('observations');
+      const compare=(current?.view||parse().view)==='compare';
+      if(heavy&&compare&&!guarded){
+        guarded=true;
+        /* Direct Compare entry previously started multi-megabyte master-registry
+         * transfers before the route heading completed critical paint. Let the
+         * shell finish loading first; user-triggered work after load still starts
+         * after only two animation frames. This changes scheduling, not data. */
+        if(document.readyState!=='complete'){
+          await new Promise(resolve=>window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(resolve)),{once:true}));
+        }else{
+          await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+        }
+      }
+      return original(names,options);
+    };
+    KDA.__compareCriticalPaintGuard=true;
   }
 
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
@@ -100,4 +134,5 @@
 
   window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
   render({scroll:false});
+  protectCompareCriticalPaint();
 })();

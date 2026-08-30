@@ -1,7 +1,7 @@
 /* Kenya Data Atlas — integrated CountyIQ route.
  * Executive context, not a parallel dashboard application.
  */
-.countyiq-route{background:linear-gradient(180deg,#eef3ef 0,#fbfbf8 24rem,#fbfbf8 100%);min-height:calc(100vh - 76px)}
+.countyiq-route{--serif:Georgia,"Times New Roman",serif;background:linear-gradient(180deg,#eef3ef 0,#fbfbf8 24rem,#fbfbf8 100%);min-height:calc(100vh - 76px)}
 .ciq-hero{padding-bottom:3.2rem;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.55fr);gap:5vw;align-items:end}
 .ciq-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.1rem,5.1vw,5.5rem);letter-spacing:-.045em;line-height:.96;margin:0;max-width:880px}
 .ciq-hero h1 em{font-style:normal;color:var(--green2)}
@@ -16,13 +16,14 @@
 .ciq-principle{display:flex;justify-content:space-between;gap:1.5rem;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;margin-bottom:1.6rem;color:var(--muted);font-size:.78rem}
 .ciq-principle strong{color:var(--ink)}
 .ciq-principle span:last-child{text-align:right}
-.ciq-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);background:#fff}
-.ciq-metric{position:relative;min-height:178px;padding:1.25rem 1.2rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* P16: reserve the measured final four-card metric-strip geometry before the mart arrives, preventing the analytical grid from shifting after first paint. */
+.ciq-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line);background:#fff;min-height:230px}
+.ciq-metric{position:relative;min-height:230px;padding:1.25rem 1.2rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ciq-metric .badge{position:absolute;right:.9rem;top:.9rem}
 .ciq-metric .label{font-size:.72rem;color:var(--muted);padding-right:2.6rem}
 .ciq-metric strong{display:block;font-family:var(--serif);font-size:2rem;font-weight:500;margin:.45rem 0 .25rem;letter-spacing:-.02em}
 .ciq-metric .context{font-size:.7rem;color:var(--green2);font-weight:700}
-.ciq-metric small{display:block;color:#7c8580;font-size:.62rem;margin-top:1rem;line-height:1.35}
+.ciq-metric small{display:block;color:#626e68;font-size:.62rem;margin-top:1rem;line-height:1.35}
 
 .ciq-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);gap:1.25rem;margin-top:1.25rem}
 .ciq-card{background:#fff;border:1px solid var(--line);padding:1.5rem;box-shadow:0 12px 34px rgba(22,43,35,.045)}
@@ -49,9 +50,9 @@
 .ciq-evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}.ciq-evidence article{background:var(--paper);padding:1rem;border:1px solid #e1e4e0}.ciq-evidence strong{display:block;font-size:.78rem;margin-bottom:.35rem}.ciq-evidence p{font-size:.68rem;color:var(--muted);margin:0;line-height:1.45}
 .ciq-error{border:1px solid #dfc3bf;background:#fff8f6;padding:1.2rem;color:#73443f}
 
-@media(max-width:1050px){.ciq-metrics{grid-template-columns:repeat(2,1fr)}.ciq-grid,.ciq-lower{grid-template-columns:1fr}}
+@media(max-width:1050px){.ciq-metrics{grid-template-columns:repeat(2,1fr);min-height:460px}.ciq-grid,.ciq-lower{grid-template-columns:1fr}}
 @media(max-width:760px){.ciq-hero{grid-template-columns:1fr}.ciq-controls{max-width:none}.ciq-principle{align-items:flex-start;flex-direction:column}.ciq-principle span:last-child{text-align:left}.ciq-evidence{grid-template-columns:1fr}}
-@media(max-width:520px){.ciq-metrics{grid-template-columns:1fr}.ciq-fiscal{grid-template-columns:1fr}.ciq-hero h1{font-size:3.25rem}.ciq-card{padding:1.1rem}.ciq-card-head{flex-direction:column}.ciq-card-head p{text-align:left}}
+@media(max-width:520px){.ciq-metrics{grid-template-columns:1fr;min-height:920px}.ciq-fiscal{grid-template-columns:1fr}.ciq-hero h1{font-size:3.25rem}.ciq-card{padding:1.1rem}.ciq-card-head{flex-direction:column}.ciq-card-head p{text-align:left}}
 
 @media(max-width:700px){.ciq-fiscal-insights{grid-template-columns:repeat(2,minmax(0,1fr))}.ciq-fiscal-table{min-width:0}.ciq-fiscal-table thead{display:none}.ciq-fiscal-table,.ciq-fiscal-table tbody,.ciq-fiscal-table tr,.ciq-fiscal-table td{display:block;width:100%}.ciq-fiscal-table tr{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);margin:.65rem 0;background:#fff}.ciq-fiscal-table td{display:flex;justify-content:space-between;gap:1rem;text-align:right!important;white-space:normal;border-bottom:1px solid #edf0ed}.ciq-fiscal-table td::before{content:attr(data-label);font-size:.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:left}.ciq-fiscal-table td:first-child{grid-column:1/-1;background:var(--paper)}.ciq-fiscal-chart svg{min-height:150px}}
 @media(max-width:430px){.ciq-fiscal-insights{grid-template-columns:1fr}.ciq-fiscal-table tr{grid-template-columns:1fr}.ciq-fiscal-table td:first-child{grid-column:auto}}

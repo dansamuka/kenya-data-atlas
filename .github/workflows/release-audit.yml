@@ -1,0 +1,58 @@
+name: P16 release audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-release-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install Atlas dependencies
+        run: npm ci
+
+      - name: Install pinned P16 audit tools without changing lockfile
+        run: npm install --no-save --package-lock=false @playwright/test@1.55.0 @axe-core/playwright@4.10.2 lighthouse@13.4.1
+
+      - name: Install Chromium Firefox and WebKit
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Deterministic P16 static and internal-link gates
+        run: npm run p16:static
+
+      - name: Chromium Firefox WebKit smoke and axe audit
+        run: npm run p16:browser
+
+      - name: Lighthouse cold-load budgets
+        run: npm run p16:lighthouse
+
+      - name: External link health inventory
+        continue-on-error: true
+        run: npm run p16:links -- --check-external --report=artifacts/p16-link-audit.json
+
+      - name: Upload P16 audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p16-release-audit
+          path: |
+            artifacts/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

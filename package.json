@@ -14,7 +14,7 @@
     "policy:build": "node scripts/policy/build-policy-registry.mjs",
     "policy:validate": "node scripts/policy/validate-policy.mjs",
     "ui:build": "node scripts/ui/build-initial-pulse.mjs",
-    "test": "npm run ui:validate && npm run performance:validate && npm run ia:validate && npm run results:validate && npm run rankings:validate && npm run series:validate && npm run mobile:validate && npm run map:validate && npm run countyiq:validate && npm run policy:validate && npm run evidence:validate && npm run distribution:validate && npm run project:validate && npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate && npm run sprint3:validate && npm run life:validate && npm run prep05:validate",
+    "test": "npm run ui:validate && npm run performance:validate && npm run ia:validate && npm run results:validate && npm run rankings:validate && npm run series:validate && npm run mobile:validate && npm run map:validate && npm run countyiq:validate && npm run policy:validate && npm run evidence:validate && npm run distribution:validate && npm run project:validate && npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate && npm run sprint3:validate && npm run life:validate && npm run prep05:validate && npm run p16:static",
     "ui:validate": "node --check assets/data-loader.js && node --check assets/router.js && node --check assets/app.js && node --check assets/compare.js && node --check assets/geo-explorer.js && node --check assets/sprint2-voters.js && node --check assets/ux-polish.js && node --check assets/lazy-integrations.js && node --check assets/routed-views.js && node --check assets/series-browser.js && node --check assets/countyiq-view.js && node --check assets/evidence-hub.js && node --check assets/rankings-insights.js && node --check assets/countyiq.js && node --check assets/countyiq-sample.js && node --check assets/countyiq-roadmap.js && node --check assets/countyiq-polish.js && node --check assets/pre-p05-hardening.js",
     "performance:validate": "node scripts/performance/validate-p01.mjs",
     "ia:validate": "node scripts/ui/validate-routed-views.mjs",
@@ -47,7 +47,12 @@
     "results:validate": "node scripts/results/validate-results.mjs",
     "rankings:validate": "node scripts/ui/validate-rankings-insights.mjs",
     "distribution:build": "node scripts/distribution/build-distribution.mjs",
-    "distribution:validate": "node scripts/distribution/validate-distribution.mjs"
+    "distribution:validate": "node scripts/distribution/validate-distribution.mjs",
+    "p16:static": "node scripts/p16/validate-release.mjs && node scripts/p16/audit-links.mjs",
+    "p16:links": "node scripts/p16/audit-links.mjs",
+    "p16:browser": "playwright test",
+    "p16:lighthouse": "node scripts/p16/lighthouse-audit.mjs",
+    "p16:release": "npm run p16:static && npm run p16:browser && npm run p16:lighthouse"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"
