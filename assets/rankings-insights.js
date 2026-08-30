@@ -103,6 +103,19 @@
   }
 
   function formatRecognitionValue(x){if(!finite(x.value))return'';if(x.unit==='percentage_points')return`${signed(x.value,' pp')}`;if(x.unit==='percent'||x.unit==='percent_of_approved_budget')return`${nfmt(x.value,1)}%`;if(x.unit==='score_0_100')return`${nfmt(x.value,1)}/100`;return nfmt(x.value,1);}
+  function renderAdministration(d){
+    const body=$('#ri-administration-body');if(!body)return;
+    const rows=(d.counties||[]).slice().sort((a,b)=>finite(a.fiscal_delivery?.rank)?(finite(b.fiscal_delivery?.rank)?a.fiscal_delivery.rank-b.fiscal_delivery.rank:-1):(finite(b.fiscal_delivery?.rank)?1:a.name.localeCompare(b.name)));
+    body.innerHTML=rows.map(c=>`<tr class="${finite(c.administration?.current_fiscal_score)?'':'ri-withheld-row'}">
+      <td>${finite(c.fiscal_delivery?.rank)?`<strong>#${esc(c.fiscal_delivery.rank)}</strong>`:'—'}</td>
+      <td><strong>${esc(c.name)}</strong></td>
+      <td><strong>${finite(c.administration?.current_fiscal_score)?nfmt(c.administration.current_fiscal_score,1):'Not scored'}</strong></td>
+      <td>${signed(c.administration?.overall_absorption_change_pp,' pp')}</td>
+      <td>${signed(c.administration?.development_absorption_change_pp,' pp')}</td>
+      <td>${esc(c.administration?.baseline_fiscal_year||'—')} → ${esc(c.administration?.latest_fiscal_year||'—')}</td>
+    </tr>`).join('');
+  }
+
   function renderRecognition(d){
     const root=$('#ri-recognition-grid');if(!root)return;
     root.innerHTML=(d.recognition||[]).map(g=>`<article class="ri-recognition-card"><div><small>County recognition</small><h3>${esc(g.label)}</h3></div><ol>${g.counties.map(x=>`<li><span>${finite(x.rank)?`#${esc(x.rank)} `:''}${esc(x.county)}</span><strong>${esc(formatRecognitionValue(x))}</strong></li>`).join('')}</ol></article>`).join('');
@@ -127,7 +140,7 @@
   }
   async function boot(){
     if(bootPromise)return bootPromise;
-    bootPromise=(async()=>{const d=await load();renderSummary(d);renderDevelopment(d);renderFiscal(d);populateIndicatorSelector(d);populateCountySelectors(d);renderRecognition(d);bind(d);activate(activeTab,d);return d;})().catch(error=>{console.error('Rankings & Insights:',error);const root=$('#ri-load-state');if(root)root.textContent=`Rankings are temporarily unavailable: ${error?.message||error}`;return null;});
+    bootPromise=(async()=>{const d=await load();renderSummary(d);renderDevelopment(d);renderFiscal(d);populateIndicatorSelector(d);populateCountySelectors(d);renderAdministration(d);renderRecognition(d);bind(d);activate(activeTab,d);return d;})().catch(error=>{console.error('Rankings & Insights:',error);const root=$('#ri-load-state');if(root)root.textContent=`Rankings are temporarily unavailable: ${error?.message||error}`;return null;});
     return bootPromise;
   }
   window.addEventListener('kda:route',e=>{if(e.detail?.view==='rankings')boot();});
