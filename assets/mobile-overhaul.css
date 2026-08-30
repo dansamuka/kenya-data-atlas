@@ -1,4 +1,11 @@
-/* Kenya Data Atlas — focused mobile density and visual hierarchy overhaul. */
+/* Kenya Data Atlas — focused mobile density and visual hierarchy overhaul.
+ * The Atlas keeps its chosen typefaces, but uses optional display for the
+ * variable Latin faces. This prevents a late font swap from moving entire
+ * analytical workspaces after first paint (the dominant P16 CLS source).
+ */
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:400 700;font-display:optional;src:url("https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K6z9mXg.woff2") format("woff2")}
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:500 600;font-display:optional;src:url("https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2") format("woff2")}
+
 @media(max-width:760px){
   /* Home: keep the value proposition, search and pulse visible within a much shorter first screen. */
   .hero{padding:1.9rem var(--mobile-gutter) 1.75rem;gap:1.15rem;align-items:start}
