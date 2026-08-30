@@ -92,3 +92,7 @@ The canonical policy is now exposed in a dedicated `#/methods` website section. 
 - all 3,370 observed-series cross-level decisions and their rule basis.
 
 This resolves the earlier product gap where the policy was public as machine-readable JSON but not discoverable as a first-class website surface.
+
+
+## Public product boundary
+P12 is an architecture and governance layer, not a primary user-facing feature. Its policy registry remains public and machine-readable for auditability, but the main website presents the analytical results produced from that governed data under **Rankings & Insights**. Technical policy fields, build terminology and drift-validation details stay in repository documentation rather than the primary UI.
