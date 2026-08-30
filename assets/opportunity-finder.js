@@ -4,12 +4,12 @@
   const KDA=window.KDAData;if(!KDA)return;
   const REGISTRY='data/opportunities/opportunity-registry.json',MART='data/countyiq/county-summary.json';
   const $=(s,r=document)=>r.querySelector(s);
-  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
   let registry=null,mart=null,bootPromise=null,currentCode='KEN-C032',type='all',matchedOnly=false;
 
   function ensureStyles(){if(document.querySelector('link[data-p14-opportunities]'))return;const link=document.createElement('link');link.rel='stylesheet';link.href='assets/opportunity-finder.css';link.dataset.p14Opportunities='true';document.head.appendChild(link);}
   function ensureSurface(){let root=$('#ciq-opportunity-finder');if(root)return root;const anchor=$('#ciq-evidence-hub');if(!anchor)return null;const card=document.createElement('article');card.className='ciq-card opportunity-finder-card';card.id='ciq-opportunity-finder';card.innerHTML=`
-    <div class="ciq-card-head"><div><small>P14 · v1.1 Beta</small><h2>Action &amp; Opportunity Finder</h2></div><p>Verified programmes matched to measured county gaps. County relevance is not personal eligibility.</p></div>
+    <div class="ciq-card-head"><div><small>P14 · v1.1 Beta</small><h2>Action &amp; Opportunity Finder</h2></div><p>Verified programmes matched to measured county gaps. County relevance does not establish personal eligibility.</p></div>
     <div class="opportunity-tools"><label>Opportunity type<select id="opportunity-type"><option value="all">All types</option></select></label><label class="opportunity-check"><input id="opportunity-matched-only" type="checkbox"> Gap-matched only</label></div>
     <div class="opportunity-summary" id="opportunity-summary"><div class="source-note">Loading verified programme registry…</div></div>
     <div class="opportunity-list" id="opportunity-list"><div class="source-note">Programme matches load with CountyIQ.</div></div>
