@@ -50,12 +50,12 @@ try{
   assert(registry.programmes.some(p=>p.relevance?.mode==='contextual'),'at least one contextual nationwide opportunity required');
 
   const ui=text('assets/opportunity-finder.js'),css=text('assets/opportunity-finder.css'),lazy=text('assets/lazy-integrations.js');
-  for(const token of ['review_due','favourable_to_county','trigger_indicators','County relevance does not establish personal eligibility'])assert(ui.includes(token),`UI missing ${token}`);
+  for(const token of ['review_due','favourable_to_county','trigger_indicators','does not confirm that you, your group or your business qualifies'])assert(ui.includes(token),`UI missing ${token}`);
   assert(css.includes('.opportunity-card')&&css.includes('@media'),'responsive opportunity styling missing');
   assert(lazy.includes('opportunity-finder.js'),'CountyIQ lazy loader is not wired to P14');
   console.log(`P14_REGISTRY_OK programmes=${registry.programmes.length} live=${registry.programmes.filter(p=>p.status==='live').length}`);
   console.log(`P14_FRESHNESS_POLICY_OK verification=${registry.meta.verification_date}`);
   console.log(`P14_MATCH_REPRODUCIBILITY_OK counties=${countiesWithMatch} matches=${gapMatches}`);
-  console.log('P14_UI_BETA_OK');
+  console.log('P14_UI_PUBLIC_COPY_OK');
   console.log('P14_ALL_OK');
 }catch(error){console.error(error.message||error);process.exit(1);}
