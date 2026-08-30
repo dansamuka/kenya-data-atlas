@@ -157,6 +157,7 @@
         <button type="button" role="tab" aria-selected="false" data-ri-tab="fiscal">Fiscal delivery</button>
         <button type="button" role="tab" aria-selected="false" data-ri-tab="indicator">Indicator rankings</button>
         <button type="button" role="tab" aria-selected="false" data-ri-tab="gaps">Strengths &amp; gaps</button>
+        <button type="button" role="tab" aria-selected="false" data-ri-tab="administration">Administration scorecards</button>
         <button type="button" role="tab" aria-selected="false" data-ri-tab="recognition">Recognition</button>
         <button type="button" role="tab" aria-selected="false" data-ri-tab="evidence">Official evidence</button>
       </div>
@@ -183,6 +184,12 @@
         <div class="ri-panel-head"><div><p class="eyebrow">County strengths and gaps</p><h2>What stands out for each county.</h2><p>These statements are generated from the same displayed county statistics and benchmark comparisons—not from separate qualitative scoring.</p></div></div>
         <div class="ri-controls"><label>County<select id="ri-gap-county"><option>Loading counties…</option></select></label><div></div></div>
         <div id="ri-gap-content"></div>
+      </section>
+
+      <section class="ri-panel" data-ri-panel="administration" hidden>
+        <div class="ri-panel-head"><div><p class="eyebrow">Administration-period scorecards</p><h2>Baseline-to-latest fiscal change for all 47 counties.</h2><p>Compare the last full pre-election fiscal year with the latest full current-cycle year. The transition year is not used in the baseline-to-latest change.</p></div><span class="ri-count">47 county scorecards</span></div>
+        <div class="ri-table-wrap"><table class="ri-table"><thead><tr><th>Current fiscal rank</th><th>County</th><th>Current fiscal score</th><th>Overall absorption change</th><th>Development absorption change</th><th>Comparison period</th></tr></thead><tbody id="ri-administration-body"><tr><td colspan="6">Loading administration scorecards…</td></tr></tbody></table></div>
+        <p class="ri-note">These are county administration-period records, not personal governor causal scores. FY2022/23 is treated as a transition/context year rather than the baseline.</p>
       </section>
 
       <section class="ri-panel" data-ri-panel="recognition" hidden>

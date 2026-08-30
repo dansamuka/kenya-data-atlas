@@ -31,6 +31,7 @@ The public product should surface the analytical outputs created by the complete
 - Wage-ceiling and audit signals remain visible context rather than scored inputs.
 
 ### Administration-period scorecards and recognition
+The Rankings route includes a full 47-county scorecard table showing current fiscal rank/score plus baseline-to-latest changes in overall and development absorption.
 - FY2021/22 baseline to FY2024/25 change in overall and development absorption.
 - Six reproducible recognition categories: current fiscal delivery, improved overall absorption, improved development absorption, OSR target attainment, lowest pending-bills burden and wage-ceiling compliance.
 - Presentation is county-administration-period based; it is not a personal governor causal score.
