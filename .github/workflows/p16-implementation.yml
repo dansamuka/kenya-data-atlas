@@ -1,6 +1,8 @@
 name: P16 release hardening implementation
 
 on:
+  push:
+    branches: [p16-release-hardening-20260830]
   workflow_dispatch:
 
 permissions:
