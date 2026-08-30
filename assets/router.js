@@ -76,9 +76,20 @@
       el.dataset.view=view;el.hidden=(current?.view||parse().view)!==view;
     }
   }
+  function focusGlobalSearch(){
+    const input=document.querySelector('#atlas-search');
+    if(!input||input.closest('[hidden]'))return false;
+    try{input.focus({preventScroll:true});}catch(_){input.focus();}
+    return document.activeElement===input;
+  }
   function openGlobalSearch(){
     if((current?.view||parse().view)!=='home')navigate('home');
-    requestAnimationFrame(()=>document.querySelector('#atlas-search')?.focus());
+    // Route listeners can finish rendering/search hydration after navigation. Focus
+    // once immediately, once in a microtask and once on the next paint so the
+    // keyboard shortcut is reliable across Chromium, Firefox and WebKit.
+    focusGlobalSearch();
+    queueMicrotask(focusGlobalSearch);
+    requestAnimationFrame(focusGlobalSearch);
   }
 
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
