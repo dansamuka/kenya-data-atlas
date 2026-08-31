@@ -15,13 +15,13 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
     "comparable": true,
     "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "National Transport and Safety Authority (NTSA)",
-    "expected_source_url": "",
-    "expected_availability_note": "Public county breakdown not confirmed; remain planned.",
+    "lifecycle_status": "retired",
+    "expected_source": "KNBS — 2019 Kenya Population and Housing Census, Volume IV, Table 2.36",
+    "expected_source_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
+    "expected_availability_note": "Retired/replaced in P21. No governed complete 47-county administrative registration table was identified. Use IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP and IND-HOUSEHOLD-CAR-OWNERSHIP for the separate KNBS 2019 Census household-ownership percentages. Do not interpret either successor as a registered-vehicle count, vehicle stock, NTSA registration location or vehicles per capita.",
     "tab": "infrastructure",
     "applies_to_levels": [
       "county"

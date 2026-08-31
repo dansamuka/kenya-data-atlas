@@ -34,7 +34,7 @@ Baseline unresolved queue:
 | P24 | 13,050 |
 | P25 | 1 |
 
-The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–7, the live summary reports **3,714 resolved**, **16,401 unresolved**, **0 unknown blanks**, and **94 P21 rows** remaining.
+The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–8, the live summary reports **3,761 resolved**, **16,354 unresolved**, **0 unknown blanks**, and **47 P21 rows** remaining.
 
 ## Completion semantics
 
@@ -221,6 +221,10 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 **P21 tranche 7 — social-assistance replacement:** all 47 `IND-SOCIAL-PROTECTION-BENEFICIARIES` slots are retired/replaced because the original slot is an administrative Inua Jamii beneficiary person-count concept and no governed complete 47-county administrative table has been identified. KDHS 2022 Table 2.21.3C is promoted separately as `IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE`, a direct 47-county household survey percentage with household denominators. The Atlas does not convert this percentage into beneficiary persons, does not label it Inua Jamii coverage, and withholds county ranking because sampling uncertainty intervals are not published in the table.
 
 **Remaining queue after tranche 7:** **94** across two 47-county families.
+
+**P21 tranche 8 — vehicle-ownership replacement:** all 47 `IND-VEHICLE-REGISTRATIONS` slots are retired/replaced because the original profile slot is an administrative registered-vehicle count/per-capita concept and no governed complete 47-county NTSA registration table has been identified. KNBS 2019 KPHC Volume IV Table 2.36 is promoted separately through `IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP` and `IND-HOUSEHOLD-CAR-OWNERSHIP`, both direct county percentages of conventional households. The Atlas does not turn these percentages into vehicle counts or registration rates and does not sum overlapping ownership columns into a synthetic total.
+
+**Remaining queue after tranche 8:** **47** in one family: road-network length.
 
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 

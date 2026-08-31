@@ -287,6 +287,20 @@
     "observation_count": 0
   },
   {
+    "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+    "name": "Households owning a car",
+    "path": "data/distribution/subsets/indicators/IND-HOUSEHOLD-CAR-OWNERSHIP.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
+    "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+    "name": "Households owning a motorcycle",
+    "path": "data/distribution/subsets/indicators/IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
     "indicator_code": "IND-HOUSEHOLD-SIZE",
     "name": "Average household size",
     "path": "data/distribution/subsets/indicators/IND-HOUSEHOLD-SIZE.json",
