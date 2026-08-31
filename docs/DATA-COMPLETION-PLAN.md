@@ -71,12 +71,13 @@ P23A starts with reusable national pipelines rather than 290 hand-maintained fil
 4. NG-CDF allocation;
 5. NG-CDF utilisation/implementation only where a nationally comparable official source exists.
 
-The first tranche is unusually mature already: Sprint 2 source governance records **IEBC Gazette Notice No. 7290, 21 June 2022**, with a direct **Second Schedule — Registered Voters per Constituency** and reference date **20 June 2022**. Sprint 2 also retains the ward schedule, county schedule and the explicit Mandera East/Lafey ward boundary hold. P23A therefore begins by canonicalising the official constituency schedule into the existing P23 `IND-REGISTERED-VOTERS` slots; it does not need to infer constituency electorate from county values or force unresolved ward polygons.
+The first tranche is unusually mature already: Sprint 2 has audited **290/290 constituency totals** from IEBC Gazette Notice No. 7290. The existing treatment is deliberately **B — Official derived**: each constituency is the exact sum of all official IEBC First Schedule child-ward rows. The ten Mandera East/Lafey rows remain in those constituency totals even though their ward polygons are withheld. The Gazette also contains a Second Schedule per constituency, but P23A preserves the established derivation method unless a separate direct-schedule ingestion is independently built and validated.
 
 P23A acceptance for every family:
 
 - primary/official statistical authority is citable;
 - every promoted row reconciles to the canonical constituency registry;
+- registered-voter migration preserves the audited B/Official-derived treatment;
 - election/boundary vintage is explicit;
 - no county value is inherited downward;
 - only existing P23 slots are resolved and the governed denominator stays fixed;
@@ -248,7 +249,7 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 
 **Queue:** **3,190** remaining slot instances at the pre-P23A baseline. P23A resolves rows from this existing queue; it creates no additional slots.
 
-**P23A first tranche — constituency registered voters:** canonicalise the direct IEBC 2022 constituency schedule for `IND-REGISTERED-VOTERS` across all 290 constituencies. The source authority is Gazette Notice No. 7290; the official schedule is already governed in Sprint 2. Ward spatial exceptions do not justify withholding direct constituency rows.
+**P23A first tranche — constituency registered voters:** migrate the already-audited Sprint 2 `IND-REGISTERED-VOTERS` constituency statistics into the native canonical registry across all 290 constituencies. Values remain **B — Official derived**, exact sums of all official IEBC First Schedule child-ward rows. The source authority is Gazette Notice No. 7290. The Mandera ward geometry hold does not reduce constituency totals because all source rows remain statistically included.
 
 **Acceptance**
 - all 290 constituencies reconcile to the canonical registry;
@@ -336,9 +337,9 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 Run two evidence-independent streams while retaining the formal phase closure order:
 
 - **County stream:** continue P21 one family per PR; prepare P22 only under its original freshness/geography rules.
-- **Local stream:** start P23A with the 290 direct IEBC constituency registered-voter slots; then advance to the next official national constituency pipeline.
+- **Local stream:** start P23A by migrating the 290 audited IEBC constituency registered-voter observations into the native canonical registry; then advance to the next official national constituency pipeline.
 - **Convergence:** full P23 acceptance remains mandatory before P24 can complete; P25 and P26 remain unchanged.
 
 The next implementation instructions are:
 
-> **Continue P21 without weakening evidence rules. In parallel, canonicalise the existing official IEBC constituency registered-voter schedule as P23A tranche 1. Do not create a second denominator, inherit county values downward, or force unresolved ward geography.**
+> **Continue P21 without weakening evidence rules. In parallel, canonicalise the existing official-derived IEBC constituency registered-voter series as P23A tranche 1. Do not create a second denominator, inherit county values downward, or force unresolved ward geography.**
