@@ -158,10 +158,12 @@ jobs:
         run: |
           set -euo pipefail
           base='https://dansamuka.github.io/kenya-data-atlas'
-          curl -fsSL --retry 5 --retry-delay 3 "$base/?release=$RELEASE_SHA" | grep -q 'Kenya Data Atlas'
-          curl -fsSL --retry 5 --retry-delay 3 "$base/county-dashboard.html?release=$RELEASE_SHA" | grep -q 'Kenya Data Atlas'
-          curl -fsSL --retry 5 --retry-delay 3 "$base/data/project-roadmap.json?release=$RELEASE_SHA" > /tmp/roadmap.json
-          curl -fsSL --retry 5 --retry-delay 3 "$base/data/release/v1.0.0.json?release=$RELEASE_SHA" > /tmp/release.json
+          curl -fsSL --retry 5 --retry-delay 3 "$base/?release=$RELEASE_SHA" -o /tmp/index.html
+          grep -q 'Kenya Data Atlas' /tmp/index.html
+          curl -fsSL --retry 5 --retry-delay 3 "$base/county-dashboard.html?release=$RELEASE_SHA" -o /tmp/county-dashboard.html
+          grep -q 'Kenya Data Atlas' /tmp/county-dashboard.html
+          curl -fsSL --retry 5 --retry-delay 3 "$base/data/project-roadmap.json?release=$RELEASE_SHA" -o /tmp/roadmap.json
+          curl -fsSL --retry 5 --retry-delay 3 "$base/data/release/v1.0.0.json?release=$RELEASE_SHA" -o /tmp/release.json
           node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync('/tmp/roadmap.json'));const p=r.phases.find(x=>x.id==='P17');if(!p||p.status!=='complete')process.exit(1);const m=JSON.parse(fs.readFileSync('/tmp/release.json'));if(m.release_version!=='1.0.0'||m.release_status!=='released')process.exit(1);console.log('P17_LIVE_SMOKE_OK release=1.0.0');"
 
       - name: Create immutable v1.0.0 tag and GitHub release
