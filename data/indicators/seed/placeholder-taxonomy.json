@@ -1,812 +1,99 @@
 {
   "version": "2.0",
   "tabs": {
-    "county": [
-      "overview",
-      "people",
-      "economy",
-      "health",
-      "finance",
-      "infrastructure",
-      "resilience"
-    ],
-    "constituency": [
-      "overview",
-      "people",
-      "representation",
-      "infrastructure"
-    ],
-    "ward": [
-      "overview",
-      "people",
-      "representation",
-      "infrastructure"
-    ]
+    "county": ["overview", "people", "economy", "health", "finance", "infrastructure", "resilience"],
+    "constituency": ["overview", "people", "representation", "infrastructure"],
+    "ward": ["overview", "people", "representation", "infrastructure"]
   },
-  "conditional_tabs": {
-    "resilience": "ASAL_COUNTIES"
-  },
+  "conditional_tabs": {"resilience": "ASAL_COUNTIES"},
   "slots": {
     "county": {
-      "people": [
-        "IND-POPULATION",
-        "IND-POP-2009",
-        "IND-HOUSEHOLD-SIZE",
-        "IND-LITERACY-RATE",
-        "IND-POVERTY-RATE",
-        "IND-HOUSING-MATERIAL",
-        "IND-REGISTERED-VOTERS",
-        "IND-DISABILITY-PREVALENCE",
-        "IND-SOCIAL-PROTECTION-BENEFICIARIES",
-        "IND-EXAM-PERFORMANCE"
-      ],
-      "economy": [
-        "IND-GCP-CURRENT",
-        "IND-FUEL-PETROL",
-        "IND-BUSINESS-LICENSES",
-        "IND-AGRI-PRODUCTION"
-      ],
-      "health": [
-        "IND-HEALTH-FACILITY-COUNT",
-        "IND-STUNTING-RATE",
-        "IND-IMMUNIZATION-RATE",
-        "IND-MATERNAL-HEALTH",
-        "IND-HIV-PREVALENCE",
-        "IND-FACILITY-INFRASTRUCTURE",
-        "IND-TEENAGE-PREGNANCY",
-        "IND-HOME-BIRTH-RATE",
-        "IND-CONTRACEPTIVE-USE",
-        "IND-FGM-CHILD-MARRIAGE",
-        "IND-SUBSTANCE-ABUSE-PREVALENCE",
-        "IND-HOSPITAL-BED-UTILIZATION"
-      ],
-      "finance": [
-        "IND-COUNTY-BUDGET-TOTAL",
-        "IND-COUNTY-EXPENDITURE-TOTAL",
-        "IND-COUNTY-BUDGET-ABSORPTION",
-        "IND-COUNTY-DEVELOPMENT-ABSORPTION",
-        "IND-COUNTY-OSR",
-        "IND-COUNTY-PENDING-BILLS",
-        "IND-COUNTY-AUDIT-OPINION"
-      ],
-      "infrastructure": [
-        "IND-ELECTRICITY-ACCESS",
-        "IND-ROAD-NETWORK-LENGTH",
-        "IND-WATER-ACCESS",
-        "IND-HEALTH-FACILITY-DENSITY",
-        "IND-VEHICLE-REGISTRATIONS"
-      ],
-      "resilience": [
-        "IND-FOOD-SECURITY-PHASE",
-        "IND-DROUGHT-EARLY-WARNING",
-        "IND-RAINFALL-TEMPERATURE"
-      ]
+      "people": ["IND-POPULATION","IND-POP-2009","IND-HOUSEHOLD-SIZE","IND-LITERACY-RATE","IND-POVERTY-RATE","IND-HOUSING-MATERIAL","IND-REGISTERED-VOTERS","IND-DISABILITY-PREVALENCE","IND-SOCIAL-PROTECTION-BENEFICIARIES","IND-EXAM-PERFORMANCE"],
+      "economy": ["IND-GCP-CURRENT","IND-FUEL-PETROL","IND-BUSINESS-LICENSES","IND-AGRI-PRODUCTION"],
+      "health": ["IND-HEALTH-FACILITY-COUNT","IND-STUNTING-RATE","IND-IMMUNIZATION-RATE","IND-MATERNAL-HEALTH","IND-HIV-PREVALENCE","IND-FACILITY-INFRASTRUCTURE","IND-TEENAGE-PREGNANCY","IND-HOME-BIRTH-RATE","IND-CONTRACEPTIVE-USE","IND-FGM-CHILD-MARRIAGE","IND-SUBSTANCE-ABUSE-PREVALENCE","IND-HOSPITAL-BED-UTILIZATION"],
+      "finance": ["IND-COUNTY-BUDGET-TOTAL","IND-COUNTY-EXPENDITURE-TOTAL","IND-COUNTY-BUDGET-ABSORPTION","IND-COUNTY-DEVELOPMENT-ABSORPTION","IND-COUNTY-OSR","IND-COUNTY-PENDING-BILLS","IND-COUNTY-AUDIT-OPINION"],
+      "infrastructure": ["IND-ELECTRICITY-ACCESS","IND-ROAD-NETWORK-LENGTH","IND-WATER-ACCESS","IND-HEALTH-FACILITY-DENSITY","IND-VEHICLE-REGISTRATIONS"],
+      "resilience": ["IND-FOOD-SECURITY-PHASE","IND-DROUGHT-EARLY-WARNING","IND-RAINFALL-TEMPERATURE"]
     },
     "constituency": {
-      "people": [
-        "IND-POPULATION",
-        "IND-HOUSEHOLD-SIZE",
-        "IND-REGISTERED-VOTERS"
-      ],
-      "representation": [
-        "IND-REGISTERED-VOTERS",
-        "IND-MP-IDENTITY",
-        "IND-NG-CDF-ALLOCATION",
-        "IND-NG-CDF-UTILIZATION",
-        "IND-TURNOUT-HISTORY"
-      ],
-      "infrastructure": [
-        "IND-HEALTH-FACILITY-DENSITY"
-      ]
+      "people": ["IND-POPULATION","IND-HOUSEHOLD-SIZE","IND-REGISTERED-VOTERS"],
+      "representation": ["IND-REGISTERED-VOTERS","IND-MP-IDENTITY","IND-NG-CDF-ALLOCATION","IND-NG-CDF-UTILIZATION","IND-TURNOUT-HISTORY"],
+      "infrastructure": ["IND-HEALTH-FACILITY-DENSITY"]
     },
     "ward": {
-      "people": [
-        "IND-POPULATION",
-        "IND-REGISTERED-VOTERS"
-      ],
-      "representation": [
-        "IND-REGISTERED-VOTERS",
-        "IND-MCA-IDENTITY",
-        "IND-WARD-FUND-ALLOCATION",
-        "IND-TURNOUT-HISTORY"
-      ],
-      "infrastructure": [
-        "IND-HEALTH-FACILITY-DENSITY"
-      ]
+      "people": ["IND-POPULATION","IND-REGISTERED-VOTERS"],
+      "representation": ["IND-REGISTERED-VOTERS","IND-MCA-IDENTITY","IND-WARD-FUND-ALLOCATION","IND-TURNOUT-HISTORY"],
+      "infrastructure": ["IND-HEALTH-FACILITY-DENSITY"]
     }
   },
-  "national_pulse_slots": [
-    "IND-MOBILE-MONEY-VOLUME"
-  ],
-  "survey_indicator_codes": [
-    "IND-STUNTING-RATE",
-    "IND-IMMUNIZATION-RATE",
-    "IND-MATERNAL-HEALTH",
-    "IND-HIV-PREVALENCE",
-    "IND-TEENAGE-PREGNANCY",
-    "IND-HOME-BIRTH-RATE",
-    "IND-CONTRACEPTIVE-USE",
-    "IND-FGM-CHILD-MARRIAGE",
-    "IND-SUBSTANCE-ABUSE-PREVALENCE"
-  ],
-  "sensitive_no_ranking_codes": [
-    "IND-TEENAGE-PREGNANCY",
-    "IND-FGM-CHILD-MARRIAGE"
-  ],
-  "excluded_subnational_composite_codes": [
-    "IND-HDI",
-    "IND-HUMAN-DEVELOPMENT-INDEX",
-    "IND-MPI",
-    "IND-MULTIDIMENSIONAL-POVERTY-INDEX"
-  ],
+  "national_pulse_slots": ["IND-MOBILE-MONEY-VOLUME"],
+  "survey_indicator_codes": ["IND-STUNTING-RATE","IND-IMMUNIZATION-RATE","IND-MATERNAL-HEALTH","IND-HIV-PREVALENCE","IND-TEENAGE-PREGNANCY","IND-HOME-BIRTH-RATE","IND-CONTRACEPTIVE-USE","IND-FGM-CHILD-MARRIAGE","IND-SUBSTANCE-ABUSE-PREVALENCE"],
+  "sensitive_no_ranking_codes": ["IND-TEENAGE-PREGNANCY","IND-FGM-CHILD-MARRIAGE"],
+  "excluded_subnational_composite_codes": ["IND-HDI","IND-HUMAN-DEVELOPMENT-INDEX","IND-MPI","IND-MULTIDIMENSIONAL-POVERTY-INDEX"],
   "units": [
-    {
-      "code": "count",
-      "name": "Count",
-      "symbol": "count",
-      "dimension": "count",
-      "decimal_places": 0
-    },
-    {
-      "code": "persons_per_household",
-      "name": "Persons per household",
-      "symbol": "persons/household",
-      "dimension": "rate",
-      "decimal_places": 1
-    },
-    {
-      "code": "index_score",
-      "name": "Score",
-      "symbol": "score",
-      "dimension": "index",
-      "decimal_places": 1
-    },
-    {
-      "code": "category",
-      "name": "Categorical value",
-      "symbol": "",
-      "dimension": "category",
-      "decimal_places": 0
-    },
-    {
-      "code": "km",
-      "name": "Kilometres",
-      "symbol": "km",
-      "dimension": "length",
-      "decimal_places": 1
-    },
-    {
-      "code": "per_10000_persons",
-      "name": "Per 10,000 population",
-      "symbol": "per 10k",
-      "dimension": "rate",
-      "decimal_places": 1
-    },
-    {
-      "code": "climate_measure",
-      "name": "Rainfall / temperature measure",
-      "symbol": "mm / °C",
-      "dimension": "climate",
-      "decimal_places": 1
-    }
+    {"code":"count","name":"Count","symbol":"count","dimension":"count","decimal_places":0},
+    {"code":"persons_per_household","name":"Persons per household","symbol":"persons/household","dimension":"rate","decimal_places":1},
+    {"code":"index_score","name":"Score","symbol":"score","dimension":"index","decimal_places":1},
+    {"code":"category","name":"Categorical value","symbol":"","dimension":"category","decimal_places":0},
+    {"code":"km","name":"Kilometres","symbol":"km","dimension":"length","decimal_places":1},
+    {"code":"per_10000_persons","name":"Per 10,000 population","symbol":"per 10k","dimension":"rate","decimal_places":1},
+    {"code":"climate_measure","name":"Rainfall / temperature measure","symbol":"mm / °C","dimension":"climate","decimal_places":1}
   ],
   "indicators": [
-    {
-      "code": "IND-POPULATION",
-      "status": "active",
-      "tab": "people",
-      "levels": [
-        "county",
-        "constituency",
-        "ward"
-      ],
-      "note": "Published/derived only where a real series exists; never inherit a parent value."
-    },
-    {
-      "code": "IND-POP-2009",
-      "name": "Population, 2009 census",
-      "description": "County population from the 2009 census, surfaced as its own fixed profile slot.",
-      "unit_code": "persons",
-      "status": "active",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS 2009 census",
-      "source_url": "https://www.knbs.or.ke/",
-      "note": "County only; generated from the already-ingested 2009 population observations."
-    },
-    {
-      "code": "IND-HOUSEHOLD-SIZE",
-      "name": "Average household size",
-      "description": "Average number of persons per household.",
-      "unit_code": "persons_per_household",
-      "status": "sourced",
-      "tab": "people",
-      "levels": [
-        "county",
-        "constituency"
-      ],
-      "source": "KNBS 2019 Kenya Population and Housing Census, Volume I, Table 2.3",
-      "source_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/385",
-      "note": "County average household size is published directly in Volume I Table 2.3. Do not inherit county values to constituencies; lower-level activation requires its own governed source mapping."
-    },
-    {
-      "code": "IND-LITERACY-RATE",
-      "name": "Literacy rate",
-      "description": "Share of the relevant population meeting the published literacy definition.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS 2019 census / KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
-      "note": "County only until a valid lower-level tabulation is confirmed."
-    },
-    {
-      "code": "IND-POVERTY-RATE",
-      "name": "Poverty rate (monetary)",
-      "description": "Overall monetary poverty headcount rate.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS Kenya Poverty Report 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kenya-poverty-report-2022/",
-      "note": "County survey estimate; sampling uncertainty required when activated."
-    },
-    {
-      "code": "IND-HOUSING-MATERIAL",
-      "name": "Dwelling wall/roof material (% permanent)",
-      "description": "Share of dwellings classified as permanent by the published census material definition.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS 2019 census, Volume IV",
-      "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
-      "note": "County only."
-    },
-    {
-      "code": "IND-REGISTERED-VOTERS",
-      "status": "active",
-      "tab": "people",
-      "levels": [
-        "county",
-        "constituency",
-        "ward"
-      ],
-      "note": "Cross-listed in Representation below county."
-    },
-    {
-      "code": "IND-DISABILITY-PREVALENCE",
-      "name": "Disability prevalence (Washington Group short set)",
-      "description": "Prevalence using the Washington Group short-set disability identification questions.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS 2019 census",
-      "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
-      "note": "County census indicator."
-    },
-    {
-      "code": "IND-SOCIAL-PROTECTION-BENEFICIARIES",
-      "name": "Inua Jamii cash-transfer beneficiaries",
-      "description": "Beneficiaries of Older Persons, OVC, Persons with Severe Disability and HSNP schemes.",
-      "unit_code": "persons",
-      "status": "planned",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "State Department for Social Protection",
-      "note": "No citable per-county publication identified; must not be promoted to sourced without one."
-    },
-    {
-      "code": "IND-EXAM-PERFORMANCE",
-      "name": "Mean KCPE / KCSE score",
-      "description": "County-level mean examination performance, only if a genuine KNEC primary table is located.",
-      "unit_code": "index_score",
-      "status": "planned",
-      "tab": "people",
-      "levels": [
-        "county"
-      ],
-      "source": "KNEC",
-      "note": "Do not source from blogs/news aggregations; retire if no primary county table exists."
-    },
-    {
-      "code": "IND-GCP-CURRENT",
-      "status": "active",
-      "tab": "economy",
-      "levels": [
-        "county"
-      ]
-    },
-    {
-      "code": "IND-FUEL-PETROL",
-      "status": "active",
-      "tab": "economy",
-      "levels": [
-        "county"
-      ]
-    },
-    {
-      "code": "IND-BUSINESS-LICENSES",
-      "name": "Licensed businesses (count, year-on-year change)",
-      "description": "Licensed business count and year-on-year change where a county publishes a usable series.",
-      "unit_code": "count",
-      "status": "planned",
-      "tab": "economy",
-      "levels": [
-        "county"
-      ],
-      "source": "County statistical abstracts / eCitizen",
-      "note": "Coverage is inconsistent; ingest opportunistically and never manufacture missing counties."
-    },
-    {
-      "code": "IND-AGRI-PRODUCTION",
-      "name": "Key crop production (county-dominant crop only)",
-      "description": "Production of the county-dominant crop where a comparable official table exists.",
-      "unit_code": "category",
-      "status": "planned",
-      "tab": "economy",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS Economic Survey / Ministry of Agriculture",
-      "note": "Crop and unit vary; requires indicator-specific ingestion before activation."
-    },
-    {
-      "code": "IND-HEALTH-FACILITY-COUNT",
-      "name": "Health facility count (by type/ownership)",
-      "description": "Count of registered health facilities by type/ownership.",
-      "unit_code": "count",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "Kenya Master Health Facility Registry (KMHFR)",
-      "source_url": "https://kmhfr.health.go.ke/public/facilities",
-      "note": "Official registry; profile count is derived from registered facility records."
-    },
-    {
-      "code": "IND-STUNTING-RATE",
-      "name": "Stunting rate, under-5",
-      "description": "Share of children under five classified as stunted.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; confidence interval/SE/sample size required when active."
-    },
-    {
-      "code": "IND-IMMUNIZATION-RATE",
-      "name": "Full immunization coverage",
-      "description": "Published full immunization coverage rate.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; confidence interval/SE/sample size required when active."
-    },
-    {
-      "code": "IND-MATERNAL-HEALTH",
-      "name": "Skilled birth attendance rate",
-      "description": "Share of births attended by skilled health personnel.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; confidence interval/SE/sample size required when active."
-    },
-    {
-      "code": "IND-HIV-PREVALENCE",
-      "name": "HIV prevalence",
-      "description": "Published HIV prevalence estimate.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022 / NASCOP",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; confidence interval/SE/sample size required when active."
-    },
-    {
-      "code": "IND-FACILITY-INFRASTRUCTURE",
-      "name": "Facilities with electricity/water (%)",
-      "description": "Share of facilities with electricity/water in the Kenya Health Facility Census snapshot.",
-      "unit_code": "percent",
-      "status": "planned",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "Kenya Health Facility Census 2023",
-      "note": "One-off snapshot; label prominently as a snapshot if activated."
-    },
-    {
-      "code": "IND-TEENAGE-PREGNANCY",
-      "name": "Teenage pregnancy rate, age 15–19",
-      "description": "Published teenage pregnancy rate among ages 15–19.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; plain statistic only, no worst-county ranking."
-    },
-    {
-      "code": "IND-HOME-BIRTH-RATE",
-      "name": "Home births (vs. facility births)",
-      "description": "Share of births occurring at home.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; confidence interval/SE/sample size required when active."
-    },
-    {
-      "code": "IND-CONTRACEPTIVE-USE",
-      "name": "Modern contraceptive use rate",
-      "description": "Published modern contraceptive use rate.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; confidence interval/SE/sample size required when active."
-    },
-    {
-      "code": "IND-FGM-CHILD-MARRIAGE",
-      "name": "FGM prevalence / child marriage rate",
-      "description": "Published prevalence measure, presented neutrally without editorial ranking.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "KDHS 2022",
-      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
-      "note": "Sample survey; never render as a shame/worst-offender ranking."
-    },
-    {
-      "code": "IND-SUBSTANCE-ABUSE-PREVALENCE",
-      "name": "Drug and substance use prevalence",
-      "description": "Published prevalence from the NACADA national survey, subject to verification of county coverage.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "NACADA National Survey on the Status of Drugs and Substance Use in Kenya 2022",
-      "source_url": "https://nacada.go.ke/publications?page=1",
-      "note": "Do not activate until the newest round's county coverage is verified; sampling uncertainty is mandatory."
-    },
-    {
-      "code": "IND-HOSPITAL-BED-UTILIZATION",
-      "name": "Hospital bed occupancy/utilisation rate",
-      "description": "Hospital bed utilisation if a public Kenyan source is identified.",
-      "unit_code": "percent",
-      "status": "planned",
-      "tab": "health",
-      "levels": [
-        "county"
-      ],
-      "source": "Ministry of Health / KHIS",
-      "note": "No confirmed public Kenyan feed; remain planned until a citable source exists."
-    },
-    {
-      "code": "IND-FOOD-SECURITY-PHASE",
-      "name": "Food security phase classification (IPC-style)",
-      "description": "Acute food insecurity phase classification from seasonal assessments.",
-      "unit_code": "category",
-      "status": "sourced",
-      "tab": "resilience",
-      "levels": [
-        "county"
-      ],
-      "subset": "ASAL_COUNTIES",
-      "source": "National Drought Management Authority (NDMA) seasonal food security assessment",
-      "source_url": "https://knowledgeweb.ndma.go.ke/Content/LibraryDocuments/Long_Rains_National_Report-_202220230510110248.pdf",
-      "note": "County conditional; NDMA assessment coverage is institutional, not a temporary data gap."
-    },
-    {
-      "code": "IND-DROUGHT-EARLY-WARNING",
-      "name": "Drought early warning bulletin status",
-      "description": "Monthly drought early warning status from NDMA bulletins.",
-      "unit_code": "category",
-      "status": "planned",
-      "tab": "resilience",
-      "levels": [
-        "county"
-      ],
-      "subset": "ASAL_COUNTIES",
-      "source": "NDMA monthly drought early warning bulletins",
-      "note": "Machine-readable table structure not yet reviewed."
-    },
-    {
-      "code": "IND-RAINFALL-TEMPERATURE",
-      "name": "Rainfall and temperature (historical series)",
-      "description": "Historical rainfall and temperature where an official open-data channel exists.",
-      "unit_code": "climate_measure",
-      "status": "planned",
-      "tab": "resilience",
-      "levels": [
-        "county"
-      ],
-      "subset": "ASAL_COUNTIES",
-      "source": "Kenya Meteorological Department",
-      "note": "Remain planned unless a genuine historical-data channel is confirmed."
-    },
-    {
-      "code": "IND-COUNTY-BUDGET-TOTAL",
-      "status": "active",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ]
-    },
-    {
-      "code": "IND-COUNTY-EXPENDITURE-TOTAL",
-      "status": "active",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ]
-    },
-    {
-      "code": "IND-COUNTY-BUDGET-ABSORPTION",
-      "status": "active",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ]
-    },
-    {
-      "code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
-      "status": "active",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ]
-    },
-    {
-      "code": "IND-COUNTY-OSR",
-      "name": "Own-source revenue vs. target",
-      "description": "County own-source revenue performance against target.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ],
-      "source": "Office of the Controller of Budget County Budget Implementation Review Report FY2024/25",
-      "source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
-      "note": "Same trusted report family as budget/expenditure; first-priority sourced promotion."
-    },
-    {
-      "code": "IND-COUNTY-PENDING-BILLS",
-      "name": "Pending bills",
-      "description": "County pending bills reported by the Controller of Budget.",
-      "unit_code": "kes_million",
-      "status": "sourced",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ],
-      "source": "Office of the Controller of Budget County Budget Implementation Review Report FY2024/25",
-      "source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
-      "note": "Same trusted report family as budget/expenditure; first-priority sourced promotion."
-    },
-    {
-      "code": "IND-COUNTY-AUDIT-OPINION",
-      "name": "Auditor-General opinion",
-      "description": "County audit opinion: unqualified, qualified, adverse or disclaimer.",
-      "unit_code": "category",
-      "status": "sourced",
-      "tab": "finance",
-      "levels": [
-        "county"
-      ],
-      "source": "Office of the Auditor-General Summary Report on County Governments 2024/2025",
-      "source_url": "https://www.oagkenya.go.ke/document-library/",
-      "note": "Categorical audit opinion; do not turn into an unsupported composite score."
-    },
-    {
-      "code": "IND-MP-IDENTITY",
-      "name": "Member of Parliament (name, party)",
-      "description": "Current constituency Member of Parliament identity and party, once a checkable source is curated.",
-      "unit_code": "category",
-      "status": "planned",
-      "tab": "representation",
-      "levels": [
-        "constituency"
-      ],
-      "source": "IEBC / Parliament of Kenya",
-      "note": "No single confirmed machine-readable source; remain planned."
-    },
-    {
-      "code": "IND-MCA-IDENTITY",
-      "name": "Member of County Assembly (name, party)",
-      "description": "Current ward MCA identity and party, once a checkable source is curated.",
-      "unit_code": "category",
-      "status": "planned",
-      "tab": "representation",
-      "levels": [
-        "ward"
-      ],
-      "source": "County assemblies / IEBC",
-      "note": "No single confirmed machine-readable source; remain planned."
-    },
-    {
-      "code": "IND-NG-CDF-ALLOCATION",
-      "name": "NG-CDF allocation (financial year)",
-      "description": "Constituency NG-CDF allocation for the financial year.",
-      "unit_code": "kes_million",
-      "status": "planned",
-      "tab": "representation",
-      "levels": [
-        "constituency"
-      ],
-      "source": "NG-CDF Board",
-      "note": "Do not promote until a specific citable report/page is identified."
-    },
-    {
-      "code": "IND-NG-CDF-UTILIZATION",
-      "name": "NG-CDF utilization rate",
-      "description": "Constituency NG-CDF utilization rate.",
-      "unit_code": "percent",
-      "status": "planned",
-      "tab": "representation",
-      "levels": [
-        "constituency"
-      ],
-      "source": "NG-CDF Board",
-      "note": "Do not promote until a specific citable report/page is identified."
-    },
-    {
-      "code": "IND-WARD-FUND-ALLOCATION",
-      "name": "Ward-level development fund allocation",
-      "description": "Ward-level development fund allocation where separately and officially reported.",
-      "unit_code": "kes_million",
-      "status": "planned",
-      "tab": "representation",
-      "levels": [
-        "ward"
-      ],
-      "source": "County-specific publications",
-      "note": "Never divide county budgets mechanically by ward count."
-    },
-    {
-      "code": "IND-TURNOUT-HISTORY",
-      "name": "Turnout, prior general elections",
-      "description": "Voter turnout in prior general elections.",
-      "unit_code": "percent",
-      "status": "planned",
-      "tab": "representation",
-      "levels": [
-        "constituency",
-        "ward"
-      ],
-      "source": "IEBC",
-      "note": "Natural extension of the Sprint 2 electoral architecture; not yet ingested."
-    },
-    {
-      "code": "IND-ELECTRICITY-ACCESS",
-      "name": "Households with electricity (%)",
-      "description": "Share of households whose main lighting source indicates electricity access.",
-      "unit_code": "percent",
-      "status": "sourced",
-      "tab": "infrastructure",
-      "levels": [
-        "county"
-      ],
-      "source": "KNBS 2019 census",
-      "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
-      "note": "County census indicator."
-    },
-    {
-      "code": "IND-ROAD-NETWORK-LENGTH",
-      "name": "Classified road length (km)",
-      "description": "Length of classified road network.",
-      "unit_code": "km",
-      "status": "planned",
-      "tab": "infrastructure",
-      "levels": [
-        "county"
-      ],
-      "source": "Kenya Roads Board",
-      "note": "No single clean county table identified."
-    },
-    {
-      "code": "IND-WATER-ACCESS",
-      "name": "Households with access to improved water source (%)",
-      "description": "Share of households with access to an improved water source.",
-      "unit_code": "percent",
-      "status": "planned",
-      "tab": "infrastructure",
-      "levels": [
-        "county"
-      ],
-      "source": "WASREB annual reports",
-      "note": "Utility service areas do not align cleanly with counties; crosswalk required before promotion."
-    },
-    {
-      "code": "IND-HEALTH-FACILITY-DENSITY",
-      "name": "Health facilities per 10,000 population",
-      "description": "Atlas-derived facility density from KMHFR geocoded facilities and canonical geography polygons.",
-      "unit_code": "per_10000_persons",
-      "status": "sourced",
-      "tab": "infrastructure",
-      "levels": [
-        "county",
-        "constituency",
-        "ward"
-      ],
-      "source": "Kenya Master Health Facility Registry (KMHFR)",
-      "source_url": "https://kmhfr.health.go.ke/public/facilities",
-      "note": "When activated, badge B: transparent aggregation of official facility points; never presented as a KMHFR-published area table."
-    },
-    {
-      "code": "IND-VEHICLE-REGISTRATIONS",
-      "name": "Registered vehicles (count, per capita)",
-      "description": "Registered vehicles by county if a public county breakdown is confirmed.",
-      "unit_code": "count",
-      "status": "planned",
-      "tab": "infrastructure",
-      "levels": [
-        "county"
-      ],
-      "source": "National Transport and Safety Authority (NTSA)",
-      "note": "Public county breakdown not confirmed; remain planned."
-    },
-    {
-      "code": "IND-MOBILE-MONEY-VOLUME",
-      "name": "Mobile money transaction volume",
-      "description": "National mobile-money transaction volume for the Kenya Pulse.",
-      "unit_code": "kes_million",
-      "status": "planned",
-      "tab": "economy",
-      "levels": [],
-      "source": "Central Bank of Kenya / Communications Authority",
-      "note": "National-only Pulse slot; no county breakdown identified."
-    }
+    {"code":"IND-POPULATION","status":"active","tab":"people","levels":["county","constituency","ward"],"note":"Published/derived only where a real series exists; never inherit a parent value."},
+    {"code":"IND-POP-2009","name":"Population, 2009 census","description":"County population from the 2009 census, surfaced as its own fixed profile slot.","unit_code":"persons","status":"active","tab":"people","levels":["county"],"source":"KNBS 2009 census","source_url":"https://www.knbs.or.ke/","note":"County only; generated from the already-ingested 2009 population observations."},
+    {"code":"IND-HOUSEHOLD-SIZE","name":"Average household size","description":"Average number of persons per household.","unit_code":"persons_per_household","status":"sourced","tab":"people","levels":["county","constituency"],"source":"KNBS 2019 Kenya Population and Housing Census, Volume I, Table 2.3","source_url":"https://repository.knbs.or.ke/handle/knbs-ke-repo/385","note":"County average household size is published directly in Volume I Table 2.3. Do not inherit county values to constituencies; lower-level activation requires its own governed source mapping."},
+    {"code":"IND-LITERACY-RATE","name":"Literacy rate","description":"Share of the relevant population meeting the published literacy definition.","unit_code":"percent","status":"sourced","tab":"people","levels":["county"],"source":"KNBS 2019 census / KDHS 2022","source_url":"https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/","note":"County only until a valid lower-level tabulation is confirmed."},
+    {"code":"IND-POVERTY-RATE","name":"Poverty rate (monetary)","description":"Overall monetary poverty headcount rate.","unit_code":"percent","status":"sourced","tab":"people","levels":["county"],"source":"KNBS Kenya Poverty Report 2022","source_url":"https://www.knbs.or.ke/reports/kenya-poverty-report-2022/","note":"County survey estimate; sampling uncertainty required when activated."},
+    {"code":"IND-HOUSING-MATERIAL","name":"Dwelling wall/roof material (% permanent)","description":"Share of dwellings classified as permanent by the published census material definition.","unit_code":"percent","status":"sourced","tab":"people","levels":["county"],"source":"KNBS 2019 census, Volume IV","source_url":"https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/","note":"County only."},
+    {"code":"IND-REGISTERED-VOTERS","status":"active","tab":"people","levels":["county","constituency","ward"],"note":"Cross-listed in Representation below county."},
+    {"code":"IND-DISABILITY-PREVALENCE","name":"Disability prevalence (Washington Group short set)","description":"Prevalence using the Washington Group short-set disability identification questions.","unit_code":"percent","status":"sourced","tab":"people","levels":["county"],"source":"KNBS 2019 census","source_url":"https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/","note":"County census indicator."},
+    {"code":"IND-SOCIAL-PROTECTION-BENEFICIARIES","name":"Inua Jamii cash-transfer beneficiaries","description":"Beneficiaries of Older Persons, OVC, Persons with Severe Disability and HSNP schemes.","unit_code":"persons","status":"planned","tab":"people","levels":["county"],"source":"State Department for Social Protection","note":"No citable per-county publication identified; must not be promoted to sourced without one."},
+    {"code":"IND-EXAM-PERFORMANCE","name":"Mean KCPE / KCSE score","description":"County-level mean examination performance, only if a genuine KNEC primary table is located.","unit_code":"index_score","status":"planned","tab":"people","levels":["county"],"source":"KNEC","note":"Do not source from blogs/news aggregations; retire if no primary county table exists."},
+
+    {"code":"IND-GCP-CURRENT","status":"active","tab":"economy","levels":["county"]},
+    {"code":"IND-FUEL-PETROL","status":"active","tab":"economy","levels":["county"]},
+    {"code":"IND-BUSINESS-LICENSES","name":"Licensed businesses (count, year-on-year change)","description":"Licensed business count and year-on-year change where a county publishes a usable series.","unit_code":"count","status":"planned","tab":"economy","levels":["county"],"source":"County statistical abstracts / eCitizen","note":"Coverage is inconsistent; ingest opportunistically and never manufacture missing counties."},
+    {"code":"IND-AGRI-PRODUCTION","name":"Key crop production (county-dominant crop only)","description":"Production of the county-dominant crop where a comparable official table exists.","unit_code":"category","status":"planned","tab":"economy","levels":["county"],"source":"KNBS Economic Survey / Ministry of Agriculture","note":"Crop and unit vary; requires indicator-specific ingestion before activation."},
+
+    {"code":"IND-HEALTH-FACILITY-COUNT","name":"Health facility count (by type/ownership)","description":"Count of registered health facilities by type/ownership.","unit_code":"count","status":"sourced","tab":"health","levels":["county"],"source":"Kenya Master Health Facility Registry (KMHFR)","source_url":"https://kmhfr.health.go.ke/public/facilities","note":"Official registry; profile count is derived from registered facility records."},
+    {"code":"IND-STUNTING-RATE","name":"Stunting rate, under-5","description":"Share of children under five classified as stunted.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; confidence interval/SE/sample size required when active."},
+    {"code":"IND-IMMUNIZATION-RATE","name":"Full immunization coverage","description":"Published full immunization coverage rate.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; confidence interval/SE/sample size required when active."},
+    {"code":"IND-MATERNAL-HEALTH","name":"Skilled birth attendance rate","description":"Share of births attended by skilled health personnel.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; confidence interval/SE/sample size required when active."},
+    {"code":"IND-HIV-PREVALENCE","name":"HIV prevalence","description":"Published HIV prevalence estimate.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022 / NASCOP","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; confidence interval/SE/sample size required when active."},
+    {"code":"IND-FACILITY-INFRASTRUCTURE","name":"Facilities with electricity/water (%)","description":"Share of facilities with electricity/water in the Kenya Health Facility Census snapshot.","unit_code":"percent","status":"planned","tab":"health","levels":["county"],"source":"Kenya Health Facility Census 2023","note":"One-off snapshot; label prominently as a snapshot if activated."},
+    {"code":"IND-TEENAGE-PREGNANCY","name":"Teenage pregnancy rate, age 15–19","description":"Published teenage pregnancy rate among ages 15–19.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; plain statistic only, no worst-county ranking."},
+    {"code":"IND-HOME-BIRTH-RATE","name":"Home births (vs. facility births)","description":"Share of births occurring at home.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; confidence interval/SE/sample size required when active."},
+    {"code":"IND-CONTRACEPTIVE-USE","name":"Modern contraceptive use rate","description":"Published modern contraceptive use rate.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; confidence interval/SE/sample size required when active."},
+    {"code":"IND-FGM-CHILD-MARRIAGE","name":"FGM prevalence / child marriage rate","description":"Published prevalence measure, presented neutrally without editorial ranking.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"KDHS 2022","source_url":"https://www.knbs.or.ke/reports/kdhs-2022/","note":"Sample survey; never render as a shame/worst-offender ranking."},
+    {"code":"IND-SUBSTANCE-ABUSE-PREVALENCE","name":"Drug and substance use prevalence","description":"Published prevalence from the NACADA national survey, subject to verification of county coverage.","unit_code":"percent","status":"sourced","tab":"health","levels":["county"],"source":"NACADA National Survey on the Status of Drugs and Substance Use in Kenya 2022","source_url":"https://nacada.go.ke/publications?page=1","note":"Do not activate until the newest round's county coverage is verified; sampling uncertainty is mandatory."},
+    {"code":"IND-HOSPITAL-BED-UTILIZATION","name":"Hospital bed occupancy/utilisation rate","description":"Hospital bed utilisation if a public Kenyan source is identified.","unit_code":"percent","status":"planned","tab":"health","levels":["county"],"source":"Ministry of Health / KHIS","note":"No confirmed public Kenyan feed; remain planned until a citable source exists."},
+
+    {"code":"IND-FOOD-SECURITY-PHASE","name":"Food security phase classification (IPC-style)","description":"Acute food insecurity phase classification from seasonal assessments.","unit_code":"category","status":"sourced","tab":"resilience","levels":["county"],"subset":"ASAL_COUNTIES","source":"National Drought Management Authority (NDMA) seasonal food security assessment","source_url":"https://knowledgeweb.ndma.go.ke/Content/LibraryDocuments/Long_Rains_National_Report-_202220230510110248.pdf","note":"County conditional; NDMA assessment coverage is institutional, not a temporary data gap."},
+    {"code":"IND-DROUGHT-EARLY-WARNING","name":"Drought early warning bulletin status","description":"Monthly drought early warning status from NDMA bulletins.","unit_code":"category","status":"planned","tab":"resilience","levels":["county"],"subset":"ASAL_COUNTIES","source":"NDMA monthly drought early warning bulletins","note":"Machine-readable table structure not yet reviewed."},
+    {"code":"IND-RAINFALL-TEMPERATURE","name":"Rainfall and temperature (historical series)","description":"Historical rainfall and temperature where an official open-data channel exists.","unit_code":"climate_measure","status":"planned","tab":"resilience","levels":["county"],"subset":"ASAL_COUNTIES","source":"Kenya Meteorological Department","note":"Remain planned unless a genuine historical-data channel is confirmed."},
+
+    {"code":"IND-COUNTY-BUDGET-TOTAL","status":"active","tab":"finance","levels":["county"]},
+    {"code":"IND-COUNTY-EXPENDITURE-TOTAL","status":"active","tab":"finance","levels":["county"]},
+    {"code":"IND-COUNTY-BUDGET-ABSORPTION","status":"active","tab":"finance","levels":["county"]},
+    {"code":"IND-COUNTY-DEVELOPMENT-ABSORPTION","status":"active","tab":"finance","levels":["county"]},
+    {"code":"IND-COUNTY-OSR","name":"Own-source revenue vs. target","description":"County own-source revenue performance against target.","unit_code":"percent","status":"sourced","tab":"finance","levels":["county"],"source":"Office of the Controller of Budget County Budget Implementation Review Report FY2024/25","source_url":"https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/","note":"Same trusted report family as budget/expenditure; first-priority sourced promotion."},
+    {"code":"IND-COUNTY-PENDING-BILLS","name":"Pending bills","description":"County pending bills reported by the Controller of Budget.","unit_code":"kes_million","status":"sourced","tab":"finance","levels":["county"],"source":"Office of the Controller of Budget County Budget Implementation Review Report FY2024/25","source_url":"https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/","note":"Same trusted report family as budget/expenditure; first-priority sourced promotion."},
+    {"code":"IND-COUNTY-AUDIT-OPINION","name":"Auditor-General opinion","description":"County audit opinion: unqualified, qualified, adverse or disclaimer.","unit_code":"category","status":"sourced","tab":"finance","levels":["county"],"source":"Office of the Auditor-General Summary Report on County Governments 2024/2025","source_url":"https://www.oagkenya.go.ke/document-library/","note":"Categorical audit opinion; do not turn into an unsupported composite score."},
+
+    {"code":"IND-MP-IDENTITY","name":"Member of Parliament (name, party)","description":"Current constituency Member of Parliament identity and party, once a checkable source is curated.","unit_code":"category","status":"planned","tab":"representation","levels":["constituency"],"source":"IEBC / Parliament of Kenya","note":"No single confirmed machine-readable source; remain planned."},
+    {"code":"IND-MCA-IDENTITY","name":"Member of County Assembly (name, party)","description":"Current ward MCA identity and party, once a checkable source is curated.","unit_code":"category","status":"planned","tab":"representation","levels":["ward"],"source":"County assemblies / IEBC","note":"No single confirmed machine-readable source; remain planned."},
+    {"code":"IND-NG-CDF-ALLOCATION","name":"NG-CDF allocation (financial year)","description":"Constituency NG-CDF allocation for the financial year.","unit_code":"kes_million","status":"planned","tab":"representation","levels":["constituency"],"source":"NG-CDF Board","note":"Do not promote until a specific citable report/page is identified."},
+    {"code":"IND-NG-CDF-UTILIZATION","name":"NG-CDF utilization rate","description":"Constituency NG-CDF utilization rate.","unit_code":"percent","status":"planned","tab":"representation","levels":["constituency"],"source":"NG-CDF Board","note":"Do not promote until a specific citable report/page is identified."},
+    {"code":"IND-WARD-FUND-ALLOCATION","name":"Ward-level development fund allocation","description":"Ward-level development fund allocation where separately and officially reported.","unit_code":"kes_million","status":"planned","tab":"representation","levels":["ward"],"source":"County-specific publications","note":"Never divide county budgets mechanically by ward count."},
+    {"code":"IND-TURNOUT-HISTORY","name":"Turnout, prior general elections","description":"Voter turnout in prior general elections.","unit_code":"percent","status":"planned","tab":"representation","levels":["constituency","ward"],"source":"IEBC","note":"Natural extension of the Sprint 2 electoral architecture; not yet ingested."},
+
+    {"code":"IND-ELECTRICITY-ACCESS","name":"Households with electricity (%)","description":"Share of households whose main lighting source indicates electricity access.","unit_code":"percent","status":"sourced","tab":"infrastructure","levels":["county"],"source":"KNBS 2019 census","source_url":"https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/","note":"County census indicator."},
+    {"code":"IND-ROAD-NETWORK-LENGTH","name":"Classified road length (km)","description":"Length of classified road network.","unit_code":"km","status":"planned","tab":"infrastructure","levels":["county"],"source":"Kenya Roads Board","note":"No single clean county table identified."},
+    {"code":"IND-WATER-ACCESS","name":"Households with access to improved water source (%)","description":"Share of households with access to an improved water source.","unit_code":"percent","status":"planned","tab":"infrastructure","levels":["county"],"source":"WASREB annual reports","note":"Utility service areas do not align cleanly with counties; crosswalk required before promotion."},
+    {"code":"IND-HEALTH-FACILITY-DENSITY","name":"Health facilities per 10,000 population","description":"Atlas-derived facility density from KMHFR geocoded facilities and canonical geography polygons.","unit_code":"per_10000_persons","status":"sourced","tab":"infrastructure","levels":["county","constituency","ward"],"source":"Kenya Master Health Facility Registry (KMHFR)","source_url":"https://kmhfr.health.go.ke/public/facilities","note":"When activated, badge B: transparent aggregation of official facility points; never presented as a KMHFR-published area table."},
+    {"code":"IND-VEHICLE-REGISTRATIONS","name":"Registered vehicles (count, per capita)","description":"Registered vehicles by county if a public county breakdown is confirmed.","unit_code":"count","status":"planned","tab":"infrastructure","levels":["county"],"source":"National Transport and Safety Authority (NTSA)","note":"Public county breakdown not confirmed; remain planned."},
+
+    {"code":"IND-MOBILE-MONEY-VOLUME","name":"Mobile money transaction volume","description":"National mobile-money transaction volume for the Kenya Pulse.","unit_code":"kes_million","status":"planned","tab":"economy","levels":[],"source":"Central Bank of Kenya / Communications Authority","note":"National-only Pulse slot; no county breakdown identified."}
   ]
 }
