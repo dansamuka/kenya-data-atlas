@@ -752,5 +752,20 @@
     "publication_status": "published",
     "methodology_url": "data/life-elsewhere/README.md",
     "known_limitations": "Labour-force participation is not unemployment, job quality, earnings or probability of finding work."
+  },
+  {
+    "dataset_id": "1b72c20a-333b-58a0-b23f-fc021b127b48",
+    "dataset_code": "DS-TREASURY-COUNTY-OSR-2024-25-P20",
+    "source_id": "ed4481d3-b752-5bdf-8609-d22b79f867d3",
+    "title": "2025 Budget Review and Outlook Paper — County OSR Target Attainment",
+    "description": "FY2024/25 county own-source revenue target-attainment percentages published by the National Treasury using Controller of Budget data.",
+    "topic": "Public Finance",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
+    "known_limitations": "Full-year own-source revenue including FIF/AiA divided by the published target. Values are retained at the whole-percentage precision published in the 2025 BROP; no missing county is estimated or interpolated."
   }
 ]

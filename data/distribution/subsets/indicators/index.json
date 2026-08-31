@@ -92,10 +92,10 @@
   },
   {
     "indicator_code": "IND-COUNTY-OSR",
-    "name": "Own-source revenue vs. target",
+    "name": "Own-source revenue target attainment",
     "path": "data/distribution/subsets/indicators/IND-COUNTY-OSR.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-COUNTY-PENDING-BILLS",
@@ -134,10 +134,10 @@
   },
   {
     "indicator_code": "IND-ELECTRICITY-ACCESS",
-    "name": "Households with electricity (%)",
+    "name": "Households connected to main-grid electricity",
     "path": "data/distribution/subsets/indicators/IND-ELECTRICITY-ACCESS.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-ELECTRICITY-ACCESS-WB",

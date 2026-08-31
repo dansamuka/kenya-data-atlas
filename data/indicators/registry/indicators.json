@@ -2153,9 +2153,9 @@
   {
     "indicator_id": "c690a64c-1366-55fe-804e-8383a0dbb9de",
     "indicator_code": "IND-COUNTY-OSR",
-    "name": "Own-source revenue vs. target",
-    "short_name": "Own-source revenue vs. target",
-    "description": "County own-source revenue performance against target.",
+    "name": "Own-source revenue target attainment",
+    "short_name": "OSR target attainment",
+    "description": "County own-source revenue collected as a percentage of the published FY2024/25 target.",
     "topic": "Public Finance",
     "subtopic": "finance",
     "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
@@ -2163,20 +2163,20 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
+    "methodology_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
     "comparable": true,
-    "active": false,
-    "lifecycle_status": "sourced",
-    "expected_source": "Office of the Controller of Budget County Budget Implementation Review Report FY2024/25",
-    "expected_source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/",
-    "expected_availability_note": "Same trusted report family as budget/expenditure; first-priority sourced promotion.",
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "National Treasury 2025 BROP using Controller of Budget data",
+    "expected_source_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
+    "expected_availability_note": "Published for all 47 counties for FY2024/25. Values retain the source table’s whole-percentage precision.",
     "tab": "finance",
     "applies_to_levels": [
       "county"
     ],
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": false,
-    "ranking_allowed": true
+    "ranking_allowed": false
   },
   {
     "indicator_id": "2b445da9-6454-55cb-b6a6-3411fb4dd78f",
@@ -2406,9 +2406,9 @@
   {
     "indicator_id": "b69ca18e-5e99-506f-a2c8-43a483d1e3c0",
     "indicator_code": "IND-ELECTRICITY-ACCESS",
-    "name": "Households with electricity (%)",
-    "short_name": "Households with electricity (%)",
-    "description": "Share of households whose main lighting source indicates electricity access.",
+    "name": "Households connected to main-grid electricity",
+    "short_name": "Main-grid electricity",
+    "description": "Share of households connected to electricity on the main grid in the 2023/24 Kenya Housing Survey.",
     "topic": "Infrastructure",
     "subtopic": "infrastructure",
     "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
@@ -2416,20 +2416,20 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2025/04/Chapter-5-Housing-Characteristics-Amenities-and-Adequacy.xlsx",
     "comparable": true,
-    "active": false,
-    "lifecycle_status": "sourced",
-    "expected_source": "KNBS 2019 census",
-    "expected_source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
-    "expected_availability_note": "County census indicator.",
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "KNBS 2023/24 Kenya Housing Survey — Housing Characteristics, Amenities and Adequacy",
+    "expected_source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/04/Chapter-5-Housing-Characteristics-Amenities-and-Adequacy.xlsx",
+    "expected_availability_note": "Published for all 47 counties. This governed profile slot reuses the canonical P05/P19 main-grid electricity series; no parent value is inherited.",
     "tab": "infrastructure",
     "applies_to_levels": [
       "county"
     ],
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": false,
-    "ranking_allowed": true
+    "ranking_allowed": false
   },
   {
     "indicator_id": "1be600c2-a5fb-5b5d-b284-333363938c91",
