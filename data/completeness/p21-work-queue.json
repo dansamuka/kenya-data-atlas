@@ -8,8 +8,8 @@
     "completion_phase": "P21",
     "resolved": false
   },
-  "remaining_slots": 376,
-  "family_count": 8,
+  "remaining_slots": 329,
+  "family_count": 7,
   "family_counts": {
     "IND-BUSINESS-LICENSES": 47,
     "IND-EXAM-PERFORMANCE": 47,
@@ -17,7 +17,6 @@
     "IND-HOSPITAL-BED-UTILIZATION": 47,
     "IND-ROAD-NETWORK-LENGTH": 47,
     "IND-SOCIAL-PROTECTION-BENEFICIARIES": 47,
-    "IND-VEHICLE-REGISTRATIONS": 47,
-    "IND-WATER-ACCESS": 47
+    "IND-VEHICLE-REGISTRATIONS": 47
   }
 }

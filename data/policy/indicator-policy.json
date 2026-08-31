@@ -3412,8 +3412,8 @@
     },
     {
       "indicator_id": "32276bb2-5ccf-5eb3-9db4-ca7e964e34de",
-      "name": "Households with access to improved water source (%)",
-      "lifecycle_status": "planned",
+      "name": "Households with access to improved drinking-water source",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-WATER-ACCESS",
       "domain": "infrastructure",
@@ -3425,14 +3425,14 @@
         "eligible": true
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "directional",
         "higher_is_better": true,
-        "requires_sampling_uncertainty": false,
-        "static_reason_not_allowed": null
+        "requires_sampling_uncertainty": true,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
-        "required_for_ranking": false
+        "required_for_ranking": true
       },
       "trend": {
         "allowed": true,
@@ -3443,7 +3443,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "548ffd52-0d6b-5aeb-8be9-8a0c77321dee",
@@ -49764,6 +49764,570 @@
       "cross_level_comparison": {
         "eligible": false,
         "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c8a7b638-9ac8-580d-99a0-2422785cbb60",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C001",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9d235122-6388-56f5-8d58-dbf985f10d26",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C002",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ac277eba-a9bf-592e-921f-4bd18a975fe1",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C003",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0755521e-83f9-5ee3-93d9-bdc4d28b3ab0",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C004",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "42f9ac55-7eab-5d47-a5e1-081a5f023211",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C005",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a9a5aea2-626b-5dbd-9050-d60c3fca0849",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C006",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ad341ab9-efa2-5be1-a046-5cdbfa30fb0c",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C007",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e3b9099a-79db-573e-9d05-5f2b441930d5",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C008",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "18300ac4-ada8-5d4b-b31c-c523a191fc75",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C009",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "13bc0fc9-34e9-59aa-92ee-a910018dfced",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C010",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7a8c4505-1ef6-5f07-8594-bc29c5daba10",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C011",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7c705b55-020f-542f-9cfa-0f0247a28970",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C012",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "799f6e3f-c87a-5a00-ac4c-b450cff7ed67",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C013",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3b058550-4919-5c91-96fe-8a31210bb178",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C014",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7428d4ae-f588-5892-bcf0-4d4fc510d7cf",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C015",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f38803be-62d4-5725-b8cf-bdbe743d9deb",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C016",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c79268bb-3b5e-53ff-97d8-4b235f889657",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C017",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f8d8d2db-6fc7-5010-a393-74e3d41c0f0c",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C018",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5a138cc5-2ee9-5e47-82e8-262ae9a7d96c",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C019",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "22755c01-6484-5fda-9407-abd6e9af2f6a",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C020",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b1a1bc18-f4b8-5eb4-af96-2f55ebf97d83",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C021",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2f296a67-455d-5432-8112-4b95ce07ed98",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C022",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "64b81db2-db55-52a8-bc6a-56d9458a97d0",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C023",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c01e1e53-85d3-591d-9b13-e687d0bb874f",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C024",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4ff86086-0e75-5d64-a9e0-254bdce866c5",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C025",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "64fcbe13-faf8-5e7a-af9b-a03dea6a28a3",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C026",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "89384a1d-574b-50e3-a8a7-9871b4d8b122",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C027",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d84805e0-6295-5c9e-9375-54f98f5d8d8a",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C028",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5c0e0a16-fa28-5b0d-a92e-f6097e4ad653",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C029",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c0e77736-9fbd-5c6e-8a7c-569e8ef2a8f6",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C030",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "062fead0-fb4a-53ad-ab1a-af41ef794c6c",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C031",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "66130d26-6e3e-59b4-9292-aa2d235068a1",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C032",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a77bb553-d6dd-5519-aed5-064dc257e0d7",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C033",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fb1544df-d3ea-5884-bcd7-51e92c3ec5d1",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C034",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "419bb238-c117-5525-a6bf-b0ee4ad8fdbc",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C035",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a9655069-61a7-5282-a380-2aa4ed31389a",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C036",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "376785ba-3a6d-5100-8d2a-e78e49aa74a4",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C037",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1943a53f-5a48-50ec-ac0c-318321e8ecac",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C038",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "92cc89a5-ea0e-59f5-8a46-0934b67c5991",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C039",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4e8fc7a0-45bf-545d-ba38-018b5e5cc206",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C040",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "78262d46-ba3a-5212-ba42-39705f7e0e9e",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C041",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6786d99b-9fb8-5508-835f-51a3d1742ce7",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C042",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0d0b185c-0e44-588b-b1b5-423275d8d6e2",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C043",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6550832a-2d1b-5a0f-8871-517e91e3638e",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C044",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "41b1d183-fa69-597e-bf65-c107c6cdb213",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C045",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e778d2df-13b8-5cc5-a8fe-0cb5d3c19064",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C046",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8b205555-bb5e-5d6b-bcce-7d282d08c61f",
+      "series_code": "KDA-P21-WATER-ACCESS-KEN-C047",
+      "indicator_code": "IND-WATER-ACCESS",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
       }
     },
     {

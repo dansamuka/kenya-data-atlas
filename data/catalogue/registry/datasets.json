@@ -872,5 +872,20 @@
     "publication_status": "published",
     "methodology_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
     "known_limitations": "46 counties have reported numeric totals. Narok is explicitly a non-submission in the final table and is preserved as an official-unavailable evidence state, never zero. Displayed rounded county rows differ from the published national total by KSh 0.3 million."
+  },
+  {
+    "dataset_id": "c8684318-deb3-525d-b149-3f5074bb57f3",
+    "dataset_code": "DS-KNBS-KHS-WATER-ACCESS-2023-24-P21",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2023/24 Kenya Housing Survey — Improved Drinking Water Source by County",
+    "description": "Percentage of households using an improved main drinking-water source for all 47 counties, reported directly in KNBS 2023/24 Kenya Housing Survey Table 5.14.",
+    "topic": "Housing and infrastructure",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "periodic",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
+    "known_limitations": "Household survey estimates from the 2023/24 KHS fieldwork period. Values describe households and the KNBS Table 5.14 improved-source classification; they are not population shares, utility-connection rates, constituency estimates or ward estimates. No interpolation or parent-geography inheritance is applied."
   }
 ]

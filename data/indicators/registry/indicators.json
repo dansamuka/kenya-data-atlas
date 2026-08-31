@@ -2462,9 +2462,9 @@
   {
     "indicator_id": "32276bb2-5ccf-5eb3-9db4-ca7e964e34de",
     "indicator_code": "IND-WATER-ACCESS",
-    "name": "Households with access to improved water source (%)",
-    "short_name": "Households with access to improved water source (%)",
-    "description": "Share of households with access to an improved water source.",
+    "name": "Households with access to improved drinking-water source",
+    "short_name": "Improved water source",
+    "description": "Percentage of households whose main source of drinking water falls within the improved-source subtotal published by KNBS in 2023/24 Kenya Housing Survey Table 5.14.",
     "topic": "Infrastructure",
     "subtopic": "infrastructure",
     "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
@@ -2472,20 +2472,20 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
     "comparable": true,
-    "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "WASREB annual reports",
-    "expected_source_url": "",
-    "expected_availability_note": "Utility service areas do not align cleanly with counties; crosswalk required before promotion.",
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "KNBS 2023/24 Kenya Housing Survey, Table 5.14",
+    "expected_source_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
+    "expected_availability_note": "Published directly for all 47 counties. This is a household survey estimate of the KNBS improved-source subtotal. Standard errors/confidence intervals are not fabricated, ranking is withheld, and county values are never inherited to constituencies or wards.",
     "tab": "infrastructure",
     "applies_to_levels": [
       "county"
     ],
     "applies_to_geography_subset": "",
-    "requires_sampling_uncertainty": false,
-    "ranking_allowed": true
+    "requires_sampling_uncertainty": true,
+    "ranking_allowed": false
   },
   {
     "indicator_id": "c1627a1b-2bba-57af-a8d1-89c94336876f",
