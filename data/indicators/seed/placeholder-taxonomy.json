@@ -358,13 +358,14 @@
       "name": "Key crop production (county-dominant crop only)",
       "description": "Production of the county-dominant crop where a comparable official table exists.",
       "unit_code": "category",
-      "status": "planned",
+      "status": "retired",
       "tab": "economy",
       "levels": [
         "county"
       ],
-      "source": "KNBS Economic Survey / Ministry of Agriculture",
-      "note": "Crop and unit vary; requires indicator-specific ingestion before activation."
+      "source": "KNBS / Ministry of Agriculture and Livestock Development — National Agriculture Production Report 2024, Annex 1",
+      "note": "Retired/replaced in P21. Use IND-MAIZE-AREA, IND-MAIZE-PRODUCTION, IND-MAIZE-YIELD: fixed-definition county maize measures already published 47/47 from the official 2023 Annex 1 table. The former dominant-crop concept mixed different crops/units and was not retained as a comparable indicator.",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf"
     },
     {
       "code": "IND-HEALTH-FACILITY-COUNT",

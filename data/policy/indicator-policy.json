@@ -53,7 +53,7 @@
     {
       "indicator_id": "547116cd-9a24-59c1-a17c-d96f8bf547d4",
       "name": "Key crop production (county-dominant crop only)",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-AGRI-PRODUCTION",
       "domain": "economic",

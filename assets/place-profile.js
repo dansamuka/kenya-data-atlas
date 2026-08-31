@@ -90,10 +90,10 @@
       const note=ind.expected_availability_note||`No observation is currently available for ${geo.name} at ${geo.level} level.`;
       return `<article class="place-profile-card lifecycle-missing"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge missing">N/A</span></div><div class="place-card-value-row"><div class="place-card-value missing">—</div>${unitChip}</div><div class="place-card-meta">${esc(note)}</div></article>`;
     }
-    const status=life==='sourced'?'Sourced':'Planned';
+    const status=life==='sourced'?'Sourced':life==='retired'?'Replaced':'Planned';
     const levels=(ind.applies_to_levels||[]).map(x=>x[0].toUpperCase()+x.slice(1)).join(', ')||'National only';
     const source=ind.expected_source||'Source not yet confirmed';
-    const link=life==='sourced'&&ind.expected_source_url?`<a href="${esc(ind.expected_source_url)}" target="_blank" rel="noopener">Open source ↗</a>`:'';
+    const link=(life==='sourced'||life==='retired')&&ind.expected_source_url?`<a href="${esc(ind.expected_source_url)}" target="_blank" rel="noopener">Open source ↗</a>`:'';
     return `<article class="place-profile-card lifecycle-${esc(life)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge lifecycle ${esc(life)}">${status}</span></div><div class="place-card-value-row"><div class="place-card-value missing">—</div>${unitChip}</div><div class="place-card-meta"><strong>${status}</strong> · ${esc(source)}</div><button class="placeholder-explain" type="button" aria-expanded="false">More about availability ↓</button><div class="placeholder-detail" hidden><b>${esc(TAB_LABEL[tab]||tab)} · ${esc(status)}</b><div>Intended levels: ${esc(levels)}</div><div>${esc(ind.expected_availability_note||'No additional availability note.')}</div>${link}</div></article>`;
   }
 

@@ -99,7 +99,7 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 
 ## P20 — Activate straightforward sourced county slots
 
-**Status: in progress.**
+**Status: complete.**
 
 **Goal:** Turn sourced-but-uningested county placeholders into canonical active observations using already-reviewed primary source families.
 
@@ -135,7 +135,7 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 
 ## P21 — Resolve hard county slots and retire weak placeholders
 
-**Status: next.**
+**Status: in progress.**
 
 **Goal:** Close the county slots that require a harder source decision, derivation, or deliberate replacement/retirement.
 
@@ -148,7 +148,9 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 - improved-water access;
 - vehicle registrations.
 
-**Queue:** **423**.
+**P21 tranche 1 — agriculture replacement:** the 47 generic `IND-AGRI-PRODUCTION` slots are retired/replaced by the already-published, fixed-definition `IND-MAIZE-AREA`, `IND-MAIZE-PRODUCTION` and `IND-MAIZE-YIELD` county series. This preserves the governed denominator while removing a weak mixed-crop concept.
+
+**Remaining queue after tranche 1:** **376** across eight 47-county families.
 
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 

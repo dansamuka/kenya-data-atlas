@@ -88,7 +88,7 @@
     {
       "id": "P20",
       "title": "Activate straightforward sourced county slots",
-      "status": "in_progress",
+      "status": "complete",
       "session_goal": "Convert defensible sourced-but-uningested county placeholders into active observations using already-reviewed official source families and deterministic ingestion.",
       "outputs": [
         "KNBS census household/living-standard promotions where source tables are verified",
@@ -127,7 +127,7 @@
     {
       "id": "P21",
       "title": "Resolve hard county slots and retire weak placeholders",
-      "status": "next",
+      "status": "in_progress",
       "session_goal": "Close the county indicators that require source discovery, spatial derivation, categorical treatment, or a deliberate replace/retire decision because no defensible 47-county comparable source exists.",
       "outputs": [
         "social-protection beneficiary resolution",
@@ -147,7 +147,12 @@
       ],
       "depends_on": [
         "P20"
-      ]
+      ],
+      "progress": {
+        "resolved_in_tranche_1": 47,
+        "remaining_slots": 376,
+        "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties. P19 already publishes fixed-definition maize area, production and transparent yield 47/47 from the official National Agriculture Production Report 2024 Annex 1, so P21 closes the weaker mixed-crop concept without duplicating or fabricating observations."
+      }
     },
     {
       "id": "P22",

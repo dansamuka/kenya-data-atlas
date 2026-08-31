@@ -6,8 +6,12 @@ const ledger=j('data/completeness/slot-ledger.json');
 const numericFamilies=['IND-TEENAGE-PREGNANCY','IND-HOME-BIRTH-RATE','IND-DISABILITY-PREVALENCE','IND-CONTRACEPTIVE-USE','IND-FGM-CHILD-MARRIAGE','IND-LITERACY-RATE','IND-HOUSING-MATERIAL','IND-HIV-PREVALENCE','IND-HEALTH-FACILITY-DENSITY'];
 try{
   assert(summary.total_slots===20115,`governed slot denominator changed: ${summary.total_slots}`);
-  assert(summary.resolved_slots===3385,`expected 3,385 resolved slots, got ${summary.resolved_slots}`);
-  assert(summary.unresolved_slots===16730,`expected 16,730 unresolved slots, got ${summary.unresolved_slots}`);
+  // P20 owns its completed families and zero remaining P20 queue. Later phases
+  // are allowed to increase global resolved coverage; freezing the repository
+  // at the P20 snapshot would make legitimate P21+ progress fail validation.
+  assert(summary.resolved_slots>=3385,`resolved coverage regressed below the P20 closeout baseline: ${summary.resolved_slots}`);
+  assert(summary.unresolved_slots<=16730,`unresolved coverage regressed above the P20 closeout baseline: ${summary.unresolved_slots}`);
+  assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'global completeness totals must reconcile');
   assert((summary.by_completion_phase?.P20||0)===0,`expected zero P20 slots remaining, got ${summary.by_completion_phase?.P20}`);
   assert(summary.unknown_missing===0,'unknown_missing must remain zero');
   for(const code of numericFamilies){const rows=ledger.rows.filter(r=>r.level==='county'&&r.indicator_code===code);assert(rows.length===47,`${code}: expected 47 governed county rows, got ${rows.length}`);assert(rows.every(r=>r.resolved===true),`${code}: all 47 county rows must resolve`);}
@@ -20,7 +24,7 @@ try{
   assert(ledger.rows.filter(r=>r.status==='official_unavailable').length===48,'explicit official-unavailable inventory must contain 48 governed rows');
   const p20=ledger.rows.filter(r=>r.completion_phase==='P20'&&!r.resolved);
   assert(p20.length===0,`P20 queue must be empty, found ${p20.length}`);
-  console.log(`P20_CONSOLIDATED_COMPLETENESS_OK resolved=${summary.resolved_slots} remaining=0`);
+  console.log(`P20_CONSOLIDATED_COMPLETENESS_OK resolved=${summary.resolved_slots} p20_remaining=0`);
   console.log('P20_FINAL_FAMILIES_OK facility_density=47 pending_bills=46+1_unavailable substance=47_unavailable');
   console.log('P20_COMPLETE_OK queue=0');
 }catch(error){console.error(error.message||error);process.exit(1);}
