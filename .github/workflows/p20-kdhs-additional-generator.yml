@@ -1,0 +1,72 @@
+name: P20 KDHS additional county generator
+
+on:
+  push:
+    branches: [p20-kdhs-teenage-homebirth]
+    paths:
+      - '.github/workflows/p20-kdhs-additional-generator.yml'
+      - 'data/p20/source/kdhs-2022-additional-county.json'
+      - 'scripts/p20/promote-kdhs-additional.mjs'
+      - 'scripts/p20/build-kdhs-additional.mjs'
+      - 'scripts/p20/validate-kdhs-additional.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p20-kdhs-teenage-homebirth
+  cancel-in-progress: false
+
+jobs:
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out promotion branch
+        uses: actions/checkout@v4
+        with:
+          ref: p20-kdhs-teenage-homebirth
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+
+      - name: Apply reviewed KDHS promotion
+        run: node scripts/p20/promote-kdhs-additional.mjs
+
+      - name: Rebuild all published Atlas products
+        run: npm run build:data
+
+      - name: Run full Atlas validation suite
+        run: npm test
+
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+
+      - name: Commit implementation and deterministic generated products
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No P20 KDHS promotion changes were produced.'
+            exit 0
+          fi
+          git commit -m 'feat(p20): promote teenage pregnancy and home birth county slots'
+          git push origin HEAD:p20-kdhs-teenage-homebirth
