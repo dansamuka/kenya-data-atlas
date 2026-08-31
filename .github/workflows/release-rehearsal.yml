@@ -36,6 +36,17 @@ jobs:
           npm ci
           python -m pip install --disable-pip-version-check shapely
 
+      - name: Verify release-gate orchestration contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'workflow_dispatch:' .github/workflows/validate.yml
+          grep -q 'workflow_dispatch:' .github/workflows/release-audit.yml
+          grep -q 'actions: write' .github/workflows/p17-publish.yml
+          grep -q 'createWorkflowDispatch' .github/workflows/p17-publish.yml
+          grep -q "'validate.yml', 'release-audit.yml'" .github/workflows/p17-publish.yml
+          echo 'RELEASE_GATE_ORCHESTRATION_OK dispatchable=true'
+
       - name: Simulate terminal v1.0 state without publishing
         run: |
           node scripts/p17/finalize-release.mjs

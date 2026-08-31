@@ -7,8 +7,9 @@ const write = (file, value) => fs.writeFileSync(path.join(root, file), value);
 const readJson = (file) => JSON.parse(read(file));
 const writeJson = (file, value) => write(file, `${JSON.stringify(value, null, 2)}\n`);
 const replaceOnce = (text, search, replacement, label) => {
-  if (!text.includes(search)) throw new Error(`P17 finalize: missing ${label}`);
-  return text.replace(search, replacement);
+  if (text.includes(search)) return text.replace(search, replacement);
+  if (text.includes(replacement)) return text;
+  throw new Error(`P17 finalize: missing ${label}`);
 };
 
 const pkg = readJson('package.json');
