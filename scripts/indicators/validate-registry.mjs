@@ -21,6 +21,7 @@ const releases = await read('data/catalogue/registry/releases.json');
 
 const errors = [];
 const unitIds = new Set(units.map(u => u.unit_id));
+const unitById = new Map(units.map(u => [u.unit_id, u]));
 const indicatorIds = new Set(indicators.map(i => i.indicator_id));
 const geographyIds = new Set(geography.map(g => g.geography_id));
 const seriesIds = new Set(series.map(s => s.series_id));
@@ -118,7 +119,14 @@ for (const o of observations) {
 
   if (!o.source_url) errors.push(`observation ${o.observation_id}: missing source_url — every displayed number must be traceable to a source (spec §3.1)`);
   if (o.source_release_id && !releaseIds.has(o.source_release_id)) errors.push(`observation ${o.observation_id}: orphan release`);
-  if (typeof o.value !== 'number' || Number.isNaN(o.value)) errors.push(`observation ${o.observation_id}: value must be a finite number`);
+  const observationUnit = unitById.get(parent.unit_id);
+  if (observationUnit?.dimension === 'category') {
+    if (o.value !== null && o.value !== undefined) errors.push(`observation ${o.observation_id}: categorical observation must not carry a numeric value`);
+    if (typeof o.text_value !== 'string' || !o.text_value.trim()) errors.push(`observation ${o.observation_id}: categorical observation requires non-empty text_value`);
+  } else {
+    if (typeof o.value !== 'number' || !Number.isFinite(o.value)) errors.push(`observation ${o.observation_id}: value must be a finite number`);
+    if (o.text_value !== null && o.text_value !== undefined && String(o.text_value).trim()) errors.push(`observation ${o.observation_id}: numeric observation must not carry text_value`);
+  }
   if (!o.period_label) errors.push(`observation ${o.observation_id}: missing period_label — reference period must never be confused with publication date (spec §9)`);
   if (o.published_at && o.period_end && o.published_at < o.period_start) errors.push(`observation ${o.observation_id}: published_at precedes period_start — a statistic cannot be published before its own reference period begins`);
 

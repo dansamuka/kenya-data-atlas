@@ -155,7 +155,9 @@ CREATE TABLE observation (
   period_type period_type NOT NULL,
   period_label text NOT NULL,                  -- canonical human string, generated never typed
 
-  value numeric NOT NULL,
+  value numeric,
+  text_value text,
+  CHECK ((value IS NOT NULL AND text_value IS NULL) OR (value IS NULL AND NULLIF(BTRIM(text_value), '') IS NOT NULL)),
 
   -- Two orthogonal axes. The A-E badge is derived from these plus series.geographic_method.
   geographic_method geographic_method NOT NULL,

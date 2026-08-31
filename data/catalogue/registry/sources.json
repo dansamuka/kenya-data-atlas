@@ -250,5 +250,23 @@
     "assessment_status": "approved",
     "assessment_note": "National-only WDI integration. World Bank is a secondary harmonising compiler; Atlas badge A is prohibited for this source family.",
     "active": true
+  },
+  {
+    "source_id": "c019e2b2-524e-5821-b24b-666a2f3de7b1",
+    "source_code": "OAG-COUNTY-AUDIT",
+    "agency_id": "07e5cf92-a96f-5a30-b119-500a39b54701",
+    "name": "County government audit summary reports",
+    "source_type": "report_series",
+    "landing_page_url": "https://www.oagkenya.go.ke/",
+    "expected_cadence": "annual",
+    "source_priority": "critical",
+    "access_method": "pdf_download",
+    "reuse_status": "public_official_report",
+    "licence_name": null,
+    "licence_url": null,
+    "attribution_text": "Source: Office of the Auditor-General, Kenya",
+    "assessment_status": "approved_with_conditions",
+    "assessment_note": "Categorical audit opinions may be published only where the official appendix supplies an exact county mapping.",
+    "active": true
   }
 ]

@@ -2209,9 +2209,9 @@
   {
     "indicator_id": "0ff22470-c390-5493-b28f-680eb20e083b",
     "indicator_code": "IND-COUNTY-AUDIT-OPINION",
-    "name": "Auditor-General opinion",
-    "short_name": "Auditor-General opinion",
-    "description": "County audit opinion: unqualified, qualified, adverse or disclaimer.",
+    "name": "County Executive audit opinion",
+    "short_name": "Audit opinion",
+    "description": "Auditor-General categorical opinion on the County Executive financial statements for FY2023/24.",
     "topic": "Public Finance",
     "subtopic": "finance",
     "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
@@ -2219,20 +2219,20 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "https://www.oagkenya.go.ke/document-library/",
+    "methodology_url": "https://www.oagkenya.go.ke/wp-content/uploads/2025/04/Auditor-Generals-summary-Report-on-County-Governments-2023-2024.pdf",
     "comparable": true,
-    "active": false,
-    "lifecycle_status": "sourced",
-    "expected_source": "Office of the Auditor-General Summary Report on County Governments 2024/2025",
-    "expected_source_url": "https://www.oagkenya.go.ke/document-library/",
-    "expected_availability_note": "Categorical audit opinion; do not turn into an unsupported composite score.",
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "Office of the Auditor-General — Summary Report on County Governments 2023/2024",
+    "expected_source_url": "https://www.oagkenya.go.ke/wp-content/uploads/2025/04/Auditor-Generals-summary-Report-on-County-Governments-2023-2024.pdf",
+    "expected_availability_note": "Appendix 1(a) lists all 47 County Executives as Qualified for FY2023/24. The Atlas stores the category as text and does not convert it to a numeric score.",
     "tab": "finance",
     "applies_to_levels": [
       "county"
     ],
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": false,
-    "ranking_allowed": true
+    "ranking_allowed": false
   },
   {
     "indicator_id": "a181ac44-f24a-58c2-9434-6742d19c8b44",

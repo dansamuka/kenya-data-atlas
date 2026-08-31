@@ -152,5 +152,16 @@
     "jurisdiction": "International",
     "description": "International development institution and publisher of World Development Indicators. In the Atlas, WDI is treated as a secondary harmonising compiler, never as a Kenyan primary statistical agency.",
     "active": true
+  },
+  {
+    "agency_id": "07e5cf92-a96f-5a30-b119-500a39b54701",
+    "agency_code": "OAG",
+    "name": "Office of the Auditor-General",
+    "abbreviation": "OAG",
+    "agency_type": "constitutional_office",
+    "official_url": "https://www.oagkenya.go.ke/",
+    "jurisdiction": "Kenya",
+    "description": "Kenya’s supreme public-sector audit institution and publisher of county-government audit opinions.",
+    "active": true
   }
 ]
