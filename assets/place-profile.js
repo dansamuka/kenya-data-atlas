@@ -5,7 +5,7 @@
   'use strict';
   const $=(s,r)=>(r||document).querySelector(s);
   const $$=(s,r)=>[...(r||document).querySelectorAll(s)];
-  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let state=null,currentGeo=null,currentTab='overview',currentSector='education',rankingQueued=false;
 
   function ensureStyles(){
