@@ -1,0 +1,91 @@
+{
+  "schema_version": "kda.data-completion-execution.v1",
+  "effective_from": "2026-08-31",
+  "phase_authority": "data/data-completion-roadmap.json",
+  "slot_authority": "data/completeness/slot-ledger.json",
+  "summary_authority": "data/completeness/summary.json",
+  "purpose": "Schedule the governed P18-P26 completion programme in parallel where independent national pipelines are already defensible, without changing phase semantics, the 20,115-slot denominator, evidence standards or final acceptance gates.",
+  "mode": "parallel_governed_tracks",
+  "governed_denominator": 20115,
+  "invariants": [
+    "P18-P26 phase IDs, outputs and acceptance gates remain authoritative in data/data-completion-roadmap.json.",
+    "Parallel execution may resolve only slot instances already present in the canonical completeness ledger.",
+    "No accelerator or pilot creates a second denominator or a duplicate governed slot.",
+    "No county value may be inherited into a constituency and no constituency/county value may be inherited into a ward unless an indicator policy explicitly permits a transparent derived cross-level measure.",
+    "Primary official sources remain preferred and all promoted observations retain source, reference period, unit, geography and derivation metadata.",
+    "A pilot may leave a governed slot unresolved when evidence or geography is insufficient; it must never fabricate completion.",
+    "Full phase completion still requires the original phase acceptance gate even if some of its slots were resolved earlier by an accelerator.",
+    "P24 cannot claim completion before full P23 acceptance, and P26 remains the final convergence gate."
+  ],
+  "tracks": [
+    {
+      "track_id": "county_completion",
+      "label": "County completion",
+      "status": "in_progress",
+      "sequence": ["P21", "P22"],
+      "current_focus": "P21",
+      "rule": "Continue hard-county resolution one indicator family per PR; begin P22 when its source/freshness contracts are ready without weakening P21 closure requirements."
+    },
+    {
+      "track_id": "local_intelligence_accelerator",
+      "label": "Local intelligence accelerator",
+      "status": "in_progress",
+      "sequence": ["P23A", "P23"],
+      "current_focus": "P23A",
+      "feeds_phase": "P23",
+      "rule": "Promote reusable national constituency pipelines early, but resolve only existing P23 slots and retain full P23 as the 290-constituency completion gate."
+    },
+    {
+      "track_id": "final_convergence",
+      "label": "Final convergence",
+      "status": "planned",
+      "sequence": ["P24", "P25", "P26"],
+      "rule": "Ward completion, final public-surface closure and the permanent 100% gate retain their original dependencies and acceptance semantics."
+    }
+  ],
+  "accelerators": {
+    "P23A": {
+      "name": "Constituency national-pipeline pilot",
+      "status": "in_progress",
+      "parent_phase": "P23",
+      "changes_governed_denominator": false,
+      "uses_existing_parent_phase_slots_only": true,
+      "target_geography_level": "constituency",
+      "canonical_geography_count": 290,
+      "goal": "Prove reusable, nationally reconcilable constituency pipelines while P21/P22 county work continues.",
+      "initial_pipeline_order": [
+        "registered voters / constituency electorate",
+        "official turnout history where citable and comparable",
+        "current MP identity",
+        "NG-CDF allocation",
+        "NG-CDF utilisation or implementation only where a nationally comparable official source exists"
+      ],
+      "first_tranche": {
+        "indicator_code": "IND-REGISTERED-VOTERS",
+        "source_family": "IEBC 2022 General Election registered-voter Gazette Notice No. 7290",
+        "source_schedule": "Second Schedule — Registered Voters per Constituency",
+        "reference_date": "2022-06-20",
+        "source_metadata": "data/sprint2/sources.json",
+        "readiness": "source and geography pipeline already audited in Sprint 2; canonical P23 promotion remains to be completed",
+        "expected_existing_p23_slots": 290
+      },
+      "acceptance": [
+        "Only primary/official or explicitly governed extraction artifacts with primary-source authority may support promoted values.",
+        "All promoted constituency rows reconcile to the canonical 290-constituency geography registry.",
+        "Election and boundary vintage are explicit.",
+        "No county-to-constituency inheritance occurs.",
+        "Only pre-existing P23 governed slots are resolved; total_slots remains 20,115.",
+        "Any partial or unresolved mapping remains visibly unresolved rather than being force-matched.",
+        "Each promoted family has a deterministic builder and validator.",
+        "Full Atlas build, validation and P16 gates pass before merge."
+      ]
+    }
+  },
+  "closure_order": ["P18", "P19", "P20", "P21", "P22", "P23", "P24", "P25", "P26"],
+  "next_actions": [
+    "Continue P21 with one hard county family per PR.",
+    "Canonicalise P23A constituency registered voters as the first local-intelligence tranche.",
+    "Research the next P23A national pipeline only after the registered-voter tranche is validated.",
+    "Do not start ward numeric promotion until its geography/source contract is independently defensible."
+  ]
+}
