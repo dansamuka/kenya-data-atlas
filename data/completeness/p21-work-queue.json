@@ -8,10 +8,9 @@
     "completion_phase": "P21",
     "resolved": false
   },
-  "remaining_slots": 423,
-  "family_count": 9,
+  "remaining_slots": 376,
+  "family_count": 8,
   "family_counts": {
-    "IND-AGRI-PRODUCTION": 47,
     "IND-BUSINESS-LICENSES": 47,
     "IND-EXAM-PERFORMANCE": 47,
     "IND-FACILITY-INFRASTRUCTURE": 47,

@@ -15,13 +15,13 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf",
     "comparable": true,
     "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "KNBS Economic Survey / Ministry of Agriculture",
-    "expected_source_url": "",
-    "expected_availability_note": "Crop and unit vary; requires indicator-specific ingestion before activation.",
+    "lifecycle_status": "retired",
+    "expected_source": "KNBS / Ministry of Agriculture and Livestock Development — National Agriculture Production Report 2024, Annex 1",
+    "expected_source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf",
+    "expected_availability_note": "Retired/replaced in P21. Use IND-MAIZE-AREA, IND-MAIZE-PRODUCTION, IND-MAIZE-YIELD: fixed-definition county maize measures already published 47/47 from the official 2023 Annex 1 table. The former dominant-crop concept mixed different crops/units and was not retained as a comparable indicator.",
     "tab": "economy",
     "applies_to_levels": [
       "county"

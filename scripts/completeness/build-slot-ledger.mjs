@@ -190,7 +190,7 @@ const resolved=rows.filter(r=>r.resolved).length;
 const uniqueIndicators=new Set(rows.map(r=>r.indicator_code)).size;
 const summary={
   schema_version:'kda.completeness.summary.v1',
-  definition:'A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation, or a governed primary-source evidence state establishes that the requested observation is officially unavailable. No parent, regional or missing value is inherited or manufactured.',
+  definition:'A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation, or a governed evidence state explicitly closes the slot as officially unavailable, not applicable, boundary unresolved, or retired/replaced. No parent, regional or missing value is inherited or manufactured.',
   total_slots:rows.length,
   resolved_slots:resolved,
   unresolved_slots:rows.length-resolved,
@@ -204,7 +204,7 @@ const summary={
 };
 const ledger={
   schema_version:'kda.completeness.slot-ledger.v1',
-  target_definition:'Every public data slot must end in a defensible resolved evidence state; parent/regional values are never inherited and official non-publication/non-submission is preserved without fabricating a numeric observation.',
+  target_definition:'Every public data slot must end in a defensible resolved evidence state; parent/regional values are never inherited, official non-publication/non-submission is preserved, and retired/replaced slots retain an auditable successor decision without fabricating a numeric observation.',
   expected_slot_instances:20115,
   rows
 };
