@@ -2,7 +2,7 @@ name: Generated native registries and CountyIQ mart
 
 on:
   push:
-    branches: [main, p20-county-sourced-promotion]
+    branches: [main]
     paths:
       - '.github/workflows/placeholder-taxonomy.yml'
       - 'docs/DATA-COMPLETION-ROADMAP.md'
