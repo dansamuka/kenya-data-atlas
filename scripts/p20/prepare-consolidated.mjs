@@ -10,13 +10,15 @@ const j=f=>JSON.parse(read(f));
   const f='package.json'; const p=j(f);
   if(!p.scripts['catalogue:build'].includes('build-disability-prevalence.mjs')) p.scripts['catalogue:build']=p.scripts['catalogue:build'].replace('node scripts/p20/build-household-size.mjs catalogue','node scripts/p20/build-household-size.mjs catalogue && node scripts/p20/build-disability-prevalence.mjs catalogue');
   if(!p.scripts['catalogue:build'].includes('build-housing-durable-wall.mjs')) p.scripts['catalogue:build']=p.scripts['catalogue:build'].replace('node scripts/p20/build-disability-prevalence.mjs catalogue','node scripts/p20/build-disability-prevalence.mjs catalogue && node scripts/p20/build-housing-durable-wall.mjs catalogue');
+  if(!p.scripts['catalogue:build'].includes('build-kenphia-hiv-prevalence.mjs')) p.scripts['catalogue:build']=p.scripts['catalogue:build'].replace('node scripts/p20/build-housing-durable-wall.mjs catalogue','node scripts/p20/build-housing-durable-wall.mjs catalogue && node scripts/p20/build-kenphia-hiv-prevalence.mjs catalogue');
   if(!p.scripts['indicators:build'].includes('build-disability-prevalence.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-household-size.mjs indicators','node scripts/p20/build-household-size.mjs indicators && node scripts/p20/build-disability-prevalence.mjs indicators && node scripts/p20/build-kdhs-additional.mjs');
   if(!p.scripts['indicators:build'].includes('build-kdhs-additional.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-disability-prevalence.mjs indicators','node scripts/p20/build-disability-prevalence.mjs indicators && node scripts/p20/build-kdhs-additional.mjs');
   if(!p.scripts['indicators:build'].includes('build-kdhs-contraceptive.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-kdhs-additional.mjs','node scripts/p20/build-kdhs-additional.mjs && node scripts/p20/build-kdhs-contraceptive.mjs');
   if(!p.scripts['indicators:build'].includes('build-kdhs-fgm.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-kdhs-contraceptive.mjs','node scripts/p20/build-kdhs-contraceptive.mjs && node scripts/p20/build-kdhs-fgm.mjs');
   if(!p.scripts['indicators:build'].includes('build-kdhs-literacy-women.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-kdhs-fgm.mjs','node scripts/p20/build-kdhs-fgm.mjs && node scripts/p20/build-kdhs-literacy-women.mjs');
   if(!p.scripts['indicators:build'].includes('build-housing-durable-wall.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-kdhs-literacy-women.mjs','node scripts/p20/build-kdhs-literacy-women.mjs && node scripts/p20/build-housing-durable-wall.mjs indicators');
-  p.scripts['p20:validate']='node scripts/p20/validate-sourced-county.mjs && node scripts/p20/validate-audit-opinion.mjs && node scripts/p20/validate-household-size.mjs && node scripts/p20/validate-kdhs-additional.mjs && node scripts/p20/validate-kdhs-contraceptive.mjs && node scripts/p20/validate-kdhs-fgm.mjs && node scripts/p20/validate-kdhs-literacy-women.mjs && node scripts/p20/validate-disability-prevalence.mjs && node scripts/p20/validate-housing-durable-wall.mjs && node scripts/p20/validate-consolidated.mjs';
+  if(!p.scripts['indicators:build'].includes('build-kenphia-hiv-prevalence.mjs')) p.scripts['indicators:build']=p.scripts['indicators:build'].replace('node scripts/p20/build-housing-durable-wall.mjs indicators','node scripts/p20/build-housing-durable-wall.mjs indicators && node scripts/p20/build-kenphia-hiv-prevalence.mjs indicators');
+  p.scripts['p20:validate']='node scripts/p20/validate-sourced-county.mjs && node scripts/p20/validate-audit-opinion.mjs && node scripts/p20/validate-household-size.mjs && node scripts/p20/validate-kdhs-additional.mjs && node scripts/p20/validate-kdhs-contraceptive.mjs && node scripts/p20/validate-kdhs-fgm.mjs && node scripts/p20/validate-kdhs-literacy-women.mjs && node scripts/p20/validate-disability-prevalence.mjs && node scripts/p20/validate-housing-durable-wall.mjs && node scripts/p20/validate-kenphia-hiv-prevalence.mjs && node scripts/p20/validate-consolidated.mjs';
   write(f,JSON.stringify(p,null,2));
 }
 
@@ -48,21 +50,27 @@ for(const f of ['scripts/p20/validate-sourced-county.mjs','scripts/p20/validate-
   write(f,s);
 }
 
-// Current consolidated promotion = 188 previously merged P20 slots plus seven
+// Current consolidated promotion = 188 previously merged P20 slots plus eight
 // new 47-county families: disability, teenage pregnancy, home birth, modern
-// contraceptive use, FGM prevalence, women age 15-49 literacy, and durable wall material.
+// contraceptive use, FGM prevalence, women age 15-49 literacy, durable wall
+// material, and KENPHIA HIV prevalence with published uncertainty metadata.
 {
   const f='data/data-completion-roadmap.json'; const d=j(f);
-  Object.assign(d.baseline,{resolved_slots:3197,unresolved_slots:16918,resolved_pct:15.89});
-  d.baseline.remaining_by_phase.P20=188;
+  Object.assign(d.baseline,{resolved_slots:3244,unresolved_slots:16871,resolved_pct:16.13});
+  d.baseline.remaining_by_phase.P20=141;
   const p20=d.phases.find(x=>x.id==='P20'); if(!p20) throw new Error('P20 roadmap phase missing');
-  Object.assign(p20.progress,{remaining_slots:188,resolved_in_consolidated_batch_1:329,resolved_total:517,consolidated_batch_1_note:'Parallel P20 batch: 47/47 each for KNBS 2019 KPHC disability prevalence and durable wall material, plus KDHS 2022 teenage pregnancy, home births, modern contraceptive use, FGM prevalence and women age 15–49 literacy. KDHS observations retain published weighted denominators; durable-wall observations are transparent Badge-B sums of the five KNBS durable categories; rankings remain withheld.'});
+  Object.assign(p20.progress,{remaining_slots:141,resolved_in_consolidated_batch_1:376,resolved_total:564,consolidated_batch_1_note:'Parallel P20 batch: 47/47 each for KNBS 2019 KPHC disability prevalence and durable wall material; KDHS 2022 teenage pregnancy, home births, modern contraceptive use, FGM prevalence and women age 15–49 literacy; plus KENPHIA 2018 HIV prevalence ages 15–64. KDHS observations retain published weighted denominators; durable-wall observations are transparent Badge-B sums of the five KNBS durable categories; KENPHIA observations retain published sample size, SE and 95% CI, with Garissa unavailable CI bounds preserved as null; survey rankings remain withheld.'});
   write(f,JSON.stringify(d,null,2));
 }
 {
   const f='docs/DATA-COMPLETION-PLAN.md'; let s=read(f);
-  s=s.replace('- **3,103 resolved**','- **3,197 resolved**').replace('- **17,012 unresolved**','- **16,918 unresolved**').replace('- **15.43% resolved**','- **15.89% resolved**').replace('| P20 | 282 |','| P20 | 188 |');
-  s=s.replace('- Consolidated batch 1: 47/47 disability prevalence + 47/47 teenage pregnancy + 47/47 home births + 47/47 modern contraceptive use + 47/47 FGM prevalence (**235 slots**).','- Consolidated batch 1: 47/47 disability prevalence + 47/47 teenage pregnancy + 47/47 home births + 47/47 modern contraceptive use + 47/47 FGM prevalence + 47/47 women age 15–49 literacy + 47/47 durable wall material (**329 slots**).').replace('- **423 P20 slots resolved across completed promotions.**','- **517 P20 slots resolved across completed promotions.**').replace('**Remaining queue:** **282**.','**Remaining queue:** **188**.');
+  s=s.replace(/- \*\*[\d,]+ resolved\*\*/,'- **3,244 resolved**');
+  s=s.replace(/- \*\*[\d,]+ unresolved\*\*/,'- **16,871 unresolved**');
+  s=s.replace(/- \*\*[\d.]+% resolved\*\*/,'- **16.13% resolved**');
+  s=s.replace(/\| P20 \| \d+ \|/,'| P20 | 141 |');
+  s=s.replace(/- Consolidated batch 1:.*\(\*\*\d+ slots\*\*\)\./,'- Consolidated batch 1: 47/47 disability prevalence + 47/47 teenage pregnancy + 47/47 home births + 47/47 modern contraceptive use + 47/47 FGM prevalence + 47/47 women age 15–49 literacy + 47/47 durable wall material + 47/47 KENPHIA HIV prevalence ages 15–64 (**376 slots**).');
+  s=s.replace(/- \*\*[\d,]+ P20 slots resolved across completed promotions\.\*\*/,'- **564 P20 slots resolved across completed promotions.**');
+  s=s.replace(/\*\*Remaining queue:\*\* \*\*\d+\*\*\./,'**Remaining queue:** **141**.');
   write(f,s);
 }
-console.log('P20_CONSOLIDATED_PREP_OK batch=329 expected_resolved=3197 expected_remaining=188');
+console.log('P20_CONSOLIDATED_PREP_OK batch=376 expected_resolved=3244 expected_remaining=141');
