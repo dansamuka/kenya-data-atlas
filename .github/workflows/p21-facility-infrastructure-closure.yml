@@ -1,0 +1,78 @@
+name: P21 facility infrastructure closure
+
+on:
+  push:
+    branches: [p21-facility-infrastructure-closure]
+    paths:
+      - '.github/workflows/p21-facility-infrastructure-closure.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p21-facility-infrastructure-closure
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Add governed facility-infrastructure closure
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p='data/completeness/evidence-states.json';
+          const d=JSON.parse(fs.readFileSync(p,'utf8'));
+          if ((d.states||[]).some(s=>s.indicator_code==='IND-FACILITY-INFRASTRUCTURE')) {
+            throw new Error('facility infrastructure closure already exists');
+          }
+          const geo_codes=Array.from({length:47},(_,i)=>`KEN-C${String(i+1).padStart(3,'0')}`);
+          d.states.push({
+            level:'county',
+            geo_codes,
+            indicator_code:'IND-FACILITY-INFRASTRUCTURE',
+            status:'retired_replaced',
+            period_label:'August–September 2023 Health Facility Census · P21 replacement decision',
+            source:'Ministry of Health — Kenya Health Facility Census Report September 2023',
+            source_url:'https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf',
+            successor_indicator_codes:['IND-HEALTH-FACILITY-STOCK','IND-HEALTH-FACILITY-DENSITY'],
+            reason:"The original 'Facilities with electricity/water (%)' placeholder combines two distinct amenity concepts into one undefined county percentage. The published 2023 Health Facility Census reports reliable-water and reliable-power availability as aggregate facility-readiness results, while its published county table covers census coverage rather than a 47-county water/power amenity series. P21 therefore retires the mixed placeholder instead of reverse-engineering county values from figures or fabricating a combined score. The Atlas retains source-backed county health-infrastructure measures through facility stock and facility density."
+          });
+          fs.writeFileSync(p,JSON.stringify(d,null,2)+'\n');
+          NODE
+      - name: Rebuild governed completeness outputs
+        run: |
+          node scripts/completeness/build-slot-ledger.mjs
+          node scripts/p21/build-work-queue.mjs
+      - name: Validate closure
+        run: |
+          node scripts/completeness/validate-slot-ledger.mjs
+          node scripts/p21/validate-work-queue.mjs
+          node scripts/project/validate-data-completion-execution.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const s=JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
+          const q=JSON.parse(fs.readFileSync('data/completeness/p21-work-queue.json','utf8'));
+          const e=JSON.parse(fs.readFileSync('data/completeness/evidence-states.json','utf8'));
+          if(s.resolved_slots!==3573) throw new Error(`resolved ${s.resolved_slots}, expected 3573`);
+          if(s.by_completion_phase?.P21!==235) throw new Error(`P21 remaining ${s.by_completion_phase?.P21}, expected 235`);
+          if(q.remaining_slots!==235||q.family_count!==5||q.family_counts?.['IND-FACILITY-INFRASTRUCTURE']) throw new Error('P21 queue closure failed');
+          const x=e.states.find(s=>s.indicator_code==='IND-FACILITY-INFRASTRUCTURE');
+          if(!x||x.status!=='retired_replaced'||x.geo_codes?.length!==47) throw new Error('evidence state missing');
+          console.log('P21_FACILITY_INFRASTRUCTURE_CLOSURE_OK resolved=47 remaining=235');
+          NODE
+      - name: Commit generated closure
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/completeness/evidence-states.json data/completeness/slot-ledger.json data/completeness/slot-ledger.csv data/completeness/summary.json data/completeness/p21-work-queue.json data/data-completion-roadmap.json
+          if git diff --cached --quiet; then
+            echo 'No changes generated.'
+            exit 0
+          fi
+          git commit -m 'P21: retire mixed facility-infrastructure placeholder'
+          git push origin HEAD:p21-facility-infrastructure-closure
