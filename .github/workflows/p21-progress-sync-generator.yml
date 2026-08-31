@@ -67,3 +67,5 @@ jobs:
           fi
           git commit -m 'build(p21): synchronize live progress authority'
           git push origin HEAD:p21-exam-performance-retirement
+
+# Deliberate second push so GitHub registers and runs this branch-only generator.
