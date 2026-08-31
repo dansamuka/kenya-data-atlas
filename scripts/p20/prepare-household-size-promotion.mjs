@@ -13,6 +13,24 @@ household.source_url = 'https://repository.knbs.or.ke/handle/knbs-ke-repo/385';
 household.note = 'County average household size is published directly in Volume I Table 2.3. Do not inherit county values to constituencies; lower-level activation requires its own governed source mapping.';
 writeJson(taxonomyPath, taxonomy);
 
+// County geo codes are authoritative for source reconciliation. Normalize only
+// punctuation/spacing in the redundant name cross-check so official spellings
+// such as Taita/Taveta and canonical Taita Taveta reconcile without weakening
+// the exact KEN-C001..C047 code gate.
+const builderPath = 'scripts/p20/build-household-size.mjs';
+let builder = fs.readFileSync(builderPath, 'utf8');
+if (!builder.includes('const normalizeCountyName = value =>')) {
+  builder = builder.replace(
+    "const formalCountyName = geo => geo?.geo_code === 'KEN-C047' ? 'Nairobi City' : geo?.name;",
+    "const formalCountyName = geo => geo?.geo_code === 'KEN-C047' ? 'Nairobi City' : geo?.name;\nconst normalizeCountyName = value => String(value ?? '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g, '');"
+  );
+}
+builder = builder.replace(
+  'if (sourceRow.county_name !== formalCountyName(county)) {',
+  'if (normalizeCountyName(sourceRow.county_name) !== normalizeCountyName(formalCountyName(county))) {'
+);
+fs.writeFileSync(builderPath, builder);
+
 // Update the machine-readable completion programme after the 47-county tranche.
 const roadmapPath = 'data/data-completion-roadmap.json';
 const roadmap = readJson(roadmapPath);
