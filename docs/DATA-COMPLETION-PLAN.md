@@ -2,7 +2,8 @@
 
 Status: **active governed completion programme**
 
-Machine-readable authority: [`data/data-completion-roadmap.json`](../data/data-completion-roadmap.json)  
+Machine-readable phase authority: [`data/data-completion-roadmap.json`](../data/data-completion-roadmap.json)  
+Machine-readable execution authority: [`data/data-completion-execution.json`](../data/data-completion-execution.json)  
 Live completion ledger: [`data/completeness/summary.json`](../data/completeness/summary.json)
 
 ## Why this programme exists
@@ -11,9 +12,9 @@ The original `P00–P17` roadmap governs the Atlas product build and v1.0 releas
 
 For that reason, `P18–P26` is documented separately rather than being appended to `data/project-roadmap.json`. This preserves the exact P17/v1.0 release-count semantics while giving the continuing work the same session-sized, acceptance-gated structure used for P00–P17.
 
-## Current baseline
+## Historical baseline and live state
 
-As of 31 August 2026 the governed completeness surface is:
+The programme baseline established on 31 August 2026 was:
 
 - **20,115 total slot instances**
 - **3,385 resolved**
@@ -22,7 +23,7 @@ As of 31 August 2026 the governed completeness surface is:
 - **49 unique indicator slots**
 - **0 unknown/unclassified blanks**
 
-Current unresolved queue:
+Baseline unresolved queue:
 
 | Phase | Queue |
 |---|---:|
@@ -33,7 +34,7 @@ Current unresolved queue:
 | P24 | 13,050 |
 | P25 | 1 |
 
-The machine-readable ledger is authoritative if these figures change after a new data tranche.
+The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–2, the live summary reports **3,479 resolved**, **16,636 unresolved**, **0 unknown blanks**, and **329 P21 rows** remaining.
 
 ## Completion semantics
 
@@ -45,6 +46,51 @@ A slot is not considered complete just because a card has something displayed. T
 - governed non-numeric closure states such as **not applicable**, **source not published**, **boundary unresolved**, or **retired/replaced**.
 
 The final P26 dashboard will report **slot resolution** separately from **numeric/categorical evidence coverage**. This allows the Atlas to reach 100% governed resolution without pretending that a value exists where no defensible value exists.
+
+## Parallel execution model — scheduling changes, governance does not
+
+The P18–P26 phase definitions, governed slot allocations and acceptance gates remain unchanged in `data/data-completion-roadmap.json`. A separate execution overlay now allows independent work to proceed in parallel where the source and geography contract is already strong.
+
+### Track A — County completion
+
+`P21 → P22`
+
+P21 remains the active hard-county closure track and continues one indicator family per PR. P22 may be prepared once its date-aware source/freshness contracts are defensible, but P21's own acceptance requirements are not waived.
+
+### Track B — Local intelligence accelerator
+
+`P23A → P23`
+
+**P23A is not a new governed phase.** It is an accelerator inside P23. It can resolve only pre-existing P23 slot instances and cannot change the **20,115-slot denominator**. Full P23 remains the completion gate for all 290 constituencies.
+
+P23A starts with reusable national pipelines rather than 290 hand-maintained files. Initial order:
+
+1. `IND-REGISTERED-VOTERS` / constituency electorate;
+2. official turnout history where citable and comparable;
+3. current MP identity;
+4. NG-CDF allocation;
+5. NG-CDF utilisation/implementation only where a nationally comparable official source exists.
+
+The first tranche is unusually mature already: Sprint 2 source governance records **IEBC Gazette Notice No. 7290, 21 June 2022**, with a direct **Second Schedule — Registered Voters per Constituency** and reference date **20 June 2022**. Sprint 2 also retains the ward schedule, county schedule and the explicit Mandera East/Lafey ward boundary hold. P23A therefore begins by canonicalising the official constituency schedule into the existing P23 `IND-REGISTERED-VOTERS` slots; it does not need to infer constituency electorate from county values or force unresolved ward polygons.
+
+P23A acceptance for every family:
+
+- primary/official statistical authority is citable;
+- every promoted row reconciles to the canonical constituency registry;
+- election/boundary vintage is explicit;
+- no county value is inherited downward;
+- only existing P23 slots are resolved and the governed denominator stays fixed;
+- unresolved mappings remain unresolved rather than force-matched;
+- deterministic builder + validator exist;
+- full Atlas and P16 gates pass before merge.
+
+### Track C — Final convergence
+
+`P24 → P25 → P26`
+
+The ward layer, remaining public-surface closure and permanent 100% gate keep their original dependencies. P24 cannot claim completion before full P23 acceptance. The Mandera East/Lafey spatial hold remains visible until genuinely reconciled.
+
+**Formal phase closure order remains:** `P18 → P19 → P20 → P21 → P22 → P23 → P24 → P25 → P26`.
 
 ---
 
@@ -118,7 +164,6 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 - **141 P20 slots resolved across tranches 1–2**.
 - 47/47 county average-household-size slots from KNBS 2019 KPHC Volume I Table 2.3.
 - **188 P20 slots resolved across tranches 1–3**.
-
 - Consolidated batch 1: all eleven remaining P20 county families resolved under governed evidence contracts (**517 slots**): eight numeric/source families (376), facility density (47), pending bills (46 numeric + 1 official non-submission), and substance-use prevalence (47 official county-unavailable states).
 - **705 P20 slots resolved across completed promotions; P20 is complete.**
 
@@ -189,7 +234,7 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 
 ## P23 — Constituency layer completion
 
-**Status: planned.**
+**Status: full phase planned; P23A national-pipeline accelerator in progress.**
 
 **Goal:** Complete the constituency surface through reusable national pipelines, not 290 hand-maintained files.
 
@@ -201,7 +246,9 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 - authoritative census/household measures where published;
 - permitted spatial service aggregation.
 
-**Queue:** **3,190** remaining slot instances.
+**Queue:** **3,190** remaining slot instances at the pre-P23A baseline. P23A resolves rows from this existing queue; it creates no additional slots.
+
+**P23A first tranche — constituency registered voters:** canonicalise the direct IEBC 2022 constituency schedule for `IND-REGISTERED-VOTERS` across all 290 constituencies. The source authority is Gazette Notice No. 7290; the official schedule is already governed in Sprint 2. Ward spatial exceptions do not justify withholding direct constituency rows.
 
 **Acceptance**
 - all 290 constituencies reconcile to the canonical registry;
@@ -284,10 +331,14 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 
 ---
 
-## Recommended execution sequence
+## Recommended execution from this point
 
-`P18 complete → P19 complete → P20 in progress → P21 → P22 → P23 → P24 → P25 → P26`
+Run two evidence-independent streams while retaining the formal phase closure order:
 
-The next implementation instruction is:
+- **County stream:** continue P21 one family per PR; prepare P22 only under its original freshness/geography rules.
+- **Local stream:** start P23A with the 290 direct IEBC constituency registered-voter slots; then advance to the next official national constituency pipeline.
+- **Convergence:** full P23 acceptance remains mandatory before P24 can complete; P25 and P26 remain unchanged.
 
-> **Continue P20 until its governed queue reaches zero, then start P21. Do not restart P18/P19 or weaken evidence rules to improve completion.**
+The next implementation instructions are:
+
+> **Continue P21 without weakening evidence rules. In parallel, canonicalise the existing official IEBC constituency registered-voter schedule as P23A tranche 1. Do not create a second denominator, inherit county values downward, or force unresolved ward geography.**
