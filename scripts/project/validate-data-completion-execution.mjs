@@ -34,7 +34,9 @@ assert(p23a.target_geography_level === 'constituency', 'P23A must target constit
 assert(p23a.canonical_geography_count === 290, 'P23A must reconcile exactly 290 constituencies');
 assert(p23a.first_tranche?.indicator_code === 'IND-REGISTERED-VOTERS', 'P23A first tranche must remain registered voters');
 assert(p23a.first_tranche?.expected_existing_p23_slots === 290, 'registered-voter tranche must resolve only the existing 290 constituency slots');
-assert(p23a.first_tranche?.source_schedule?.includes('Second Schedule'), 'registered-voter tranche must retain direct IEBC constituency-schedule provenance');
+assert(p23a.first_tranche?.statistical_authority_schedule?.includes('First Schedule'), 'registered-voter provenance must retain the official IEBC ward schedule used by Sprint 2');
+assert(p23a.first_tranche?.published_constituency_schedule?.includes('Second Schedule'), 'the Gazette constituency schedule must remain documented as a published cross-check/source context');
+assert(p23a.first_tranche?.canonical_treatment?.includes('B — Official derived'), 'registered-voter tranche must preserve the audited Sprint 2 B/Official-derived treatment');
 
 const byPhase = new Map((phaseRoadmap.phases || []).map(p => [p.id, p]));
 const p21 = byPhase.get('P21');
@@ -65,5 +67,6 @@ console.log(JSON.stringify({
   p21_remaining: summary.by_completion_phase?.P21,
   p23_remaining: summary.by_completion_phase?.P23,
   p24_remaining: summary.by_completion_phase?.P24,
-  p23a_first_tranche: p23a.first_tranche.indicator_code
+  p23a_first_tranche: p23a.first_tranche.indicator_code,
+  p23a_voter_treatment: p23a.first_tranche.canonical_treatment
 }, null, 2));
