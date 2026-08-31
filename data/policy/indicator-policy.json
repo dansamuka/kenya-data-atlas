@@ -1347,8 +1347,8 @@
     },
     {
       "indicator_id": "07536217-ba3f-50a2-b3f4-da669a927e3d",
-      "name": "HIV prevalence",
-      "lifecycle_status": "sourced",
+      "name": "HIV prevalence, ages 15–64",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-HIV-PREVALENCE",
       "domain": "health",
@@ -1360,11 +1360,11 @@
         "eligible": true
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "directional",
         "higher_is_better": false,
         "requires_sampling_uncertainty": true,
-        "static_reason_not_allowed": null
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
         "required_for_ranking": true
@@ -1378,7 +1378,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "0d66657f-1bfd-5f5f-9824-d27fe007b5ba",
@@ -1522,8 +1522,8 @@
     },
     {
       "indicator_id": "8d0b143c-b99c-5c08-a73a-afc311a7c3db",
-      "name": "Dwelling wall/roof material (% permanent)",
-      "lifecycle_status": "sourced",
+      "name": "Households with durable wall material",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-HOUSING-MATERIAL",
       "domain": "living",
@@ -1535,11 +1535,11 @@
         "eligible": true
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "directional",
         "higher_is_better": true,
         "requires_sampling_uncertainty": false,
-        "static_reason_not_allowed": null
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
         "required_for_ranking": false
@@ -1553,7 +1553,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "286a10d3-1363-5455-8a93-304ce1f64456",
@@ -1837,8 +1837,8 @@
     },
     {
       "indicator_id": "644c8bee-deec-5cd1-acda-d28a992f5b93",
-      "name": "Literacy rate",
-      "lifecycle_status": "sourced",
+      "name": "Women age 15–49 literacy rate",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-LITERACY-RATE",
       "domain": "living",
@@ -1850,14 +1850,14 @@
         "eligible": true
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "directional",
         "higher_is_better": true,
-        "requires_sampling_uncertainty": false,
-        "static_reason_not_allowed": null
+        "requires_sampling_uncertainty": true,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
-        "required_for_ranking": false
+        "required_for_ranking": true
       },
       "trend": {
         "allowed": true,
@@ -1868,7 +1868,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "ac129467-c911-51a8-aeed-13d80b65028e",
@@ -43575,6 +43575,570 @@
       }
     },
     {
+      "series_id": "5746937c-e894-5737-bfd2-23960caa8435",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C001",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "84407731-caa2-58dc-8c10-5149a39b261e",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C002",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1c0bd5e3-fc8b-5580-91ed-7c71fac4d60a",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C003",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ca648f09-5aad-5ca3-9473-b5cba3cc5d82",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C004",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "630f148b-a44d-50ba-9dca-08d5d4e8ed18",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C005",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9711f458-b2a4-5445-b665-fe9f44814c0e",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C006",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "20008a10-d2d2-5607-b7f6-de18e8a23b9a",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C007",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4abb9523-afbe-5ffd-95f1-a3b7c129bab8",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C008",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a6c6b672-a217-5742-bc72-b78f3e67645f",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C009",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8cd2e61a-4ef1-5586-b40f-ed95826572b9",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C010",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8b760481-f505-5222-b276-ca3785b1067c",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C011",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "74b231d5-d684-53bb-8332-ebb9406c36c8",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C012",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8a922086-3357-5c77-966e-e1252c813ff2",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C013",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "05751cfc-2909-5252-845d-6ef0ad357784",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C014",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ffa8b061-2b8f-5bd0-9ed4-44412c37f715",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C015",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9026a304-d777-5f2e-9ef6-bea3596f9ea1",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C016",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b3cfb980-05db-5fdb-9dec-2275501786ef",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C017",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c383f7b3-b1fe-53fd-a0e3-c592cd644698",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C018",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b55e1d2e-2796-57b4-b072-3cad94dcb88b",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C019",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ee6788c3-c13d-599f-8f2f-5acb9f3d7153",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C020",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5fb6b0d7-8e1e-5caa-b400-fcaf822b5ed0",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C021",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f1c752e8-1c3a-5b8f-a06d-39e707933fca",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C022",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4832a20c-44b1-5c5d-bf9d-1d95a2a9537e",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C023",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8520ec5d-9164-5d5b-939b-a60f09e78f2e",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C024",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bff2a3e0-cded-59c2-bfda-68b2a9715450",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C025",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "11387263-90e1-50e7-bffc-b3810dfe16a4",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C026",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7aaa535b-08fa-5535-bf7a-baedeec0fcf8",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C027",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f1e98140-c7a7-51e3-81dd-58908d19adb7",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C028",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9e0d3cd9-55a2-51e7-8e28-99c565f337b2",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C029",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "10edce33-8d6b-52e3-8985-5122eaf315e7",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C030",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a25ba6db-cd5f-5437-b499-5889a174ca5e",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C031",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4d128786-89d5-5cf9-a9b8-4169c00d6789",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C032",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "16042574-63cf-5ca5-b62b-8c6dba81f96b",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C033",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "441a5b20-5a47-55b0-8e2c-a9eb75931749",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C034",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cb51d6cb-03ce-5131-a4c2-a4f8cb5df49b",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C035",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "26508174-b0f2-53e2-bd29-488f2fa7012e",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C036",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2128fbc9-d263-59ad-9ea4-c74e02719ed6",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C037",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0852a7de-a8a6-5949-a57b-3d576e4cb7b3",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C038",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3f9e6385-16c7-5a01-92bc-4d605e915bed",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C039",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a15db777-d01b-5207-bcea-e7c5ff7fe169",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C040",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ea518fd1-0de8-5806-ac23-e7b6e0594e5a",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C041",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a5e97d6f-7a8f-501d-afe6-c5dc4b552fab",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C042",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a45cfa0d-edb7-5cdd-8269-14d7a02cd9b5",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C043",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7f315ec3-a920-54dd-bd6c-53e297c55e34",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C044",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d01cdff3-d51f-5dd8-88a1-53e66325386c",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C045",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8df70471-8ab8-5ba1-b10c-a1e55fe13c0d",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C046",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e9114bb9-b1a3-52fe-972a-b1d9fd2d2e41",
+      "series_code": "KDA-P20-DURABLE-WALL-KEN-C047",
+      "indicator_code": "IND-HOUSING-MATERIAL",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "7f763e0a-cdf3-5838-abcd-e55d5c9b19f5",
       "series_code": "KDA-P20-ELECTRICITY-KEN-C001",
       "indicator_code": "IND-ELECTRICITY-ACCESS",
@@ -46395,6 +46959,570 @@
       }
     },
     {
+      "series_id": "0dc7a8bb-f81e-59f1-a77a-0c97fbc18383",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C001",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3acbcf5b-797b-5e26-b38b-ecf2748834f6",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C002",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ba3c4a1c-7679-5905-a9c7-2b7513b2c8d3",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C003",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c407c88e-100e-5cb8-9708-991f1eb2e57f",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C004",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3b82955b-1932-52e2-bf14-4ac2ecb55add",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C005",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2bfdf0cd-8423-5662-b4f2-73bc92288f3f",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C006",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "773ec4e4-048b-5f28-be52-19efd8a8fca6",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C007",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "32df3573-7a1e-5b67-8eec-c663715c381f",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C008",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3af34077-04d7-5b31-9a99-559e48b193fd",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C009",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "11c220e6-328a-5efd-abf1-0d3522e325a8",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C010",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d0d3e220-a9ab-5825-8b6b-afc71ed129cf",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C011",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e25a5b69-3d7e-586a-87a5-8d7b9266e975",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C012",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7a08c4ce-7691-5309-a0de-91fd019515b6",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C013",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c1aac403-2038-539b-8a3c-5601692375bc",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C014",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "56bf3203-6df5-56d9-a979-631650465b07",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C015",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "18581848-60a0-50ad-ae0e-b451d2a2880f",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C016",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "62ceff4f-77e7-52c3-8213-2cd1e57ba8ea",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C017",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "eeed1cf6-9de8-55ef-acab-f038f1448c5d",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C018",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0db86e1d-ec7c-500e-8a72-7e46d5d7a5f1",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C019",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8589bd4f-9c48-5ded-a475-4d4e964c70cb",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C020",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "db2f3b7c-dbd8-515b-8340-f98fed5df854",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C021",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "21c0a123-5dfc-55f2-a661-72aa4d3aa174",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C022",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "602de435-33ff-53a0-903c-409066d0872d",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C023",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "48ec9999-05da-5e11-85f2-53ab71d38e15",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C024",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "23b292cd-572e-530d-8575-40a1f02f87f2",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C025",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1d1ab191-5231-521e-872d-e4b7a178fb67",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C026",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "76ae3932-91d7-5cc5-ab42-9e03bdce2af7",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C027",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "689284cd-4922-5039-9191-63081380f4c2",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C028",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "872391a2-6dd8-5154-b64c-6dfe9361d4f8",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C029",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5ac3b246-f8e9-5528-88b8-89cd89bedc9c",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C030",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fabe8273-c3c4-528f-b87c-c10e687b3372",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C031",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f3fede3a-a263-52ec-aca5-46e75e31137c",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C032",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "028e6079-f1ad-562c-9e1b-b5c8e538c658",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C033",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c9886bce-4397-5672-ac68-7d7a6d2d903a",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C034",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3bae2def-5f8f-52ac-8b37-701ab726fc6a",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C035",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "451acb24-fd4b-5f52-90d6-33d0aaae5b50",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C036",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "20c23d16-6d06-5607-83bb-5b2567b508a8",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C037",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d594ab54-c277-5775-9df3-8f2e200ae8ed",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C038",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b03f56ca-f9fb-5c6d-8810-f2cc7d1bfed8",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C039",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6e8d4c71-516d-5794-813d-ab1a54f927b2",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C040",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4fd64b86-60fa-5f16-9b91-9e12b95e024c",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C041",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "65237db7-ab46-5c19-bfea-b368deee7b90",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C042",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4649dcb9-33c4-59ef-956c-9d4af8f308ce",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C043",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ac247339-655b-5a8b-bb27-c9717337f2f9",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C044",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e891f25c-d14b-5a96-97d8-6e98f0186eb3",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C045",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e54a73fd-2c04-58f9-b929-256e3bb9c3f5",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C046",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5c63a284-ad33-55f4-9b65-cfc7dbc08744",
+      "series_code": "KDA-P20-KDHS-LITERACY-WOMEN-KEN-C047",
+      "indicator_code": "IND-LITERACY-RATE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "5f328572-59ea-5b54-ba27-2f6fc41afeff",
       "series_code": "KDA-P20-KDHS-TEENAGE-PREGNANCY-KEN-C001",
       "indicator_code": "IND-TEENAGE-PREGNANCY",
@@ -46950,6 +48078,570 @@
       "series_id": "9e8d8fe2-8589-5b4b-8760-f5ab2b1861fa",
       "series_code": "KDA-P20-KDHS-TEENAGE-PREGNANCY-KEN-C047",
       "indicator_code": "IND-TEENAGE-PREGNANCY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "90301def-fc82-574a-8375-020897cd017c",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C001",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a989fa58-751d-55b3-a09e-ea2669c6e38a",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C002",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "def7b409-3d2b-5e0d-b7c8-a816e752d1fc",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C003",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7ebf7a84-4376-5325-9620-e035083906f5",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C004",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6a1c6822-f2dc-5804-a82b-2dc63aa52e3e",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C005",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "107f36a7-94bf-52b7-82a8-74fb61710d75",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C006",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a6ac6c16-22ec-542c-b0ea-4410a612a111",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C007",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "dddc8d48-588c-5f9d-8ee8-118ce1045bd9",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C008",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0ff3d243-90c2-5398-ba5a-ddaeae9651d4",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C009",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3cca57b9-8c72-5e84-a5fb-68b622f2a003",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C010",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a9e3ea83-582d-5e78-9702-5e5ae7de8066",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C011",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5d7e9eda-2279-59ab-bef2-b41875685d61",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C012",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d0574701-145c-5d6b-b5fd-4bbe380e89fd",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C013",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f7f4d522-985d-5047-ad49-ab75b91b55f7",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C014",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c042e67e-4dc1-5c43-95b1-5058ff793bc5",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C015",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a11530bb-3dbb-53fd-9e0d-98e6558cd958",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C016",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "95568202-5eb8-55bd-b512-4b625d653d53",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C017",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "70fe7c0f-9267-5aec-a067-50e336302b10",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C018",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ded76956-ccb5-569c-aa11-c66165804555",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C019",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "716401a7-f5e9-519f-b35b-becb8997abaa",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C020",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "351ccd65-9eff-5b2f-b227-ebc5f7a33d13",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C021",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7b5b5331-5b51-56af-9d7a-12351d46db41",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C022",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bc79291f-cd79-54be-9e8b-32fea79eaab4",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C023",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6e1c3cdc-d657-581e-8e34-b35044c3e69d",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C024",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e8eeaf07-d674-503d-9f79-9117148c6196",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C025",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ed671b87-be8e-58b2-a087-6eaaadf2085b",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C026",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fe916776-6030-5422-a382-8c5c0e911abb",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C027",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "25b51c5c-e911-5ca3-a2ff-3f19a8d5ebb7",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C028",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9f296a5f-14e1-50e3-81b7-3af71f3b1a09",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C029",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e2300f90-2eab-5324-9c88-48256f4fda10",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C030",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8de664fa-11bb-56bd-a995-7114166e894b",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C031",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "aa19cb24-6f74-5358-a769-7425122e8520",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C032",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bdccef5c-b943-5137-8c7c-60d95edd2ae9",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C033",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "49e87201-695d-5f2f-ab47-320e9985ad60",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C034",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "aeae3666-00f8-571e-a490-b0322097c212",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C035",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3d71d83f-8b66-5025-9c1c-933fe8d386f1",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C036",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "875e7fca-c477-5884-aede-76cade2bb475",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C037",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1cb56963-c830-5346-ae45-d0313cb8f35f",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C038",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cea719d9-0198-5d41-b2d6-28408116a776",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C039",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cb286f49-a69a-52d6-b0be-3f3e817cdd3f",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C040",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "df467b18-090f-5702-b02b-f269d9bee6b2",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C041",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6a9a88a4-d9aa-577a-adbd-39dd1cff6038",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C042",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e0cc5c6f-bcc8-5f3a-92e7-cef81f591dd5",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C043",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "248225a0-fffa-512d-a9f3-700270a86620",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C044",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "01d084d2-7394-5e05-88b1-94921be499c1",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C045",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6482958c-6635-51cd-8321-dad2211802dc",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C046",
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ad8ecd05-c1f9-5b6b-979a-85d9b28abf9e",
+      "series_code": "KDA-P20-KENPHIA-HIV-PREVALENCE-KEN-C047",
+      "indicator_code": "IND-HIV-PREVALENCE",
       "unit_code": "percent",
       "transformation": "level",
       "aggregation": null,

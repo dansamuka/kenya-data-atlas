@@ -686,5 +686,37 @@
     "version_label": "P20 governed county-source promotion",
     "release_notes": "2019 Kenya Population and Housing Census — Analytical Report on Disability; Table 2.13 — Disability Prevalence by County and Residence. Uses the published Total prevalence column; no interpolation or geographic inheritance.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "53d384c1-be57-5e88-aeeb-b1d6f8833860",
+    "release_code": "REL-KNBS-KPHC-DURABLE-WALL-2019-P20",
+    "dataset_id": "fa50d7f5-21f0-5077-ac81-6607f3188a22",
+    "title": "2019 KPHC durable wall material by county — derived from Table 2.13",
+    "reference_period_start": "2019-08-24",
+    "reference_period_end": "2019-08-25",
+    "published_at": "",
+    "discovered_at": "2026-08-31T08:05:00.000Z",
+    "ingested_at": "2026-08-31T08:05:00.000Z",
+    "release_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
+    "release_status": "published",
+    "version_label": "P20 transparent derived county promotion",
+    "release_notes": "Table 2.13 — Percentage Distribution of Conventional Households by Dominant Wall Material of Main Dwelling Unit, Area of Residence, County and Sub-County. Durable wall material is the sum of Concrete/Concrete blocks/Precast wall, Stone with lime/Cement, Bricks, Timber, and Prefabricated panels. National published reconciliation anchor: 51.3%.",
+    "supersedes_release_id": ""
+  },
+  {
+    "release_id": "d557c5d0-608c-5555-93ea-bf687258cf41",
+    "release_code": "REL-MOH-KENPHIA-HIV-PREVALENCE-2018-P20",
+    "dataset_id": "c3f032d8-222c-5dbd-9ce9-7db95c38c809",
+    "title": "KENPHIA 2018 final report — county HIV prevalence, ages 15–64",
+    "reference_period_start": "2018-06-01",
+    "reference_period_end": "2019-02-28",
+    "published_at": "",
+    "discovered_at": "2026-08-31T08:15:00.000Z",
+    "ingested_at": "2026-08-31T08:15:00.000Z",
+    "release_url": "https://www.kenphia.or.ke/assets/file/KENPHIA_Ago25-DIGITAL.pdf",
+    "release_status": "published",
+    "version_label": "P20 governed county survey promotion",
+    "release_notes": "Table 6.D — HIV prevalence by county: Ages 15–64 years; uncertainty from Table C.3 — Sampling errors: HIV prevalence by residence and region, ages 15–64 years. Public fieldwork timing is month-precision (June 2018–February 2019); bounding calendar dates encode that interval in the Atlas.",
+    "supersedes_release_id": ""
   }
 ]

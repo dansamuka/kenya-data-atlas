@@ -812,5 +812,35 @@
     "publication_status": "published",
     "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Disability.pdf",
     "known_limitations": "2019 census snapshot using the published Washington Group Short Set threshold. Atlas uses the reported Total prevalence column and does not average sex or residence subtotals."
+  },
+  {
+    "dataset_id": "fa50d7f5-21f0-5077-ac81-6607f3188a22",
+    "dataset_code": "DS-KNBS-KPHC-DURABLE-WALL-2019-P20",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2019 KPHC — Durable Wall Material by County",
+    "description": "County share of conventional households with durable wall material, transparently derived from KNBS 2019 KPHC Volume IV Table 2.13 category shares using the KPHC Atlas H.4 durability definition.",
+    "topic": "Housing",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
+    "known_limitations": "Derived by summing five published wall-material category percentages rounded to one decimal place. County only; no constituency or ward inheritance."
+  },
+  {
+    "dataset_id": "c3f032d8-222c-5dbd-9ce9-7db95c38c809",
+    "dataset_code": "DS-MOH-KENPHIA-HIV-PREVALENCE-2018-P20",
+    "source_id": "9bc61625-170e-54e8-90c7-922455df162c",
+    "title": "KENPHIA 2018 — HIV Prevalence by County, Ages 15–64",
+    "description": "Published county HIV prevalence estimates for persons age 15–64 from the Kenya Population-based HIV Impact Assessment (KENPHIA) 2018, including source-reported unweighted sample sizes, standard errors and 95% confidence limits.",
+    "topic": "Health",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "survey_round",
+    "publication_status": "published",
+    "methodology_url": "https://www.kenphia.or.ke/assets/file/KENPHIA_Ago25-DIGITAL.pdf",
+    "known_limitations": "Survey estimates from fieldwork conducted June 2018–February 2019. County sampling uncertainty varies materially; point-estimate league-table ranking is prohibited. Garissa had no HIV-positive persons identified and the final report does not print finite confidence limits for that county."
   }
 ]

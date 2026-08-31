@@ -260,10 +260,10 @@
   },
   {
     "indicator_code": "IND-HIV-PREVALENCE",
-    "name": "HIV prevalence",
+    "name": "HIV prevalence, ages 15–64",
     "path": "data/distribution/subsets/indicators/IND-HIV-PREVALENCE.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-HOME-BIRTH-RATE",
@@ -295,10 +295,10 @@
   },
   {
     "indicator_code": "IND-HOUSING-MATERIAL",
-    "name": "Dwelling wall/roof material (% permanent)",
+    "name": "Households with durable wall material",
     "path": "data/distribution/subsets/indicators/IND-HOUSING-MATERIAL.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-HOUSING-OWNER-OCCUPIED",
@@ -358,10 +358,10 @@
   },
   {
     "indicator_code": "IND-LITERACY-RATE",
-    "name": "Literacy rate",
+    "name": "Women age 15–49 literacy rate",
     "path": "data/distribution/subsets/indicators/IND-LITERACY-RATE.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-MAIN-GRID-ELECTRICITY",
