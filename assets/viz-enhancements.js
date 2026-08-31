@@ -164,7 +164,7 @@
 
   function watchSeries(){
     const root=$('#series');if(!root||seriesObserver)return;
-    let queued=false;seriesObserver=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;enhanceSeries();});});seriesObserver.observe(root,{attributes:true,attributeFilter:['data-series-ready'],childList:true,subtree:true});
+    let queued=false;seriesObserver=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;enhanceSeries();});});seriesObserver.observe(root,{attributes:true,attributeFilter:['data-series-ready']});
   }
 
   function enhanceMapAccessibility(){
