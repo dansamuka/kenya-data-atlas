@@ -34,7 +34,7 @@ Baseline unresolved queue:
 | P24 | 13,050 |
 | P25 | 1 |
 
-The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–8, the live summary reports **3,761 resolved**, **16,354 unresolved**, **0 unknown blanks**, and **47 P21 rows** remaining.
+The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–9, the live summary reports **3,808 resolved**, **16,307 unresolved**, **0 unknown blanks**, and **0 P21 rows** remaining.
 
 ## Completion semantics
 
@@ -225,6 +225,10 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 **P21 tranche 8 — vehicle-ownership replacement:** all 47 `IND-VEHICLE-REGISTRATIONS` slots are retired/replaced because the original profile slot is an administrative registered-vehicle count/per-capita concept and no governed complete 47-county NTSA registration table has been identified. KNBS 2019 KPHC Volume IV Table 2.36 is promoted separately through `IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP` and `IND-HOUSEHOLD-CAR-OWNERSHIP`, both direct county percentages of conventional households. The Atlas does not turn these percentages into vehicle counts or registration rates and does not sum overlapping ownership columns into a synthetic total.
 
 **Remaining queue after tranche 8:** **47** in one family: road-network length.
+
+**P21 tranche 9 — Class C rural-road replacement:** all 47 `IND-ROAD-NETWORK-LENGTH` slots are retired/replaced because the original “classified road length” profile slot is too broad to map cleanly to one stable national road-class definition. KNBS Economic Survey 2026 Table 11.9 supplies a complete fixed-definition 2025 county series for Class C rural roads, sourced to the Kenya Rural Roads Authority. The Atlas promotes the published `Total` column as `IND-CLASS-C-RURAL-ROAD-LENGTH`, preserves each published total verbatim rather than recomputing from rounded paved/unpaved display components, and explicitly does not present Class C as the entire county road network.
+
+**Remaining queue after tranche 9:** **0**. **P21 complete.**
 
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 

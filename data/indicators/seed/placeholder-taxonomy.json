@@ -753,13 +753,14 @@
       "name": "Classified road length (km)",
       "description": "Length of classified road network.",
       "unit_code": "km",
-      "status": "planned",
+      "status": "retired",
       "tab": "infrastructure",
       "levels": [
         "county"
       ],
-      "source": "Kenya Roads Board",
-      "note": "No single clean county table identified."
+      "source": "KNBS Economic Survey 2026, Table 11.9; underlying source Kenya Rural Roads Authority",
+      "note": "Retired/replaced in P21 because the generic 'classified road length' slot does not identify a stable road-class scope. Use IND-CLASS-C-RURAL-ROAD-LENGTH for the direct 47-county 2025 Class C rural-road total published in KNBS Economic Survey 2026 Table 11.9. Do not interpret the successor as total road length across all road classes within a county.",
+      "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/"
     },
     {
       "code": "IND-WATER-ACCESS",
@@ -875,6 +876,21 @@
       "source": "KNBS — 2019 Kenya Population and Housing Census, Volume IV, Table 2.36",
       "source_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
       "note": "Direct 47-county census household-asset ownership percentage. This is not an administrative vehicle-registration count. The indicator is non-directional for Atlas scoring/ranking and is never summed with other ownership columns into a synthetic unduplicated vehicle total."
+    },
+    {
+      "code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "name": "Class C rural road length",
+      "short_name": "Class C road length",
+      "description": "Published total kilometres of Class C rural roads in each county in 2025, from KNBS Economic Survey 2026 Table 11.9.",
+      "unit_code": "km",
+      "status": "sourced",
+      "tab": "infrastructure",
+      "levels": [
+        "county"
+      ],
+      "source": "KNBS Economic Survey 2026, Table 11.9; underlying source Kenya Rural Roads Authority",
+      "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+      "note": "Direct 47-county published Total column for 2025 provisional Class C rural roads. Underlying source: Kenya Rural Roads Authority. Class C is a fixed road class, not the entire county road network. Published totals are preserved verbatim despite one-decimal component rounding differences; ranking is withheld because longer network length is not inherently better."
     }
   ]
 }

@@ -226,6 +226,41 @@
       "publication_status": "published"
     },
     {
+      "indicator_id": "0c916373-127f-587e-b832-7050e623e1e2",
+      "name": "Class C rural road length",
+      "lifecycle_status": "active",
+      "policy_version": "P12-policy-v1",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "domain": "infrastructure",
+      "direction": {
+        "higher_is_better": null,
+        "basis": "No directional quality claim is made."
+      },
+      "composite": {
+        "eligible": false
+      },
+      "ranking": {
+        "allowed": false,
+        "mode": "positional_only",
+        "higher_is_better": null,
+        "requires_sampling_uncertainty": false,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
+      },
+      "uncertainty": {
+        "required_for_ranking": false
+      },
+      "trend": {
+        "allowed": true,
+        "rule": "At least two numeric observations are required; directional wording uses the canonical direction rule and matched comparisons require comparable periods.",
+        "static_reason_not_allowed": null
+      },
+      "inheritance": {
+        "parent_value_inheritance_allowed": false,
+        "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
+      },
+      "publication_status": "published"
+    },
+    {
       "indicator_id": "b295ecc5-1160-569c-a4d7-0e263f642bae",
       "name": "CO2 emissions per capita (excl. LULUCF)",
       "lifecycle_status": "active",
@@ -2958,7 +2993,7 @@
     {
       "indicator_id": "1be600c2-a5fb-5b5d-b284-333363938c91",
       "name": "Classified road length (km)",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-ROAD-NETWORK-LENGTH",
       "domain": "infrastructure",
@@ -51032,6 +51067,570 @@
       "cross_level_comparison": {
         "eligible": true,
         "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ce199db8-8641-538c-9997-6bcf93e0d755",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C001",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e60615a9-c596-5a3f-b003-c443f99d7ad3",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C002",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9a49ae7d-a175-5eba-bd06-7bf86b7ea37e",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C003",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "affc0a47-fcac-515b-ba7f-dea82407ea65",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C004",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2c7563f8-5075-515e-b02e-35455ba5a24b",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C005",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9fae1cd8-37d5-5457-80bc-1d9f23c34598",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C006",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0e383a0c-16e6-5e15-b7e7-3bf5c1480ef9",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C007",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "33bafc24-0470-55fb-a061-230553234e1a",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C008",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "71658cf5-d2d3-5d6b-a79b-f26c7b1f1ec8",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C009",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5765d4e8-b63d-5b3f-827c-289552dfd06d",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C010",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2d512048-917e-528b-9fe6-6775d30464ae",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C011",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5d3096bf-a3d3-5a69-9c55-32918c1fdb96",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C012",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e64c460b-e13e-581c-b0cf-86a5bac3e3f4",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C013",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "caa12647-ae3c-5d8b-a295-f0e81649bd59",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C014",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d8ec892b-31c2-59ab-943c-f6246b165664",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C015",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b0314f4e-9400-5976-a56a-a0adcfc6a8bf",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C016",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "43708f06-f4ca-5386-80f5-d710169f9c6d",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C017",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "51510cf5-f5b2-50ce-be85-992f53051f50",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C018",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fdc3543a-0584-5c46-9678-a61ca67eb84b",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C019",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b6aa9d68-4ace-5f80-998a-29b84726965d",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C020",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "161bf6d1-06ad-5c3b-a135-28c6053a8199",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C021",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "553bcd58-759f-52be-bb42-5592a7ed9e1d",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C022",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5c68d5d8-8965-5b0a-b3de-cedf705b195d",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C023",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "52cd168e-fb90-5329-8967-d823d5e28304",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C024",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6c7240f4-5de9-5577-aab8-c991859e4c43",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C025",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e213781f-4b38-5878-8de4-7a29514038c4",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C026",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5c24f6f2-caed-571d-927b-b6f2c0dfddb5",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C027",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ea00b53f-48db-5251-bc77-0c5b881dcc74",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C028",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0b8946a3-4b66-5df3-9dbe-dc8db28c347a",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C029",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4b69ede5-81c4-5668-9778-e893b38731ef",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C030",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "18bc6c04-e51d-51b1-b335-fecc5d824e6d",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C031",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2a80f857-0820-56ea-a211-0cb691c6b867",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C032",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f6a97027-1b77-5a3c-8f15-1986742a2cbd",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C033",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5edbffa8-5560-519f-b552-71fe26cbecd9",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C034",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c44a93ff-64d6-5684-9175-4d1e90a10568",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C035",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "16fbfc79-2daa-5724-9603-cc773ae5a4ee",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C036",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6bea9378-6687-5d78-b39e-b2fac82a4d26",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C037",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3a0690db-e18e-5bc0-9daf-fa91936cd4ca",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C038",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b2d2caee-5564-5c72-812d-201dddadf0ea",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C039",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "be60e154-7ee1-5c86-9fca-512ffee4ab3f",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C040",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "342ef1e1-dd30-5089-95c7-b19499f3550c",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C041",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "591a138a-3c73-58e8-a686-bb1f565ed71b",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C042",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f0462aa5-2c03-59e1-b653-b650116eacf3",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C043",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2c8ff3a2-bc41-5190-b8fa-a81682657d51",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C044",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0a5b96ad-400d-57a9-b7d7-c71f473840b2",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C045",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8165ffe7-7fe0-5c0b-a806-9169557322ea",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C046",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "acff2b51-020d-5c0d-b196-9d789af10f60",
+      "series_code": "KDA-P21-CLASS-C-ROAD-KEN-C047",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "unit_code": "km",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
       }
     },
     {

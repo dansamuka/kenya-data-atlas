@@ -127,7 +127,7 @@
     {
       "id": "P21",
       "title": "Resolve hard county slots and retire weak placeholders",
-      "status": "in_progress",
+      "status": "complete",
       "session_goal": "Close the county indicators that require source discovery, spatial derivation, categorical treatment, or a deliberate replace/retire decision because no defensible 47-county comparable source exists.",
       "outputs": [
         "social-protection beneficiary resolution",
@@ -150,13 +150,13 @@
       ],
       "progress": {
         "resolved_in_tranche_1": 47,
-        "remaining_slots": 47,
+        "remaining_slots": 0,
         "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties with stronger fixed-definition maize successors already published in P19.",
         "resolved_in_tranche_2": 47,
         "tranche_2_note": "Promoted IND-WATER-ACCESS for all 47 counties from the direct improved-source subtotal in KNBS 2023/24 Kenya Housing Survey Table 5.14. Values are household survey estimates; no lower-level inheritance or fabricated uncertainty is introduced.",
         "resolved_in_tranche_3": 47,
         "tranche_3_note": "Retired/replaced the unstable mixed KCPE/KCSE county mean-score placeholder across all 47 counties. KNEC records 2023 as the final KCPE examination; no stable official 47-county mean is manufactured. Existing source-backed attendance, school and teacher indicators remain the governed education successors without being presented as exam-score proxies.",
-        "resolved_in_p21": 376,
+        "resolved_in_p21": 423,
         "resolved_in_tranche_4": 47,
         "tranche_4_note": "Retired/replaced the inconsistent county licensed-business count/year-on-year placeholder across all 47 counties. No mixed-vintage patchwork or zero fill is used; the Atlas points users to fixed-definition official GCP and economic-structure successors instead.",
         "resolved_in_tranche_5": 47,
@@ -166,7 +166,9 @@
         "resolved_in_tranche_7": 47,
         "tranche_7_note": "Retired/replaced the 47-county administrative Inua Jamii beneficiary placeholder and added a distinct KDHS 2022 Table 2.21.3C household cash-transfer/social-assistance percentage for all counties, preserving household denominators and withholding rankings.",
         "resolved_in_tranche_8": 47,
-        "tranche_8_note": "Retired/replaced the 47-county administrative registered-vehicle placeholder and added separate KNBS 2019 Census motorcycle-ownership and car-ownership percentages for all counties. No registration counts, per-capita rates or synthetic combined vehicle-ownership shares are inferred."
+        "tranche_8_note": "Retired/replaced the 47-county administrative registered-vehicle placeholder and added separate KNBS 2019 Census motorcycle-ownership and car-ownership percentages for all counties. No registration counts, per-capita rates or synthetic combined vehicle-ownership shares are inferred.",
+        "resolved_in_tranche_9": 47,
+        "tranche_9_note": "Retired/replaced the ambiguous 47-county classified-road-length placeholder and added a direct fixed-definition Class C rural-road total from KNBS Economic Survey 2026 Table 11.9 for all counties. Published Total values are preserved verbatim; Class C is not represented as all-class county road length."
       }
     },
     {
