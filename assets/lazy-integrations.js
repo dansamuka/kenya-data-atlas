@@ -6,7 +6,7 @@
   const KDA=window.KDAData;
   if(!KDA)return;
 
-  let promise=null,countyIqPromise=null,evidenceHubPromise=null,opportunityPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null;
+  let promise=null,countyIqPromise=null,evidenceHubPromise=null,opportunityPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null,vizPromise=null;
   let comparePromise=null,geoPromise=null,hardeningPromise=null,polishPromise=null,publicCleanupPromise=null,siteSearchPromise=null;
   let countyIqDataGuardInstalled=false;
 
@@ -44,6 +44,16 @@
     if(polishPromise)return polishPromise;
     polishPromise=KDA.loadScript('assets/ux-polish.js',{id:'kda-ux-polish'}).catch(error=>{console.warn('UI polish load:',error?.message||error);return null;});
     return polishPromise;
+  }
+  function loadViz(){
+    if(window.KDAVizEnhancements)return Promise.resolve(window.KDAVizEnhancements);
+    if(vizPromise)return vizPromise;
+    vizPromise=Promise.all([
+      KDA.loadStyle('assets/viz-enhancements.css',{id:'kda-viz-enhancements-css'}),
+      KDA.loadScript('assets/viz-enhancements.js',{id:'kda-viz-enhancements'})
+    ]).then(()=>window.KDAVizEnhancements||null)
+      .catch(error=>{console.warn('Visualisation enhancements load:',error?.message||error);return null;});
+    return vizPromise;
   }
   function loadHardening(){
     if(hardeningPromise)return hardeningPromise;
@@ -185,6 +195,7 @@
   const routeNeedsRankings=hash=>/^#\/rankings(?:\/|\?|$)/.test(hash)||/^#rankings$/.test(hash);
   const routeNeedsCountyIQ=hash=>/^#\/countyiq(?:\/|\?|$)/.test(hash)||/^#countyiq$/.test(hash);
   const routeNeedsCompare=hash=>/^#\/compare(?:\/|\?|$)/.test(hash)||/^#compare$/.test(hash);
+  const routeNeedsViz=hash=>/^#\/(?:pulse|explore|compare|series|rankings)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|compare$|series|rankings$)/.test(hash);
   function loadForHash(hash){
     if(routeNeedsOptional(hash))loadOptionalIntegrations();
     if(routeNeedsExplore(hash))loadGeo();
@@ -192,6 +203,7 @@
     if(routeNeedsRankings(hash))loadRankings();
     if(routeNeedsCountyIQ(hash))loadCountyIQ();
     if(routeNeedsCompare(hash))loadCompare();
+    if(routeNeedsViz(hash))loadViz();
   }
   loadForHash(location.hash);
   window.addEventListener('hashchange',()=>loadForHash(location.hash));
@@ -203,6 +215,7 @@
     if(view==='rankings')loadRankings();
     if(view==='countyiq')loadCountyIQ();
     if(view==='compare')loadCompare();
+    if(['pulse','explore','compare','series','rankings'].includes(view))loadViz();
   });
-  window.KDAOptional={load:loadOptionalIntegrations,loadCompare,loadGeo,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder,loadSiteSearch,loadHardening};
+  window.KDAOptional={load:loadOptionalIntegrations,loadCompare,loadGeo,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder,loadSiteSearch,loadHardening,loadViz};
 })();
