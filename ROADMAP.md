@@ -37,10 +37,11 @@ The Atlas now also has a separate, machine-readable **data-completion roadmap** 
 - [`data/data-completion-roadmap.json`](data/data-completion-roadmap.json) — machine-readable P18–P26 phase authority.
 - [`docs/DATA-COMPLETION-PLAN.md`](docs/DATA-COMPLETION-PLAN.md) — detailed public/session handoff.
 - [`data/completeness/summary.json`](data/completeness/summary.json) — live completion counts.
+- [`data/completeness/p21-work-queue.json`](data/completeness/p21-work-queue.json) — executable aggregate queue for the active hard-county phase.
 
-Current state: **P18 complete → P19 complete → P20 in progress → P21 next → P22–P26 planned**.
+Current state: **P18 complete → P19 complete → P20 complete → P21 in progress → P22–P26 planned**.
 
-At the 31 August 2026 baseline, the governed surface contains **20,115 slot instances**, of which **2,774 are resolved (13.79%)**, with **0 unknown/unclassified blanks**. The machine-readable summary is authoritative as later tranches change these counts.
+At the 31 August 2026 baseline, the governed surface contains **20,115 slot instances**, of which **3,385 are resolved (16.83%)** and **16,730 are unresolved**, with **0 unknown/unclassified blanks**. P20's governed queue is zero; P21 begins with **423 unresolved county slots across nine 47-county indicator families**. The machine-readable summary and P21 queue are authoritative as later tranches change these counts.
 
 This programme preserves the core Atlas rule: **100% completion means 100% governed resolution, not 100% fabricated numbers**. Where no defensible value exists, the eventual closure state must be explicit and auditable (for example not applicable, source not published, boundary unresolved, or retired/replaced).
 

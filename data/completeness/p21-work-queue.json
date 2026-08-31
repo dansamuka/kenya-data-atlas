@@ -1,0 +1,24 @@
+{
+  "schema_version": "kda.completeness.p21-work-queue.v1",
+  "phase": "P21",
+  "definition": "Executable aggregate queue for unresolved county slots assigned to P21. The canonical slot ledger remains the row-level authority; this file groups that queue by indicator family so source, derivation, replacement and retirement work can be completed without maintaining a second manual list.",
+  "source_ledger": "data/completeness/slot-ledger.json",
+  "queue_filter": {
+    "level": "county",
+    "completion_phase": "P21",
+    "resolved": false
+  },
+  "remaining_slots": 423,
+  "family_count": 9,
+  "family_counts": {
+    "IND-AGRI-PRODUCTION": 47,
+    "IND-BUSINESS-LICENSES": 47,
+    "IND-EXAM-PERFORMANCE": 47,
+    "IND-FACILITY-INFRASTRUCTURE": 47,
+    "IND-HOSPITAL-BED-UTILIZATION": 47,
+    "IND-ROAD-NETWORK-LENGTH": 47,
+    "IND-SOCIAL-PROTECTION-BENEFICIARIES": 47,
+    "IND-VEHICLE-REGISTRATIONS": 47,
+    "IND-WATER-ACCESS": 47
+  }
+}
