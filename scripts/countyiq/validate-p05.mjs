@@ -101,8 +101,13 @@ try{
  assert(phase05?.status==='complete','P05 roadmap must be complete');
  const order=roadmap.phases.map(x=>x.id);
  const nextPhases=roadmap.phases.filter(x=>x.status==='next');
- assert(nextPhases.length===1,`exactly one phase must be marked next, found ${nextPhases.length}`);
- assert(order.indexOf(nextPhases[0].id)>order.indexOf('P05'),`the next phase (${nextPhases[0].id}) must come after P05 — roadmap must only move forward`);
- console.log(`COUNTYIQ_P05_ROADMAP_OK next=${nextPhases[0].id}`);
+ if(nextPhases.length===0){
+   assert(roadmap.phases.every(x=>x.status==='complete'),'zero next phases is permitted only when every v1 roadmap phase is complete');
+   console.log('COUNTYIQ_P05_ROADMAP_OK next=none_all_complete');
+ }else{
+   assert(nextPhases.length===1,`exactly one phase must be marked next during active development, found ${nextPhases.length}`);
+   assert(order.indexOf(nextPhases[0].id)>order.indexOf('P05'),`the next phase (${nextPhases[0].id}) must come after P05 — roadmap must only move forward`);
+   console.log(`COUNTYIQ_P05_ROADMAP_OK next=${nextPhases[0].id}`);
+ }
  console.log('COUNTYIQ_P05_P19_ALL_OK');
 }catch(error){console.error(error.message||error);process.exit(1);}

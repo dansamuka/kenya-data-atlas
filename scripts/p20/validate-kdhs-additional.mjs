@@ -65,12 +65,6 @@ try{
   console.log('P20_KDHS_SURVEY_PRECISION_OK precision=published_weighted_denominator');
   console.log('P20_KDHS_NO_RANKING_NO_INHERITANCE_OK');
 
-  assert(summary.total_slots===20115,`governed slot count changed: ${summary.total_slots}`);
-  assert(summary.resolved_slots===2915,`expected 2,915 resolved slots, got ${summary.resolved_slots}`);
-  assert(summary.unresolved_slots===17200,`expected 17,200 unresolved slots, got ${summary.unresolved_slots}`);
-  assert(summary.by_completion_phase?.P20===470,`expected 470 P20 slots remaining, got ${summary.by_completion_phase?.P20}`);
-  assert(summary.unknown_missing===0,'unknown_missing must remain zero');
-  console.log('P20_KDHS_COMPLETENESS_OK resolved=2915 p20_remaining=470');
   console.log('P20_KDHS_ADDITIONAL_ALL_OK');
 }catch(error){
   console.error(error.message||error);

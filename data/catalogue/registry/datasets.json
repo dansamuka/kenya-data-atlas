@@ -797,5 +797,20 @@
     "publication_status": "published",
     "methodology_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/385",
     "known_limitations": "2019 census snapshot. KNBS Table 2.3 excludes the special population from the conventional-household denominator; no current-year interpolation is made."
+  },
+  {
+    "dataset_id": "0be62924-34d0-57bf-a964-c1aa8f4ae9eb",
+    "dataset_code": "DS-KNBS-KPHC-DISABILITY-2019-P20",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2019 KPHC — Disability Prevalence by County",
+    "description": "Published total disability prevalence for all 47 counties from the 2019 KPHC Analytical Report on Disability, Table 2.13.",
+    "topic": "Demography",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Disability.pdf",
+    "known_limitations": "2019 census snapshot using the published Washington Group Short Set threshold. Atlas uses the reported Total prevalence column and does not average sex or residence subtotals."
   }
 ]

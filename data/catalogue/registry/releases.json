@@ -670,5 +670,21 @@
     "version_label": "P20 governed county-source promotion",
     "release_notes": "2019 Kenya Population and Housing Census, Volume I: Population by County and Sub-County; Table 2.3 — Distribution of Population, Number of Households and Average Household Size by County. Values are direct reported county averages; no interpolation or parent-geography inheritance.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "4468ef0b-5d48-5924-99cc-3f61117dfd50",
+    "release_code": "REL-KNBS-KPHC-DISABILITY-2019-P20",
+    "dataset_id": "0be62924-34d0-57bf-a964-c1aa8f4ae9eb",
+    "title": "2019 KPHC disability prevalence by county — Table 2.13",
+    "reference_period_start": "2019-08-24",
+    "reference_period_end": "2019-08-25",
+    "published_at": "2020-06-01",
+    "discovered_at": "2026-08-31T07:30:00.000Z",
+    "ingested_at": "2026-08-31T07:30:00.000Z",
+    "release_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Disability.pdf",
+    "release_status": "published",
+    "version_label": "P20 governed county-source promotion",
+    "release_notes": "2019 Kenya Population and Housing Census — Analytical Report on Disability; Table 2.13 — Disability Prevalence by County and Residence. Uses the published Total prevalence column; no interpolation or geographic inheritance.",
+    "supersedes_release_id": ""
   }
 ]
