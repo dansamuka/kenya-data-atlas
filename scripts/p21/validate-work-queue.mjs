@@ -46,5 +46,19 @@ if(!familyCounts['IND-BUSINESS-LICENSES']){
   assert(def?.note?.includes('do not interpret those successors as business-licence counts'),'business-licence taxonomy must prohibit proxy interpretation');
 }
 
+if(!familyCounts['IND-FACILITY-INFRASTRUCTURE']){
+  const countyCodes=Array.from({length:47},(_,i)=>`KEN-C${String(i+1).padStart(3,'0')}`);
+  const successors=['IND-HEALTH-FACILITY-STOCK','IND-HEALTH-FACILITY-DENSITY'];
+  const closure=(evidence.states||[]).find(s=>s.indicator_code==='IND-FACILITY-INFRASTRUCTURE'&&s.status==='retired_replaced');
+  assert(closure,'facility-infrastructure retired/replaced evidence state missing');
+  assert(closure.level==='county','facility-infrastructure closure level must be county');
+  assert(JSON.stringify(closure.geo_codes)===JSON.stringify(countyCodes),'facility-infrastructure closure must cover exactly all 47 counties');
+  assert(JSON.stringify(closure.successor_indicator_codes)===JSON.stringify(successors),'facility-infrastructure successor set drifted');
+  assert(closure.reason?.includes('successors measure supply, not electricity/water access'),'facility-infrastructure closure must prohibit proxy interpretation');
+  const def=(taxonomy.indicators||[]).find(i=>i.code==='IND-FACILITY-INFRASTRUCTURE');
+  assert(def?.status==='retired','facility-infrastructure taxonomy lifecycle must remain retired');
+  assert(def?.note?.includes('do not interpret those successors as electricity/water access rates'),'facility-infrastructure taxonomy must prohibit proxy interpretation');
+}
+
 console.log(`P21_WORK_QUEUE_VALIDATE_OK slots=${rows.length} families=${codes.length}`);
 console.log(`P21_P20_DEPENDENCY_CLOSED_OK p20=${summary.by_completion_phase?.P20||0}`);
