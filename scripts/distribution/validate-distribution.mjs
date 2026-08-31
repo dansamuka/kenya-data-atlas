@@ -137,8 +137,13 @@ try {
   assert(['deferred','complete'].includes(p14?.status),'P14 must be explicitly deferred to v1.1 Beta or complete; it cannot be silently skipped');
   assert(p15?.status==='complete','P15 must be complete');
   assert(p16?.status==='complete','P16 must be complete before the final v1.0 phase');
-  assert(p17?.status==='next','P17 must be the next v1.0 phase');
-  console.log(`P15_ROADMAP_HANDOFF_OK complete=P16 next=P17 p14=${p14.status}`);
+  assert(['next','complete'].includes(p17?.status),`P17 must be next or complete, got ${p17?.status}`);
+  if(p17.status==='next'){
+    console.log(`P15_ROADMAP_HANDOFF_OK complete=P16 next=P17 p14=${p14.status}`);
+  }else{
+    assert(roadmap.phases.every(p=>p.status==='complete'),'P17 complete is valid only when the entire v1.0 roadmap is complete');
+    console.log(`P15_ROADMAP_HANDOFF_OK complete=P17 terminal=true p14=${p14.status}`);
+  }
   console.log(`P15_DATA_DISTRIBUTION_ALL_OK version=${pkg.version} contract=${manifest.data_contract_version}`);
 }catch(error){
   console.error(error.message||error);
