@@ -18,7 +18,7 @@ As of 31 August 2026 the governed completeness surface is:
 - **20,115 total slot instances**
 - **2,821 resolved**
 - **17,294 unresolved**
-- **14.03% resolved**
+- **14.02% resolved**
 - **49 unique indicator slots**
 - **0 unknown/unclassified blanks**
 
