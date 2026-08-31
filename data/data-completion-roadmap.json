@@ -150,11 +150,8 @@
       ],
       "progress": {
         "resolved_in_tranche_1": 47,
-        "resolved_in_tranche_2": 47,
-        "resolved_in_p21": 94,
-        "remaining_slots": 329,
-        "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties with stronger fixed-definition maize successors already published in P19.",
-        "tranche_2_note": "Promoted IND-WATER-ACCESS for all 47 counties from the direct improved-source subtotal in KNBS 2023/24 Kenya Housing Survey Table 5.14. Values are household survey estimates; no lower-level inheritance or fabricated uncertainty is introduced."
+        "remaining_slots": 376,
+        "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties. P19 already publishes fixed-definition maize area, production and transparent yield 47/47 from the official National Agriculture Production Report 2024 Annex 1, so P21 closes the weaker mixed-crop concept without duplicating or fabricating observations."
       }
     },
     {

@@ -8,11 +8,10 @@
     "completion_phase": "P21",
     "resolved": false
   },
-  "remaining_slots": 329,
-  "family_count": 7,
+  "remaining_slots": 282,
+  "family_count": 6,
   "family_counts": {
     "IND-BUSINESS-LICENSES": 47,
-    "IND-EXAM-PERFORMANCE": 47,
     "IND-FACILITY-INFRASTRUCTURE": 47,
     "IND-HOSPITAL-BED-UTILIZATION": 47,
     "IND-ROAD-NETWORK-LENGTH": 47,
