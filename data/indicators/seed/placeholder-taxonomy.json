@@ -345,13 +345,14 @@
       "name": "Licensed businesses (count, year-on-year change)",
       "description": "Licensed business count and year-on-year change where a county publishes a usable series.",
       "unit_code": "count",
-      "status": "planned",
+      "status": "retired",
       "tab": "economy",
       "levels": [
         "county"
       ],
-      "source": "County statistical abstracts / eCitizen",
-      "note": "Coverage is inconsistent; ingest opportunistically and never manufacture missing counties."
+      "source": "P21 governed county-licensing comparability review; replacement indicators sourced from KNBS Gross County Product 2025",
+      "note": "Retired/replaced in P21 because no governed 47-county comparable licensed-business count is available across consistent definitions and vintages. Use IND-GCP-CURRENT, IND-AGRICULTURE-GVA, IND-MANUFACTURING-GVA, IND-AGRICULTURE-GCP-SHARE, IND-MANUFACTURING-GCP-SHARE for the Atlas's fixed-definition official county economic evidence; do not interpret those successors as business-licence counts. The linked KNBS source documents the successors, not the retired licence-count concept.",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/12/2025-Gross-County-Product.pdf"
     },
     {
       "code": "IND-AGRI-PRODUCTION",
@@ -442,13 +443,14 @@
       "name": "Facilities with electricity/water (%)",
       "description": "Share of facilities with electricity/water in the Kenya Health Facility Census snapshot.",
       "unit_code": "percent",
-      "status": "planned",
+      "status": "retired",
       "tab": "health",
       "levels": [
         "county"
       ],
-      "source": "Kenya Health Facility Census 2023",
-      "note": "One-off snapshot; label prominently as a snapshot if activated."
+      "source": "Ministry of Health — Kenya Health Facility Census Report September 2023",
+      "note": "Retired/replaced in P21 because the original field combines electricity and water into one undefined percentage and the official census does not publish one governed 47-county combined amenity series. Use IND-HEALTH-FACILITY-STOCK and IND-HEALTH-FACILITY-DENSITY for source-backed county health-infrastructure supply evidence; do not interpret those successors as electricity/water access rates.",
+      "source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf"
     },
     {
       "code": "IND-TEENAGE-PREGNANCY",

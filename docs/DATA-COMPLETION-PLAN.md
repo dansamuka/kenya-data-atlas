@@ -34,7 +34,7 @@ Baseline unresolved queue:
 | P24 | 13,050 |
 | P25 | 1 |
 
-The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–2, the live summary reports **3,479 resolved**, **16,636 unresolved**, **0 unknown blanks**, and **329 P21 rows** remaining.
+The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–5, the live summary reports **3,620 resolved**, **16,495 unresolved**, **0 unknown blanks**, and **188 P21 rows** remaining.
 
 ## Completion semantics
 
@@ -201,6 +201,18 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 **P21 tranche 2 — improved drinking-water access:** 47/47 `IND-WATER-ACCESS` county slots are promoted from KNBS 2023/24 Kenya Housing Survey Table 5.14. The Atlas uses the published improved-source subtotal directly, retains the household-survey definition, withholds rankings where uncertainty is unavailable, and does not inherit values below county.
 
 **Remaining queue after tranche 2:** **329** across seven 47-county families.
+
+**P21 tranche 3 — exam-performance replacement:** all 47 `IND-EXAM-PERFORMANCE` slots are retired/replaced rather than manufacturing a mixed KCPE/KCSE county mean. KNEC records 2023 as the final KCPE examination; the Atlas keeps existing school-attendance, school-establishment and teacher indicators as clearly labelled education evidence, not exam-score proxies.
+
+**Remaining queue after tranche 3:** **282** across six 47-county families.
+
+**P21 tranche 4 — business-licence replacement:** all 47 `IND-BUSINESS-LICENSES` slots are retired/replaced because county licensing publications and administrative systems do not provide one governed 47-county series with consistent definitions and vintages. The Atlas does not stitch opportunistic county counts together or interpret non-publication as zero; it directs users to fixed-definition official GCP and agriculture/manufacturing economic-structure indicators instead.
+
+**Remaining queue after tranche 4:** **235** across five 47-county families.
+
+**P21 tranche 5 — facility-infrastructure replacement:** all 47 `IND-FACILITY-INFRASTRUCTURE` slots are retired/replaced because the original profile field combines electricity and water into one undefined percentage and the official 2023 Health Facility Census does not provide one governed 47-county combined amenity series. The Atlas does not infer county rates from charts or manufacture a combined score; existing health-facility stock and density indicators remain the clearly labelled county infrastructure-supply measures.
+
+**Remaining queue after tranche 5:** **188** across four 47-county families.
 
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 
