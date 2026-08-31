@@ -1,0 +1,73 @@
+name: P20 household-size generator
+
+on:
+  push:
+    branches: [p20-household-size-promotion]
+    paths:
+      - '.github/workflows/p20-household-size-generator.yml'
+      - 'scripts/p20/prepare-household-size-promotion.mjs'
+      - 'scripts/p20/build-household-size.mjs'
+      - 'scripts/p20/validate-household-size.mjs'
+      - 'data/p20/source/household-size-2019.json'
+      - 'package.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p20-household-size-promotion
+  cancel-in-progress: false
+
+jobs:
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out promotion branch
+        uses: actions/checkout@v4
+        with:
+          ref: p20-household-size-promotion
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+
+      - name: Apply governed metadata and progress updates
+        run: node scripts/p20/prepare-household-size-promotion.mjs
+
+      - name: Rebuild all published Atlas products
+        run: npm run build:data
+
+      - name: Run full Atlas validation suite
+        run: npm test
+
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+
+      - name: Commit implementation and deterministic generated products
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No household-size promotion changes were produced.'
+            exit 0
+          fi
+          git commit -m 'feat(p20): promote 47 county household-size slots'
+          git push origin HEAD:p20-household-size-promotion
