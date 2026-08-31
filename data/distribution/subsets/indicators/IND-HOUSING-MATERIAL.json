@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "8d0b143c-b99c-5c08-a73a-afc311a7c3db",
     "indicator_code": "IND-HOUSING-MATERIAL",

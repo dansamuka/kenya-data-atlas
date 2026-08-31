@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "4e6d05b0-7b3b-56de-8076-13026d62c16a",
     "indicator_code": "IND-POPULATION",

@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "c1627a1b-2bba-57af-a8d1-89c94336876f",
     "indicator_code": "IND-HEALTH-FACILITY-DENSITY",

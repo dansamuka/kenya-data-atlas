@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use Kenya Data Atlas, cite the exact release or commit and the underlying source datasets relevant to your analysis."
 title: "Kenya Data Atlas"
 type: software
-version: "0.18.0"
+version: "1.0.0"
 date-released: 2026-08-30
 license: MIT
 repository-code: "https://github.com/dansamuka/kenya-data-atlas"

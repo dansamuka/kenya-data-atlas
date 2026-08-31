@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "5d1cda83-fe83-5c5c-90a9-b9002024b52e",
     "indicator_code": "IND-PRIMARY-CLASSROOM-TEACHERS",

@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "b5276fa5-1996-5dfd-8070-8235a51b3a1c",
     "indicator_code": "IND-PUBLIC-PRIMARY-SCHOOLS",

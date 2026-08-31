@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "869fe130-e804-5834-a3b6-194f12777bc8",
     "indicator_code": "IND-MANUFACTURING-GVA",

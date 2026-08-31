@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "ac129467-c911-51a8-aeed-13d80b65028e",
     "indicator_code": "IND-MAIN-GRID-ELECTRICITY",

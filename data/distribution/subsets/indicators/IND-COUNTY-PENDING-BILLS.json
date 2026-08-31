@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "2b445da9-6454-55cb-b6a6-3411fb4dd78f",
     "indicator_code": "IND-COUNTY-PENDING-BILLS",

@@ -392,7 +392,7 @@
     {
       "id": "P17",
       "title": "Final reproducibility, governance and v1.0 release",
-      "status": "next",
+      "status": "complete",
       "session_goal": "Close the repository against one final completion ledger and publish a defensible v1.0 state only after reproducibility, real-browser and deployment gates pass.",
       "outputs": [
         "full deterministic rebuild",
@@ -417,7 +417,8 @@
         "P13",
         "P16"
       ],
-      "target_release": "v1.0"
+      "target_release": "v1.0",
+      "completion_note": "Completed for Kenya Data Atlas v1.0.0 on 2026-08-30 after deterministic rebuild, full validators, independent geometry audit, real-browser/accessibility/performance gates, exact-commit GitHub Pages deployment and post-deployment smoke verification."
     }
   ]
 }

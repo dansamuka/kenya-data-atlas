@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "95abc4d0-dafc-5c5a-aa12-8e63cdcbe866",
     "indicator_code": "IND-GDP-NATIONAL",

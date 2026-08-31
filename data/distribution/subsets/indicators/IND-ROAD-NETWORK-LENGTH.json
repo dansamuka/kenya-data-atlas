@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "1be600c2-a5fb-5b5d-b284-333363938c91",
     "indicator_code": "IND-ROAD-NETWORK-LENGTH",

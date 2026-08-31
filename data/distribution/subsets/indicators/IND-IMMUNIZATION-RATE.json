@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "26862ecb-982b-5606-9421-2034cc05b094",
     "indicator_code": "IND-IMMUNIZATION-RATE",

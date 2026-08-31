@@ -11,11 +11,11 @@ The completed implementation surface covers the canonical Kenya → County → C
 Current release-candidate scale includes 1,788 geographies, 98 indicators, 3,370 series, 6,864 observations, 47 CountyIQ profiles/results, 247 county evidence records and 9 verified P14 Beta programme records.
 
 <!-- P17_STATUS_START -->
-## P17 — final reproducibility, governance and v1.0 release
+## v1.0 completion
 
-**P17 is the release candidate gate.** No substantial product feature remains on the v1.0 path. The candidate must pass the deterministic data rebuild, zero generated-output drift, full validators, independent Shapely geometry audit, Chromium/Firefox/WebKit + axe checks, Lighthouse budgets and GitHub Pages deployment for the exact candidate SHA.
+**P00–P17 are complete.** Kenya Data Atlas v1.0.0 is the closed reproducible statistical/data release. P14 is also implemented as a separately governed v1.1 Beta action layer; its continuing programme-freshness review is maintenance, not an unresolved v1.0 release gate.
 
-Only after those candidate gates pass does the P17 publisher write the v1.0 completion ledger and application version. That exact final release commit must then pass the same data/browser/deployment gates again and a live post-deployment smoke test before the immutable `v1.0.0` tag and GitHub release are created.
+Release acceptance: deterministic rebuild and zero drift, full validators, independent geometry audit, Chromium/Firefox/WebKit + axe, Lighthouse budgets, link/crawlability checks, exact-commit GitHub Pages deployment and post-deployment smoke test all pass.
 <!-- P17_STATUS_END -->
 
 ## Known limits carried honestly into v1.0

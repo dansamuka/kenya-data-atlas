@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "980e4da9-bca5-5897-84cb-9fa79c84c2ed",
     "indicator_code": "IND-TURNOUT-HISTORY",

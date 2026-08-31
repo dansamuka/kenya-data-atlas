@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "d61be01a-2b7f-51b2-8320-24a40ad05e88",
     "indicator_code": "IND-GCP-CURRENT",

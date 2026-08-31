@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.0 — 30 August 2026 — P17 final reproducibility, governance and release
+
+Closes the Kenya Data Atlas v1.0 programme after the exact release commit passes all required reproducibility, browser, accessibility, performance, geometry and deployment gates.
+
+- Completes P17 and the P00–P17 repository completion ledger.
+- Publishes the v1.0 release manifest and explicit unresolved-items register.
+- Reconciles README, ROADMAP, citation metadata and application version to the released state.
+- Requires deterministic `build:data` with zero committed-output drift, full `npm test`, independent Shapely geometry audit, Chromium/Firefox/WebKit smoke + axe checks and Lighthouse budgets.
+- Requires GitHub Pages to deploy the exact release commit and pass a live post-deployment smoke test before the `v1.0.0` tag/release is created.
+- Preserves known evidence limits instead of filling them by approximation, including Narok's withheld fiscal-delivery score, the Mandera East/Lafey ward spatial hold, the withheld longitudinal composite and continuing P14 freshness obligations.
+
+See `docs/releases/v1.0.0.md`, `docs/releases/v1.0.0-unresolved.md` and `data/release/v1.0.0.json`.
+
 ## 0.18.0 — 30 August 2026 — P15 data distribution and developer surface
 
 Turns the validated Atlas registries and CountyIQ outputs into a stable public developer interface.

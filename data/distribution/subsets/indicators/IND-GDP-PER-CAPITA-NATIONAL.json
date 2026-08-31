@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "71642150-62fc-59ee-805e-4f18399841b8",
     "indicator_code": "IND-GDP-PER-CAPITA-NATIONAL",

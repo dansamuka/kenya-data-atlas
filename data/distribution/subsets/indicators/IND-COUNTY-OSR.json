@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "c690a64c-1366-55fe-804e-8383a0dbb9de",
     "indicator_code": "IND-COUNTY-OSR",

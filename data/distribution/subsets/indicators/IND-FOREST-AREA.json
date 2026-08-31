@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "f75b59ff-9d49-5b18-8e13-35022b67fa2a",
     "indicator_code": "IND-FOREST-AREA",

@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "c21ddd7a-0fb0-5aa2-9553-2c74967530fe",
     "indicator_code": "IND-NG-CDF-ALLOCATION",

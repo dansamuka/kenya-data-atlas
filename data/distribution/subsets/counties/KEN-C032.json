@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.county-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "geography": {
     "geography_id": "9dc9005d-2ad9-57f1-9927-c951df4e5cfb",
     "geo_code": "KEN-C032",

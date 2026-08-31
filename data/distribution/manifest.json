@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.distribution-manifest.v1",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "data_contract_version": "1.0.0",
   "release_date": "2026-08-30",
   "generated_at": "2026-08-31T08:40:00.000Z",

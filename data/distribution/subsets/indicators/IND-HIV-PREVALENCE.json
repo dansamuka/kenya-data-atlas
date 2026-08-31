@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "07536217-ba3f-50a2-b3f4-da669a927e3d",
     "indicator_code": "IND-HIV-PREVALENCE",

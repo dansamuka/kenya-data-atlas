@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "c8e46a32-d1bb-50a4-828d-ee18062860bb",
     "indicator_code": "IND-COUNTY-BUDGET-TOTAL",

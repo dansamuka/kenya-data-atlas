@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "4d2af584-0618-5d1a-b75b-9a370ae3aa7d",
     "indicator_code": "IND-POP-2009",

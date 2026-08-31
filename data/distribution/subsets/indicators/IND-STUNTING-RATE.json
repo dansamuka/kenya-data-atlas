@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "b9e180f3-a7df-53f8-9103-d2af018d3cb1",
     "indicator_code": "IND-STUNTING-RATE",

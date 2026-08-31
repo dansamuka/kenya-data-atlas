@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "7e030d9e-67ae-521f-a606-879abe7a6d1a",
     "indicator_code": "IND-FGM-CHILD-MARRIAGE",

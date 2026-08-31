@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "24bdaabb-3cc0-5d11-ad69-4adff1671c1f",
     "indicator_code": "IND-HOSPITAL-BED-UTILIZATION",

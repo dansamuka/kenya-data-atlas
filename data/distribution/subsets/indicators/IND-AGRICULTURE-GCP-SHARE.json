@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "ccf4d087-9d49-524e-921a-ea91a87abe0d",
     "indicator_code": "IND-AGRICULTURE-GCP-SHARE",

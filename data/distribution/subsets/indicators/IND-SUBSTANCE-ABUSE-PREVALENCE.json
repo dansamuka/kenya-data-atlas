@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "e49d739a-c488-5baa-990a-99df5da7d0f3",
     "indicator_code": "IND-SUBSTANCE-ABUSE-PREVALENCE",

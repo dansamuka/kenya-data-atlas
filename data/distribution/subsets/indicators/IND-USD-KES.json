@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "3fcc51b3-a441-5902-b39b-3ccb56eab963",
     "indicator_code": "IND-USD-KES",

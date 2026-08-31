@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "04d3f77a-db98-5e6d-9e35-2a7a6a5a402c",
     "indicator_code": "IND-SAFE-SANITATION",

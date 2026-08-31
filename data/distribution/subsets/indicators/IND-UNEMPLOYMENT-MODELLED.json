@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "70f766cf-e6ff-54bc-9a07-af4a7e031330",
     "indicator_code": "IND-UNEMPLOYMENT-MODELLED",

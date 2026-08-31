@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "548ffd52-0d6b-5aeb-8be9-8a0c77321dee",
     "indicator_code": "IND-WOMEN-PARLIAMENT-SEATS",

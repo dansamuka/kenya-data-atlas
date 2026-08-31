@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "a181ac44-f24a-58c2-9434-6742d19c8b44",
     "indicator_code": "IND-MP-IDENTITY",

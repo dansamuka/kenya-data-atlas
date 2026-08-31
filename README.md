@@ -7,7 +7,7 @@ Kenya Data Atlas is an independent, source-auditable public data product for exp
 ## Current release state
 
 <!-- P17_RELEASE_STATE_START -->
-**Release state: v1.0 release candidate.** P00–P16 are complete, including the separately governed P14 Action & Opportunity Finder Beta. P17 is the final evidence gate: the repository will be marked v1.0.0 released only after the exact `main` release commit passes deterministic rebuild, the full validation suite, independent geometry audit, Chromium/Firefox/WebKit + axe checks, Lighthouse budgets, GitHub Pages deployment and a live post-deployment smoke test.
+**Release state: v1.0.0 released.** P00–P17 are complete. The tagged release passed deterministic rebuild, the full validation suite, independent Shapely geometry audit, Chromium/Firefox/WebKit + axe checks, Lighthouse budgets, exact-commit GitHub Pages deployment and a post-deployment smoke test. P14 remains available as a separately governed v1.1 Beta opportunity layer with ongoing monthly freshness obligations.
 <!-- P17_RELEASE_STATE_END -->
 
 Current canonical registry coverage:
@@ -131,7 +131,7 @@ The P16 release workflow additionally runs Chromium, Firefox and WebKit, axe acc
 
 Three versions are intentionally distinct:
 
-1. **Application/data release version** — `0.18.0` while the P17 release candidate is being verified; the evidence-gated publisher changes this to `1.0.0` only after candidate gates pass.
+1. **Application/data release version** — `1.0.0`.
 2. **Data contract version** — `1.0.0`; changes only when the public distribution contract breaks.
 3. **Methodology versions** — e.g. the canonical indicator policy and analytical result schemas, which can evolve independently of raw data refreshes.
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "d2408a91-ad8a-5d3f-bb46-fe287d18fe02",
     "indicator_code": "IND-SECONDARY-TEACHERS",

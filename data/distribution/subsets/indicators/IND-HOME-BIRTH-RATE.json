@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "0d66657f-1bfd-5f5f-9824-d27fe007b5ba",
     "indicator_code": "IND-HOME-BIRTH-RATE",

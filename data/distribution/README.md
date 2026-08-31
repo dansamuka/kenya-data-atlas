@@ -2,7 +2,7 @@
 
 This directory is the stable, machine-readable developer entry point introduced in P15.
 
-- Application/data release: **0.18.0**
+- Application/data release: **1.0.0**
 - Data contract: **1.0.0**
 - Indicators: **98**
 - Series: **4,027**

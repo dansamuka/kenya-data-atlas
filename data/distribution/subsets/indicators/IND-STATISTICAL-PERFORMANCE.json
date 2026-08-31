@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "8435738a-3644-55d7-8962-293657dad285",
     "indicator_code": "IND-STATISTICAL-PERFORMANCE",

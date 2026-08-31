@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "2c8b8be0-26aa-5740-ac13-2010cb1e9a25",
     "indicator_code": "IND-FOOD-SECURITY-PHASE",

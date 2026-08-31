@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "34e52611-58fa-575c-8a94-b468c593a7bd",
     "indicator_code": "IND-VEHICLE-REGISTRATIONS",

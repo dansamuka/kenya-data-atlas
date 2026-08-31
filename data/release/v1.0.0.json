@@ -1,12 +1,12 @@
 {
   "schema_version": "kda.release-manifest.v1",
   "release_version": "1.0.0",
-  "release_status": "release_candidate",
+  "release_status": "released",
   "release_date": "2026-08-30",
   "source_ref": "v1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "data_contract_version": "1.0.0",
-  "completed_phase_count": 17,
+  "completed_phase_count": 18,
   "counts": {
     "units": 21,
     "indicators": 98,

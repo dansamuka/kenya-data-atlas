@@ -1,6 +1,6 @@
 # Kenya Data Atlas — Repository Completion Plan
 
-Status: **living session plan**  
+Status: **completed v1.0 release ledger**  
 Machine-readable source: `data/project-roadmap.json`  
 Goal: finish the repository through bounded, independently deployable phases that can each be implemented, validated and pushed in one substantial working session wherever practical.
 
@@ -35,7 +35,7 @@ Already complete and not to be restarted without a regression/correction:
 - P05 47-county education, economic-structure, agriculture and infrastructure breadth package, adding 14 source-backed county indicators and taking CountyIQ to 34 fully county-covered indicators across 7 domains.
 - P16 real-browser/accessibility/SEO/performance release audit, including Chromium/Firefox/WebKit smoke and axe checks, Lighthouse budgets, mobile focus/overflow checks, crawlability and reproducible link auditing.
 
-With P00–P16 complete (including P14 as a separately governed **v1.1 Beta** action layer), the only remaining v1.0 phase is **final reproducibility, governance, deployment and release closeout (P17)**. P14 programme freshness remains an ongoing maintenance obligation but is not a v1.0 blocker.
+P00–P17 are complete. Kenya Data Atlas v1.0.0 is the closed statistical/data release; P14 remains a separately governed v1.1 Beta action layer whose programme-freshness maintenance continues after v1.0.
 
 ---
 
@@ -333,11 +333,11 @@ The final CountyIQ layout-shift regression was closed by reserving the asynchron
 
 ## P17 — Final reproducibility + governance + v1.0
 
-**Status: next.**
+**Status: complete.**
 
-Recommended next-session instruction: **Complete P17** from `data/project-roadmap.json`. Do not restart completed phases.
+P17 closed the v1.0 release only after the exact release commit passed the deterministic data rebuild, full validation suite, independent geometry audit, P16 browser/accessibility/performance audit, GitHub Pages deployment and post-deployment smoke test.
 
-Final closeout session.
+Final closeout completed on 30 August 2026.
 
 Run/reconcile:
 
@@ -360,13 +360,11 @@ Then:
 
 **v1.0 should mean:** the declared product is reproducible, source-auditable, usable, performant and methodologically honest—not that every desirable Kenyan dataset exists.
 
-## Recommended session order
+## Completion state
 
-The v1.0 sequence is now:
+`P00–P17 complete → v1.0.0 released`
 
-`P00–P16 complete → P17 next → v1.0`
-
-P14 is complete as a separately governed `v1.1 Beta` action layer. Its ongoing programme-freshness operation remains outside the v1.0 release gate; P17 must preserve all evidence, reproducibility and browser thresholds.
+P14 is complete as a separately governed `v1.1 Beta` action layer. Its ongoing programme-freshness operation remains a maintenance obligation and does not alter the v1.0 statistical release state.
 
 ## Session completion protocol
 

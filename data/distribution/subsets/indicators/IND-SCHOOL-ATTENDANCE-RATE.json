@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.indicator-subset.v1",
   "data_contract_version": "1.0.0",
-  "application_version": "0.18.0",
+  "application_version": "1.0.0",
   "indicator": {
     "indicator_id": "5eb56720-6954-59bd-87d9-d51c07c736e8",
     "indicator_code": "IND-SCHOOL-ATTENDANCE-RATE",
