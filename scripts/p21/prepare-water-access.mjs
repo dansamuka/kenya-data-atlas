@@ -48,4 +48,18 @@ if(!plan.includes('**P21 tranche 2 — improved water access:**')){
 }
 write(planPath,plan);
 
+// Agriculture preparation predates this tranche and intentionally rewrites
+// package scripts. Restore the composed P21 build contract after both prepares
+// so every clean rebuild remains idempotent and includes water.
+const packagePath='package.json';
+const pkg=readJson(packagePath);
+pkg.scripts['p21:prepare']='node scripts/p21/prepare-all.mjs';
+pkg.scripts['p21:water:catalogue']='node scripts/p21/build-water-access.mjs catalogue';
+pkg.scripts['p21:water:indicators']='node scripts/p21/build-water-access.mjs indicators';
+pkg.scripts['p21:water:validate']='node scripts/p21/validate-water-access.mjs';
+if(!pkg.scripts['catalogue:build'].includes('p21:water:catalogue')) pkg.scripts['catalogue:build'] += ' && npm run p21:water:catalogue';
+if(!pkg.scripts['indicators:build'].includes('p21:water:indicators')) pkg.scripts['indicators:build'] += ' && npm run p21:water:indicators';
+pkg.scripts['p21:validate']='node scripts/p21/validate-work-queue.mjs && node scripts/p21/validate-agriculture-replacement.mjs && npm run p21:water:validate';
+writeJson(packagePath,pkg);
+
 console.log('P21_WATER_PREPARE_OK sourced=47 expected_remaining=329 national_anchor=64.8');
