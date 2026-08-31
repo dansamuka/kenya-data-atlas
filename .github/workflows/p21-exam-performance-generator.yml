@@ -1,0 +1,93 @@
+name: P21 exam-performance closure generator
+
+on:
+  push:
+    branches: [p21-exam-performance-retirement]
+    paths:
+      - '.github/workflows/p21-exam-performance-generator.yml'
+      - 'data/completeness/evidence-states.json'
+      - 'scripts/completeness/**'
+      - 'scripts/p21/**'
+      - 'package.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p21-exam-performance-retirement
+  cancel-in-progress: true
+
+jobs:
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out tranche branch
+        uses: actions/checkout@v4
+        with:
+          ref: p21-exam-performance-retirement
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+
+      - name: Validate governed exam-performance closure source state
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const e=JSON.parse(fs.readFileSync('data/completeness/evidence-states.json','utf8'));
+          const state=(e.states||[]).find(s=>s.indicator_code==='IND-EXAM-PERFORMANCE');
+          if(!state) throw new Error('P21 exam-performance evidence state missing');
+          if(state.status!=='retired_replaced') throw new Error('P21 exam-performance state must be retired_replaced');
+          if(state.geo_codes?.length!==47||new Set(state.geo_codes).size!==47) throw new Error('P21 exam-performance closure must cover exactly 47 counties');
+          if(!Array.isArray(state.successor_indicator_codes)||state.successor_indicator_codes.length<1) throw new Error('P21 exam-performance closure requires source-backed successors');
+          console.log(`P21_EXAM_PERFORMANCE_SOURCE_GATE_OK counties=${state.geo_codes.length} successors=${state.successor_indicator_codes.length}`);
+          NODE
+
+      - name: Rebuild all published Atlas products
+        run: npm run build:data
+
+      - name: Confirm P21 queue reduction
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const q=JSON.parse(fs.readFileSync('data/completeness/p21-work-queue.json','utf8'));
+          const s=JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
+          if(q.family_counts?.['IND-EXAM-PERFORMANCE']) throw new Error('exam-performance family remains unresolved after rebuild');
+          if(q.remaining_slots!==282||q.family_count!==6) throw new Error(`expected P21 queue 282/6 after closure, got ${q.remaining_slots}/${q.family_count}`);
+          if(s.by_completion_phase?.P21!==282) throw new Error(`summary P21 expected 282, got ${s.by_completion_phase?.P21}`);
+          if(s.total_slots!==20115||s.unknown_missing!==0) throw new Error('governed denominator or unknown-missing invariant changed');
+          console.log(`P21_EXAM_PERFORMANCE_LEDGER_OK remaining=${q.remaining_slots} families=${q.family_count}`);
+          NODE
+
+      - name: Run full Atlas validation suite
+        run: npm test
+
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+
+      - name: Commit generated products
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No generated changes produced.'
+            exit 0
+          fi
+          git commit -m 'build(p21): refresh exam-performance closure outputs'
+          git push origin HEAD:p21-exam-performance-retirement
