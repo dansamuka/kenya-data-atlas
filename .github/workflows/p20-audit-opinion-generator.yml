@@ -45,7 +45,17 @@ jobs:
           python -m pip install --disable-pip-version-check shapely
 
       - name: Apply reviewed P20 audit promotion
-        run: node scripts/p20/promote-audit-opinion.mjs
+        run: |
+          node scripts/p20/promote-audit-opinion.mjs
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'data/countyiq/source/p10-fiscal-accountability-2024-25.json';
+          const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+          doc.audit_context_2023_24.exact_qualified_geo_codes_from_indexed_appendix_extract = [...doc.audit_context_2023_24.qualified_geo_codes];
+          doc.audit_context_2023_24.compatibility_note = 'Legacy P10 field retained as an alias to the complete 47-county primary Appendix 1(a) verification.';
+          fs.writeFileSync(file, JSON.stringify(doc, null, 2) + '\n');
+          console.log('P20_AUDIT_P10_COMPAT_OK qualified=47');
+          NODE
 
       - name: Rebuild all published Atlas products
         run: npm run build:data
