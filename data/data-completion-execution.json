@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.data-completion-execution.v1",
-  "effective_from": "2026-08-31",
+  "effective_from": "2026-09-01",
   "phase_authority": "data/data-completion-roadmap.json",
   "slot_authority": "data/completeness/slot-ledger.json",
   "summary_authority": "data/completeness/summary.json",
@@ -22,15 +22,22 @@
       "track_id": "county_completion",
       "label": "County completion",
       "status": "in_progress",
-      "sequence": ["P21", "P22"],
-      "current_focus": "P21",
-      "rule": "Continue hard-county resolution one indicator family per PR; begin P22 when its source/freshness contracts are ready without weakening P21 closure requirements."
+      "sequence": [
+        "P21",
+        "P22"
+      ],
+      "current_focus": "P22",
+      "contract": "data/p22/asal-eligibility-freshness-contract.json",
+      "rule": "P21 is closed. Execute P22 against the governed 22-county whole-county eligibility contract; resolve drought, food-security and climate families only with date-aware source metadata, and never present stale alert states as current."
     },
     {
       "track_id": "local_intelligence_accelerator",
       "label": "Local intelligence accelerator",
       "status": "in_progress",
-      "sequence": ["P23A", "P23"],
+      "sequence": [
+        "P23A",
+        "P23"
+      ],
       "current_focus": "P23A",
       "feeds_phase": "P23",
       "rule": "Promote reusable national constituency pipelines early, but resolve only existing P23 slots and retain full P23 as the 290-constituency completion gate."
@@ -39,7 +46,11 @@
       "track_id": "final_convergence",
       "label": "Final convergence",
       "status": "planned",
-      "sequence": ["P24", "P25", "P26"],
+      "sequence": [
+        "P24",
+        "P25",
+        "P26"
+      ],
       "rule": "Ward completion, final public-surface closure and the permanent 100% gate retain their original dependencies and acceptance semantics."
     }
   ],
@@ -84,11 +95,23 @@
       ]
     }
   },
-  "closure_order": ["P18", "P19", "P20", "P21", "P22", "P23", "P24", "P25", "P26"],
+  "closure_order": [
+    "P18",
+    "P19",
+    "P20",
+    "P21",
+    "P22",
+    "P23",
+    "P24",
+    "P25",
+    "P26"
+  ],
   "next_actions": [
-    "Continue P21 with one hard county family per PR.",
+    "Use data/p22/asal-eligibility-freshness-contract.json as the P22 county eligibility and freshness authority.",
+    "Extract the latest NDMA county drought early-warning states for the 22 governed counties with reference-month/publication-date metadata; do not inherit national status downward.",
+    "Extract KFSSG/NDMA food-security classifications only at defensible geography and preserve current/projected validity windows.",
+    "Define the KMD rainfall/temperature anomaly ingestion contract before promoting the third P22 family.",
     "Canonicalise P23A constituency registered voters as the first local-intelligence tranche while preserving the audited Sprint 2 B/Official-derived treatment.",
-    "Research the next P23A national pipeline only after the registered-voter tranche is validated.",
     "Do not start ward numeric promotion until its geography/source contract is independently defensible."
   ]
 }

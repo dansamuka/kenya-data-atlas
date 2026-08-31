@@ -1,0 +1,125 @@
+{
+  "schema_version": "kda.p22.asal-eligibility-freshness.v1",
+  "phase": "P22",
+  "title": "ASAL eligibility and NDMA drought/food-security freshness contract",
+  "status": "active_contract",
+  "effective_from": "2026-09-01",
+  "governed_slot_count": 66,
+  "slot_math": {
+    "eligible_counties": 22,
+    "families_per_county": 3,
+    "expected_slots": 66
+  },
+  "authority": {
+    "phase": "data/data-completion-roadmap.json",
+    "slot_ledger": "data/completeness/slot-ledger.json",
+    "primary_source_family": "National Drought Management Authority (NDMA) / Kenya Food Security Steering Group (KFSSG)",
+    "resource_index": "https://knowledgeweb.ndma.go.ke/Public/Resources/Default.aspx?ID=5",
+    "drought_bulletins": "https://knowledgeweb.ndma.go.ke/Public/Resources/Default.aspx?ID=7",
+    "county_bulletins": "https://knowledgeweb.ndma.go.ke/Public/Resources/CountyBulletins.aspx?ID=11",
+    "coverage_basis": "KFSSG/NDMA Long Rains Assessment methodology: 23 ASAL assessment counties, with northern Nyeri (Kieni sub-county) explicitly partial."
+  },
+  "eligibility": {
+    "rule": "Use the 22 county-level P22 geographies obtained from the official 23-county KFSSG/NDMA ASAL assessment coverage after excluding Nyeri because the source explicitly limits ASAL coverage there to northern Nyeri (Kieni sub-county). This is a governed county-slot eligibility rule, not a claim that every location within an eligible county has identical biophysical aridity.",
+    "whole_county_programme_eligible": [
+      "Baringo",
+      "Embu",
+      "Garissa",
+      "Isiolo",
+      "Kajiado",
+      "Kilifi",
+      "Kitui",
+      "Kwale",
+      "Laikipia",
+      "Lamu",
+      "Makueni",
+      "Mandera",
+      "Marsabit",
+      "Meru",
+      "Narok",
+      "Samburu",
+      "Taita Taveta",
+      "Tana River",
+      "Tharaka Nithi",
+      "Turkana",
+      "Wajir",
+      "West Pokot"
+    ],
+    "partial_asal_excluded_from_whole_county_slots": [
+      {
+        "county": "Nyeri",
+        "eligible_area": "Kieni sub-county / northern Nyeri",
+        "treatment": "Do not promote a county-wide P22 value from partial-area evidence. Preserve as partial-ASAL evidence only unless an indicator-specific county-wide source is independently valid."
+      }
+    ],
+    "anti_inheritance": [
+      "Do not inherit a national drought state to a county.",
+      "Do not inherit a livelihood-zone or sub-county state to the whole county without explicit source support.",
+      "Do not treat partial-ASAL evidence as whole-county evidence.",
+      "Do not fill a missing county bulletin from a neighbouring county, cluster, or regional average."
+    ]
+  },
+  "families": {
+    "drought_early_warning": {
+      "source_preference": [
+        "NDMA county drought early-warning bulletin",
+        "NDMA national drought early-warning bulletin as reconciliation/control only"
+      ],
+      "period_contract": "Store bulletin reference month separately from publication date and retrieval date.",
+      "freshness_contract": {
+        "current_label_rule": "A drought alert may be labelled current only when it comes from the latest NDMA bulletin available for that county at build time and its reference month is no more than two calendar months behind the build/as-of month.",
+        "stale_rule": "If the latest available county bulletin is older than the two-calendar-month tolerance, retain the observation as historical/stale and do not display its alert state as current.",
+        "missing_latest_rule": "If a national bulletin is newer than the latest county bulletin, do not silently copy the national state down; mark county freshness as evidence-constrained pending county-level confirmation."
+      }
+    },
+    "food_security_phase": {
+      "source_preference": [
+        "KFSSG/NDMA Long Rains Assessment",
+        "KFSSG/NDMA Short Rains Assessment",
+        "official IPC/KFSSG material cited by the assessment where needed"
+      ],
+      "period_contract": "Preserve assessment season, assessment dates, publication date, classification geography, and every explicit current/projected validity interval.",
+      "freshness_contract": {
+        "current_label_rule": "A food-security phase may be labelled current only inside the source's explicit current validity interval for the same geography.",
+        "projected_label_rule": "A projected phase must remain labelled projected and may be shown only inside the source's explicit projection interval.",
+        "expired_rule": "After the applicable current/projected interval ends, retain the classification as historical/expired until a newer official assessment is ingested.",
+        "geography_rule": "Where IPC/KFSSG classification is livelihood-zone, sub-county, or other sub-county geography, do not coerce it to a whole-county phase unless the official source itself publishes a defensible county classification."
+      }
+    },
+    "climate_anomaly": {
+      "source_preference": [
+        "Kenya Meteorological Department (KMD)",
+        "explicitly documented fallback only when KMD cannot supply the governed measure"
+      ],
+      "period_contract": "Rainfall/temperature anomaly values must preserve observation window, climatological baseline/reference, spatial aggregation method, source issue date, and retrieval date.",
+      "freshness_contract": {
+        "rule": "Do not call an anomaly current outside the observation/issue period represented by the source. Seasonal products remain seasonal; monthly products remain monthly.",
+        "fallback_rule": "A fallback source cannot silently replace KMD; provenance and the reason for fallback must be explicit."
+      }
+    }
+  },
+  "source_discovery_snapshot": {
+    "checked_on": "2026-09-01",
+    "latest_seen": {
+      "national_drought_bulletin": {
+        "reference_period": "2026-07",
+        "published": "2026-08",
+        "status": "discovered_not_yet_ingested"
+      },
+      "long_rains_assessment": {
+        "report_year": 2026,
+        "published": "2026-08",
+        "status": "discovered_not_yet_ingested"
+      }
+    },
+    "note": "Discovery metadata does not resolve any P22 slot. Slot resolution begins only after county/geography extraction, provenance capture, deterministic build and validation."
+  },
+  "acceptance_guardrails": [
+    "Exactly 22 county geographies are eligible for the governed whole-county P22 surface.",
+    "Nyeri/Kieni partial-ASAL evidence cannot be promoted as a Nyeri county-wide P22 observation.",
+    "Every drought record carries reference month, publication date when available, retrieval/build date, source URL/id and freshness state.",
+    "Every food-security classification carries current/projected semantics and explicit validity dates or is withheld from current presentation.",
+    "No stale drought warning or expired food-security phase may be presented as current.",
+    "No P22 slot is marked resolved merely by creating this contract."
+  ]
+}
