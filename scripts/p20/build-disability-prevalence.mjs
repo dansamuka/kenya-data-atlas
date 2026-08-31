@@ -17,7 +17,7 @@ const csvCell=v=>`"${String(Array.isArray(v)?v.join('|'):v??'').replaceAll('"','
 const csv=rows=>{const fields=[...new Set(rows.flatMap(r=>Object.keys(r)))];return [fields.join(','),...rows.map(r=>fields.map(f=>csvCell(r[f])).join(','))].join('\n')+'\n';};
 const uuid=name=>{const h=createHash('sha1').update(`kenya-data-atlas:p20-disability:${name}`).digest();h[6]=(h[6]&15)|80;h[8]=(h[8]&63)|128;const x=h.subarray(0,16).toString('hex');return `${x.slice(0,8)}-${x.slice(8,12)}-${x.slice(12,16)}-${x.slice(16,20)}-${x.slice(20)}`;};
 const norm=v=>String(v??'').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g,'');
-const formal=geo=>geo.geo_code==='KEN-C043'?'Homa Bay':geo.name;
+const formal=geo=>geo.geo_code==='KEN-C043'?'Homa Bay':geo.geo_code==='KEN-C047'?'Nairobi City':geo.name;
 function validateSource(source){
   const rows=source.counties||[]; const map=new Map(rows.map(r=>[r.geo_code,r]));
   if(rows.length!==47||map.size!==47||EXPECTED.some(code=>!map.has(code))) throw new Error(`P20 disability: source must contain exact 47 county codes; rows=${rows.length} unique=${map.size}`);
