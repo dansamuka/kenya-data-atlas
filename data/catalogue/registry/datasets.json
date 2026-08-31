@@ -932,5 +932,20 @@
     "publication_status": "published",
     "methodology_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
     "known_limitations": "Census household-asset ownership, not NTSA vehicle registrations. Values describe the share of conventional households owning each named asset. A household may own more than one asset, so columns must not be summed into a unique household-vehicle share. No vehicle counts, registration rates or per-capita vehicle stocks are inferred."
+  },
+  {
+    "dataset_id": "26e19937-6c9a-58ee-a788-821cfdea8c15",
+    "dataset_code": "DS-KNBS-CLASS-C-RURAL-ROADS-2025-P21",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "Economic Survey 2026 — Class C rural road length by county, 2025",
+    "description": "Published total kilometres of Class C rural roads for all 47 counties in 2025 from KNBS Economic Survey 2026 Table 11.9, underlying source Kenya Rural Roads Authority.",
+    "topic": "Transport infrastructure",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+    "known_limitations": "This is Class C rural-road length only, not total road length across every road class within a county. 2025 values are provisional. Published county totals are preserved verbatim; displayed county totals sum to 28,150.5 km versus the published national 28,149.9 km because of source publication precision/rounding. No balancing adjustment is made."
   }
 ]

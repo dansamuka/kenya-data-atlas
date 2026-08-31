@@ -814,5 +814,21 @@
     "version_label": "P21 governed hard-county replacement",
     "release_notes": "2019 Kenya Population and Housing Census, Volume IV: Distribution of Population by Socio-Economic Characteristics; Table 2.36 — Percentage Distribution of Conventional Households by Ownership of Selected Household Assets by Area of Residence, County and Sub County. Direct county motorcycle and car ownership percentages. Peer-reviewed PLOS ONE Table 1 independently reproduces the same 47-county columns from the KPHC. No combined vehicle share is created.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "966919bd-7158-5bdd-abc2-70cc4b321f86",
+    "release_code": "REL-KNBS-CLASS-C-RURAL-ROADS-2025-P21",
+    "dataset_id": "26e19937-6c9a-58ee-a788-821cfdea8c15",
+    "title": "Economic Survey 2026 Table 11.9 — Class C rural roads by county, 2025",
+    "reference_period_start": "2025-01-01",
+    "reference_period_end": "2025-12-31",
+    "published_at": "2026-04-29",
+    "discovered_at": "2026-08-31T18:18:00.000Z",
+    "ingested_at": "2026-08-31T18:18:00.000Z",
+    "release_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+    "release_status": "published",
+    "version_label": "P21 governed hard-county replacement",
+    "release_notes": "Economic Survey 2026; Table 11.9 — Distribution of Class C (Rural Roads) by County and Surface Type, 2023–2025. The Atlas promotes only the published Total column for 2025 provisional Class C rural roads. Published totals are not recomputed from rounded surface components and Class C is not represented as all-class county road length.",
+    "supersedes_release_id": ""
   }
 ]

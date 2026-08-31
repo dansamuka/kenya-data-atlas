@@ -35,6 +35,13 @@
     "observation_count": 122
   },
   {
+    "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+    "name": "Class C rural road length",
+    "path": "data/distribution/subsets/indicators/IND-CLASS-C-RURAL-ROAD-LENGTH.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
     "indicator_code": "IND-CO2-PER-CAPITA",
     "name": "CO2 emissions per capita (excl. LULUCF)",
     "path": "data/distribution/subsets/indicators/IND-CO2-PER-CAPITA.json",
