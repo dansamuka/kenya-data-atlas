@@ -27,17 +27,28 @@ try{
       for(const field of ['formula','benchmark_source','period','denominator','interpretation'])
         assert(mc[field],`${c.geography.geo_code}: monetary_counterfactual missing ${field}`);
       assert(Number.isFinite(mc.additional_development_spending_kes_million),`${c.geography.geo_code}: monetary_counterfactual value not numeric`);
+      // The figure must be reconstructible from the three inputs it declares.
       const expected=Number((-(mc.county_rate_pct-mc.benchmark_rate_pct)/100*mc.county_budget_kes_million).toFixed(2));
       assert(Math.abs(expected-mc.additional_development_spending_kes_million)<0.01,`${c.geography.geo_code}: monetary_counterfactual is not reproducible from its own stated inputs`);
     }
+    // No indicator without an active development-budget denominator may
+    // carry a KES/monetary figure — only the overall-absorption
+    // counterfactual is permitted to exist.
     assert(!c.gaps.items.some(g=>/kes|shilling/i.test(g.formula||'')),`${c.geography.geo_code}: a non-monetary gap formula must not reference currency`);
     workingWellCount+=c.narrative.working_well.length;
     needsAttentionCount+=c.narrative.needs_attention.length;
     changedCount+=c.narrative.what_changed.length;
+    // Every narrative sentence must cite a real number and a real period —
+    // a crude but effective reproducibility check: it must contain a digit
+    // and a 4-digit year or FY token.
     for(const s of [...c.narrative.working_well,...c.narrative.needs_attention,...c.narrative.what_changed]){
       assert(/\d/.test(s),`${c.geography.geo_code}: narrative sentence has no number: "${s}"`);
       assert(/\d{4}|FY\d/.test(s),`${c.geography.geo_code}: narrative sentence has no period reference: "${s}"`);
     }
+    // Direction wording sanity: "higher"/"lower" in a sentence must match
+    // the actual sign of county_value vs the stated benchmark value quoted
+    // in the same sentence (regression guard for the county-vs-benchmark
+    // direction bug class).
     for(const s of [...c.narrative.working_well,...c.narrative.needs_attention]){
       const m=s.match(/^(.*?): ([\d.,]+)%? in .*— (higher|lower|equal to) than the \w+ median of ([\d.,]+)%?\./);
       if(!m)continue;
