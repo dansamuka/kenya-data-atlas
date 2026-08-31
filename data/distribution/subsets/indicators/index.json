@@ -290,8 +290,8 @@
     "indicator_code": "IND-HOUSEHOLD-SIZE",
     "name": "Average household size",
     "path": "data/distribution/subsets/indicators/IND-HOUSEHOLD-SIZE.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-HOUSING-MATERIAL",

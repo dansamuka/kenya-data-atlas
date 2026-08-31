@@ -654,5 +654,21 @@
     "version_label": "P20 governed county-source promotion",
     "release_notes": "Appendix 1(a); all 47 County Executives are explicitly listed as Qualified on report pages 69–70.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "be05a7d4-2134-5f82-a632-cd06e7617217",
+    "release_code": "REL-KNBS-KPHC-HOUSEHOLD-SIZE-2019-P20",
+    "dataset_id": "bd7e9d71-b184-58ce-8a54-60b7317966ea",
+    "title": "2019 KPHC average household size by county — Table 2.3",
+    "reference_period_start": "2019-08-24",
+    "reference_period_end": "2019-08-25",
+    "published_at": "2019-11-04",
+    "discovered_at": "2026-08-31T07:00:00.000Z",
+    "ingested_at": "2026-08-31T07:00:00.000Z",
+    "release_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/385",
+    "release_status": "published",
+    "version_label": "P20 governed county-source promotion",
+    "release_notes": "2019 Kenya Population and Housing Census, Volume I: Population by County and Sub-County; Table 2.3 — Distribution of Population, Number of Households and Average Household Size by County. Values are direct reported county averages; no interpolation or parent-geography inheritance.",
+    "supersedes_release_id": ""
   }
 ]

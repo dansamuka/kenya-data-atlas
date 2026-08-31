@@ -782,5 +782,20 @@
     "publication_status": "published",
     "methodology_url": "https://www.oagkenya.go.ke/wp-content/uploads/2025/04/Auditor-Generals-summary-Report-on-County-Governments-2023-2024.pdf",
     "known_limitations": "The observation is the categorical audit opinion only. It is not converted to a numeric performance score or ranking."
+  },
+  {
+    "dataset_id": "bd7e9d71-b184-58ce-8a54-60b7317966ea",
+    "dataset_code": "DS-KNBS-KPHC-HOUSEHOLD-SIZE-2019-P20",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "2019 KPHC — Average Household Size by County",
+    "description": "Average household size for all 47 counties, transcribed from KNBS 2019 KPHC Volume I Table 2.3.",
+    "topic": "Demography",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/385",
+    "known_limitations": "2019 census snapshot. KNBS Table 2.3 excludes the special population from the conventional-household denominator; no current-year interpolation is made."
   }
 ]
