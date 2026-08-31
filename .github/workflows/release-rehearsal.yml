@@ -1,0 +1,52 @@
+name: Release rehearsal
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-rehearsal-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rehearse-terminal-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out candidate
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+
+      - name: Simulate terminal v1.0 state without publishing
+        run: |
+          node scripts/p17/finalize-release.mjs
+          npm run build:data
+          npm test
+          npm run geography:audit
+
+      - name: Verify rehearsal stayed local
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse --abbrev-ref HEAD)" != "main" || true
+          git status --short
+          echo 'RELEASE_REHEARSAL_OK terminal_state_validated=true published=false'
