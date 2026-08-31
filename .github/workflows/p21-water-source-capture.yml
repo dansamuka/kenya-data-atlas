@@ -1,0 +1,40 @@
+name: P21 water source capture
+
+on:
+  push:
+    branches: [chatgpt/p21-water-access]
+    paths:
+      - '.github/workflows/p21-water-source-capture.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  capture-source:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/p21-water-access
+          fetch-depth: 0
+      - name: Download KNBS 2019 drinking-water CSV mirror
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data/p21/source
+          url='https://open.africa/dataset/9b94fe50-9d75-4b92-be00-6354c6e6cc88/resource/ea9263c3-3c48-4b23-9a79-b175945e690e/download/percentage-distribution-of-conventional-households-by-main-source-of-drinking-water-county-and-s.csv'
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 20 -A 'Kenya-Data-Atlas/1.0' "$url" -o data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
+          test -s data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
+          echo 'SOURCE_BYTES='$(wc -c < data/p21/source/kphc-2019-drinking-water-county-subcounty.csv)
+          head -n 8 data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
+      - name: Commit source snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
+          git commit -m 'data(p21): snapshot KNBS 2019 drinking-water table'
+          git push origin HEAD:chatgpt/p21-water-access
