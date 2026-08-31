@@ -1,0 +1,64 @@
+name: P21 Class C road terminal materialization
+
+on:
+  push:
+    branches:
+      - p21-class-c-road-replacement
+    paths:
+      - .github/workflows/p21-class-c-road-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Apply governed Class C road replacement
+        run: node scripts/p21/prepare-class-c-road-replacement.mjs
+      - name: Rebuild all governed data products
+        run: npm run build:data
+      - name: Validate full repository
+        run: npm test
+      - name: Validate terminal P21 state
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const j=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const s=j('data/completeness/summary.json');
+          const q=j('data/completeness/p21-work-queue.json');
+          const r=j('data/data-completion-roadmap.json');
+          const fail=m=>{throw new Error(m)};
+          if(s.total_slots!==20115)fail(`total_slots=${s.total_slots}`);
+          if(s.resolved_slots!==3808)fail(`resolved_slots=${s.resolved_slots}`);
+          if(s.unresolved_slots!==16307)fail(`unresolved_slots=${s.unresolved_slots}`);
+          if(s.unknown_missing!==0)fail(`unknown_missing=${s.unknown_missing}`);
+          if((s.by_completion_phase?.P21||0)!==0)fail(`P21=${s.by_completion_phase?.P21}`);
+          if(s.by_status?.retired_replaced!==376)fail(`retired_replaced=${s.by_status?.retired_replaced}`);
+          if(q.remaining_slots!==0||q.family_count!==0||Object.keys(q.family_counts||{}).length!==0)fail(`queue=${JSON.stringify(q)}`);
+          const p21=(r.phases||[]).find(p=>p.id==='P21');
+          if(p21?.status!=='complete')fail(`roadmap P21 status=${p21?.status}`);
+          if(p21?.progress?.resolved_in_p21!==423||p21?.progress?.remaining_slots!==0)fail(`roadmap progress=${JSON.stringify(p21?.progress)}`);
+          console.log('P21_TERMINAL_TARGET_OK resolved=3808 unresolved=16307 p21=0 retired_replaced=376');
+          NODE
+      - name: Commit governed outputs and remove one-shot workflow
+        run: |
+          rm .github/workflows/p21-class-c-road-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'P21: complete county tranche with Class C rural roads'
+            git push
+          fi
