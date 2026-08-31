@@ -60,8 +60,13 @@ try{
   const phase08=roadmap.phases.find(x=>x.id==='P08');
   assert(phase08?.status==='complete','P08 roadmap must be complete');
   const ids=roadmap.phases.map(x=>x.id),next=roadmap.phases.filter(x=>x.status==='next');
-  assert(next.length===1,`exactly one phase must be marked next, found ${next.length}`);
-  assert(ids.indexOf(next[0].id)>ids.indexOf('P08'),`the next phase (${next[0].id}) must come after P08`);
-  console.log(`COUNTYIQ_P08_ROADMAP_OK next=${next[0].id}`);
+  if(next.length===0){
+    assert(roadmap.phases.every(x=>x.status==='complete'),'zero next phases is permitted only when every roadmap phase is complete');
+    console.log('COUNTYIQ_P08_ROADMAP_OK next=none_all_complete');
+  }else{
+    assert(next.length===1,`exactly one phase must be marked next during active development, found ${next.length}`);
+    assert(ids.indexOf(next[0].id)>ids.indexOf('P08'),`the next phase (${next[0].id}) must come after P08`);
+    console.log(`COUNTYIQ_P08_ROADMAP_OK next=${next[0].id}`);
+  }
   console.log('COUNTYIQ_P08_ALL_OK');
 }catch(error){console.error(error.message||error);process.exit(1);}

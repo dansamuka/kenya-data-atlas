@@ -6,6 +6,9 @@ on:
     paths:
       - '.github/workflows/p17-publish.yml'
       - 'scripts/p17/**'
+      - 'scripts/countyiq/validate-p06.mjs'
+      - 'scripts/countyiq/validate-p07.mjs'
+      - 'scripts/countyiq/validate-p08.mjs'
       - 'docs/releases/v1.0.0.md'
       - 'docs/releases/v1.0.0-unresolved.md'
       - 'data/release/v1.0.0.json'
