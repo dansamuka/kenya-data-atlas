@@ -72,7 +72,8 @@ ledgerBuilder=ledgerBuilder.replace(
 assert(ledgerBuilder.includes('retired/replaced'),'completeness definition patch did not apply');
 write(ledgerBuilderPath,ledgerBuilder);
 
-// 5) Machine-readable programme status/progress.
+// 5) Machine-readable programme status. This preparation step owns tranche 1
+// only; it must never overwrite progress recorded by later P21 tranches.
 const roadmapPath='data/data-completion-roadmap.json';
 const roadmap=readJson(roadmapPath);
 const p20=roadmap.phases.find(p=>p.id==='P20');
@@ -80,11 +81,11 @@ const p21=roadmap.phases.find(p=>p.id==='P21');
 assert(p20&&p21,'P20/P21 roadmap phases missing');
 p20.status='complete';
 p21.status='in_progress';
-p21.progress={
-  resolved_in_tranche_1:47,
-  remaining_slots:376,
-  tranche_1_note:'Retired/replaced the generic county-dominant-crop placeholder across all 47 counties. P19 already publishes fixed-definition maize area, production and transparent yield 47/47 from the official National Agriculture Production Report 2024 Annex 1, so P21 closes the weaker mixed-crop concept without duplicating or fabricating observations.'
-};
+const progress=p21.progress||{};
+if(progress.resolved_in_tranche_1===undefined)progress.resolved_in_tranche_1=47;
+if(progress.tranche_1_note===undefined)progress.tranche_1_note='Retired/replaced the generic county-dominant-crop placeholder across all 47 counties with stronger fixed-definition maize successors already published in P19.';
+if(progress.remaining_slots===undefined)progress.remaining_slots=376;
+p21.progress=progress;
 writeJson(roadmapPath,roadmap);
 
 // 6) Public handoff status.
@@ -105,4 +106,4 @@ if(!pkg.scripts['build:data'].startsWith('npm run p21:prepare && '))pkg.scripts[
 pkg.scripts['p21:validate']='node scripts/p21/validate-work-queue.mjs && node scripts/p21/validate-agriculture-replacement.mjs';
 writeJson(packagePath,pkg);
 
-console.log('P21_AGRICULTURE_PREPARE_OK retired_replaced=47 successors=3 expected_remaining=376');
+console.log(`P21_AGRICULTURE_PREPARE_OK retired_replaced=47 successors=3 remaining_preserved=${p21.progress.remaining_slots}`);
