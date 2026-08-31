@@ -5,6 +5,7 @@ on:
     branches: [main, p20-county-sourced-promotion]
     paths:
       - '.github/workflows/placeholder-taxonomy.yml'
+      - 'docs/DATA-COMPLETION-ROADMAP.md'
       - 'data/indicators/seed/placeholder-taxonomy.json'
       - 'data/geography/reference/geography-subsets.json'
       - 'data/geography/registry/geographies.json'
