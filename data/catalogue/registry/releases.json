@@ -798,5 +798,21 @@
     "version_label": "P21 governed hard-county replacement",
     "release_notes": "Kenya Demographic and Health Survey 2022: Volume 1; Table 2.21.3C — Cash transfer or social assistance by county. Direct household survey percentages for all 47 counties with published household denominators. The administrative Inua Jamii count concept is not inferred from this table.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "757b3734-0026-5163-961a-c28c7c48784e",
+    "release_code": "REL-KNBS-KPHC-VEHICLE-OWNERSHIP-2019-P21",
+    "dataset_id": "b52d8293-a89a-59ec-8a60-b1805a009d41",
+    "title": "2019 KPHC Table 2.36 motorcycle and car ownership by county",
+    "reference_period_start": "2019-08-24",
+    "reference_period_end": "2019-08-31",
+    "published_at": "2020-02-21",
+    "discovered_at": "2026-08-31T18:05:00.000Z",
+    "ingested_at": "2026-08-31T18:05:00.000Z",
+    "release_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
+    "release_status": "published",
+    "version_label": "P21 governed hard-county replacement",
+    "release_notes": "2019 Kenya Population and Housing Census, Volume IV: Distribution of Population by Socio-Economic Characteristics; Table 2.36 — Percentage Distribution of Conventional Households by Ownership of Selected Household Assets by Area of Residence, County and Sub County. Direct county motorcycle and car ownership percentages. Peer-reviewed PLOS ONE Table 1 independently reproduces the same 47-county columns from the KPHC. No combined vehicle share is created.",
+    "supersedes_release_id": ""
   }
 ]

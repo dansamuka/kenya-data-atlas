@@ -796,13 +796,14 @@
       "name": "Registered vehicles (count, per capita)",
       "description": "Registered vehicles by county if a public county breakdown is confirmed.",
       "unit_code": "count",
-      "status": "planned",
+      "status": "retired",
       "tab": "infrastructure",
       "levels": [
         "county"
       ],
-      "source": "National Transport and Safety Authority (NTSA)",
-      "note": "Public county breakdown not confirmed; remain planned."
+      "source": "KNBS — 2019 Kenya Population and Housing Census, Volume IV, Table 2.36",
+      "note": "Retired/replaced in P21. No governed complete 47-county administrative registration table was identified. Use IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP and IND-HOUSEHOLD-CAR-OWNERSHIP for the separate KNBS 2019 Census household-ownership percentages. Do not interpret either successor as a registered-vehicle count, vehicle stock, NTSA registration location or vehicles per capita.",
+      "source_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451"
     },
     {
       "code": "IND-MOBILE-MONEY-VOLUME",
@@ -844,6 +845,36 @@
       "source": "KNBS and ICF — Kenya Demographic and Health Survey 2022, Volume 1, Table 2.21.3C",
       "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
       "note": "Direct 47-county KDHS household survey estimate. Broader than Inua Jamii and not an administrative beneficiary count. Household sample sizes are retained; confidence intervals are not fabricated and ranking is withheld."
+    },
+    {
+      "code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "name": "Households owning a motorcycle",
+      "short_name": "Motorcycle ownership",
+      "description": "Percentage of conventional households owning a motorcycle in KNBS 2019 KPHC Volume IV Table 2.36.",
+      "unit_code": "percent",
+      "status": "sourced",
+      "tab": "infrastructure",
+      "levels": [
+        "county"
+      ],
+      "source": "KNBS — 2019 Kenya Population and Housing Census, Volume IV, Table 2.36",
+      "source_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
+      "note": "Direct 47-county census household-asset ownership percentage. This is not an administrative vehicle-registration count. The indicator is non-directional for Atlas scoring/ranking and is never summed with other ownership columns into a synthetic unduplicated vehicle total."
+    },
+    {
+      "code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "name": "Households owning a car",
+      "short_name": "Car ownership",
+      "description": "Percentage of conventional households owning a car in KNBS 2019 KPHC Volume IV Table 2.36.",
+      "unit_code": "percent",
+      "status": "sourced",
+      "tab": "infrastructure",
+      "levels": [
+        "county"
+      ],
+      "source": "KNBS — 2019 Kenya Population and Housing Census, Volume IV, Table 2.36",
+      "source_url": "https://repository.knbs.or.ke/handle/knbs-ke-repo/451",
+      "note": "Direct 47-county census household-asset ownership percentage. This is not an administrative vehicle-registration count. The indicator is non-directional for Atlas scoring/ranking and is never summed with other ownership columns into a synthetic unduplicated vehicle total."
     }
   ]
 }

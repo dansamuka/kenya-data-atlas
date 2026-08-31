@@ -1486,6 +1486,76 @@
       "publication_status": "planned"
     },
     {
+      "indicator_id": "73c3acd2-cdd2-53c1-ab94-61396b397f2c",
+      "name": "Households owning a car",
+      "lifecycle_status": "active",
+      "policy_version": "P12-policy-v1",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "domain": "infrastructure",
+      "direction": {
+        "higher_is_better": null,
+        "basis": "No directional quality claim is made."
+      },
+      "composite": {
+        "eligible": false
+      },
+      "ranking": {
+        "allowed": false,
+        "mode": "positional_only",
+        "higher_is_better": null,
+        "requires_sampling_uncertainty": false,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
+      },
+      "uncertainty": {
+        "required_for_ranking": false
+      },
+      "trend": {
+        "allowed": true,
+        "rule": "At least two numeric observations are required; directional wording uses the canonical direction rule and matched comparisons require comparable periods.",
+        "static_reason_not_allowed": null
+      },
+      "inheritance": {
+        "parent_value_inheritance_allowed": false,
+        "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
+      },
+      "publication_status": "published"
+    },
+    {
+      "indicator_id": "9bf5d838-7753-5e2a-9e53-e1f9eaacd265",
+      "name": "Households owning a motorcycle",
+      "lifecycle_status": "active",
+      "policy_version": "P12-policy-v1",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "domain": "infrastructure",
+      "direction": {
+        "higher_is_better": null,
+        "basis": "No directional quality claim is made."
+      },
+      "composite": {
+        "eligible": false
+      },
+      "ranking": {
+        "allowed": false,
+        "mode": "positional_only",
+        "higher_is_better": null,
+        "requires_sampling_uncertainty": false,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
+      },
+      "uncertainty": {
+        "required_for_ranking": false
+      },
+      "trend": {
+        "allowed": true,
+        "rule": "At least two numeric observations are required; directional wording uses the canonical direction rule and matched comparisons require comparable periods.",
+        "static_reason_not_allowed": null
+      },
+      "inheritance": {
+        "parent_value_inheritance_allowed": false,
+        "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
+      },
+      "publication_status": "published"
+    },
+    {
       "indicator_id": "efc508a8-738b-5d99-873b-96c60b312e13",
       "name": "Average household size",
       "lifecycle_status": "active",
@@ -3413,7 +3483,7 @@
     {
       "indicator_id": "34e52611-58fa-575c-8a94-b468c593a7bd",
       "name": "Registered vehicles (count, per capita)",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-VEHICLE-REGISTRATIONS",
       "domain": "infrastructure",
@@ -49837,6 +49907,570 @@
       }
     },
     {
+      "series_id": "bb019d5d-9323-54d3-8631-f1ab95e9670e",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C001",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "62ccc412-f415-5123-a932-d66a6116ccb3",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C002",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "70afde10-95de-599c-b0bd-f196a79876bd",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C003",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "71d10db1-efae-52c5-9917-eea0285f21da",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C004",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6e372c6f-3000-5b1b-b6ed-2d7031e58642",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C005",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "33e1ab9c-98ce-5639-bac5-8901d58c2abd",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C006",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "70f032f9-8016-5a3c-8e2b-b62ab09b00b6",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C007",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b185e970-977f-57a6-bf15-16d361225553",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C008",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1912cd01-8996-5423-9121-9e96b65be0eb",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C009",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2d4fe851-b2f2-58b6-93fd-f31f3269f41c",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C010",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2c4f805d-26b8-5786-acd7-8f621f4c4f6e",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C011",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bc9938dd-c76e-57b5-8f5a-1d0b9c5688af",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C012",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "646775d3-0ca1-56e2-b731-2ebe6a96f072",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C013",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d19e6578-c0c9-55c5-bd6f-135ad59aeb66",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C014",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e0dbfb4d-dee6-52e3-b6d7-46755c2ec690",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C015",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4bd8d150-da9f-5172-b2fe-6dd5c133a49c",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C016",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b6df6696-ba5e-5f76-b24e-8efdcc1a3c09",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C017",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4ef5420e-ff5d-5b66-b20c-2ac235c61001",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C018",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "01a47b3b-86dc-5dc5-9a38-1d73dbde0aeb",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C019",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7a539c23-c7bc-5f13-b46f-b85e5517a61c",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C020",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "998b1fe4-919b-5422-9bc9-f0ee35dc4081",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C021",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1d17b088-32b7-5861-933c-b2bc2144960e",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C022",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "33a4db56-2847-52a0-b0ed-7119b6a02ca6",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C023",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "991a2b64-7f07-5f92-aaf5-8aadaaff7c7f",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C024",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "813ef3ea-2c71-5b86-9c97-22f2809e598d",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C025",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7e6fe57c-268f-5c28-a542-dc740581bbb6",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C026",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fa3b2ded-2dba-5927-80d9-60c0c7308c7e",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C027",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0a75a0a7-d34e-5629-adc2-820b391bb3db",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C028",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "17cf57a7-b0f0-5512-b517-ad9bef5e0f88",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C029",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "182ed7d3-9a05-5aa2-9e22-78132de61834",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C030",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d3187146-a1db-5637-85bd-f6b4e45bcdb8",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C031",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3294a0a8-1698-5e85-a3d1-c85fb4ebb7dc",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C032",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7676647e-04a0-562b-8aed-b2344b9622b1",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C033",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4c3ef305-89fd-5b62-bcbc-c19188b93485",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C034",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c87dc39f-f733-5343-a83a-d6568bfa57bd",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C035",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "db8e3c76-ead4-5564-894a-698befb59ed4",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C036",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0e23c6e0-7f7b-5fa2-9c51-7ef2a7dde510",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C037",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e503da4f-b6b9-5985-ab1c-cbb0323349df",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C038",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "07af7091-eb3b-52ee-9e3c-aa4daaf08225",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C039",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3910a14c-7e70-57d3-9d84-39172523af01",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C040",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7c296e74-aca0-5c15-8be1-3be7763b8179",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C041",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c8b73c9e-665a-56e2-a628-e0261f625b2a",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C042",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "247fe86d-9f6f-54c1-bf9f-ffe30989b0c8",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C043",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e595ad1e-91b3-5e61-99c8-ad52ad9ba27f",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C044",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6eca212a-4c34-5018-b7cc-dc4c747923aa",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C045",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1e17dffe-c869-5549-ab9e-96623e8268c0",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C046",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "30ac6019-760f-58bc-b2b7-ab6b374eb944",
+      "series_code": "KDA-P21-CAR-OWN-KEN-C047",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "a64d4c7e-7eba-55e0-8dfd-57d5d6abad69",
       "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C001",
       "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
@@ -50956,6 +51590,570 @@
       "series_id": "7630e821-53d6-5fb6-8d57-1006cf21730f",
       "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C047",
       "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f28f50f3-a178-5622-8dbb-3f238e48f18b",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C001",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d0cf7fdf-543e-5570-b72d-1c14d834d019",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C002",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "110a4c71-17c7-5cb8-83e1-29501fa453e6",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C003",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1ce9d2b4-5273-5fbc-99c8-2764e1a5484b",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C004",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e8415bc4-ce6a-588e-9156-d09ef2681d5e",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C005",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cb6fd3ab-d38f-5122-95eb-19ca32126cd5",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C006",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8ae8c3d9-fb9b-5f17-a18c-28c97977c855",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C007",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e4793bc4-ee00-5921-bab9-5a250d35ea51",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C008",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3ff3bab3-8201-5b74-9d29-18d1c22981a8",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C009",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "85935954-de2a-5384-bfee-7a93e48ddba4",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C010",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d53964b4-a154-5c65-b651-5baea9508cf5",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C011",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a3680525-fa6d-57bd-95a5-bb086e56927a",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C012",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c8636073-c7cd-5369-9296-58be1d1c0f19",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C013",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "35f65fb1-a532-5886-b9db-b9ec0edcfe55",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C014",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5bdee3d0-cf1d-5b51-8438-9a46fb163786",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C015",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0fdf2c73-0850-5cde-8e15-0f1d94f44a9c",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C016",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "aed8d3f0-a3a6-5a23-a23a-deaa1ac917f3",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C017",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b3622154-fd41-5e97-883d-1099f294ec81",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C018",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "264f50aa-907b-5187-b05a-99eb45f8f32d",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C019",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3feae289-aebd-5298-91bd-2288c225dbc0",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C020",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fae4db41-1595-54e9-8b6a-a0295b88deb4",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C021",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "36e35f02-c0aa-5ada-acfb-14c3eedd447e",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C022",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e5f56535-05e7-58b4-9b57-b6873e1ff369",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C023",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3d92b020-8ec3-52c7-af8e-09f9ce6b8bba",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C024",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8686e921-e1fd-5ac6-9444-2ca09366bb56",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C025",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3865e94f-975d-5c97-ba56-89348cdb2431",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C026",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f9c35434-7373-53cb-b012-b7d595ee0604",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C027",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d5f6b256-8c09-5b86-95cd-5a2fa89c14d0",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C028",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2d573b40-5906-5313-abd5-d761c68922c0",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C029",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8e7aaca8-b55a-590a-9305-0cdf3a0a5deb",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C030",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4c934afe-88f3-5dd2-b5db-4ed6cc1a17ff",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C031",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2b33e822-29bc-530d-a26b-018197416c9e",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C032",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5c5b8e11-9d72-5e6e-bd49-ab52e905e503",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C033",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "42af8419-543a-585f-b3a7-7a95b9deafee",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C034",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7826e6af-53a0-557f-bd0a-e5117b7954f7",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C035",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bbdab53f-d14e-5a69-bb49-1d8eab99fd98",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C036",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e93343b8-f047-58bf-99f8-77b6beeb52d0",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C037",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "82b2bc4d-24ea-59e7-ad2c-8db080cfce7a",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C038",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f815f538-72bb-50e9-bbc4-b4b638290c8e",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C039",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7a80da22-a062-54dd-8532-3b1aeecf7756",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C040",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7e43377b-f5d9-5d9f-bdb8-99f31b3f19c3",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C041",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "39173cc4-4958-513f-bce3-aa0834bff6c6",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C042",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1c8076d8-fe13-5b32-a762-c54ded6e8ff5",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C043",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "633d8ae5-0f7f-5c5a-ae6a-d3128009e5c3",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C044",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "10674f6b-9185-5196-b890-cf3d45529253",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C045",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d282f4c1-5794-5dc5-aba2-c0f66c3c6bf7",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C046",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a1d50ad1-1804-525d-89e0-5dba04d5214a",
+      "series_code": "KDA-P21-MOTORCYCLE-OWN-KEN-C047",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
       "unit_code": "percent",
       "transformation": "level",
       "aggregation": null,
