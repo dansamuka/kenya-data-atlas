@@ -48,6 +48,8 @@ try{
   assert(avgRange>0,'rank robustness shows zero variation across scenarios — sensitivity scenarios are not actually different, so nothing was materially tested');
   console.log(`COUNTYIQ_P08_ROBUSTNESS_OK counties=${withRobustness} avg_rank_range=${avgRange}`);
 
+  // The single most important guardrail in this phase: the index must
+  // never claim comprehensiveness it does not have.
   assert(meth.domains_excluded.length>0,'given the current registry, at least one domain is expected to be excluded — if this ever reaches 0, re-verify the inclusion rule was not silently loosened');
   assert(/NOT a comprehensive/i.test(meth.honest_limitation),'methodology must explicitly disclaim comprehensiveness while domains are excluded');
   console.log('COUNTYIQ_P08_COMPREHENSIVENESS_DISCLAIMER_OK');
