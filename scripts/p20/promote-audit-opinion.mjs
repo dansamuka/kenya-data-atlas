@@ -78,8 +78,8 @@ const replaceOnce = (text, from, to, label) => {
   const file = 'assets/place-profile.js';
   let text = await read(file);
   text = replaceOnce(text,
-    "'index_score':'score',category:'category',km:'km'",
-    "'index_score':'score',category:'',km:'km'",
+    "index_score:'score',category:'category',km:'km'",
+    "index_score:'score',category:'',km:'km'",
     'category unit chip');
   text = replaceOnce(text,
     "  function formatValue(value,unit){\n    const v=Number(value); if(!Number.isFinite(v))return '—';\n",
