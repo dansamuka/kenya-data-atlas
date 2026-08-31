@@ -1,0 +1,186 @@
+name: P20 consolidated parallel completion
+
+on:
+  push:
+    branches: [p20-consolidated-completion]
+    paths:
+      - '.github/workflows/p20-consolidated-generator.yml'
+      - 'data/p20/source/**'
+      - 'data/completeness/evidence-states.json'
+      - 'scripts/p20/**'
+      - 'scripts/completeness/**'
+      - 'package.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p20-consolidated-completion
+  cancel-in-progress: true
+
+jobs:
+  census-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate census workstream sources
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('data/p20/source/disability-prevalence-2019.json','utf8'));
+          const codes=new Set((d.counties||[]).map(r=>r.geo_code));
+          if(d.counties?.length!==47||codes.size!==47||Number(d.national_value)!==2.2) throw new Error('disability source gate failed');
+          if(d.counties.some(r=>!Number.isFinite(Number(r.value)))) throw new Error('disability value missing');
+          const h=JSON.parse(fs.readFileSync('data/p20/source/kphc-2019-durable-wall-county.json','utf8'));
+          if(h.counties?.length!==47||new Set(h.counties.map(r=>r.geo_code)).size!==47) throw new Error('durable-wall county coverage failed');
+          if(Number(h.national_value)!==51.3||!String(h.source_table||'').includes('Table 2.13')) throw new Error('durable-wall national/provenance anchor failed');
+          for(const r of h.counties) if(!Number.isFinite(Number(r.durable_wall_pct))) throw new Error(`${r.geo_code} durable-wall value missing`);
+          console.log('P20_WORKSTREAM_CENSUS_SOURCE_OK disability=47 durable_wall=47');
+          NODE
+
+  kdhs-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate KDHS workstream sources
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-additional-county.json','utf8'));
+          if(d.counties?.length!==47||new Set(d.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS additional county coverage failed');
+          for(const r of d.counties){
+            for(const k of ['teenage_pregnancy_pct','home_birth_pct']) if(!Number.isFinite(Number(r[k]))) throw new Error(`${r.geo_code} ${k} missing`);
+            for(const k of ['teenage_pregnancy_sample_size','home_birth_sample_size']) if(!(Number(r[k])>0)) throw new Error(`${r.geo_code} ${k} missing`);
+          }
+          const c=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-contraceptive-county.json','utf8'));
+          if(c.counties?.length!==47||new Set(c.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS contraceptive county coverage failed');
+          if(Number(c.reported_total_pct)!==56.9||Number(c.reported_total_weighted_n)!==17822) throw new Error('KDHS contraceptive national anchor failed');
+          for(const r of c.counties){if(!Number.isFinite(Number(r.modern_contraceptive_pct)))throw new Error(`${r.geo_code} contraceptive estimate missing`);if(!(Number(r.sample_size)>0))throw new Error(`${r.geo_code} contraceptive denominator missing`);}
+          const f=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-fgm-county.json','utf8'));
+          if(f.counties?.length!==47||new Set(f.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS FGM county coverage failed');
+          if(Number(f.reported_total_pct)!==14.8||Number(f.reported_total_weighted_n)!==16716) throw new Error('KDHS FGM national anchor failed');
+          for(const r of f.counties){if(!Number.isFinite(Number(r.fgm_prevalence_pct)))throw new Error(`${r.geo_code} FGM estimate missing`);if(!(Number(r.sample_size)>0))throw new Error(`${r.geo_code} FGM denominator missing`);}
+          const l=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-literacy-women-county.json','utf8'));
+          if(l.counties?.length!==47||new Set(l.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS literacy county coverage failed');
+          if(Number(l.reported_total_pct)!==90.9||Number(l.reported_total_weighted_n)!==32156) throw new Error('KDHS literacy corrected national anchor failed');
+          if(l.counties.reduce((a,r)=>a+Number(r.sample_size),0)!==32156) throw new Error('KDHS literacy county denominator reconciliation failed');
+          for(const r of l.counties){if(!Number.isFinite(Number(r.literacy_pct)))throw new Error(`${r.geo_code} literacy estimate missing`);if(!(Number(r.sample_size)>0))throw new Error(`${r.geo_code} literacy denominator missing`);}
+          console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47 contraceptive=47 fgm=47 literacy_women=47');
+          NODE
+
+  hiv-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate KENPHIA HIV source
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const h=JSON.parse(fs.readFileSync('data/p20/source/kenphia-2018-hiv-prevalence-county.json','utf8'));
+          if(h.counties?.length!==47||new Set(h.counties.map(r=>r.geo_code)).size!==47) throw new Error('KENPHIA county coverage failed');
+          if(Number(h.reported_total_pct)!==4.9||Number(h.reported_total_unweighted_n)!==27745) throw new Error('KENPHIA national point-estimate/sample anchor failed');
+          if(Number(h.reported_total_standard_error)!==0.2||Number(h.reported_total_lower_95)!==4.5||Number(h.reported_total_upper_95)!==5.3) throw new Error('KENPHIA national uncertainty anchor failed');
+          if(h.counties.reduce((a,r)=>a+Number(r.sample_size),0)!==27745) throw new Error('KENPHIA county samples do not reconcile to national n');
+          for(const r of h.counties){
+            if(!Number.isFinite(Number(r.hiv_prevalence_pct))||!(Number(r.sample_size)>0)||!Number.isFinite(Number(r.standard_error))) throw new Error(`${r.geo_code} KENPHIA estimate/precision missing`);
+            if(r.geo_code==='KEN-C007'){
+              if(Number(r.hiv_prevalence_pct)!==0||Number(r.standard_error)!==0||r.lower_95!==null||r.upper_95!==null) throw new Error('Garissa unavailable CI contract failed');
+            }else if(!Number.isFinite(Number(r.lower_95))||!Number.isFinite(Number(r.upper_95))) throw new Error(`${r.geo_code} KENPHIA CI missing`);
+          }
+          console.log('P20_WORKSTREAM_HIV_SOURCE_OK kenphia=47 n=27745 uncertainty=published');
+          NODE
+
+  final-family-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate facility, pending-bills and NACADA final sources
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const f=JSON.parse(fs.readFileSync('data/p20/source/health-facility-density-2023.json','utf8'));
+          if(f.counties?.length!==47||new Set(f.counties.map(r=>r.geo_code)).size!==47) throw new Error('facility-density county coverage failed');
+          if(f.counties.reduce((a,r)=>a+Number(r.facilities_assessed),0)!==14883) throw new Error('facility numerator reconciliation failed');
+          if(f.counties.reduce((a,r)=>a+Number(r.projected_population_2023),0)!==51525585) throw new Error('facility denominator reconciliation failed');
+          for(const r of f.counties){const x=Math.round((r.facilities_assessed/r.projected_population_2023*10000)*10)/10;if(Number(r.value)!==x)throw new Error(`${r.geo_code} facility density not recomputable`);}
+          const p=JSON.parse(fs.readFileSync('data/p20/source/pending-bills-fy2024-25.json','utf8'));
+          if(p.counties?.length!==47||p.counties.filter(r=>r.reported===true).length!==46||p.counties.filter(r=>r.reported===false).length!==1) throw new Error('pending-bills 46+1 contract failed');
+          if(p.counties.find(r=>r.geo_code==='KEN-C033')?.value!==null) throw new Error('Narok pending-bills non-submission must be null');
+          if(Number(p.published_national_total_kes_million)!==176904.2||Number(p.displayed_reported_county_rows_sum_kes_million)!==176904.5) throw new Error('pending-bills total/rounding anchors failed');
+          if(Number(p.counties.find(r=>r.geo_code==='KEN-C004')?.value)!==2380.5) throw new Error('Tana River final BROP value failed');
+          const n=JSON.parse(fs.readFileSync('data/p20/source/nacada-2022-county-availability.json','utf8'));
+          if(n.geo_codes?.length!==47||new Set(n.geo_codes).size!==47||n.county_prevalence_estimates_published!==false||n.county_uncertainty_estimates_published!==false) throw new Error('NACADA county-unavailability gate failed');
+          if(JSON.stringify(n.published_estimate_levels)!==JSON.stringify(['national','regional','urban_rural'])) throw new Error('NACADA published geography levels changed');
+          const e=JSON.parse(fs.readFileSync('data/completeness/evidence-states.json','utf8'));
+          const expanded=(e.states||[]).flatMap(s=>(s.geo_codes||[s.geo_code]).filter(Boolean).map(geo_code=>({...s,geo_code})));
+          if(expanded.length!==48) throw new Error(`explicit evidence-state count expected 48, got ${expanded.length}`);
+          console.log('P20_FINAL_SOURCE_GATE_OK facility=47 pending=46+1_unavailable substance=47_unavailable');
+          NODE
+
+  remaining-queue-diagnostic:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Confirm pre-build final P20 queue
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const l=JSON.parse(fs.readFileSync('data/completeness/slot-ledger.json','utf8'));
+          const rows=l.rows.filter(r=>r.completion_phase==='P20'&&!r.resolved);
+          const m=new Map(); for(const r of rows)m.set(r.indicator_code,(m.get(r.indicator_code)||0)+1);
+          for(const [code,n] of [...m].sort()) console.log(`P20_PREBUILD_QUEUE ${code}=${n}`);
+          if(rows.length!==141||m.size!==3||[...m.values()].some(n=>n!==47)) throw new Error(`expected pre-build 141-slot final queue, got queue=${rows.length} families=${m.size}`);
+          console.log('P20_PREBUILD_FINAL_QUEUE_OK queue=141 families=3');
+          NODE
+
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    needs: [census-source-gate, kdhs-source-gate, hiv-source-gate, final-family-source-gate, remaining-queue-diagnostic]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p20-consolidated-completion
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+      - name: Apply consolidated wiring
+        run: |
+          node scripts/p20/prepare-consolidated.mjs
+          node scripts/p20/prepare-final.mjs
+      - name: Rebuild all published Atlas products
+        run: npm run build:data
+      - name: Run full Atlas validation suite
+        run: npm test
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+      - name: Commit final P20 implementation and generated products
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No final P20 changes produced.'
+            exit 0
+          fi
+          git commit -m 'feat(p20): complete consolidated county programme'
+          git push origin HEAD:p20-consolidated-completion

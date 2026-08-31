@@ -1,0 +1,17 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+const mode=process.argv[2];
+if(mode!=='indicators')throw new Error('Usage: node scripts/p20/build-substance-availability.mjs indicators');
+const readJson=async p=>JSON.parse(await readFile(path.join(root,p),'utf8'));
+const csvCell=v=>`"${String(Array.isArray(v)?v.join('|'):v??'').replaceAll('"','""')}"`;
+const csv=rows=>{const fields=[...new Set(rows.flatMap(r=>Object.keys(r)))];return [fields.join(','),...rows.map(r=>fields.map(f=>csvCell(r[f])).join(','))].join('\n')+'\n';};
+const source=await readJson('data/p20/source/nacada-2022-county-availability.json');
+if(source.geo_codes?.length!==47||new Set(source.geo_codes).size!==47)throw new Error('P20 substance availability: expected exact 47 county codes');
+if(source.county_prevalence_estimates_published!==false||source.county_uncertainty_estimates_published!==false)throw new Error('P20 substance availability: source contract unexpectedly claims county estimates');
+if(JSON.stringify(source.published_estimate_levels)!==JSON.stringify(['national','regional','urban_rural']))throw new Error('P20 substance availability: published geography levels changed');
+const dir='data/indicators/registry';const indicators=await readJson(`${dir}/indicators.json`);const indicator=indicators.find(i=>i.indicator_code==='IND-SUBSTANCE-ABUSE-PREVALENCE');if(!indicator)throw new Error('P20 substance availability: indicator missing');
+Object.assign(indicator,{name:'Drug and substance use prevalence',short_name:'Substance use prevalence',description:'Drug and substance use prevalence from an official survey when published at the requested geography. The NACADA 2022 national survey does not publish a statistically defensible county prevalence series.',methodology_url:source.source_url,active:false,lifecycle_status:'sourced',comparable:false,expected_source:'NACADA National Survey on the Status of Drugs and Substance Use in Kenya 2022',expected_source_url:source.source_url,expected_availability_note:'The 2022 survey publishes national, regional, urban and rural estimates, not county prevalence estimates. County slots are governed as official unavailable; regional estimates must not be inherited or allocated to counties.',requires_sampling_uncertainty:true,ranking_allowed:false});
+await Promise.all([writeFile(path.join(root,`${dir}/indicators.json`),JSON.stringify(indicators,null,2)+'\n'),writeFile(path.join(root,`${dir}/indicators.csv`),csv(indicators))]);
+console.log('P20_SUBSTANCE_AVAILABILITY_METADATA_OK county_estimates=unavailable counties=47 regional_inheritance=false');
