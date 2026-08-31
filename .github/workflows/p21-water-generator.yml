@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/p21-water-generator.yml'
       - 'scripts/p21/**'
+      - 'scripts/p08/performance-index.mjs'
       - 'data/p21/source/**'
 
 permissions:
