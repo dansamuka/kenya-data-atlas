@@ -1,0 +1,26 @@
+{
+  "schema_version": "kda.completeness.evidence-states.v1",
+  "definition": "Explicit resolved states for governed public slots where a primary official source establishes that the requested numeric observation is unavailable. These states never manufacture a zero, proxy, regional inheritance or synthetic observation.",
+  "states": [
+    {
+      "level": "county",
+      "geo_codes": ["KEN-C033"],
+      "indicator_code": "IND-COUNTY-PENDING-BILLS",
+      "status": "official_unavailable",
+      "period_label": "FY 2024/25 · as at 30 June 2025",
+      "source": "National Treasury Budget Review and Outlook Paper 2025, Table 10; source data Controller of Budget",
+      "source_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
+      "reason": "Narok is explicitly shown without a pending-bills amount in the final Table 10 county breakdown because the entity did not submit pending-bills data. The Atlas preserves this as official non-submission; it is not zero and is not reverse-engineered from the budget percentage column."
+    },
+    {
+      "level": "county",
+      "geo_codes": ["KEN-C001","KEN-C002","KEN-C003","KEN-C004","KEN-C005","KEN-C006","KEN-C007","KEN-C008","KEN-C009","KEN-C010","KEN-C011","KEN-C012","KEN-C013","KEN-C014","KEN-C015","KEN-C016","KEN-C017","KEN-C018","KEN-C019","KEN-C020","KEN-C021","KEN-C022","KEN-C023","KEN-C024","KEN-C025","KEN-C026","KEN-C027","KEN-C028","KEN-C029","KEN-C030","KEN-C031","KEN-C032","KEN-C033","KEN-C034","KEN-C035","KEN-C036","KEN-C037","KEN-C038","KEN-C039","KEN-C040","KEN-C041","KEN-C042","KEN-C043","KEN-C044","KEN-C045","KEN-C046","KEN-C047"],
+      "indicator_code": "IND-SUBSTANCE-ABUSE-PREVALENCE",
+      "status": "official_unavailable",
+      "period_label": "2022 NACADA national survey",
+      "source": "NACADA National Survey on the Status of Drugs and Substance Use in Kenya 2022",
+      "source_url": "https://nacada.go.ke/sites/default/files/2023-05/National%20Survey%20on%20the%20Status%20of%20Drugs%20and%20Substance%20Use%20in%20Kenya%202022.pdf",
+      "reason": "The 2022 NACADA survey was designed to provide national, regional, urban and rural prevalence estimates. Although sampled clusters were spread across all 47 counties, the official report does not publish a statistically defensible county prevalence series. Regional estimates are therefore not inherited or allocated to counties, and county sampling uncertainty is not fabricated."
+    }
+  ]
+}
