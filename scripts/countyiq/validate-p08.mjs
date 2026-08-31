@@ -48,8 +48,6 @@ try{
   assert(avgRange>0,'rank robustness shows zero variation across scenarios — sensitivity scenarios are not actually different, so nothing was materially tested');
   console.log(`COUNTYIQ_P08_ROBUSTNESS_OK counties=${withRobustness} avg_rank_range=${avgRange}`);
 
-  // The single most important guardrail in this phase: the index must
-  // never claim comprehensiveness it does not have.
   assert(meth.domains_excluded.length>0,'given the current registry, at least one domain is expected to be excluded — if this ever reaches 0, re-verify the inclusion rule was not silently loosened');
   assert(/NOT a comprehensive/i.test(meth.honest_limitation),'methodology must explicitly disclaim comprehensiveness while domains are excluded');
   console.log('COUNTYIQ_P08_COMPREHENSIVENESS_DISCLAIMER_OK');
@@ -60,8 +58,13 @@ try{
   const phase08=roadmap.phases.find(x=>x.id==='P08');
   assert(phase08?.status==='complete','P08 roadmap must be complete');
   const ids=roadmap.phases.map(x=>x.id),next=roadmap.phases.filter(x=>x.status==='next');
-  assert(next.length===1,`exactly one phase must be marked next, found ${next.length}`);
-  assert(ids.indexOf(next[0].id)>ids.indexOf('P08'),`the next phase (${next[0].id}) must come after P08`);
-  console.log(`COUNTYIQ_P08_ROADMAP_OK next=${next[0].id}`);
+  if(next.length===0){
+    assert(roadmap.phases.every(x=>x.status==='complete'),'zero next phases is permitted only when every roadmap phase is complete');
+    console.log('COUNTYIQ_P08_ROADMAP_OK next=none_all_complete');
+  }else{
+    assert(next.length===1,`exactly one phase must be marked next during active development, found ${next.length}`);
+    assert(ids.indexOf(next[0].id)>ids.indexOf('P08'),`the next phase (${next[0].id}) must come after P08`);
+    console.log(`COUNTYIQ_P08_ROADMAP_OK next=${next[0].id}`);
+  }
   console.log('COUNTYIQ_P08_ALL_OK');
 }catch(error){console.error(error.message||error);process.exit(1);}
