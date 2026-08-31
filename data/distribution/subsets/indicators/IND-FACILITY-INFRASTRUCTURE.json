@@ -15,13 +15,13 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
     "comparable": true,
     "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "Kenya Health Facility Census 2023",
-    "expected_source_url": "",
-    "expected_availability_note": "One-off snapshot; label prominently as a snapshot if activated.",
+    "lifecycle_status": "retired",
+    "expected_source": "Ministry of Health — Kenya Health Facility Census Report September 2023",
+    "expected_source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+    "expected_availability_note": "Retired/replaced in P21 because the original field combines electricity and water into one undefined percentage and the official census does not publish one governed 47-county combined amenity series. Use IND-HEALTH-FACILITY-STOCK and IND-HEALTH-FACILITY-DENSITY for source-backed county health-infrastructure supply evidence; do not interpret those successors as electricity/water access rates.",
     "tab": "health",
     "applies_to_levels": [
       "county"

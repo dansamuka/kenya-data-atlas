@@ -158,7 +158,7 @@
     {
       "indicator_id": "82efc0e4-272a-501d-acec-b2626620d117",
       "name": "Licensed businesses (count, year-on-year change)",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-BUSINESS-LICENSES",
       "domain": "economic",
@@ -823,7 +823,7 @@
     {
       "indicator_id": "4a5f0e08-784f-53ac-adab-a7c3764c206d",
       "name": "Facilities with electricity/water (%)",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-FACILITY-INFRASTRUCTURE",
       "domain": "health",
