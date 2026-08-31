@@ -54,6 +54,20 @@
     return clean.startsWith('data/')&&(clean.endsWith('.json')||clean.endsWith('.geojson'));
   }
 
+  function isLocalDataAsset(key){
+    const clean=String(key).split('?')[0];
+    return clean.startsWith('data/');
+  }
+
+  function requestCacheMode(key){
+    // Atlas data is release-driven. Revalidate local data assets on each page
+    // load so a newly deployed registry cannot remain hidden behind a stale
+    // browser cache. The in-memory promise cache still guarantees one network
+    // request per asset per page session, and unchanged files can resolve via
+    // normal HTTP validators (ETag/Last-Modified).
+    return isLocalDataAsset(key)?'no-cache':'default';
+  }
+
   async function fetchJson(url,{required=false}={}){
     const key=normalizeUrl(url);
     if(jsonCache.has(key)){
@@ -63,7 +77,7 @@
     const promise=(async()=>{
       try{
         metrics.networkJson+=1;
-        const response=await nativeFetch(url,{cache:'force-cache'});
+        const response=await nativeFetch(url,{cache:requestCacheMode(key)});
         if(!response.ok) throw new Error(`${key} (${response.status})`);
         return await response.json();
       }catch(error){
@@ -85,7 +99,7 @@
     const promise=(async()=>{
       try{
         metrics.networkText+=1;
-        const response=await nativeFetch(url,{cache:'force-cache'});
+        const response=await nativeFetch(url,{cache:requestCacheMode(key)});
         if(!response.ok) throw new Error(`${key} (${response.status})`);
         return await response.text();
       }catch(error){
