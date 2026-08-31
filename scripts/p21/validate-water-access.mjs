@@ -4,6 +4,13 @@ const j=f=>JSON.parse(fs.readFileSync(f,'utf8'));
 const assert=(ok,msg)=>{if(!ok)throw new Error(`P21 water validation: ${msg}`);};
 const CODE='IND-WATER-ACCESS';
 const PREFIX='KDA-P21-IMPROVED-WATER-';
+const P08_V1_INDEX_CODES=[
+  'IND-COUNTY-BUDGET-ABSORPTION',
+  'IND-COUNTY-BUDGET-EXECUTION',
+  'IND-GCP',
+  'IND-COUNTY-TOTAL-EXPENDITURE',
+  'IND-POPULATION'
+];
 const IMPROVED_FIELDS=['Protected Spring','Protected Well','Borehole/ Tube well','Piped into dwelling','Piped to yard/ Plot','Bottled water','Rain/ Harvested water','Public tap/ Standpipe'];
 
 function parseCsv(text){
@@ -28,6 +35,7 @@ try{
   const ledger=j('data/completeness/slot-ledger.json');
   const summary=j('data/completeness/summary.json');
   const queue=j('data/completeness/p21-work-queue.json');
+  const countyIq=j('data/countyiq/county-summary.json');
   const sourceRows=parseCsv(fs.readFileSync('data/p21/source/kphc-2019-drinking-water-county-subcounty.csv','utf8'));
   const national=sourceRows.find(r=>String(r['County/ Sub-County']).trim().toUpperCase()==='KENYA');
   assert(national&&derive(national)===64.8,`national source reconciliation must equal 64.8, got ${national?derive(national):'missing'}`);
@@ -55,6 +63,13 @@ try{
   assert(queue.remaining_slots===329&&queue.family_count===7,`queue expected 329 slots / 7 families, got ${queue.remaining_slots}/${queue.family_count}`);
   assert(!Object.hasOwn(queue.family_counts||{},CODE),'water family must leave P21 work queue');
 
+  const methodology=countyIq.meta?.performance_index_methodology;
+  assert(methodology?.version==='P08-v1','CountyIQ composite must remain P08-v1');
+  assert(methodology?.methodology_input_set_frozen===true,'P08-v1 input set must be explicitly frozen');
+  assert(JSON.stringify(methodology.indicators_included)===JSON.stringify(P08_V1_INDEX_CODES),`P08-v1 inputs changed: ${JSON.stringify(methodology?.indicators_included)}`);
+  assert(!methodology.indicators_included.includes(CODE),'water must publish as a county fact without silently entering P08-v1');
+  assert((methodology.newly_eligible_indicators_excluded_from_v1||[]).includes(CODE),'water should be explicitly disclosed as newly eligible but excluded from frozen P08-v1');
+
   const obsByGeo=new Map(rows.map(r=>[r.geo_code,r]));
   assert(Number(obsByGeo.get('KEN-C001')?.value)===55.6,`Mombasa expected 55.6, got ${obsByGeo.get('KEN-C001')?.value}`);
   assert(Number(obsByGeo.get('KEN-C002')?.value)===56.2,`Kwale transparent subtotal expected 56.2, got ${obsByGeo.get('KEN-C002')?.value}`);
@@ -62,4 +77,5 @@ try{
 
   console.log('P21_WATER_ACCESS_47_OK badge=B crosswalk=false national_anchor=64.8');
   console.log(`P21_WATER_COMPLETENESS_OK resolved=${summary.resolved_slots} remaining=${queue.remaining_slots} families=${queue.family_count}`);
+  console.log('P21_WATER_COUNTYIQ_VERSIONING_OK methodology=P08-v1 inputs=5 water_fact_published=true composite_reweighted=false');
 }catch(error){console.error(error.message||error);process.exit(1);}
