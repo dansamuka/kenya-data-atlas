@@ -1,0 +1,112 @@
+name: P20 consolidated parallel completion
+
+on:
+  push:
+    branches: [p20-consolidated-completion]
+    paths:
+      - '.github/workflows/p20-consolidated-generator.yml'
+      - 'data/p20/source/**'
+      - 'scripts/p20/**'
+      - 'package.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p20-consolidated-completion
+  cancel-in-progress: false
+
+jobs:
+  census-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate census workstream source
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('data/p20/source/disability-prevalence-2019.json','utf8'));
+          const codes=new Set((d.counties||[]).map(r=>r.geo_code));
+          if(d.counties?.length!==47||codes.size!==47||Number(d.national_value)!==2.2) throw new Error('disability source gate failed');
+          if(d.counties.some(r=>!Number.isFinite(Number(r.value)))) throw new Error('disability value missing');
+          console.log('P20_WORKSTREAM_CENSUS_SOURCE_OK disability=47');
+          NODE
+
+  kdhs-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate KDHS workstream source
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-additional-county.json','utf8'));
+          if(d.counties?.length!==47||new Set(d.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS county coverage failed');
+          for(const r of d.counties){
+            for(const k of ['teenage_pregnancy_pct','home_birth_pct']) if(!Number.isFinite(Number(r[k]))) throw new Error(`${r.geo_code} ${k} missing`);
+            for(const k of ['teenage_pregnancy_sample_size','home_birth_sample_size']) if(!(Number(r[k])>0)) throw new Error(`${r.geo_code} ${k} missing`);
+          }
+          console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47');
+          NODE
+
+  remaining-queue-diagnostic:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Classify remaining P20 workstreams
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const l=JSON.parse(fs.readFileSync('data/completeness/slot-ledger.json','utf8'));
+          const rows=l.rows.filter(r=>r.completion_phase==='P20'&&!r.resolved);
+          const m=new Map(); for(const r of rows)m.set(r.indicator_code,(m.get(r.indicator_code)||0)+1);
+          const blockers=new Set(['IND-COUNTY-PENDING-BILLS','IND-SUBSTANCE-ABUSE-PREVALENCE','IND-HEALTH-FACILITY-DENSITY']);
+          for(const [code,n] of [...m].sort()) console.log(`P20_QUEUE ${code}=${n} class=${blockers.has(code)?'semantic-source-gate':'source-acquisition'}`);
+          console.log(`P20_WORKSTREAM_DIAGNOSTIC_OK queue=${rows.length} families=${m.size}`);
+          NODE
+
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    needs: [census-source-gate, kdhs-source-gate, remaining-queue-diagnostic]
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p20-consolidated-completion
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+      - name: Apply consolidated wiring
+        run: node scripts/p20/prepare-consolidated.mjs
+      - name: Rebuild all published Atlas products
+        run: npm run build:data
+      - name: Run full Atlas validation suite
+        run: npm test
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+      - name: Commit consolidated implementation and generated products
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No consolidated P20 changes produced.'
+            exit 0
+          fi
+          git commit -m 'feat(p20): promote consolidated 141-slot county batch'
+          git push origin HEAD:p20-consolidated-completion
