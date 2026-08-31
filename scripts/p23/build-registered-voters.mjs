@@ -52,10 +52,10 @@ function validateSource(rows) {
   if (rows.some(r => !Number.isInteger(Number(r.ward_row_count)) || Number(r.ward_row_count) <= 0)) throw new Error('P23A source: every constituency must retain a positive source ward-row count');
   const total = rows.reduce((sum, r) => sum + Number(r.value), 0);
   if (total !== NATIONAL_TOTAL) throw new Error(`P23A source: constituency total ${total} != ${NATIONAL_TOTAL}`);
-  const anchors = new Map([[1,93561],[2,75085],[3,135276],[133,72997],[280,123163]]);
-  for (const [code, expected] of anchors) {
-    const row = rows.find(r => Number(r.constituency_code) === code);
-    if (!row || Number(row.value) !== expected) throw new Error(`P23A source: constituency ${code} anchor != ${expected}`);
+  const anchors = new Map([['CHANGAMWE',93561],['JOMVU',75085],['KISAUNI',135276],['OL KALOU',72997],['MATHARE',123163]]);
+  for (const [name, expected] of anchors) {
+    const row = rows.find(r => String(r.constituency_name || '').toUpperCase() === name);
+    if (!row || Number(row.value) !== expected) throw new Error(`P23A source: ${name} anchor != ${expected}`);
   }
 }
 
