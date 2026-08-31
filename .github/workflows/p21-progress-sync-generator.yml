@@ -1,0 +1,69 @@
+name: P21 progress sync generator
+
+on:
+  push:
+    branches: [p21-exam-performance-retirement]
+    paths:
+      - '.github/workflows/p21-progress-sync-generator.yml'
+      - 'scripts/p21/build-work-queue.mjs'
+      - 'scripts/p21/prepare-agriculture-replacement.mjs'
+      - 'scripts/project/validate-data-completion-execution.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p21-progress-sync-generator
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p21-exam-performance-retirement
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m pip install --disable-pip-version-check shapely
+      - name: Rebuild deterministic products
+        run: npm run build:data
+      - name: Verify synced P21 authority
+        run: |
+          node scripts/project/validate-data-completion-execution.mjs
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const roadmap=JSON.parse(fs.readFileSync('data/data-completion-roadmap.json','utf8'));
+          const queue=JSON.parse(fs.readFileSync('data/completeness/p21-work-queue.json','utf8'));
+          const p21=roadmap.phases.find(p=>p.id==='P21');
+          if(queue.remaining_slots!==282||queue.family_count!==6) throw new Error(`expected P21 282/6, got ${queue.remaining_slots}/${queue.family_count}`);
+          if(p21.progress?.remaining_slots!==282||p21.progress?.resolved_in_p21!==141) throw new Error('P21 roadmap progress not synchronized');
+          if(p21.progress?.resolved_in_tranche_3!==47) throw new Error('exam-performance tranche missing from roadmap progress');
+          console.log('P21_PROGRESS_SYNC_OK remaining=282 resolved=141');
+          NODE
+      - name: Full validation
+        run: npm test
+      - name: Independent geometry audit
+        run: npm run geography:audit
+      - name: Commit regenerated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No regenerated changes.'
+            exit 0
+          fi
+          git commit -m 'build(p21): synchronize live progress authority'
+          git push origin HEAD:p21-exam-performance-retirement
