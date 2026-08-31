@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/p21-agriculture-generator.yml'
       - 'scripts/p21/**'
+      - 'scripts/p20/**'
       - 'scripts/completeness/**'
       - 'data/completeness/evidence-states.json'
       - 'data/indicators/seed/placeholder-taxonomy.json'
