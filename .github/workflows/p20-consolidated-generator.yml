@@ -54,7 +54,11 @@ jobs:
           if(c.counties?.length!==47||new Set(c.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS contraceptive county coverage failed');
           if(Number(c.reported_total_pct)!==56.9||Number(c.reported_total_weighted_n)!==17822) throw new Error('KDHS contraceptive national anchor failed');
           for(const r of c.counties){if(!Number.isFinite(Number(r.modern_contraceptive_pct)))throw new Error(`${r.geo_code} contraceptive estimate missing`);if(!(Number(r.sample_size)>0))throw new Error(`${r.geo_code} contraceptive denominator missing`);}
-          console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47 contraceptive=47');
+          const f=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-fgm-county.json','utf8'));
+          if(f.counties?.length!==47||new Set(f.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS FGM county coverage failed');
+          if(Number(f.reported_total_pct)!==14.8||Number(f.reported_total_weighted_n)!==16716) throw new Error('KDHS FGM national anchor failed');
+          for(const r of f.counties){if(!Number.isFinite(Number(r.fgm_prevalence_pct)))throw new Error(`${r.geo_code} FGM estimate missing`);if(!(Number(r.sample_size)>0))throw new Error(`${r.geo_code} FGM denominator missing`);}
+          console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47 contraceptive=47 fgm=47');
           NODE
 
   remaining-queue-diagnostic:
@@ -112,5 +116,5 @@ jobs:
             echo 'No consolidated P20 changes produced.'
             exit 0
           fi
-          git commit -m 'feat(p20): promote consolidated 188-slot county batch'
+          git commit -m 'feat(p20): promote consolidated 235-slot county batch'
           git push origin HEAD:p20-consolidated-completion
