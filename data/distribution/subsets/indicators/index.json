@@ -294,6 +294,13 @@
     "observation_count": 47
   },
   {
+    "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+    "name": "Households receiving cash transfer or social assistance",
+    "path": "data/distribution/subsets/indicators/IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
     "indicator_code": "IND-HOUSING-MATERIAL",
     "name": "Households with durable wall material",
     "path": "data/distribution/subsets/indicators/IND-HOUSING-MATERIAL.json",

@@ -902,5 +902,20 @@
     "publication_status": "published",
     "methodology_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
     "known_limitations": "Table 18 measures the share of facilities offering inpatient services. It is not a bed-occupancy/utilisation rate, bed density, population-access measure or quality score. County percentages are published as rounded whole percentages. The Atlas does not allocate the separately reported national 46% inpatient bed-occupancy rate to counties."
+  },
+  {
+    "dataset_id": "7257fcc4-12ca-55ae-9936-218c153fe8b7",
+    "dataset_code": "DS-KNBS-KDHS-CASH-SOCIAL-ASSISTANCE-2022-P21",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "KDHS 2022 — Households receiving cash transfer or social assistance by county",
+    "description": "Percentage of households receiving a cash transfer or any social assistance for all 47 counties, published directly in KDHS 2022 Table 2.21.3C.",
+    "topic": "Social protection",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "periodic",
+    "publication_status": "published",
+    "methodology_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "known_limitations": "Household survey estimate broader than Inua Jamii. It is not an administrative beneficiary-person count, programme enrolment count or take-up rate. County confidence intervals/standard errors are not published in Table 2.21.3C; the Atlas retains household denominators and withholds ranking rather than fabricating uncertainty."
   }
 ]

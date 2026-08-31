@@ -8,11 +8,10 @@
     "completion_phase": "P21",
     "resolved": false
   },
-  "remaining_slots": 141,
-  "family_count": 3,
+  "remaining_slots": 94,
+  "family_count": 2,
   "family_counts": {
     "IND-ROAD-NETWORK-LENGTH": 47,
-    "IND-SOCIAL-PROTECTION-BENEFICIARIES": 47,
     "IND-VEHICLE-REGISTRATIONS": 47
   }
 }

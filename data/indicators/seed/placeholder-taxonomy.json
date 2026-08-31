@@ -127,7 +127,8 @@
     "IND-HOME-BIRTH-RATE",
     "IND-CONTRACEPTIVE-USE",
     "IND-FGM-CHILD-MARRIAGE",
-    "IND-SUBSTANCE-ABUSE-PREVALENCE"
+    "IND-SUBSTANCE-ABUSE-PREVALENCE",
+    "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE"
   ],
   "sensitive_no_ranking_codes": [
     "IND-TEENAGE-PREGNANCY",
@@ -303,13 +304,14 @@
       "name": "Inua Jamii cash-transfer beneficiaries",
       "description": "Beneficiaries of Older Persons, OVC, Persons with Severe Disability and HSNP schemes.",
       "unit_code": "persons",
-      "status": "planned",
+      "status": "retired",
       "tab": "people",
       "levels": [
         "county"
       ],
-      "source": "State Department for Social Protection",
-      "note": "No citable per-county publication identified; must not be promoted to sourced without one."
+      "source": "KNBS and ICF — Kenya Demographic and Health Survey 2022, Volume 1, Table 2.21.3C",
+      "note": "Retired/replaced in P21. The original slot is an administrative Inua Jamii beneficiary person count; no complete governed 47-county administrative table was located. Use IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE for the distinct KDHS household survey percentage. Do not interpret the successor as an Inua Jamii beneficiary count.",
+      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/"
     },
     {
       "code": "IND-EXAM-PERFORMANCE",
@@ -827,6 +829,21 @@
       "source": "Ministry of Health — Service Availability and Readiness Assessment (SARA) Main Report, Table 18",
       "source_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
       "note": "Published directly for all 47 counties with facility denominators in SARA Table 18. This measures service availability among facilities, not bed occupancy/utilisation, bed density, population access or quality. Ranking is withheld."
+    },
+    {
+      "code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "name": "Households receiving cash transfer or social assistance",
+      "short_name": "Cash transfer / social assistance",
+      "description": "Percentage of households receiving a cash transfer or any social assistance, as published in KDHS 2022 Table 2.21.3C.",
+      "unit_code": "percent",
+      "status": "sourced",
+      "tab": "people",
+      "levels": [
+        "county"
+      ],
+      "source": "KNBS and ICF — Kenya Demographic and Health Survey 2022, Volume 1, Table 2.21.3C",
+      "source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+      "note": "Direct 47-county KDHS household survey estimate. Broader than Inua Jamii and not an administrative beneficiary count. Household sample sizes are retained; confidence intervals are not fabricated and ranking is withheld."
     }
   ]
 }

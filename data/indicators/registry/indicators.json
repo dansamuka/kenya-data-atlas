@@ -1743,13 +1743,13 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
     "comparable": true,
     "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "State Department for Social Protection",
-    "expected_source_url": "",
-    "expected_availability_note": "No citable per-county publication identified; must not be promoted to sourced without one.",
+    "lifecycle_status": "retired",
+    "expected_source": "KNBS and ICF — Kenya Demographic and Health Survey 2022, Volume 1, Table 2.21.3C",
+    "expected_source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "expected_availability_note": "Retired/replaced in P21. The original slot is an administrative Inua Jamii beneficiary person count; no complete governed 47-county administrative table was located. Use IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE for the distinct KDHS household survey percentage. Do not interpret the successor as an Inua Jamii beneficiary count.",
     "tab": "people",
     "applies_to_levels": [
       "county"
@@ -2597,6 +2597,34 @@
     ],
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": false,
+    "ranking_allowed": false
+  },
+  {
+    "indicator_id": "d8928687-5458-59a0-8ea3-b68f0d96a1d9",
+    "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+    "name": "Households receiving cash transfer or social assistance",
+    "short_name": "Cash transfer / social assistance",
+    "description": "Percentage of households receiving a cash transfer or any social assistance in KDHS 2022 Table 2.21.3C.",
+    "topic": "Demography",
+    "subtopic": "people",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "comparable": true,
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "KNBS and ICF — KDHS 2022 Table 2.21.3C",
+    "expected_source_url": "https://www.knbs.or.ke/reports/kdhs-2022/",
+    "expected_availability_note": "Published directly for all 47 counties. This is a household survey percentage broader than Inua Jamii, not an administrative beneficiary count. Household denominators are retained; confidence intervals are not fabricated and ranking is withheld.",
+    "tab": "people",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": true,
     "ranking_allowed": false
   },
   {
