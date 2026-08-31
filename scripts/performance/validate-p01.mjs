@@ -18,7 +18,7 @@ const routed=read('assets/routed-views.js');
 const pulse=JSON.parse(read('data/ui/initial-pulse.json'));
 
 function scriptSources(){
-  return [...html.matchAll(/<script\s+[^>]*src="([^"]+)"[^>]*><\/script>/g)].map(m=>m[1]);
+  return [...html.matchAll(/<script\s+[^>]*src="([^"]+)"[^>]*><\/script>/g)].map(m=>m[1].split(/[?#]/)[0]);
 }
 
 function validateFirstPaintContract(){
