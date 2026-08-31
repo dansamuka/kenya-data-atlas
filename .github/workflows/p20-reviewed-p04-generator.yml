@@ -1,71 +1,38 @@
-name: P20 reviewed P04 county generator
+name: P20 remaining queue diagnostic
 
 on:
   push:
     branches: [p20-reviewed-p04-county-promotion]
     paths:
       - '.github/workflows/p20-reviewed-p04-generator.yml'
-      - 'scripts/p20/promote-reviewed-p04-county.mjs'
-      - 'scripts/p20/build-reviewed-p04-county.mjs'
-      - 'scripts/p20/validate-reviewed-p04-county.mjs'
 
 permissions:
-  contents: write
-
-concurrency:
-  group: p20-reviewed-p04-county-promotion
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  generate-and-validate:
-    if: github.actor != 'github-actions[bot]'
+  diagnose:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
     steps:
-      - name: Check out promotion branch
+      - name: Check out branch
         uses: actions/checkout@v4
         with:
           ref: p20-reviewed-p04-county-promotion
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: |
-          npm ci
-          python -m pip install --disable-pip-version-check shapely
-
-      - name: Apply reviewed P04 promotion
-        run: node scripts/p20/promote-reviewed-p04-county.mjs
-
-      - name: Rebuild all published Atlas products
-        run: npm run build:data
-
-      - name: Run full Atlas validation suite
-        run: npm test
-
-      - name: Run independent geometry audit
-        run: npm run geography:audit
-
-      - name: Commit implementation and deterministic generated products
+      - name: Print governed P20 queue by indicator
         shell: bash
         run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          if git diff --cached --quiet; then
-            echo 'No P20 reviewed P04 promotion changes were produced.'
-            exit 0
-          fi
-          git commit -m 'feat(p20): promote 235 reviewed P04 county slots'
-          git push origin HEAD:p20-reviewed-p04-county-promotion
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const ledger=JSON.parse(fs.readFileSync('data/completeness/slot-ledger.json','utf8'));
+          const rows=ledger.rows.filter(r=>r.completion_phase==='P20' && r.resolved===false);
+          const grouped=new Map();
+          for(const r of rows){
+            const g=grouped.get(r.indicator_code)||{indicator_code:r.indicator_code,indicator_name:r.indicator_name,status:r.status,tab:r.tab,count:0,source:r.source,source_url:r.source_url,examples:[]};
+            g.count++;
+            if(g.examples.length<3)g.examples.push(r.geo_code);
+            grouped.set(r.indicator_code,g);
+          }
+          console.log(`P20_QUEUE_TOTAL ${rows.length}`);
+          for(const g of [...grouped.values()].sort((a,b)=>b.count-a.count||a.indicator_code.localeCompare(b.indicator_code))){
+            console.log(JSON.stringify(g));
+          }
+          NODE
