@@ -40,17 +40,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: p20-consolidated-completion }
-      - name: Validate KDHS workstream source
+      - name: Validate KDHS workstream sources
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const d=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-additional-county.json','utf8'));
-          if(d.counties?.length!==47||new Set(d.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS county coverage failed');
+          if(d.counties?.length!==47||new Set(d.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS additional county coverage failed');
           for(const r of d.counties){
             for(const k of ['teenage_pregnancy_pct','home_birth_pct']) if(!Number.isFinite(Number(r[k]))) throw new Error(`${r.geo_code} ${k} missing`);
             for(const k of ['teenage_pregnancy_sample_size','home_birth_sample_size']) if(!(Number(r[k])>0)) throw new Error(`${r.geo_code} ${k} missing`);
           }
-          console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47');
+          const c=JSON.parse(fs.readFileSync('data/p20/source/kdhs-2022-contraceptive-county.json','utf8'));
+          if(c.counties?.length!==47||new Set(c.counties.map(r=>r.geo_code)).size!==47) throw new Error('KDHS contraceptive county coverage failed');
+          if(Number(c.reported_total_pct)!==56.9||Number(c.reported_total_weighted_n)!==17822) throw new Error('KDHS contraceptive national anchor failed');
+          for(const r of c.counties){if(!Number.isFinite(Number(r.modern_contraceptive_pct)))throw new Error(`${r.geo_code} contraceptive estimate missing`);if(!(Number(r.sample_size)>0))throw new Error(`${r.geo_code} contraceptive denominator missing`);}
+          console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47 contraceptive=47');
           NODE
 
   remaining-queue-diagnostic:
@@ -108,5 +112,5 @@ jobs:
             echo 'No consolidated P20 changes produced.'
             exit 0
           fi
-          git commit -m 'feat(p20): promote consolidated 141-slot county batch'
+          git commit -m 'feat(p20): promote consolidated 188-slot county batch'
           git push origin HEAD:p20-consolidated-completion
