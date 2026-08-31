@@ -16,8 +16,8 @@ For that reason, `P18–P26` is documented separately rather than being appended
 As of 31 August 2026 the governed completeness surface is:
 
 - **20,115 total slot instances**
-- **2,821 resolved**
-- **17,294 unresolved**
+- **2,915 resolved**
+- **17,200 unresolved**
 - **14.02% resolved**
 - **49 unique indicator slots**
 - **0 unknown/unclassified blanks**
@@ -26,7 +26,7 @@ Current unresolved queue:
 
 | Phase | Queue |
 |---|---:|
-| P20 | 564 |
+| P20 | 470 |
 | P21 | 423 |
 | P22 | 66 |
 | P23 | 3,190 |
@@ -116,8 +116,10 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 - **94 slots resolved in tranche 1**.
 - 47/47 FY2023/24 County Executive audit opinions, verified directly from OAG Appendix 1(a), pages 69–70; all are categorically **Qualified**.
 - **141 P20 slots resolved across tranches 1–2**.
+- 47/47 KDHS 2022 teenage-pregnancy estimates and 47/47 home-birth estimates promoted with the source-reported weighted denominator retained as survey precision metadata; point-estimate rankings remain withheld.
+- **235 P20 slots resolved across tranches 1–3**.
 
-**Remaining queue:** **564**.
+**Remaining queue:** **470**.
 
 **Acceptance**
 - P20 queue reaches zero;

@@ -267,10 +267,10 @@
   },
   {
     "indicator_code": "IND-HOME-BIRTH-RATE",
-    "name": "Home births (vs. facility births)",
+    "name": "Home birth rate",
     "path": "data/distribution/subsets/indicators/IND-HOME-BIRTH-RATE.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-HOMICIDE-RATE",
@@ -624,10 +624,10 @@
   },
   {
     "indicator_code": "IND-TEENAGE-PREGNANCY",
-    "name": "Teenage pregnancy rate, age 15–19",
+    "name": "Teenage pregnancy, age 15–19",
     "path": "data/distribution/subsets/indicators/IND-TEENAGE-PREGNANCY.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-TURNOUT-HISTORY",

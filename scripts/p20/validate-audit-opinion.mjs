@@ -56,13 +56,13 @@ try {
   }
   assert(count === 47, `expected 47 verified audit observations, got ${count}`);
   assert(summary.total_slots === 20115, `governed slot count changed: ${summary.total_slots}`);
-  assert(summary.resolved_slots === 2821, `expected 2,821 resolved slots after audit tranche, got ${summary.resolved_slots}`);
-  assert(summary.unresolved_slots === 17294, `expected 17,294 unresolved slots, got ${summary.unresolved_slots}`);
-  assert(summary.by_completion_phase?.P20 === 564, `expected 564 P20 slots remaining, got ${summary.by_completion_phase?.P20}`);
+  assert(summary.resolved_slots === 2915, `expected 2,915 resolved slots after audit tranche, got ${summary.resolved_slots}`);
+  assert(summary.unresolved_slots === 17200, `expected 17,200 unresolved slots, got ${summary.unresolved_slots}`);
+  assert(summary.by_completion_phase?.P20 === 470, `expected 470 P20 slots remaining, got ${summary.by_completion_phase?.P20}`);
   assert(summary.unknown_missing === 0, 'unknown_missing must remain zero');
   console.log('P20_AUDIT_47X47_RECONCILIATION_OK category=Qualified');
   console.log('P20_AUDIT_NO_NUMERIC_SCORE_OK');
-  console.log('P20_AUDIT_COMPLETENESS_OK resolved=2821 p20_remaining=564');
+  console.log('P20_AUDIT_COMPLETENESS_OK resolved=2915 p20_remaining=470');
 } catch (error) {
   console.error(error.message || error);
   process.exit(1);

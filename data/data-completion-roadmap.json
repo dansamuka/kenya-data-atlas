@@ -17,13 +17,13 @@
   "baseline": {
     "as_of": "2026-08-31",
     "total_slots": 20115,
-    "resolved_slots": 2821,
-    "unresolved_slots": 17294,
-    "resolved_pct": 14.02,
+    "resolved_slots": 2915,
+    "unresolved_slots": 17200,
+    "resolved_pct": 14.49,
     "unknown_missing": 0,
     "unique_indicator_slots": 49,
     "remaining_by_phase": {
-      "P20": 564,
+      "P20": 470,
       "P21": 423,
       "P22": 66,
       "P23": 3190,
@@ -113,10 +113,12 @@
       "progress": {
         "resolved_in_tranche_1": 94,
         "tranche_1_note": "47/47 main-grid electricity plus 47/47 FY2024/25 own-source-revenue target-attainment slots activated in PR #26.",
-        "remaining_slots": 564,
+        "remaining_slots": 470,
         "resolved_in_tranche_2": 47,
-        "resolved_total": 141,
-        "tranche_2_note": "47/47 County Executive audit-opinion slots promoted from OAG Appendix 1(a), pp. 69–70. All are categorical 'Qualified'; no numeric audit score is created."
+        "resolved_total": 235,
+        "tranche_2_note": "47/47 County Executive audit-opinion slots promoted from OAG Appendix 1(a), pp. 69–70. All are categorical 'Qualified'; no numeric audit score is created.",
+        "resolved_in_tranche_3": 94,
+        "tranche_3_note": "94 county slots promoted from KDHS 2022: teenage pregnancy (Table 6C) and home births (Table 9.7C), 47 counties each. Published weighted denominators are retained as survey precision metadata; point-estimate rankings remain withheld."
       }
     },
     {
