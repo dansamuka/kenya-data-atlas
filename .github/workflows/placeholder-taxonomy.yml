@@ -15,6 +15,7 @@ on:
       - 'data/p05/source/connectivity-housing-survey-2023-24.csv'
       - 'data/p05/source/manifest.json'
       - 'data/countyiq/source/p10-fiscal-accountability-2024-25.json'
+      - 'data/p20/source/kdhs-2022-additional-county.json'
       - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-native-api.mjs'
