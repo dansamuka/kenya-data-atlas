@@ -6,7 +6,7 @@ const readJson=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const outDir=path.join(root,'data/completeness');
 fs.mkdirSync(outDir,{recursive:true});
 
-const [geographies,indicators,series,observations,taxonomy,subsetsDoc,datasets,sources,agencies]=[
+const [geographies,indicators,series,observations,taxonomy,subsetsDoc,datasets,sources,agencies,evidenceStates]=[
   'data/geography/registry/geographies.json',
   'data/indicators/registry/indicators.json',
   'data/indicators/registry/series.json',
@@ -15,7 +15,8 @@ const [geographies,indicators,series,observations,taxonomy,subsetsDoc,datasets,s
   'data/geography/reference/geography-subsets.json',
   'data/catalogue/registry/datasets.json',
   'data/catalogue/registry/sources.json',
-  'data/catalogue/registry/agencies.json'
+  'data/catalogue/registry/agencies.json',
+  'data/completeness/evidence-states.json'
 ].map(readJson);
 
 const overviewSlots={
@@ -35,6 +36,16 @@ for(const s of series){
   const key=`${s.geography_id}|${s.indicator_id}`;
   if(!seriesByGeoIndicator.has(key))seriesByGeoIndicator.set(key,[]);
   seriesByGeoIndicator.get(key).push(s);
+}
+
+const explicitEvidenceByKey=new Map();
+for(const state of evidenceStates.states||[]){
+  const codes=state.geo_codes||(state.geo_code?[state.geo_code]:[]);
+  for(const geoCode of codes){
+    const key=`${state.level}|${geoCode}|${state.indicator_code}`;
+    if(explicitEvidenceByKey.has(key))throw new Error(`Duplicate completeness evidence state ${key}`);
+    explicitEvidenceByKey.set(key,{...state,geo_code:geoCode});
+  }
 }
 
 const periodKey=o=>String(o?.period_end||o?.period_start||o?.period_label||'');
@@ -88,6 +99,10 @@ function classify(geo,tab,code){
   if(pair){
     return {status:evidenceStatus(pair),resolved:true,reason:'Canonical series has a latest observation for this geography and indicator.',completion_phase:'complete',pair};
   }
+  const explicit=explicitEvidenceByKey.get(`${geo.level}|${geo.geo_code}|${code}`);
+  if(explicit){
+    return {status:explicit.status,resolved:true,reason:explicit.reason,completion_phase:'complete',explicit};
+  }
   const lifecycle=indicator.lifecycle_status||(indicator.active?'active':'planned');
   let status='unknown_missing';
   if(lifecycle==='active')status='active_missing';
@@ -109,7 +124,7 @@ for(const geo of geographies.filter(g=>['county','constituency','ward'].includes
     for(const code of slotCodes(geo,tab)){
       const indicator=indicatorByCode.get(code);
       const c=classify(geo,tab,code);
-      const pair=c.pair;
+      const pair=c.pair,explicit=c.explicit;
       rows.push({
         slot_key:`${geo.geo_code}|profile|${tab}|${code}`,
         surface:'profile',
@@ -127,12 +142,12 @@ for(const geo of geographies.filter(g=>['county','constituency','ward'].includes
         reason:c.reason,
         series_code:pair?.series?.series_code||'',
         observation_id:pair?.obs?.observation_id||'',
-        period_label:pair?.obs?.period_label||'',
+        period_label:pair?.obs?.period_label||explicit?.period_label||'',
         value:pair?.obs?.text_value??pair?.obs?.value??'',
         badge:pair?.obs?.badge||'',
         geographic_method:pair?.obs?.geographic_method||pair?.series?.geographic_method||'',
-        source:pair?sourceLabel(pair.series):(indicator?.expected_source||''),
-        source_url:indicator?.expected_source_url||indicator?.methodology_url||''
+        source:pair?sourceLabel(pair.series):(explicit?.source||indicator?.expected_source||''),
+        source_url:explicit?.source_url||indicator?.expected_source_url||indicator?.methodology_url||''
       });
     }
   }
@@ -142,7 +157,7 @@ const country=geographies.find(g=>g.level==='country');
 for(const code of taxonomy.national_pulse_slots||[]){
   const indicator=indicatorByCode.get(code);
   const c=country?classify(country,'national_pulse',code):{status:'unknown_missing',resolved:false,reason:'Country geography missing.',completion_phase:'P18'};
-  const pair=c.pair;
+  const pair=c.pair,explicit=c.explicit;
   rows.push({
     slot_key:`${country?.geo_code||'KEN'}|national_pulse|national_pulse|${code}`,
     surface:'national_pulse',
@@ -160,12 +175,12 @@ for(const code of taxonomy.national_pulse_slots||[]){
     reason:c.reason,
     series_code:pair?.series?.series_code||'',
     observation_id:pair?.obs?.observation_id||'',
-    period_label:pair?.obs?.period_label||'',
+    period_label:pair?.obs?.period_label||explicit?.period_label||'',
     value:pair?.obs?.text_value??pair?.obs?.value??'',
     badge:pair?.obs?.badge||'',
     geographic_method:pair?.obs?.geographic_method||pair?.series?.geographic_method||'',
-    source:pair?sourceLabel(pair.series):(indicator?.expected_source||''),
-    source_url:indicator?.expected_source_url||indicator?.methodology_url||''
+    source:pair?sourceLabel(pair.series):(explicit?.source||indicator?.expected_source||''),
+    source_url:explicit?.source_url||indicator?.expected_source_url||indicator?.methodology_url||''
   });
 }
 
@@ -175,7 +190,7 @@ const resolved=rows.filter(r=>r.resolved).length;
 const uniqueIndicators=new Set(rows.map(r=>r.indicator_code)).size;
 const summary={
   schema_version:'kda.completeness.summary.v1',
-  definition:'A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation. Sourced-but-uningested and planned slots remain unresolved until a later phase or an explicit evidence-state/retirement rule resolves them.',
+  definition:'A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation, or a governed primary-source evidence state establishes that the requested observation is officially unavailable. No parent, regional or missing value is inherited or manufactured.',
   total_slots:rows.length,
   resolved_slots:resolved,
   unresolved_slots:rows.length-resolved,
@@ -189,7 +204,7 @@ const summary={
 };
 const ledger={
   schema_version:'kda.completeness.slot-ledger.v1',
-  target_definition:'Every public data slot must end in a defensible resolved evidence state; parent values are never inherited to fill child geographies.',
+  target_definition:'Every public data slot must end in a defensible resolved evidence state; parent/regional values are never inherited and official non-publication/non-submission is preserved without fabricating a numeric observation.',
   expected_slot_instances:20115,
   rows
 };
@@ -203,3 +218,4 @@ fs.writeFileSync(path.join(outDir,'summary.json'),JSON.stringify(summary,null,2)
 
 console.log(`P18_COMPLETENESS_LEDGER_OK slots=${rows.length} resolved=${resolved} unresolved=${rows.length-resolved} unknown=${summary.unknown_missing}`);
 console.log(`P18_COMPLETENESS_LEVELS county=${summary.by_level.county||0} constituency=${summary.by_level.constituency||0} ward=${summary.by_level.ward||0} country=${summary.by_level.country||0}`);
+console.log(`P18_EXPLICIT_EVIDENCE_STATES_OK configured=${explicitEvidenceByKey.size} resolved=${rows.filter(r=>r.status==='official_unavailable').length}`);
