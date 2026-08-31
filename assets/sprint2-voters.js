@@ -1,10 +1,10 @@
-/* Kenya Data Atlas — Sprint 2 voter drill-down adapter.
+/* Kenya Data Atlas — Sprint 2 voter ward-only supplement after P23A constituency canonicalisation.
  *
- * The canonical registries currently carry the national/county voter release,
- * while the validated Sprint 2 source contains the constituency and ward
- * schedule. This lazy adapter restores those source-backed lower-level values
- * to Geo Explorer without copying a county value down the hierarchy and
- * without reinstating the retired fetch-overlay architecture.
+ * National, county and constituency registered-voter observations are now
+ * carried by the canonical registries. This lazy adapter retains only the
+ * validated ward schedule needed by Geo Explorer: 1,440 safely mapped official
+ * ward values plus the explicit 10-row Mandera East/Lafey spatial hold. It
+ * never copies a parent value down the hierarchy.
  */
 (function(){
   'use strict';
@@ -17,7 +17,7 @@
 
   const state={
     ready:null,error:null,source_url:SOURCE,gazette_url:GAZETTE,
-    coverage:{source_wards:1450,mapped_wards:1440,held_wards:10,constituencies:290},
+    coverage:{source_wards:1450,mapped_wards:1440,held_wards:10,canonical_constituencies:290},
     valuesByGeographyId:new Map(),holds:[],crosswalks:[]
   };
 
@@ -89,8 +89,9 @@
     let mappedCount=0;
     for(let code=1;code<=290;code+=1){
       const constituency=constituencies.get(code),sourceRows=sourceByConstituency.get(code)||[];assert(constituency&&sourceRows.length,`missing constituency ${code}`);
-      const total=sourceRows.reduce((sum,row)=>sum+row.registered_voters,0);
-      state.valuesByGeographyId.set(constituency.geography_id,pair(constituency,total,{badge:'B',method:'aggregated',label:`${constituency.name} constituency · sum of ${sourceRows.length} official CAW rows`,notes:'Exact sum of the official IEBC ward schedule; no county value is inherited.'}));
+      // Constituency totals are native after P23A; retain this loop solely to
+      // validate source coverage and drive safe child-ward mapping.
+      const total=sourceRows.reduce((sum,row)=>sum+row.registered_voters,0);assert(total>0,`invalid constituency total ${code}`);
       if(HOLD_CONSTITUENCIES.has(code)){
         sourceRows.forEach(row=>state.holds.push({constituency_code:code,source_ward_code:row.ward_code,source_ward_name:row.ward_name,registered_voters:row.registered_voters,reason:HOLD_REASON}));
         continue;
