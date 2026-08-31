@@ -55,7 +55,45 @@
 .national-placeholder.lifecycle-planned{border-style:dashed!important;background:linear-gradient(145deg,#fff,#fafaf7)!important}.national-placeholder .badge.lifecycle{position:absolute;right:1rem;top:1rem}
 .geo-ranking-policy{margin:.35rem 0 .6rem;padding:.48rem .6rem;border:1px solid #e4d6c4;border-radius:7px;background:#fbf5ec;color:#6f5c41;font-size:.66rem;line-height:1.35}
 
-@media(max-width:1000px){.place-profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* P19 — the 14 already-complete county breadth indicators are surfaced as a
+ * compact supplementary panel. It reuses the registries already loaded by the
+ * profile and therefore adds no network request or parallel data store. */
+.place-sector-mount:empty{display:none}
+.place-sector-panel{margin-top:1rem;padding:1.05rem;border:1px solid rgba(18,60,50,.11);border-radius:17px;background:#f3f7f3;box-shadow:0 8px 24px rgba(22,43,35,.035)}
+.place-sector-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1.2rem;margin-bottom:.8rem}
+.place-sector-head>div:first-child{max-width:760px}
+.place-sector-eyebrow{display:block;margin-bottom:.28rem;color:#466c5c;font-size:.56rem;font-weight:850;letter-spacing:.09em;text-transform:uppercase}
+.place-sector-head h3{margin:0;font-family:var(--serif);font-size:1.65rem;font-weight:500;letter-spacing:-.025em;color:#17231f}
+.place-sector-head p{margin:.38rem 0 0;max-width:690px;color:#65716b;font-size:.68rem;line-height:1.45}
+.place-sector-coverage{flex:0 0 auto;min-width:82px;padding:.62rem .72rem;border:1px solid rgba(18,60,50,.10);border-radius:12px;background:#fff;text-align:center}
+.place-sector-coverage strong{display:block;font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1;color:#123c32}
+.place-sector-coverage span{display:block;margin-top:.2rem;color:#6b7771;font-size:.52rem;font-weight:750}
+.place-sector-tabs{display:flex;gap:.42rem;overflow-x:auto;padding:.05rem .02rem .45rem;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-inline:contain}
+.place-sector-tabs::-webkit-scrollbar{display:none}
+.place-sector-tabs button{flex:1 0 145px;min-height:50px;padding:.5rem .65rem;border:1px solid rgba(18,60,50,.12);border-radius:11px;background:#fff;color:#52625b;text-align:left;font:inherit;cursor:pointer;scroll-snap-align:start;transition:border-color .16s ease,background .16s ease,transform .16s ease}
+.place-sector-tabs button span{display:block;font-size:.67rem;font-weight:800;line-height:1.2}
+.place-sector-tabs button small{display:block;margin-top:.16rem;color:#89938e;font-size:.5rem;font-weight:650}
+.place-sector-tabs button[aria-pressed="true"]{border-color:#123c32;background:#123c32;color:#fff;box-shadow:0 5px 14px rgba(18,60,50,.10)}
+.place-sector-tabs button[aria-pressed="true"] small{color:#c9d8d1}
+.place-sector-tabs button:hover,.place-sector-tabs button:focus-visible{border-color:#447564;outline:2px solid rgba(18,60,50,.13);outline-offset:2px}
+.place-sector-group-head{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;padding:.45rem .05rem .5rem}
+.place-sector-group-head strong{font-size:.72rem;color:#233a31}
+.place-sector-group-head span{color:#7b8781;font-size:.55rem;text-align:right}
+.place-sector-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem}
+.place-sector-card{position:relative;min-height:132px;padding:.72rem .75rem;border:1px solid #dce5df;border-radius:12px;background:#fff;display:flex;flex-direction:column;overflow:hidden}
+.place-sector-card:before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:#6f9b85}
+.place-sector-card.missing{border-style:dashed;background:#fafbf9}
+.place-sector-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.4rem;min-height:2.05rem}
+.place-sector-card-top>span{max-width:82%;color:#53635c;font-size:.61rem;font-weight:750;line-height:1.24}
+.place-sector-card .badge{flex:0 0 auto;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;padding:0;font-size:.47rem;font-weight:850}
+.place-sector-value{display:flex;align-items:baseline;gap:.35rem;margin:.35rem 0 .45rem;min-width:0}
+.place-sector-value strong{font-family:var(--serif);font-size:1.42rem;font-weight:500;line-height:1;letter-spacing:-.03em;color:#17231f;overflow-wrap:anywhere}
+.place-sector-value em{font-style:normal;padding:.12rem .26rem;border-radius:999px;background:#eff4f1;color:#617069;font-size:.47rem;font-weight:750;white-space:nowrap}
+.place-sector-card>small{display:flex;justify-content:space-between;gap:.35rem;align-items:flex-end;margin-top:auto;padding-top:.38rem;border-top:1px solid #edf1ee;color:#737f79;font-size:.49rem;line-height:1.25}
+.place-sector-card>small b{color:#3c5148;font-weight:750}.place-sector-card>small span{text-align:right;font-weight:700;color:#587065}
+.place-sector-note{margin:.6rem .05rem 0;color:#78837e;font-size:.54rem;line-height:1.4}
+
+@media(max-width:1000px){.place-profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.place-sector-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 @media(max-width:700px){
   #profile.profile-section[data-place-profile="true"]{padding:1.05rem var(--mobile-gutter) 1.75rem!important;background:linear-gradient(180deg,#eaf2ed 0,#fbfbf8 13rem,#fbfbf8 100%)}
@@ -90,6 +128,27 @@
   .placeholder-explain{font-size:.54rem;margin-top:.4rem}.placeholder-detail{position:static;margin-top:.45rem;box-shadow:none;font-size:.58rem}
   .survey-uncertainty{font-size:.5rem;padding:.25rem .3rem}
 
+  .place-sector-panel{margin-top:.78rem;padding:.78rem .72rem;border-radius:14px}
+  .place-sector-head{gap:.55rem;margin-bottom:.55rem}
+  .place-sector-eyebrow{font-size:.48rem;margin-bottom:.2rem}
+  .place-sector-head h3{font-size:1.28rem;line-height:1.02}
+  .place-sector-head p{font-size:.57rem;line-height:1.38;margin-top:.3rem}
+  .place-sector-coverage{min-width:64px;padding:.5rem .42rem;border-radius:10px}
+  .place-sector-coverage strong{font-size:1.2rem}.place-sector-coverage span{font-size:.45rem}
+  .place-sector-tabs{gap:.35rem;margin:0 -.05rem;padding:.02rem .05rem .4rem}
+  .place-sector-tabs button{flex-basis:118px;min-height:44px;padding:.42rem .5rem;border-radius:10px}
+  .place-sector-tabs button span{font-size:.58rem}.place-sector-tabs button small{font-size:.44rem}
+  .place-sector-group-head{padding:.35rem .02rem .42rem;display:block}
+  .place-sector-group-head strong{display:block;font-size:.63rem}.place-sector-group-head span{display:block;margin-top:.12rem;text-align:left;font-size:.48rem}
+  .place-sector-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.42rem}
+  .place-sector-card{min-height:116px;padding:.58rem .56rem;border-radius:10px}
+  .place-sector-card-top{min-height:2.05rem}.place-sector-card-top>span{font-size:.54rem;line-height:1.2}
+  .place-sector-card .badge{width:18px;height:18px;font-size:.42rem}
+  .place-sector-value{display:block;margin:.28rem 0 .35rem}
+  .place-sector-value strong{display:block;font-size:1.2rem}.place-sector-value em{display:inline-block;margin-top:.16rem;font-size:.42rem;padding:.1rem .2rem}
+  .place-sector-card>small{display:block;padding-top:.3rem;font-size:.43rem}.place-sector-card>small b,.place-sector-card>small span{display:block;text-align:left}.place-sector-card>small span{margin-top:.08rem}
+  .place-sector-note{font-size:.46rem;margin-top:.48rem}
+
   body:has(#profile[data-place-profile="true"]:not([hidden])) footer{padding:1.25rem var(--mobile-gutter)!important;gap:1rem!important}
   body:has(#profile[data-place-profile="true"]:not([hidden])) .footer-brand p{display:none}
   body:has(#profile[data-place-profile="true"]:not([hidden])) .footer-links{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:.55rem!important}
@@ -100,5 +159,6 @@
   .place-profile-grid{grid-template-columns:1fr}
   .place-profile-card{min-height:128px}.place-profile-card .place-card-value{font-size:1.6rem}
   .place-profile-coverage{max-width:58%}
+  .place-sector-grid{grid-template-columns:1fr}.place-sector-card{min-height:104px}
 }
-@media(prefers-reduced-motion:reduce){.place-profile-tabs button{transition:none}}
+@media(prefers-reduced-motion:reduce){.place-profile-tabs button,.place-sector-tabs button{transition:none}}

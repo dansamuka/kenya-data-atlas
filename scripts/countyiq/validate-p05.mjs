@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 const read=f=>fs.readFileSync(f,'utf8');
 const j=f=>JSON.parse(read(f));
-const assert=(ok,msg)=>{if(!ok)throw new Error(`P05 validation: ${msg}`);};
+const assert=(ok,msg)=>{if(!ok)throw new Error(`P05/P19 validation: ${msg}`);};
 function csvRows(file){const lines=read(file).trim().split(/\r?\n/);const fields=lines.shift().split(',');return lines.map(line=>{const vals=line.split(',');return Object.fromEntries(fields.map((f,i)=>[f,vals[i]??'']));});}
 const num=v=>Number(v);
 const education=csvRows('data/p05/source/education-tsc-2023.csv');
@@ -15,6 +15,7 @@ const indicators=j('data/indicators/registry/indicators.json');
 const datasets=j('data/catalogue/registry/datasets.json');
 const roadmap=j('data/project-roadmap.json');
 const html=read('index.html'),ui=read('assets/countyiq-view.js'),css=read('assets/p05-breadth.css'),lazy=read('assets/lazy-integrations.js');
+const profile=read('assets/place-profile.js'),profileCss=read('assets/place-profile.css');
 const P05=[
  ['IND-PUBLIC-PRIMARY-SCHOOLS','education','public_primary_schools','A'],
  ['IND-PRIMARY-CLASSROOM-TEACHERS','education','primary_classroom_teachers','A'],
@@ -82,6 +83,20 @@ try{
  assert(css.includes('.ciq-p05-grid{')&&css.includes('@media(max-width:560px)'),'responsive P05 CSS missing');
  console.log('COUNTYIQ_P05_UI_OK');
 
+ // P19 — promote the same fully covered canonical package into the ordinary
+ // county profile without expanding the P18 placeholder-slot taxonomy or
+ // creating a parallel browser data store. The panel must use the registries
+ // already loaded by place-profile.js, preserve visible provenance, remain
+ // compact on mobile and include the sector measures in the Overview CSV.
+ for(const [code] of P05)assert(profile.includes(code),`public county profile does not surface ${code}`);
+ for(const token of ['COUNTY_SECTORS','COUNTY_SECTOR_CODES','place-sector-mount','renderCountySectors()','County sectors · 47-county coverage','supplementary canonical county measures'])assert(profile.includes(token),`P19 profile integration missing ${token}`);
+ for(const token of ['.place-sector-panel{','.place-sector-tabs{','.place-sector-grid{','grid-template-columns:repeat(2,minmax(0,1fr))','@media(max-width:350px)'])assert(profileCss.includes(token),`P19 responsive profile CSS missing ${token}`);
+ assert(!profile.includes("json('data/countyiq/county-summary.json')"),'P19 profile must not add a CountyIQ mart fetch; it must reuse canonical registries already loaded by the profile');
+ assert(profile.includes("[...new Set([...base,...COUNTY_SECTOR_CODES])]"),'county Overview CSV must include the P19 sector package');
+ console.log(`P19_PUBLIC_COUNTY_PROFILE_47X14_OK metrics=${metricCount} groups=4`);
+ console.log('P19_NO_EXTRA_DATA_FETCH_OK');
+ console.log('P19_MOBILE_SECTOR_SURFACE_OK');
+
  const phase05=roadmap.phases.find(x=>x.id==='P05');
  assert(phase05?.status==='complete','P05 roadmap must be complete');
  const order=roadmap.phases.map(x=>x.id);
@@ -89,5 +104,5 @@ try{
  assert(nextPhases.length===1,`exactly one phase must be marked next, found ${nextPhases.length}`);
  assert(order.indexOf(nextPhases[0].id)>order.indexOf('P05'),`the next phase (${nextPhases[0].id}) must come after P05 — roadmap must only move forward`);
  console.log(`COUNTYIQ_P05_ROADMAP_OK next=${nextPhases[0].id}`);
- console.log('COUNTYIQ_P05_ALL_OK');
+ console.log('COUNTYIQ_P05_P19_ALL_OK');
 }catch(error){console.error(error.message||error);process.exit(1);}

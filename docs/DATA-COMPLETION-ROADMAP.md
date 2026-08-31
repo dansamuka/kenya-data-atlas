@@ -21,28 +21,32 @@ Outputs:
 - `data/completeness/slot-ledger.csv`
 - `data/completeness/summary.json`
 
-For the current public taxonomy the ledger contains exactly **20,115 rendered slot instances**:
+For the current public placeholder taxonomy the ledger contains exactly **20,115 rendered slot instances**:
 
 - 2,134 county slots, including 66 conditional ASAL resilience slots;
 - 3,480 constituency slots;
 - 14,500 ward slots;
 - 1 national Pulse placeholder slot.
 
+The completeness ledger is deliberately a governed placeholder/profile-slot contract rather than a count of every metric rendered anywhere in the product. Supplementary analytical panels such as CountyIQ — and, from P19, the complete county-sector panel — may expose additional canonical observations without duplicating them as placeholder slots.
+
 ## P18 — Exact completeness ledger and false-empty elimination
 
-**Goal:** make every rendered slot classifiable and remove cases where the UI hides canonical active data because an older placeholder taxonomy wins at runtime.
+**Status: complete.**
+
+**Goal:** make every rendered governed slot classifiable and remove cases where the UI hides canonical active data because an older placeholder taxonomy wins at runtime.
 
 Outputs:
 
 - deterministic slot-ledger compiler;
 - JSON/CSV completeness matrix and summary;
 - lifecycle authority fixed so the canonical generated registry wins over stale UI taxonomy status;
-- CI validation requiring 20,115 unique slot instances and zero `unknown_missing` rows;
+- CI validation requiring 20,115 unique governed slot instances and zero `unknown_missing` rows;
 - every unresolved slot mapped to a later completion phase.
 
 Acceptance:
 
-- 20,115 unique slot instances generated;
+- 20,115 unique governed slot instances generated;
 - county = 2,134, constituency = 3,480, ward = 14,500, national = 1;
 - `unknown_missing = 0`;
 - a resolved row always has a canonical series and observation;
@@ -51,7 +55,20 @@ Acceptance:
 
 ## P19 — Surface existing complete county data
 
-Promote already-ingested 47/47 material into the public county profile rather than leaving stronger canonical data hidden behind generic placeholders. Priority packages: education, connectivity, economic structure and agriculture.
+**Status: complete.**
+
+Promote already-ingested 47/47 material into the ordinary public county profile rather than leaving stronger canonical data primarily inside CountyIQ.
+
+P19 exposes the existing **47 counties × 14 indicators = 658 canonical county observations** in a compact supplementary sector panel on the county Overview profile. Four switchable packages are available without loading a second data product:
+
+- education — public primary schools, primary classroom teachers, public secondary schools and secondary teachers;
+- connectivity — internet use, computer use and households connected to the main electricity grid;
+- economic structure — agriculture/manufacturing GVA and their shares of GCP;
+- agriculture — maize area, production and transparent derived yield.
+
+The panel reuses the canonical indicator/series/observation registries already loaded by the profile, keeps reference period and source agency visible, adds the 14 measures to the county Overview CSV export, and introduces no parent-value inheritance or new cold-load request. The P05/P19 validator continues to prove 47/47 source reconciliation, provenance badges and no inheritance, and now also asserts the ordinary county-profile surface and responsive mobile layout.
+
+P19 does **not** inflate the 20,115-slot P18 ledger by counting the same canonical evidence a second time. The ledger remains the governed placeholder/profile-slot completion contract; P19 is a supplementary evidence surface analogous to CountyIQ.
 
 ## P20 — Activate straightforward sourced county slots
 
@@ -81,7 +98,7 @@ Resolve National Pulse placeholders and extend the same explicit evidence-state 
 
 Promote the ledger to a release-blocking operational control. Target state:
 
-- resolved slots: 20,115 / 20,115;
+- resolved governed slots: 20,115 / 20,115;
 - unknown blanks: 0;
 - canonical active data hidden from the UI: 0;
 - parent-to-child inherited values: 0.
