@@ -150,19 +150,21 @@
       ],
       "progress": {
         "resolved_in_tranche_1": 47,
-        "remaining_slots": 141,
+        "remaining_slots": 94,
         "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties with stronger fixed-definition maize successors already published in P19.",
         "resolved_in_tranche_2": 47,
         "tranche_2_note": "Promoted IND-WATER-ACCESS for all 47 counties from the direct improved-source subtotal in KNBS 2023/24 Kenya Housing Survey Table 5.14. Values are household survey estimates; no lower-level inheritance or fabricated uncertainty is introduced.",
         "resolved_in_tranche_3": 47,
         "tranche_3_note": "Retired/replaced the unstable mixed KCPE/KCSE county mean-score placeholder across all 47 counties. KNEC records 2023 as the final KCPE examination; no stable official 47-county mean is manufactured. Existing source-backed attendance, school and teacher indicators remain the governed education successors without being presented as exam-score proxies.",
-        "resolved_in_p21": 282,
+        "resolved_in_p21": 329,
         "resolved_in_tranche_4": 47,
         "tranche_4_note": "Retired/replaced the inconsistent county licensed-business count/year-on-year placeholder across all 47 counties. No mixed-vintage patchwork or zero fill is used; the Atlas points users to fixed-definition official GCP and economic-structure successors instead.",
         "resolved_in_tranche_5": 47,
         "tranche_5_note": "Retired/replaced the mixed facility electricity/water placeholder across all 47 counties. The Atlas does not reverse-engineer county amenity rates from census figures or combine unlike water/power measures; existing facility stock and density remain clearly labelled supply measures.",
         "resolved_in_tranche_6": 47,
-        "tranche_6_note": "Retired/replaced the unsupported 47-county hospital-bed occupancy/utilisation placeholder. Added a separate Ministry of Health SARA Table 18 successor containing direct inpatient-service availability percentages and denominators for all 47 counties; the national 46% occupancy figure is never inherited to counties."
+        "tranche_6_note": "Retired/replaced the unsupported 47-county hospital-bed occupancy/utilisation placeholder. Added a separate Ministry of Health SARA Table 18 successor containing direct inpatient-service availability percentages and denominators for all 47 counties; the national 46% occupancy figure is never inherited to counties.",
+        "resolved_in_tranche_7": 47,
+        "tranche_7_note": "Retired/replaced the 47-county administrative Inua Jamii beneficiary placeholder and added a distinct KDHS 2022 Table 2.21.3C household cash-transfer/social-assistance percentage for all counties, preserving household denominators and withholding rankings."
       }
     },
     {

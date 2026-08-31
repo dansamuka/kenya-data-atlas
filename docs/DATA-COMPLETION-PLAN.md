@@ -34,7 +34,7 @@ Baseline unresolved queue:
 | P24 | 13,050 |
 | P25 | 1 |
 
-The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–6, the live summary reports **3,667 resolved**, **16,448 unresolved**, **0 unknown blanks**, and **141 P21 rows** remaining.
+The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–7, the live summary reports **3,714 resolved**, **16,401 unresolved**, **0 unknown blanks**, and **94 P21 rows** remaining.
 
 ## Completion semantics
 
@@ -217,6 +217,10 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 **P21 tranche 6 — inpatient-service availability replacement:** all 47 `IND-HOSPITAL-BED-UTILIZATION` slots are retired/replaced because the Ministry of Health SARA report publishes a national 46% inpatient bed-occupancy average but no governed 47-county occupancy table. The Atlas does not allocate that national rate to counties. Instead, the report’s Table 18 is promoted as a separate `IND-INPATIENT-SERVICE-AVAILABILITY` series with direct percentages and facility denominators for all 47 counties; it is explicitly labelled as availability, not utilisation.
 
 **Remaining queue after tranche 6:** **141** across three 47-county families.
+
+**P21 tranche 7 — social-assistance replacement:** all 47 `IND-SOCIAL-PROTECTION-BENEFICIARIES` slots are retired/replaced because the original slot is an administrative Inua Jamii beneficiary person-count concept and no governed complete 47-county administrative table has been identified. KDHS 2022 Table 2.21.3C is promoted separately as `IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE`, a direct 47-county household survey percentage with household denominators. The Atlas does not convert this percentage into beneficiary persons, does not label it Inua Jamii coverage, and withholds county ranking because sampling uncertainty intervals are not published in the table.
+
+**Remaining queue after tranche 7:** **94** across two 47-county families.
 
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 

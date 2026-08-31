@@ -1521,6 +1521,41 @@
       "publication_status": "published"
     },
     {
+      "indicator_id": "d8928687-5458-59a0-8ea3-b68f0d96a1d9",
+      "name": "Households receiving cash transfer or social assistance",
+      "lifecycle_status": "active",
+      "policy_version": "P12-policy-v1",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "domain": "living",
+      "direction": {
+        "higher_is_better": null,
+        "basis": "No directional quality claim is made."
+      },
+      "composite": {
+        "eligible": false
+      },
+      "ranking": {
+        "allowed": false,
+        "mode": "positional_only",
+        "higher_is_better": null,
+        "requires_sampling_uncertainty": true,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
+      },
+      "uncertainty": {
+        "required_for_ranking": true
+      },
+      "trend": {
+        "allowed": true,
+        "rule": "At least two numeric observations are required; directional wording uses the canonical direction rule and matched comparisons require comparable periods.",
+        "static_reason_not_allowed": null
+      },
+      "inheritance": {
+        "parent_value_inheritance_allowed": false,
+        "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
+      },
+      "publication_status": "published"
+    },
+    {
       "indicator_id": "8d0b143c-b99c-5c08-a73a-afc311a7c3db",
       "name": "Households with durable wall material",
       "lifecycle_status": "active",
@@ -2993,7 +3028,7 @@
     {
       "indicator_id": "5402f120-b912-561b-9827-c51709d8793e",
       "name": "Inua Jamii cash-transfer beneficiaries",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-SOCIAL-PROTECTION-BENEFICIARIES",
       "domain": "living",
@@ -49799,6 +49834,570 @@
       "cross_level_comparison": {
         "eligible": false,
         "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a64d4c7e-7eba-55e0-8dfd-57d5d6abad69",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C001",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1991eafa-78f1-590a-92a1-e29336e1825a",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C002",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a94a92da-fea4-5201-8019-e6206f7599e2",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C003",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "10ae81be-1365-5c67-97c3-59c88d138914",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C004",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "519187ff-50b8-5abc-9d89-a76b7b263642",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C005",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "680e3061-1596-57bc-8296-5c212892f9e5",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C006",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6ce49808-0aa5-565e-a791-99581b623275",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C007",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "263fc669-27e1-5604-be1c-752c15f0fe00",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C008",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "74de0e07-8562-569e-80ea-731df5c9696d",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C009",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1d2f8e1a-44b6-5c99-824e-097134a7e6f8",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C010",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f13bdd47-8974-5d9b-86c2-0a5d37619f22",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C011",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "74806dc4-65a3-5662-90bc-62283435f494",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C012",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3db6dc07-c22b-54e0-9b1f-03697bb7b8b6",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C013",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2ef28479-0100-57e4-8cf3-d95615432a55",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C014",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e0a5088c-7f2f-5159-a629-61f2482ab7ff",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C015",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0cbbb22c-19b7-5c4b-94ca-49f53e2b0455",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C016",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f6b6a61d-8b50-59e1-9461-450939d50631",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C017",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "09fc3638-1587-59f0-b674-6bdfb8e5b2fb",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C018",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "dbd423fe-c741-5873-ae0e-e9284b1b4415",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C019",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f8b48193-3b5d-5c87-b551-3da790888720",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C020",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "206d4ed0-5751-5997-9de2-dec9353bbfa7",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C021",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c739b309-7d9c-51ce-9080-a6fb9f616d83",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C022",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b3be8c2b-6a94-593d-b1e0-52ccd4dcb25b",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C023",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "95381eb1-1b67-56ad-b1c8-9f0ca8ba0682",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C024",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c90848a3-9784-55d2-9d70-955eecf02919",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C025",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8c214902-c745-5612-b922-98d423ff8d50",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C026",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bdc48ea7-e102-5a05-9169-2398fe18a7f2",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C027",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7b3b5238-bc15-5de8-8c4a-1fd858971520",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C028",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fd8351ce-de10-5995-9511-a5d536fd3ac5",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C029",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7d3acb20-0d43-5e28-9f87-032c6cacd494",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C030",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "67d7436f-92b6-558f-8898-4a71d77e6d1c",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C031",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9502bf42-eb52-571c-9c08-4cc35c3c68ba",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C032",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a99a388c-dff1-5a8a-8795-0379c167009f",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C033",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "62b7849f-daad-57e7-9882-e44e283a3d8b",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C034",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e2dc30d1-c99e-5219-8ec4-0eea3dc3a6fa",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C035",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "89ac7b43-9cfe-56cb-bba5-2330a176836c",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C036",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "08a8640e-9fdf-503c-b84f-095b4bf1b8e8",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C037",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8ffcf58c-50a2-5b4c-afad-6ce9b317f63b",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C038",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "778e8391-099e-5072-a38b-e6c13b101434",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C039",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ff83c94c-701d-52fb-9f9d-7b8c7a337a5f",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C040",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3e328443-c11b-5e67-b2df-818ede558077",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C041",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "08509880-2b4b-5217-96b0-6e44ffa48d72",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C042",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "aa81c276-a4af-53d4-a843-8c3f8027a1d9",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C043",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f16fe660-fe62-50df-aa97-6c1043a0ce6a",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C044",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e4e90aa7-eacf-5313-9557-114d9d9b447e",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C045",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "10ca4259-6b55-5aaf-bbfa-d07110a7d179",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C046",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e72d0017-8b92-5a99-b954-c9c88f158302",
+      "series_code": "KDA-P21-CASH-SOCIAL-ASSIST-KEN-C047",
+      "indicator_code": "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
       }
     },
     {
