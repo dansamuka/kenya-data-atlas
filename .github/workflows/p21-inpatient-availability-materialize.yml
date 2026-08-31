@@ -1,0 +1,73 @@
+name: P21 inpatient availability materialization
+
+on:
+  push:
+    branches:
+      - p21-inpatient-availability-replacement
+    paths:
+      - .github/workflows/p21-inpatient-availability-materialize.yml
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply governed replacement decision
+        run: node scripts/p21/prepare-inpatient-availability-replacement.mjs
+
+      - name: Rebuild all governed data products
+        run: npm run build:data
+
+      - name: Validate full repository
+        run: npm test
+
+      - name: Validate completion targets
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const j=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const s=j('data/completeness/summary.json');
+          const q=j('data/completeness/p21-work-queue.json');
+          const fail=m=>{throw new Error(m)};
+          if(s.total_slots!==20115)fail(`total_slots=${s.total_slots}`);
+          if(s.resolved_slots!==3667)fail(`resolved_slots=${s.resolved_slots}`);
+          if(s.unresolved_slots!==16448)fail(`unresolved_slots=${s.unresolved_slots}`);
+          if(s.unknown_missing!==0)fail(`unknown_missing=${s.unknown_missing}`);
+          if(s.by_completion_phase?.P21!==141)fail(`P21=${s.by_completion_phase?.P21}`);
+          if(s.by_status?.retired_replaced!==235)fail(`retired_replaced=${s.by_status?.retired_replaced}`);
+          const expected={
+            'IND-ROAD-NETWORK-LENGTH':47,
+            'IND-SOCIAL-PROTECTION-BENEFICIARIES':47,
+            'IND-VEHICLE-REGISTRATIONS':47
+          };
+          if(q.remaining_slots!==141||q.family_count!==3)fail(`queue slots=${q.remaining_slots} families=${q.family_count}`);
+          if(JSON.stringify(q.family_counts)!==JSON.stringify(expected))fail(`queue families=${JSON.stringify(q.family_counts)}`);
+          console.log('P21_INPATIENT_TARGET_OK resolved=3667 unresolved=16448 p21=141 families=3');
+          NODE
+
+      - name: Commit governed outputs and remove one-shot workflow
+        run: |
+          rm .github/workflows/p21-inpatient-availability-materialize.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'P21: replace bed-utilisation placeholder with inpatient availability'
+            git push
+          fi
