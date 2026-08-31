@@ -52,8 +52,8 @@
     "indicator_code": "IND-CONTRACEPTIVE-USE",
     "name": "Modern contraceptive use rate",
     "path": "data/distribution/subsets/indicators/IND-CONTRACEPTIVE-USE.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-COUNTY-AUDIT-OPINION",
@@ -169,10 +169,10 @@
   },
   {
     "indicator_code": "IND-FGM-CHILD-MARRIAGE",
-    "name": "FGM prevalence / child marriage rate",
+    "name": "FGM prevalence, women age 15–49",
     "path": "data/distribution/subsets/indicators/IND-FGM-CHILD-MARRIAGE.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-FOOD-SECURITY-PHASE",

@@ -17,13 +17,13 @@
   "baseline": {
     "as_of": "2026-08-31",
     "total_slots": 20115,
-    "resolved_slots": 3009,
-    "unresolved_slots": 17106,
-    "resolved_pct": 14.96,
+    "resolved_slots": 3103,
+    "unresolved_slots": 17012,
+    "resolved_pct": 15.43,
     "unknown_missing": 0,
     "unique_indicator_slots": 49,
     "remaining_by_phase": {
-      "P20": 376,
+      "P20": 282,
       "P21": 423,
       "P22": 66,
       "P23": 3190,
@@ -113,14 +113,14 @@
       "progress": {
         "resolved_in_tranche_1": 94,
         "tranche_1_note": "47/47 main-grid electricity plus 47/47 FY2024/25 own-source-revenue target-attainment slots activated in PR #26.",
-        "remaining_slots": 376,
+        "remaining_slots": 282,
         "resolved_in_tranche_2": 47,
-        "resolved_total": 329,
+        "resolved_total": 423,
         "tranche_2_note": "47/47 County Executive audit-opinion slots promoted from OAG Appendix 1(a), pp. 69–70. All are categorical 'Qualified'; no numeric audit score is created.",
         "resolved_in_tranche_3": 47,
         "tranche_3_note": "47/47 county average-household-size slots promoted from KNBS 2019 KPHC Volume I Table 2.3. Values are direct census observations; no constituency inheritance is applied.",
-        "resolved_in_consolidated_batch_1": 141,
-        "consolidated_batch_1_note": "Parallel P20 batch: 47/47 KNBS 2019 KPHC disability-prevalence observations plus 47/47 KDHS 2022 teenage-pregnancy and 47/47 home-birth observations. Census values are direct; KDHS observations retain published weighted denominators; rankings remain withheld."
+        "resolved_in_consolidated_batch_1": 235,
+        "consolidated_batch_1_note": "Parallel P20 batch: 47/47 KNBS 2019 KPHC disability-prevalence observations plus 47/47 KDHS 2022 teenage-pregnancy, 47/47 home-birth, 47/47 modern-contraceptive-use and 47/47 FGM-prevalence observations. Census values are direct; KDHS observations retain published weighted denominators; rankings remain withheld, with FGM treated as a sensitive indicator."
       }
     },
     {

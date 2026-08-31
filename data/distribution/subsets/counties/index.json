@@ -3,376 +3,376 @@
     "geo_code": "KEN-C001",
     "name": "Mombasa",
     "path": "data/distribution/subsets/counties/KEN-C001.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C002",
     "name": "Kwale",
     "path": "data/distribution/subsets/counties/KEN-C002.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C003",
     "name": "Kilifi",
     "path": "data/distribution/subsets/counties/KEN-C003.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C004",
     "name": "Tana River",
     "path": "data/distribution/subsets/counties/KEN-C004.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C005",
     "name": "Lamu",
     "path": "data/distribution/subsets/counties/KEN-C005.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C006",
     "name": "Taita Taveta",
     "path": "data/distribution/subsets/counties/KEN-C006.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C007",
     "name": "Garissa",
     "path": "data/distribution/subsets/counties/KEN-C007.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C008",
     "name": "Wajir",
     "path": "data/distribution/subsets/counties/KEN-C008.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C009",
     "name": "Mandera",
     "path": "data/distribution/subsets/counties/KEN-C009.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C010",
     "name": "Marsabit",
     "path": "data/distribution/subsets/counties/KEN-C010.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C011",
     "name": "Isiolo",
     "path": "data/distribution/subsets/counties/KEN-C011.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C012",
     "name": "Meru",
     "path": "data/distribution/subsets/counties/KEN-C012.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C013",
     "name": "Tharaka-Nithi",
     "path": "data/distribution/subsets/counties/KEN-C013.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C014",
     "name": "Embu",
     "path": "data/distribution/subsets/counties/KEN-C014.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C015",
     "name": "Kitui",
     "path": "data/distribution/subsets/counties/KEN-C015.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C016",
     "name": "Machakos",
     "path": "data/distribution/subsets/counties/KEN-C016.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C017",
     "name": "Makueni",
     "path": "data/distribution/subsets/counties/KEN-C017.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 6
   },
   {
     "geo_code": "KEN-C018",
     "name": "Nyandarua",
     "path": "data/distribution/subsets/counties/KEN-C018.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C019",
     "name": "Nyeri",
     "path": "data/distribution/subsets/counties/KEN-C019.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 8
   },
   {
     "geo_code": "KEN-C020",
     "name": "Kirinyaga",
     "path": "data/distribution/subsets/counties/KEN-C020.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C021",
     "name": "Murang'a",
     "path": "data/distribution/subsets/counties/KEN-C021.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C022",
     "name": "Kiambu",
     "path": "data/distribution/subsets/counties/KEN-C022.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C023",
     "name": "Turkana",
     "path": "data/distribution/subsets/counties/KEN-C023.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C024",
     "name": "West Pokot",
     "path": "data/distribution/subsets/counties/KEN-C024.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C025",
     "name": "Samburu",
     "path": "data/distribution/subsets/counties/KEN-C025.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C026",
     "name": "Trans Nzoia",
     "path": "data/distribution/subsets/counties/KEN-C026.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C027",
     "name": "Uasin Gishu",
     "path": "data/distribution/subsets/counties/KEN-C027.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C028",
     "name": "Elgeyo/Marakwet",
     "path": "data/distribution/subsets/counties/KEN-C028.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 7
   },
   {
     "geo_code": "KEN-C029",
     "name": "Nandi",
     "path": "data/distribution/subsets/counties/KEN-C029.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C030",
     "name": "Baringo",
     "path": "data/distribution/subsets/counties/KEN-C030.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C031",
     "name": "Laikipia",
     "path": "data/distribution/subsets/counties/KEN-C031.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C032",
     "name": "Nakuru",
     "path": "data/distribution/subsets/counties/KEN-C032.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C033",
     "name": "Narok",
     "path": "data/distribution/subsets/counties/KEN-C033.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C034",
     "name": "Kajiado",
     "path": "data/distribution/subsets/counties/KEN-C034.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 9
   },
   {
     "geo_code": "KEN-C035",
     "name": "Kericho",
     "path": "data/distribution/subsets/counties/KEN-C035.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C036",
     "name": "Bomet",
     "path": "data/distribution/subsets/counties/KEN-C036.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C037",
     "name": "Kakamega",
     "path": "data/distribution/subsets/counties/KEN-C037.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C038",
     "name": "Vihiga",
     "path": "data/distribution/subsets/counties/KEN-C038.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C039",
     "name": "Bungoma",
     "path": "data/distribution/subsets/counties/KEN-C039.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C040",
     "name": "Busia",
     "path": "data/distribution/subsets/counties/KEN-C040.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C041",
     "name": "Siaya",
     "path": "data/distribution/subsets/counties/KEN-C041.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C042",
     "name": "Kisumu",
     "path": "data/distribution/subsets/counties/KEN-C042.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C043",
     "name": "Homa Bay",
     "path": "data/distribution/subsets/counties/KEN-C043.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C044",
     "name": "Migori",
     "path": "data/distribution/subsets/counties/KEN-C044.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 7
   },
   {
     "geo_code": "KEN-C045",
     "name": "Kisii",
     "path": "data/distribution/subsets/counties/KEN-C045.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C046",
     "name": "Nyamira",
     "path": "data/distribution/subsets/counties/KEN-C046.json",
-    "series_count": 41,
-    "observation_count": 90,
+    "series_count": 43,
+    "observation_count": 92,
     "evidence_count": 5
   },
   {
     "geo_code": "KEN-C047",
     "name": "Nairobi",
     "path": "data/distribution/subsets/counties/KEN-C047.json",
-    "series_count": 41,
-    "observation_count": 96,
+    "series_count": 43,
+    "observation_count": 98,
     "evidence_count": 5
   }
 ]

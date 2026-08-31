@@ -298,7 +298,7 @@
     {
       "indicator_id": "b96bffe6-33ef-5a3f-95c4-d86e76efbccf",
       "name": "Modern contraceptive use rate",
-      "lifecycle_status": "sourced",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-CONTRACEPTIVE-USE",
       "domain": "health",
@@ -310,11 +310,11 @@
         "eligible": true
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "directional",
         "higher_is_better": true,
         "requires_sampling_uncertainty": true,
-        "static_reason_not_allowed": null
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
         "required_for_ranking": true
@@ -328,7 +328,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "0ff22470-c390-5493-b28f-680eb20e083b",
@@ -892,8 +892,8 @@
     },
     {
       "indicator_id": "7e030d9e-67ae-521f-a606-879abe7a6d1a",
-      "name": "FGM prevalence / child marriage rate",
-      "lifecycle_status": "sourced",
+      "name": "FGM prevalence, women age 15–49",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-FGM-CHILD-MARRIAGE",
       "domain": "health",
@@ -923,7 +923,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "2c8b8be0-26aa-5740-ac13-2010cb1e9a25",
@@ -44700,6 +44700,1134 @@
       "cross_level_comparison": {
         "eligible": true,
         "rule_basis": "unit.dimension=rate"
+      }
+    },
+    {
+      "series_id": "fa2088c8-8df2-55b8-b41f-5fe3327dbff1",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C001",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "826a1c33-6cf7-57eb-8f20-d5a81ad2ce35",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C002",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5bd8e901-32e3-5e2c-a2f4-e59bc4964e82",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C003",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f9afd2cc-8ec3-5073-9e82-b4468665f5de",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C004",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "80cc16c6-25b2-5961-8bf3-235c134b5840",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C005",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6406b4cd-56b3-5bc4-9352-2c17cb374f5d",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C006",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cc81d387-8176-5952-964b-fdba3fbd01ba",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C007",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "504ac9e7-7ceb-5ff4-b7ac-538e4c793f18",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C008",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "06d5088f-fc18-5190-a536-bf6b0c940db1",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C009",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bdd5c205-6a78-5a08-9848-daa95ca82c5d",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C010",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7d8ccb72-545d-5617-8415-a57c004532ff",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C011",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d485f55a-69ef-56b2-a248-9a9b7035082e",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C012",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6587d3be-1ab5-5029-8862-4002cb282fc0",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C013",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "12769604-eafd-559b-9c10-6e7ae1b2f3de",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C014",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0b81ce91-d9ab-540c-8f08-673e67aaaa1b",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C015",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "35a9d1e1-cf7c-5a9b-b13c-10c1cca1d4eb",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C016",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "453e143b-a696-5a08-ac9a-68545aeb1b34",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C017",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d129f785-d708-5976-91bf-1322ed049346",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C018",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7bacb072-fcad-541a-97a0-c2780ea0d354",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C019",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e03a97cd-5d12-5eb0-aeaf-8e9a25427cd4",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C020",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7fde3050-3e0d-53b2-8c4f-0a56a05c1a8e",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C021",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f69b2225-f354-51bd-b41a-324da0eceae6",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C022",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6bdbbe55-d6dc-5b2a-9ce6-7fb032c0a03b",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C023",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c54ae60a-9fe3-5c17-b094-0f851c3ce849",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C024",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "75cd07ac-f49e-5a95-a30d-73043ab4bfe7",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C025",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "75af4978-b0eb-58c5-b56d-1ff2409840b8",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C026",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a8e49325-c39e-5e4b-9927-5de401abc7fc",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C027",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "00329bf3-4a8e-5673-8237-fb4bb21f4cbe",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C028",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "20d68392-9d3a-52a5-b15b-ba4f9d9311b2",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C029",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "456890c4-5365-5aec-b4c0-c4922e0323b1",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C030",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "63fbd85e-9530-5a55-86b0-617d8c02ed1c",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C031",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c567a00f-3ac3-5c46-8d35-ae3a3b2ea0fb",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C032",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6513b95a-7625-5c00-a09b-2c08be38eda1",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C033",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9078d0c2-9914-58b0-ae60-25f579cd4d34",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C034",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "efd35dad-4d1f-5528-8028-475cd0f6e0d0",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C035",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b5c3bdf3-0e6e-566b-aca1-403302ee5a08",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C036",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "99768b04-2978-5aea-8dc4-20a38d5b27eb",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C037",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a2044db3-46c3-5995-b1c7-992c5e914503",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C038",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bec7ad51-3369-5684-b87e-ed192196316f",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C039",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "626afc28-c68f-55d3-abc4-cf517ca17d1c",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C040",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ae902356-3c26-561a-9d86-00ba9d94808c",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C041",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "86e5e0a9-4e3b-5751-8e90-e01e35c3e82c",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C042",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6122fba7-3ea9-5bbb-b159-af3110647348",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C043",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f2bdba21-c788-56ac-924e-1ca2e9053c3b",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C044",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "27f4d9cc-a370-5679-8e71-3380450ac06d",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C045",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "52820ada-9316-5d63-b018-6593b8767cb0",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C046",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e5d794f1-8abc-5dd6-949e-992beaa65910",
+      "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C047",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8ee974b5-306f-58c0-841d-20746e0dbe4a",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C001",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e4246401-9928-518a-82e1-7d964a979ae4",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C002",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fb4b5bcb-2a41-5423-bb1e-8f1e3a8156cc",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C003",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2a9d7644-f805-5941-b14b-108dc4177331",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C004",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f0e6ae8b-93ad-5df8-b1e8-2e19f6e9de14",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C005",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "15b864e5-7bed-5d80-a17b-bc251eac14f0",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C006",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "be2d2e55-2c11-5647-8fa1-a28fc62bffd1",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C007",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "42129805-3be6-5fda-b0cd-c471af58c120",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C008",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1a60386e-2d8f-5251-a735-b2b6ab661219",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C009",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "397a6fd2-4928-597a-b214-dd8f876e8773",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C010",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "264bfe71-501a-597f-9bce-941bfe5586ea",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C011",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3388c64f-5699-5053-92c5-6e2ff53776e3",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C012",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9bde18d8-430b-518e-acbb-8eb6697133e6",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C013",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a726cb2d-0d44-5813-a66b-208374eae3e2",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C014",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b709a7b1-dc70-5ae5-a738-db328d070557",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C015",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9017a4cb-4a42-5de3-9c35-d59da6f039c8",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C016",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "44697075-7dd1-5955-a4e5-0d1fa2bf1e3b",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C017",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "046f3dbd-d6a5-5d62-b929-43eb0ee38adf",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C018",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "aea4b710-9de8-537b-928d-d38c5c128b4b",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C019",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "bc88d064-6139-54ee-b950-b909c07f4aa1",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C020",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "849cc5e8-68c4-5dc2-868f-4fca40a57477",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C021",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a8bcf6ee-c28b-585e-8f6e-66a31a509b2c",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C022",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7bc06b23-1ea1-5d14-b745-e7ebd8855506",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C023",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0ab54f43-ba8f-5e75-a793-c5adbe88abbf",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C024",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9e9d97d5-26e3-5698-b40a-544b54308fc9",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C025",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ba6c3c12-e63d-58da-8314-769ee17ac070",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C026",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a7683459-699b-5ff6-a831-e61d005ed27f",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C027",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9c9519dc-b187-58f3-b44b-695160b277f8",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C028",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fa292a63-a2ba-5d6b-b474-7355cebf7070",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C029",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "15aa23cf-5ace-5935-8e83-8183bf282bf9",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C030",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "316c334b-d5eb-51af-ae5c-3105d0672f34",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C031",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "24e45579-6157-5a49-8689-f62477db43c6",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C032",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2851f070-cba3-5be4-939f-84c2bf47e391",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C033",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d6ffa730-5682-5516-b21c-91760b648c4b",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C034",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "14c40d66-077b-5799-8b7f-6bfeff56f774",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C035",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ebde6281-e0d7-5682-a671-d5da7ceca627",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C036",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9245f3b3-4cad-57ae-abd3-5479bdc60d26",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C037",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cbb3acfb-07e9-5153-9775-34504ba13e30",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C038",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "05266030-36da-53bc-abe4-af25e62cd3e8",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C039",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1f85a556-9766-5ca6-b45b-4a23b17a44e3",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C040",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "39c21e03-790d-5a38-a2d3-b64b9d993a44",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C041",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1a7d8257-0771-5882-acab-89615a0c3ed8",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C042",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "192b1dc4-5f02-576d-b40d-cf71e1cb76af",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C043",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "104ae728-f290-597d-830b-bde71710721c",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C044",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6d59a5c5-1331-52cd-be00-8817545e71a5",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C045",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "44554321-ce80-5d5a-bec8-a65ac134fe96",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C046",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c0c765ec-5b1d-514f-bf20-abd67133c835",
+      "series_code": "KDA-P20-KDHS-FGM-KEN-C047",
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
       }
     },
     {
