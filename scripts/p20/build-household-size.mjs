@@ -30,6 +30,7 @@ const uuid = name => {
   return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
 };
 const formalCountyName = geo => geo?.geo_code === 'KEN-C047' ? 'Nairobi City' : geo?.name;
+const normalizeCountyName = value => String(value ?? '').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 function validateSnapshot(snapshot) {
   const rows = snapshot.counties || [];
@@ -114,7 +115,7 @@ async function buildIndicators() {
   for (const county of counties) {
     const sourceRow = byCode.get(county.geo_code);
     if (!sourceRow) throw new Error(`P20 household size: ${county.geo_code} absent from source snapshot`);
-    if (sourceRow.county_name !== formalCountyName(county)) {
+    if (normalizeCountyName(sourceRow.county_name) !== normalizeCountyName(formalCountyName(county))) {
       throw new Error(`P20 household size: county-name mismatch ${county.geo_code}: ${sourceRow.county_name} vs ${formalCountyName(county)}`);
     }
   }

@@ -2,12 +2,12 @@
   "schema_version": "kda.completeness.summary.v1",
   "definition": "A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation. Sourced-but-uningested and planned slots remain unresolved until a later phase or an explicit evidence-state/retirement rule resolves them.",
   "total_slots": 20115,
-  "resolved_slots": 2821,
-  "unresolved_slots": 17294,
-  "resolved_pct": 14.02,
+  "resolved_slots": 2868,
+  "unresolved_slots": 17247,
+  "resolved_pct": 14.26,
   "unique_indicator_slots": 49,
   "unknown_missing": 0,
-  "active_missing": 8700,
+  "active_missing": 8990,
   "by_level": {
     "constituency": 3480,
     "country": 1,
@@ -15,20 +15,20 @@
     "ward": 14500
   },
   "by_status": {
-    "active_missing": 8700,
+    "active_missing": 8990,
     "external_verified": 90,
     "planned_unresolved": 5978,
     "published_derived": 1740,
-    "published_direct": 991,
-    "sourced_uningested": 2616
+    "published_direct": 1038,
+    "sourced_uningested": 2279
   },
   "by_completion_phase": {
-    "P20": 564,
+    "P20": 517,
     "P21": 423,
     "P22": 66,
     "P23": 3190,
     "P24": 13050,
     "P25": 1,
-    "complete": 2821
+    "complete": 2868
   }
 }
