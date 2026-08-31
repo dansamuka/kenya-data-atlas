@@ -6,8 +6,8 @@
     "indicator_id": "e49d739a-c488-5baa-990a-99df5da7d0f3",
     "indicator_code": "IND-SUBSTANCE-ABUSE-PREVALENCE",
     "name": "Drug and substance use prevalence",
-    "short_name": "Drug and substance use prevalence",
-    "description": "Published prevalence from the NACADA national survey, subject to verification of county coverage.",
+    "short_name": "Substance use prevalence",
+    "description": "Drug and substance use prevalence from an official survey when published at the requested geography. The NACADA 2022 national survey does not publish a statistically defensible county prevalence series.",
     "topic": "Health",
     "subtopic": "health",
     "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
@@ -15,20 +15,20 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "https://nacada.go.ke/publications?page=1",
-    "comparable": true,
+    "methodology_url": "https://nacada.go.ke/sites/default/files/2023-05/National%20Survey%20on%20the%20Status%20of%20Drugs%20and%20Substance%20Use%20in%20Kenya%202022.pdf",
+    "comparable": false,
     "active": false,
     "lifecycle_status": "sourced",
     "expected_source": "NACADA National Survey on the Status of Drugs and Substance Use in Kenya 2022",
-    "expected_source_url": "https://nacada.go.ke/publications?page=1",
-    "expected_availability_note": "Do not activate until the newest round's county coverage is verified; sampling uncertainty is mandatory.",
+    "expected_source_url": "https://nacada.go.ke/sites/default/files/2023-05/National%20Survey%20on%20the%20Status%20of%20Drugs%20and%20Substance%20Use%20in%20Kenya%202022.pdf",
+    "expected_availability_note": "The 2022 survey publishes national, regional, urban and rural estimates, not county prevalence estimates. County slots are governed as official unavailable; regional estimates must not be inherited or allocated to counties.",
     "tab": "health",
     "applies_to_levels": [
       "county"
     ],
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": true,
-    "ranking_allowed": true
+    "ranking_allowed": false
   },
   "unit": {
     "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",

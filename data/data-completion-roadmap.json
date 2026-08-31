@@ -17,13 +17,13 @@
   "baseline": {
     "as_of": "2026-08-31",
     "total_slots": 20115,
-    "resolved_slots": 3244,
-    "unresolved_slots": 16871,
-    "resolved_pct": 16.13,
+    "resolved_slots": 3385,
+    "unresolved_slots": 16730,
+    "resolved_pct": 16.83,
     "unknown_missing": 0,
     "unique_indicator_slots": 49,
     "remaining_by_phase": {
-      "P20": 141,
+      "P20": 0,
       "P21": 423,
       "P22": 66,
       "P23": 3190,
@@ -113,14 +113,15 @@
       "progress": {
         "resolved_in_tranche_1": 94,
         "tranche_1_note": "47/47 main-grid electricity plus 47/47 FY2024/25 own-source-revenue target-attainment slots activated in PR #26.",
-        "remaining_slots": 141,
+        "remaining_slots": 0,
         "resolved_in_tranche_2": 47,
-        "resolved_total": 564,
+        "resolved_total": 705,
         "tranche_2_note": "47/47 County Executive audit-opinion slots promoted from OAG Appendix 1(a), pp. 69–70. All are categorical 'Qualified'; no numeric audit score is created.",
         "resolved_in_tranche_3": 47,
         "tranche_3_note": "47/47 county average-household-size slots promoted from KNBS 2019 KPHC Volume I Table 2.3. Values are direct census observations; no constituency inheritance is applied.",
-        "resolved_in_consolidated_batch_1": 376,
-        "consolidated_batch_1_note": "Parallel P20 batch: 47/47 each for KNBS 2019 KPHC disability prevalence and durable wall material; KDHS 2022 teenage pregnancy, home births, modern contraceptive use, FGM prevalence and women age 15–49 literacy; plus KENPHIA 2018 HIV prevalence ages 15–64. KDHS observations retain published weighted denominators; durable-wall observations are transparent Badge-B sums of the five KNBS durable categories; KENPHIA observations retain published sample size, SE and 95% CI, with Garissa unavailable CI bounds preserved as null; survey rankings remain withheld."
+        "resolved_in_consolidated_batch_1": 517,
+        "consolidated_batch_1_note": "Consolidated P20 completion resolved all 517 slots that remained after the first 188 P20 promotions: 376 county observations across disability, teenage pregnancy, home birth, modern contraceptive use, FGM, women 15–49 literacy, durable wall material and KENPHIA HIV prevalence; plus 47 derived 2023 health-facility-density observations; 46 final FY2024/25 pending-bill observations; Narok pending bills as official non-submission; and all 47 NACADA substance-use county slots as official unavailable because the 2022 survey publishes national/regional/urban-rural rather than county estimates. No regional inheritance, zero fabrication or reverse engineering was used.",
+        "completion_status": "complete"
       }
     },
     {

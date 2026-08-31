@@ -10,11 +10,11 @@
   "counts": {
     "units": 21,
     "indicators": 98,
-    "series": 3934,
-    "observations": 7428,
+    "series": 4027,
+    "observations": 7521,
     "geographies": 1788,
     "counties": 47,
-    "datasets": 56,
+    "datasets": 58,
     "evidence_records": 247,
     "public_county_results": 47,
     "opportunity_programmes": 9
