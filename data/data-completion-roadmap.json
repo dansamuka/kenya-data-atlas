@@ -150,8 +150,13 @@
       ],
       "progress": {
         "resolved_in_tranche_1": 47,
-        "remaining_slots": 376,
-        "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties. P19 already publishes fixed-definition maize area, production and transparent yield 47/47 from the official National Agriculture Production Report 2024 Annex 1, so P21 closes the weaker mixed-crop concept without duplicating or fabricating observations."
+        "remaining_slots": 282,
+        "tranche_1_note": "Retired/replaced the generic county-dominant-crop placeholder across all 47 counties with stronger fixed-definition maize successors already published in P19.",
+        "resolved_in_tranche_2": 47,
+        "tranche_2_note": "Promoted IND-WATER-ACCESS for all 47 counties from the direct improved-source subtotal in KNBS 2023/24 Kenya Housing Survey Table 5.14. Values are household survey estimates; no lower-level inheritance or fabricated uncertainty is introduced.",
+        "resolved_in_tranche_3": 47,
+        "tranche_3_note": "Retired/replaced the unstable mixed KCPE/KCSE county mean-score placeholder across all 47 counties. KNEC records 2023 as the final KCPE examination; no stable official 47-county mean is manufactured. Existing source-backed attendance, school and teacher indicators remain the governed education successors without being presented as exam-score proxies.",
+        "resolved_in_p21": 141
       }
     },
     {
