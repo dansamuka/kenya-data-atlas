@@ -6,30 +6,29 @@
 // phase — it can only move to 'published' once P09's historical gate
 // passes, and P09 has not run yet.
 //
-// THE HONEST HEADLINE FINDING OF THIS PHASE: only 5 of the mart's 98
-// indicators currently qualify for inclusion (see INDEX_INCLUSION below),
-// concentrated in 4 domains (fiscal, living standards, education and economic). This is
-// not a placeholder or an oversight — it is what the inclusion rule
-// actually returns when applied honestly to the current registry, and it
-// is disclosed as the primary limitation of this release rather than
-// hidden by loosening the rule. Loosening it (allowing uncertainty-
-// restricted survey indicators, or imputing missing counties) would
-// violate two CountyIQ guardrails directly: "no missing county is
-// silently imputed" and "survey estimates retain uncertainty
-// requirements and ranking restrictions from the Atlas indicator
-// registry."
+// P08-v1 was released with exactly five qualifying indicators. That input
+// set is now frozen as part of the versioned methodology contract. Later
+// Atlas phases may publish new ranking-eligible facts, but they MUST NOT
+// silently enter P08-v1 and rewrite already-published CountyIQ scores. A
+// broader composite requires a separately versioned methodology/release.
 import { DIRECTION_RULES } from '../p06/direction-rules.mjs';
 
 const INDEX_METHODOLOGY_VERSION = 'P08-v1';
 const WINSOR_LOW = 0.05, WINSOR_HIGH = 0.95;
 
-// Inclusion rule (published, fixed): an indicator enters the composite
-// only if (a) it has a published, non-null higher_is_better rule
-// (scripts/p06/direction-rules.mjs) AND (b) P06 found it ranking-eligible
-// — meaning comparable, A/B/C provenance, one shared period — for all 47
-// counties with no exception. This is checked programmatically below,
-// not hand-picked; the resulting list is what is reported.
-function eligibleIndicatorCodes(rows) {
+const P08_V1_INDEX_CODES = Object.freeze([
+  'IND-COUNTY-BUDGET-ABSORPTION',
+  'IND-COUNTY-BUDGET-EXECUTION',
+  'IND-GCP',
+  'IND-COUNTY-TOTAL-EXPENDITURE',
+  'IND-POPULATION'
+]);
+
+// Eligibility is still re-evaluated on every build so a released input
+// cannot remain in the score after losing its comparability/provenance
+// contract. However, newly eligible indicators are excluded from P08-v1
+// until a new methodology version explicitly admits them.
+function dynamicallyEligibleIndicatorCodes(rows) {
   const counts = new Map();
   for (const row of rows) {
     for (const [code, m] of Object.entries(row.metrics)) {
@@ -37,7 +36,23 @@ function eligibleIndicatorCodes(rows) {
       counts.set(code, (counts.get(code) || 0) + 1);
     }
   }
-  return [...counts.entries()].filter(([code, n]) => n === rows.length && DIRECTION_RULES[code]?.higher_is_better != null).map(([code]) => code);
+  return [...counts.entries()]
+    .filter(([code, n]) => n === rows.length && DIRECTION_RULES[code]?.higher_is_better != null)
+    .map(([code]) => code);
+}
+
+function eligibleIndicatorCodes(rows) {
+  const dynamic = dynamicallyEligibleIndicatorCodes(rows);
+  const eligibleSet = new Set(dynamic);
+  const frozen = P08_V1_INDEX_CODES.filter(code => eligibleSet.has(code));
+  const missingFrozen = P08_V1_INDEX_CODES.filter(code => !eligibleSet.has(code));
+  if (missingFrozen.length) {
+    throw new Error(`P08-v1 methodology input(s) no longer satisfy the published eligibility contract: ${missingFrozen.join(', ')}`);
+  }
+  return {
+    codes: frozen,
+    newlyEligibleExcluded: dynamic.filter(code => !P08_V1_INDEX_CODES.includes(code))
+  };
 }
 
 function percentile(sorted, p) {
@@ -66,7 +81,7 @@ function rankOf(value, all, higher_is_better) {
 }
 
 export function buildPerformanceIndex(rows, indicatorById) {
-  const codes = eligibleIndicatorCodes(rows);
+  const { codes, newlyEligibleExcluded } = eligibleIndicatorCodes(rows);
   const domainOf = code => rows[0].metrics[code].domain;
   const byDomain = new Map();
   for (const code of codes) { const d = domainOf(code); if (!byDomain.has(d)) byDomain.set(d, []); byDomain.get(d).push(code); }
@@ -125,18 +140,20 @@ export function buildPerformanceIndex(rows, indicatorById) {
     version: INDEX_METHODOLOGY_VERSION,
     status: 'research',
     label: 'Research/Beta — not a production score. Not yet cleared by the P09 historical-validation gate.',
-    inclusion_rule: 'Indicator has a published, non-null higher_is_better rule AND is P06 ranking-eligible (comparable, A/B/C provenance, shared period) for all 47 counties, with zero exceptions.',
+    methodology_input_set_frozen: true,
+    inclusion_rule: 'P08-v1 uses its fixed five-indicator release set. Each released input must continue to have a published, non-null higher_is_better rule AND remain P06 ranking-eligible (comparable, A/B/C provenance, shared period) for all 47 counties with zero exceptions. Newly qualifying indicators are published as facts but do not enter P08-v1 automatically; adding them requires a new methodology version.',
     indicators_included: codes,
+    newly_eligible_indicators_excluded_from_v1: newlyEligibleExcluded,
     domains_included: domainsIncluded,
     domains_excluded: domainsExcluded,
-    domain_exclusion_reason: 'No indicator in this domain currently satisfies the inclusion rule for all 47 counties (most are survey estimates the Atlas taxonomy withholds from ranking due to sampling uncertainty, or lack a defensible direction rule). This is disclosed, not resolved, by this release.',
+    domain_exclusion_reason: 'No additional domain enters the frozen P08-v1 methodology automatically. Newly qualifying indicators remain outside this version until a separately governed methodology release explicitly changes the index.',
     normalization: `Winsorized min-max per indicator: values are clipped to the [${WINSOR_LOW * 100}th, ${WINSOR_HIGH * 100}th] national percentile before scaling to 0–100, oriented so 100 is always the favourable end per the published direction rule.`,
-    missing_data_policy: 'No imputation. An indicator not meeting the inclusion rule for all 47 counties is excluded from the index entirely rather than estimated for the counties that lack it.',
+    missing_data_policy: 'No imputation. A released P08-v1 input must satisfy the inclusion contract for all 47 counties; if it ceases to qualify, the build fails rather than silently changing the score.',
     outlier_policy: `Winsorization at the ${WINSOR_LOW * 100}th/${WINSOR_HIGH * 100}th percentile bounds extreme values' influence on the 0–100 scale without discarding the observation.`,
     weighting_scenarios: scenarioIds,
     weighting_disclosure: 'No single weighting is asserted as correct. Three scenarios are published and a county\'s rank-robustness band is the range across them, not a single scenario\'s result.',
     correlation_review: correlations,
-    honest_limitation: `This index currently reflects only ${domainsIncluded.join(', ')} performance (${codes.length} indicators). It is NOT a comprehensive county-development index and must not be described as one — ${domainsExcluded.length} domains (${domainsExcluded.join(', ')}) contribute nothing because no indicator in them yet meets the inclusion rule.`
+    honest_limitation: `P08-v1 intentionally remains the released five-indicator methodology (${domainsIncluded.join(', ')}). Later Atlas data improvements do not silently broaden or reweight it; any broader county-development index requires a separately versioned methodology and validation cycle.`
   };
 
   for (let i = 0; i < rows.length; i++) {
@@ -154,4 +171,4 @@ export function buildPerformanceIndex(rows, indicatorById) {
   return methodology;
 }
 
-export { INDEX_METHODOLOGY_VERSION };
+export { INDEX_METHODOLOGY_VERSION, P08_V1_INDEX_CODES };
