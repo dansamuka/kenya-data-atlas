@@ -67,6 +67,9 @@ const p04=roadmap.phases.find(p=>p.id==='P04'),p05=roadmap.phases.find(p=>p.id==
 const ids=roadmap.phases.map(p=>p.id),next=roadmap.phases.find(p=>p.status==='next');
 assert(p04?.status==='complete','P04 must remain complete');
 assert(['next','complete'].includes(p05?.status),'pre-P05 hardening must remain valid before and after P05 release');
-if(p05?.status==='complete')assert(next&&ids.indexOf(next.id)>ids.indexOf('P05'),'once P05 is complete, the next phase must be some phase after P05');
-console.log(`PREP05_HARDENING_ROADMAP_OK P05=${p05?.status} next=${next?.id}`);
+if(p05?.status==='complete'){
+  if(next)assert(ids.indexOf(next.id)>ids.indexOf('P05'),'once P05 is complete, the next phase must be some phase after P05');
+  else assert(roadmap.phases.every(p=>p.status==='complete'),'zero next phase is valid only in the terminal all-complete roadmap state');
+}
+console.log(`PREP05_HARDENING_ROADMAP_OK P05=${p05?.status} next=${next?.id||'none_all_complete'}`);
 console.log('PREP05_HARDENING_ALL_OK');
