@@ -1,5 +1,6 @@
 name: P21 inpatient availability materialization
 
+# One-shot generator; rerun after ordering the inpatient builder before cross-level eligibility derivation.
 on:
   push:
     branches:
