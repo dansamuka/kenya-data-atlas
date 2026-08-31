@@ -2,12 +2,6 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 const read = file => readFile(file,'utf8');
 const write = (file,content) => writeFile(file,content.endsWith('\n')?content:`${content}\n`);
-const replaceOnce=(text,from,to,label)=>{
-  const at=text.indexOf(from);
-  if(at<0) throw new Error(`P20 KDHS patch failed: anchor not found for ${label}`);
-  if(text.indexOf(from,at+from.length)>=0) throw new Error(`P20 KDHS patch failed: anchor is not unique for ${label}`);
-  return text.slice(0,at)+to+text.slice(at+from.length);
-};
 
 {
   const file='package.json';
@@ -19,16 +13,6 @@ const replaceOnce=(text,from,to,label)=>{
   if(!pkg.scripts['indicators:build'].includes('build-kdhs-additional.mjs')) throw new Error('P20 KDHS patch failed: indicators build was not wired');
   pkg.scripts['p20:validate']='node scripts/p20/validate-sourced-county.mjs && node scripts/p20/validate-audit-opinion.mjs && node scripts/p20/validate-kdhs-additional.mjs';
   await write(file,JSON.stringify(pkg,null,2));
-}
-
-{
-  const file='.github/workflows/placeholder-taxonomy.yml';
-  let text=await read(file);
-  text=replaceOnce(text,
-    "      - 'data/countyiq/source/p10-fiscal-accountability-2024-25.json'\n",
-    "      - 'data/countyiq/source/p10-fiscal-accountability-2024-25.json'\n      - 'data/p20/source/kdhs-2022-additional-county.json'\n",
-    'generated-products KDHS source trigger');
-  await write(file,text);
 }
 
 for(const file of ['scripts/p20/validate-sourced-county.mjs','scripts/p20/validate-audit-opinion.mjs']){
