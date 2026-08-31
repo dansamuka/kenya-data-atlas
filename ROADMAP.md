@@ -64,7 +64,7 @@ P21 continues one hard county family per PR. P22 retains its original date-aware
 
 **P23A is an accelerator inside P23, not a new governed phase or denominator.** It resolves only slot instances already assigned to P23. Full P23 remains the gate requiring all 290 constituencies to reconcile, explicit election/boundary vintages, deterministic national pipelines and zero county→constituency inheritance.
 
-The first P23A tranche is `IND-REGISTERED-VOTERS`: IEBC Gazette Notice No. 7290 already identifies a direct **Second Schedule — Registered Voters per Constituency**, dated 20 June 2022. The tranche must canonicalise all 290 constituency observations, reconcile them to the existing geography registry and leave the overall 20,115-slot denominator unchanged.
+The first P23A tranche is `IND-REGISTERED-VOTERS`. The statistical authority is IEBC Gazette Notice No. 7290. To preserve the already-audited Sprint 2 contract, the canonical constituency values remain **B — Official derived**: exact sums of all official IEBC First Schedule child-ward rows for each constituency, including the ten source rows that are withheld only from uncertain Mandera East/Lafey ward geometry. The Gazette also contains the Second Schedule per constituency, but P23A does not silently relabel the established derived series as direct without a separate direct-schedule ingestion and validation.
 
 Planned subsequent P23A pipelines, each independently gated, are official turnout history where comparable, current MP identity, NG-CDF allocation, and NG-CDF utilisation/implementation only where a nationally comparable official source exists.
 
