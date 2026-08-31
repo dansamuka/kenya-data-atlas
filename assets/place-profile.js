@@ -5,8 +5,8 @@
   'use strict';
   const $=(s,r)=>(r||document).querySelector(s);
   const $$=(s,r)=>[...(r||document).querySelectorAll(s)];
-  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  let state=null,currentGeo=null,currentTab='overview',rankingQueued=false;
+  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
+  let state=null,currentGeo=null,currentTab='overview',currentSector='education',rankingQueued=false;
 
   function ensureStyles(){
     if(document.getElementById('kda-place-profile-css')||document.querySelector('link[href="assets/place-profile.css"]'))return;
@@ -18,6 +18,13 @@
   const json=async url=>{try{const r=await fetch(url);return r.ok?await r.json():null;}catch{return null;}};
   const TAB_LABEL={overview:'Overview',people:'People',economy:'Economy',health:'Health',finance:'Finance',representation:'Representation',infrastructure:'Infrastructure',resilience:'Resilience & Environment'};
   const BADGE_LABEL={A:'Official direct',B:'Official derived',C:'Spatially derived',D:'Modelled',E:'External source'};
+  const COUNTY_SECTORS=[
+    {id:'education',label:'Education',note:'TSC 2023',codes:['IND-PUBLIC-PRIMARY-SCHOOLS','IND-PRIMARY-CLASSROOM-TEACHERS','IND-PUBLIC-SECONDARY-SCHOOLS','IND-SECONDARY-TEACHERS']},
+    {id:'connectivity',label:'Connectivity',note:'KHS 2023/24',codes:['IND-INTERNET-USE','IND-COMPUTER-USE','IND-MAIN-GRID-ELECTRICITY']},
+    {id:'economy',label:'Economic structure',note:'GCP 2024',codes:['IND-AGRICULTURE-GVA','IND-AGRICULTURE-GCP-SHARE','IND-MANUFACTURING-GVA','IND-MANUFACTURING-GCP-SHARE']},
+    {id:'agriculture',label:'Agriculture',note:'Maize 2023',codes:['IND-MAIZE-AREA','IND-MAIZE-PRODUCTION','IND-MAIZE-YIELD']}
+  ];
+  const COUNTY_SECTOR_CODES=COUNTY_SECTORS.flatMap(group=>group.codes);
 
   function unitLabel(unit){
     if(!unit)return '';
@@ -89,6 +96,23 @@
     return `<article class="place-profile-card lifecycle-${esc(life)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge lifecycle ${esc(life)}">${status}</span></div><div class="place-card-value-row"><div class="place-card-value missing">—</div>${unitChip}</div><div class="place-card-meta"><strong>${status}</strong> · ${esc(source)}</div><button class="placeholder-explain" type="button" aria-expanded="false">More about availability ↓</button><div class="placeholder-detail" hidden><b>${esc(TAB_LABEL[tab]||tab)} · ${esc(status)}</b><div>Intended levels: ${esc(levels)}</div><div>${esc(ind.expected_availability_note||'No additional availability note.')}</div>${link}</div></article>`;
   }
 
+  function sectorMetricHtml(code,geo){
+    const ind=state.indicatorByCode.get(code); if(!ind)return '';
+    const pair=latestPair(geo.geography_id,ind),unit=unitFor(ind);
+    if(!pair)return `<article class="place-sector-card missing"><span>${esc(ind.name)}</span><strong>—</strong><small>Not available for this county</small></article>`;
+    const source=agencyFor(pair.series),unitText=unitLabel(unit);
+    return `<article class="place-sector-card"><div class="place-sector-card-top"><span>${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-sector-value"><strong>${esc(formatValue(pair.obs.value,unit))}</strong>${unitText?`<em>${esc(unitText)}</em>`:''}</div><small><b>${esc(pair.obs.period_label)}</b><span>${esc(source)}</span></small></article>`;
+  }
+  function renderCountySectors(){
+    const section=$('#profile');if(!section)return;
+    const mount=$('.place-sector-mount',section);if(!mount)return;
+    if(!currentGeo||currentGeo.level!=='county'||currentTab!=='overview'){mount.innerHTML='';return;}
+    const activeGroup=COUNTY_SECTORS.find(group=>group.id===currentSector)||COUNTY_SECTORS[0];
+    currentSector=activeGroup.id;
+    const available=COUNTY_SECTOR_CODES.filter(code=>{const ind=state.indicatorByCode.get(code);return ind&&latestPair(currentGeo.geography_id,ind);}).length;
+    mount.innerHTML=`<section class="place-sector-panel" aria-labelledby="place-sector-title"><header class="place-sector-head"><div><span class="place-sector-eyebrow">County sectors · 47-county coverage</span><h3 id="place-sector-title">More of ${esc(currentGeo.name)}, without the scroll</h3><p>Switch between four complete county-comparable packages. Values come from the same canonical Atlas registry; no national value is substituted for a county.</p></div><div class="place-sector-coverage"><strong>${available}/14</strong><span>published here</span></div></header><nav class="place-sector-tabs" aria-label="County sector package">${COUNTY_SECTORS.map(group=>`<button type="button" data-sector-group="${esc(group.id)}" aria-pressed="${group.id===activeGroup.id?'true':'false'}"><span>${esc(group.label)}</span><small>${esc(group.note)}</small></button>`).join('')}</nav><div class="place-sector-group-head"><strong>${esc(activeGroup.label)}</strong><span>${esc(activeGroup.note)} · source and period shown on every measure</span></div><div class="place-sector-grid">${activeGroup.codes.map(code=>sectorMetricHtml(code,currentGeo)).join('')}</div><p class="place-sector-note">These are supplementary canonical county measures, not extra placeholder slots and not a composite score. Ranking or causal interpretation is not implied.</p></section>`;
+  }
+
   function renderTab(){
     if(!currentGeo)return; const section=$('#profile'); if(!section)return;
     const codes=slotCodes(currentGeo,currentTab);
@@ -97,6 +121,7 @@
     const label=TAB_LABEL[currentTab]||currentTab;
     const head=$('.place-profile-tab-head',section); if(head)head.innerHTML=`<h3>${esc(label)}</h3><p class="place-profile-coverage">${available}/${codes.length} available · ${esc(currentGeo.level)}</p>`;
     const grid=$('.place-profile-grid',section); if(grid)grid.innerHTML=codes.length?codes.map(code=>cardHtml(code,currentGeo,currentTab)).join(''):`<div class="place-profile-empty">No published indicator slots are defined for this topic at ${esc(currentGeo.level)} level.</div>`;
+    renderCountySectors();
   }
 
   function renderProfile(geoId,preferredTab){
@@ -105,12 +130,12 @@
     const section=$('#profile'); if(!section)return; section.dataset.placeProfile='true';
     const chain=chainFor(geo).map((g,i)=>`${i?'<span>›</span>':''}${esc(g.name)}`).join('');
     const placeLabel=`${geo.name}${geo.level==='county'?' County':geo.level==='constituency'?' Constituency':' Ward'}`;
-    section.innerHTML=`<div class="place-profile-head"><div class="place-profile-copy"><p class="place-profile-breadcrumb">${chain}</p><span class="place-profile-level">${esc(geo.level)} · ${esc(geo.geo_code)}</span><h2>${esc(placeLabel)}</h2><p>Published observations for this place, with source and reference period kept visible. Missing local values stay missing — broader-area figures are never substituted.</p></div><div class="place-profile-actions"><button type="button" id="place-profile-download" aria-label="Download ${esc(placeLabel)} ${esc(TAB_LABEL[currentTab]||currentTab)} data as CSV">↓ Download CSV</button></div></div><nav class="place-profile-tabs" role="tablist" aria-label="${esc(geo.name)} profile topics">${tabs.map(tab=>`<button type="button" role="tab" data-profile-tab="${esc(tab)}">${esc(TAB_LABEL[tab]||tab)}</button>`).join('')}</nav><div class="place-profile-tab-head"></div><div class="place-profile-grid" role="region" aria-live="polite"></div>`;
+    section.innerHTML=`<div class="place-profile-head"><div class="place-profile-copy"><p class="place-profile-breadcrumb">${chain}</p><span class="place-profile-level">${esc(geo.level)} · ${esc(geo.geo_code)}</span><h2>${esc(placeLabel)}</h2><p>Published observations for this place, with source and reference period kept visible. Missing local values stay missing — broader-area figures are never substituted.</p></div><div class="place-profile-actions"><button type="button" id="place-profile-download" aria-label="Download ${esc(placeLabel)} ${esc(TAB_LABEL[currentTab]||currentTab)} data as CSV">↓ Download CSV</button></div></div><nav class="place-profile-tabs" role="tablist" aria-label="${esc(geo.name)} profile topics">${tabs.map(tab=>`<button type="button" role="tab" data-profile-tab="${esc(tab)}">${esc(TAB_LABEL[tab]||tab)}</button>`).join('')}</nav><div class="place-profile-tab-head"></div><div class="place-profile-grid" role="region" aria-live="polite"></div><div class="place-sector-mount"></div>`;
     renderTab();
   }
 
   function downloadCurrent(){
-    if(!currentGeo)return; const codes=slotCodes(currentGeo,currentTab); const rows=[['indicator_code','indicator','lifecycle','value','unit','period','source'].join(',')];
+    if(!currentGeo)return; const base=slotCodes(currentGeo,currentTab),codes=currentGeo.level==='county'&&currentTab==='overview'?[...new Set([...base,...COUNTY_SECTOR_CODES])]:base; const rows=[['indicator_code','indicator','lifecycle','value','unit','period','source'].join(',')];
     const q=v=>`"${String(v??'').replaceAll('"','""')}"`;
     for(const code of codes){const i=state.indicatorByCode.get(code);if(!i)continue;const p=latestPair(currentGeo.geography_id,i),u=unitFor(i);rows.push([q(code),q(i.name),q(i.lifecycle_status),q(p?.obs?.value??''),q(unitLabel(u)),q(p?.obs?.period_label??''),q(p?agencyFor(p.series):(i.expected_source||''))].join(','));}
     const blob=new Blob([rows.join('\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kenya-data-atlas-${currentGeo.geo_code.toLowerCase()}-${currentTab}.csv`;a.click();URL.revokeObjectURL(a.href);
@@ -119,6 +144,7 @@
   function installProfileEvents(){
     const section=$('#profile'); if(!section||section.dataset.profileEvents==='true')return; section.dataset.profileEvents='true';
     section.addEventListener('click',e=>{
+      const sector=e.target.closest('[data-sector-group]');if(sector){currentSector=sector.dataset.sectorGroup||'education';renderCountySectors();return;}
       const tab=e.target.closest('[data-profile-tab]'); if(tab){currentTab=tab.dataset.profileTab;renderTab();return;}
       const explain=e.target.closest('.placeholder-explain'); if(explain){const detail=explain.nextElementSibling,open=detail?.hidden!==false;$$('.placeholder-detail',section).forEach(d=>d.hidden=true);$$('.placeholder-explain',section).forEach(b=>b.setAttribute('aria-expanded','false'));if(detail){detail.hidden=!open;explain.setAttribute('aria-expanded',String(open));}return;}
       if(e.target.closest('#place-profile-download'))downloadCurrent();
