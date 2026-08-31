@@ -70,6 +70,30 @@ jobs:
           console.log('P20_WORKSTREAM_KDHS_SOURCE_OK teenage_pregnancy=47 home_birth=47 contraceptive=47 fgm=47 literacy_women=47');
           NODE
 
+  hiv-source-gate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: p20-consolidated-completion }
+      - name: Validate KENPHIA HIV source
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const h=JSON.parse(fs.readFileSync('data/p20/source/kenphia-2018-hiv-prevalence-county.json','utf8'));
+          if(h.counties?.length!==47||new Set(h.counties.map(r=>r.geo_code)).size!==47) throw new Error('KENPHIA county coverage failed');
+          if(Number(h.reported_total_pct)!==4.9||Number(h.reported_total_unweighted_n)!==27745) throw new Error('KENPHIA national point-estimate/sample anchor failed');
+          if(Number(h.reported_total_standard_error)!==0.2||Number(h.reported_total_lower_95)!==4.5||Number(h.reported_total_upper_95)!==5.3) throw new Error('KENPHIA national uncertainty anchor failed');
+          if(h.counties.reduce((a,r)=>a+Number(r.sample_size),0)!==27745) throw new Error('KENPHIA county samples do not reconcile to national n');
+          for(const r of h.counties){
+            if(!Number.isFinite(Number(r.hiv_prevalence_pct))||!(Number(r.sample_size)>0)||!Number.isFinite(Number(r.standard_error))) throw new Error(`${r.geo_code} KENPHIA estimate/precision missing`);
+            if(r.geo_code==='KEN-C007'){
+              if(Number(r.hiv_prevalence_pct)!==0||Number(r.standard_error)!==0||r.lower_95!==null||r.upper_95!==null) throw new Error('Garissa unavailable CI contract failed');
+            }else if(!Number.isFinite(Number(r.lower_95))||!Number.isFinite(Number(r.upper_95))) throw new Error(`${r.geo_code} KENPHIA CI missing`);
+          }
+          console.log('P20_WORKSTREAM_HIV_SOURCE_OK kenphia=47 n=27745 uncertainty=published');
+          NODE
+
   remaining-queue-diagnostic:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
@@ -90,7 +114,7 @@ jobs:
 
   generate-and-validate:
     if: github.actor != 'github-actions[bot]'
-    needs: [census-source-gate, kdhs-source-gate, remaining-queue-diagnostic]
+    needs: [census-source-gate, kdhs-source-gate, hiv-source-gate, remaining-queue-diagnostic]
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -125,5 +149,5 @@ jobs:
             echo 'No consolidated P20 changes produced.'
             exit 0
           fi
-          git commit -m 'feat(p20): promote consolidated 329-slot county batch'
+          git commit -m 'feat(p20): promote consolidated 376-slot county batch'
           git push origin HEAD:p20-consolidated-completion
