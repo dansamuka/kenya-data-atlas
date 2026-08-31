@@ -1,0 +1,65 @@
+name: P21 agriculture replacement generator
+
+on:
+  push:
+    branches: [chatgpt/p21-agriculture-replacement]
+    paths:
+      - '.github/workflows/p21-agriculture-generator.yml'
+      - 'scripts/p21/**'
+      - 'scripts/completeness/**'
+      - 'data/completeness/evidence-states.json'
+      - 'data/indicators/seed/placeholder-taxonomy.json'
+      - 'data/data-completion-roadmap.json'
+      - 'docs/DATA-COMPLETION-PLAN.md'
+      - 'assets/place-profile.js'
+      - 'package.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p21-agriculture-replacement-generator
+  cancel-in-progress: true
+
+jobs:
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/p21-agriculture-replacement
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+      - name: Apply governed agriculture replacement
+        run: node scripts/p21/prepare-agriculture-replacement.mjs
+      - name: Rebuild all published Atlas products
+        run: npm run build:data
+      - name: Run full Atlas validation suite
+        run: npm test
+      - name: Run independent geometry audit
+        run: npm run geography:audit
+      - name: Commit P21 tranche and generated products
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No P21 agriculture changes produced.'
+            exit 0
+          fi
+          git commit -m 'feat(p21): close generic agriculture placeholder'
+          git push origin HEAD:chatgpt/p21-agriculture-replacement
