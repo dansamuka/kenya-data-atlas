@@ -767,5 +767,20 @@
     "publication_status": "published",
     "methodology_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
     "known_limitations": "Full-year own-source revenue including FIF/AiA divided by the published target. Values are retained at the whole-percentage precision published in the 2025 BROP; no missing county is estimated or interpolated."
+  },
+  {
+    "dataset_id": "a8b4bdaf-0cc8-535a-ab34-740ebd8f6417",
+    "dataset_code": "DS-OAG-COUNTY-EXECUTIVE-AUDIT-2023-24-P20",
+    "source_id": "c019e2b2-524e-5821-b24b-666a2f3de7b1",
+    "title": "County Executive audit opinions, FY2023/24",
+    "description": "Categorical audit opinion for each of Kenya’s 47 County Executives from Appendix 1(a) of the Auditor-General summary report for FY2023/24.",
+    "topic": "Public Finance",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "https://www.oagkenya.go.ke/wp-content/uploads/2025/04/Auditor-Generals-summary-Report-on-County-Governments-2023-2024.pdf",
+    "known_limitations": "The observation is the categorical audit opinion only. It is not converted to a numeric performance score or ranking."
   }
 ]

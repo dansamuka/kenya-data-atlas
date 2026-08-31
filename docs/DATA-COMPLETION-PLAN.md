@@ -16,9 +16,9 @@ For that reason, `P18–P26` is documented separately rather than being appended
 As of 31 August 2026 the governed completeness surface is:
 
 - **20,115 total slot instances**
-- **2,774 resolved**
-- **17,341 unresolved**
-- **13.79% resolved**
+- **2,821 resolved**
+- **17,294 unresolved**
+- **14.03% resolved**
 - **49 unique indicator slots**
 - **0 unknown/unclassified blanks**
 
@@ -26,7 +26,7 @@ Current unresolved queue:
 
 | Phase | Queue |
 |---|---:|
-| P20 | 611 |
+| P20 | 564 |
 | P21 | 423 |
 | P22 | 66 |
 | P23 | 3,190 |
@@ -114,8 +114,10 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 - 47/47 main-grid electricity slots;
 - 47/47 FY2024/25 own-source-revenue target-attainment slots;
 - **94 slots resolved in tranche 1**.
+- 47/47 FY2023/24 County Executive audit opinions, verified directly from OAG Appendix 1(a), pages 69–70; all are categorically **Qualified**.
+- **141 P20 slots resolved across tranches 1–2**.
 
-**Remaining queue:** **611**.
+**Remaining queue:** **564**.
 
 **Acceptance**
 - P20 queue reaches zero;

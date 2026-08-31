@@ -57,10 +57,10 @@
   },
   {
     "indicator_code": "IND-COUNTY-AUDIT-OPINION",
-    "name": "Auditor-General opinion",
+    "name": "County Executive audit opinion",
     "path": "data/distribution/subsets/indicators/IND-COUNTY-AUDIT-OPINION.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",

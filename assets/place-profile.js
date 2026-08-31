@@ -28,9 +28,10 @@
 
   function unitLabel(unit){
     if(!unit)return '';
-    return {persons:'persons',percent:'%',kes_per_usd:'KES/USD',km2:'km²',kes_per_litre:'KES/L',kes_million:'KSh mn',count:'count',persons_per_household:'persons/household',index_score:'score',category:'category',km:'km',per_10000_persons:'per 10k',climate_measure:'mm / °C'}[unit.code]||unit.symbol||unit.name||'';
+    return {persons:'persons',percent:'%',kes_per_usd:'KES/USD',km2:'km²',kes_per_litre:'KES/L',kes_million:'KSh mn',count:'count',persons_per_household:'persons/household',index_score:'score',category:'',km:'km',per_10000_persons:'per 10k',climate_measure:'mm / °C'}[unit.code]||unit.symbol||unit.name||'';
   }
   function formatValue(value,unit){
+    if(unit?.code==='category')return String(value??'').trim()||'—';
     const v=Number(value); if(!Number.isFinite(v))return '—';
     if(unit?.code==='persons'&&v>=1e6)return `${(v/1e6).toFixed(2)}m`;
     if(unit?.code==='persons'&&v>=1e3)return `${(v/1e3).toFixed(0)}k`;
@@ -83,7 +84,7 @@
     const unitChip=unitLabel(unit)?`<span class="unit-chip" title="Unit of measurement: ${esc(unit?.name||unitLabel(unit))}">${esc(unitLabel(unit))}</span>`:'';
     if(life==='active'&&pair){
       const source=agencyFor(pair.series);
-      return `<article class="place-profile-card lifecycle-active"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-card-value-row"><div class="place-card-value">${esc(formatValue(pair.obs.value,unit))}</div>${unitChip}</div><div class="place-card-meta place-card-source"><strong>${esc(pair.obs.period_label)}</strong><span>${esc(source)}</span></div>${uncertaintyHtml(ind,pair,unit)}</article>`;
+      return `<article class="place-profile-card lifecycle-active"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-card-value-row"><div class="place-card-value">${esc(formatValue(pair.obs.text_value??pair.obs.value,unit))}</div>${unitChip}</div><div class="place-card-meta place-card-source"><strong>${esc(pair.obs.period_label)}</strong><span>${esc(source)}</span></div>${uncertaintyHtml(ind,pair,unit)}</article>`;
     }
     if(life==='active'){
       const note=ind.expected_availability_note||`No observation is currently available for ${geo.name} at ${geo.level} level.`;
@@ -101,7 +102,7 @@
     const pair=latestPair(geo.geography_id,ind),unit=unitFor(ind);
     if(!pair)return `<article class="place-sector-card missing"><span>${esc(ind.name)}</span><strong>—</strong><small>Not available for this county</small></article>`;
     const source=agencyFor(pair.series),unitText=unitLabel(unit);
-    return `<article class="place-sector-card"><div class="place-sector-card-top"><span>${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-sector-value"><strong>${esc(formatValue(pair.obs.value,unit))}</strong>${unitText?`<em>${esc(unitText)}</em>`:''}</div><small><b>${esc(pair.obs.period_label)}</b><span>${esc(source)}</span></small></article>`;
+    return `<article class="place-sector-card"><div class="place-sector-card-top"><span>${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-sector-value"><strong>${esc(formatValue(pair.obs.text_value??pair.obs.value,unit))}</strong>${unitText?`<em>${esc(unitText)}</em>`:''}</div><small><b>${esc(pair.obs.period_label)}</b><span>${esc(source)}</span></small></article>`;
   }
   function renderCountySectors(){
     const section=$('#profile');if(!section)return;
@@ -137,7 +138,7 @@
   function downloadCurrent(){
     if(!currentGeo)return; const base=slotCodes(currentGeo,currentTab),codes=currentGeo.level==='county'&&currentTab==='overview'?[...new Set([...base,...COUNTY_SECTOR_CODES])]:base; const rows=[['indicator_code','indicator','lifecycle','value','unit','period','source'].join(',')];
     const q=v=>`"${String(v??'').replaceAll('"','""')}"`;
-    for(const code of codes){const i=state.indicatorByCode.get(code);if(!i)continue;const p=latestPair(currentGeo.geography_id,i),u=unitFor(i);rows.push([q(code),q(i.name),q(i.lifecycle_status),q(p?.obs?.value??''),q(unitLabel(u)),q(p?.obs?.period_label??''),q(p?agencyFor(p.series):(i.expected_source||''))].join(','));}
+    for(const code of codes){const i=state.indicatorByCode.get(code);if(!i)continue;const p=latestPair(currentGeo.geography_id,i),u=unitFor(i);rows.push([q(code),q(i.name),q(i.lifecycle_status),q(p?.obs?.text_value??p?.obs?.value??''),q(unitLabel(u)),q(p?.obs?.period_label??''),q(p?agencyFor(p.series):(i.expected_source||''))].join(','));}
     const blob=new Blob([rows.join('\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kenya-data-atlas-${currentGeo.geo_code.toLowerCase()}-${currentTab}.csv`;a.click();URL.revokeObjectURL(a.href);
   }
 
