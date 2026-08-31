@@ -13,7 +13,7 @@ jobs:
   capture-source:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,14 +27,47 @@ jobs:
           url='https://open.africa/dataset/9b94fe50-9d75-4b92-be00-6354c6e6cc88/resource/ea9263c3-3c48-4b23-9a79-b175945e690e/download/percentage-distribution-of-conventional-households-by-main-source-of-drinking-water-county-and-s.csv'
           curl -fL --retry 4 --retry-all-errors --connect-timeout 20 -A 'Kenya-Data-Atlas/1.0' "$url" -o data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
           test -s data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
-          echo 'SOURCE_BYTES='$(wc -c < data/p21/source/kphc-2019-drinking-water-county-subcounty.csv)
-          head -n 8 data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
-      - name: Commit source snapshot
+          echo 'CSV_BYTES='$(wc -c < data/p21/source/kphc-2019-drinking-water-county-subcounty.csv)
+      - name: Capture official KNBS Appendix 15 text
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v pdftotext >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils; }
+          pdf=/tmp/kphc-housing-amenities.pdf
+          primary='https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Housing-Conditions-and-Amenities.pdf'
+          fallback='https://www.knbs.or.ke/wp-content/uploads/2024/05/4.2019-Kenya-Population-and-Housing-Census-Analytical-Report-on-Housing-Conditions-and-Amenities-Vol.pdf'
+          if ! curl -fL --retry 4 --retry-all-errors --connect-timeout 20 -A 'Kenya-Data-Atlas/1.0' "$primary" -o "$pdf"; then
+            curl -fL --retry 4 --retry-all-errors --connect-timeout 20 -A 'Kenya-Data-Atlas/1.0' "$fallback" -o "$pdf"
+          fi
+          test -s "$pdf"
+          sha256sum "$pdf" | awk '{print $1}' > data/p21/source/kphc-2019-housing-amenities.pdf.sha256
+          pdftotext -layout "$pdf" /tmp/kphc-housing-amenities.txt
+          python - <<'PY'
+          from pathlib import Path
+          text=Path('/tmp/kphc-housing-amenities.txt').read_text(errors='replace').splitlines()
+          starts=[i for i,line in enumerate(text) if 'Appendix 15:' in line and 'drinking water' in line.lower()]
+          if not starts:
+              raise SystemExit('Appendix 15 heading not found in official KNBS PDF text')
+          start=starts[-1]
+          end=min(len(text), start+420)
+          excerpt='\n'.join(text[start:end]).rstrip()+'\n'
+          if 'Kenya' not in excerpt or 'Mombasa' not in excerpt or 'Nairobi' not in excerpt:
+              raise SystemExit('Appendix 15 excerpt does not contain expected national/county anchors')
+          Path('data/p21/source/kphc-2019-drinking-water-appendix15.txt').write_text(excerpt)
+          print(f'APPENDIX_LINES={end-start}')
+          PY
+          grep -n -m1 'Mombasa' data/p21/source/kphc-2019-drinking-water-appendix15.txt || true
+          grep -n -m1 'Nairobi' data/p21/source/kphc-2019-drinking-water-appendix15.txt || true
+      - name: Commit source snapshots
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/p21/source/kphc-2019-drinking-water-county-subcounty.csv
-          git commit -m 'data(p21): snapshot KNBS 2019 drinking-water table'
+          git add data/p21/source/kphc-2019-drinking-water-county-subcounty.csv data/p21/source/kphc-2019-drinking-water-appendix15.txt data/p21/source/kphc-2019-housing-amenities.pdf.sha256
+          if git diff --cached --quiet; then
+            echo 'Source snapshots already current.'
+            exit 0
+          fi
+          git commit -m 'data(p21): capture official KNBS water appendix'
           git push origin HEAD:chatgpt/p21-water-access
