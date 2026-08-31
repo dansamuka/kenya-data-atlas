@@ -527,13 +527,14 @@
       "name": "Hospital bed occupancy/utilisation rate",
       "description": "Hospital bed utilisation if a public Kenyan source is identified.",
       "unit_code": "percent",
-      "status": "planned",
+      "status": "retired",
       "tab": "health",
       "levels": [
         "county"
       ],
-      "source": "Ministry of Health / KHIS",
-      "note": "No confirmed public Kenyan feed; remain planned until a citable source exists."
+      "source": "Ministry of Health — Service Availability and Readiness Assessment (SARA) Main Report, Table 18",
+      "note": "Retired/replaced in P21 because the official SARA report publishes only the national 46% bed-occupancy average, not a governed 47-county occupancy table. Use IND-INPATIENT-SERVICE-AVAILABILITY for the report's directly published 47-county inpatient-service availability percentages. Do not interpret that successor as bed occupancy/utilisation.",
+      "source_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf"
     },
     {
       "code": "IND-FOOD-SECURITY-PHASE",
@@ -811,6 +812,21 @@
       "levels": [],
       "source": "Central Bank of Kenya / Communications Authority",
       "note": "National-only Pulse slot; no county breakdown identified."
+    },
+    {
+      "code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "name": "Facilities offering inpatient services",
+      "short_name": "Inpatient service availability",
+      "description": "Percentage of health facilities reported as offering inpatient services in Ministry of Health SARA Table 18.",
+      "unit_code": "percent",
+      "status": "sourced",
+      "tab": "health",
+      "levels": [
+        "county"
+      ],
+      "source": "Ministry of Health — Service Availability and Readiness Assessment (SARA) Main Report, Table 18",
+      "source_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
+      "note": "Published directly for all 47 counties with facility denominators in SARA Table 18. This measures service availability among facilities, not bed occupancy/utilisation, bed density, population access or quality. Ranking is withheld."
     }
   ]
 }

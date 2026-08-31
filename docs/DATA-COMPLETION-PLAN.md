@@ -34,7 +34,7 @@ Baseline unresolved queue:
 | P24 | 13,050 |
 | P25 | 1 |
 
-The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–5, the live summary reports **3,620 resolved**, **16,495 unresolved**, **0 unknown blanks**, and **188 P21 rows** remaining.
+The historical baseline remains fixed for auditability. The machine-readable live ledger is authoritative after subsequent tranches. Following P21 tranches 1–6, the live summary reports **3,667 resolved**, **16,448 unresolved**, **0 unknown blanks**, and **141 P21 rows** remaining.
 
 ## Completion semantics
 
@@ -213,6 +213,10 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 **P21 tranche 5 — facility-infrastructure replacement:** all 47 `IND-FACILITY-INFRASTRUCTURE` slots are retired/replaced because the original profile field combines electricity and water into one undefined percentage and the official 2023 Health Facility Census does not provide one governed 47-county combined amenity series. The Atlas does not infer county rates from charts or manufacture a combined score; existing health-facility stock and density indicators remain the clearly labelled county infrastructure-supply measures.
 
 **Remaining queue after tranche 5:** **188** across four 47-county families.
+
+**P21 tranche 6 — inpatient-service availability replacement:** all 47 `IND-HOSPITAL-BED-UTILIZATION` slots are retired/replaced because the Ministry of Health SARA report publishes a national 46% inpatient bed-occupancy average but no governed 47-county occupancy table. The Atlas does not allocate that national rate to counties. Instead, the report’s Table 18 is promoted as a separate `IND-INPATIENT-SERVICE-AVAILABILITY` series with direct percentages and facility denominators for all 47 counties; it is explicitly labelled as availability, not utilisation.
+
+**Remaining queue after tranche 6:** **141** across three 47-county families.
 
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 

@@ -1453,7 +1453,7 @@
     {
       "indicator_id": "24bdaabb-3cc0-5d11-ad69-4adff1671c1f",
       "name": "Hospital bed occupancy/utilisation rate",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "retired",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-HOSPITAL-BED-UTILIZATION",
       "domain": "health",
@@ -1648,6 +1648,41 @@
       },
       "uncertainty": {
         "required_for_ranking": true
+      },
+      "trend": {
+        "allowed": true,
+        "rule": "At least two numeric observations are required; directional wording uses the canonical direction rule and matched comparisons require comparable periods.",
+        "static_reason_not_allowed": null
+      },
+      "inheritance": {
+        "parent_value_inheritance_allowed": false,
+        "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
+      },
+      "publication_status": "published"
+    },
+    {
+      "indicator_id": "b334bb9d-e484-5fa3-8f96-8ad73ddfb07c",
+      "name": "Facilities offering inpatient services",
+      "lifecycle_status": "active",
+      "policy_version": "P12-policy-v1",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "domain": "health",
+      "direction": {
+        "higher_is_better": null,
+        "basis": "No directional quality claim is made."
+      },
+      "composite": {
+        "eligible": false
+      },
+      "ranking": {
+        "allowed": false,
+        "mode": "positional_only",
+        "higher_is_better": null,
+        "requires_sampling_uncertainty": false,
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
+      },
+      "uncertainty": {
+        "required_for_ranking": false
       },
       "trend": {
         "allowed": true,
@@ -49764,6 +49799,570 @@
       "cross_level_comparison": {
         "eligible": false,
         "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e0c9c509-3f5f-5ed3-bf87-8ca9e763e3f0",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C001",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e3172ccc-d372-5652-bd26-6fec1a5f3701",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C002",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5051f6f7-6582-592f-8755-855b63b2ed4b",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C003",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "397c15d7-b581-5f91-b8bd-bdddbc2e3d63",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C004",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e480e186-a045-547f-9320-da619899676b",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C005",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2c5c1b3b-e4a6-58c9-88c4-e5f5a619eec0",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C006",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7eda5343-1941-52f7-8140-aa245d4f0d6f",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C007",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c30ecadc-5a63-5862-aa8e-9801aaa1bcdf",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C008",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "145130ea-8198-58fd-88f1-66ae32411caa",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C009",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "70c084ae-5879-5ca3-99a0-269522d531d7",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C010",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "700d639d-b430-56d8-849d-9efd48a01185",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C011",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "25447ed7-63a0-5ca4-aea7-ae6ec410b4c6",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C012",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4403bf1c-a3d3-56b2-9a7a-867192b1ceae",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C013",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5990bb80-3ba3-5af3-8c95-fa7d73a3ea8f",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C014",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fd00b2a8-6831-59c7-9fc1-57148846fc27",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C015",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f8d3420d-0780-5f0b-8a21-53907ef6473c",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C016",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f619b30b-37f7-5aac-aa02-c1e9a3cee227",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C017",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "07e2a3f7-2041-533d-a9f1-6a5165de4d72",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C018",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "be23575e-6a3a-5232-bf84-d555f47fbb74",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C019",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2dacb91c-9a24-57a9-929d-f8bf36745f2f",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C020",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b4b87483-9323-5439-94b6-bbed20fe99df",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C021",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fbcb531d-698a-582f-a9c0-deab3e5ff1cb",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C022",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "53458766-5749-5946-889e-f514507543cf",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C023",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "daab6028-004b-5c39-9a27-f2aa5b66fa66",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C024",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ed7a99aa-e1a0-5d91-957f-53d2f9236b1b",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C025",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2e777522-b0ea-58b5-a589-695ceeae2d78",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C026",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3df28ecd-8c52-548b-8862-55d9e636e344",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C027",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "410fcbab-c4aa-591d-8955-faba8cfdbc99",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C028",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3718b166-ca97-5202-a412-d4f4653cf3e3",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C029",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "133f8294-74ce-5ed4-85d9-c006bc6be540",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C030",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0c9f607f-11ae-5da2-a69d-750eeeccf077",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C031",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2327bf27-bf1c-5177-befc-9c5569bc175c",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C032",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6dedbf64-8fac-50ce-a071-91c4d5161753",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C033",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "33501747-9683-5476-9aca-6e7f24f23024",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C034",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6b8c678b-0e73-5c44-a77a-5b75d8db1220",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C035",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7b8c9b77-5dbf-5bce-92f2-48f1af666d49",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C036",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e9f87a36-da15-5ebc-a03f-b2e6e7be0d72",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C037",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5994f671-b0a1-5eef-9c0a-f4e5fd94e8a6",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C038",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7978b4f4-28a9-5b3b-9250-b9c4cdef9fba",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C039",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0a02ed84-466e-5f11-aec6-e344639fb5a1",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C040",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "589787d4-b12d-5e3b-8a61-156933070731",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C041",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "386b4420-6fd1-573f-9879-a4b7732cedb0",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C042",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a64ac049-913b-5810-855e-0060858b0bf2",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C043",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "dfd64487-873c-5b87-bb0e-9e776ec9b7f0",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C044",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7762ce2d-fc50-54a9-ad75-96ab8eaf154c",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C045",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f8271310-8783-5f8f-b4a2-b8bc6ad7ee92",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C046",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7630e821-53d6-5fb6-8d57-1006cf21730f",
+      "series_code": "KDA-P21-INPATIENT-AVAIL-KEN-C047",
+      "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
       }
     },
     {

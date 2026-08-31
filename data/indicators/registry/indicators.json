@@ -2051,13 +2051,13 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
     "comparable": true,
     "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "Ministry of Health / KHIS",
-    "expected_source_url": "",
-    "expected_availability_note": "No confirmed public Kenyan feed; remain planned until a citable source exists.",
+    "lifecycle_status": "retired",
+    "expected_source": "Ministry of Health — Service Availability and Readiness Assessment (SARA) Main Report, Table 18",
+    "expected_source_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
+    "expected_availability_note": "Retired/replaced in P21 because the official SARA report publishes only the national 46% bed-occupancy average, not a governed 47-county occupancy table. Use IND-INPATIENT-SERVICE-AVAILABILITY for the report's directly published 47-county inpatient-service availability percentages. Do not interpret that successor as bed occupancy/utilisation.",
     "tab": "health",
     "applies_to_levels": [
       "county"
@@ -2570,6 +2570,34 @@
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": false,
     "ranking_allowed": true
+  },
+  {
+    "indicator_id": "b334bb9d-e484-5fa3-8f96-8ad73ddfb07c",
+    "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+    "name": "Facilities offering inpatient services",
+    "short_name": "Inpatient service availability",
+    "description": "Percentage of health facilities reported as offering inpatient services in Ministry of Health SARA Table 18.",
+    "topic": "Health",
+    "subtopic": "health",
+    "unit_id": "09db3d3a-c7b1-51f3-9909-d94d80106e82",
+    "higher_is_better": null,
+    "preferred_frequency": "irregular",
+    "minimum_geo_level": "county",
+    "minimum_denominator": null,
+    "methodology_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
+    "comparable": true,
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "Ministry of Health — Service Availability and Readiness Assessment (SARA), Table 18",
+    "expected_source_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
+    "expected_availability_note": "Published directly for all 47 counties with facility denominators. This is facility service availability, not bed occupancy/utilisation. The separate national 46% inpatient bed-occupancy rate is not inherited or allocated to counties.",
+    "tab": "health",
+    "applies_to_levels": [
+      "county"
+    ],
+    "applies_to_geography_subset": "",
+    "requires_sampling_uncertainty": false,
+    "ranking_allowed": false
   },
   {
     "indicator_id": "786a08dd-2047-5aac-8215-925e666daa9e",

@@ -9,12 +9,12 @@
   "completed_phase_count": 18,
   "counts": {
     "units": 21,
-    "indicators": 98,
-    "series": 4074,
-    "observations": 7568,
+    "indicators": 99,
+    "series": 4121,
+    "observations": 7615,
     "geographies": 1788,
     "counties": 47,
-    "datasets": 59,
+    "datasets": 60,
     "evidence_records": 247,
     "public_county_results": 47,
     "opportunity_programmes": 9
