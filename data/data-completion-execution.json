@@ -63,15 +63,18 @@
       "first_tranche": {
         "indicator_code": "IND-REGISTERED-VOTERS",
         "source_family": "IEBC 2022 General Election registered-voter Gazette Notice No. 7290",
-        "source_schedule": "Second Schedule — Registered Voters per Constituency",
+        "statistical_authority_schedule": "First Schedule — Registered Voters per County Assembly Ward",
+        "published_constituency_schedule": "Second Schedule — Registered Voters per Constituency",
+        "canonical_treatment": "B — Official derived; exact sum of all official IEBC child ward rows for each constituency, including source rows withheld only from uncertain ward geometry",
         "reference_date": "2022-06-20",
         "source_metadata": "data/sprint2/sources.json",
-        "readiness": "source and geography pipeline already audited in Sprint 2; canonical P23 promotion remains to be completed",
+        "readiness": "290/290 constituency totals and the anti-inheritance/boundary-hold contract are already audited in Sprint 2; native canonical P23 promotion remains to be completed",
         "expected_existing_p23_slots": 290
       },
       "acceptance": [
         "Only primary/official or explicitly governed extraction artifacts with primary-source authority may support promoted values.",
         "All promoted constituency rows reconcile to the canonical 290-constituency geography registry.",
+        "Registered-voter constituency values preserve the audited B — Official derived Sprint 2 treatment unless a separate direct-schedule ingestion is independently validated.",
         "Election and boundary vintage are explicit.",
         "No county-to-constituency inheritance occurs.",
         "Only pre-existing P23 governed slots are resolved; total_slots remains 20,115.",
@@ -84,7 +87,7 @@
   "closure_order": ["P18", "P19", "P20", "P21", "P22", "P23", "P24", "P25", "P26"],
   "next_actions": [
     "Continue P21 with one hard county family per PR.",
-    "Canonicalise P23A constituency registered voters as the first local-intelligence tranche.",
+    "Canonicalise P23A constituency registered voters as the first local-intelligence tranche while preserving the audited Sprint 2 B/Official-derived treatment.",
     "Research the next P23A national pipeline only after the registered-voter tranche is validated.",
     "Do not start ward numeric promotion until its geography/source contract is independently defensible."
   ]
