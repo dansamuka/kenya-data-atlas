@@ -43,8 +43,11 @@ const p21 = byPhase.get('P21');
 const p23 = byPhase.get('P23');
 const p24 = byPhase.get('P24');
 const p26 = byPhase.get('P26');
+const p21Remaining = summary.by_completion_phase?.P21 ?? 0;
 
-assert(p21?.progress?.remaining_slots === 329, 'phase authority must retain the current 329-slot P21 queue after tranches 1–2');
+assert(p21Remaining <= 423, 'live P21 unresolved count cannot exceed its governed phase allocation');
+assert(p21?.progress?.remaining_slots === p21Remaining, `P21 roadmap progress (${p21?.progress?.remaining_slots}) must match live completeness (${p21Remaining})`);
+assert(p21?.progress?.resolved_in_p21 === 423-p21Remaining, 'P21 resolved progress must reconcile to the original 423-slot governed queue');
 assert(p23?.acceptance?.some(x => x.includes('3,190')), 'P23 full 3,190-slot acceptance gate must remain intact');
 assert(p23?.acceptance?.some(x => x.includes('all 290 constituencies')), 'P23 must retain 290-constituency reconciliation');
 assert(p23?.acceptance?.some(x => x.includes('no county value is inherited')), 'P23 must retain the no county→constituency inheritance rule');
@@ -64,7 +67,7 @@ console.log(JSON.stringify({
   denominator: execution.governed_denominator,
   live_resolved: summary.resolved_slots,
   live_unresolved: summary.unresolved_slots,
-  p21_remaining: summary.by_completion_phase?.P21,
+  p21_remaining: p21Remaining,
   p23_remaining: summary.by_completion_phase?.P23,
   p24_remaining: summary.by_completion_phase?.P24,
   p23a_first_tranche: p23a.first_tranche.indicator_code,
