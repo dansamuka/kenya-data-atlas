@@ -5,12 +5,16 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/placeholder-taxonomy.yml'
+      - 'docs/DATA-COMPLETION-ROADMAP.md'
       - 'data/indicators/seed/placeholder-taxonomy.json'
       - 'data/geography/reference/geography-subsets.json'
       - 'data/geography/registry/geographies.json'
       - 'data/catalogue/registry/**'
       - 'data/indicators/registry/**'
       - 'data/opportunities/programmes.seed.json'
+      - 'data/p05/source/connectivity-housing-survey-2023-24.csv'
+      - 'data/p05/source/manifest.json'
+      - 'data/countyiq/source/p10-fiscal-accountability-2024-25.json'
       - 'scripts/indicators/apply-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-placeholder-taxonomy.mjs'
       - 'scripts/indicators/validate-native-api.mjs'
@@ -18,6 +22,7 @@ on:
       - 'scripts/countyiq/validate-mart.mjs'
       - 'scripts/completeness/**'
       - 'scripts/p14/**'
+      - 'scripts/p20/**'
       - 'assets/countyiq-view.js'
       - 'assets/opportunity-finder.js'
       - 'assets/opportunity-finder.css'
@@ -48,15 +53,9 @@ jobs:
           node --check assets/unit-system.js
           node --check assets/countyiq-view.js
           node --check assets/opportunity-finder.js
-      - name: Build native indicators with lifecycle taxonomy
-        run: npm run indicators:build
-      - name: Build canonical CountyIQ analytical mart
-        run: npm run countyiq:build
-      - name: Build P14 opportunity registry
-        run: npm run opportunities:build
-      - name: Build P18 completeness ledger
-        run: npm run completeness:build
-      - name: Validate full Atlas registry, CountyIQ mart, P14 Beta and P18 ledger
+      - name: Rebuild all published data products
+        run: npm run build:data
+      - name: Validate full Atlas registry, CountyIQ mart, P14 Beta and P18/P20 ledger
         run: npm test
       - name: Confirm P14 completion ledger is immutable
         shell: bash
@@ -72,12 +71,12 @@ jobs:
           NODE
       - name: Commit generated products when they change
         run: |
-          if [[ -z "$(git status --porcelain -- data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness)" ]]; then
-            echo "No generated registry, CountyIQ mart, P14 opportunity or P18 completeness changes."
+          if [[ -z "$(git status --porcelain -- data/geography/registry data/geography/geometry data/geography/reference data/catalogue/registry data/indicators/seed/derived/area-computed.json data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness data/distribution data/release data/ui/initial-pulse.json)" ]]; then
+            echo "No generated Atlas products changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness
+          git add data/geography/registry data/geography/geometry data/geography/reference data/catalogue/registry data/indicators/seed/derived/area-computed.json data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness data/distribution data/release data/ui/initial-pulse.json
           git commit -m "build: refresh generated registries and completeness ledger"
           git push

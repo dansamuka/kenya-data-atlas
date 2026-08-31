@@ -72,7 +72,22 @@ P19 does **not** inflate the 20,115-slot P18 ledger by counting the same canonic
 
 ## P20 — Activate straightforward sourced county slots
 
-Ingest and activate source families already identified in the registry: KNBS census, KDHS, Controller of Budget, Auditor-General and transparent facility-density derivations. Preserve survey uncertainty and sensitive-ranking rules.
+**Status: in progress.**
+
+Ingest and activate source families already identified in the registry: KNBS census/surveys, KDHS, Controller of Budget/National Treasury, Auditor-General and transparent facility-density derivations. Preserve survey uncertainty and sensitive-ranking rules.
+
+### First governed promotion tranche
+
+The first P20 tranche promotes **94 governed county slots** from evidence already reviewed elsewhere in the Atlas:
+
+- **47/47 household main-grid electricity observations** — the governed `IND-ELECTRICITY-ACCESS` slot reuses the already-published 2023/24 KNBS Kenya Housing Survey series from P05/P19. The values are aliased into the governed slot with the same source dataset and official-direct provenance; no second fetch, estimate or parent-value inheritance is introduced.
+- **47/47 county OSR target-attainment observations** — FY2024/25 percentages are promoted from the P10 fiscal-accountability snapshot, sourced to the National Treasury 2025 Budget Review and Outlook Paper, whose table identifies Controller of Budget data. Published whole-percentage precision is preserved.
+
+This changes the governed completeness position from **2,680 to 2,774 resolved slots**, with **17,341 unresolved** and the P20 queue reduced from **705 to 611** slots. `unknown_missing` remains zero.
+
+The promotion is intentionally conservative. Pending-bills values are not reverse-engineered from rounded percentages into KES amounts; incomplete Auditor-General opinion classes are not guessed; NACADA county coverage is not assumed; and facility density is not substituted with a different facility-count source. Those rows remain unresolved until their own source and semantic gates are satisfied.
+
+P20 is implemented as a deterministic catalogue/indicator build stage plus a source-reconciliation validator, so a rebuild must continue to prove 47/47 agreement with the reviewed source snapshots before the promoted observations can ship.
 
 ## P21 — Resolve hard county placeholders
 

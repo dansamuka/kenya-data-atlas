@@ -622,5 +622,21 @@
     "version_label": "County Life v1",
     "release_notes": "Labour-force participation is not unemployment, job quality, earnings or probability of finding work.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "06d60341-f905-5d1d-aee9-228db4c7449e",
+    "release_code": "REL-TREASURY-COUNTY-OSR-2024-25-P20",
+    "dataset_id": "1b72c20a-333b-58a0-b23f-fc021b127b48",
+    "title": "County OSR target attainment — FY2024/25",
+    "reference_period_start": "2024-07-01",
+    "reference_period_end": "2025-06-30",
+    "published_at": "",
+    "discovered_at": "2026-08-31T00:00:00.000Z",
+    "ingested_at": "2026-08-31T00:00:00.000Z",
+    "release_url": "https://www.treasury.go.ke/sites/default/files/2025-Budget-Review-and-Outlook-Paper-1.pdf",
+    "release_status": "published",
+    "version_label": "P20 governed county-source promotion",
+    "release_notes": "National Treasury 2025 BROP Table 8 / Annex Table 7; primary data agency stated in the source snapshot as Office of the Controller of Budget.",
+    "supersedes_release_id": ""
   }
 ]
