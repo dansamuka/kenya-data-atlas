@@ -8,10 +8,9 @@
     "completion_phase": "P21",
     "resolved": false
   },
-  "remaining_slots": 188,
-  "family_count": 4,
+  "remaining_slots": 141,
+  "family_count": 3,
   "family_counts": {
-    "IND-HOSPITAL-BED-UTILIZATION": 47,
     "IND-ROAD-NETWORK-LENGTH": 47,
     "IND-SOCIAL-PROTECTION-BENEFICIARIES": 47,
     "IND-VEHICLE-REGISTRATIONS": 47

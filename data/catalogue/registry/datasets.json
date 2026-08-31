@@ -887,5 +887,20 @@
     "publication_status": "published",
     "methodology_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
     "known_limitations": "Household survey estimates from the 2023/24 KHS fieldwork period. Values describe households and the KNBS Table 5.14 improved-source classification; they are not population shares, utility-connection rates, constituency estimates or ward estimates. No interpolation or parent-geography inheritance is applied."
+  },
+  {
+    "dataset_id": "1d0a8326-a690-5aae-9221-f5b5dab3404f",
+    "dataset_code": "DS-MOH-SARA-INPATIENT-AVAILABILITY-2025-P21",
+    "source_id": "9bc61625-170e-54e8-90c7-922455df162c",
+    "title": "SARA 2025 — Facilities offering inpatient services by county",
+    "description": "Percentage of health facilities with inpatient services for all 47 counties, published directly in Ministry of Health SARA Table 18.",
+    "topic": "Health",
+    "geographic_coverage": [
+      "county"
+    ],
+    "frequency": "periodic",
+    "publication_status": "published",
+    "methodology_url": "https://health.go.ke/sites/default/files/2026-06/Main%20Report%20-%20SARA%2021.10.2025.pdf",
+    "known_limitations": "Table 18 measures the share of facilities offering inpatient services. It is not a bed-occupancy/utilisation rate, bed density, population-access measure or quality score. County percentages are published as rounded whole percentages. The Atlas does not allocate the separately reported national 46% inpatient bed-occupancy rate to counties."
   }
 ]

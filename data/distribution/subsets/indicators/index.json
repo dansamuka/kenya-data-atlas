@@ -322,6 +322,13 @@
     "observation_count": 47
   },
   {
+    "indicator_code": "IND-INPATIENT-SERVICE-AVAILABILITY",
+    "name": "Facilities offering inpatient services",
+    "path": "data/distribution/subsets/indicators/IND-INPATIENT-SERVICE-AVAILABILITY.json",
+    "series_count": 47,
+    "observation_count": 47
+  },
+  {
     "indicator_code": "IND-INTERNET-USE",
     "name": "Individuals using internet",
     "path": "data/distribution/subsets/indicators/IND-INTERNET-USE.json",

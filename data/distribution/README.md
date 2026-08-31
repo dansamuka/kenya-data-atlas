@@ -4,11 +4,11 @@ This directory is the stable, machine-readable developer entry point introduced 
 
 - Application/data release: **1.0.0**
 - Data contract: **1.0.0**
-- Indicators: **98**
-- Series: **4,074**
-- Observations: **7,568**
+- Indicators: **99**
+- Series: **4,121**
+- Observations: **7,615**
 - Geographies: **1,788**
 - County subsets: **47**
-- Indicator subsets: **98**
+- Indicator subsets: **99**
 
 Start with `manifest.json`. JSON, CSV and NDJSON are published directly. Parquet is intentionally not committed in this phase; see `docs/DEVELOPER.md` for the conversion recipe and version-pinning guidance.
