@@ -673,10 +673,10 @@
   },
   {
     "indicator_code": "IND-WATER-ACCESS",
-    "name": "Households with access to improved water source (%)",
+    "name": "Households with access to improved drinking-water source",
     "path": "data/distribution/subsets/indicators/IND-WATER-ACCESS.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 47,
+    "observation_count": 47
   },
   {
     "indicator_code": "IND-WOMEN-PARLIAMENT-SEATS",

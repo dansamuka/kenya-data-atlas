@@ -761,13 +761,14 @@
       "name": "Households with access to improved water source (%)",
       "description": "Share of households with access to an improved water source.",
       "unit_code": "percent",
-      "status": "planned",
+      "status": "sourced",
       "tab": "infrastructure",
       "levels": [
         "county"
       ],
-      "source": "WASREB annual reports",
-      "note": "Utility service areas do not align cleanly with counties; crosswalk required before promotion."
+      "source": "KNBS 2023/24 Kenya Housing Survey, Table 5.14",
+      "note": "Published directly for all 47 counties in KNBS 2023/24 Kenya Housing Survey Table 5.14 as the improved-source subtotal for households. P21 promotes the direct county survey estimates; no parent geography is inherited and ranking remains withheld because standard errors/confidence intervals are not fabricated.",
+      "source_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/"
     },
     {
       "code": "IND-HEALTH-FACILITY-DENSITY",

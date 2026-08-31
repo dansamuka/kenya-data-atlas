@@ -750,5 +750,21 @@
     "version_label": "P20 final verified BROP table",
     "release_notes": "Table 10: County Governments Pending Bills as at 30th June 2025. Source of data: Controller of Budget. 46 numeric county totals; Narok official non-submission. The 46 displayed one-decimal county totals sum to 176,904.5 million while the publication reports the national total as 176,904.2 million. The Atlas preserves every published county row and the published national total rather than altering a county to force arithmetic equality.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "3a0f6dd3-996f-5cd1-ac7b-4a21d5039bb1",
+    "release_code": "REL-KNBS-KHS-WATER-ACCESS-2023-24-P21",
+    "dataset_id": "c8684318-deb3-525d-b149-3f5074bb57f3",
+    "title": "2023/24 KHS improved drinking-water source by county — Table 5.14",
+    "reference_period_start": "2024-03-07",
+    "reference_period_end": "2024-05-10",
+    "published_at": "2025-01-01",
+    "discovered_at": "2026-08-31T12:40:00.000Z",
+    "ingested_at": "2026-08-31T12:40:00.000Z",
+    "release_url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
+    "release_status": "published",
+    "version_label": "P21 governed hard-county promotion",
+    "release_notes": "2023/24 Kenya Housing Survey Basic Report; Table 5.14 — Percentage Distribution of Households by Access to Main Source of Drinking Water. The value is the published improved-source subtotal for each county. Publication date is stored at month precision as documented in the source snapshot; no lower-level or parent-geography inheritance.",
+    "supersedes_release_id": ""
   }
 ]

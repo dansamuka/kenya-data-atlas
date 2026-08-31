@@ -152,6 +152,10 @@ The final P26 dashboard will report **slot resolution** separately from **numeri
 
 **Remaining queue after tranche 1:** **376** across eight 47-county families.
 
+**P21 tranche 2 — improved drinking-water access:** 47/47 `IND-WATER-ACCESS` county slots are promoted from KNBS 2023/24 Kenya Housing Survey Table 5.14. The Atlas uses the published improved-source subtotal directly, retains the household-survey definition, withholds rankings where uncertainty is unavailable, and does not inherit values below county.
+
+**Remaining queue after tranche 2:** **329** across seven 47-county families.
+
 **Key principle:** If a defensible comparable 47-county source does not exist, the correct result is an explicit governed closure or a stronger replacement indicator — not a weak scrape.
 
 **Acceptance**
