@@ -92,7 +92,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json package-lock.json data/project-roadmap.json data/release/v1.0.0.json data/distribution README.md ROADMAP.md CHANGELOG.md CITATION.cff docs/REPO-COMPLETION-PLAN.md
+          git add package.json package-lock.json data/project-roadmap.json data/release/v1.0.0.json data/distribution data/countyiq/county-summary.json README.md ROADMAP.md CHANGELOG.md CITATION.cff docs/REPO-COMPLETION-PLAN.md
           if git diff --cached --quiet; then
             echo 'No release metadata changes were required.'
           else
