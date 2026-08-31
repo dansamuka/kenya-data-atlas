@@ -1,0 +1,63 @@
+{
+  "schema_version": "kda.p22.ndma-county-bulletin-source-inventory.v1",
+  "phase": "P22",
+  "generated_as_of": "2026-09-01",
+  "purpose": "Record the latest official NDMA county drought-bulletin availability for the 22 governed whole-county P22 ASAL geographies without promoting stale alert states as current.",
+  "contract": "data/p22/asal-eligibility-freshness-contract.json",
+  "source": {
+    "publisher": "National Drought Management Authority",
+    "category": "County Drought Early Warning Bulletins",
+    "listing_url": "https://knowledgeweb.ndma.go.ke/Public/Resources/CountyBulletins.aspx?ID=11",
+    "national_control_url": "https://knowledgeweb.ndma.go.ke/Public/Resources/Default.aspx?ID=7",
+    "retrieved_on": "2026-09-01"
+  },
+  "freshness_policy": {
+    "current_tolerance": "reference month no more than two calendar months behind the build/as-of month",
+    "as_of_month": "2026-09",
+    "latest_county_reference_month_seen": "2026-06",
+    "latest_county_publication_month_seen": "2026-07",
+    "latest_national_reference_month_seen": "2026-07",
+    "latest_national_publication_month_seen": "2026-08",
+    "county_freshness_state": "stale",
+    "reason": "The latest county bulletins exposed by the official NDMA listing are June 2026. At a September 2026 as-of date, June is three calendar months behind and therefore outside the P22 current-label tolerance.",
+    "national_control_treatment": "The newer July 2026 national bulletin may be used only as a reconciliation/control source. Its alert state must not be inherited to counties."
+  },
+  "county_bulletins": [
+    {"county":"Baringo","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Baringo County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Embu","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Embu (Mbeere County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Garissa","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Garissa County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Isiolo","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Isiolo County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Kajiado","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Kajiado County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Kilifi","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Kilifi County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Kitui","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Kitui County DEW Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Kwale","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Kwale County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Laikipia","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Laikipia County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Lamu","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Lamu County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Makueni","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Makueni County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Mandera","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Mandera County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Marsabit","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Marsabit County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Meru","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Meru County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Narok","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Narok County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Samburu","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Samburu County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Taita Taveta","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Taita Taveta County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Tana River","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"TanaRiver County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Tharaka Nithi","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"THARAKA NITHI Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Turkana","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Turkana County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"Wajir","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"Wajir County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"},
+    {"county":"West Pokot","reference_month":"2026-06","published_month":"2026-07","bulletin_title":"West Pokot County Drought Early Warning Bulletin June 2026","freshness_state":"stale","slot_resolution_effect":"none"}
+  ],
+  "excluded_partial_asal_listing_row": {
+    "county": "Nyeri",
+    "reference_month": "2026-06",
+    "published_month": "2026-07",
+    "reason": "Nyeri is partial-ASAL in the governed P22 contract (Kieni/northern Nyeri) and is not eligible for a whole-county P22 drought slot."
+  },
+  "validation_expectations": [
+    "county_bulletins contains exactly 22 unique counties",
+    "the county set exactly matches whole_county_programme_eligible in the P22 contract",
+    "no row has freshness_state=current when the reference month falls outside the contract tolerance",
+    "Nyeri does not appear in county_bulletins",
+    "slot_resolution_effect remains none until alert-state extraction and canonical evidence-state handling are implemented"
+  ],
+  "next_action": "Extract county alert states only from the official county bulletins, preserve each bulletin reference/publication date, and decide canonical historical/evidence-constrained treatment without copying the newer national July 2026 alert state downward."
+}
