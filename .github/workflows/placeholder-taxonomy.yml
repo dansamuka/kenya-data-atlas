@@ -52,16 +52,8 @@ jobs:
           node --check assets/unit-system.js
           node --check assets/countyiq-view.js
           node --check assets/opportunity-finder.js
-      - name: Build canonical catalogue
-        run: npm run catalogue:build
-      - name: Build native indicators with lifecycle taxonomy
-        run: npm run indicators:build
-      - name: Build canonical CountyIQ analytical mart
-        run: npm run countyiq:build
-      - name: Build P14 opportunity registry
-        run: npm run opportunities:build
-      - name: Build P18 completeness ledger
-        run: npm run completeness:build
+      - name: Rebuild all published data products
+        run: npm run build:data
       - name: Validate full Atlas registry, CountyIQ mart, P14 Beta and P18/P20 ledger
         run: npm test
       - name: Confirm P14 completion ledger is immutable
@@ -78,12 +70,12 @@ jobs:
           NODE
       - name: Commit generated products when they change
         run: |
-          if [[ -z "$(git status --porcelain -- data/catalogue/registry data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness)" ]]; then
-            echo "No generated catalogue, registry, CountyIQ mart, P14 opportunity or completeness changes."
+          if [[ -z "$(git status --porcelain -- data/geography/registry data/geography/geometry data/geography/reference data/catalogue/registry data/indicators/seed/derived/area-computed.json data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness data/distribution data/release data/ui/initial-pulse.json)" ]]; then
+            echo "No generated Atlas products changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/catalogue/registry data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness
+          git add data/geography/registry data/geography/geometry data/geography/reference data/catalogue/registry data/indicators/seed/derived/area-computed.json data/indicators/registry data/countyiq/county-summary.json data/opportunities/opportunity-registry.json data/completeness data/distribution data/release data/ui/initial-pulse.json
           git commit -m "build: refresh generated registries and completeness ledger"
           git push
