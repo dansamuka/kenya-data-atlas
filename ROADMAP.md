@@ -29,3 +29,21 @@ See [`docs/releases/v1.0.0-unresolved.md`](docs/releases/v1.0.0-unresolved.md).
 `P00–P16 complete → P17 exact-commit release gate → v1.0.0`
 
 P14 remains usable as a v1.1 Beta surface and continues under its own monthly freshness policy after the v1.0 statistical/data release.
+
+## P18–P26 — governed data-completion programme
+
+The Atlas now also has a separate, machine-readable **data-completion roadmap** for resolving every governed public data slot without changing the historical P00–P17 v1.0 release ledger:
+
+- [`data/data-completion-roadmap.json`](data/data-completion-roadmap.json) — machine-readable P18–P26 phase authority.
+- [`docs/DATA-COMPLETION-PLAN.md`](docs/DATA-COMPLETION-PLAN.md) — detailed public/session handoff.
+- [`data/completeness/summary.json`](data/completeness/summary.json) — live completion counts.
+
+Current state: **P18 complete → P19 complete → P20 in progress → P21 next → P22–P26 planned**.
+
+At the 31 August 2026 baseline, the governed surface contains **20,115 slot instances**, of which **2,774 are resolved (13.79%)**, with **0 unknown/unclassified blanks**. The machine-readable summary is authoritative as later tranches change these counts.
+
+This programme preserves the core Atlas rule: **100% completion means 100% governed resolution, not 100% fabricated numbers**. Where no defensible value exists, the eventual closure state must be explicit and auditable (for example not applicable, source not published, boundary unresolved, or retired/replaced).
+
+### Data-completion sequence
+
+`P18 ledger → P19 existing-data surfacing → P20 straightforward county ingestion → P21 hard county closure → P22 ASAL → P23 constituency → P24 ward → P25 remaining public surfaces → P26 permanent 100% gate`

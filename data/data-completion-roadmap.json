@@ -1,0 +1,280 @@
+{
+  "project": "Kenya Data Atlas",
+  "programme": "P18–P26 Data Completion Programme",
+  "purpose": "Continue the Atlas after the original P00–P17 implementation roadmap with a governed programme to resolve every public data slot without inventing values or weakening source standards.",
+  "relationship_to_v1_release": "This roadmap is intentionally separate from data/project-roadmap.json. P00–P17 remain the v1.0 implementation/release ledger; P18–P26 govern the subsequent data-completion programme and must not alter P17 release-count semantics.",
+  "completion_definition": "Every one of the 20,115 governed public slot instances is resolved by a published/direct observation, a transparently derived/modelled value permitted by policy, a verified external observation, or an explicit governed closure state such as not applicable, source not published, boundary unresolved, or retired/replaced. Unknown blanks must equal zero.",
+  "rules": [
+    "Do not manufacture a value merely to raise completion.",
+    "Do not inherit a parent-geography value into a child geography unless the indicator policy explicitly permits a derived cross-level measure.",
+    "Promote existing canonical observations before acquiring new data.",
+    "Use primary official sources where practical and retain source, period, unit, denominator and uncertainty metadata.",
+    "Survey estimates must retain required uncertainty or sample metadata before activation.",
+    "When a proposed slot has no defensible comparable source, replace, retire or explicitly close it rather than scrape weak substitutes.",
+    "Generated registries and completeness outputs must be reproducible from source snapshots and build scripts.",
+    "A phase is complete only when its governed queue is zero or every remaining row has an explicit approved closure state, and the full Atlas validation/P16 gates remain green where the website changes."
+  ],
+  "baseline": {
+    "as_of": "2026-08-31",
+    "total_slots": 20115,
+    "resolved_slots": 2774,
+    "unresolved_slots": 17341,
+    "resolved_pct": 13.79,
+    "unknown_missing": 0,
+    "unique_indicator_slots": 49,
+    "remaining_by_phase": {
+      "P20": 611,
+      "P21": 423,
+      "P22": 66,
+      "P23": 3190,
+      "P24": 13050,
+      "P25": 1
+    },
+    "authority": "data/completeness/summary.json"
+  },
+  "phases": [
+    {
+      "id": "P18",
+      "title": "Exact completeness ledger and false-empty elimination",
+      "status": "complete",
+      "session_goal": "Turn the entire public data surface into a deterministic slot ledger and eliminate cases where canonical active observations are hidden by stale placeholder lifecycle metadata.",
+      "outputs": [
+        "data/completeness/slot-ledger.json",
+        "data/completeness/slot-ledger.csv",
+        "data/completeness/summary.json",
+        "machine-readable completion-phase assignment",
+        "unknown-missing release gate",
+        "county-profile lifecycle precedence fix"
+      ],
+      "acceptance": [
+        "20,115 governed slot instances compile deterministically",
+        "49 unique indicator slots are represented",
+        "unknown_missing equals zero",
+        "every unresolved slot has a phase assignment or explicit closure rule",
+        "active canonical lifecycle state cannot be downgraded by placeholder taxonomy metadata",
+        "full Atlas validation remains green"
+      ],
+      "depends_on": [
+        "P12",
+        "P16"
+      ],
+      "completion_note": "Completed in PR #23. The ledger established the governed completion denominator and removed false-empty lifecycle behavior."
+    },
+    {
+      "id": "P19",
+      "title": "Surface existing 47/47 county sector data",
+      "status": "complete",
+      "session_goal": "Expose high-quality county data already present in canonical registries before searching for new sources.",
+      "outputs": [
+        "county profile/CountyIQ access to existing education indicators",
+        "county connectivity and electricity measures",
+        "county economic-structure measures",
+        "county agriculture production/yield measures",
+        "supplementary county-sector presentation without double-counting the P18 governed slot denominator"
+      ],
+      "acceptance": [
+        "all selected P05 sector indicators reconcile 47/47 counties",
+        "existing canonical observations are not duplicated under parallel data stores",
+        "supplementary indicators do not artificially inflate the P18 slot ledger",
+        "source, period and provenance remain visible",
+        "full Atlas validation and P16 release audit pass"
+      ],
+      "depends_on": [
+        "P18",
+        "P05"
+      ],
+      "completion_note": "Completed in PR #25. Fourteen existing county-sector indicators covering 658 county observations were surfaced more effectively without changing the governed 20,115-slot denominator."
+    },
+    {
+      "id": "P20",
+      "title": "Activate straightforward sourced county slots",
+      "status": "in_progress",
+      "session_goal": "Convert defensible sourced-but-uningested county placeholders into active observations using already-reviewed official source families and deterministic ingestion.",
+      "outputs": [
+        "KNBS census household/living-standard promotions where source tables are verified",
+        "KDHS county health promotions with required uncertainty/sample metadata",
+        "Controller of Budget county finance promotions",
+        "Auditor-General categorical audit promotions where county coverage is defensible",
+        "verified electricity/facility-density promotions",
+        "updated completeness ledger after each tranche"
+      ],
+      "acceptance": [
+        "P20 governed queue reaches zero",
+        "no sourced indicator is activated without a verified county-level source mapping",
+        "survey uncertainty/sample requirements are preserved",
+        "categorical audit outcomes are not converted into unsupported numeric rankings",
+        "no duplicate observation series are created for evidence already canonical",
+        "every tranche passes deterministic rebuild, Atlas validation and P16 where public runtime changes"
+      ],
+      "depends_on": [
+        "P18",
+        "P19"
+      ],
+      "progress": {
+        "resolved_in_tranche_1": 94,
+        "tranche_1_note": "47/47 main-grid electricity plus 47/47 FY2024/25 own-source-revenue target-attainment slots activated in PR #26.",
+        "remaining_slots": 611
+      }
+    },
+    {
+      "id": "P21",
+      "title": "Resolve hard county slots and retire weak placeholders",
+      "status": "next",
+      "session_goal": "Close the county indicators that require source discovery, spatial derivation, categorical treatment, or a deliberate replace/retire decision because no defensible 47-county comparable source exists.",
+      "outputs": [
+        "social-protection beneficiary resolution",
+        "education/exam-performance source decision",
+        "business-licence replace/retire decision",
+        "health-facility utilities and hospital-capacity resolution",
+        "road length and improved-water resolution",
+        "vehicle-registration source decision",
+        "explicit source-not-published/not-applicable/retired-replaced states where required"
+      ],
+      "acceptance": [
+        "all 423 P21 queue rows are resolved or governed closed",
+        "no weak secondary scrape is used simply to achieve numerical completeness",
+        "replacement indicators are county-comparable and source-backed",
+        "retired slots retain an auditable reason and successor where applicable",
+        "county profile has no unexplained planned placeholder after P21"
+      ],
+      "depends_on": [
+        "P20"
+      ]
+    },
+    {
+      "id": "P22",
+      "title": "ASAL resilience completion",
+      "status": "planned",
+      "session_goal": "Resolve the governed ASAL resilience cards using date-aware primary drought, food-security and climate evidence.",
+      "outputs": [
+        "NDMA food-security phase extraction",
+        "NDMA drought early-warning status",
+        "rainfall/temperature anomaly measure from KMD or an explicitly documented fallback source",
+        "ASAL geography eligibility rules",
+        "monthly/seasonal freshness metadata"
+      ],
+      "acceptance": [
+        "all 66 P22 slot instances are resolved or explicitly evidence-constrained",
+        "22 whole-county ASAL coverage is reproducible",
+        "partial-ASAL geographies are not silently treated as whole-county ASALs",
+        "period and alert-state freshness are visible",
+        "no stale warning status is presented as current"
+      ],
+      "depends_on": [
+        "P21"
+      ]
+    },
+    {
+      "id": "P23",
+      "title": "Constituency layer completion",
+      "status": "planned",
+      "session_goal": "Resolve the remaining constituency-level slot surface through reusable national pipelines rather than manual constituency files.",
+      "outputs": [
+        "IEBC voter/turnout constituency pipeline",
+        "MP identity roster",
+        "NG-CDF allocation pipeline",
+        "NG-CDF utilisation/implementation pipeline",
+        "constituency census/household measures where authoritative tables exist",
+        "spatial service/facility aggregation where policy permits",
+        "constituency completeness validator"
+      ],
+      "acceptance": [
+        "all 3,190 currently assigned P23 rows are resolved or governed closed",
+        "all 290 constituencies reconcile to the canonical geography registry",
+        "election periods and boundary vintages are explicit",
+        "NG-CDF values retain source fiscal period and implementation status",
+        "no county value is inherited as a constituency observation",
+        "constituency build is deterministic across all 290 units"
+      ],
+      "depends_on": [
+        "P18",
+        "P21"
+      ]
+    },
+    {
+      "id": "P24",
+      "title": "Ward layer completion",
+      "status": "planned",
+      "session_goal": "Resolve the remaining ward-level data surface with national crosswalks, election/representation data and governed spatial aggregation.",
+      "outputs": [
+        "ward MCA identity roster",
+        "ward election-turnout pipeline",
+        "ward service/facility aggregation",
+        "ward land-area derivation where geometry is authoritative",
+        "conditional ward-fund allocation treatment",
+        "Mandera East/Lafey spatial-hold preservation until authoritative reconciliation",
+        "ward completeness validator"
+      ],
+      "acceptance": [
+        "all 13,050 currently assigned P24 rows are resolved or governed closed",
+        "all 1,450 statistical wards remain represented in the completion ledger",
+        "boundary-vintage mismatches are explicit and never silently spatially assigned",
+        "ward-fund slots are marked not applicable where no uniform official programme exists",
+        "no constituency/county value is inherited downward",
+        "known Mandera East/Lafey geometry constraints remain transparent until actually resolved"
+      ],
+      "depends_on": [
+        "P18",
+        "P23"
+      ]
+    },
+    {
+      "id": "P25",
+      "title": "National Pulse and non-profile surface closure",
+      "status": "planned",
+      "session_goal": "Close the final national placeholder and ensure every public non-profile surface uses explicit evidence states rather than unexplained blanks.",
+      "outputs": [
+        "national mobile-money series activation or governed replacement",
+        "Pulse completeness check",
+        "CountyIQ/Compare/Rankings null-state audit",
+        "Evidence Hub family-state matrix audit",
+        "Opportunity Finder empty-result evidence state",
+        "site-wide unexplained-placeholder scan"
+      ],
+      "acceptance": [
+        "the final P25 country slot is resolved or governed closed",
+        "Compare and Rankings never treat absence as zero",
+        "CountyIQ null metrics expose an explicit reason",
+        "Evidence Hub distinguishes verified/not-published/not-found/inaccessible",
+        "Opportunity Finder distinguishes no verified current programme from a loading/data error",
+        "no public route contains an unexplained data dash"
+      ],
+      "depends_on": [
+        "P22",
+        "P24"
+      ]
+    },
+    {
+      "id": "P26",
+      "title": "Permanent 100% slot-resolution gate",
+      "status": "planned",
+      "session_goal": "Convert the completion programme into a permanent release-control system so future data additions cannot reintroduce unexplained gaps or hidden active data.",
+      "outputs": [
+        "final 100% slot-resolution dashboard",
+        "resolved-vs-numeric-evidence coverage split",
+        "CI gate for unknown blanks",
+        "CI gate for hidden active canonical observations",
+        "CI gate for prohibited parent-to-child inheritance",
+        "explicit closure-state taxonomy",
+        "release summary and maintenance playbook"
+      ],
+      "acceptance": [
+        "resolved slot count equals total governed slot count",
+        "unknown_missing equals zero",
+        "hidden active canonical observations equals zero",
+        "prohibited parent-to-child inherited observations equals zero",
+        "numeric/categorical evidence coverage is reported separately from governed slot resolution",
+        "every non-numeric closure state has an auditable reason",
+        "full Atlas rebuild, validation, P16 audit and Pages deployment pass on the exact completion SHA"
+      ],
+      "depends_on": [
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25"
+      ]
+    }
+  ]
+}
