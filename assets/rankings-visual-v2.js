@@ -15,12 +15,6 @@
 
   function route(){return R?.current?.()||R?.parse?.()||{view:'rankings'};}
   function isRankings(){return route().view==='rankings'||/^#\/?rankings(?:\?|$)/.test(location.hash);}
-  function hashParams(){const i=location.hash.indexOf('?');return new URLSearchParams(i>=0?location.hash.slice(i+1):'');}
-  function syncTabParam(tab){
-    if(!/^#\/rankings/.test(location.hash))return;
-    const [base]=location.hash.split('?'),params=hashParams();params.set('tab',tab);
-    history.replaceState(history.state,'',`${location.pathname}${location.search}${base}?${params.toString()}`);
-  }
   async function data(){return state.data||(state.data=await KDA.fetchJson('data/results/county-results.json',{required:true}));}
   function ensureStyle(){return KDA.loadStyle?KDA.loadStyle('assets/rankings-visual-v2.css',{id:'kda-rankings-visual-v2-css'}):Promise.resolve();}
   function waitForRankings(){if(window.KDARankings?.boot)return Promise.resolve(window.KDARankings);return new Promise(resolve=>{let tries=0;const timer=setInterval(()=>{tries+=1;if(window.KDARankings?.boot||tries>=50){clearInterval(timer);resolve(window.KDARankings||null);}},80);});}
@@ -106,16 +100,12 @@
     document.addEventListener('click',event=>{
       const sort=event.target.closest('[data-ri-sort]');if(sort&&isRankings()){sortDevelopment(sort.dataset.riSort);return;}
       const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){flashRow(dot.dataset.riGeo);return;}
-      const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings()){const name=tab.dataset.riTab;syncTabParam(name);requestAnimationFrame(()=>animatePanel(name));}
+      const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings())requestAnimationFrame(()=>animatePanel(tab.dataset.riTab));
     });
   }
 
-  function restoreTab(){
-    const wanted=hashParams().get('tab');if(!wanted)return;
-    const button=$(`[data-ri-tab="${CSS.escape(wanted)}"]`);if(button&&!button.classList.contains('active'))button.click();
-  }
   async function enhance(){
-    if(!isRankings())return null;await ensureStyle();const d=await data();ensureDevelopmentVisual(d);bind();restoreTab();
+    if(!isRankings())return null;await ensureStyle();const d=await data();ensureDevelopmentVisual(d);bind();
     const active=$('[data-ri-tab].active')?.dataset.riTab||'development';animatePanel(active);return d;
   }
   function boot(){if(bootPromise)return bootPromise;bootPromise=waitForRankings().then(rankings=>Promise.resolve(rankings?.boot?.())).then(()=>enhance()).catch(error=>{console.warn('Rankings visual v2:',error?.message||error);return null;});return bootPromise;}
