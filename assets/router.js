@@ -54,7 +54,9 @@
     if(document.title!==TITLES[next.view])document.title=TITLES[next.view];
     current=next;rendering=false;
     if(options.scroll!==false&&previous&&previous!==next.view)window.scrollTo({top:0,left:0,behavior:'auto'});
-    dispatch(next);return next;
+    dispatch(next);
+    if(next.view==='rankings')loadRankingsVisualV2();
+    return next;
   }
   function setHash(hash,{replace=false,scroll=true}={}){
     const canonical=canonicalHash(hash);
@@ -117,6 +119,10 @@
     const routeCss=document.createElement('link');routeCss.rel='stylesheet';routeCss.href='assets/site-v2-route.css';routeCss.dataset.kdaSiteV2Route='true';document.head.appendChild(routeCss);
     const routeScript=document.createElement('script');routeScript.src='assets/site-v2-route.js';routeScript.defer=true;routeScript.dataset.kdaSiteV2Route='true';document.head.appendChild(routeScript);
     const pwa=document.createElement('script');pwa.src='assets/pwa-v2.js';pwa.defer=true;pwa.dataset.kdaPwaV2='true';document.head.appendChild(pwa);
+  }
+  function loadRankingsVisualV2(){
+    if((current?.view||parse().view)!=='rankings'||document.querySelector('script[data-kda-rankings-visual-v2]'))return;
+    const script=document.createElement('script');script.src='assets/rankings-visual-v2.js';script.defer=true;script.dataset.kdaRankingsVisualV2='true';script.onerror=()=>script.remove();document.head.appendChild(script);
   }
 
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
