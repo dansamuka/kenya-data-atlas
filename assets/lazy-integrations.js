@@ -7,7 +7,7 @@
   if(!KDA)return;
 
   let promise=null,countyIqPromise=null,evidenceHubPromise=null,opportunityPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null,vizPromise=null;
-  let comparePromise=null,geoPromise=null,hardeningPromise=null,polishPromise=null,publicCleanupPromise=null,siteSearchPromise=null;
+  let comparePromise=null,geoPromise=null,hardeningPromise=null,polishPromise=null,publicCleanupPromise=null,siteSearchPromise=null,placeProfilePromise=null,completionSurfacePromise=null;
   let countyIqDataGuardInstalled=false;
 
   function finiteValue(value){return value!==null&&value!==undefined&&value!==''&&Number.isFinite(Number(value));}
@@ -76,6 +76,24 @@
       .catch(error=>{console.warn('Atlas search load:',error?.message||error);return null;});
     return siteSearchPromise;
   }
+  function loadPlaceProfile(){
+    if(window.KDAPlaceProfile)return Promise.resolve(window.KDAPlaceProfile);
+    if(placeProfilePromise)return placeProfilePromise;
+    placeProfilePromise=KDA.loadStyle('assets/place-profile.css',{id:'kda-place-profile-css'})
+      .then(()=>KDA.loadScript('assets/place-profile.js',{id:'kda-place-profile'}))
+      .then(()=>window.KDAPlaceProfile||null)
+      .catch(error=>{console.warn('Place profile load:',error?.message||error);return null;});
+    return placeProfilePromise;
+  }
+  function loadCompletionSurface(){
+    if(window.KDACompletionSurface)return Promise.resolve(window.KDACompletionSurface.boot?.()).then(()=>window.KDACompletionSurface);
+    if(completionSurfacePromise)return completionSurfacePromise;
+    completionSurfacePromise=KDA.loadStyle('assets/completion-surface.css',{id:'kda-completion-surface-css'})
+      .then(()=>KDA.loadScript('assets/completion-surface.js',{id:'kda-completion-surface'}))
+      .then(()=>window.KDACompletionSurface?.boot?.()||null)
+      .catch(error=>{console.warn('P18–P22 completion surface load:',error?.message||error);return null;});
+    return completionSurfacePromise;
+  }
 
   function loadOptionalIntegrations(){
     if(promise)return promise;
@@ -101,7 +119,7 @@
       loadPolish()
     ]).then(()=>KDA.loadScript('assets/compare.js',{id:'kda-compare'}))
       .then(()=>window.KDACompare?.boot?.()||null)
-      .then(value=>{redriveRoute();return value;})
+      .then(value=>{loadCompletionSurface();redriveRoute();return value;})
       .catch(error=>{console.warn('Compare load:',error?.message||error);return null;});
     return comparePromise;
   }
@@ -114,15 +132,15 @@
     return mapVotersPromise;
   }
   function loadGeo(){
-    if(window.KDAGeo)return Promise.resolve(window.KDAGeo.boot?.()).then(()=>window.KDAGeo);
+    if(window.KDAGeo)return Promise.all([Promise.resolve(window.KDAGeo.boot?.()),loadPlaceProfile(),loadCompletionSurface()]).then(()=>window.KDAGeo);
     if(geoPromise)return geoPromise;
     geoPromise=Promise.all([
       KDA.loadStyle('assets/geo-explorer.css',{id:'kda-geo-css'}),
       loadHardening(),
       loadPolish()
     ]).then(()=>KDA.loadScript('assets/geo-explorer.js',{id:'kda-geo-explorer'}))
-      .then(()=>window.KDAGeo?.boot?.()||null)
-      .then(value=>{loadMapVoters();redriveRoute();return value;})
+      .then(()=>Promise.all([window.KDAGeo?.boot?.()||null,loadPlaceProfile(),loadCompletionSurface()]))
+      .then(values=>{loadMapVoters();redriveRoute();return values[0];})
       .catch(error=>{console.warn('Explore load:',error?.message||error);return null;});
     return geoPromise;
   }
@@ -144,7 +162,7 @@
       KDA.loadStyle('assets/rankings-insights.css',{id:'kda-rankings-css'}),loadPolish()
     ]).then(()=>KDA.loadScript('assets/rankings-insights.js',{id:'kda-rankings-insights'}))
       .then(()=>window.KDARankings?.boot?.()||null)
-      .then(value=>{redriveRoute();return value;})
+      .then(value=>{loadCompletionSurface();redriveRoute();return value;})
       .catch(error=>{console.warn('Rankings & Insights load:',error?.message||error);return null;});
     return rankingsPromise;
   }
@@ -176,14 +194,14 @@
   }
   function loadCountyIQ(){
     installCountyIQDataGuard();
-    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening()]));
+    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=Promise.all([
       styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),
       loadHardening(),loadPolish()
     ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))
       .then(()=>window.KDACountyIQ?.boot?.()||null)
-      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup()]))
+      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadCompletionSurface()]))
       .then(value=>{redriveRoute();return value;})
       .catch(countyIqFailure);
     return countyIqPromise;
@@ -196,6 +214,7 @@
   const routeNeedsCountyIQ=hash=>/^#\/countyiq(?:\/|\?|$)/.test(hash)||/^#countyiq$/.test(hash);
   const routeNeedsCompare=hash=>/^#\/compare(?:\/|\?|$)/.test(hash)||/^#compare$/.test(hash);
   const routeNeedsViz=hash=>/^#\/(?:pulse|explore|compare|series|rankings)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|compare$|series|rankings$)/.test(hash);
+  const routeNeedsCompletion=hash=>/^#\/(?:explore|data|compare|rankings|countyiq)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|catalogue|compare$|rankings$|countyiq$)/.test(hash);
   function loadForHash(hash){
     if(routeNeedsOptional(hash))loadOptionalIntegrations();
     if(routeNeedsExplore(hash))loadGeo();
@@ -204,6 +223,7 @@
     if(routeNeedsCountyIQ(hash))loadCountyIQ();
     if(routeNeedsCompare(hash))loadCompare();
     if(routeNeedsViz(hash))loadViz();
+    if(routeNeedsCompletion(hash))loadCompletionSurface();
   }
   loadForHash(location.hash);
   window.addEventListener('hashchange',()=>loadForHash(location.hash));
@@ -216,6 +236,7 @@
     if(view==='countyiq')loadCountyIQ();
     if(view==='compare')loadCompare();
     if(['pulse','explore','compare','series','rankings'].includes(view))loadViz();
+    if(['explore','data','compare','rankings','countyiq'].includes(view))loadCompletionSurface();
   });
-  window.KDAOptional={load:loadOptionalIntegrations,loadCompare,loadGeo,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder,loadSiteSearch,loadHardening,loadViz};
+  window.KDAOptional={load:loadOptionalIntegrations,loadCompare,loadGeo,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder,loadSiteSearch,loadHardening,loadViz,loadPlaceProfile,loadCompletionSurface};
 })();
