@@ -1230,7 +1230,7 @@
       "available_observation_count": 122
     },
     {
-      "series_code": "KDA-TBILL91-KEN",
+      "series_code": "KDA-TBILL91-MONTHLY-AVG-KEN",
       "label": "91-day Treasury bill",
       "unit_code": "percent",
       "suffix": "%",
@@ -1239,14 +1239,434 @@
       "category": "economy",
       "history": [
         {
-          "period_label": "Auction, 10 August 2026",
-          "period_start": "2026-08-10",
-          "period_end": "2026-08-10",
-          "value": 8.782,
-          "source_url": "https://www.centralbank.go.ke/uploads/91_day_historical_treasury_bill_results/"
+          "period_label": "December 2020",
+          "period_start": "2020-12-01",
+          "period_end": "2020-12-31",
+          "value": 6.9,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "January 2021",
+          "period_start": "2021-01-01",
+          "period_end": "2021-01-31",
+          "value": 7.32,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "February 2021",
+          "period_start": "2021-02-01",
+          "period_end": "2021-02-28",
+          "value": 7.28,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "March 2021",
+          "period_start": "2021-03-01",
+          "period_end": "2021-03-31",
+          "value": 7.25,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "April 2021",
+          "period_start": "2021-04-01",
+          "period_end": "2021-04-30",
+          "value": 7.39,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "May 2021",
+          "period_start": "2021-05-01",
+          "period_end": "2021-05-31",
+          "value": 7.65,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "June 2021",
+          "period_start": "2021-06-01",
+          "period_end": "2021-06-30",
+          "value": 7.9,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "July 2021",
+          "period_start": "2021-07-01",
+          "period_end": "2021-07-31",
+          "value": 6.64,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "August 2021",
+          "period_start": "2021-08-01",
+          "period_end": "2021-08-31",
+          "value": 6.57,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "September 2021",
+          "period_start": "2021-09-01",
+          "period_end": "2021-09-30",
+          "value": 6.83,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "October 2021",
+          "period_start": "2021-10-01",
+          "period_end": "2021-10-31",
+          "value": 6.95,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "November 2021",
+          "period_start": "2021-11-01",
+          "period_end": "2021-11-30",
+          "value": 7.1,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "December 2021",
+          "period_start": "2021-12-01",
+          "period_end": "2021-12-31",
+          "value": 7.26,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "January 2022",
+          "period_start": "2022-01-01",
+          "period_end": "2022-01-31",
+          "value": 9.44,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "February 2022",
+          "period_start": "2022-02-01",
+          "period_end": "2022-02-28",
+          "value": 9.62,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "March 2022",
+          "period_start": "2022-03-01",
+          "period_end": "2022-03-31",
+          "value": 7.25,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "April 2022",
+          "period_start": "2022-04-01",
+          "period_end": "2022-04-30",
+          "value": 7.39,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "May 2022",
+          "period_start": "2022-05-01",
+          "period_end": "2022-05-31",
+          "value": 7.65,
+          "source_url": "https://centralbank.go.ke/uploads/statistical_bulletin/42832087_December%202022%20.pdf"
+        },
+        {
+          "period_label": "June 2022",
+          "period_start": "2022-06-01",
+          "period_end": "2022-06-30",
+          "value": 7.9,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "July 2022",
+          "period_start": "2022-07-01",
+          "period_end": "2022-07-31",
+          "value": 8.21,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "August 2022",
+          "period_start": "2022-08-01",
+          "period_end": "2022-08-31",
+          "value": 8.58,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "September 2022",
+          "period_start": "2022-09-01",
+          "period_end": "2022-09-30",
+          "value": 8.92,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "October 2022",
+          "period_start": "2022-10-01",
+          "period_end": "2022-10-31",
+          "value": 9.06,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "November 2022",
+          "period_start": "2022-11-01",
+          "period_end": "2022-11-30",
+          "value": 9.19,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "December 2022",
+          "period_start": "2022-12-01",
+          "period_end": "2022-12-31",
+          "value": 9.33,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "January 2023",
+          "period_start": "2023-01-01",
+          "period_end": "2023-01-31",
+          "value": 9.44,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "February 2023",
+          "period_start": "2023-02-01",
+          "period_end": "2023-02-28",
+          "value": 9.62,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "March 2023",
+          "period_start": "2023-03-01",
+          "period_end": "2023-03-31",
+          "value": 9.76,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "April 2023",
+          "period_start": "2023-04-01",
+          "period_end": "2023-04-30",
+          "value": 10.04,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "May 2023",
+          "period_start": "2023-05-01",
+          "period_end": "2023-05-31",
+          "value": 10.47,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "June 2023",
+          "period_start": "2023-06-01",
+          "period_end": "2023-06-30",
+          "value": 11.49,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "July 2023",
+          "period_start": "2023-07-01",
+          "period_end": "2023-07-31",
+          "value": 12.12,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "August 2023",
+          "period_start": "2023-08-01",
+          "period_end": "2023-08-31",
+          "value": 13.25,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "September 2023",
+          "period_start": "2023-09-01",
+          "period_end": "2023-09-30",
+          "value": 14.38,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "October 2023",
+          "period_start": "2023-10-01",
+          "period_end": "2023-10-31",
+          "value": 14.96,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "November 2023",
+          "period_start": "2023-11-01",
+          "period_end": "2023-11-30",
+          "value": 15.32,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "December 2023",
+          "period_start": "2023-12-01",
+          "period_end": "2023-12-31",
+          "value": 15.7,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "January 2024",
+          "period_start": "2024-01-01",
+          "period_end": "2024-01-31",
+          "value": 16.14,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "February 2024",
+          "period_start": "2024-02-01",
+          "period_end": "2024-02-29",
+          "value": 16.51,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "March 2024",
+          "period_start": "2024-03-01",
+          "period_end": "2024-03-31",
+          "value": 16.68,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "April 2024",
+          "period_start": "2024-04-01",
+          "period_end": "2024-04-30",
+          "value": 16.16,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "May 2024",
+          "period_start": "2024-05-01",
+          "period_end": "2024-05-31",
+          "value": 15.91,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "June 2024",
+          "period_start": "2024-06-01",
+          "period_end": "2024-06-30",
+          "value": 15.97,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "July 2024",
+          "period_start": "2024-07-01",
+          "period_end": "2024-07-31",
+          "value": 16,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "August 2024",
+          "period_start": "2024-08-01",
+          "period_end": "2024-08-31",
+          "value": 15.85,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "September 2024",
+          "period_start": "2024-09-01",
+          "period_end": "2024-09-30",
+          "value": 15.75,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "October 2024",
+          "period_start": "2024-10-01",
+          "period_end": "2024-10-31",
+          "value": 14.97,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "November 2024",
+          "period_start": "2024-11-01",
+          "period_end": "2024-11-30",
+          "value": 13.06,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "December 2024",
+          "period_start": "2024-12-01",
+          "period_end": "2024-12-31",
+          "value": 10.32,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "January 2025",
+          "period_start": "2025-01-01",
+          "period_end": "2025-01-31",
+          "value": 9.63,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "February 2025",
+          "period_start": "2025-02-01",
+          "period_end": "2025-02-28",
+          "value": 9.14,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "March 2025",
+          "period_start": "2025-03-01",
+          "period_end": "2025-03-31",
+          "value": 8.88,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "April 2025",
+          "period_start": "2025-04-01",
+          "period_end": "2025-04-30",
+          "value": 8.51,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "May 2025",
+          "period_start": "2025-05-01",
+          "period_end": "2025-05-31",
+          "value": 8.37,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "June 2025",
+          "period_start": "2025-06-01",
+          "period_end": "2025-06-30",
+          "value": 8.21,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "July 2025",
+          "period_start": "2025-07-01",
+          "period_end": "2025-07-31",
+          "value": 8.13,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "August 2025",
+          "period_start": "2025-08-01",
+          "period_end": "2025-08-31",
+          "value": 8.05,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "September 2025",
+          "period_start": "2025-09-01",
+          "period_end": "2025-09-30",
+          "value": 7.96,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "October 2025",
+          "period_start": "2025-10-01",
+          "period_end": "2025-10-31",
+          "value": 7.88,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "November 2025",
+          "period_start": "2025-11-01",
+          "period_end": "2025-11-30",
+          "value": 7.79,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
+        },
+        {
+          "period_label": "December 2025",
+          "period_start": "2025-12-01",
+          "period_end": "2025-12-31",
+          "value": 7.78,
+          "source_url": "https://www.centralbank.go.ke/uploads/statistical_bulletin/107371226_Statistical%20Bulletin%20-%20December%202025.pdf"
         }
       ],
-      "available_observation_count": 1
+      "available_observation_count": 405
     },
     {
       "series_code": "KDA-POP-TOTAL-KEN",

@@ -13,7 +13,7 @@ const specs=[
   {series_code:'KDA-WB-NY-GDP-MKTP-CD-KEN',label:'GDP',unit_code:'usd',suffix:'',source:'World Bank WDI',badge:'B',category:'economy',hero:true,accent:'green'},
   {series_code:'KDA-WB-NY-GDP-PCAP-CD-KEN',label:'GDP per capita',unit_code:'usd_per_person',suffix:'',source:'World Bank WDI',badge:'B',category:'economy',hero:true,accent:'blue'},
   {series_code:'KDA-CBR-KEN',label:'Central Bank Rate',unit_code:'percent',suffix:'%',source:'CBK',badge:'A',category:'institutions'},
-  {series_code:'KDA-TBILL91-KEN',label:'91-day Treasury bill',unit_code:'percent',suffix:'%',source:'CBK',badge:'A',category:'economy'},
+  {series_code:'KDA-TBILL91-MONTHLY-AVG-KEN',label:'91-day Treasury bill',unit_code:'percent',suffix:'%',source:'CBK',badge:'A',category:'economy'},
   {series_code:'KDA-POP-TOTAL-KEN',label:'Population',unit_code:'persons',suffix:'',source:'KNBS',badge:'A',category:'social'},
   {series_code:'KDA-VOTERS-KEN',label:'Registered voters',unit_code:'persons',suffix:'',source:'IEBC',badge:'A',category:'institutions'}
 ];
