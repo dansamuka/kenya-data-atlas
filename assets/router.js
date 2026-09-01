@@ -168,3 +168,4 @@
   protectCompareCriticalPaint();
   loadSiteV2();
 })();
+
