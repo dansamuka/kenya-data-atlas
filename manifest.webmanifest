@@ -1,0 +1,12 @@
+{
+  "name": "Kenya Data Atlas",
+  "short_name": "Kenya Atlas",
+  "description": "Explore Kenya place by place with traceable public data.",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FAF6EE",
+  "theme_color": "#1B3A2E",
+  "orientation": "any",
+  "categories": ["education", "government", "productivity"]
+}

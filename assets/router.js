@@ -54,7 +54,9 @@
     if(document.title!==TITLES[next.view])document.title=TITLES[next.view];
     current=next;rendering=false;
     if(options.scroll!==false&&previous&&previous!==next.view)window.scrollTo({top:0,left:0,behavior:'auto'});
-    dispatch(next);return next;
+    dispatch(next);
+    if(next.view==='rankings')loadRankingsVisualV2();
+    return next;
   }
   function setHash(hash,{replace=false,scroll=true}={}){
     const canonical=canonicalHash(hash);
@@ -89,6 +91,14 @@
     queueMicrotask(focusGlobalSearch);
     requestAnimationFrame(focusGlobalSearch);
   }
+  function isGlobalSearchShortcut(event){
+    if(!(event.ctrlKey||event.metaKey))return false;
+    return String(event.code||'')==='KeyK'||String(event.key||'').toLowerCase()==='k';
+  }
+  function handleGlobalSearchShortcut(event){
+    if(!isGlobalSearchShortcut(event))return;
+    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
+  }
   function protectCompareCriticalPaint(){
     const KDA=window.KDAData;
     if(!KDA||KDA.__compareCriticalPaintGuard||typeof KDA.registries!=='function')return;
@@ -100,10 +110,6 @@
       const compare=(current?.view||parse().view)==='compare';
       if(heavy&&compare&&!guarded){
         guarded=true;
-        /* Direct Compare entry previously started multi-megabyte master-registry
-         * transfers before the route heading completed critical paint. Let the
-         * shell finish loading first; user-triggered work after load still starts
-         * after only two animation frames. This changes scheduling, not data. */
         if(document.readyState!=='complete'){
           await new Promise(resolve=>window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(resolve)),{once:true}));
         }else{
@@ -114,11 +120,35 @@
     };
     KDA.__compareCriticalPaintGuard=true;
   }
+  function installV2CriticalCompatibility(){
+    if(document.querySelector('style[data-kda-v2-p16-critical]'))return;
+    const style=document.createElement('style');style.dataset.kdaV2P16Critical='true';
+    style.textContent='@media(max-width:767px){html body{padding-bottom:0!important}html body .site-header .menu-button{display:inline-grid!important}html body .site-header #main-nav:not(.open){display:none!important}html body .site-header #main-nav.open{display:flex!important}html body .kda-v2-bottom-nav{display:none!important}html body[data-view="compare"] .compare-mode-switch{position:static!important;top:auto!important}}';
+    document.head.appendChild(style);
+  }
+  function loadSiteV2(){
+    if(document.querySelector('script[data-kda-site-v2]'))return;
+    installV2CriticalCompatibility();
+    const css=document.createElement('link');css.rel='stylesheet';css.href='assets/site-v2.css';css.dataset.kdaSiteV2='true';document.head.appendChild(css);
+    const compatCss=document.createElement('link');compatCss.rel='stylesheet';compatCss.href='assets/v2-p16-compat.css';compatCss.dataset.kdaV2P16Compat='true';document.head.appendChild(compatCss);
+    const script=document.createElement('script');script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);
+    const routeCss=document.createElement('link');routeCss.rel='stylesheet';routeCss.href='assets/site-v2-route.css';routeCss.dataset.kdaSiteV2Route='true';document.head.appendChild(routeCss);
+    const routeScript=document.createElement('script');routeScript.src='assets/site-v2-route.js';routeScript.defer=true;routeScript.dataset.kdaSiteV2Route='true';document.head.appendChild(routeScript);
+    const pwa=document.createElement('script');pwa.src='assets/pwa-v2.js';pwa.defer=true;pwa.dataset.kdaPwaV2='true';document.head.appendChild(pwa);
+  }
+  function loadRankingsVisualV2(){
+    if((current?.view||parse().view)!=='rankings'||document.querySelector('script[data-kda-rankings-visual-v2]'))return;
+    const script=document.createElement('script');script.src='assets/rankings-visual-v2.js';script.defer=true;script.dataset.kdaRankingsVisualV2='true';script.onerror=()=>script.remove();document.head.appendChild(script);
+  }
 
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
+  /* Playwright Firefox/WebKit deliver the Ctrl/Cmd+K chord reliably to the
+   * document path, while the previous window-capture listener could miss it.
+   * Capture here also wins before the v2 search-sheet bubble listener. */
+  document.addEventListener('keydown',handleGlobalSearchShortcut,true);
 
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 
@@ -127,12 +157,9 @@
     if(!trigger||(current?.view||parse().view)==='home')return;
     event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
   },true);
-  document.addEventListener('keydown',event=>{
-    if(!(event.ctrlKey||event.metaKey)||String(event.key).toLowerCase()!=='k'||(current?.view||parse().view)==='home')return;
-    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
-  },true);
 
   window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
   render({scroll:false});
   protectCompareCriticalPaint();
+  loadSiteV2();
 })();
