@@ -11,7 +11,7 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
   const state={data:null,bound:false,sortKey:'diagnostic_rank',sortDir:'asc'};
-  let bootPromise=null,tooltip=null;
+  let bootPromise=null;
 
   function route(){return R?.current?.()||R?.parse?.()||{view:'rankings'};}
   function isRankings(){return route().view==='rankings'||/^#\/?rankings(?:\?|$)/.test(location.hash);}
@@ -23,17 +23,6 @@
   }
   async function data(){return state.data||(state.data=await KDA.fetchJson('data/results/county-results.json',{required:true}));}
 
-  function ensureTooltip(){
-    if(tooltip?.isConnected)return tooltip;
-    tooltip=document.createElement('div');tooltip.className='ri-v2-tooltip';tooltip.hidden=true;tooltip.setAttribute('role','tooltip');document.body.appendChild(tooltip);return tooltip;
-  }
-  function showTooltip(target,html){
-    const tip=ensureTooltip(),rect=target.getBoundingClientRect();tip.innerHTML=html;tip.hidden=false;
-    const width=tip.offsetWidth||260,left=Math.max(10,Math.min(innerWidth-width-10,rect.left+rect.width/2-width/2));
-    const above=rect.top-(tip.offsetHeight||110)-10;tip.style.left=`${left}px`;tip.style.top=`${Math.max(10,above>8?above:rect.bottom+10)}px`;
-  }
-  function hideTooltip(){if(tooltip)tooltip.hidden=true;}
-
   function bandClass(row){const band=Number(row.relative_position_band);return finite(band)&&band>=1&&band<=5?`band-${band}`:'band-3';}
   function rankPct(rank){return Math.max(0,Math.min(100,((Number(rank)-1)/46)*100));}
   function spectrum(dataRows){
@@ -42,7 +31,7 @@
     const marks=rows.map((r,index)=>{
       const rank=Number(r.diagnostic_rank),min=finite(r.plausible_min_rank)?Number(r.plausible_min_rank):rank,max=finite(r.plausible_max_rank)?Number(r.plausible_max_rank):rank;
       const lo=Math.min(min,max),hi=Math.max(min,max),left=rankPct(lo),right=rankPct(hi),x=rankPct(rank),lane=index%5;
-      return `<span class="ri-spectrum-whisker ${bandClass(r)}" style="--x0:${left.toFixed(3)}%;--x1:${right.toFixed(3)}%;--lane:${lane}" aria-hidden="true"></span><button type="button" class="ri-spectrum-dot ${bandClass(r)}" style="--x:${x.toFixed(3)}%;--lane:${lane}" data-ri-geo="${esc(r.geo_code)}" data-ri-county="${esc(r.county)}" data-ri-score="${esc(r.score)}" data-ri-rank="${esc(rank)}" data-ri-range="#${esc(lo)}–#${esc(hi)}" aria-label="${esc(r.county)}, score ${esc(r.score)}, diagnostic position ${esc(rank)}, plausible position ${esc(lo)} to ${esc(hi)}"><span class="sr-only">${esc(r.county)}</span></button>`;
+      return `<span class="ri-spectrum-whisker ${bandClass(r)}" style="--x0:${left.toFixed(3)}%;--x1:${right.toFixed(3)}%;--lane:${lane}" aria-hidden="true"></span><button type="button" class="ri-spectrum-dot ${bandClass(r)}" style="--x:${x.toFixed(3)}%;--lane:${lane}" data-ri-geo="${esc(r.geo_code)}" data-ri-county="${esc(r.county)}" data-ri-score="${esc(r.score)}" data-ri-rank="${esc(rank)}" data-ri-range="#${esc(lo)}–#${esc(hi)}" data-v2-tooltip="${esc(r.county)} · score ${esc(r.score)} / 100 · diagnostic #${esc(rank)} · plausible #${esc(lo)}–#${esc(hi)}" aria-label="${esc(r.county)}, score ${esc(r.score)}, diagnostic position ${esc(rank)}, plausible position ${esc(lo)} to ${esc(hi)}"><span class="sr-only">${esc(r.county)}</span></button>`;
     }).join('');
     return `<div class="ri-development-spectrum" id="ri-development-spectrum"><div class="ri-spectrum-head"><div><small>Position spectrum</small><strong>How counties cluster — without hiding uncertainty</strong></div><p>Dots use diagnostic position; whiskers show the published plausible rank range. Scores remain visible in the table below.</p></div><div class="ri-spectrum-legend" aria-label="Relative position bands"><span class="band-1"><i></i>Top 20%</span><span class="band-2"><i></i>20–40%</span><span class="band-3"><i></i>40–60%</span><span class="band-4"><i></i>60–80%</span><span class="band-5"><i></i>Bottom 20%</span></div><div class="ri-spectrum-scroll"><div class="ri-spectrum-plot" role="group" aria-label="County diagnostic position spectrum from 1 to 47">${marks}<div class="ri-spectrum-axis" aria-hidden="true"><span>#1</span><span>#12</span><span>#24</span><span>#36</span><span>#47</span></div></div></div><p class="ri-spectrum-note">Exact position is diagnostic. The uncertainty whisker is the published robustness range, not an extra modelled estimate.</p></div>`;
   }
@@ -110,20 +99,13 @@
     row.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'center'});row.classList.remove('ri-row-flash');void row.offsetWidth;row.classList.add('ri-row-flash');setTimeout(()=>row.classList.remove('ri-row-flash'),900);
   }
 
-  function bind(d){
+  function bind(){
     if(state.bound)return;state.bound=true;
     document.addEventListener('click',event=>{
       const sort=event.target.closest('[data-ri-sort]');if(sort&&isRankings()){sortDevelopment(sort.dataset.riSort);return;}
       const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){flashRow(dot.dataset.riGeo);return;}
       const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings()){const name=tab.dataset.riTab;syncTabParam(name);requestAnimationFrame(()=>animatePanel(name));}
     });
-    document.addEventListener('pointerover',event=>{
-      const dot=event.target.closest('.ri-spectrum-dot');if(!dot||!isRankings())return;
-      showTooltip(dot,`<strong>${esc(dot.dataset.riCounty)}</strong><span>Score ${esc(dot.dataset.riScore)} / 100</span><span>Diagnostic position #${esc(dot.dataset.riRank)}</span><span>Plausible position ${esc(dot.dataset.riRange)}</span>`);
-    });
-    document.addEventListener('pointerout',event=>{if(event.target.closest('.ri-spectrum-dot'))hideTooltip();});
-    document.addEventListener('focusin',event=>{const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings())showTooltip(dot,`<strong>${esc(dot.dataset.riCounty)}</strong><span>Score ${esc(dot.dataset.riScore)} / 100</span><span>Diagnostic position #${esc(dot.dataset.riRank)}</span><span>Plausible position ${esc(dot.dataset.riRange)}</span>`);});
-    document.addEventListener('focusout',event=>{if(event.target.closest('.ri-spectrum-dot'))hideTooltip();});
   }
 
   function restoreTab(){
@@ -131,7 +113,7 @@
     const button=$(`[data-ri-tab="${CSS.escape(wanted)}"]`);if(button&&!button.classList.contains('active'))button.click();
   }
   async function enhance(){
-    if(!isRankings())return null;const d=await data();ensureDevelopmentVisual(d);bind(d);restoreTab();
+    if(!isRankings())return null;const d=await data();ensureDevelopmentVisual(d);bind();restoreTab();
     const active=$('[data-ri-tab].active')?.dataset.riTab||'development';animatePanel(active);return d;
   }
   function boot(){if(bootPromise)return bootPromise;bootPromise=Promise.resolve(window.KDARankings?.boot?.()).then(()=>enhance()).catch(error=>{console.warn('Rankings visual v2:',error?.message||error);return null;});return bootPromise;}
