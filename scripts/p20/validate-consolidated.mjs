@@ -21,10 +21,13 @@ try{
   assert(pending.filter(r=>r.status==='official_unavailable'&&r.geo_code==='KEN-C033').length===1,'Narok pending bills must be the single official-unavailable row');
   const substance=ledger.rows.filter(r=>r.level==='county'&&r.indicator_code==='IND-SUBSTANCE-ABUSE-PREVALENCE');
   assert(substance.length===47&&substance.every(r=>r.resolved===true&&r.status==='official_unavailable'),'all 47 substance-use county slots must resolve as official_unavailable');
-  assert(ledger.rows.filter(r=>r.status==='official_unavailable').length===48,'explicit official-unavailable inventory must contain 48 governed rows');
+  const p20Unavailable=[...pending.filter(r=>r.status==='official_unavailable'),...substance.filter(r=>r.status==='official_unavailable')];
+  assert(p20Unavailable.length===48,`P20-owned official-unavailable inventory must remain 48 governed rows, got ${p20Unavailable.length}`);
+  assert(new Set(p20Unavailable.map(r=>r.slot_key)).size===48,'P20-owned unavailable rows must be unique');
+  assert(ledger.rows.filter(r=>r.status==='official_unavailable').length>=48,'global unavailable inventory may grow in later governed phases but must never lose P20 closures');
   const p20=ledger.rows.filter(r=>r.completion_phase==='P20'&&!r.resolved);
   assert(p20.length===0,`P20 queue must be empty, found ${p20.length}`);
   console.log(`P20_CONSOLIDATED_COMPLETENESS_OK resolved=${summary.resolved_slots} p20_remaining=0`);
-  console.log('P20_FINAL_FAMILIES_OK facility_density=47 pending_bills=46+1_unavailable substance=47_unavailable');
+  console.log(`P20_FINAL_FAMILIES_OK facility_density=47 pending_bills=46+1_unavailable substance=47_unavailable p20_unavailable=${p20Unavailable.length}`);
   console.log('P20_COMPLETE_OK queue=0');
 }catch(error){console.error(error.message||error);process.exit(1);}

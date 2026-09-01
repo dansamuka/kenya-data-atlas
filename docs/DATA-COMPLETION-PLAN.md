@@ -371,3 +371,6 @@ Run two evidence-independent streams while retaining the formal phase closure or
 The next implementation instructions are:
 
 > **Continue P21 without weakening evidence rules. In parallel, canonicalise the existing official-derived IEBC constituency registered-voter series as P23A tranche 1. Do not create a second denominator, inherit county values downward, or force unresolved ward geography.**
+
+
+**P22 terminal snapshot — evidence-constrained completion:** as of **1 September 2026**, all **66** governed ASAL resilience slots are resolved through explicit evidence states rather than fabricated current values. The 22 whole-county eligibility set remains fixed and Nyeri/Kieni remains partial/excluded. NDMA June 2026 county drought bulletins are stale under the two-month freshness tolerance; the officially listed 2026 Long Rains Assessment is not promoted until its exact county classification payload and validity intervals are deterministically resolved; and KMD August 2026 products do not directly publish the exact governed 22-county numeric rainfall/temperature anomaly series. P22 therefore closes with **0 current numeric/categorical promotions and 66 evidence-constrained official-unavailable states**, each carrying a refresh trigger. **P22 queue: 0. P22 complete.**
