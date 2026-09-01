@@ -1,0 +1,73 @@
+name: P23 constituency voter materialization
+
+on:
+  push:
+    branches:
+      - watchdog/p23-constituency-voter-promotion
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          npm ci
+          pip install shapely
+      - name: Wire P23 builder into canonical rebuild
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p = JSON.parse(fs.readFileSync('package.json','utf8'));
+          const cat = 'node scripts/p23/build-constituency-voters.mjs catalogue';
+          const ind = 'node scripts/p23/build-constituency-voters.mjs indicators';
+          if (!p.scripts['catalogue:build'].includes(cat)) p.scripts['catalogue:build'] += ` && ${cat}`;
+          if (!p.scripts['indicators:build'].includes(ind)) p.scripts['indicators:build'] += ` && ${ind}`;
+          fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
+          NODE
+      - name: Rebuild published data
+        run: npm run build:data
+      - name: Assert P23 voter tranche
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const summary = JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
+          const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
+          const observations = JSON.parse(fs.readFileSync('data/indicators/registry/observations.json','utf8'));
+          if (summary.total_slots !== 20115) throw new Error(`denominator drift: ${summary.total_slots}`);
+          if (summary.unknown_missing !== 0) throw new Error(`unknown_missing=${summary.unknown_missing}`);
+          if (summary.by_completion_phase?.P23 !== 2900) throw new Error(`expected P23 remaining 2900 after exact 290-slot voter promotion, got ${summary.by_completion_phase?.P23}`);
+          const voterSeries = series.filter(s => /^KDA-VOTERS-CON-\d{3}-2022$/.test(s.series_code));
+          if (voterSeries.length !== 290) throw new Error(`expected 290 constituency voter series, got ${voterSeries.length}`);
+          const ids = new Set(voterSeries.map(s => s.series_id));
+          const voterObs = observations.filter(o => ids.has(o.series_id));
+          if (voterObs.length !== 290) throw new Error(`expected 290 constituency voter observations, got ${voterObs.length}`);
+          if (voterObs.reduce((sum,o)=>sum+Number(o.value),0) !== 22102532) throw new Error('national voter total changed');
+          console.log('P23 voter promotion assertions passed: 290 observations; P23 remaining 2900; denominator 20115.');
+          NODE
+      - name: Run full validation
+        run: npm test
+      - name: Run independent geography audit
+        run: npm run geography:audit
+      - name: Commit validated materialization and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/p23-constituency-materialize.yml
+          git add package.json data assets index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "feat(p23): materialize constituency voter promotion"
+          git push origin HEAD:watchdog/p23-constituency-voter-promotion
