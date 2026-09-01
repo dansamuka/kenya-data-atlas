@@ -11,7 +11,7 @@
     "topic": "Infrastructure",
     "subtopic": "infrastructure",
     "unit_id": "390aea4f-9e25-5bd3-82ff-84463986de5e",
-    "higher_is_better": true,
+    "higher_is_better": null,
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,

@@ -46,7 +46,7 @@
     "name": "CO2 emissions per capita (excl. LULUCF)",
     "path": "data/distribution/subsets/indicators/IND-CO2-PER-CAPITA.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 15
   },
   {
     "indicator_code": "IND-COMPUTER-USE",
@@ -123,7 +123,7 @@
     "name": "Inflation, consumer prices (annual %)",
     "path": "data/distribution/subsets/indicators/IND-CPI-INFLATION-WB-ANNUAL.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-DISABILITY-PREVALENCE",
@@ -151,7 +151,7 @@
     "name": "Access to electricity (% of population)",
     "path": "data/distribution/subsets/indicators/IND-ELECTRICITY-ACCESS-WB.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 15
   },
   {
     "indicator_code": "IND-EXAM-PERFORMANCE",
@@ -172,7 +172,7 @@
     "name": "Foreign direct investment, net inflows (% of GDP)",
     "path": "data/distribution/subsets/indicators/IND-FDI-NET-INFLOWS.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 15
   },
   {
     "indicator_code": "IND-FGM-CHILD-MARRIAGE",
@@ -193,14 +193,14 @@
     "name": "Forest area (% of land area)",
     "path": "data/distribution/subsets/indicators/IND-FOREST-AREA.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 14
   },
   {
     "indicator_code": "IND-FRESHWATER-WITHDRAWAL",
     "name": "Freshwater withdrawals (% of internal resources)",
     "path": "data/distribution/subsets/indicators/IND-FRESHWATER-WITHDRAWAL.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 13
   },
   {
     "indicator_code": "IND-FUEL-PETROL",
@@ -221,28 +221,28 @@
     "name": "GDP growth (annual %)",
     "path": "data/distribution/subsets/indicators/IND-GDP-GROWTH.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-GDP-NATIONAL",
     "name": "GDP (current US$)",
     "path": "data/distribution/subsets/indicators/IND-GDP-NATIONAL.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-GDP-PER-CAPITA-NATIONAL",
     "name": "GDP per capita (current US$)",
     "path": "data/distribution/subsets/indicators/IND-GDP-PER-CAPITA-NATIONAL.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-GINI-WB",
     "name": "GINI index",
     "path": "data/distribution/subsets/indicators/IND-GINI-WB.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 4
   },
   {
     "indicator_code": "IND-HEALTH-FACILITY-COUNT",
@@ -284,7 +284,7 @@
     "name": "Intentional homicides (per 100,000 people)",
     "path": "data/distribution/subsets/indicators/IND-HOMICIDE-RATE.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 12
   },
   {
     "indicator_code": "IND-HOSPITAL-BED-UTILIZATION",
@@ -340,7 +340,7 @@
     "name": "Human Capital Index (overall)",
     "path": "data/distribution/subsets/indicators/IND-HUMAN-CAPITAL-INDEX.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 3
   },
   {
     "indicator_code": "IND-IMMUNIZATION-RATE",
@@ -368,7 +368,7 @@
     "name": "Individuals using the Internet (% of population)",
     "path": "data/distribution/subsets/indicators/IND-INTERNET-USERS-WB.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 15
   },
   {
     "indicator_code": "IND-LABOUR-FORCE-PARTICIPATION",
@@ -389,7 +389,7 @@
     "name": "Life expectancy at birth",
     "path": "data/distribution/subsets/indicators/IND-LIFE-EXPECTANCY.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 15
   },
   {
     "indicator_code": "IND-LITERACY-RATE",
@@ -473,7 +473,7 @@
     "name": "Net migration",
     "path": "data/distribution/subsets/indicators/IND-NET-MIGRATION.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-NG-CDF-ALLOCATION",
@@ -508,14 +508,14 @@
     "name": "Population growth (annual %)",
     "path": "data/distribution/subsets/indicators/IND-POPULATION-GROWTH.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-POPULATION-WB",
     "name": "Population, total — UN projection via World Bank",
     "path": "data/distribution/subsets/indicators/IND-POPULATION-WB.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-POVERTY-RATE",
@@ -529,7 +529,7 @@
     "name": "Poverty headcount ratio at $3.00/day (2021 PPP)",
     "path": "data/distribution/subsets/indicators/IND-POVERTY-RATE-INTL.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 4
   },
   {
     "indicator_code": "IND-PRIMARY-CLASSROOM-TEACHERS",
@@ -578,7 +578,7 @@
     "name": "Renewable electricity share, excluding hydro",
     "path": "data/distribution/subsets/indicators/IND-RENEWABLE-ELECTRICITY.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 12
   },
   {
     "indicator_code": "IND-RENT-BURDEN",
@@ -599,7 +599,7 @@
     "name": "Safely managed sanitation services (% of population)",
     "path": "data/distribution/subsets/indicators/IND-SAFE-SANITATION.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 15
   },
   {
     "indicator_code": "IND-SCHOOL-ATTENDANCE-RATE",
@@ -627,7 +627,7 @@
     "name": "Statistical Performance Indicators — Overall score",
     "path": "data/distribution/subsets/indicators/IND-STATISTICAL-PERFORMANCE.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 9
   },
   {
     "indicator_code": "IND-STUNTING-RATE",
@@ -676,7 +676,7 @@
     "name": "Unemployment, total (modeled ILO estimate)",
     "path": "data/distribution/subsets/indicators/IND-UNEMPLOYMENT-MODELLED.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   },
   {
     "indicator_code": "IND-USD-KES",
@@ -718,6 +718,6 @@
     "name": "Seats held by women in national parliament (%)",
     "path": "data/distribution/subsets/indicators/IND-WOMEN-PARLIAMENT-SEATS.json",
     "series_count": 1,
-    "observation_count": 1
+    "observation_count": 16
   }
 ]

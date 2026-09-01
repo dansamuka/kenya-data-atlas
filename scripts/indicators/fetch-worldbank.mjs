@@ -10,7 +10,7 @@ const config = JSON.parse(await readFile(configPath, 'utf8'));
 
 let previous = { observations: [], missing: [], excluded: [], generated_at: null };
 try { previous = JSON.parse(await readFile(outPath, 'utf8')); } catch {}
-const previousByCode = new Map((previous.observations || []).map(o => [o.wb_code, o]));
+const previousByKey = new Map((previous.observations || []).map(o => [`${o.wb_code}:${o.period_label}`, o]));
 const currentYear = new Date().getUTCFullYear();
 
 async function fetchIndicator(def) {
@@ -19,27 +19,28 @@ async function fetchIndicator(def) {
   if (!res.ok) throw new Error(`World Bank API returned ${res.status} for ${def.wb_code}`);
   const payload = await res.json();
   const observations = Array.isArray(payload) ? payload[1] : null;
-  const latest = (observations || []).find(o => o && o.value !== null && o.value !== undefined);
-  if (!latest) return null;
-
-  const period = String(latest.date);
-  const old = previousByCode.get(def.wb_code);
-  const unchanged = Boolean(old && old.period_label === period && Number(old.value) === Number(latest.value));
+  const populated = (observations || []).filter(o => o && o.value !== null && o.value !== undefined);
+  if (!populated.length) return null;
+  let unchangedCount = 0;
   return {
-    unchanged,
-    row: {
-      wb_code: def.wb_code,
-      atlas_indicator_code: def.code,
-      wb_indicator_name: latest.indicator?.value || def.name,
-      value: Number(latest.value),
-      period_start: `${period}-01-01`,
-      period_end: `${period}-12-31`,
-      period_label: period,
-      source_url: `https://data.worldbank.org/indicator/${def.wb_code}?locations=KE`,
-      // Preserve the original retrieval timestamp when the statistical
-      // observation itself is unchanged. A pipeline run is not a data update.
-      retrieved_at: unchanged ? old.retrieved_at : new Date().toISOString()
-    }
+    rows: populated.map(observation => {
+      const period = String(observation.date);
+      const old = previousByKey.get(`${def.wb_code}:${period}`);
+      const unchanged = Boolean(old && Number(old.value) === Number(observation.value));
+      if (unchanged) unchangedCount++;
+      return {
+        wb_code: def.wb_code,
+        atlas_indicator_code: def.code,
+        wb_indicator_name: observation.indicator?.value || def.name,
+        value: Number(observation.value),
+        period_start: `${period}-01-01`,
+        period_end: `${period}-12-31`,
+        period_label: period,
+        source_url: `https://data.worldbank.org/indicator/${def.wb_code}?locations=KE`,
+        retrieved_at: unchanged ? old.retrieved_at : new Date().toISOString()
+      };
+    }),
+    unchangedCount
   };
 }
 
@@ -50,15 +51,15 @@ let unchangedCount = 0;
 for (const def of active) {
   const fetched = await fetchIndicator(def);
   if (fetched) {
-    results.push(fetched.row);
-    if (fetched.unchanged) unchangedCount++;
+    results.push(...fetched.rows);
+    unchangedCount += fetched.unchangedCount;
   } else {
     missing.push({ wb_code: def.wb_code, atlas_indicator_code: def.code, reason: `No non-null observation returned by World Bank API for 2010:${currentYear}.` });
   }
 }
 
 const stableJson = value => JSON.stringify(value || []);
-const allObservationsUnchanged = results.length === active.length && unchangedCount === results.length;
+const allObservationsUnchanged = results.length === (previous.observations || []).length && unchangedCount === results.length;
 const limitationsUnchanged = stableJson(missing) === stableJson(previous.missing) && stableJson(config.excluded || []) === stableJson(previous.excluded);
 const generatedAt = allObservationsUnchanged && limitationsUnchanged && previous.generated_at
   ? previous.generated_at
@@ -75,4 +76,4 @@ await writeFile(outPath, JSON.stringify({
   excluded: config.excluded || []
 }, null, 2) + '\n');
 
-console.log(`World Bank WDI: ${results.length} latest non-null observations; ${missing.length} missing; ${unchangedCount} unchanged observations. Snapshot timestamp ${generatedAt === previous.generated_at ? 'retained' : 'advanced'}.`);
+console.log(`World Bank WDI: ${results.length} historical observations across ${active.length} national series; ${missing.length} missing; ${unchangedCount} unchanged observations. Snapshot timestamp ${generatedAt === previous.generated_at ? 'retained' : 'advanced'}.`);

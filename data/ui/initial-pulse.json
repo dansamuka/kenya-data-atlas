@@ -900,6 +900,41 @@
       "accent": "green",
       "history": [
         {
+          "period_label": "2020",
+          "period_start": "2020-01-01",
+          "period_end": "2020-12-31",
+          "value": 100657505750.545,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE"
+        },
+        {
+          "period_label": "2021",
+          "period_start": "2021-01-01",
+          "period_end": "2021-12-31",
+          "value": 109703658904.994,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE"
+        },
+        {
+          "period_label": "2022",
+          "period_start": "2022-01-01",
+          "period_end": "2022-12-31",
+          "value": 114448978152.637,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE"
+        },
+        {
+          "period_label": "2023",
+          "period_start": "2023-01-01",
+          "period_end": "2023-12-31",
+          "value": 107500884685.013,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE"
+        },
+        {
+          "period_label": "2024",
+          "period_start": "2024-01-01",
+          "period_end": "2024-12-31",
+          "value": 120397537849.826,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE"
+        },
+        {
           "period_label": "2025",
           "period_start": "2025-01-01",
           "period_end": "2025-12-31",
@@ -907,7 +942,7 @@
           "source_url": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD?locations=KE"
         }
       ],
-      "available_observation_count": 1
+      "available_observation_count": 16
     },
     {
       "series_code": "KDA-WB-NY-GDP-PCAP-CD-KEN",
@@ -921,6 +956,41 @@
       "accent": "blue",
       "history": [
         {
+          "period_label": "2020",
+          "period_start": "2020-01-01",
+          "period_end": "2020-12-31",
+          "value": 1927.66459027849,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE"
+        },
+        {
+          "period_label": "2021",
+          "period_start": "2021-01-01",
+          "period_end": "2021-12-31",
+          "value": 2061.35622089594,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE"
+        },
+        {
+          "period_label": "2022",
+          "period_start": "2022-01-01",
+          "period_end": "2022-12-31",
+          "value": 2109.56288513137,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE"
+        },
+        {
+          "period_label": "2023",
+          "period_start": "2023-01-01",
+          "period_end": "2023-12-31",
+          "value": 1942.58802756191,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE"
+        },
+        {
+          "period_label": "2024",
+          "period_start": "2024-01-01",
+          "period_end": "2024-12-31",
+          "value": 2133.46193404026,
+          "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE"
+        },
+        {
           "period_label": "2025",
           "period_start": "2025-01-01",
           "period_end": "2025-12-31",
@@ -928,7 +998,7 @@
           "source_url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=KE"
         }
       ],
-      "available_observation_count": 1
+      "available_observation_count": 16
     },
     {
       "series_code": "KDA-CBR-KEN",

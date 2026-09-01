@@ -6,7 +6,7 @@ This directory is the stable, machine-readable developer entry point introduced 
 - Data contract: **1.0.0**
 - Indicators: **103**
 - Series: **4,309**
-- Observations: **7,803**
+- Observations: **8,085**
 - Geographies: **1,788**
 - County subsets: **47**
 - Indicator subsets: **103**
