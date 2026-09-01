@@ -36,7 +36,11 @@ jobs:
           const cat = 'node scripts/p23/build-constituency-voters.mjs catalogue';
           const ind = 'node scripts/p23/build-constituency-voters.mjs indicators';
           if (!p.scripts['catalogue:build'].includes(cat)) p.scripts['catalogue:build'] += ` && ${cat}`;
-          if (!p.scripts['indicators:build'].includes(ind)) p.scripts['indicators:build'] += ` && ${ind}`;
+          if (!p.scripts['indicators:build'].includes(ind)) {
+            const marker = 'node scripts/indicators/build-cross-level-eligibility.mjs';
+            if (!p.scripts['indicators:build'].includes(marker)) throw new Error('cross-level eligibility marker missing');
+            p.scripts['indicators:build'] = p.scripts['indicators:build'].replace(marker, `${ind} && ${marker}`);
+          }
           fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
           NODE
       - name: Rebuild published data
@@ -48,6 +52,7 @@ jobs:
           const summary = JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
           const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
           const observations = JSON.parse(fs.readFileSync('data/indicators/registry/observations.json','utf8'));
+          const eligibility = JSON.parse(fs.readFileSync('data/policy/cross-level-eligibility.json','utf8'));
           if (summary.total_slots !== 20115) throw new Error(`denominator drift: ${summary.total_slots}`);
           if (summary.unknown_missing !== 0) throw new Error(`unknown_missing=${summary.unknown_missing}`);
           if (summary.by_completion_phase?.P23 !== 2320) throw new Error(`expected P23 remaining 2320 after 290 constituency observations resolve 870 governed slot instances, got ${summary.by_completion_phase?.P23}`);
@@ -58,7 +63,9 @@ jobs:
           const voterObs = observations.filter(o => ids.has(o.series_id));
           if (voterObs.length !== 290) throw new Error(`expected 290 constituency voter observations, got ${voterObs.length}`);
           if (voterObs.reduce((sum,o)=>sum+Number(o.value),0) !== 22102532) throw new Error('national voter total changed');
-          console.log('P23 voter promotion assertions passed: 290 observations; 870 governed slot instances resolved; P23 remaining 2320; denominator 20115.');
+          const eligibilityRows = eligibility.series || eligibility.rows || [];
+          if (eligibilityRows.length !== series.length) throw new Error(`cross-level eligibility rows=${eligibilityRows.length}, series=${series.length}`);
+          console.log('P23 voter promotion assertions passed: 290 observations; 870 governed slot instances resolved; P23 remaining 2320; denominator 20115; eligibility synchronized.');
           NODE
       - name: Run full validation
         run: npm test
