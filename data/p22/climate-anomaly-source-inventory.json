@@ -1,0 +1,49 @@
+{
+  "schema_version": "kda.p22.climate-anomaly-source-inventory.v1",
+  "phase": "P22",
+  "indicator_code": "IND-RAINFALL-TEMPERATURE",
+  "checked_on": "2026-09-01",
+  "as_of_month": "2026-09",
+  "governed_county_count": 22,
+  "publisher": "Kenya Meteorological Department",
+  "sources": [
+    {
+      "source_key": "kmd-monthly-agromet-august-2026",
+      "title": "Agrometeorological Monthly Bulletin for August 2026",
+      "product_page": "https://meteo.go.ke/our-products/monthly-agrometeorological-bulletin/monthly-agromet-bulletin-august-2026/",
+      "document_url": "https://meteo.go.ke/documents/4536/Monthly_Agro-Met_Bulletin_August_2026.pdf",
+      "issue_date": "2026-08-03",
+      "forecast_period": "2026-08",
+      "review_period": "2026-07",
+      "discovery_state": "official_document_available",
+      "measure_fit": "insufficient_for_governed_county_numeric_anomaly",
+      "slot_resolution_effect": "none",
+      "reason": "The bulletin is fresh official KMD evidence and provides qualitative county-group forecasts plus station-level July rainfall and temperature review. It does not publish one direct numeric rainfall/temperature anomaly value for each of the 22 governed counties with an explicit county aggregation method and climatological baseline. P22 therefore must not convert qualitative phrases, regional groups, station observations or map colours into county anomaly numbers."
+    },
+    {
+      "source_key": "kmd-state-of-climate-2025",
+      "title": "State of the Climate in Kenya 2025",
+      "document_url": "https://meteo.go.ke/documents/3009/State_of_the_Climate_Report_2025.pdf",
+      "reference_period": "2025",
+      "discovery_state": "official_document_available_historical",
+      "measure_fit": "historical_spatial_anomaly_context_only",
+      "slot_resolution_effect": "none",
+      "reason": "The report contains official rainfall and temperature anomaly maps and a documented 1991–2020 reference context, but it is a 2025 historical climate report. It does not provide a September 2026 current 22-county tabulation for the governed P22 slot. Raster/map colours are not reverse-engineered into county values."
+    }
+  ],
+  "promotion_gate": {
+    "status": "blocked_pending_direct_county_anomaly_or_governed_spatial_derivation",
+    "required_before_promotion": [
+      "Obtain an official KMD county-level anomaly table, or an explicitly governed gridded KMD source suitable for deterministic county aggregation.",
+      "Preserve the rainfall/temperature observation window and the climatological baseline/reference period.",
+      "Document the spatial aggregation method and boundary vintage for any derived county value.",
+      "Do not infer a numeric anomaly from qualitative forecast language, station values or map colours.",
+      "Run deterministic registry and completeness validation before changing slot-resolution counts."
+    ]
+  },
+  "terminal_treatment": {
+    "as_of": "2026-09-01",
+    "status": "evidence_constrained_current_observation_unavailable",
+    "reason": "Fresh official KMD material exists, but the exact governed 22-county numeric anomaly measure is not directly published and no approved deterministic spatial derivation is yet available. The phase may close as an explicit evidence state rather than manufacturing county values."
+  }
+}
