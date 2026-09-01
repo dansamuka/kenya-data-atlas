@@ -61,6 +61,26 @@ jobs:
           if (voterObs.reduce((sum,o)=>sum+Number(o.value),0) !== 22102532) throw new Error('national voter total changed');
           console.log('P23 voter promotion assertions passed: 290 observations; 870 governed slot instances resolved; P23 remaining 2320; denominator 20115.');
           NODE
+      - name: Capture remaining P23 taxonomy
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const ledger = JSON.parse(fs.readFileSync('data/completeness/slot-ledger.json','utf8'));
+          const rows = (ledger.rows || []).filter(r => r.resolved !== true && r.completion_phase === 'P23');
+          const groups = new Map();
+          for (const row of rows) {
+            const key = [row.indicator_code || '', row.level || '', row.tab || '', row.status || ''].join('|');
+            if (!groups.has(key)) groups.set(key, {indicator_code: row.indicator_code || '', level: row.level || '', tab: row.tab || '', status: row.status || '', count: 0, geo_codes: new Set(), sample: row});
+            const g = groups.get(key);
+            g.count += 1;
+            if (row.geo_code) g.geo_codes.add(row.geo_code);
+          }
+          const compact = [...groups.values()].map(g => ({...g, geo_count: g.geo_codes.size, geo_codes: undefined})).sort((a,b) => b.count-a.count || a.indicator_code.localeCompare(b.indicator_code));
+          const out = {schema_version:'kda.p23.remaining-breakdown.v1', generated_from:'post-voter-materialization', remaining_slots: rows.length, group_count: compact.length, groups: compact};
+          fs.mkdirSync('data/p23',{recursive:true});
+          fs.writeFileSync('data/p23/remaining-breakdown.json', JSON.stringify(out, null, 2) + '\n');
+          console.log(JSON.stringify({remaining_slots:out.remaining_slots, group_count:out.group_count, groups:compact.map(({sample,...g})=>g)}, null, 2));
+          NODE
       - name: Run full validation
         run: |
           set -o pipefail
@@ -70,9 +90,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add p23-test.log
+          git add p23-test.log data/p23/remaining-breakdown.json
           git diff --cached --quiet && exit 0
-          git commit -m "chore(p23): capture materialization validation failure"
+          git commit -m "chore(p23): capture materialization validation diagnostics"
           git push origin HEAD:watchdog/p23-materialization-repair
       - name: Run independent geography audit
         run: npm run geography:audit
@@ -81,7 +101,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/p23-constituency-materialize.yml
-          git add package.json data assets index.html
+          git add package.json data assets index.html scripts/p22/validate-terminal.mjs
           git diff --cached --quiet && exit 0
           git commit -m "feat(p23): materialize constituency voter promotion"
           git push origin HEAD:watchdog/p23-materialization-repair
