@@ -59,7 +59,15 @@ assert(datasets.some(d=>d.dataset_code==='DS-KNBS-CLASS-C-RURAL-ROADS-2025-P21')
 assert(releases.some(r=>r.release_code==='REL-KNBS-CLASS-C-RURAL-ROADS-2025-P21'),'Class C release missing');
 assert(queue.remaining_slots===0&&queue.family_count===0&&Object.keys(queue.family_counts||{}).length===0,'P21 queue must be empty');
 assert((summary.by_completion_phase?.P21||0)===0,'completeness summary P21 must be zero');
-assert(summary.resolved_slots===3808&&summary.unresolved_slots===16307&&summary.unknown_missing===0,'terminal completeness totals drifted');
+// P21 owns the completed 423-slot county tranche, not the repository-wide
+// terminal coverage forever. Later phases may legitimately increase resolved
+// slots while P21's queue, source semantics and successor records remain fixed.
+assert(summary.total_slots===20115,'governed slot denominator must remain 20,115');
+assert(summary.resolved_slots>=3808,`resolved coverage regressed below P21 closeout baseline: ${summary.resolved_slots}`);
+assert(summary.unresolved_slots<=16307,`unresolved coverage regressed above P21 closeout baseline: ${summary.unresolved_slots}`);
+assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'global completeness totals must reconcile');
+assert(summary.unknown_missing===0,'unknown_missing must remain zero');
 const p21=(roadmap.phases||[]).find(p=>p.id==='P21');assert(p21?.status==='complete','P21 roadmap must be complete');
+assert(p21?.progress?.resolved_in_p21===423&&p21?.progress?.remaining_slots===0,'P21 roadmap must retain the exact 423/423 closeout');
 
-console.log('P21_CLASS_C_ROAD_VALIDATE_OK counties=47 displayed_county_sum=28150.5 national=28149.9 p21=0 resolved=3808');
+console.log(`P21_CLASS_C_ROAD_VALIDATE_OK counties=47 displayed_county_sum=28150.5 national=28149.9 p21=0 resolved_now=${summary.resolved_slots}`);
