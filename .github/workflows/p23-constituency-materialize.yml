@@ -62,7 +62,18 @@ jobs:
           console.log('P23 voter promotion assertions passed: 290 observations; 870 governed slot instances resolved; P23 remaining 2320; denominator 20115.');
           NODE
       - name: Run full validation
-        run: npm test
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee p23-test.log
+      - name: Persist validation diagnostics
+        if: failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add p23-test.log
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(p23): capture materialization validation failure"
+          git push origin HEAD:watchdog/p23-materialization-repair
       - name: Run independent geography audit
         run: npm run geography:audit
       - name: Commit validated materialization and remove one-shot workflow
