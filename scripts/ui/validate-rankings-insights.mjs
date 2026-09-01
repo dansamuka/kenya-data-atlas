@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { spawnSync } from 'node:child_process';
 const read=p=>fs.readFileSync(p,'utf8');
-const html=read('index.html'),js=read('assets/rankings-insights.js'),css=read('assets/rankings-insights.css'),visual=read('assets/rankings-visual-v2.js'),visualCss=read('assets/rankings-visual-v2.css'),lazy=read('assets/lazy-integrations.js'),router=read('assets/router.js');
+const html=read('index.html'),js=read('assets/rankings-insights.js'),css=read('assets/rankings-insights.css'),visual=read('assets/rankings-visual-v2.js'),visualCss=read('assets/rankings-visual-v2.css'),siteV2=read('assets/site-v2.js'),lazy=read('assets/lazy-integrations.js'),router=read('assets/router.js');
 const out=JSON.parse(read('data/results/county-results.json'));
 const assert=(ok,msg)=>{if(!ok)throw new Error(`Rankings UI validation: ${msg}`);};
 for(const token of ['#/rankings','data-view="rankings"','County Rankings &amp; Insights','Development snapshot','Fiscal delivery','Indicator rankings','Strengths &amp; gaps','Administration scorecards','Recognition','Official evidence'])assert(html.includes(token),`missing UI token ${token}`);
@@ -10,9 +10,11 @@ assert(router.includes("'rankings'")&&router.includes('County Rankings & Insight
 assert(lazy.includes('assets/rankings-insights.js')&&lazy.includes("view==='rankings'"),'rankings UI not lazy-loaded');
 assert(router.includes('assets/rankings-visual-v2.js')&&router.includes("next.view==='rankings'"),'rankings visual v2 is not route-lazy-loaded');
 for(const token of ['development_snapshot','fiscal_delivery','indicator_rankings','strengths_and_gaps','administration','recognition','evidence'])assert(js.includes(token),`rankings UI missing data surface ${token}`);
-for(const token of ['data/results/county-results.json','ri-development-spectrum','plausible_min_rank','plausible_max_rank','ri-score-sparkbar','data-ri-sort','data-v2-tooltip','prefers-reduced-motion'])assert(visual.includes(token)||visualCss.includes(token),`rankings visual v2 missing ${token}`);
+for(const token of ['data/results/county-results.json','ri-development-spectrum','v2-dev-beeswarm','plausible_min_rank','plausible_max_rank','ri-score-sparkbar','data-ri-sort','data-v2-tooltip','prefers-reduced-motion'])assert(visual.includes(token)||visualCss.includes(token),`rankings visual v2 missing ${token}`);
 assert(visual.includes('diagnostic_rank')&&visual.includes('rankPct'),'development spectrum must use diagnostic rank for the uncertainty axis');
 assert(visual.includes("KDA.loadStyle('assets/rankings-visual-v2.css'")&&visualCss.includes('.ri-spectrum-whisker'),'rankings visual v2 style contract missing');
+assert(visual.includes("visual.outerHTML=html")&&siteV2.includes("$('#v2-dev-beeswarm')"),'development v2 must replace, not duplicate, the preliminary site-v2 beeswarm');
+assert(visual.includes('window.KDAV2?.pin?.'),'rankings development dots must reuse the shared v2 county pin state');
 assert(css.includes('.rankings-route')&&css.includes('.ri-table'),'rankings styles missing');
 assert(visualCss.includes('@media(prefers-reduced-motion:reduce)'),'rankings visual v2 must respect reduced motion');
 const syntax=spawnSync(process.execPath,['--check','assets/rankings-visual-v2.js'],{encoding:'utf8'});
