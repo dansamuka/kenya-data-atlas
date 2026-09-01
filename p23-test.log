@@ -1,0 +1,369 @@
+
+> kenya-data-atlas@1.0.0 test
+> npm run ui:validate && npm run viz:validate && npm run performance:validate && npm run ia:validate && npm run results:validate && npm run rankings:validate && npm run series:validate && npm run mobile:validate && npm run map:validate && npm run countyiq:validate && npm run policy:validate && npm run evidence:validate && npm run opportunities:validate && npm run distribution:validate && npm run completeness:validate && npm run p20:validate && npm run p21:validate && npm run p22:validate && npm run p17:validate && npm run project:validate && npm run geography:validate && npm run catalogue:validate && npm run indicators:validate && npm run sprint1:validate && npm run native-api:validate && npm run sprint2:validate && npm run sprint3:validate && npm run life:validate && npm run prep05:validate && npm run p16:static
+
+
+> kenya-data-atlas@1.0.0 ui:validate
+> node --check assets/data-loader.js && node --check assets/router.js && node --check assets/app.js && node --check assets/compare.js && node --check assets/geo-explorer.js && node --check assets/sprint2-voters.js && node --check assets/ux-polish.js && node --check assets/public-cleanup.js && node --check assets/site-search.js && node --check assets/lazy-integrations.js && node --check assets/routed-views.js && node --check assets/series-browser.js && node --check assets/place-profile.js && node --check assets/completion-surface.js && node scripts/ui/validate-completion-surface.mjs && node --check assets/countyiq-view.js && node --check assets/evidence-hub.js && node --check assets/opportunity-finder.js && node --check assets/rankings-insights.js && node --check assets/countyiq.js && node --check assets/countyiq-sample.js && node --check assets/countyiq-roadmap.js && node --check assets/countyiq-polish.js && node --check assets/pre-p05-hardening.js && node --check assets/viz-enhancements.js
+
+PUBLIC_UI_GOVERNANCE_CLEANUP_OK resolved=4744 pct=23.58 county=47
+
+> kenya-data-atlas@1.0.0 viz:validate
+> node scripts/ui/validate-viz-enhancements.mjs
+
+PASS: enhancement JS is lazy-loaded
+PASS: enhancement CSS is lazy-loaded
+PASS: visual route gate excludes home
+PASS: rankings distribution exists
+PASS: Pulse sparklines use published observations
+PASS: life comparison paired bars exist
+PASS: series overlay compatibility is explicit
+PASS: series overlays are capped at three
+PASS: overlay styles are not colour-only
+PASS: map contrast control is accessible
+PASS: new interactive elements have focus treatment
+PASS: series observer watches route renderer state only
+Visualization enhancement validation passed (12 checks).
+
+> kenya-data-atlas@1.0.0 performance:validate
+> node scripts/performance/validate-p01.mjs
+
+P01_FIRST_PAINT_SCRIPT_CONTRACT_OK
+P01_SHARED_LOADER_OK
+P01_LAZY_CONSUMERS_OK
+P01_COMPACT_DISPLAY_DATA_OK
+P01_ASSET_BUDGET_OK direct_js=69773B first_data=74018B pulse=68426B
+P01_DEFERRED_REFERENCE observations=11835046B series=5550768B wards=44400875B
+P01_PERFORMANCE_ALL_OK
+
+> kenya-data-atlas@1.0.0 ia:validate
+> node scripts/ui/validate-routed-views.mjs
+
+IA_EIGHT_ROUTE_STRUCTURE_OK
+IA_SHAREABLE_STATE_CONTRACT_OK
+IA_VIEW_POLISH_OK route_specific_assets=deferred
+IA_CHOROPLETH_RESTORED_OK
+IA_COUNTYIQ_INTEGRATED_OK legacy_page=removed
+IA_PHASE0_CLEANUP_OK
+IA_BRANCH_RECONCILIATION_OK
+IA_ROUTED_VIEWS_ALL_OK
+
+> kenya-data-atlas@1.0.0 results:validate
+> node scripts/results/validate-results.mjs
+
+PUBLIC_RESULTS_VALID counties=47 ranked_indicators=14 fiscal_scores=46 recognition=6
+
+> kenya-data-atlas@1.0.0 rankings:validate
+> node scripts/ui/validate-rankings-insights.mjs
+
+RANKINGS_INSIGHTS_UI_VALID counties=47 indicators=14 fiscal=46 visual_v2=ok
+
+> kenya-data-atlas@1.0.0 series:validate
+> node scripts/ui/validate-series-browser.mjs
+
+SERIES_DATASET_CATALOGUE_OK datasets=43 series=4599
+SERIES_BROWSER_ROUTE_SWITCH_OK
+SERIES_BROWSER_LAZY_MOBILE_OK
+SERIES_BROWSER_ALL_OK
+
+> kenya-data-atlas@1.0.0 mobile:validate
+> node scripts/ui/validate-mobile.mjs
+
+MOBILE_DIRECT_LOAD_OK
+MOBILE_NAV_TOUCH_CONTRACT_OK
+MOBILE_EXPLORE_CONTRACT_OK
+MOBILE_COMPARE_CONTRACT_OK
+MOBILE_DENSITY_CONTRACT_OK
+MOBILE_OVERFLOW_GUARD_OK
+MOBILE_COUNTYIQ_DENSITY_OK fiscal=table-scroll sticky-fy insights=2up outcomes=2up
+MOBILE_UI_ALL_OK
+
+> kenya-data-atlas@1.0.0 map:validate
+> node scripts/indicators/validate-map-cascade.mjs
+
+MAP_SERIES_OBSERVATION_GEO_CONNECTION_OK connected=4599
+MAP_COVERAGE IND-POPULATION country=1 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-CPI-INFLATION country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-USD-KES country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-CBR country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-TBILL-91 country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-REGISTERED-VOTERS country=1 county=47 constituency=290 ward=0
+MAP_COVERAGE IND-LAND-AREA country=1 county=47 constituency=290 ward=1450
+MAP_COVERAGE IND-FUEL-PETROL country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-STATISTICAL-PERFORMANCE country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-ELECTRICITY-ACCESS-WB country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-GDP-NATIONAL country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-GDP-PER-CAPITA-NATIONAL country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-GDP-GROWTH country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-LIFE-EXPECTANCY country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-POPULATION-WB country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-POPULATION-GROWTH country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-NET-MIGRATION country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-HUMAN-CAPITAL-INDEX country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-POVERTY-RATE-INTL country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-UNEMPLOYMENT-MODELLED country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-CPI-INFLATION-WB-ANNUAL country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-FOREST-AREA country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-CO2-PER-CAPITA country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-FRESHWATER-WITHDRAWAL country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-RENEWABLE-ELECTRICITY country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-SAFE-SANITATION country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-INTERNET-USERS-WB country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-HOMICIDE-RATE country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-WOMEN-PARLIAMENT-SEATS country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-FDI-NET-INFLOWS country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-GINI-WB country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-POVERTY-RATE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-STUNTING-RATE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-IMMUNIZATION-RATE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MATERNAL-HEALTH country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HEALTH-FACILITY-COUNT country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-PUBLIC-PRIMARY-SCHOOLS country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-PRIMARY-CLASSROOM-TEACHERS country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-PUBLIC-SECONDARY-SCHOOLS country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-SECONDARY-TEACHERS country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-AGRICULTURE-GVA country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MANUFACTURING-GVA country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-AGRICULTURE-GCP-SHARE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MANUFACTURING-GCP-SHARE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MAIZE-AREA country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MAIZE-PRODUCTION country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MAIZE-YIELD country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-INTERNET-USE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COMPUTER-USE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-MAIN-GRID-ELECTRICITY country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-GCP-CURRENT country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-BUDGET-TOTAL country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-EXPENDITURE-TOTAL country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-BUDGET-ABSORPTION country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-DEVELOPMENT-ABSORPTION country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-USD-KES-MONTHLY-AVG country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-TBILL-91-MONTHLY-AVG country=1 county=0 constituency=0 ward=0
+MAP_COVERAGE IND-POP-2009 country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOUSEHOLD-SIZE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-LITERACY-RATE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOUSING-MATERIAL country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-DISABILITY-PREVALENCE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HIV-PREVALENCE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-TEENAGE-PREGNANCY country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOME-BIRTH-RATE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-CONTRACEPTIVE-USE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-FGM-CHILD-MARRIAGE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-OSR country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-PENDING-BILLS country=0 county=46 constituency=0 ward=0
+MAP_COVERAGE IND-COUNTY-AUDIT-OPINION country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-ELECTRICITY-ACCESS country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-WATER-ACCESS country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HEALTH-FACILITY-DENSITY country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-INPATIENT-SERVICE-AVAILABILITY country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOUSEHOLD-CAR-OWNERSHIP country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-CLASS-C-RURAL-ROAD-LENGTH country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-RENT-BURDEN country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HOUSING-OWNER-OCCUPIED country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-HEALTH-FACILITY-STOCK country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-SCHOOL-ATTENDANCE-RATE country=0 county=47 constituency=0 ward=0
+MAP_COVERAGE IND-LABOUR-FORCE-PARTICIPATION country=0 county=47 constituency=0 ward=0
+MAP_ADVERTISED_LEVEL_GAPS IND-POPULATION:constituency+ward,IND-REGISTERED-VOTERS:ward,IND-HOUSEHOLD-SIZE:constituency,IND-HEALTH-FACILITY-DENSITY:constituency+ward
+MAP_SPRINT2_VOTER_DRILLDOWN_CONTRACT_OK counties=47 constituencies=290 wards=1440 holds=10
+MAP_CASCADE_ALL_OK
+
+> kenya-data-atlas@1.0.0 countyiq:validate
+> node scripts/countyiq/validate-scaffold.mjs all && node scripts/countyiq/validate-mart.mjs && node scripts/countyiq/validate-runtime.mjs && node scripts/countyiq/validate-p03.mjs && node scripts/countyiq/validate-p04.mjs && node scripts/countyiq/validate-p05.mjs && node scripts/countyiq/validate-p06.mjs && node scripts/countyiq/validate-p07.mjs && node scripts/countyiq/validate-p08.mjs && node scripts/countyiq/validate-p09.mjs && node scripts/countyiq/validate-p10.mjs && node scripts/countyiq/validate-p11.mjs
+
+COUNTYIQ_ROADMAP_OK
+COUNTYIQ_SCHEMA_OK
+COUNTYIQ_WEBSITE_SCAFFOLD_OK legacy_page=removed route_assets=lazy
+COUNTYIQ_CI_WIRED_OK
+COUNTYIQ_SCAFFOLD_ALL_OK
+COUNTYIQ_MART_47_COUNTIES_OK
+COUNTYIQ_MART_TRACEABILITY_OK metrics=2537 history=4846 rankable_records=658
+COUNTYIQ_MART_RUNTIME_SWITCH_OK
+COUNTYIQ_MART_ALL_OK
+COUNTYIQ_SAMPLE_SOURCE_MATCH_OK
+COUNTYIQ_LEGACY_RESILIENCE_OK
+COUNTYIQ_INTEGRATED_MART_NONFATAL_OK null_percentile_guard=on
+COUNTYIQ_DEMO_LABELS_OK
+COUNTYIQ_RUNTIME_ALL_OK
+P03_47X12_FISCAL_HISTORY_OK
+P03_COMMON_PERIOD_RANKS_OK
+P03_DENOMINATOR_DISCIPLINE_OK
+P03_MOBILE_FISCAL_UI_OK
+P03_ALL_OK
+COUNTYIQ_P04_47X5_OK metrics=235
+COUNTYIQ_P04_SURVEY_PRECISION_OK
+COUNTYIQ_P04_RANKINGS_WITHHELD_OK
+COUNTYIQ_P04_FACILITY_RECONCILIATION_OK total=14883
+COUNTYIQ_P04_UI_OK
+COUNTYIQ_P04_ALL_OK
+COUNTYIQ_P05_SOURCE_RECONCILIATION_OK
+COUNTYIQ_P05_CATALOGUE_PROVENANCE_OK
+COUNTYIQ_P05_47X14_OK metrics=658
+COUNTYIQ_P05_NO_INHERITANCE_OK
+COUNTYIQ_P05_DERIVED_BADGES_OK
+COUNTYIQ_P05_BREADTH_GATE_OK indicators=52 domains=7
+COUNTYIQ_P05_UI_OK
+P19_PUBLIC_COUNTY_PROFILE_47X14_OK metrics=658 navigation=unified
+P19_NO_EXTRA_DATA_FETCH_OK
+P19_UNIFIED_TOPIC_SURFACE_OK
+COUNTYIQ_P05_ROADMAP_OK next=none_all_complete
+COUNTYIQ_P05_P19_ALL_OK
+COUNTYIQ_P06_METHODOLOGY_PUBLISHED_OK
+COUNTYIQ_P06_PEER_GROUPS_OK tiers={"1":12,"2":12,"3":12,"4":11}
+COUNTYIQ_P06_PEER_GROUP_NEUTRALITY_OK
+COUNTYIQ_P06_RANKING_OK ranked=658 directional=235 non_directional=423 trend_eligible=282
+COUNTYIQ_P06_DIRECTION_SPOTCHECK_OK
+COUNTYIQ_P06_UI_OK
+COUNTYIQ_P06_UX_CONTRACT_OK
+COUNTYIQ_P06_ROADMAP_OK next=none_all_complete
+COUNTYIQ_P06_ALL_OK
+COUNTYIQ_P07_GAPS_OK gaps=235 monetary=47
+COUNTYIQ_P07_NARRATIVE_OK working_well=62 needs_attention=42 changed=95
+COUNTYIQ_P07_DIRECTION_WORDING_OK
+COUNTYIQ_P07_UI_OK
+COUNTYIQ_P07_ROADMAP_OK next=none_all_complete
+COUNTYIQ_P07_ALL_OK
+COUNTYIQ_P08_METHODOLOGY_PUBLISHED_OK indicators=5 domains_included=4 domains_excluded=3
+COUNTYIQ_P08_SENSITIVITY_SCENARIOS_OK scenarios=3
+COUNTYIQ_P08_ROBUSTNESS_OK counties=47 avg_rank_range=10.1
+COUNTYIQ_P08_COMPREHENSIVENESS_DISCLAIMER_OK
+COUNTYIQ_P08_UI_OK
+COUNTYIQ_P08_ROADMAP_OK next=none_all_complete
+COUNTYIQ_P08_ALL_OK
+COUNTYIQ_P09_SCOPE_DECISION_OK snapshot=go longitudinal=no-go
+COUNTYIQ_P09_SNAPSHOT_ROBUSTNESS_OK adjacent_share=1 avg_plausible_rank_range=4.5
+COUNTYIQ_P09_LONGITUDINAL_LIMITATION_OK avg_spearman=0.43
+COUNTYIQ_P09_COUNTY_SNAPSHOT_RECORDS_OK counties=47
+COUNTYIQ_P09_ALL_OK
+COUNTYIQ_P10_SOURCE_AND_PERIOD_OK counties=47 fy=2024/25
+COUNTYIQ_P10_METHOD_OK pillars=3 wage_audit=non_scored
+COUNTYIQ_P10_SCORE_COVERAGE_OK scored=46 incomplete=KEN-C033
+COUNTYIQ_P10_ACCOUNTABILITY_SIGNALS_OK wage_compliant=8
+COUNTYIQ_P10_ALL_OK
+COUNTYIQ_P11_ATTRIBUTION_GUARDRAIL_OK
+COUNTYIQ_P11_ADMIN_PERIODS_OK records=47
+COUNTYIQ_P11_BASELINE_CHANGE_RECOMPUTATION_OK counties=47
+COUNTYIQ_P11_RECOGNITION_RULES_OK categories=6
+COUNTYIQ_P11_ALL_OK
+
+> kenya-data-atlas@1.0.0 policy:validate
+> node scripts/policy/validate-policy.mjs
+
+P12_POLICY_VERSION_OK P12-policy-v1
+P12_POLICY_INDICATORS_OK count=103
+P12_POLICY_MART_CONVERGENCE_OK counties=47
+P12_POLICY_CROSS_LEVEL_OK series=4309
+P12_CANONICAL_CONVERGENCE_ALL_OK
+
+> kenya-data-atlas@1.0.0 evidence:validate
+> node scripts/evidence/validate-p13.mjs
+
+P13_CIDP_47_OK counties=47
+P13_DOCUMENT_FAMILIES_OK families=7 non_cidp=6
+P13_EVIDENCE_STATES_OK verified=247 collections=141 unavailable=0
+P13_UI_AND_BUILD_WIRING_OK
+P13_ALL_OK
+
+> kenya-data-atlas@1.0.0 opportunities:validate
+> node scripts/p14/validate-p14.mjs
+
+P14_REGISTRY_OK programmes=9 live=9
+P14_FRESHNESS_POLICY_OK verification=2026-08-30
+P14_MATCH_REPRODUCIBILITY_OK counties=23 matches=184
+P14_UI_PUBLIC_COPY_OK
+P14_ALL_OK
+
+> kenya-data-atlas@1.0.0 distribution:validate
+> node scripts/distribution/validate-distribution.mjs
+
+P15_NDJSON_OK products=11
+P15_JSON_SCHEMAS_OK count=7
+P15_COUNTY_SUBSETS_OK count=47
+P15_INDICATOR_SUBSETS_OK count=103
+P15_CHECKSUMS_OK files=195
+P15_DEVELOPER_SURFACE_OK
+P15_ROADMAP_HANDOFF_OK complete=P17 terminal=true p14=complete
+P15_DATA_DISTRIBUTION_ALL_OK version=1.0.0 contract=1.0.0
+
+> kenya-data-atlas@1.0.0 completeness:validate
+> node scripts/completeness/validate-slot-ledger.mjs
+
+P18_COMPLETENESS_VALIDATE_OK slots=20115 resolved=4744 unresolved=15371
+P18_NO_UNKNOWN_BLANKS_OK unknown=0
+P18_GOVERNED_CLOSURE_STATES_OK configured=490 unavailable=114 retired_replaced=376
+P18_P22_UNAVAILABLE_RECONCILIATION_OK pre_p22=48 p22=66 total=114
+P18_CANONICAL_LIFECYCLE_AUTHORITY_OK
+
+> kenya-data-atlas@1.0.0 p20:validate
+> node scripts/p20/validate-sourced-county.mjs && node scripts/p20/validate-audit-opinion.mjs && node scripts/p20/validate-household-size.mjs && node scripts/p20/validate-kdhs-additional.mjs && node scripts/p20/validate-kdhs-contraceptive.mjs && node scripts/p20/validate-kdhs-fgm.mjs && node scripts/p20/validate-kdhs-literacy-women.mjs && node scripts/p20/validate-disability-prevalence.mjs && node scripts/p20/validate-housing-durable-wall.mjs && node scripts/p20/validate-kenphia-hiv-prevalence.mjs && node scripts/p20/validate-health-facility-density.mjs && node scripts/p20/validate-pending-bills.mjs && node scripts/p20/validate-substance-availability.mjs && node scripts/p20/validate-consolidated.mjs
+
+P20_47X2_SOURCE_RECONCILIATION_OK promoted=94
+P20_NO_INHERITANCE_OK
+P20_HISTORICAL_SCOPE_GUARDS_RETIRED_OK final_families_have_own_validators=true
+P20_SOURCE_TRANCHES_ALL_OK
+P20_AUDIT_47X47_RECONCILIATION_OK category=Qualified
+P20_AUDIT_NO_NUMERIC_SCORE_OK
+P20_HOUSEHOLD_SIZE_47_RECONCILIATION_OK
+P20_HOUSEHOLD_SIZE_NO_INHERITANCE_OK constituency=290_unresolved
+P20_KDHS_47X2_RECONCILIATION_OK promoted=94
+P20_KDHS_SURVEY_PRECISION_OK precision=published_weighted_denominator
+P20_KDHS_NO_RANKING_NO_INHERITANCE_OK
+P20_KDHS_ADDITIONAL_ALL_OK
+P20_KDHS_CONTRACEPTIVE_47X1_OK promoted=47
+P20_KDHS_CONTRACEPTIVE_PRECISION_OK national_n=17822 displayed_county_sum=17838
+P20_KDHS_FGM_47X1_OK promoted=47 definition=women_15_49
+P20_KDHS_FGM_PRECISION_OK national_n=16716 displayed_county_sum=16713
+P20_KDHS_FGM_SENSITIVE_RANKING_WITHHELD_OK
+P20_KDHS_LITERACY_WOMEN_47X1_OK promoted=47
+P20_KDHS_LITERACY_PRECISION_OK national=90.9 n=32156 no_combined_sex_inference=true
+P20_DISABILITY_47X1_RECONCILIATION_OK promoted=47
+P20_DISABILITY_CENSUS_DEFINITION_OK table=2.13 total_column_only
+P20_DISABILITY_ALL_OK
+P20_DURABLE_WALL_47X1_OK promoted=47 badge=B
+P20_DURABLE_WALL_AGGREGATION_OK national_anchor=51.3 no_inheritance=true
+P20_KENPHIA_HIV_47X1_OK promoted=47
+P20_KENPHIA_HIV_UNCERTAINTY_OK n=27745 national=4.9 garissa_bounds=null
+P20_FACILITY_DENSITY_47X1_OK promoted=47 badge=B
+P20_FACILITY_DENSITY_DENOMINATOR_OK year=2023 facilities=14883 population=51525585 lower_level_inheritance=false
+P20_PENDING_BILLS_46_NUMERIC_OK national=176904.2 displayed_sum=176904.5
+P20_PENDING_BILLS_NAROK_UNAVAILABLE_OK zero_fabricated=false
+P20_SUBSTANCE_COUNTY_UNAVAILABLE_47_OK numeric_series=0
+P20_SUBSTANCE_NO_REGIONAL_INHERITANCE_OK sampling_uncertainty_fabricated=false
+P20_CONSOLIDATED_COMPLETENESS_OK resolved=4744 p20_remaining=0
+P20_FINAL_FAMILIES_OK facility_density=47 pending_bills=46+1_unavailable substance=47_unavailable p20_unavailable=48
+P20_COMPLETE_OK queue=0
+
+> kenya-data-atlas@1.0.0 p21:validate
+> node scripts/p21/validate-work-queue.mjs && node scripts/p21/validate-agriculture-replacement.mjs && node scripts/p21/validate-social-assistance.mjs && node scripts/p21/validate-vehicle-ownership.mjs && node scripts/p21/validate-class-c-road-length.mjs
+
+P21_WORK_QUEUE_VALIDATE_OK slots=0 families=0
+P21_P20_DEPENDENCY_CLOSED_OK p20=0
+P21_AGRICULTURE_REPLACEMENT_OK closed=47 remaining=0
+P21_AGRICULTURE_SUCCESSORS_47X3_OK
+P21_AGRICULTURE_NO_FABRICATION_OK
+P21_SOCIAL_ASSISTANCE_VALIDATE_OK retired_slots=47 successor_series=47 national=16.8 n=37911 county_displayed_receiving=6376 national_displayed_receiving=6380 ranking=withheld
+P21_VEHICLE_OWNERSHIP_VALIDATE_OK retired_slots=47 motorcycle_series=47 car_series=47 synthetic_total=false registration_inference=false
+P21_CLASS_C_ROAD_VALIDATE_OK counties=47 displayed_county_sum=28150.5 national=28149.9 p21=0 resolved_now=4744
+
+> kenya-data-atlas@1.0.0 p22:validate
+> node scripts/p22/validate-ndma-freshness.mjs && node scripts/p22/validate-food-security-sources.mjs && node scripts/p22/validate-terminal.mjs
+
+P22_NDMA_FRESHNESS_OK counties=22 county_reference=2026-06 as_of=2026-09 lag_months=3
+P22_ASAL_ELIGIBILITY_OK whole_county=22 partial_nyeri_kieni=excluded
+P22_NO_STALE_PROMOTION_OK slot_resolution_effect=none national_inheritance=blocked
+P22_FOOD_SECURITY_SOURCE_GATE_OK counties=22 sources=3
+P22_FOOD_SECURITY_EXPIRED_SRA_OK current_end=2026-03-31 projected_end=2026-06-30
+P22_FOOD_SECURITY_NO_PROMOTION_OK pending=2026_lra_payload
+file:///home/runner/work/kenya-data-atlas/kenya-data-atlas/scripts/p22/validate-terminal.mjs:6
+const assert=(ok,msg)=>{if(!ok)throw new Error(`P22 terminal validation: ${msg}`);};
+                                     ^
+
+Error: P22 terminal validation: terminal completeness totals must equal 3,874 / 16,241 / 19.26%
+    at assert (file:///home/runner/work/kenya-data-atlas/kenya-data-atlas/scripts/p22/validate-terminal.mjs:6:38)
+    at file:///home/runner/work/kenya-data-atlas/kenya-data-atlas/scripts/p22/validate-terminal.mjs:70:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.2
