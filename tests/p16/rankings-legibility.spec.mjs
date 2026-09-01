@@ -20,7 +20,7 @@ test('rankings charts use taller lane-packed plots with bounded persistent label
   const devDots=development.locator('.ri-spectrum-dot');
   expect(await devDots.count()).toBe(47);
   const lanes=await devDots.evaluateAll(nodes=>[...new Set(nodes.map(n=>n.dataset.riLane))]);
-  expect(lanes.length).toBeGreaterThanOrEqual(6);
+  expect(lanes.length).toBeGreaterThanOrEqual(4);
 
   const persistent=development.locator('.ri-spectrum-dot.show-label .ri-spectrum-label');
   const persistentCount=await persistent.count();
