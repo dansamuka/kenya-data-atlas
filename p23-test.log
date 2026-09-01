@@ -355,15 +355,333 @@ P22_NO_STALE_PROMOTION_OK slot_resolution_effect=none national_inheritance=block
 P22_FOOD_SECURITY_SOURCE_GATE_OK counties=22 sources=3
 P22_FOOD_SECURITY_EXPIRED_SRA_OK current_end=2026-03-31 projected_end=2026-06-30
 P22_FOOD_SECURITY_NO_PROMOTION_OK pending=2026_lra_payload
-file:///home/runner/work/kenya-data-atlas/kenya-data-atlas/scripts/p22/validate-terminal.mjs:6
-const assert=(ok,msg)=>{if(!ok)throw new Error(`P22 terminal validation: ${msg}`);};
-                                     ^
+P22_TERMINAL_VALIDATE_OK governed=66 resolved=66 direct_current=0 evidence_constrained=66 queue=0
+P22_FRESHNESS_GUARD_OK stale_drought_not_current=true expired_food_not_current=true climate_proxy_blocked=true
+P22_COMPLETENESS_OK baseline_resolved=3874 current_resolved=4744 unresolved=15371 resolved_pct=23.58 unknown=0 next=P23
 
-Error: P22 terminal validation: terminal completeness totals must equal 3,874 / 16,241 / 19.26%
-    at assert (file:///home/runner/work/kenya-data-atlas/kenya-data-atlas/scripts/p22/validate-terminal.mjs:6:38)
-    at file:///home/runner/work/kenya-data-atlas/kenya-data-atlas/scripts/p22/validate-terminal.mjs:70:1
-    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
-    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
-    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+> kenya-data-atlas@1.0.0 p17:validate
+> node scripts/p17/validate-release.mjs
 
-Node.js v22.23.2
+P17_RELEASE_PACKAGE_OK status=released
+P17_RELEASE_COUNTS_OK indicators=103 series=4599 observations=8382
+P17_UNRESOLVED_REGISTER_OK items=5+
+P17_GOVERNANCE_STATE_OK
+
+> kenya-data-atlas@1.0.0 project:validate
+> node scripts/project/validate-roadmap.mjs
+
+PROJECT_PHASES_P00_P17_OK
+PROJECT_TERMINAL_STATE_V1_OK
+PROJECT_ALL_PHASES_COMPLETE_OK
+
+> kenya-data-atlas@1.0.0 geography:validate
+> node scripts/geography/validate-registry.mjs
+
+PASS: 1788 geographies (1 country, 47 county, 290 constituency, 1450 ward), 3576 aliases, 1788 boundary versions on delimitation era 2012-01.
+      Codes well-formed and sequentially complete; names hygienic; hierarchy, hashes and geometry lineage valid; parents dissolved from children with zero nesting failures.
+      note: 1 recorded source correction(s) applied: KDA-COR-0001 BARINGO NORTH CONSTITUENCY ID
+      note: 194 reference-layer divergence(s) registered, 15 unresolved parent conflicts; registry hierarchy governs.
+
+> kenya-data-atlas@1.0.0 catalogue:validate
+> node scripts/catalogue/validate-catalogue.mjs
+
+PASS: 15 agencies, 15 sources, 64 datasets, 53 releases, 17 source files and 78 lineage edges; all required metadata and relationships valid.
+
+> kenya-data-atlas@1.0.0 indicators:validate
+> node scripts/indicators/validate-registry.mjs && node scripts/indicators/validate-placeholder-taxonomy.mjs && node scripts/indicators/validate-worldbank-integration.mjs
+
+PASS: 21 units, 103 indicators, 4599 series, 8382 observations.
+      Every badge re-derived and matched; every series key unique; every observation traceable to a source and release; 0 held for review pending publication clearance.
+PASS placeholder taxonomy: 103 indicators; lifecycle/tab/subset/survey rules valid.
+FAIL: 291 World Bank integration error(s)
+  - cross-level eligibility has 4309 series rows; expected 4599 published series
+  - KDA-VOTERS-CON-001-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-002-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-003-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-004-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-005-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-006-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-007-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-008-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-009-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-010-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-011-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-012-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-013-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-014-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-015-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-016-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-017-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-018-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-019-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-020-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-021-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-022-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-023-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-024-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-025-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-026-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-027-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-028-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-029-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-030-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-031-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-032-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-033-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-034-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-035-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-036-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-037-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-038-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-039-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-040-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-041-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-042-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-043-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-044-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-045-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-046-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-047-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-048-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-049-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-050-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-051-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-052-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-053-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-054-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-055-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-056-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-057-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-058-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-059-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-060-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-061-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-062-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-063-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-064-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-065-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-066-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-067-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-068-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-069-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-070-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-071-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-072-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-073-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-074-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-075-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-076-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-077-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-078-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-079-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-080-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-081-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-082-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-083-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-084-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-085-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-086-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-087-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-088-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-089-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-090-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-091-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-092-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-093-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-094-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-095-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-096-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-097-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-098-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-099-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-100-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-101-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-102-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-103-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-104-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-105-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-106-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-107-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-108-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-109-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-110-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-111-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-112-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-113-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-114-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-115-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-116-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-117-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-118-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-119-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-120-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-121-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-122-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-123-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-124-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-125-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-126-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-127-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-128-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-129-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-130-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-131-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-132-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-133-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-134-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-135-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-136-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-137-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-138-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-139-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-140-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-141-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-142-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-143-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-144-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-145-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-146-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-147-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-148-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-149-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-150-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-151-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-152-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-153-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-154-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-155-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-156-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-157-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-158-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-159-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-160-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-161-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-162-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-163-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-164-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-165-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-166-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-167-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-168-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-169-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-170-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-171-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-172-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-173-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-174-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-175-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-176-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-177-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-178-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-179-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-180-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-181-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-182-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-183-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-184-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-185-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-186-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-187-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-188-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-189-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-190-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-191-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-192-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-193-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-194-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-195-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-196-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-197-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-198-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-199-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-200-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-201-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-202-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-203-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-204-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-205-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-206-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-207-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-208-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-209-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-210-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-211-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-212-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-213-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-214-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-215-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-216-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-217-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-218-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-219-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-220-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-221-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-222-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-223-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-224-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-225-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-226-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-227-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-228-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-229-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-230-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-231-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-232-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-233-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-234-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-235-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-236-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-237-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-238-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-239-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-240-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-241-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-242-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-243-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-244-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-245-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-246-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-247-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-248-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-249-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-250-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-251-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-252-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-253-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-254-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-255-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-256-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-257-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-258-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-259-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-260-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-261-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-262-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-263-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-264-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-265-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-266-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-267-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-268-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-269-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-270-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-271-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-272-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-273-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-274-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-275-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-276-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-277-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-278-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-279-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-280-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-281-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-282-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-283-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-284-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-285-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-286-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-287-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-288-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-289-2022: missing series-level eligibility row
+  - KDA-VOTERS-CON-290-2022: missing series-level eligibility row
