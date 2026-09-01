@@ -20,15 +20,21 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm run ui:build
-      - name: Commit generated Pulse product
+      - name: Rebuild canonical Pulse history and downstream products
         run: |
-          if git diff --quiet -- data/ui/initial-pulse.json; then
-            echo 'Pulse product already in sync.'
+          npm run indicators:build
+          npm run distribution:build
+          npm run ui:build
+      - name: Commit generated canonical products
+        run: |
+          if git diff --quiet -- data/indicators/registry data/distribution data/ui/initial-pulse.json; then
+            echo 'Pulse history products already in sync.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ui/initial-pulse.json
-          git commit -m 'Sync generated Pulse history product'
+          git add data/indicators/registry/series.json data/indicators/registry/series.csv \
+                  data/indicators/registry/observations.json data/indicators/registry/observations.csv \
+                  data/distribution data/ui/initial-pulse.json
+          git commit -m 'Sync canonical Pulse history products'
           git push origin HEAD:pulse-history-backfill
