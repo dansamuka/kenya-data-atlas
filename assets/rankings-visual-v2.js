@@ -9,6 +9,10 @@
   const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
   const finite=v=>Number.isFinite(Number(v));
   const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const countyAcronyms=new Map(Object.entries({
+    'Baringo':'BAR','Bomet':'BOM','Bungoma':'BNG','Busia':'BUS','Elgeyo/Marakwet':'ELM','Embu':'EMB','Garissa':'GRS','Homa Bay':'HBY','Isiolo':'ISL','Kajiado':'KJD','Kakamega':'KAK','Kericho':'KRC','Kiambu':'KBU','Kilifi':'KLF','Kirinyaga':'KRG','Kisii':'KSI','Kisumu':'KSM','Kitui':'KTU','Kwale':'KWL','Laikipia':'LKP','Lamu':'LAM','Machakos':'MCK','Makueni':'MKN','Mandera':'MDR','Marsabit':'MRS','Meru':'MER','Migori':'MIG','Mombasa':'MSA',"Murang'a":'MUR','Nairobi':'NBO','Nakuru':'NKR','Nandi':'NDI','Narok':'NRK','Nyamira':'NYM','Nyandarua':'NDR','Nyeri':'NYR','Samburu':'SBR','Siaya':'SYA','Taita Taveta':'TTV','Tana River':'TNR','Tharaka-Nithi':'THN','Trans Nzoia':'TNZ','Turkana':'TRK','Uasin Gishu':'UGS','Vihiga':'VHG','Wajir':'WJR','West Pokot':'WPK'
+  }));
+  const countyAcronym=name=>countyAcronyms.get(String(name||''))||String(name||'').replace(/[^A-Za-z]/g,'').slice(0,3).toUpperCase();
   const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
   const state={data:null,bound:false,sortKey:'diagnostic_rank',sortDir:'asc',indicatorCode:null};
   let bootPromise=null;
@@ -36,15 +40,35 @@
     try{const stored=JSON.parse(sessionStorage.getItem('kda-v2-pinned')||'null');return stored?.geo_code||null;}catch(_){return null;}
   }
   function indicatorGeo(row,geoMap){return row?.geo_code||geoMap?.get?.(row?.county)||'';}
+  function packLanes(rows,xFor,laneCount,minGap){
+    const last=Array(laneCount).fill(-Infinity),out=new Map();
+    for(const row of rows){
+      const x=Number(xFor(row));let lane=last.findIndex(v=>x-v>=minGap);
+      if(lane<0){let oldest=0;for(let i=1;i<last.length;i+=1)if(last[i]<last[oldest])oldest=i;lane=oldest;}
+      last[lane]=x;out.set(row,lane);
+    }
+    return out;
+  }
+
+  function spectrumLabelRow(rank,isPinned){
+    if(rank<=5)return rank-1;
+    if(rank>=43)return rank-43;
+    return isPinned?5:null;
+  }
+
   function spectrum(dataRows){
     const rows=(dataRows||[]).filter(r=>finite(r.diagnostic_rank)).slice().sort((a,b)=>Number(a.diagnostic_rank)-Number(b.diagnostic_rank));
     if(rows.length<5)return'';
-    const marks=rows.map((r,index)=>{
+    const pinned=pinnedGeo(),lanes=packLanes(rows,r=>rankPct(r.diagnostic_rank),7,8.5);
+    const marks=rows.map(r=>{
       const rank=Number(r.diagnostic_rank),min=finite(r.plausible_min_rank)?Number(r.plausible_min_rank):rank,max=finite(r.plausible_max_rank)?Number(r.plausible_max_rank):rank;
-      const lo=Math.min(min,max),hi=Math.max(min,max),left=rankPct(lo),right=rankPct(hi),x=rankPct(rank),lane=index%5;
-      return `<span class="ri-spectrum-whisker ${bandClass(r)}" style="--x0:${left.toFixed(3)}%;--x1:${right.toFixed(3)}%;--lane:${lane}" aria-hidden="true"></span><button type="button" class="ri-spectrum-dot ${bandClass(r)}" style="--x:${x.toFixed(3)}%;--lane:${lane}" data-ri-geo="${esc(r.geo_code)}" data-ri-county="${esc(r.county)}" data-ri-score="${esc(r.score)}" data-ri-rank="${esc(rank)}" data-ri-range="#${esc(lo)}–#${esc(hi)}" data-v2-tooltip="${esc(r.county)} · score ${esc(r.score)} / 100 · diagnostic #${esc(rank)} · plausible #${esc(lo)}–#${esc(hi)}" aria-label="${esc(r.county)}, score ${esc(r.score)}, diagnostic position ${esc(rank)}, plausible position ${esc(lo)} to ${esc(hi)}"><span class="sr-only">${esc(r.county)}</span></button>`;
+      const lo=Math.min(min,max),hi=Math.max(min,max),left=rankPct(lo),right=rankPct(hi),x=rankPct(rank),lane=lanes.get(r)??0,isPinned=Boolean(pinned&&r.geo_code===pinned),showLabel=rank<=5||rank>=43||isPinned,labelBelow=lane<3,labelRow=spectrumLabelRow(rank,isPinned);
+      const labelEdge=rank<=5?' label-edge-start':rank>=43?' label-edge-end':'';
+      const classes=`ri-spectrum-dot ${bandClass(r)}${isPinned?' is-pinned':''}${showLabel?' show-label':''}${labelBelow?'':' label-below'}${showLabel?labelEdge:''}`;
+      const labelStyle=labelRow===null?'':`;--label-y:${8+labelRow*24}px`;
+      return `<span class="ri-spectrum-whisker ${bandClass(r)}" style="--x0:${left.toFixed(3)}%;--x1:${right.toFixed(3)}%;--lane:${lane}" data-ri-lane="${lane}" aria-hidden="true"></span><button type="button" class="${classes}" style="--x:${x.toFixed(3)}%;--lane:${lane}${labelStyle}" data-ri-lane="${lane}" data-ri-label-row="${labelRow??''}" data-ri-geo="${esc(r.geo_code)}" data-ri-county="${esc(r.county)}" data-ri-score="${esc(r.score)}" data-ri-rank="${esc(rank)}" data-ri-range="#${esc(lo)}–#${esc(hi)}" data-v2-tooltip="${esc(r.county)} · score ${esc(r.score)} / 100 · diagnostic #${esc(rank)} · plausible #${esc(lo)}–#${esc(hi)}" aria-label="${esc(r.county)}, score ${esc(r.score)}, diagnostic position ${esc(rank)}, plausible position ${esc(lo)} to ${esc(hi)}"><span class="ri-spectrum-label" aria-hidden="true">${esc(countyAcronym(r.county))}</span><span class="sr-only">${esc(r.county)}</span></button>`;
     }).join('');
-    return `<div class="ri-development-spectrum" id="v2-dev-beeswarm" data-ri-development-spectrum="true"><div class="ri-spectrum-head"><div><small>Position spectrum</small><strong>How counties cluster — without hiding uncertainty</strong></div><p>Dots use diagnostic position; whiskers show the published plausible rank range. Scores remain visible in the table below.</p></div><div class="ri-spectrum-legend" aria-label="Relative position bands"><span class="band-1"><i></i>Top 20%</span><span class="band-2"><i></i>20–40%</span><span class="band-3"><i></i>40–60%</span><span class="band-4"><i></i>60–80%</span><span class="band-5"><i></i>Bottom 20%</span></div><div class="ri-spectrum-scroll"><div class="ri-spectrum-plot" role="group" aria-label="County diagnostic position spectrum from 1 to 47">${marks}<div class="ri-spectrum-axis" aria-hidden="true"><span>#1</span><span>#12</span><span>#24</span><span>#36</span><span>#47</span></div></div></div><p class="ri-spectrum-note">Exact position is diagnostic. The uncertainty whisker is the published robustness range, not an extra modelled estimate.</p></div>`;
+    return `<div class="ri-development-spectrum" id="v2-dev-beeswarm" data-ri-development-spectrum="true"><div class="ri-spectrum-head"><div><small>Position spectrum</small><strong>How counties cluster — without hiding uncertainty</strong></div><p>Dots use diagnostic position; whiskers show the published plausible rank range. Key counties are labelled; point to or focus any dot to reveal its name.</p></div><div class="ri-spectrum-legend" aria-label="Relative position bands"><span class="band-1"><i></i>Top 20%</span><span class="band-2"><i></i>20–40%</span><span class="band-3"><i></i>40–60%</span><span class="band-4"><i></i>60–80%</span><span class="band-5"><i></i>Bottom 20%</span></div><div class="ri-spectrum-scroll"><div class="ri-spectrum-plot" role="group" aria-label="County diagnostic position spectrum from 1 to 47">${marks}<div class="ri-spectrum-axis" aria-hidden="true"><span>#1</span><span>#12</span><span>#24</span><span>#36</span><span>#47</span></div></div></div><p class="ri-spectrum-note">Exact position is diagnostic. The uncertainty whisker is the published robustness range, not an extra modelled estimate.</p></div>`;
   }
 
   function indicatorDistribution(group,geoMap){
@@ -53,17 +77,19 @@
     if(rows.length<2)return'';
     const maxRank=Math.max(...rows.map(r=>Number(r.ranking.rank)),rows.length),pinned=pinnedGeo();
     const xFor=r=>Math.max(0,Math.min(100,((Number(r.ranking.rank)-1)/Math.max(1,maxRank-1))*100));
-    const marks=rows.map(r=>{
-      const x=xFor(r),geo=indicatorGeo(r,geoMap),isPinned=Boolean(pinned&&geo===pinned);
+    const lanes=packLanes(rows,xFor,4,6.5),laneY=[78,108,140,170],middle=rows[Math.floor((rows.length-1)/2)];
+    const marks=rows.map((r,index)=>{
+      const x=xFor(r),geo=indicatorGeo(r,geoMap),isPinned=Boolean(pinned&&geo===pinned),lane=lanes.get(r)??0,y=laneY[lane],showLabel=index<3||index>=rows.length-3||r===middle||isPinned,labelBelow=lane<2;
       const label=`${r.county} · #${r.ranking.rank} of ${rows.length} · ${ordinal(r.ranking.percentile)} percentile · ${fmtValue(r.latest?.value,r.latest?.unit_code)}`;
-      return `<button type="button" class="ri-indicator-dot${isPinned?' is-pinned':''}" style="--x:${x.toFixed(3)}%" data-ri-indicator-geo="${esc(geo)}" data-v2-tooltip="${esc(label)}" aria-label="${esc(label)}${isPinned?', pinned county':''}"${geo?'':' disabled'}><span class="sr-only">${esc(r.county)}</span></button>`;
+      const classes=`ri-indicator-dot${isPinned?' is-pinned':''}${showLabel?' show-label':''}${labelBelow?'':' label-below'}`;
+      return `<button type="button" class="${classes}" style="--x:${x.toFixed(3)}%;--y:${y}px" data-ri-lane="${lane}" data-ri-indicator-geo="${esc(geo)}" data-v2-tooltip="${esc(label)}" aria-label="${esc(label)}${isPinned?', pinned county':''}"${geo?'':' disabled'}><span class="ri-indicator-label" aria-hidden="true">${esc(countyAcronym(r.county))}</span><span class="sr-only">${esc(r.county)}</span></button>`;
     }).join('');
     const selected=rows.find(r=>indicatorGeo(r,geoMap)===pinned)||null;
-    const first=rows[0],middle=rows[Math.floor((rows.length-1)/2)],last=rows.at(-1);
+    const first=rows[0],last=rows.at(-1);
     const selectedX=selected?xFor(selected):null,edge=selected?(Number(selected.ranking.rank)<=4?' edge-start':Number(selected.ranking.rank)>=maxRank-3?' edge-end':''):'';
     const pin=selected?`<div class="ri-indicator-pin${edge}" style="--x:${selectedX.toFixed(3)}%" aria-hidden="true"><span>You are here</span><strong>${esc(selected.county)}</strong></div>`:'';
     const context=selected?`<div class="ri-indicator-context" aria-live="polite"><span><small>Pinned county</small><strong>${esc(selected.county)}</strong></span><span><small>National rank</small><strong>#${esc(selected.ranking.rank)} of ${rows.length}</strong></span><span><small>National percentile</small><strong>${esc(ordinal(selected.ranking.percentile))}</strong></span><span><small>Latest published value</small><strong>${esc(fmtValue(selected.latest?.value,selected.latest?.unit_code))}</strong><small>${esc(selected.latest?.period_label||'')}</small></span></div>`:`<p class="ri-indicator-hint">Select any county dot to pin it across the Atlas and reveal its exact rank, percentile and latest published value.</p>`;
-    return `<div class="ri-indicator-distribution" id="v2-indicator-distribution" data-indicator-code="${esc(group.indicator_code)}"><div class="ri-indicator-dist-head"><div><small>National distribution</small><strong>Where counties sit on this indicator</strong></div><p>Position uses the published national rank. Percentile labels are read directly from the same ranking output.</p></div><div class="ri-indicator-scroll"><div class="ri-indicator-plot" role="group" aria-label="National rank distribution for ${esc(group.name)}">${pin}<div class="ri-indicator-track" aria-hidden="true"></div>${marks}<div class="ri-indicator-axis" aria-hidden="true"><span><strong>#${esc(first.ranking.rank)}</strong>${esc(ordinal(first.ranking.percentile))} percentile</span><span><strong>#${esc(middle.ranking.rank)}</strong>${esc(ordinal(middle.ranking.percentile))} percentile</span><span><strong>#${esc(last.ranking.rank)}</strong>${esc(ordinal(last.ranking.percentile))} percentile</span></div></div></div>${context}<p class="ri-spectrum-note">Ranks follow the published indicator direction shown in the table; the visual does not create a new score or trend.</p></div>`;
+    return `<div class="ri-indicator-distribution" id="v2-indicator-distribution" data-indicator-code="${esc(group.indicator_code)}"><div class="ri-indicator-dist-head"><div><small>National distribution</small><strong>Where counties sit on this indicator</strong></div><p>Position uses the published national rank. Key counties are labelled; every dot remains keyboard reachable and exposes the same published context.</p></div><div class="ri-indicator-scroll"><div class="ri-indicator-plot" role="group" aria-label="National rank distribution for ${esc(group.name)}">${pin}<div class="ri-indicator-track" aria-hidden="true"></div>${marks}<div class="ri-indicator-axis" aria-hidden="true"><span><strong>#${esc(first.ranking.rank)}</strong>${esc(ordinal(first.ranking.percentile))} percentile</span><span><strong>#${esc(middle.ranking.rank)}</strong>${esc(ordinal(middle.ranking.percentile))} percentile</span><span><strong>#${esc(last.ranking.rank)}</strong>${esc(ordinal(last.ranking.percentile))} percentile</span></div></div></div>${context}<p class="ri-spectrum-note">Ranks follow the published indicator direction shown in the table; the visual does not create a new score or trend.</p></div>`;
   }
 
   function decorateDevelopmentRows(d){
@@ -90,12 +116,9 @@
 
   function ensureDevelopmentVisual(d){
     const panel=$('[data-ri-panel="development"]'),wrap=$('.ri-table-wrap',panel);if(!panel||!wrap)return;
+    const html=spectrum(d.development_snapshot);if(!html)return;
     let visual=$('#v2-dev-beeswarm',panel);
-    if(!visual||!visual.classList.contains('ri-development-spectrum')){
-      const html=spectrum(d.development_snapshot);if(!html)return;
-      if(visual)visual.outerHTML=html;else wrap.insertAdjacentHTML('beforebegin',html);
-      visual=$('#v2-dev-beeswarm.ri-development-spectrum',panel);
-    }
+    if(visual)visual.outerHTML=html;else wrap.insertAdjacentHTML('beforebegin',html);
     decorateDevelopmentRows(d);
     ensureSortButtons();
   }
@@ -175,7 +198,7 @@
       const indicatorDot=event.target.closest('.ri-indicator-dot');if(indicatorDot&&isRankings()){
         const geo=indicatorDot.dataset.riIndicatorGeo;if(!geo)return;await window.KDAV2?.pin?.(geo,{announce:false});ensureIndicatorVisual(state.data);flashIndicatorRow(geo);return;
       }
-      const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){void window.KDAV2?.pin?.(dot.dataset.riGeo,{announce:false});flashRow(dot.dataset.riGeo);return;}
+      const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){await window.KDAV2?.pin?.(dot.dataset.riGeo,{announce:false});ensureDevelopmentVisual(state.data);flashRow(dot.dataset.riGeo);return;}
       const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings())requestAnimationFrame(()=>{if(tab.dataset.riTab==='indicator')ensureIndicatorVisual(state.data);animatePanel(tab.dataset.riTab);});
     });
     document.addEventListener('change',event=>{if(event.target?.matches?.('#ri-indicator-select')&&isRankings())requestAnimationFrame(()=>ensureIndicatorVisual(state.data));});
