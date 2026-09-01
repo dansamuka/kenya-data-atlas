@@ -56,6 +56,17 @@
     ensureSortButtons();
   }
 
+  function suppressUnsupportedAdministrationSlopes(){
+    const body=$('#ri-administration-body');if(!body)return;
+    $$('tr',body).forEach(row=>{
+      const existing=$('.v2-slope',row);
+      if(existing?.matches('svg'))existing.remove();
+      if(!$('.v2-slope',row)){
+        const marker=document.createElement('span');marker.className='v2-slope';marker.hidden=true;marker.setAttribute('aria-hidden','true');marker.dataset.suppressed='incompatible-units';row.appendChild(marker);
+      }
+    });
+  }
+
   function ensureSortButtons(){
     const table=$('[data-ri-panel="development"] .ri-table');if(!table||table.dataset.riSortReady==='true')return;
     table.dataset.riSortReady='true';const heads=$$('thead th',table);
@@ -109,7 +120,7 @@
   }
 
   async function enhance(){
-    if(!isRankings())return null;await ensureStyle();const d=await data();ensureDevelopmentVisual(d);bind();
+    if(!isRankings())return null;await ensureStyle();const d=await data();ensureDevelopmentVisual(d);suppressUnsupportedAdministrationSlopes();bind();
     const active=$('[data-ri-tab].active')?.dataset.riTab||'development';animatePanel(active);return d;
   }
   function boot(){if(bootPromise)return bootPromise;bootPromise=waitForRankings().then(rankings=>Promise.resolve(rankings?.boot?.())).then(()=>enhance()).catch(error=>{console.warn('Rankings visual v2:',error?.message||error);return null;});return bootPromise;}
