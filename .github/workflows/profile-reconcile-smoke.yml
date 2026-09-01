@@ -1,0 +1,26 @@
+name: County profile reconciliation smoke
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Syntax check place profile
+        run: node --check assets/place-profile.js
+      - name: Static county-profile contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=fs.readFileSync('assets/place-profile.js','utf8');
+          const required=['education','IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE','IND-INPATIENT-SERVICE-AVAILABILITY','IND-CLASS-C-RURAL-ROAD-LENGTH','IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP','IND-HOUSEHOLD-CAR-OWNERSHIP','IND-INTERNET-USE','IND-COMPUTER-USE'];
+          for(const x of required)if(!s.includes(x))throw new Error('missing '+x);
+          if(s.includes('place-sector-panel'))throw new Error('legacy county sector panel still wired');
+          console.log('COUNTY_PROFILE_RECONCILE_STATIC_OK');
+          NODE
