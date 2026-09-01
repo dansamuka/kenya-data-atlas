@@ -37,7 +37,11 @@ jobs:
           const cat = 'node scripts/p23/build-constituency-voters.mjs catalogue';
           const ind = 'node scripts/p23/build-constituency-voters.mjs indicators';
           if (!p.scripts['catalogue:build'].includes(cat)) p.scripts['catalogue:build'] += ` && ${cat}`;
-          if (!p.scripts['indicators:build'].includes(ind)) p.scripts['indicators:build'] += ` && ${ind}`;
+          if (!p.scripts['indicators:build'].includes(ind)) {
+            const marker = 'node scripts/indicators/apply-worldbank-registry-metadata.mjs';
+            if (!p.scripts['indicators:build'].includes(marker)) throw new Error('World Bank metadata marker missing from indicators:build');
+            p.scripts['indicators:build'] = p.scripts['indicators:build'].replace(marker, `${ind} && ${marker}`);
+          }
           fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
           NODE
       - name: Rebuild published data
