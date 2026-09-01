@@ -1,0 +1,20 @@
+/* KDA visual v2 — P16 interaction compatibility.
+ * Keep one mobile navigation contract: the existing accessible header Menu.
+ * The experimental fixed bottom rail created duplicate navigation and could
+ * cover controls after browser-driven scroll-to-view, especially in Compare.
+ */
+@media(max-width:767px){
+  body{padding-bottom:0!important}
+  .site-header .menu-button{display:inline-grid!important}
+  .site-header #main-nav:not(.open){display:none!important}
+  .site-header #main-nav.open{display:flex!important}
+  .kda-v2-bottom-nav{display:none!important}
+
+  /* A sticky comparison-mode rail can cover the place chooser when WebKit or
+   * assistive tooling scrolls that chooser to the top of the viewport. Keep
+   * mode selection in normal flow on narrow screens. */
+  body[data-view="compare"] .compare-mode-switch{position:static!important;top:auto!important}
+  body[data-view="compare"] #compare-place-strip,
+  body[data-view="compare"] .compare-place-card,
+  body[data-view="compare"] .kda-select-search-trigger{scroll-margin-top:88px}
+}
