@@ -174,7 +174,7 @@
     {
       "id": "P22",
       "title": "ASAL resilience completion",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Resolve the governed ASAL resilience cards using date-aware primary drought, food-security and climate evidence.",
       "outputs": [
         "NDMA food-security phase extraction",
@@ -192,7 +192,17 @@
       ],
       "depends_on": [
         "P21"
-      ]
+      ],
+      "progress": {
+        "governed_slots": 66,
+        "resolved_total": 66,
+        "direct_current_observations": 0,
+        "evidence_constrained_current_unavailable": 66,
+        "remaining_slots": 0,
+        "completion_as_of": "2026-09-01",
+        "completion_note": "P22 closes the September 2026 snapshot through explicit official-unavailable evidence states for all 66 governed slots. NDMA county drought bulletins are stale under the active freshness contract; the 2026 LRA is officially listed but its exact classification payload and validity windows are not deterministically resolved; and fresh KMD material does not publish the exact 22-county numeric anomaly measure. No stale warning, expired IPC phase, national/regional inheritance, station proxy, map-colour reverse engineering or fabricated value is used. Each closure carries a refresh trigger for later official supersession.",
+        "next_phase": "P23"
+      }
     },
     {
       "id": "P23",

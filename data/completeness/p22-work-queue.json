@@ -1,0 +1,9 @@
+{
+  "schema_version": "kda.completeness.p22-work-queue.v1",
+  "phase": "P22",
+  "definition": "Executable queue for unresolved whole-county ASAL resilience slots assigned to P22. The canonical slot ledger is authoritative; explicit freshness/geography/measure evidence states remove rows from this queue without manufacturing values.",
+  "source_ledger": "data/completeness/slot-ledger.json",
+  "remaining_slots": 0,
+  "family_count": 0,
+  "family_counts": {}
+}
