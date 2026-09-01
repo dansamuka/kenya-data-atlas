@@ -113,10 +113,11 @@
   }
   function countyFromGeo(geo){let g=geo;while(g&&g.level!=='county')g=g.parent_id?state.geoById.get(g.parent_id):null;return g?.level==='county'?g:null;}
   function routedExploreGeoCode(){
+    const match=location.hash.match(/^#\/explore\/([^?]+)/)||location.hash.match(/^#map\/([^?]+)/);
+    if(match)return decodeURIComponent(match[1]);
     const routed=window.KDARouter?.current?.()||window.KDARouter?.parse?.();
     if(routed?.view==='explore'&&routed.rest)return decodeURIComponent(String(routed.rest).replace(/^\/+/,''));
-    const match=location.hash.match(/^#\/explore\/([^?]+)/)||location.hash.match(/^#map\/([^?]+)/);
-    return match?decodeURIComponent(match[1]):null;
+    return null;
   }
   function selectedCountyExplore(){
     const routeCode=routedExploreGeoCode();
