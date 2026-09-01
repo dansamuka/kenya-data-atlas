@@ -87,9 +87,14 @@
   }
   function openGlobalSearch(){
     if((current?.view||parse().view)!=='home')navigate('home');
-    focusGlobalSearch();
-    queueMicrotask(focusGlobalSearch);
-    requestAnimationFrame(focusGlobalSearch);
+    const refocus=()=>{if((current?.view||parse().view)==='home')focusGlobalSearch();};
+    refocus();
+    queueMicrotask(refocus);
+    requestAnimationFrame(refocus);
+    /* Optional search and site-v2 layers finish their route work on later
+     * tasks in Firefox/WebKit. Reassert focus after those handlers settle. */
+    setTimeout(refocus,0);
+    setTimeout(refocus,120);
   }
   function isGlobalSearchShortcut(event){
     if(!(event.ctrlKey||event.metaKey))return false;
