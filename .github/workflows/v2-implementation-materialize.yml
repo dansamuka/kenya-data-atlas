@@ -59,14 +59,15 @@ jobs:
           }
           function installMapSheet''',s,flags=re.S)
 
-          s=re.sub(r"  function renderIndicatorDistribution\(\)\{.*?\n  function renderAdminSlopes",'''  function renderIndicatorDistribution(){
+          replacement='''  function renderIndicatorDistribution(){
             const panel=$('[data-ri-panel="indicator"]'),body=$('#ri-indicator-body');if(!panel||!body)return;
             const rows=$$('tr',body).filter(tr=>tr.cells.length>=4&&!tr.querySelector('.ri-empty')).map(tr=>({name:tr.cells[1].textContent.trim(),pct:parseNumber(tr.cells[3].textContent)})).filter(r=>Number.isFinite(r.pct));if(!rows.length)return;
             const sig=rows.map(r=>`${r.name}:${r.pct}`).join('|'),prior=$('#v2-indicator-dist');if(prior?.dataset.v2Sig===sig)return;prior?.remove();
             const strip=document.createElement('div');strip.id='v2-indicator-dist';strip.className='v2-indicator-dist';strip.dataset.v2Sig=sig;strip.innerHTML=`<div>${rows.map(r=>`<button style="left:${r.pct}%" data-name="${esc(r.name)}" title="${esc(r.name)} · ${r.pct}th percentile"></button>`).join('')}</div><span>0th</span><span>100th</span>`;panel.querySelector('.ri-indicator-meta')?.insertAdjacentElement('afterend',strip);
             const meta=$('#ri-indicator-meta span');if(meta){const count=$$('#ri-indicator-body tr').filter(tr=>tr.cells.length>=7).length;meta.textContent=meta.textContent.replace(/\\d+ counties/,`${count} matching · ${rows.length} plotted`);}highlightPinned();
           }
-          function renderAdminSlopes''',s,flags=re.S)
+          function renderAdminSlopes'''
+          s=re.sub(r"  function renderIndicatorDistribution\(\)\{.*?\n  function renderAdminSlopes",lambda _m:replacement,s,flags=re.S)
 
           s=s.replace("function normaliseRecognition(){$$('.ri-recognition-card').forEach((card,ci)=>{card.style.setProperty", "function normaliseRecognition(){$$('.ri-recognition-card').forEach((card,ci)=>{if(card.dataset.v2Recognition)return;card.dataset.v2Recognition='1';card.style.setProperty")
           p.write_text(s)
