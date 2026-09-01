@@ -1,0 +1,36 @@
+name: P23 registered-voter promotion contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/p23/registered-voters-promotion-contract.json'
+      - 'data/sprint2/**'
+      - 'assets/sprint2-data.js'
+      - 'data/completeness/**'
+      - 'scripts/p23/validate-registered-voters-contract.mjs'
+      - '.github/workflows/p23-registered-voters-contract.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/p23/registered-voters-promotion-contract.json'
+      - 'data/sprint2/**'
+      - 'assets/sprint2-data.js'
+      - 'data/completeness/**'
+      - 'scripts/p23/validate-registered-voters-contract.mjs'
+      - '.github/workflows/p23-registered-voters-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Validate P23 registered-voter promotion contract
+        run: node scripts/p23/validate-registered-voters-contract.mjs
