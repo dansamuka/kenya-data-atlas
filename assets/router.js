@@ -112,8 +112,15 @@
     };
     KDA.__compareCriticalPaintGuard=true;
   }
+  function installV2CriticalCompatibility(){
+    if(document.querySelector('style[data-kda-v2-p16-critical]'))return;
+    const style=document.createElement('style');style.dataset.kdaV2P16Critical='true';
+    style.textContent='@media(max-width:767px){html body{padding-bottom:0!important}html body .site-header .menu-button{display:inline-grid!important}html body .site-header #main-nav:not(.open){display:none!important}html body .site-header #main-nav.open{display:flex!important}html body .kda-v2-bottom-nav{display:none!important}html body[data-view="compare"] .compare-mode-switch{position:static!important;top:auto!important}}';
+    document.head.appendChild(style);
+  }
   function loadSiteV2(){
     if(document.querySelector('script[data-kda-site-v2]'))return;
+    installV2CriticalCompatibility();
     const css=document.createElement('link');css.rel='stylesheet';css.href='assets/site-v2.css';css.dataset.kdaSiteV2='true';document.head.appendChild(css);
     const compatCss=document.createElement('link');compatCss.rel='stylesheet';compatCss.href='assets/v2-p16-compat.css';compatCss.dataset.kdaV2P16Compat='true';document.head.appendChild(compatCss);
     const script=document.createElement('script');script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);
