@@ -140,3 +140,41 @@ test('internal completion phases and duplicate governance overlay stay off publi
     expect(visibleText,`internal phase reference rendered on ${route}`).not.toMatch(/\bP\d{2}\b/);
   }
 });
+
+test('county profile uses published successor indicators and one coherent topic navigation', async ({ page }) => {
+  await page.goto('/#/explore/KEN-C032?indicator=IND-POPULATION',{waitUntil:'domcontentloaded'});
+  const profile=page.locator('#profile');
+  await expect(profile).toContainText('Nakuru County',{timeout:15000});
+  await expect(profile.locator('.place-sector-panel')).toHaveCount(0);
+  await expect(profile.getByRole('tab',{name:'Education'})).toBeVisible();
+
+  await profile.getByRole('tab',{name:'People'}).click();
+  await expect(profile.locator('[data-indicator-code="IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE"]')).toBeVisible();
+  await expect(profile).not.toContainText('Inua Jamii cash-transfer beneficiaries');
+  await expect(profile).not.toContainText('Mean KCPE / KCSE score');
+
+  await profile.getByRole('tab',{name:'Education'}).click();
+  for(const code of ['IND-PUBLIC-PRIMARY-SCHOOLS','IND-PRIMARY-CLASSROOM-TEACHERS','IND-PUBLIC-SECONDARY-SCHOOLS','IND-SECONDARY-TEACHERS']){
+    await expect(profile.locator(`[data-indicator-code="${code}"]`)).toBeVisible();
+  }
+
+  await profile.getByRole('tab',{name:'Economy'}).click();
+  for(const code of ['IND-AGRICULTURE-GVA','IND-MANUFACTURING-GVA','IND-MAIZE-AREA','IND-MAIZE-PRODUCTION','IND-MAIZE-YIELD']){
+    await expect(profile.locator(`[data-indicator-code="${code}"]`)).toBeVisible();
+  }
+  await expect(profile).not.toContainText('Licensed businesses (count, year-on-year change)');
+  await expect(profile).not.toContainText('Key crop production (county-dominant crop only)');
+
+  await profile.getByRole('tab',{name:'Health'}).click();
+  await expect(profile.locator('[data-indicator-code="IND-INPATIENT-SERVICE-AVAILABILITY"]')).toBeVisible();
+  await expect(profile).not.toContainText('Facilities with electricity/water (%)');
+  await expect(profile).not.toContainText('Hospital bed occupancy/utilisation rate');
+  await expect(profile).not.toContainText('Drug and substance use prevalence');
+
+  await profile.getByRole('tab',{name:'Infrastructure'}).click();
+  for(const code of ['IND-CLASS-C-RURAL-ROAD-LENGTH','IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP','IND-HOUSEHOLD-CAR-OWNERSHIP','IND-INTERNET-USE','IND-COMPUTER-USE']){
+    await expect(profile.locator(`[data-indicator-code="${code}"]`)).toBeVisible();
+  }
+  await expect(profile).not.toContainText('Classified road length (km)');
+  await expect(profile).not.toContainText('Registered vehicles (count, per capita)');
+});
