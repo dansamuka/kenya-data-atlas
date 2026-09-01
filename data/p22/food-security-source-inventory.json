@@ -1,0 +1,105 @@
+{
+  "schema_version": "kda.p22.food-security-source-inventory.v1",
+  "phase": "P22",
+  "indicator_code": "IND-FOOD-SECURITY-PHASE",
+  "checked_on": "2026-09-01",
+  "as_of_month": "2026-09",
+  "governed_county_count": 22,
+  "governed_counties": [
+    "Baringo",
+    "Embu",
+    "Garissa",
+    "Isiolo",
+    "Kajiado",
+    "Kilifi",
+    "Kitui",
+    "Kwale",
+    "Laikipia",
+    "Lamu",
+    "Makueni",
+    "Mandera",
+    "Marsabit",
+    "Meru",
+    "Narok",
+    "Samburu",
+    "Taita Taveta",
+    "Tana River",
+    "Tharaka Nithi",
+    "Turkana",
+    "Wajir",
+    "West Pokot"
+  ],
+  "sources": [
+    {
+      "source_key": "ndma-lra-2026-national",
+      "title": "Long Rains Assessment National Report 2026",
+      "publisher": "National Drought Management Authority / Kenya Food Security Steering Group",
+      "category": "National Long Rain Assessments",
+      "document_year": 2026,
+      "published": "2026-08",
+      "listing_url": "https://knowledgeweb.ndma.go.ke/Public/Resources/Default.aspx?ID=16",
+      "resource_index_url": "https://knowledgeweb.ndma.go.ke/Public/Resources/Default.aspx?ID=5",
+      "discovery_state": "official_listing_confirmed_document_payload_pending_deterministic_resolution",
+      "classification_payload_state": "not_ingested",
+      "current_interval": null,
+      "projected_interval": null,
+      "slot_resolution_effect": "none",
+      "reason": "The official NDMA resource index lists the 2026 national Long Rains Assessment as published in August 2026. P22 must not infer county IPC phases, validity windows, or geography from the listing alone. Promotion requires the actual official report payload or another official document endpoint exposing the same classifications and intervals."
+    },
+    {
+      "source_key": "ndma-lra-2026-nine-counties",
+      "title": "Long Rains Assessment National Report for 9 Counties",
+      "publisher": "National Drought Management Authority",
+      "category": "National Long Rain Assessments",
+      "document_year": 2026,
+      "published": "2026-07-20",
+      "resource_details_url": "https://knowledgeweb.ndma.go.ke/Public/Resources/ResourceDetails.aspx?doc=590ac80d-8b40-4b10-ac9a-8ab40cbb3fe2",
+      "discovery_state": "official_resource_details_confirmed",
+      "classification_payload_state": "not_ingested",
+      "current_interval": null,
+      "projected_interval": null,
+      "slot_resolution_effect": "none",
+      "reason": "The official resource details confirm a 9-county report, but the listing does not identify the nine counties or publish their phase values and validity windows. No county slot may be resolved from the title or report count alone."
+    },
+    {
+      "source_key": "kfssg-sra-2025-published-2026",
+      "title": "2025 Short Rains Assessment Report - KFSSG",
+      "publisher": "Kenya Food Security Steering Group / National Drought Management Authority",
+      "category": "National Short Rain Assessments",
+      "document_year": 2025,
+      "published": "2026-03",
+      "document_url": "https://knowledgeweb.ndma.go.ke/Content/LibraryDocuments/SHORT_RAINS_ASSESSESMENT_NATIONAL_REPORT_202520260311170859.pdf",
+      "discovery_state": "official_document_available",
+      "classification_payload_state": "historical_only_for_p22_as_of_date",
+      "current_interval": {
+        "start": "2026-02-01",
+        "end": "2026-03-31",
+        "semantics": "current"
+      },
+      "projected_interval": {
+        "start": "2026-04-01",
+        "end": "2026-06-30",
+        "semantics": "projected"
+      },
+      "slot_resolution_effect": "none",
+      "reason": "The report explicitly defines February-March 2026 as current and April-June 2026 as projected. Both validity windows are expired by the P22 as-of month of September 2026, so these classifications may be retained as historical evidence but cannot satisfy a current P22 food-security slot."
+    }
+  ],
+  "promotion_gate": {
+    "status": "blocked_pending_2026_lra_payload",
+    "required_before_promotion": [
+      "Resolve the official 2026 Long Rains Assessment document payload to a stable official URL or document endpoint.",
+      "Extract classification geography exactly as published; do not coerce livelihood-zone, sub-county, or partial-county classifications to whole counties.",
+      "Capture explicit current and projected validity intervals from the 2026 source.",
+      "Map only source-supported whole-county classifications to the 22 governed P22 counties.",
+      "Run deterministic registry rebuild and completeness validation before changing slot-resolution counts."
+    ]
+  },
+  "invariants": [
+    "No source-listing metadata alone resolves a food-security slot.",
+    "Expired current/projected intervals are never presented as current.",
+    "A nine-county report title does not establish which counties or phases are covered.",
+    "National or livelihood-zone classifications are never inherited to a county without explicit source support.",
+    "Nyeri/Kieni partial-ASAL evidence remains excluded from the 22 whole-county P22 surface."
+  ]
+}
