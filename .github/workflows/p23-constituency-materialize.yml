@@ -3,7 +3,7 @@ name: P23 constituency voter materialization
 on:
   push:
     branches:
-      - watchdog/p23-constituency-voter-promotion
+      - watchdog/p23-voter-materialization-repair
   workflow_dispatch:
 
 permissions:
@@ -13,6 +13,7 @@ jobs:
   materialize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -50,6 +51,7 @@ jobs:
           if (summary.total_slots !== 20115) throw new Error(`denominator drift: ${summary.total_slots}`);
           if (summary.unknown_missing !== 0) throw new Error(`unknown_missing=${summary.unknown_missing}`);
           if (summary.by_completion_phase?.P23 !== 2900) throw new Error(`expected P23 remaining 2900 after exact 290-slot voter promotion, got ${summary.by_completion_phase?.P23}`);
+          if (summary.resolved_slots !== 4164) throw new Error(`expected resolved_slots=4164, got ${summary.resolved_slots}`);
           const voterSeries = series.filter(s => /^KDA-VOTERS-CON-\d{3}-2022$/.test(s.series_code));
           if (voterSeries.length !== 290) throw new Error(`expected 290 constituency voter series, got ${voterSeries.length}`);
           const ids = new Set(voterSeries.map(s => s.series_id));
@@ -69,5 +71,5 @@ jobs:
           git rm .github/workflows/p23-constituency-materialize.yml
           git add package.json data assets index.html
           git diff --cached --quiet && exit 0
-          git commit -m "feat(p23): materialize constituency voter promotion"
-          git push origin HEAD:watchdog/p23-constituency-voter-promotion
+          git commit -m "fix(p23): materialize constituency voter promotion"
+          git push origin HEAD:watchdog/p23-voter-materialization-repair
