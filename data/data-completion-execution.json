@@ -70,8 +70,9 @@
         "reference_date": "2022-06-20",
         "source_metadata": "data/sprint2/sources.json",
         "promotion_contract": "data/p23/constituency-voter-promotion-contract.json",
-        "readiness": "290/290 constituency totals, source authority, anti-inheritance and boundary-hold treatment are now governed by a dedicated P23 promotion-readiness contract; native canonical promotion remains the next implementation tranche.",
-        "expected_existing_p23_slots": 290
+        "readiness": "290/290 constituency totals, source authority, anti-inheritance and boundary-hold treatment are governed by a dedicated P23 promotion-readiness contract. The 290 canonical observations map to 870 pre-existing completeness slot instances because the indicator is cross-listed on overview, people and representation surfaces.",
+        "expected_canonical_observations": 290,
+        "expected_existing_p23_slot_instances": 870
       },
       "acceptance": [
         "Only primary/official or explicitly governed extraction artifacts with primary-source authority may support promoted values.",
@@ -79,7 +80,7 @@
         "Registered-voter constituency values preserve the audited B — Official derived Sprint 2 treatment unless a separate direct-schedule ingestion is independently validated.",
         "Election and boundary vintage are explicit.",
         "No county-to-constituency inheritance occurs.",
-        "Only pre-existing P23 governed slots are resolved; total_slots remains 20,115.",
+        "Only pre-existing P23 governed slot instances are resolved; total_slots remains 20,115.",
         "Any partial or unresolved mapping remains visibly unresolved rather than being force-matched.",
         "Each promoted family has a deterministic builder and validator.",
         "Full Atlas build, validation and P16 gates pass before merge."
@@ -88,8 +89,8 @@
   },
   "closure_order": ["P18", "P19", "P20", "P21", "P22", "P23", "P24", "P25", "P26"],
   "next_actions": [
-    "Use data/p23/constituency-voter-promotion-contract.json as the first P23 promotion authority and verify the pinned IEBC extraction against all 290 canonical constituency geographies and 290 existing P23 voter slots.",
-    "Native-promote the 290 constituency registered-voter observations as B — Official derived values without changing the 20,115-slot denominator; rebuild completeness and require exactly 290 P23 rows to resolve.",
+    "Use data/p23/constituency-voter-promotion-contract.json as the first P23 promotion authority and verify the pinned IEBC extraction against all 290 canonical constituency geographies and the 870 existing P23 voter slot instances across overview, people and representation.",
+    "Native-promote exactly 290 constituency registered-voter observations as B — Official derived values without changing the 20,115-slot denominator; rebuild completeness and require exactly 870 P23 slot instances to resolve.",
     "After voter promotion, proceed to official constituency turnout history only where period and boundary vintage are explicit and comparable.",
     "Build the current MP identity roster from an official parliamentary source before NG-CDF tranches.",
     "Do not start P24 numeric promotion until P23 acceptance is complete and the ward geography/source contract is independently defensible."
