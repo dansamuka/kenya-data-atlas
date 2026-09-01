@@ -11,7 +11,7 @@
     "topic": "Economy",
     "subtopic": "economy",
     "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
-    "higher_is_better": null,
+    "higher_is_better": true,
     "preferred_frequency": "irregular",
     "minimum_geo_level": "country",
     "minimum_denominator": null,
