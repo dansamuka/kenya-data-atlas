@@ -70,24 +70,11 @@ test('mobile keyboard, focus and overflow gate', async ({ page }) => {
   expect(geometry.scroll).toBeLessThanOrEqual(geometry.viewport + 1);
 });
 
-test('global-search shortcut handler routes to and focuses search', async ({ page }) => {
+test('global-search convenience shortcut routes to and focuses search', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Ctrl/Cmd+K is browser-reserved in Firefox/WebKit; real cross-browser keyboard reachability is enforced through the visible Search control below.');
   await page.goto('/#/compare', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('body')).toHaveAttribute('data-view', 'compare');
-
-  // Ctrl/Cmd+K is browser-reserved in Firefox/WebKit and can be consumed by
-  // browser chrome before Playwright can deliver the physical accelerator to
-  // page content. Dispatch the application keyboard event in-page here; the
-  // separate visible-search-control test below enforces real cross-browser
-  // keyboard reachability without relying on a reserved browser shortcut.
-  await page.evaluate(() => {
-    document.dispatchEvent(new KeyboardEvent('keydown', {
-      key: 'k',
-      code: 'KeyK',
-      ctrlKey: true,
-      bubbles: true,
-      cancelable: true
-    }));
-  });
+  await page.keyboard.press(process.platform === 'darwin' ? 'Meta+K' : 'Control+K');
   await expect(page.locator('body')).toHaveAttribute('data-view', 'home');
   await expect(page.locator('#atlas-search')).toBeFocused();
 });
