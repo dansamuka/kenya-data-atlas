@@ -11,7 +11,7 @@
     "topic": "Social",
     "subtopic": "Health outcomes",
     "unit_id": "e0d1cd62-62cd-51c5-9ff8-06f51401fad5",
-    "higher_is_better": true,
+    "higher_is_better": null,
     "preferred_frequency": "annual",
     "minimum_geo_level": "country",
     "minimum_denominator": null,

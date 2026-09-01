@@ -11,7 +11,7 @@
     "topic": "Agriculture",
     "subtopic": "Crop productivity",
     "unit_id": "0ea5caca-cb59-50ef-ab8c-d2628e192d70",
-    "higher_is_better": null,
+    "higher_is_better": true,
     "preferred_frequency": "annual",
     "minimum_geo_level": "county",
     "minimum_denominator": null,

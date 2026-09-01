@@ -1678,6 +1678,41 @@
       "category": "social",
       "history": [
         {
+          "period_label": "1969 Census",
+          "period_start": "1969-08-01",
+          "period_end": "1969-08-31",
+          "value": 10942705,
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf"
+        },
+        {
+          "period_label": "1979 Census",
+          "period_start": "1979-08-01",
+          "period_end": "1979-08-31",
+          "value": 15327061,
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf"
+        },
+        {
+          "period_label": "1989 Census",
+          "period_start": "1989-08-01",
+          "period_end": "1989-08-31",
+          "value": 21448047,
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf"
+        },
+        {
+          "period_label": "1999 Census",
+          "period_start": "1999-08-01",
+          "period_end": "1999-08-31",
+          "value": 28686607,
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf"
+        },
+        {
+          "period_label": "2009 Census",
+          "period_start": "2009-08-24",
+          "period_end": "2009-08-25",
+          "value": 38610097,
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf"
+        },
+        {
           "period_label": "Census night, 24–25 August 2019",
           "period_start": "2019-08-24",
           "period_end": "2019-08-25",
@@ -1685,7 +1720,7 @@
           "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/"
         }
       ],
-      "available_observation_count": 1
+      "available_observation_count": 6
     },
     {
       "series_code": "KDA-VOTERS-KEN",
@@ -1697,6 +1732,13 @@
       "category": "institutions",
       "history": [
         {
+          "period_label": "Certified register, 27 June 2017",
+          "period_start": "2017-06-27",
+          "period_end": "2017-06-27",
+          "value": 19611423,
+          "source_url": "https://iebc.or.ke/uploads/resources/XaOdS3fXgF.pdf"
+        },
+        {
           "period_label": "Certified register, 20 June 2022",
           "period_start": "2022-06-20",
           "period_end": "2022-06-20",
@@ -1704,7 +1746,7 @@
           "source_url": "https://www.iebc.or.ke/uploads/resources/pabjKTV6Xa.pdf"
         }
       ],
-      "available_observation_count": 1
+      "available_observation_count": 3
     }
   ]
 }

@@ -11,7 +11,7 @@
     "topic": "Resilience & Environment",
     "subtopic": "resilience",
     "unit_id": "2c409624-a5da-51da-9394-3cd07cf5b2a9",
-    "higher_is_better": false,
+    "higher_is_better": null,
     "preferred_frequency": "irregular",
     "minimum_geo_level": "county",
     "minimum_denominator": null,
