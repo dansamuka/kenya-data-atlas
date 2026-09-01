@@ -1,0 +1,107 @@
+name: UI v2 implementation materializer
+on:
+  push:
+    branches: [kda-visual-spec-v2-implementation]
+    paths: [.github/workflows/v2-implementation-materialize.yml]
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: kda-visual-spec-v2-implementation
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Harden idempotency and wire all v2 assets
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          p=Path('assets/site-v2.js')
+          s=p.read_text()
+          s=s.replace("const dom=$$('#pulse-grid .metric-card');","const dom=$$('#pulse-grid .metric-card,#home-glance .metric-card');")
+
+          s=re.sub(r"  function renderPinned\(\)\{.*?\n  \}\n  async function highlightPinned",'''  function renderPinned(){
+            let chip=$('#kda-v2-pinned-chip');
+            if(!state.pinned){chip?.remove();return;}
+            const sig=`${state.pinned.geo_code}|${state.pinned.name}|${state.pinned.level}`;
+            if(chip?.dataset.v2Sig===sig)return;
+            if(!chip){chip=document.createElement('div');chip.id='kda-v2-pinned-chip';chip.className='kda-v2-pinned-chip';$('.site-header')?.insertAdjacentElement('afterend',chip);}
+            chip.dataset.v2Sig=sig;
+            chip.innerHTML=`<span aria-hidden="true">●</span><strong>${esc(state.pinned.name)}</strong><small>${esc(state.pinned.level)}</small><button type="button" aria-label="Unpin ${esc(state.pinned.name)}">×</button>`;
+            chip.querySelector('button').onclick=unpin;
+          }
+          async function highlightPinned''',s,flags=re.S)
+
+          s=re.sub(r"  function renderCompareTray\(\)\{.*?\n  async function addToCompare",'''  function renderCompareTray(){
+            let tray=$('#kda-v2-compare-tray');
+            if(!state.compare.length){tray?.remove();return;}
+            const sig=state.compare.map(p=>p.geo_code).join('|');
+            if(tray?.dataset.v2Sig===sig)return;
+            if(!tray){tray=document.createElement('aside');tray.id='kda-v2-compare-tray';tray.className='kda-v2-compare-tray';document.body.appendChild(tray);animate(tray,[{transform:'translateY(100%)'},{transform:'none'}],{kind:'response'});}
+            tray.dataset.v2Sig=sig;
+            tray.innerHTML=`<div>${state.compare.map(p=>`<span>${esc(p.name)}<button type="button" data-code="${esc(p.geo_code)}" aria-label="Remove ${esc(p.name)}">×</button></span>`).join('')}</div><button type="button" class="v2-compare-go">Compare ${state.compare.length} place${state.compare.length===1?'':'s'} →</button>`;
+            tray.querySelectorAll('[data-code]').forEach(b=>b.onclick=()=>{state.compare=state.compare.filter(p=>p.geo_code!==b.dataset.code);safeSessionSet('kda-v2-compare',state.compare);renderCompareTray();});
+            tray.querySelector('.v2-compare-go').onclick=()=>R?.navigate('compare','',new URLSearchParams({mode:'direct',places:state.compare.map(p=>p.geo_code).join(',')}));
+          }
+          async function addToCompare''',s,flags=re.S)
+
+          s=re.sub(r"  function renderCoverageRing\(\)\{.*?\n  function installMapSheet",'''  function renderCoverageRing(){
+            const note=$('#geo-source-note');if(!note)return;
+            const total=$$('#geo-svg .geo-feature').length,withData=$$('#geo-svg .geo-feature[fill]').filter(p=>p.getAttribute('fill')).length;if(!total)return;
+            const sig=`${withData}|${total}`,existing=$('#kda-v2-coverage-ring');if(existing?.dataset.v2Sig===sig)return;existing?.remove();
+            const ring=document.createElement('span');ring.id='kda-v2-coverage-ring';ring.className='v2-coverage-ring';ring.dataset.v2Sig=sig;ring.style.setProperty('--coverage',`${withData/total*360}deg`);ring.innerHTML=`<i></i><span>Coverage ${withData}/${total}</span>`;note.prepend(ring);
+          }
+          function installMapSheet''',s,flags=re.S)
+
+          s=re.sub(r"  function renderIndicatorDistribution\(\)\{.*?\n  function renderAdminSlopes",'''  function renderIndicatorDistribution(){
+            const panel=$('[data-ri-panel="indicator"]'),body=$('#ri-indicator-body');if(!panel||!body)return;
+            const rows=$$('tr',body).filter(tr=>tr.cells.length>=4&&!tr.querySelector('.ri-empty')).map(tr=>({name:tr.cells[1].textContent.trim(),pct:parseNumber(tr.cells[3].textContent)})).filter(r=>Number.isFinite(r.pct));if(!rows.length)return;
+            const sig=rows.map(r=>`${r.name}:${r.pct}`).join('|'),prior=$('#v2-indicator-dist');if(prior?.dataset.v2Sig===sig)return;prior?.remove();
+            const strip=document.createElement('div');strip.id='v2-indicator-dist';strip.className='v2-indicator-dist';strip.dataset.v2Sig=sig;strip.innerHTML=`<div>${rows.map(r=>`<button style="left:${r.pct}%" data-name="${esc(r.name)}" title="${esc(r.name)} · ${r.pct}th percentile"></button>`).join('')}</div><span>0th</span><span>100th</span>`;panel.querySelector('.ri-indicator-meta')?.insertAdjacentElement('afterend',strip);
+            const meta=$('#ri-indicator-meta span');if(meta){const count=$$('#ri-indicator-body tr').filter(tr=>tr.cells.length>=7).length;meta.textContent=meta.textContent.replace(/\\d+ counties/,`${count} matching · ${rows.length} plotted`);}highlightPinned();
+          }
+          function renderAdminSlopes''',s,flags=re.S)
+
+          s=s.replace("function normaliseRecognition(){$$('.ri-recognition-card').forEach((card,ci)=>{card.style.setProperty", "function normaliseRecognition(){$$('.ri-recognition-card').forEach((card,ci)=>{if(card.dataset.v2Recognition)return;card.dataset.v2Recognition='1';card.style.setProperty")
+          p.write_text(s)
+
+          p=Path('assets/site-v2-route.js')
+          s=p.read_text()
+          s=s.replace("host.hidden=r.view!=='explore';if(host.hidden)return;host.innerHTML=", "host.hidden=r.view!=='explore';if(host.hidden)return;const sig=`${hc}|${cs}`;if(host.dataset.v2Sig===sig)return;host.dataset.v2Sig=sig;host.innerHTML=")
+          p.write_text(s)
+
+          p=Path('assets/router.js')
+          s=p.read_text()
+          needle="script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);"
+          addition="""script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);
+              const routeCss=document.createElement('link');routeCss.rel='stylesheet';routeCss.href='assets/site-v2-route.css';routeCss.dataset.kdaSiteV2Route='true';document.head.appendChild(routeCss);
+              const routeScript=document.createElement('script');routeScript.src='assets/site-v2-route.js';routeScript.defer=true;routeScript.dataset.kdaSiteV2Route='true';document.head.appendChild(routeScript);
+              const pwa=document.createElement('script');pwa.src='assets/pwa-v2.js';pwa.defer=true;pwa.dataset.kdaPwaV2='true';document.head.appendChild(pwa);"""
+          if 'site-v2-route.js' not in s:s=s.replace(needle,addition)
+          p.write_text(s)
+
+          p=Path('sw.js')
+          s=p.read_text()
+          s=s.replace("'./assets/site-v2.css','./assets/site-v2.js','./manifest.webmanifest'", "'./assets/site-v2.css','./assets/site-v2.js','./assets/site-v2-route.css','./assets/site-v2-route.js','./assets/pwa-v2.js','./manifest.webmanifest'")
+          p.write_text(s)
+      - name: Syntax checks
+        run: |
+          node --check assets/site-v2.js
+          node --check assets/site-v2-route.js
+          node --check assets/pwa-v2.js
+          node --check assets/router.js
+          node --check sw.js
+      - name: Remove one-shot workflow and commit
+        run: |
+          rm .github/workflows/v2-implementation-materialize.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add assets/site-v2.js assets/site-v2-route.js assets/router.js sw.js .github/workflows/v2-implementation-materialize.yml
+          git commit -m "UI v2: harden runtime and wire route/PWA layers"
+          git push origin HEAD:kda-visual-spec-v2-implementation
