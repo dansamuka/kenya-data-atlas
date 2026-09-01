@@ -1,0 +1,93 @@
+[
+  {
+    "series_code": "KDA-POP-TOTAL-KEN",
+    "period_start": "1969-08-01",
+    "period_end": "1969-08-31",
+    "period_type": "point_in_time",
+    "period_label": "1969 Census",
+    "value": 10942705,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf",
+    "notes": "National enumerated population reported by KNBS in the 2009 KPHC retrospective census table."
+  },
+  {
+    "series_code": "KDA-POP-TOTAL-KEN",
+    "period_start": "1979-08-01",
+    "period_end": "1979-08-31",
+    "period_type": "point_in_time",
+    "period_label": "1979 Census",
+    "value": 15327061,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf",
+    "notes": "National enumerated population reported by KNBS in the 2009 KPHC retrospective census table."
+  },
+  {
+    "series_code": "KDA-POP-TOTAL-KEN",
+    "period_start": "1989-08-01",
+    "period_end": "1989-08-31",
+    "period_type": "point_in_time",
+    "period_label": "1989 Census",
+    "value": 21448047,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf",
+    "notes": "National enumerated population reported by KNBS in the 2009 KPHC retrospective census table."
+  },
+  {
+    "series_code": "KDA-POP-TOTAL-KEN",
+    "period_start": "1999-08-01",
+    "period_end": "1999-08-31",
+    "period_type": "point_in_time",
+    "period_label": "1999 Census",
+    "value": 28686607,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf",
+    "notes": "National enumerated population reported by KNBS in the 2009 KPHC retrospective census table."
+  },
+  {
+    "series_code": "KDA-POP-TOTAL-KEN",
+    "period_start": "2009-08-24",
+    "period_end": "2009-08-25",
+    "period_type": "point_in_time",
+    "period_label": "2009 Census",
+    "value": 38610097,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2009-Kenya-population-and-Housing-Census-Volume-2-Population-and-Household-Distribution-by-Socio-Economic-Characteristics.pdf",
+    "notes": "National enumerated population in the 2009 Kenya Population and Housing Census."
+  },
+  {
+    "series_code": "KDA-VOTERS-KEN",
+    "period_start": "2013-03-04",
+    "period_end": "2013-03-04",
+    "period_type": "point_in_time",
+    "period_label": "2013 principal register",
+    "value": 14352545,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://www.iebc.or.ke/uploads/resources/WjxAuNFcbA.pdf",
+    "notes": "IEBC principal register for the 2013 General Election, as reported in the 2017 national voter-register audit annexure. Scope is labelled explicitly because later certified registers include additional categories."
+  },
+  {
+    "series_code": "KDA-VOTERS-KEN",
+    "period_start": "2017-06-27",
+    "period_end": "2017-06-27",
+    "period_type": "point_in_time",
+    "period_label": "Certified register, 27 June 2017",
+    "value": 19611423,
+    "geographic_method": "direct",
+    "statistical_status": "final",
+    "source_class": "official",
+    "source_url": "https://iebc.or.ke/uploads/resources/XaOdS3fXgF.pdf",
+    "notes": "Certified Register of Voters for the 2017 General Election, including diaspora and prison voters as stated by IEBC."
+  }
+]
