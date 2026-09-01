@@ -1,5 +1,7 @@
 name: P22 terminal evidence materialization
 
+# One-shot terminal generator; rerun after extending the completeness validator
+# to reconcile the pre-P22 48 unavailable states plus 66 governed P22 closures.
 on:
   push:
     branches:
