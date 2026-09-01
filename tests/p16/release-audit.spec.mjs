@@ -178,3 +178,41 @@ test('county profile uses published successor indicators and one coherent topic 
   await expect(profile).not.toContainText('Classified road length (km)');
   await expect(profile).not.toContainText('Registered vehicles (count, per capita)');
 });
+
+test('CountyIQ is compact, navigable and progressively discloses long detail', async ({ page }) => {
+  await page.goto('/#/countyiq',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('body')).toHaveAttribute('data-view','countyiq');
+  await expect(page.locator('#ciq-county-select')).toBeVisible({timeout:15000});
+  await expect.poll(async()=>page.evaluate(()=>Boolean(window.KDACountyIQUX))).toBe(true);
+
+  const jump=page.locator('.ciq-jump-nav');
+  await expect(jump).toBeVisible();
+  for(const label of ['Overview','Economy','Public finance','Outcomes','Development','Evidence','Opportunities']){
+    await expect(jump.getByRole('link',{name:label})).toBeVisible();
+  }
+
+  const history=page.locator('.ciq-history-disclosure');
+  await expect(history).toBeVisible();
+  await expect(history).not.toHaveAttribute('open','');
+  await history.locator('summary').click();
+  await expect(history).toHaveAttribute('open','');
+  await expect(history.locator('.ciq-fiscal-table')).toBeVisible();
+
+  const opportunityCards=page.locator('#opportunity-list .opportunity-card');
+  await expect(opportunityCards.first()).toBeVisible({timeout:15000});
+  const total=await opportunityCards.count();
+  expect(total).toBeGreaterThan(4);
+  await expect(opportunityCards.nth(4)).toBeHidden();
+  const showAll=page.locator('#opportunity-list + .ciq-disclosure-actions .ciq-disclosure-button');
+  await expect(showAll).toBeVisible();
+  await showAll.click();
+  await expect(opportunityCards.nth(4)).toBeVisible();
+  await expect(showAll).toHaveAttribute('aria-expanded','true');
+
+  const evidenceCards=page.locator('#ciq-evidence-list .evidence-item');
+  await expect(evidenceCards.first()).toBeVisible({timeout:15000});
+  if(await evidenceCards.count()>4){
+    await expect(evidenceCards.nth(4)).toBeHidden();
+    await expect(page.locator('#ciq-evidence-list + .ciq-disclosure-actions .ciq-disclosure-button')).toBeVisible();
+  }
+});
