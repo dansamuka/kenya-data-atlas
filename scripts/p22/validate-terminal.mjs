@@ -67,7 +67,11 @@ assert(queue.schema_version==='kda.completeness.p22-work-queue.v1'&&queue.phase=
 assert(queue.remaining_slots===0&&queue.family_count===0&&Object.keys(queue.family_counts||{}).length===0,'P22 queue must be terminally empty');
 assert((summary.by_completion_phase?.P22||0)===0,'completeness summary must have zero P22 unresolved rows');
 assert(summary.total_slots===20115,'governed slot denominator must remain 20,115');
-assert(summary.resolved_slots===3874&&summary.unresolved_slots===16241&&summary.resolved_pct===19.26,'terminal completeness totals must equal 3,874 / 16,241 / 19.26%');
+// P22 closed at 3,874 resolved / 16,241 unresolved. Later phases are allowed to
+// increase global resolution, but must never regress below that terminal P22 floor.
+assert(summary.resolved_slots>=3874,'global resolved slots must not regress below the P22 terminal baseline of 3,874');
+assert(summary.unresolved_slots<=16241,'global unresolved slots must not regress above the P22 terminal baseline of 16,241');
+assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'global completeness totals must reconcile to the governed denominator');
 assert(summary.unknown_missing===0,'unknown_missing must remain zero');
 assert(summary.by_status?.official_unavailable===114,'official_unavailable count must equal prior 48 plus 66 P22 closures = 114');
 
@@ -79,4 +83,4 @@ assert(p22.progress?.completion_as_of==='2026-09-01'&&p22.progress?.next_phase==
 
 console.log('P22_TERMINAL_VALIDATE_OK governed=66 resolved=66 direct_current=0 evidence_constrained=66 queue=0');
 console.log('P22_FRESHNESS_GUARD_OK stale_drought_not_current=true expired_food_not_current=true climate_proxy_blocked=true');
-console.log('P22_COMPLETENESS_OK resolved=3874 unresolved=16241 resolved_pct=19.26 unknown=0 next=P23');
+console.log(`P22_COMPLETENESS_FLOOR_OK resolved=${summary.resolved_slots} unresolved=${summary.unresolved_slots} unknown=${summary.unknown_missing} next=P23`);
