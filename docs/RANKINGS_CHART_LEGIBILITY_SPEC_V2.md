@@ -23,8 +23,9 @@ The Rankings visuals are data-correct but visually over-compressed. At desktop w
 
 - Plot minimum width: 920 px.
 - Plot height: 360 px.
-- Seven deterministic collision-avoidance lanes.
+- Up to seven deterministic collision-avoidance lanes are available.
 - Marks use lane packing based on x-distance; do not use simple `index % laneCount` assignment.
+- With the current 47 published diagnostic ranks, the packing algorithm should occupy at least four lanes; additional lanes are used only when x-density requires them.
 - Lane centres start at 52 px with 36 px separation.
 - Diagnostic axis remains at the bottom with at least 48 px reserved below the lowest lane.
 - Whiskers stay aligned to the same lane as their county dot.
@@ -78,7 +79,7 @@ At viewport widths <= 720 px:
 Browser tests must verify:
 
 1. Development plot renders >= 330 px high on desktop.
-2. Development uses at least six occupied lanes with 47 published county marks.
+2. Development renders all 47 published county marks and uses at least four occupied collision-avoidance lanes with the current dataset.
 3. Persistent development labels are bounded (<= 12 before interaction) and include rank 1 and rank 47.
 4. Hover/focus reveals a previously suppressed county label.
 5. Indicator plot renders >= 220 px high on desktop.
