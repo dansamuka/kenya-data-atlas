@@ -100,10 +100,6 @@
       const compare=(current?.view||parse().view)==='compare';
       if(heavy&&compare&&!guarded){
         guarded=true;
-        /* Direct Compare entry previously started multi-megabyte master-registry
-         * transfers before the route heading completed critical paint. Let the
-         * shell finish loading first; user-triggered work after load still starts
-         * after only two animation frames. This changes scheduling, not data. */
         if(document.readyState!=='complete'){
           await new Promise(resolve=>window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(resolve)),{once:true}));
         }else{
@@ -113,6 +109,11 @@
       return original(names,options);
     };
     KDA.__compareCriticalPaintGuard=true;
+  }
+  function loadSiteV2(){
+    if(document.querySelector('script[data-kda-site-v2]'))return;
+    const css=document.createElement('link');css.rel='stylesheet';css.href='assets/site-v2.css';css.dataset.kdaSiteV2='true';document.head.appendChild(css);
+    const script=document.createElement('script');script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);
   }
 
   history.pushState=function(state,title,url){const result=rawPush(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
@@ -135,4 +136,5 @@
   window.KDARouter={parse,render,navigate,replace,build,current:()=>current,canonicalHash};
   render({scroll:false});
   protectCompareCriticalPaint();
+  loadSiteV2();
 })();
