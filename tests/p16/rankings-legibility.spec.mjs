@@ -27,6 +27,7 @@ test('rankings charts use taller lane-packed plots with bounded persistent label
   expect(persistentCount).toBeGreaterThanOrEqual(10);
   expect(persistentCount).toBeLessThanOrEqual(12);
   await expect(persistent.first()).toBeVisible();
+  for(const label of await persistent.allTextContents())expect(label).toMatch(/^[A-Z]{3}$/);
 
   const visibleRects=await persistent.evaluateAll(nodes=>nodes.filter(n=>getComputedStyle(n).display!=='none').map(n=>n.getBoundingClientRect()).map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom})));
   let collisions=0;
@@ -50,6 +51,7 @@ test('rankings charts use taller lane-packed plots with bounded persistent label
   const indLabelCount=await indLabels.count();
   expect(indLabelCount).toBeGreaterThanOrEqual(7);
   expect(indLabelCount).toBeLessThanOrEqual(8);
+  for(const label of await indLabels.allTextContents())expect(label).toMatch(/^[A-Z]{3}$/);
 
   const target=distribution.locator('.ri-indicator-dot:not([disabled])').nth(5);
   const geo=await target.getAttribute('data-ri-indicator-geo');
