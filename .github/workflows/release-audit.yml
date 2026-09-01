@@ -13,7 +13,7 @@ permissions:
 jobs:
   browser-release-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -33,8 +33,19 @@ jobs:
       - name: Install pinned P16 audit tools without changing lockfile
         run: npm install --no-save --package-lock=false @playwright/test@1.55.0 @axe-core/playwright@4.10.2 lighthouse@13.4.1
 
+      - name: Cache Playwright browser binaries
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-1.55.0
+
+      - name: Install Playwright system dependencies
+        run: npx playwright install-deps chromium firefox webkit
+
       - name: Install Chromium Firefox and WebKit
-        run: npx playwright install --with-deps chromium firefox webkit
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium firefox webkit
 
       - name: Deterministic P16 static and internal-link gates
         run: npm run p16:static
