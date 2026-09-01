@@ -128,7 +128,7 @@
       const node=document.getElementById(link.getAttribute('href').slice(1));
       if(node&&node.getBoundingClientRect().top<=170)current=link;
     }
-    links.forEach(link=>link.toggleAttribute('aria-current',link===current));
+    links.forEach(link=>{if(link===current)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
   }
 
   function enhance(){
