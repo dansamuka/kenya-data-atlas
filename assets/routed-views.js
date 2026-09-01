@@ -32,12 +32,12 @@
     target.innerHTML=cards.map(card=>card.outerHTML).join('');
   }
   async function preparePulse(){
-    const root=$('#pulse-view');if(!root)return;
+    const root=$('#explore');if(!root)return;
     window.KDAOptional?.load?.();
     const indicators=KDA?await KDA.registry('indicators').catch(()=>[]):[];
     const byCode=new Map((Array.isArray(indicators)?indicators:[]).map(i=>[i.indicator_code,i]));
     const apply=()=>{
-      $$('#pulse-grid .metric-card').forEach(card=>card.dataset.pulseCategory='core');
+      $$('#pulse-grid .metric-card').forEach(card=>{if(!card.dataset.pulseCategory)card.dataset.pulseCategory='core';});
       $$('#wb-national-indicators .metric-card').forEach(card=>{card.dataset.pulseCategory=pulseCategory(byCode.get(card.dataset.wbIndicator));});
       const more=$('#wb-national-indicators .wb-more');if(more)more.open=true;
       applyPulseFilter(route().params.get('category')||'all');cloneHomeGlance();
@@ -51,7 +51,7 @@
     const selected=allowed.has(category)?category:'all';
     $$('#pulse-filters [data-pulse-filter]').forEach(btn=>{const active=btn.dataset.pulseFilter===selected;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));});
     const core=$('#pulse-grid'),wb=$('#wb-national-indicators');
-    if(core)core.hidden=!['all','core'].includes(selected);
+    if(core){core.hidden=false;$$('.metric-card',core).forEach(card=>{card.hidden=selected!=='all'&&selected!=='core'&&card.dataset.pulseCategory!==selected;});}
     if(wb)wb.hidden=selected==='core';
     if(wb){$$('.metric-card',wb).forEach(card=>{card.hidden=selected!=='all'&&card.dataset.pulseCategory!==selected;});}
   }
@@ -171,7 +171,7 @@
 
   async function handle(r){
     document.body.classList.toggle('routed-pulse',r.view==='pulse');
-    if(r.view==='pulse'){if($('#pulse-view')?.dataset.pulsePrepared!=='true')preparePulse();else applyPulseFilter(r.params.get('category')||'all');}
+    if(r.view==='pulse'){if($('#explore')?.dataset.pulsePrepared!=='true')preparePulse();else applyPulseFilter(r.params.get('category')||'all');}
     if(r.view==='series')renderSeriesRoute(r);
     if(r.view==='compare')restoreCompare(r);
     if(r.view==='explore')restoreExplore(r);

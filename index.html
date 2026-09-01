@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/routed-views.css">
   <link rel="stylesheet" href="assets/mobile.css">
   <link rel="stylesheet" href="assets/mobile-overhaul.css">
+  <link rel="stylesheet" href="assets/pulse-carousel.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -53,6 +54,11 @@
         <div class="sparkline" aria-label="National pulse loading"></div>
         <dl><div><dt>Reference period</dt><dd>Loading…</dd></div><div><dt>Source</dt><dd>Loading…</dd></div></dl>
         <button class="text-link" data-series="inflation">Open series <span>→</span></button>
+        <div class="pulse-carousel-controls" aria-label="Choose national signal">
+          <button type="button" class="pulse-arrow" data-pulse-prev aria-label="Previous signal">←</button>
+          <div class="pulse-dots" role="tablist" aria-label="National signals"></div>
+          <button type="button" class="pulse-arrow" data-pulse-next aria-label="Next signal">→</button>
+        </div>
       </aside>
     </section>
 
@@ -64,6 +70,7 @@
 
     <section class="section pulse-section" id="explore" data-view="pulse" hidden>
       <div class="section-heading"><div><p class="eyebrow">National Pulse</p><h2>Kenya, signal by signal.</h2></div><p>Browse core Kenya indicators and the wider published World Bank set without turning the homepage into one continuous dashboard.</p></div>
+      <div id="pulse-signal-carousel" class="pulse-signal-carousel" aria-label="Featured Kenya-wide signals"></div>
       <div class="pulse-filter-bar" id="pulse-filters" role="group" aria-label="Filter National Pulse">
         <button type="button" class="active" data-pulse-filter="all" aria-pressed="true">All</button>
         <button type="button" data-pulse-filter="core" aria-pressed="false">Core Kenya</button>
@@ -243,6 +250,7 @@
   <!-- Lazy route module contract: assets/geo-explorer.js -->
   <script src="assets/router.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/pulse-carousel.js"></script>
   <script src="assets/lazy-integrations.js"></script>
   <script src="assets/routed-views.js"></script>
 </body>
