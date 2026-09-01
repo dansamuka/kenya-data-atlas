@@ -7,7 +7,14 @@
   "indicator_code": "IND-REGISTERED-VOTERS",
   "target_level": "constituency",
   "target_geography_count": 290,
-  "expected_existing_p23_slots": 290,
+  "target_observation_count": 290,
+  "expected_existing_p23_slot_instances": 870,
+  "slot_surface_math": {
+    "slot_instances_per_constituency": 3,
+    "tabs": ["overview", "people", "representation"],
+    "expected_slot_instances": 870,
+    "explanation": "The completeness ledger renders IND-REGISTERED-VOTERS on three constituency profile surfaces. One canonical geography/indicator observation resolves all three governed slot instances for that constituency; no duplicate observation is created."
+  },
   "statistical_authority": {
     "agency": "Independent Electoral and Boundaries Commission (IEBC)",
     "publication": "Kenya Gazette, 21 June 2022, Gazette Notice No. 7290",
@@ -28,7 +35,8 @@
     "county_count": 47
   },
   "canonicalisation_rules": [
-    "Resolve only pre-existing P23 IND-REGISTERED-VOTERS constituency slots; do not create a new governed denominator.",
+    "Resolve only pre-existing P23 IND-REGISTERED-VOTERS constituency slot instances; do not create a new governed denominator.",
+    "Publish exactly one canonical registered-voter observation per constituency geography; the completeness builder may resolve that observation across the existing overview, people and representation slot surfaces.",
     "Map each of the 290 source constituency codes to exactly one canonical constituency geography.",
     "Preserve the Sprint 2 B — Official derived treatment unless a separate direct Second Schedule transcription is independently validated.",
     "Do not inherit county registered-voter values into constituencies.",
@@ -49,9 +57,9 @@
     "The 1,450 ward rows sum to 22,102,532.",
     "Every canonical constituency code 1–290 exists exactly once and has a source-derived total.",
     "All locked constituency anchors reconcile.",
-    "The completeness ledger still contains exactly 290 unresolved P23 constituency IND-REGISTERED-VOTERS slots immediately before promotion.",
-    "After native promotion and deterministic rebuild, those 290 slots become resolved published_derived observations without changing total_slots=20,115.",
+    "The completeness ledger still contains exactly 870 unresolved P23 constituency IND-REGISTERED-VOTERS slot instances across overview, people and representation immediately before promotion.",
+    "After native promotion and deterministic rebuild, exactly 290 canonical observations exist for this family and the corresponding 870 slot instances become resolved published_derived rows without changing total_slots=20,115.",
     "Full Atlas validation and P16 release gates pass before merge of the promotion tranche."
   ],
-  "scope_note": "This readiness contract validates and freezes the source/canonicalisation rules for the first P23 tranche. It does not itself resolve a slot or publish a duplicate observation."
+  "scope_note": "This readiness contract validates and freezes the source/canonicalisation rules for the first P23 tranche. It does not itself resolve a slot instance or publish a duplicate observation."
 }
