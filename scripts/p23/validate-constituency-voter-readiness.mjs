@@ -13,7 +13,8 @@ const summary=readJson('data/completeness/summary.json');
 assert(contract.schema_version==='kda.p23.constituency-voter-promotion.v1','unexpected contract schema');
 assert(contract.phase==='P23'&&contract.accelerator==='P23A','contract must belong to P23/P23A');
 assert(contract.indicator_code==='IND-REGISTERED-VOTERS','wrong first-tranche indicator');
-assert(contract.target_geography_count===290&&contract.expected_existing_p23_slots===290,'target must remain 290 existing P23 slots');
+assert(contract.target_geography_count===290&&contract.target_observation_count===290,'target must remain 290 canonical observations');
+assert(contract.expected_existing_p23_slot_instances===870,'target must remain 870 existing P23 slot instances');
 assert(summary.total_slots===20115,'governed denominator changed');
 assert((summary.by_completion_phase?.P23||0)===3190,'P23 queue changed before first P23 promotion');
 
@@ -29,11 +30,17 @@ for(const geo of constituencies){
 for(let code=1;code<=290;code++)assert(byCode.has(code),`canonical constituency code ${code} missing`);
 
 const targetSlots=ledger.rows.filter(r=>r.level==='constituency'&&r.indicator_code==='IND-REGISTERED-VOTERS');
-assert(targetSlots.length===290,`expected 290 constituency voter slots, found ${targetSlots.length}`);
-assert(targetSlots.every(r=>r.completion_phase==='P23'), 'a constituency voter slot is not assigned to P23');
-assert(targetSlots.every(r=>r.resolved===false), 'readiness contract must precede native promotion; a target slot is already resolved');
-assert(new Set(targetSlots.map(r=>r.geo_code)).size===290,'constituency voter target geo_codes are not unique');
-for(const geo of constituencies)assert(targetSlots.some(r=>r.geography_id===geo.geography_id),`no governed voter slot for ${geo.geo_code}`);
+assert(targetSlots.length===870,`expected 870 constituency voter slot instances, found ${targetSlots.length}`);
+assert(targetSlots.every(r=>r.completion_phase==='P23'),'a constituency voter slot instance is not assigned to P23');
+assert(targetSlots.every(r=>r.resolved===false),'readiness contract must precede native promotion; a target slot instance is already resolved');
+const expectedTabs=['overview','people','representation'];
+assert(JSON.stringify([...new Set(targetSlots.map(r=>r.tab))].sort())===JSON.stringify(expectedTabs),'constituency voter slot surfaces changed');
+for(const geo of constituencies){
+  const slots=targetSlots.filter(r=>r.geography_id===geo.geography_id);
+  assert(slots.length===3,`${geo.geo_code} must have exactly three governed voter slot instances`);
+  assert(JSON.stringify(slots.map(r=>r.tab).sort())===JSON.stringify(expectedTabs),`${geo.geo_code} voter slot surfaces changed`);
+}
+assert(new Set(targetSlots.map(r=>`${r.geography_id}|${r.indicator_code}`)).size===290,'slot instances do not collapse to exactly 290 geography/indicator observation keys');
 
 async function fetchText(url){
   const response=await fetch(url,{headers:{'User-Agent':'Kenya-Data-Atlas-P23-readiness'}});
@@ -68,8 +75,8 @@ for(const anchor of contract.locked_anchors||[])assert(totals.get(anchor.constit
 
 assert(contract.canonicalisation_rules.some(x=>x.includes('Do not inherit county')),'anti-inheritance rule missing');
 assert(contract.canonicalisation_rules.some(x=>x.includes('Mandera East/Lafey')),'Mandera/Lafey statistical-versus-spatial rule missing');
-assert(contract.scope_note.includes('does not itself resolve a slot'),'readiness tranche must not claim completion');
+assert(contract.scope_note.includes('does not itself resolve a slot instance'),'readiness tranche must not claim completion');
 
-console.log(`P23_VOTER_READINESS_OK source_wards=${rows.length} constituencies=${totals.size} target_slots=${targetSlots.length}`);
+console.log(`P23_VOTER_READINESS_OK source_wards=${rows.length} constituencies=${totals.size} target_observations=${contract.target_observation_count} target_slot_instances=${targetSlots.length}`);
 console.log(`P23_VOTER_SOURCE_TOTAL_OK total=${contract.deterministic_extraction.national_domestic_total}`);
 console.log('P23_VOTER_ANTI_INHERITANCE_OK');
