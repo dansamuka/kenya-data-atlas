@@ -145,7 +145,10 @@
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
-  window.addEventListener('keydown',handleGlobalSearchShortcut,true);
+  /* Playwright Firefox/WebKit deliver the Ctrl/Cmd+K chord reliably to the
+   * document path, while the previous window-capture listener could miss it.
+   * Capture here also wins before the v2 search-sheet bubble listener. */
+  document.addEventListener('keydown',handleGlobalSearchShortcut,true);
 
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 
