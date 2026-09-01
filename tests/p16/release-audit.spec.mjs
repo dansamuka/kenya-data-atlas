@@ -70,7 +70,8 @@ test('mobile keyboard, focus and overflow gate', async ({ page }) => {
   expect(geometry.scroll).toBeLessThanOrEqual(geometry.viewport + 1);
 });
 
-test('search is keyboard reachable from a routed view', async ({ page }) => {
+test('global-search convenience shortcut routes to and focuses search', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Ctrl/Cmd+K is browser-reserved in Firefox/WebKit; real cross-browser keyboard reachability is enforced through the visible Search control below.');
   await page.goto('/#/compare', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('body')).toHaveAttribute('data-view', 'compare');
   await page.keyboard.press(process.platform === 'darwin' ? 'Meta+K' : 'Control+K');
@@ -102,7 +103,9 @@ test('header and searchable-select buttons perform their intended search actions
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/#/compare', { waitUntil: 'domcontentloaded' });
   const global=page.locator('[data-focus-search]');
-  await global.click();
+  await global.focus();
+  await expect(global).toBeFocused();
+  await page.keyboard.press('Enter');
   await expect(page.locator('body')).toHaveAttribute('data-view','home');
   await expect(page.locator('#atlas-search')).toBeFocused();
 

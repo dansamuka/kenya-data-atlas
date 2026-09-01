@@ -145,10 +145,12 @@
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
-  /* Playwright Firefox/WebKit deliver the Ctrl/Cmd+K chord reliably to the
-   * document path, while the previous window-capture listener could miss it.
-   * Capture here also wins before the v2 search-sheet bubble listener. */
+  /* Own the global-search chord at the router so every route follows the same
+   * Home → #atlas-search contract. Firefox can consume Ctrl/Cmd+K before a
+   * page keydown reaches document in automation/OS shortcut paths, while its
+   * keyup is still delivered; listen to both phases. The handler is idempotent. */
   document.addEventListener('keydown',handleGlobalSearchShortcut,true);
+  document.addEventListener('keyup',handleGlobalSearchShortcut,true);
 
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 

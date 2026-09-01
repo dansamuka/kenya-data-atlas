@@ -10,7 +10,7 @@
   const finite=v=>Number.isFinite(Number(v));
   const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
-  const state={data:null,bound:false,sortKey:'diagnostic_rank',sortDir:'asc'};
+  const state={data:null,bound:false,sortKey:'diagnostic_rank',sortDir:'asc',indicatorCode:null};
   let bootPromise=null;
 
   function route(){return R?.current?.()||R?.parse?.()||{view:'rankings'};}
@@ -21,6 +21,21 @@
 
   function bandClass(row){const band=Number(row.relative_position_band);return finite(band)&&band>=1&&band<=5?`band-${band}`:'band-3';}
   function rankPct(rank){return Math.max(0,Math.min(100,((Number(rank)-1)/46)*100));}
+  function ordinal(value){const n=Math.round(Number(value));if(!Number.isFinite(n))return'—';const mod100=n%100;if(mod100>=11&&mod100<=13)return`${n}th`;return`${n}${n%10===1?'st':n%10===2?'nd':n%10===3?'rd':'th'}`;}
+  function fmtValue(value,unit){
+    if(!finite(value))return'—';const n=Number(value),code=String(unit||'');
+    if(code==='percent'||code.includes('percent'))return`${n.toLocaleString('en-KE',{maximumFractionDigits:1})}%`;
+    if(code==='persons'||code==='count')return n.toLocaleString('en-KE',{maximumFractionDigits:0});
+    if(code==='kes_million')return`KES ${n.toLocaleString('en-KE',{maximumFractionDigits:1})} mn`;
+    if(code==='km2')return`${n.toLocaleString('en-KE',{maximumFractionDigits:1})} km²`;
+    if(code==='hectares')return`${n.toLocaleString('en-KE',{maximumFractionDigits:1})} ha`;
+    return n.toLocaleString('en-KE',{maximumFractionDigits:2});
+  }
+  function pinnedGeo(){
+    const fromRoute=route().params?.get?.('pinned');if(fromRoute)return fromRoute;
+    try{const stored=JSON.parse(sessionStorage.getItem('kda-v2-pinned')||'null');return stored?.geo_code||null;}catch(_){return null;}
+  }
+  function indicatorGeo(row,geoMap){return row?.geo_code||geoMap?.get?.(row?.county)||'';}
   function spectrum(dataRows){
     const rows=(dataRows||[]).filter(r=>finite(r.diagnostic_rank)).slice().sort((a,b)=>Number(a.diagnostic_rank)-Number(b.diagnostic_rank));
     if(rows.length<5)return'';
@@ -30,6 +45,25 @@
       return `<span class="ri-spectrum-whisker ${bandClass(r)}" style="--x0:${left.toFixed(3)}%;--x1:${right.toFixed(3)}%;--lane:${lane}" aria-hidden="true"></span><button type="button" class="ri-spectrum-dot ${bandClass(r)}" style="--x:${x.toFixed(3)}%;--lane:${lane}" data-ri-geo="${esc(r.geo_code)}" data-ri-county="${esc(r.county)}" data-ri-score="${esc(r.score)}" data-ri-rank="${esc(rank)}" data-ri-range="#${esc(lo)}–#${esc(hi)}" data-v2-tooltip="${esc(r.county)} · score ${esc(r.score)} / 100 · diagnostic #${esc(rank)} · plausible #${esc(lo)}–#${esc(hi)}" aria-label="${esc(r.county)}, score ${esc(r.score)}, diagnostic position ${esc(rank)}, plausible position ${esc(lo)} to ${esc(hi)}"><span class="sr-only">${esc(r.county)}</span></button>`;
     }).join('');
     return `<div class="ri-development-spectrum" id="v2-dev-beeswarm" data-ri-development-spectrum="true"><div class="ri-spectrum-head"><div><small>Position spectrum</small><strong>How counties cluster — without hiding uncertainty</strong></div><p>Dots use diagnostic position; whiskers show the published plausible rank range. Scores remain visible in the table below.</p></div><div class="ri-spectrum-legend" aria-label="Relative position bands"><span class="band-1"><i></i>Top 20%</span><span class="band-2"><i></i>20–40%</span><span class="band-3"><i></i>40–60%</span><span class="band-4"><i></i>60–80%</span><span class="band-5"><i></i>Bottom 20%</span></div><div class="ri-spectrum-scroll"><div class="ri-spectrum-plot" role="group" aria-label="County diagnostic position spectrum from 1 to 47">${marks}<div class="ri-spectrum-axis" aria-hidden="true"><span>#1</span><span>#12</span><span>#24</span><span>#36</span><span>#47</span></div></div></div><p class="ri-spectrum-note">Exact position is diagnostic. The uncertainty whisker is the published robustness range, not an extra modelled estimate.</p></div>`;
+  }
+
+  function indicatorDistribution(group,geoMap){
+    if(!group)return'';
+    const rows=(group.rows||[]).filter(r=>finite(r.ranking?.rank)&&finite(r.ranking?.percentile)).slice().sort((a,b)=>Number(a.ranking.rank)-Number(b.ranking.rank)||String(a.county).localeCompare(String(b.county)));
+    if(rows.length<2)return'';
+    const maxRank=Math.max(...rows.map(r=>Number(r.ranking.rank)),rows.length),pinned=pinnedGeo();
+    const xFor=r=>Math.max(0,Math.min(100,((Number(r.ranking.rank)-1)/Math.max(1,maxRank-1))*100));
+    const marks=rows.map(r=>{
+      const x=xFor(r),geo=indicatorGeo(r,geoMap),isPinned=Boolean(pinned&&geo===pinned);
+      const label=`${r.county} · #${r.ranking.rank} of ${rows.length} · ${ordinal(r.ranking.percentile)} percentile · ${fmtValue(r.latest?.value,r.latest?.unit_code)}`;
+      return `<button type="button" class="ri-indicator-dot${isPinned?' is-pinned':''}" style="--x:${x.toFixed(3)}%" data-ri-indicator-geo="${esc(geo)}" data-v2-tooltip="${esc(label)}" aria-label="${esc(label)}${isPinned?', pinned county':''}"${geo?'':' disabled'}><span class="sr-only">${esc(r.county)}</span></button>`;
+    }).join('');
+    const selected=rows.find(r=>indicatorGeo(r,geoMap)===pinned)||null;
+    const first=rows[0],middle=rows[Math.floor((rows.length-1)/2)],last=rows.at(-1);
+    const selectedX=selected?xFor(selected):null,edge=selected?(Number(selected.ranking.rank)<=4?' edge-start':Number(selected.ranking.rank)>=maxRank-3?' edge-end':''):'';
+    const pin=selected?`<div class="ri-indicator-pin${edge}" style="--x:${selectedX.toFixed(3)}%" aria-hidden="true"><span>You are here</span><strong>${esc(selected.county)}</strong></div>`:'';
+    const context=selected?`<div class="ri-indicator-context" aria-live="polite"><span><small>Pinned county</small><strong>${esc(selected.county)}</strong></span><span><small>National rank</small><strong>#${esc(selected.ranking.rank)} of ${rows.length}</strong></span><span><small>National percentile</small><strong>${esc(ordinal(selected.ranking.percentile))}</strong></span><span><small>Latest published value</small><strong>${esc(fmtValue(selected.latest?.value,selected.latest?.unit_code))}</strong><small>${esc(selected.latest?.period_label||'')}</small></span></div>`:`<p class="ri-indicator-hint">Select any county dot to pin it across the Atlas and reveal its exact rank, percentile and latest published value.</p>`;
+    return `<div class="ri-indicator-distribution" id="v2-indicator-distribution" data-indicator-code="${esc(group.indicator_code)}"><div class="ri-indicator-dist-head"><div><small>National distribution</small><strong>Where counties sit on this indicator</strong></div><p>Position uses the published national rank. Percentile labels are read directly from the same ranking output.</p></div><div class="ri-indicator-scroll"><div class="ri-indicator-plot" role="group" aria-label="National rank distribution for ${esc(group.name)}">${pin}<div class="ri-indicator-track" aria-hidden="true"></div>${marks}<div class="ri-indicator-axis" aria-hidden="true"><span><strong>#${esc(first.ranking.rank)}</strong>${esc(ordinal(first.ranking.percentile))} percentile</span><span><strong>#${esc(middle.ranking.rank)}</strong>${esc(ordinal(middle.ranking.percentile))} percentile</span><span><strong>#${esc(last.ranking.rank)}</strong>${esc(ordinal(last.ranking.percentile))} percentile</span></div></div></div>${context}<p class="ri-spectrum-note">Ranks follow the published indicator direction shown in the table; the visual does not create a new score or trend.</p></div>`;
   }
 
   function decorateDevelopmentRows(d){
@@ -44,6 +78,16 @@
     });
   }
 
+  function decorateIndicatorRows(group,geoMap){
+    const body=$('#ri-indicator-body');if(!body||!group)return;
+    const byName=new Map((group.rows||[]).map(r=>[r.county,r])),pinned=pinnedGeo();
+    $$('tr',body).forEach(row=>{
+      const county=$$('td',row)[1]?.querySelector('strong')?.textContent?.trim(),item=byName.get(county);if(!item)return;
+      const geo=indicatorGeo(item,geoMap);if(geo)row.dataset.riGeo=geo;else delete row.dataset.riGeo;
+      row.classList.toggle('ri-indicator-pinned',Boolean(pinned&&geo===pinned));
+    });
+  }
+
   function ensureDevelopmentVisual(d){
     const panel=$('[data-ri-panel="development"]'),wrap=$('.ri-table-wrap',panel);if(!panel||!wrap)return;
     let visual=$('#v2-dev-beeswarm',panel);
@@ -54,6 +98,16 @@
     }
     decorateDevelopmentRows(d);
     ensureSortButtons();
+  }
+
+  function ensureIndicatorVisual(d){
+    const panel=$('[data-ri-panel="indicator"]'),meta=$('#ri-indicator-meta',panel),select=$('#ri-indicator-select',panel);if(!panel||!meta||!select)return;
+    const group=(d.indicator_rankings||[]).find(g=>g.indicator_code===select.value)||(d.indicator_rankings||[])[0];if(!group)return;
+    const geoMap=new Map((d.development_snapshot||[]).filter(r=>r.county&&r.geo_code).map(r=>[r.county,r.geo_code]));
+    const html=indicatorDistribution(group,geoMap);if(!html)return;
+    let visual=$('#v2-indicator-distribution',panel);
+    if(visual)visual.outerHTML=html;else meta.insertAdjacentHTML('afterend',html);
+    state.indicatorCode=group.indicator_code;decorateIndicatorRows(group,geoMap);
   }
 
   function suppressUnsupportedAdministrationSlopes(){
@@ -109,18 +163,26 @@
     const row=$(`#ri-development-body tr[data-ri-geo="${CSS.escape(geo)}"]`);if(!row)return;
     row.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'center'});row.classList.remove('ri-row-flash');void row.offsetWidth;row.classList.add('ri-row-flash');setTimeout(()=>row.classList.remove('ri-row-flash'),900);
   }
+  function flashIndicatorRow(geo){
+    const row=$(`#ri-indicator-body tr[data-ri-geo="${CSS.escape(geo)}"]`);if(!row)return;
+    row.scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'center'});row.classList.remove('ri-row-flash');void row.offsetWidth;row.classList.add('ri-row-flash');setTimeout(()=>row.classList.remove('ri-row-flash'),900);
+  }
 
   function bind(){
     if(state.bound)return;state.bound=true;
-    document.addEventListener('click',event=>{
+    document.addEventListener('click',async event=>{
       const sort=event.target.closest('[data-ri-sort]');if(sort&&isRankings()){sortDevelopment(sort.dataset.riSort);return;}
+      const indicatorDot=event.target.closest('.ri-indicator-dot');if(indicatorDot&&isRankings()){
+        const geo=indicatorDot.dataset.riIndicatorGeo;if(!geo)return;await window.KDAV2?.pin?.(geo,{announce:false});ensureIndicatorVisual(state.data);flashIndicatorRow(geo);return;
+      }
       const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){void window.KDAV2?.pin?.(dot.dataset.riGeo,{announce:false});flashRow(dot.dataset.riGeo);return;}
-      const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings())requestAnimationFrame(()=>animatePanel(tab.dataset.riTab));
+      const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings())requestAnimationFrame(()=>{if(tab.dataset.riTab==='indicator')ensureIndicatorVisual(state.data);animatePanel(tab.dataset.riTab);});
     });
+    document.addEventListener('change',event=>{if(event.target?.matches?.('#ri-indicator-select')&&isRankings())requestAnimationFrame(()=>ensureIndicatorVisual(state.data));});
   }
 
   async function enhance(){
-    if(!isRankings())return null;await ensureStyle();const d=await data();ensureDevelopmentVisual(d);suppressUnsupportedAdministrationSlopes();bind();
+    if(!isRankings())return null;await ensureStyle();const d=await data();ensureDevelopmentVisual(d);ensureIndicatorVisual(d);suppressUnsupportedAdministrationSlopes();bind();
     const active=$('[data-ri-tab].active')?.dataset.riTab||'development';animatePanel(active);return d;
   }
   function boot(){if(bootPromise)return bootPromise;bootPromise=waitForRankings().then(rankings=>Promise.resolve(rankings?.boot?.())).then(()=>enhance()).catch(error=>{console.warn('Rankings visual v2:',error?.message||error);return null;});return bootPromise;}
