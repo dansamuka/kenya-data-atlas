@@ -37,6 +37,8 @@
     if(unit==='persons')return n>=1e6?`${(n/1e6).toFixed(2)}m`:n>=1e3?`${(n/1e3).toFixed(0)}k`:number(n);
     if(unit==='percent')return `${number(n,Math.abs(n-Math.round(n))>0.0001?1:0)}%`;
     if(unit==='kes_per_usd')return number(n,2);
+    if(unit==='usd')return n>=1e9?`US$${(n/1e9).toFixed(1)}bn`:`US$${number(n,0)}`;
+    if(unit==='usd_per_person')return `US$${number(n,0)}`;
     if(unit==='kes_million')return n>=1000?`KES ${(n/1000).toFixed(1)}bn`:`KES ${number(n,1)}mn`;
     return number(n,2);
   }
@@ -60,7 +62,7 @@
       if(!latest)return '';
       const delta=previous?Number(latest.value)-Number(previous.value):null;
       const deltaText=delta===null?'Latest published observation':`${delta>0?'↑':delta<0?'↓':'→'} ${Math.abs(delta).toLocaleString('en-KE',{maximumFractionDigits:3})}${card.unit_code==='percent'?' pp':''} from ${previous.period_label}`;
-      return `<article class="metric-card">${badgeHtml(card.badge)}<span class="label">${esc(card.label)}</span><strong>${esc(formatValue(latest.value,card.unit_code))}</strong><span class="delta">${esc(deltaText)}</span><small>${esc(latest.period_label)} · ${esc(card.source)}</small></article>`;
+      return `<article class="metric-card" data-series-code="${esc(card.series_code)}" data-pulse-category="${esc(card.category||'core')}">${badgeHtml(card.badge)}<span class="label">${esc(card.label)}</span><strong>${esc(formatValue(latest.value,card.unit_code))}</strong><span class="delta">${esc(deltaText)}</span><small>${esc(latest.period_label)} · ${esc(card.source)}</small></article>`;
     }).join('');
 
     const inflation=cards.find(card=>card.series_code==='KDA-CPI-YOY-KEN');
@@ -76,6 +78,7 @@
       }
       const dl=$('.pulse-card dl');if(dl)dl.innerHTML=`<div><dt>Reference period</dt><dd>${esc(latest.period_label)}</dd></div><div><dt>Source</dt><dd>${esc(inflation.source)} · ${badgeLabel(inflation.badge)}</dd></div>`;
     }
+    window.dispatchEvent(new CustomEvent('kda:pulse-ready',{detail:{cards}}));
   }
 
   function makeCountyRows(gcp,budget,voters){

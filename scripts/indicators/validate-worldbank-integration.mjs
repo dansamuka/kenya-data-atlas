@@ -39,7 +39,12 @@ for (const def of config.indicators) {
     const geo = geoById.get(s.geography_id);
     if (geo?.level !== 'country') errors.push(`${def.code}: World Bank series ${s.series_code} is not national-only (${geo?.level || 'unknown'})`);
     if (!String(s.series_code).startsWith('KDA-WB-')) errors.push(`${def.code}: unexpected World Bank series code ${s.series_code}`);
-    for (const o of observationsBySeries.get(s.series_id) || []) {
+    const history = observationsBySeries.get(s.series_id) || [];
+    if (def.lifecycle_status === 'active' && history.length < 2) errors.push(`${def.code}: active national series must retain source history, found ${history.length} observation(s)`);
+    const periods = new Set();
+    for (const o of history) {
+      if (periods.has(o.period_label)) errors.push(`${def.code}: duplicate history period ${o.period_label}`);
+      periods.add(o.period_label);
       if (!['B','D'].includes(o.badge)) errors.push(`${def.code}: World Bank observation badge must be B or D, got ${o.badge}`);
       if (def.badge !== o.badge) errors.push(`${def.code}: stored/derived badge ${o.badge} != configured ${def.badge}`);
       if (o.badge === 'A') errors.push(`${def.code}: badge A is prohibited for World Bank`);

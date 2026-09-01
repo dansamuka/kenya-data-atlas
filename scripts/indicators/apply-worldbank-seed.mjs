@@ -60,7 +60,11 @@ const wbSeriesCodes = new Set(series.filter(s => String(s.code || '').startsWith
 series = series.filter(s => !wbSeriesCodes.has(s.code));
 observations = observations.filter(o => !wbSeriesCodes.has(o.series_code));
 
-const snapshotByCode = new Map((snapshot.observations || []).map(o => [o.atlas_indicator_code, o]));
+const snapshotByCode = new Map();
+for (const observation of snapshot.observations || []) {
+  if (!snapshotByCode.has(observation.atlas_indicator_code)) snapshotByCode.set(observation.atlas_indicator_code, []);
+  snapshotByCode.get(observation.atlas_indicator_code).push(observation);
+}
 function seriesCode(def) { return `KDA-WB-${def.wb_code.replaceAll('.', '-')}-KEN`; }
 function transformation(def) {
   if (def.code === 'IND-GDP-GROWTH' || def.code === 'IND-POPULATION-GROWTH') return 'growth';
@@ -74,11 +78,11 @@ function status(def) {
   return 'final';
 }
 
-let emitted = 0;
+let emittedSeries = 0, emittedObservations = 0;
 for (const def of config.indicators) {
   if (def.lifecycle_status !== 'active' || def.ingest === false) continue;
-  const obs = snapshotByCode.get(def.code);
-  if (!obs) continue;
+  const history = (snapshotByCode.get(def.code) || []).sort((a,b)=>String(a.period_end).localeCompare(String(b.period_end)));
+  if (!history.length) continue;
   const code = seriesCode(def);
   const geographicMethod = def.badge === 'D' ? 'modelled' : 'aggregated';
   series.push({
@@ -95,31 +99,34 @@ for (const def of config.indicators) {
     comparability_group: `WB-WDI-${def.wb_code}`,
     methodology_url: `https://data.worldbank.org/indicator/${def.wb_code}?locations=KE`
   });
-  observations.push({
-    series_code: code,
-    period_start: obs.period_start,
-    period_end: obs.period_end,
-    period_type: 'calendar_year',
-    period_label: obs.period_label,
-    value: obs.value,
-    geographic_method: geographicMethod,
-    statistical_status: status(def),
-    source_class: 'official',
-    source_url: obs.source_url,
-    published_at: '',
-    notes: [
-      'World Bank World Development Indicators; national Kenya only.',
-      'World Bank is a secondary harmonising compiler, not a Kenyan primary statistical agency.',
-      def.disclosure || '',
-      `WB code: ${def.wb_code}.`,
-      `Retrieved: ${obs.retrieved_at}.`
-    ].filter(Boolean).join(' ')
-  });
-  emitted++;
+  for (const obs of history) {
+    observations.push({
+      series_code: code,
+      period_start: obs.period_start,
+      period_end: obs.period_end,
+      period_type: 'calendar_year',
+      period_label: obs.period_label,
+      value: obs.value,
+      geographic_method: geographicMethod,
+      statistical_status: status(def),
+      source_class: 'official',
+      source_url: obs.source_url,
+      published_at: '',
+      notes: [
+        'World Bank World Development Indicators; national Kenya only.',
+        'World Bank is a secondary harmonising compiler, not a Kenyan primary statistical agency.',
+        def.disclosure || '',
+        `WB code: ${def.wb_code}.`,
+        `Retrieved: ${obs.retrieved_at}.`
+      ].filter(Boolean).join(' ')
+    });
+    emittedObservations++;
+  }
+  emittedSeries++;
 }
 
 await Promise.all([
   write(unitPath, units), write(indicatorPath, indicators),
   write(seriesPath, series), write(observationPath, observations)
 ]);
-console.log(`World Bank indicator seed applied: ${config.indicators.length} indicator definitions, ${emitted} active national series/observations.`);
+console.log(`World Bank indicator seed applied: ${config.indicators.length} indicator definitions, ${emittedSeries} active national series and ${emittedObservations} historical observations.`);

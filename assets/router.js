@@ -87,9 +87,14 @@
   }
   function openGlobalSearch(){
     if((current?.view||parse().view)!=='home')navigate('home');
-    focusGlobalSearch();
-    queueMicrotask(focusGlobalSearch);
-    requestAnimationFrame(focusGlobalSearch);
+    const refocus=()=>{if((current?.view||parse().view)==='home')focusGlobalSearch();};
+    refocus();
+    queueMicrotask(refocus);
+    requestAnimationFrame(refocus);
+    /* Optional search and site-v2 layers finish their route work on later
+     * tasks in Firefox/WebKit. Reassert focus after those handlers settle. */
+    setTimeout(refocus,0);
+    setTimeout(refocus,120);
   }
   function isGlobalSearchShortcut(event){
     if(!(event.ctrlKey||event.metaKey))return false;
@@ -146,9 +151,8 @@
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
   /* Own the global-search chord at the router so every route follows the same
-   * Home → #atlas-search contract. Firefox can consume Ctrl/Cmd+K before a
-   * page keydown reaches document in automation/OS shortcut paths, while its
-   * keyup is still delivered; listen to both phases. The handler is idempotent. */
+   * Home → #atlas-search contract. Some browser/OS shortcut paths consume the
+   * keydown while still delivering keyup, so listen to both phases. */
   document.addEventListener('keydown',handleGlobalSearchShortcut,true);
   document.addEventListener('keyup',handleGlobalSearchShortcut,true);
 
@@ -165,3 +169,4 @@
   protectCompareCriticalPaint();
   loadSiteV2();
 })();
+
