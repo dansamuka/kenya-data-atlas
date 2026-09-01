@@ -1,6 +1,6 @@
 /* Kenya Data Atlas offline app shell. Same-origin GET requests only. */
 const CACHE_NAME='kenya-data-atlas-v2-20260901';
-const APP_SHELL=['./','./index.html','./assets/styles.css','./assets/router.js','./assets/app.js','./assets/data-loader.js','./assets/site-v2.css','./assets/site-v2.js','./manifest.webmanifest'];
+const APP_SHELL=['./','./index.html','./assets/styles.css','./assets/router.js','./assets/app.js','./assets/data-loader.js','./assets/site-v2.css','./assets/site-v2.js','./assets/site-v2-route.css','./assets/site-v2-route.js','./assets/pwa-v2.js','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(APP_SHELL)));
 });
