@@ -20,3 +20,5 @@ jobs:
           node-version: 22
       - name: Validate phase authority and parallel execution overlay
         run: node scripts/project/validate-data-completion-execution.mjs
+      - name: Validate P22 NDMA eligibility and freshness contract
+        run: node scripts/p22/validate-ndma-freshness.mjs
