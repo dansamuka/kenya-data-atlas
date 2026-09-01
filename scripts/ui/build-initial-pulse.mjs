@@ -35,7 +35,10 @@ const cards=specs.map(spec=>{
   const latestEnd=new Date(history.at(-1).period_end);
   const cutoff=new Date(latestEnd);cutoff.setUTCFullYear(cutoff.getUTCFullYear()-5);
   const fiveYearHistory=history.filter(o=>new Date(o.period_end)>=cutoff);
-  return {...spec,history:fiveYearHistory.length?fiveYearHistory:history.slice(-1),available_observation_count:history.length};
+  // Sparse official series such as censuses still expose real history rather
+  // than collapsing to a single point when only one release falls inside 5Y.
+  const displayHistory=fiveYearHistory.length>=2?fiveYearHistory:history.slice(-Math.min(6,history.length));
+  return {...spec,history:displayHistory,available_observation_count:history.length};
 });
 
 const output={

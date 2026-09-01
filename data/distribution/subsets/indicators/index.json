@@ -501,7 +501,7 @@
     "name": "Population",
     "path": "data/distribution/subsets/indicators/IND-POPULATION.json",
     "series_count": 48,
-    "observation_count": 95
+    "observation_count": 100
   },
   {
     "indicator_code": "IND-POPULATION-GROWTH",
@@ -564,7 +564,7 @@
     "name": "Registered voters",
     "path": "data/distribution/subsets/indicators/IND-REGISTERED-VOTERS.json",
     "series_count": 48,
-    "observation_count": 48
+    "observation_count": 50
   },
   {
     "indicator_code": "IND-REMITTANCES-GDP",

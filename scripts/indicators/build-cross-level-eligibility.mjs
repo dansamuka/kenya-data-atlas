@@ -83,3 +83,9 @@ await writeFile(path.join(root, 'data/indicators/registry/cross-level-eligibilit
   indicators: indicatorRows
 }, null, 2) + '\n');
 console.log(`Cross-level eligibility derived for ${seriesRows.length} published series; ${seriesRows.filter(r => r.cross_level_eligible).length} eligible in principle; policy=${INDICATOR_POLICY_VERSION}.`);
+
+// Historical national Pulse observations must live in the canonical registry,
+// not only in the first-paint UI product. Apply them after all indicator
+// promotion steps so Series, Data, distribution exports and Pulse share one
+// source of truth.
+await import('./apply-pulse-history-backfill.mjs');
