@@ -121,28 +121,22 @@ test('header and searchable-select buttons perform their intended search actions
   await expect(dialog).toBeHidden();
 });
 
-test('P18-P22 completed programme is visible on public surfaces', async ({ page }) => {
-  await page.goto('/#/data', { waitUntil: 'domcontentloaded' });
-  const programme=page.locator('#kda-data-programme');
-  await expect(programme).toBeVisible({timeout:10000});
-  await expect(programme).toContainText('P18 · Complete');
-  await expect(programme).toContainText('P22 · Complete');
-  await expect(programme).toContainText('19.26%');
-  await expect(programme).toContainText('3,190');
+test('internal completion phases and duplicate governance overlay stay off public surfaces', async ({ page }) => {
+  const publicRoutes=['/#/data','/#/explore/KEN-C032','/#/explore/KEN-C023','/#/compare','/#/rankings','/#/countyiq'];
+  const retiredOverlaySelectors=[
+    '#kda-data-programme',
+    '#kda-p18-p22-profile',
+    '#kda-p18-p22-ciq',
+    '#kda-completion-compare-note',
+    '#kda-completion-ranking-note',
+    '.kda-completion-surface'
+  ].join(',');
 
-  await page.goto('/#/explore/KEN-C032', { waitUntil: 'domcontentloaded' });
-  const nakuru=page.locator('#kda-p18-p22-profile');
-  await expect(nakuru).toBeVisible({timeout:15000});
-  await expect(nakuru).toContainText('Nakuru · completed county data');
-  await expect(nakuru).toContainText('Class C rural road length');
-  await expect(nakuru).toContainText('Households receiving cash transfer or social assistance');
-  await expect(nakuru).toContainText('Own-source revenue target attainment');
-
-  await page.goto('/#/explore/KEN-C023', { waitUntil: 'domcontentloaded' });
-  const turkana=page.locator('#kda-p18-p22-profile');
-  await expect(turkana).toBeVisible({timeout:15000});
-  await expect(turkana).toContainText('Turkana · completed county data');
-  await expect(turkana).toContainText('Drought early warning bulletin status');
-  await expect(turkana).toContainText('Current observation unavailable');
-  await expect(turkana).toContainText('Refresh trigger');
+  for(const route of publicRoutes){
+    await page.goto(route,{waitUntil:'domcontentloaded'});
+    await page.waitForTimeout(750);
+    await expect(page.locator(retiredOverlaySelectors)).toHaveCount(0);
+    const visibleText=await page.locator('body').innerText();
+    expect(visibleText,`internal phase reference rendered on ${route}`).not.toMatch(/\bP\d{2}\b/);
+  }
 });
