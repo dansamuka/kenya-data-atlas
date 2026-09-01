@@ -33,7 +33,8 @@ assert(p23a.uses_existing_parent_phase_slots_only === true, 'P23A may only resol
 assert(p23a.target_geography_level === 'constituency', 'P23A must target constituency geography');
 assert(p23a.canonical_geography_count === 290, 'P23A must reconcile exactly 290 constituencies');
 assert(p23a.first_tranche?.indicator_code === 'IND-REGISTERED-VOTERS', 'P23A first tranche must remain registered voters');
-assert(p23a.first_tranche?.expected_existing_p23_slots === 290, 'registered-voter tranche must resolve only the existing 290 constituency slots');
+assert(p23a.first_tranche?.expected_canonical_observations === 290, 'registered-voter tranche must publish exactly 290 canonical constituency observations');
+assert(p23a.first_tranche?.expected_existing_p23_slot_instances === 870, 'registered-voter tranche must resolve exactly the existing 870 cross-listed constituency slot instances');
 assert(p23a.first_tranche?.statistical_authority_schedule?.includes('First Schedule'), 'registered-voter provenance must retain the official IEBC ward schedule used by Sprint 2');
 assert(p23a.first_tranche?.published_constituency_schedule?.includes('Second Schedule'), 'the Gazette constituency schedule must remain documented as a published cross-check/source context');
 assert(p23a.first_tranche?.canonical_treatment?.includes('B — Official derived'), 'registered-voter tranche must preserve the audited Sprint 2 B/Official-derived treatment');
@@ -71,5 +72,7 @@ console.log(JSON.stringify({
   p23_remaining: summary.by_completion_phase?.P23,
   p24_remaining: summary.by_completion_phase?.P24,
   p23a_first_tranche: p23a.first_tranche.indicator_code,
+  p23a_voter_observations: p23a.first_tranche.expected_canonical_observations,
+  p23a_voter_slot_instances: p23a.first_tranche.expected_existing_p23_slot_instances,
   p23a_voter_treatment: p23a.first_tranche.canonical_treatment
 }, null, 2));

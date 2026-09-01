@@ -21,36 +21,26 @@
     {
       "track_id": "county_completion",
       "label": "County completion",
-      "status": "in_progress",
-      "sequence": [
-        "P21",
-        "P22"
-      ],
-      "current_focus": "P22",
+      "status": "complete",
+      "sequence": ["P21", "P22"],
+      "current_focus": "complete",
       "contract": "data/p22/asal-eligibility-freshness-contract.json",
-      "rule": "P21 is closed. Execute P22 against the governed 22-county whole-county eligibility contract; resolve drought, food-security and climate families only with date-aware source metadata, and never present stale alert states as current."
+      "rule": "P21 and P22 are closed. P22 remains refreshable when newer official drought, food-security or climate evidence supersedes its governed evidence-constrained snapshot, but it no longer blocks constituency completion."
     },
     {
       "track_id": "local_intelligence_accelerator",
       "label": "Local intelligence accelerator",
       "status": "in_progress",
-      "sequence": [
-        "P23A",
-        "P23"
-      ],
-      "current_focus": "P23A",
+      "sequence": ["P23A", "P23"],
+      "current_focus": "P23",
       "feeds_phase": "P23",
-      "rule": "Promote reusable national constituency pipelines early, but resolve only existing P23 slots and retain full P23 as the 290-constituency completion gate."
+      "rule": "P23 is now the current documented completion phase. Promote reusable national constituency pipelines only into existing P23 slots and retain full 290-constituency reconciliation as the phase acceptance gate."
     },
     {
       "track_id": "final_convergence",
       "label": "Final convergence",
       "status": "planned",
-      "sequence": [
-        "P24",
-        "P25",
-        "P26"
-      ],
+      "sequence": ["P24", "P25", "P26"],
       "rule": "Ward completion, final public-surface closure and the permanent 100% gate retain their original dependencies and acceptance semantics."
     }
   ],
@@ -63,7 +53,7 @@
       "uses_existing_parent_phase_slots_only": true,
       "target_geography_level": "constituency",
       "canonical_geography_count": 290,
-      "goal": "Prove reusable, nationally reconcilable constituency pipelines while P21/P22 county work continues.",
+      "goal": "Prove reusable, nationally reconcilable constituency pipelines as the opening tranches of P23.",
       "initial_pipeline_order": [
         "registered voters / constituency electorate",
         "official turnout history where citable and comparable",
@@ -79,8 +69,10 @@
         "canonical_treatment": "B — Official derived; exact sum of all official IEBC child ward rows for each constituency, including source rows withheld only from uncertain ward geometry",
         "reference_date": "2022-06-20",
         "source_metadata": "data/sprint2/sources.json",
-        "readiness": "290/290 constituency totals and the anti-inheritance/boundary-hold contract are already audited in Sprint 2; native canonical P23 promotion remains to be completed",
-        "expected_existing_p23_slots": 290
+        "promotion_contract": "data/p23/constituency-voter-promotion-contract.json",
+        "readiness": "290/290 constituency totals, source authority, anti-inheritance and boundary-hold treatment are governed by a dedicated P23 promotion-readiness contract. The 290 canonical observations map to 870 pre-existing completeness slot instances because the indicator is cross-listed on overview, people and representation surfaces.",
+        "expected_canonical_observations": 290,
+        "expected_existing_p23_slot_instances": 870
       },
       "acceptance": [
         "Only primary/official or explicitly governed extraction artifacts with primary-source authority may support promoted values.",
@@ -88,30 +80,19 @@
         "Registered-voter constituency values preserve the audited B — Official derived Sprint 2 treatment unless a separate direct-schedule ingestion is independently validated.",
         "Election and boundary vintage are explicit.",
         "No county-to-constituency inheritance occurs.",
-        "Only pre-existing P23 governed slots are resolved; total_slots remains 20,115.",
+        "Only pre-existing P23 governed slot instances are resolved; total_slots remains 20,115.",
         "Any partial or unresolved mapping remains visibly unresolved rather than being force-matched.",
         "Each promoted family has a deterministic builder and validator.",
         "Full Atlas build, validation and P16 gates pass before merge."
       ]
     }
   },
-  "closure_order": [
-    "P18",
-    "P19",
-    "P20",
-    "P21",
-    "P22",
-    "P23",
-    "P24",
-    "P25",
-    "P26"
-  ],
+  "closure_order": ["P18", "P19", "P20", "P21", "P22", "P23", "P24", "P25", "P26"],
   "next_actions": [
-    "Use data/p22/asal-eligibility-freshness-contract.json as the P22 county eligibility and freshness authority.",
-    "Extract the latest NDMA county drought early-warning states for the 22 governed counties with reference-month/publication-date metadata; do not inherit national status downward.",
-    "Extract KFSSG/NDMA food-security classifications only at defensible geography and preserve current/projected validity windows.",
-    "Define the KMD rainfall/temperature anomaly ingestion contract before promoting the third P22 family.",
-    "Canonicalise P23A constituency registered voters as the first local-intelligence tranche while preserving the audited Sprint 2 B/Official-derived treatment.",
-    "Do not start ward numeric promotion until its geography/source contract is independently defensible."
+    "Use data/p23/constituency-voter-promotion-contract.json as the first P23 promotion authority and verify the pinned IEBC extraction against all 290 canonical constituency geographies and the 870 existing P23 voter slot instances across overview, people and representation.",
+    "Native-promote exactly 290 constituency registered-voter observations as B — Official derived values without changing the 20,115-slot denominator; rebuild completeness and require exactly 870 P23 slot instances to resolve.",
+    "After voter promotion, proceed to official constituency turnout history only where period and boundary vintage are explicit and comparable.",
+    "Build the current MP identity roster from an official parliamentary source before NG-CDF tranches.",
+    "Do not start P24 numeric promotion until P23 acceptance is complete and the ward geography/source contract is independently defensible."
   ]
 }
