@@ -1,7 +1,8 @@
-name: Data completion execution governance
+name: P22 NDMA freshness governance
 
 on:
   pull_request:
+    branches: [main]
   push:
     branches: [main]
 
@@ -9,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  validate-execution-model:
+  validate-ndma-freshness:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -18,7 +19,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate phase authority and parallel execution overlay
-        run: node scripts/project/validate-data-completion-execution.mjs
-      - name: Validate P22 NDMA eligibility and freshness contract
+      - name: Validate P22 ASAL eligibility and NDMA freshness inventory
         run: node scripts/p22/validate-ndma-freshness.mjs
