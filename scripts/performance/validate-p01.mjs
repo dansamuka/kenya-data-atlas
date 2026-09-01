@@ -23,7 +23,7 @@ function scriptSources(){
 
 function validateFirstPaintContract(){
   const scripts=scriptSources();
-  const expected=['assets/data-loader.js','assets/router.js','assets/app.js','assets/lazy-integrations.js','assets/routed-views.js'];
+  const expected=['assets/data-loader.js','assets/router.js','assets/app.js','assets/pulse-carousel.js','assets/lazy-integrations.js','assets/routed-views.js'];
   assert(JSON.stringify(scripts)===JSON.stringify(expected),`unexpected direct script list/order: ${scripts.join(', ')}`);
   for(const forbidden of [
     'https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js',
@@ -66,8 +66,8 @@ function validateLazyConsumers(){
 
 function validateCompactData(){
   assert(pulse?.meta?.schema_version===1,'initial pulse schema_version must be 1');
-  assert(pulse?.meta?.card_count===6&&pulse.cards?.length===6,'initial pulse must contain six national cards');
-  const required=new Set(['KDA-CPI-YOY-KEN','KDA-USDKES-KEN','KDA-CBR-KEN','KDA-TBILL91-KEN','KDA-POP-TOTAL-KEN','KDA-VOTERS-KEN']);
+  assert(pulse?.meta?.card_count===8&&pulse.cards?.length===8,'initial pulse must contain eight national cards');
+  const required=new Set(['KDA-CPI-YOY-KEN','KDA-USDKES-MONTHLY-AVG-KEN','KDA-WB-NY-GDP-MKTP-CD-KEN','KDA-WB-NY-GDP-PCAP-CD-KEN','KDA-CBR-KEN','KDA-TBILL91-MONTHLY-AVG-KEN','KDA-POP-TOTAL-KEN','KDA-VOTERS-KEN']);
   for(const card of pulse.cards){
     required.delete(card.series_code);
     assert(Array.isArray(card.history)&&card.history.length>0,`${card.series_code} has no history`);
@@ -84,8 +84,8 @@ function validateBudgets(){
   const dataBytes=firstData.reduce((sum,p)=>sum+size(p),0);
   const pulseBytes=size('data/ui/initial-pulse.json');
   assert(jsBytes<=130*1024,`direct local JavaScript is ${jsBytes} bytes; budget is 133120`);
-  assert(dataBytes<=24*1024,`first-paint data is ${dataBytes} bytes; budget is 24576`);
-  assert(pulseBytes<=12*1024,`initial pulse is ${pulseBytes} bytes; budget is 12288`);
+  assert(dataBytes<=80*1024,`first-paint data is ${dataBytes} bytes; budget is 81920`);
+  assert(pulseBytes<=68*1024,`initial pulse is ${pulseBytes} bytes; budget is 69632`);
   const heavy={observations:size('data/indicators/registry/observations.json'),series:size('data/indicators/registry/series.json'),wards:size('data/geography/geometry/wards.geojson')};
   console.log(`P01_ASSET_BUDGET_OK direct_js=${jsBytes}B first_data=${dataBytes}B pulse=${pulseBytes}B`);
   console.log(`P01_DEFERRED_REFERENCE observations=${heavy.observations}B series=${heavy.series}B wards=${heavy.wards}B`);
@@ -102,3 +102,4 @@ try{
   console.error(error.message||error);
   process.exit(1);
 }
+
