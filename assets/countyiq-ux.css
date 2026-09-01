@@ -1,0 +1,68 @@
+/* CountyIQ UX pass — scanability, hierarchy and progressive disclosure. */
+.countyiq-route{scroll-behavior:smooth}
+.countyiq-route .ciq-controls{border-radius:14px;box-shadow:0 8px 24px rgba(22,43,35,.045)}
+.countyiq-route .ciq-metrics{border-radius:14px;overflow:hidden}
+.countyiq-route .ciq-card{border-radius:14px;box-shadow:0 8px 24px rgba(22,43,35,.035)}
+
+/* The section navigator is deliberately out of document flow. CountyIQ loads
+ * route assets lazily, so an in-flow late insertion would create measurable CLS. */
+.ciq-jump-nav-wrap{position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:24;width:min(1440px,calc(100vw - 2rem));pointer-events:none}
+.ciq-jump-nav{display:flex;align-items:center;justify-content:center;gap:.28rem;width:max-content;max-width:100%;margin:0 auto;padding:.3rem .38rem;overflow-x:auto;scrollbar-width:none;pointer-events:auto;background:color-mix(in srgb,var(--paper,#fbfbf8) 94%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line,#dfe4df);border-radius:999px;box-shadow:0 8px 22px rgba(22,43,35,.08)}
+.ciq-jump-nav::-webkit-scrollbar{display:none}
+.ciq-jump-nav a{flex:0 0 auto;padding:.4rem .64rem;border-radius:999px;text-decoration:none;font-size:.69rem;font-weight:750;color:var(--muted,#65736c);border:1px solid transparent;transition:background .16s ease,color .16s ease,border-color .16s ease}
+.ciq-jump-nav a:hover,.ciq-jump-nav a:focus-visible{color:var(--green2,#174c3b);background:#fff;border-color:var(--line,#dfe4df);outline:none}
+.ciq-jump-nav a[aria-current="true"]{background:var(--green2,#174c3b);color:#fff}
+.ciq-ux-anchor{scroll-margin-top:132px}
+
+.ciq-history-disclosure{margin-top:.9rem;border:1px solid var(--line,#dfe4df);border-radius:11px;background:#fff;overflow:hidden}
+.ciq-history-disclosure>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem .95rem;font-size:.75rem;font-weight:800;color:var(--green2,#174c3b);background:var(--paper,#f8f7f1)}
+.ciq-history-disclosure>summary::-webkit-details-marker{display:none}
+.ciq-history-disclosure>summary::after{content:'+';font-family:Georgia,serif;font-size:1.2rem;font-weight:400}
+.ciq-history-disclosure[open]>summary::after{content:'−'}
+.ciq-history-disclosure .ciq-fiscal-table-wrap{margin-top:0;padding:.35rem .7rem .7rem}
+
+.countyiq-route .ciq-lower{padding-bottom:2rem}
+.countyiq-route .ciq-social-grid{border-radius:12px;overflow:hidden}
+.countyiq-route .ciq-p05-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.countyiq-route .ciq-p05-group{border-radius:12px;padding:.9rem}
+.countyiq-route .ciq-p05-group>header{margin-bottom:.55rem;padding-bottom:.5rem}
+.countyiq-route .ciq-p05-metric{padding:.44rem 0}
+.countyiq-route .ciq-gap-list ul,.countyiq-route .ciq-recognition-list{font-size:.74rem;line-height:1.42}
+
+.countyiq-route .evidence-hub-tools{margin:.7rem 0;grid-template-columns:minmax(0,1fr) minmax(190px,240px)}
+.countyiq-route .evidence-summary{gap:.45rem;margin:.6rem 0 .8rem}
+.countyiq-route .evidence-summary>div{padding:.58rem .7rem;border-radius:9px}
+.countyiq-route .evidence-summary strong{font-size:1rem}
+.countyiq-route .evidence-hub-list{gap:.65rem}
+.countyiq-route .evidence-item{padding:.85rem;border-radius:12px}
+
+.ciq-disclosure-actions{display:flex;justify-content:center;margin:.85rem 0 0}
+.ciq-disclosure-button{appearance:none;border:1px solid rgba(18,60,50,.18);background:#fff;color:#123c32;border-radius:999px;padding:.58rem .9rem;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}
+.ciq-disclosure-button:hover,.ciq-disclosure-button:focus-visible{background:#eef4f0;outline:2px solid transparent;box-shadow:0 0 0 3px rgba(18,60,50,.12)}
+[hidden].ciq-progressive-item{display:none!important}
+
+.countyiq-route .opportunity-tools{margin-bottom:.7rem}
+.countyiq-route .opportunity-summary{gap:.5rem;margin-bottom:.75rem}
+.countyiq-route .opportunity-summary>div{padding:.62rem .72rem;border-radius:9px}
+.countyiq-route .opportunity-summary strong{font-size:1.12rem}
+.countyiq-route .opportunity-list{gap:.75rem}
+.countyiq-route .opportunity-card{gap:.58rem;padding:.9rem;border-radius:13px;box-shadow:none}
+.countyiq-route .opportunity-rationale{padding:.58rem .65rem;font-size:.78rem}
+.countyiq-route .opportunity-details{gap:.42rem}
+.countyiq-route .opportunity-details>div{grid-template-columns:104px 1fr;gap:.5rem}
+.countyiq-route .opportunity-details dd{font-size:.75rem;line-height:1.36}
+.countyiq-route .opportunity-card-foot{padding-top:.55rem}
+
+.ciq-ux-backtop{position:fixed;right:1.15rem;bottom:1.15rem;z-index:25;border:1px solid rgba(18,60,50,.18);background:#fff;color:#123c32;border-radius:999px;padding:.58rem .78rem;font-size:.72rem;font-weight:800;box-shadow:0 10px 26px rgba(18,60,50,.12);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.18s ease}
+.ciq-ux-backtop.visible{opacity:1;pointer-events:auto;transform:none}
+
+@media(max-width:1050px){
+  .countyiq-route .ciq-p05-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .ciq-jump-nav-wrap{top:62px;width:calc(100vw - 1rem)}
+  .ciq-jump-nav{justify-content:flex-start;margin-left:0;margin-right:0;border-radius:14px}
+  .countyiq-route .ciq-p05-grid{grid-template-columns:1fr}
+  .countyiq-route .evidence-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ciq-ux-backtop{right:.75rem;bottom:.75rem}
+}
