@@ -91,6 +91,14 @@
     queueMicrotask(focusGlobalSearch);
     requestAnimationFrame(focusGlobalSearch);
   }
+  function isGlobalSearchShortcut(event){
+    if(!(event.ctrlKey||event.metaKey))return false;
+    return String(event.code||'')==='KeyK'||String(event.key||'').toLowerCase()==='k';
+  }
+  function handleGlobalSearchShortcut(event){
+    if(!isGlobalSearchShortcut(event))return;
+    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
+  }
   function protectCompareCriticalPaint(){
     const KDA=window.KDAData;
     if(!KDA||KDA.__compareCriticalPaintGuard||typeof KDA.registries!=='function')return;
@@ -137,16 +145,13 @@
   history.replaceState=function(state,title,url){const result=rawReplace(state,title,canonicalUrl(url));queueMicrotask(()=>render({scroll:false}));return result;};
   window.addEventListener('hashchange',()=>render());
   window.addEventListener('popstate',()=>render());
+  window.addEventListener('keydown',handleGlobalSearchShortcut,true);
 
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 
   document.addEventListener('click',event=>{
     const trigger=event.target.closest?.('[data-focus-search]');
     if(!trigger||(current?.view||parse().view)==='home')return;
-    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
-  },true);
-  document.addEventListener('keydown',event=>{
-    if(!(event.ctrlKey||event.metaKey)||String(event.key).toLowerCase()!=='k')return;
     event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
   },true);
 
