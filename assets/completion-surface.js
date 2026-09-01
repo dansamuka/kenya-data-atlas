@@ -10,7 +10,7 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const PHASE_CODES={
     P19:new Set(['IND-PUBLIC-PRIMARY-SCHOOLS','IND-PRIMARY-CLASSROOM-TEACHERS','IND-PUBLIC-SECONDARY-SCHOOLS','IND-SECONDARY-TEACHERS','IND-INTERNET-USE','IND-COMPUTER-USE','IND-MAIN-GRID-ELECTRICITY','IND-AGRICULTURE-GVA','IND-AGRICULTURE-GCP-SHARE','IND-MANUFACTURING-GVA','IND-MANUFACTURING-GCP-SHARE','IND-MAIZE-AREA','IND-MAIZE-PRODUCTION','IND-MAIZE-YIELD']),
-    P20:new Set(['IND-MAIN-GRID-ELECTRICITY','IND-COUNTY-OSR','IND-COUNTY-AUDIT-OPINION','IND-HOUSEHOLD-SIZE','IND-DISABILITY-PREVALENCE','IND-TEENAGE-PREGNANCY','IND-HOME-BIRTH-RATE','IND-CONTRACEEPTIVE-USE','IND-CONTRACEPTIVE-USE','IND-FGM-CHILD-MARRIAGE','IND-LITERACY-RATE','IND-HOUSING-MATERIAL','IND-HIV-PREVALENCE','IND-HEALTH-FACILITY-DENSITY','IND-COUNTY-PENDING-BILLS','IND-SUBSTANCE-ABUSE-PREVALENCE']),
+    P20:new Set(['IND-MAIN-GRID-ELECTRICITY','IND-COUNTY-OSR','IND-COUNTY-AUDIT-OPINION','IND-HOUSEHOLD-SIZE','IND-DISABILITY-PREVALENCE','IND-TEENAGE-PREGNANCY','IND-HOME-BIRTH-RATE','IND-CONTRACEPTIVE-USE','IND-FGM-CHILD-MARRIAGE','IND-LITERACY-RATE','IND-HOUSING-MATERIAL','IND-HIV-PREVALENCE','IND-HEALTH-FACILITY-DENSITY','IND-COUNTY-PENDING-BILLS','IND-SUBSTANCE-ABUSE-PREVALENCE']),
     P21:new Set(['IND-WATER-ACCESS','IND-INPATIENT-SERVICE-AVAILABILITY','IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE','IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP','IND-HOUSEHOLD-CAR-OWNERSHIP','IND-CLASS-C-RURAL-ROAD-LENGTH'])
   };
   const P21_RETIRED=new Set(['IND-AGRI-PRODUCTION','IND-EXAM-PERFORMANCE','IND-BUSINESS-LICENSES','IND-FACILITY-INFRASTRUCTURE','IND-HOSPITAL-BED-UTILIZATION','IND-SOCIAL-PROTECTION-BENEFICIARIES','IND-VEHICLE-REGISTRATIONS','IND-ROAD-NETWORK-LENGTH']);
@@ -112,7 +112,15 @@
     return `${programmeHeader('What is complete, and what remains')} ${phaseStrip()}${statsHtml()}<p class="kda-completion-note"><strong>P18–P22 are complete.</strong> The ledger currently records ${Number(statuses.published_direct||0).toLocaleString('en-KE')} published-direct, ${Number(statuses.published_derived||0).toLocaleString('en-KE')} published-derived, ${Number(statuses.external_verified||0).toLocaleString('en-KE')} externally verified, ${Number(statuses.official_unavailable||0).toLocaleString('en-KE')} officially unavailable and ${Number(statuses.retired_replaced||0).toLocaleString('en-KE')} retired/replaced resolved slots. Remaining work is explicitly assigned to P23–P25; unknown blanks remain ${Number(s.unknown_missing||0).toLocaleString('en-KE')}.</p>`;
   }
   function countyFromGeo(geo){let g=geo;while(g&&g.level!=='county')g=g.parent_id?state.geoById.get(g.parent_id):null;return g?.level==='county'?g:null;}
+  function routedExploreGeoCode(){
+    const routed=window.KDARouter?.current?.()||window.KDARouter?.parse?.();
+    if(routed?.view==='explore'&&routed.rest)return decodeURIComponent(String(routed.rest).replace(/^\/+/,''));
+    const match=location.hash.match(/^#\/explore\/([^?]+)/)||location.hash.match(/^#map\/([^?]+)/);
+    return match?decodeURIComponent(match[1]):null;
+  }
   function selectedCountyExplore(){
+    const routeCode=routedExploreGeoCode();
+    if(routeCode){const c=countyFromGeo(state.geoByCode.get(routeCode));if(c)return c;}
     const current=$('#geo-breadcrumb button[aria-current="location"]');if(current?.dataset.geoId){const c=countyFromGeo(state.geoById.get(current.dataset.geoId));if(c)return c;}
     const picker=$('#county-picker');if(picker?.value){const c=state.countyByName.get(String(picker.value).replace(/^\s*\d{3}\s*[·-]\s*/,''));if(c)return c;}
     return state.counties.find(c=>c.name==='Nakuru')||state.counties[0]||null;
@@ -151,11 +159,11 @@
         KDA.registry('geographies'),KDA.registry('indicators'),KDA.registry('series'),KDA.registry('observations'),KDA.registry('units'),KDA.registry('agencies').catch(()=>[]),KDA.registry('sources').catch(()=>[]),KDA.registry('datasets').catch(()=>[]),getJson('data/completeness/summary.json'),getJson('data/data-completion-roadmap.json'),getJson('data/completeness/evidence-states.json')
       ]);
       if(![geographies,indicators,series,observations,units].every(Array.isArray))throw new Error('P18–P22 public surface requires canonical registries.');
-      const geoById=new Map(geographies.map(g=>[g.geography_id,g])),indicatorByCode=new Map(indicators.map(i=>[i.indicator_code,i])),obsById=new Map(observations.map(o=>[o.observation_id,o])),obsBySeries=new Map();
+      const geoById=new Map(geographies.map(g=>[g.geography_id,g])),geoByCode=new Map(geographies.map(g=>[g.geo_code,g])),indicatorByCode=new Map(indicators.map(i=>[i.indicator_code,i])),obsById=new Map(observations.map(o=>[o.observation_id,o])),obsBySeries=new Map();
       for(const o of observations){if(!obsBySeries.has(o.series_id))obsBySeries.set(o.series_id,[]);obsBySeries.get(o.series_id).push(o);}for(const rows of obsBySeries.values())rows.sort((a,b)=>String(a.period_end||a.period_start).localeCompare(String(b.period_end||b.period_start)));
       const seriesByGeoIndicator=new Map();for(const s of series){const k=`${s.geography_id}|${s.indicator_id}`;if(!seriesByGeoIndicator.has(k))seriesByGeoIndicator.set(k,[]);seriesByGeoIndicator.get(k).push(s);}
       const counties=geographies.filter(g=>g.level==='county');
-      state={geographies,indicators,series,observations,units,summary:summary||{},roadmap:roadmap||{},evidence:evidenceDoc?.states||[],geoById,indicatorByCode,unitById:new Map(units.map(u=>[u.unit_id,u])),obsById,obsBySeries,seriesByGeoIndicator,agencyById:new Map((agencies||[]).map(a=>[a.agency_id,a])),sourceById:new Map((sources||[]).map(s=>[s.source_id,s])),datasetById:new Map((datasets||[]).map(d=>[d.dataset_id,d])),counties,countyByCode:new Map(counties.map(c=>[c.geo_code,c])),countyByName:new Map(counties.map(c=>[c.name,c]))};
+      state={geographies,indicators,series,observations,units,summary:summary||{},roadmap:roadmap||{},evidence:evidenceDoc?.states||[],geoById,geoByCode,indicatorByCode,unitById:new Map(units.map(u=>[u.unit_id,u])),obsById,obsBySeries,seriesByGeoIndicator,agencyById:new Map((agencies||[]).map(a=>[a.agency_id,a])),sourceById:new Map((sources||[]).map(s=>[s.source_id,s])),datasetById:new Map((datasets||[]).map(d=>[d.dataset_id,d])),counties,countyByCode:new Map(counties.map(c=>[c.geo_code,c])),countyByName:new Map(counties.map(c=>[c.name,c]))};
       installObservers();renderAll();return window.KDACompletionSurface;
     })().catch(error=>{console.warn('P18–P22 public surface:',error?.message||error);return null;});
     return bootPromise;
