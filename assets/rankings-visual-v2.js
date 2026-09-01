@@ -62,7 +62,7 @@
       const existing=$('.v2-slope',row);
       if(existing?.matches('svg'))existing.remove();
       if(!$('.v2-slope',row)){
-        const marker=document.createElement('span');marker.className='v2-slope';marker.hidden=true;marker.setAttribute('aria-hidden','true');marker.dataset.suppressed='incompatible-units';row.appendChild(marker);
+        const marker=document.createElement('span'),host=row.cells?.[2]||row;marker.className='v2-slope';marker.hidden=true;marker.setAttribute('aria-hidden','true');marker.dataset.suppressed='incompatible-units';host.appendChild(marker);
       }
     });
   }
