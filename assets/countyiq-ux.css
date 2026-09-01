@@ -1,0 +1,89 @@
+/* CountyIQ UX pass — scanability, hierarchy and progressive disclosure. */
+.countyiq-route{scroll-behavior:smooth}
+.countyiq-route .ciq-hero{padding:2.2rem 0 1.55rem;gap:3vw;align-items:center}
+.countyiq-route .ciq-hero h1{font-size:clamp(2.75rem,4.25vw,4.65rem);max-width:760px}
+.countyiq-route .ciq-intro{max-width:700px;margin-top:.85rem;font-size:.94rem;line-height:1.55}
+.countyiq-route .ciq-controls{padding:.9rem;border-radius:14px;box-shadow:0 8px 24px rgba(22,43,35,.045)}
+.countyiq-route .ciq-controls select{padding:.68rem .72rem;border-radius:9px}
+.countyiq-route .ciq-mode{margin-top:.55rem}
+
+.ciq-jump-nav-wrap{position:sticky;top:72px;z-index:18;margin:0 0 1rem;padding:.45rem 0;background:color-mix(in srgb,var(--paper,#fbfbf8) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line,#dfe4df);border-bottom:1px solid var(--line,#dfe4df)}
+.ciq-jump-nav{display:flex;align-items:center;gap:.35rem;overflow-x:auto;scrollbar-width:none;padding:.15rem 0}
+.ciq-jump-nav::-webkit-scrollbar{display:none}
+.ciq-jump-nav a{flex:0 0 auto;padding:.46rem .72rem;border-radius:999px;text-decoration:none;font-size:.72rem;font-weight:750;color:var(--muted,#65736c);border:1px solid transparent;transition:background .16s ease,color .16s ease,border-color .16s ease}
+.ciq-jump-nav a:hover,.ciq-jump-nav a:focus-visible{color:var(--green2,#174c3b);background:#fff;border-color:var(--line,#dfe4df);outline:none}
+.ciq-jump-nav a[aria-current="true"]{background:var(--green2,#174c3b);color:#fff}
+.ciq-ux-anchor{scroll-margin-top:132px}
+
+.countyiq-route .ciq-principle{margin-bottom:1rem;padding:.75rem 0;font-size:.74rem}
+.countyiq-route .ciq-metrics{min-height:0;border-radius:14px;overflow:hidden}
+.countyiq-route .ciq-metric{min-height:162px;padding:1rem 1.05rem}
+.countyiq-route .ciq-metric strong{font-size:1.7rem;margin:.36rem 0 .18rem}
+.countyiq-route .ciq-metric small{margin-top:.65rem}
+.countyiq-route .ciq-grid{gap:1rem;margin-top:1rem}
+.countyiq-route .ciq-card{padding:1.25rem;border-radius:14px;box-shadow:0 8px 24px rgba(22,43,35,.035)}
+.countyiq-route .ciq-card-head{margin-bottom:.85rem}
+.countyiq-route .ciq-card-head h2{font-size:1.6rem!important}
+.countyiq-route .ciq-trend svg{min-height:210px;max-height:330px}
+.countyiq-route .ciq-fiscal-chart svg{min-height:150px;max-height:330px}
+.countyiq-route .ciq-lower{padding-bottom:2rem}
+
+.ciq-history-disclosure{margin-top:.9rem;border:1px solid var(--line,#dfe4df);border-radius:11px;background:#fff;overflow:hidden}
+.ciq-history-disclosure>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem .95rem;font-size:.75rem;font-weight:800;color:var(--green2,#174c3b);background:var(--paper,#f8f7f1)}
+.ciq-history-disclosure>summary::-webkit-details-marker{display:none}
+.ciq-history-disclosure>summary::after{content:'+';font-family:Georgia,serif;font-size:1.2rem;font-weight:400}
+.ciq-history-disclosure[open]>summary::after{content:'−'}
+.ciq-history-disclosure .ciq-fiscal-table-wrap{margin-top:0;padding:.35rem .7rem .7rem}
+
+.countyiq-route .ciq-social-grid{border-radius:12px;overflow:hidden}
+.countyiq-route .ciq-p05-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
+.countyiq-route .ciq-p05-group{border-radius:12px;padding:.9rem}
+.countyiq-route .ciq-p05-group>header{margin-bottom:.55rem;padding-bottom:.5rem}
+.countyiq-route .ciq-p05-metric{padding:.44rem 0}
+.countyiq-route .ciq-gap-list ul,.countyiq-route .ciq-recognition-list{font-size:.74rem;line-height:1.42}
+
+.countyiq-route .evidence-hub-tools{margin:.7rem 0;grid-template-columns:minmax(0,1fr) minmax(190px,240px)}
+.countyiq-route .evidence-summary{gap:.45rem;margin:.6rem 0 .8rem}
+.countyiq-route .evidence-summary>div{padding:.58rem .7rem;border-radius:9px}
+.countyiq-route .evidence-summary strong{font-size:1rem}
+.countyiq-route .evidence-hub-list{gap:.65rem}
+.countyiq-route .evidence-item{padding:.85rem;border-radius:12px}
+
+.ciq-disclosure-actions{display:flex;justify-content:center;margin:.85rem 0 0}
+.ciq-disclosure-button{appearance:none;border:1px solid rgba(18,60,50,.18);background:#fff;color:#123c32;border-radius:999px;padding:.58rem .9rem;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}
+.ciq-disclosure-button:hover,.ciq-disclosure-button:focus-visible{background:#eef4f0;outline:2px solid transparent;box-shadow:0 0 0 3px rgba(18,60,50,.12)}
+[hidden].ciq-progressive-item{display:none!important}
+
+.countyiq-route .opportunity-tools{margin-bottom:.7rem}
+.countyiq-route .opportunity-summary{gap:.5rem;margin-bottom:.75rem}
+.countyiq-route .opportunity-summary>div{padding:.62rem .72rem;border-radius:9px}
+.countyiq-route .opportunity-summary strong{font-size:1.12rem}
+.countyiq-route .opportunity-list{gap:.75rem}
+.countyiq-route .opportunity-card{gap:.58rem;padding:.9rem;border-radius:13px;box-shadow:none}
+.countyiq-route .opportunity-rationale{padding:.58rem .65rem;font-size:.78rem}
+.countyiq-route .opportunity-details{gap:.42rem}
+.countyiq-route .opportunity-details>div{grid-template-columns:104px 1fr;gap:.5rem}
+.countyiq-route .opportunity-details dd{font-size:.75rem;line-height:1.36}
+.countyiq-route .opportunity-card-foot{padding-top:.55rem}
+
+.ciq-ux-backtop{position:fixed;right:1.15rem;bottom:1.15rem;z-index:25;border:1px solid rgba(18,60,50,.18);background:#fff;color:#123c32;border-radius:999px;padding:.58rem .78rem;font-size:.72rem;font-weight:800;box-shadow:0 10px 26px rgba(18,60,50,.12);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.18s ease}
+.ciq-ux-backtop.visible{opacity:1;pointer-events:auto;transform:none}
+
+@media(max-width:1050px){
+  .countyiq-route .ciq-hero{grid-template-columns:minmax(0,1.2fr) minmax(230px,.7fr)}
+  .countyiq-route .ciq-p05-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .countyiq-route .ciq-hero{grid-template-columns:1fr;padding-top:1.5rem}
+  .ciq-jump-nav-wrap{top:62px;margin-inline:-.25rem;padding-inline:.25rem}
+  .countyiq-route .ciq-card{padding:1rem}
+  .countyiq-route .ciq-p05-grid{grid-template-columns:1fr}
+  .countyiq-route .evidence-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ciq-ux-backtop{right:.75rem;bottom:.75rem}
+}
+@media(max-width:520px){
+  .countyiq-route .ciq-metrics{min-height:0}
+  .countyiq-route .ciq-metric{min-height:138px}
+  .countyiq-route .ciq-hero h1{font-size:2.85rem}
+  .countyiq-route .ciq-card-head h2{font-size:1.4rem!important}
+}
