@@ -16,7 +16,7 @@ assert(visual.includes("KDA.loadStyle('assets/rankings-visual-v2.css'")&&visualC
 assert(visual.includes("visual.outerHTML=html")&&siteV2.includes("$('#v2-dev-beeswarm')"),'development v2 must replace, not duplicate, the preliminary site-v2 beeswarm');
 assert(visual.includes('window.KDAV2?.pin?.'),'rankings development dots must reuse the shared v2 county pin state');
 assert(siteV2.includes('current-(Number.isFinite(a)?a:0)'),'preliminary administration slope approximation changed unexpectedly; review the suppression contract');
-assert(visual.includes('suppressUnsupportedAdministrationSlopes')&&visual.includes("data.suppressed='incompatible-units'")&&visual.includes("existing?.matches('svg')"),'rankings v2 must suppress the incompatible fiscal-score/absorption-change slope approximation');
+assert(visual.includes('suppressUnsupportedAdministrationSlopes')&&visual.includes("marker.dataset.suppressed='incompatible-units'")&&visual.includes("existing?.matches('svg')"),'rankings v2 must suppress the incompatible fiscal-score/absorption-change slope approximation');
 assert(css.includes('.rankings-route')&&css.includes('.ri-table'),'rankings styles missing');
 assert(visualCss.includes('@media(prefers-reduced-motion:reduce)'),'rankings visual v2 must respect reduced motion');
 const syntax=spawnSync(process.execPath,['--check','assets/rankings-visual-v2.js'],{encoding:'utf8'});
