@@ -8,7 +8,7 @@
   if(!KDA)return;
   const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
   const finite=v=>Number.isFinite(Number(v));
-  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
+  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
   const state={data:null,bound:false,sortKey:'diagnostic_rank',sortDir:'asc'};
   let bootPromise=null;
