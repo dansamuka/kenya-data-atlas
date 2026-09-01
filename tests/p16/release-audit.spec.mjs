@@ -120,3 +120,29 @@ test('header and searchable-select buttons perform their intended search actions
   await option.click();
   await expect(dialog).toBeHidden();
 });
+
+test('P18-P22 completed programme is visible on public surfaces', async ({ page }) => {
+  await page.goto('/#/data', { waitUntil: 'domcontentloaded' });
+  const programme=page.locator('#kda-data-programme');
+  await expect(programme).toBeVisible({timeout:10000});
+  await expect(programme).toContainText('P18 · Complete');
+  await expect(programme).toContainText('P22 · Complete');
+  await expect(programme).toContainText('19.26%');
+  await expect(programme).toContainText('3,190');
+
+  await page.goto('/#/explore/KEN-C032', { waitUntil: 'domcontentloaded' });
+  const nakuru=page.locator('#kda-p18-p22-profile');
+  await expect(nakuru).toBeVisible({timeout:15000});
+  await expect(nakuru).toContainText('Nakuru · completed county data');
+  await expect(nakuru).toContainText('Class C rural road length');
+  await expect(nakuru).toContainText('Households receiving cash transfer or social assistance');
+  await expect(nakuru).toContainText('Own-source revenue target attainment');
+
+  await page.goto('/#/explore/KEN-C023', { waitUntil: 'domcontentloaded' });
+  const turkana=page.locator('#kda-p18-p22-profile');
+  await expect(turkana).toBeVisible({timeout:15000});
+  await expect(turkana).toContainText('Turkana · completed county data');
+  await expect(turkana).toContainText('Drought early warning bulletin status');
+  await expect(turkana).toContainText('Current observation unavailable');
+  await expect(turkana).toContainText('Refresh trigger');
+});

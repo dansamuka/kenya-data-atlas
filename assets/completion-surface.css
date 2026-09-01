@@ -1,0 +1,33 @@
+/* Kenya Data Atlas — P18–P22 public completion surface. */
+.kda-completion-surface{margin-top:1.25rem;border:1px solid rgba(18,60,50,.12);border-radius:18px;background:#f7faf7;box-shadow:0 10px 28px rgba(22,43,35,.04);overflow:hidden}
+.kda-completion-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;padding:1rem 1.1rem;border-bottom:1px solid rgba(18,60,50,.09);background:linear-gradient(135deg,#eef5f0,#fbfcfa)}
+.kda-completion-head h3{margin:.2rem 0 .35rem;font-family:var(--serif);font-size:1.55rem;font-weight:500;letter-spacing:-.025em}
+.kda-completion-head p{margin:0;max-width:760px;color:#617069;font-size:.68rem;line-height:1.5}
+.kda-completion-kicker{display:block;color:#3f6b58;font-size:.55rem;font-weight:850;letter-spacing:.09em;text-transform:uppercase}
+.kda-completion-score{flex:0 0 auto;min-width:112px;padding:.7rem .8rem;border:1px solid rgba(18,60,50,.12);border-radius:13px;background:#fff;text-align:center}
+.kda-completion-score strong{display:block;font-family:var(--serif);font-size:1.7rem;font-weight:500;color:#123c32;line-height:1}
+.kda-completion-score span{display:block;margin-top:.25rem;color:#718079;font-size:.55rem;font-weight:750}
+.kda-phase-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.5rem;padding:.75rem 1rem;background:#fff;border-bottom:1px solid rgba(18,60,50,.08)}
+.kda-phase-chip{padding:.55rem .62rem;border:1px solid #dce5df;border-radius:10px;background:#fbfcfa}
+.kda-phase-chip strong{display:block;font-size:.66rem;color:#233b31}.kda-phase-chip span{display:block;margin-top:.17rem;font-size:.52rem;color:#74817b;line-height:1.25}
+.kda-phase-chip.complete{background:#edf5f0;border-color:#c5d9cd}.kda-phase-chip.complete strong{color:#245b43}
+.kda-completion-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55rem;padding:.85rem 1rem}
+.kda-completion-stat{padding:.62rem .7rem;border:1px solid #e0e7e2;border-radius:11px;background:#fff}
+.kda-completion-stat small{display:block;color:#7a8780;font-size:.52rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em}
+.kda-completion-stat strong{display:block;margin-top:.2rem;font-family:var(--serif);font-size:1.35rem;font-weight:500;color:#17231f}.kda-completion-stat span{display:block;margin-top:.15rem;color:#69766f;font-size:.54rem}
+.kda-county-groups{padding:.3rem 1rem 1rem}
+.kda-county-group{margin-top:.65rem;border:1px solid #dde5df;border-radius:12px;background:#fff;overflow:hidden}
+.kda-county-group>summary{display:flex;align-items:center;justify-content:space-between;gap:.8rem;cursor:pointer;padding:.72rem .8rem;list-style:none;font-size:.72rem;font-weight:800;color:#2b4438}
+.kda-county-group>summary::-webkit-details-marker{display:none}.kda-county-group>summary span{color:#75817b;font-size:.56rem;font-weight:650}
+.kda-county-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;padding:0 .7rem .75rem}
+.kda-data-card{position:relative;min-height:128px;padding:.72rem .76rem;border:1px solid #e2e8e4;border-radius:10px;background:#fcfdfc;display:flex;flex-direction:column}
+.kda-data-card .top{display:flex;justify-content:space-between;gap:.45rem;align-items:flex-start}.kda-data-card .label{font-size:.61rem;line-height:1.28;color:#58665f;font-weight:750}.kda-data-card .phase{flex:0 0 auto;padding:.18rem .34rem;border-radius:999px;background:#e8f1ec;color:#345f4c;font-size:.47rem;font-weight:850}
+.kda-data-card .value{margin:.38rem 0 .28rem;font-family:var(--serif);font-size:1.42rem;letter-spacing:-.025em;color:#17231f}.kda-data-card .meta{margin-top:auto;padding-top:.38rem;border-top:1px solid #edf0ee;color:#707d76;font-size:.5rem;line-height:1.35}.kda-data-card .meta strong{color:#40544a}.kda-data-card .source{display:block;margin-top:.15rem;color:#526a5f;font-weight:700}
+.kda-evidence-card{border-style:dashed;background:#fffaf3;border-color:#e4d8c7}.kda-evidence-card .phase{background:#f4e8d8;color:#765c39}.kda-evidence-card .value{font-family:inherit;font-size:.75rem;font-weight:800;letter-spacing:0;color:#6b5131}.kda-evidence-card .reason{color:#74675a;font-size:.52rem;line-height:1.4}.kda-evidence-card .refresh{margin-top:.32rem;padding:.32rem .38rem;border-radius:6px;background:#f8f1e8;color:#6b5b49;font-size:.49rem;line-height:1.35}.kda-evidence-card a{margin-top:.35rem;color:#245b43;font-size:.52rem;font-weight:800;text-decoration:none}
+.kda-replacement-card{background:#f7f7f3;border-style:dashed}.kda-replacement-card .phase{background:#efede7;color:#6e6758}.kda-replacement-card .value{font-family:inherit;font-size:.72rem;font-weight:800;letter-spacing:0;color:#5f5a4d}
+.kda-completion-note{margin:.2rem 1rem 1rem;padding:.65rem .75rem;border-radius:9px;background:#eef4f0;color:#58675f;font-size:.58rem;line-height:1.45}
+.kda-data-programme{grid-column:1/-1;margin-bottom:.9rem}.catalogue-section .kda-completion-surface{margin:0 0 1rem}.catalogue-section .kda-county-groups{display:none}
+.kda-route-note{margin:.65rem 0;padding:.55rem .7rem;border:1px solid rgba(18,60,50,.12);border-radius:9px;background:#f4f8f5;color:#58685f;font-size:.62rem;line-height:1.4}.kda-route-note strong{color:#274c3c}
+.ciq-card.kda-completion-ciq{grid-column:1/-1;padding:0;overflow:hidden}.ciq-card.kda-completion-ciq .kda-completion-surface{margin:0;border:0;border-radius:0;box-shadow:none}
+@media(max-width:1000px){.kda-county-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.kda-phase-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.kda-completion-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.kda-completion-head{display:block}.kda-completion-score{margin-top:.65rem;width:max-content;min-width:96px}.kda-phase-strip{grid-template-columns:repeat(2,minmax(0,1fr));padding:.65rem}.kda-completion-summary{grid-template-columns:repeat(2,minmax(0,1fr));padding:.65rem}.kda-county-groups{padding:.2rem .65rem .75rem}.kda-county-grid{grid-template-columns:1fr}.kda-completion-head{padding:.85rem}.kda-completion-head h3{font-size:1.35rem}}
