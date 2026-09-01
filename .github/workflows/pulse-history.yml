@@ -1,0 +1,25 @@
+name: Pulse history coverage
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-pulse-history:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Validate all Pulse-visible series have history
+        run: node scripts/ui/validate-pulse-history.mjs
+      - name: Build compact Pulse product with historical fallback
+        run: node scripts/ui/build-initial-pulse.mjs
