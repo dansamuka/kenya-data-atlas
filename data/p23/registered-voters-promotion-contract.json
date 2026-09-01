@@ -1,0 +1,54 @@
+{
+  "schema_version": "kda.p23.registered-voters-promotion.v1",
+  "phase": "P23",
+  "accelerator": "P23A",
+  "status": "promotion_contract",
+  "effective_from": "2026-09-01",
+  "indicator_code": "IND-REGISTERED-VOTERS",
+  "target_level": "constituency",
+  "expected_slot_count": 290,
+  "governed_denominator": 20115,
+  "authority": {
+    "primary_statistical_source": "Independent Electoral and Boundaries Commission / Kenya Gazette, 21 June 2022, Gazette Notice No. 7290",
+    "official_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf",
+    "reference_date": "2022-06-20",
+    "source_metadata": "data/sprint2/sources.json",
+    "audited_runtime_pipeline": "assets/sprint2-data.js",
+    "audited_documentation": "data/sprint2/README.md"
+  },
+  "statistical_treatment": {
+    "classification": "B — Official derived",
+    "rule": "For each of the 290 canonical constituencies, use the exact sum of all official IEBC First Schedule child ward registered-voter rows. This includes the ten Mandera East/Lafey ward rows withheld from spatial attribution; their statistics remain valid for constituency totals.",
+    "direct_schedule_note": "The Gazette also contains a Second Schedule of constituency totals, but the governed first promotion must preserve the already-audited Sprint 2 B/Official-derived treatment unless a separate direct-schedule ingestion is independently validated.",
+    "anti_inheritance": [
+      "Never inherit a county registered-voter value into a constituency.",
+      "Never omit the ten Mandera East/Lafey source rows from constituency totals because their hold concerns geometry, not statistical validity.",
+      "Never force-match the ten held ward rows to uncertain current ward polygons.",
+      "Do not alter the 20,115-slot governed denominator."
+    ]
+  },
+  "locked_anchors": {
+    "national_ward_sum": 22102532,
+    "constituency_count": 290,
+    "ward_source_rows": 1450,
+    "mapped_ward_rows": 1440,
+    "spatial_hold_rows": 10,
+    "examples": [
+      {"constituency": "Changamwe", "registered_voters": 93561},
+      {"constituency": "Jomvu", "registered_voters": 75085},
+      {"constituency": "Kisauni", "registered_voters": 135276},
+      {"constituency": "Ol Kalou", "registered_voters": 72997},
+      {"constituency": "Mathare", "registered_voters": 123163}
+    ]
+  },
+  "promotion_gate": [
+    "Exactly 290 existing unresolved P23 constituency slots for IND-REGISTERED-VOTERS must exist before promotion.",
+    "All 290 promoted constituency rows must reconcile to canonical constituency geography codes.",
+    "The values must be generated deterministically from the audited IEBC ward-row source pipeline rather than copied from county totals.",
+    "Source, reference date, official-derived treatment and boundary-hold semantics must remain attached to the promoted series/observations.",
+    "Completeness may move only after the native seed/build pipeline emits the 290 canonical observations and the full deterministic rebuild reconciles.",
+    "Atlas validation, P16 release audit and the P23 registered-voter validator must be green before merge of any numeric promotion."
+  ],
+  "slot_resolution_effect": "none",
+  "next_atomic_tranche": "Implement the native deterministic builder that writes the 290 constituency series/observations through the canonical indicator registry, then rebuild and resolve exactly those 290 existing P23 slots."
+}
