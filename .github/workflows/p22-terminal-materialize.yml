@@ -1,7 +1,7 @@
 name: P22 terminal evidence materialization
 
-# One-shot terminal generator; rerun after extending the completeness validator
-# and scoping the P20 unavailable invariant to P20-owned closure families.
+# One-shot terminal generator; rerun after scoping historical P20/P21 validators
+# to their phase-owned invariants instead of frozen global completion snapshots.
 on:
   push:
     branches:
