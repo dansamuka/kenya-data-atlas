@@ -8,7 +8,7 @@
   if(!KDA)return;
   const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
   const finite=v=>Number.isFinite(Number(v));
-  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
   const reduceMotion=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
   const state={data:null,bound:false,sortKey:'diagnostic_rank',sortDir:'asc'};
   let bootPromise=null;
@@ -29,7 +29,7 @@
       const lo=Math.min(min,max),hi=Math.max(min,max),left=rankPct(lo),right=rankPct(hi),x=rankPct(rank),lane=index%5;
       return `<span class="ri-spectrum-whisker ${bandClass(r)}" style="--x0:${left.toFixed(3)}%;--x1:${right.toFixed(3)}%;--lane:${lane}" aria-hidden="true"></span><button type="button" class="ri-spectrum-dot ${bandClass(r)}" style="--x:${x.toFixed(3)}%;--lane:${lane}" data-ri-geo="${esc(r.geo_code)}" data-ri-county="${esc(r.county)}" data-ri-score="${esc(r.score)}" data-ri-rank="${esc(rank)}" data-ri-range="#${esc(lo)}–#${esc(hi)}" data-v2-tooltip="${esc(r.county)} · score ${esc(r.score)} / 100 · diagnostic #${esc(rank)} · plausible #${esc(lo)}–#${esc(hi)}" aria-label="${esc(r.county)}, score ${esc(r.score)}, diagnostic position ${esc(rank)}, plausible position ${esc(lo)} to ${esc(hi)}"><span class="sr-only">${esc(r.county)}</span></button>`;
     }).join('');
-    return `<div class="ri-development-spectrum" id="ri-development-spectrum"><div class="ri-spectrum-head"><div><small>Position spectrum</small><strong>How counties cluster — without hiding uncertainty</strong></div><p>Dots use diagnostic position; whiskers show the published plausible rank range. Scores remain visible in the table below.</p></div><div class="ri-spectrum-legend" aria-label="Relative position bands"><span class="band-1"><i></i>Top 20%</span><span class="band-2"><i></i>20–40%</span><span class="band-3"><i></i>40–60%</span><span class="band-4"><i></i>60–80%</span><span class="band-5"><i></i>Bottom 20%</span></div><div class="ri-spectrum-scroll"><div class="ri-spectrum-plot" role="group" aria-label="County diagnostic position spectrum from 1 to 47">${marks}<div class="ri-spectrum-axis" aria-hidden="true"><span>#1</span><span>#12</span><span>#24</span><span>#36</span><span>#47</span></div></div></div><p class="ri-spectrum-note">Exact position is diagnostic. The uncertainty whisker is the published robustness range, not an extra modelled estimate.</p></div>`;
+    return `<div class="ri-development-spectrum" id="v2-dev-beeswarm" data-ri-development-spectrum="true"><div class="ri-spectrum-head"><div><small>Position spectrum</small><strong>How counties cluster — without hiding uncertainty</strong></div><p>Dots use diagnostic position; whiskers show the published plausible rank range. Scores remain visible in the table below.</p></div><div class="ri-spectrum-legend" aria-label="Relative position bands"><span class="band-1"><i></i>Top 20%</span><span class="band-2"><i></i>20–40%</span><span class="band-3"><i></i>40–60%</span><span class="band-4"><i></i>60–80%</span><span class="band-5"><i></i>Bottom 20%</span></div><div class="ri-spectrum-scroll"><div class="ri-spectrum-plot" role="group" aria-label="County diagnostic position spectrum from 1 to 47">${marks}<div class="ri-spectrum-axis" aria-hidden="true"><span>#1</span><span>#12</span><span>#24</span><span>#36</span><span>#47</span></div></div></div><p class="ri-spectrum-note">Exact position is diagnostic. The uncertainty whisker is the published robustness range, not an extra modelled estimate.</p></div>`;
   }
 
   function decorateDevelopmentRows(d){
@@ -46,8 +46,12 @@
 
   function ensureDevelopmentVisual(d){
     const panel=$('[data-ri-panel="development"]'),wrap=$('.ri-table-wrap',panel);if(!panel||!wrap)return;
-    let visual=$('#ri-development-spectrum',panel);
-    if(!visual){wrap.insertAdjacentHTML('beforebegin',spectrum(d.development_snapshot));visual=$('#ri-development-spectrum',panel);}
+    let visual=$('#v2-dev-beeswarm',panel);
+    if(!visual||!visual.classList.contains('ri-development-spectrum')){
+      const html=spectrum(d.development_snapshot);if(!html)return;
+      if(visual)visual.outerHTML=html;else wrap.insertAdjacentHTML('beforebegin',html);
+      visual=$('#v2-dev-beeswarm.ri-development-spectrum',panel);
+    }
     decorateDevelopmentRows(d);
     ensureSortButtons();
   }
@@ -99,7 +103,7 @@
     if(state.bound)return;state.bound=true;
     document.addEventListener('click',event=>{
       const sort=event.target.closest('[data-ri-sort]');if(sort&&isRankings()){sortDevelopment(sort.dataset.riSort);return;}
-      const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){flashRow(dot.dataset.riGeo);return;}
+      const dot=event.target.closest('.ri-spectrum-dot');if(dot&&isRankings()){void window.KDAV2?.pin?.(dot.dataset.riGeo,{announce:false});flashRow(dot.dataset.riGeo);return;}
       const tab=event.target.closest('[data-ri-tab]');if(tab&&isRankings())requestAnimationFrame(()=>animatePanel(tab.dataset.riTab));
     });
   }
