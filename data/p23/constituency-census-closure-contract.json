@@ -1,0 +1,42 @@
+{
+  "schema_version": "kda.p23.constituency-census-closure.v1",
+  "contract_id": "P23-KPHC-CONSTITUENCY-CLOSURE-2026-09-02",
+  "as_of": "2026-09-02",
+  "level": "constituency",
+  "boundary_version": "2012-01",
+  "expected_constituencies": 290,
+  "authority": {
+    "agency": "Kenya National Bureau of Statistics (KNBS)",
+    "current_census_report_url": "https://new.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "current_census_data_tables_url": "https://new.knbs.or.ke/reports/kenya-census-2019/",
+    "legacy_constituency_table_url": "https://www.knbs.or.ke/constituency-population-by-sex-number-of-households-area-and-density/"
+  },
+  "publication_finding": "The 2019 KPHC publication describes population and household tables for county, sub-county and administrative units (county, sub-county, division, location and sub-location). It does not publish a direct table for the current 290 constituencies. KNBS's constituency table published in 2013 is based on the earlier census/boundary configuration and cannot be assigned to the current 2012-01 290-constituency registry without an authoritative crosswalk.",
+  "rules": [
+    "Do not inherit a sub-county value into a constituency merely because a name overlaps.",
+    "Do not aggregate administrative units to constituencies without an authoritative 2019 administrative-unit to 2012-01 constituency crosswalk.",
+    "Do not remap the legacy pre-2012 KNBS constituency table to the current 290 constituencies.",
+    "A census questionnaire field recording constituency does not by itself constitute a published constituency statistic.",
+    "Refresh this closure if KNBS publishes a direct 290-constituency table or an authoritative crosswalk supporting deterministic aggregation."
+  ],
+  "decisions": [
+    {
+      "indicator_code": "IND-POPULATION",
+      "status": "official_unavailable",
+      "period_label": "2019 KPHC · current 290-constituency boundary",
+      "source": "KNBS — 2019 Kenya Population and Housing Census Reports",
+      "source_url": "https://new.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+      "reason": "KNBS's 2019 KPHC publication does not publish population as a direct current-290-constituency table. Published county/sub-county/administrative-unit values are not inherited or cross-walked without an authoritative boundary mapping; the older KNBS constituency table predates the current 2012-01 constituency configuration.",
+      "refresh_trigger": "KNBS publishes a direct current-290 constituency population table or an authoritative 2019 administrative-unit to 2012-01 constituency crosswalk."
+    },
+    {
+      "indicator_code": "IND-HOUSEHOLD-SIZE",
+      "status": "official_unavailable",
+      "period_label": "2019 KPHC · current 290-constituency boundary",
+      "source": "KNBS — 2019 Kenya Population and Housing Census Reports",
+      "source_url": "https://new.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+      "reason": "KNBS's 2019 KPHC publication does not publish average household size as a direct current-290-constituency table. County/sub-county values are not inherited, and lower administrative-unit household counts are not aggregated without an authoritative constituency crosswalk; the older KNBS constituency table predates the current 2012-01 constituency configuration.",
+      "refresh_trigger": "KNBS publishes a direct current-290 constituency household-size table or an authoritative 2019 administrative-unit to 2012-01 constituency crosswalk."
+    }
+  ]
+}
