@@ -48,15 +48,16 @@ jobs:
           const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
           const observations = JSON.parse(fs.readFileSync('data/indicators/registry/observations.json','utf8'));
           if (summary.total_slots !== 20115) throw new Error(`denominator drift: ${summary.total_slots}`);
+          if (summary.resolved_slots !== 4744) throw new Error(`expected 4744 resolved slots after P23 voter materialization, got ${summary.resolved_slots}`);
           if (summary.unknown_missing !== 0) throw new Error(`unknown_missing=${summary.unknown_missing}`);
-          if (summary.by_completion_phase?.P23 !== 2900) throw new Error(`expected P23 remaining 2900 after exact 290-slot voter promotion, got ${summary.by_completion_phase?.P23}`);
+          if (summary.by_completion_phase?.P23 !== 2320) throw new Error(`expected P23 remaining 2320 after voter materialization, got ${summary.by_completion_phase?.P23}`);
           const voterSeries = series.filter(s => /^KDA-VOTERS-CON-\d{3}-2022$/.test(s.series_code));
           if (voterSeries.length !== 290) throw new Error(`expected 290 constituency voter series, got ${voterSeries.length}`);
           const ids = new Set(voterSeries.map(s => s.series_id));
           const voterObs = observations.filter(o => ids.has(o.series_id));
           if (voterObs.length !== 290) throw new Error(`expected 290 constituency voter observations, got ${voterObs.length}`);
           if (voterObs.reduce((sum,o)=>sum+Number(o.value),0) !== 22102532) throw new Error('national voter total changed');
-          console.log('P23 voter promotion assertions passed: 290 observations; P23 remaining 2900; denominator 20115.');
+          console.log('P23 voter promotion assertions passed: 290 observations; 4744 resolved; P23 remaining 2320; denominator 20115; unknown 0.');
           NODE
       - name: Run full validation
         run: npm test
