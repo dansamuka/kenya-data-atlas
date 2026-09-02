@@ -24,5 +24,12 @@ jobs:
         run: bash scripts/p23/probe-iebc-form34b.sh
       - name: Inspect official Form 34B sample fields
         run: bash scripts/p23/probe-iebc-form34b-sample.sh
+      - name: Retain official sample for visual evidence review
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-iebc-form34b-sample
+          path: /tmp/iebc-form34b-sample
+          if-no-files-found: error
+          retention-days: 7
 
 # Feature-branch trigger is intentionally scoped to the P23 turnout probe.
