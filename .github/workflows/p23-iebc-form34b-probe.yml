@@ -8,6 +8,7 @@ on:
     paths:
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-sample.sh
+      - scripts/p23/probe-iebc-form34b-bulk.sh
       - .github/workflows/p23-iebc-form34b-probe.yml
   workflow_dispatch:
 
@@ -24,6 +25,8 @@ jobs:
         run: bash scripts/p23/probe-iebc-form34b.sh
       - name: Inspect official Form 34B sample fields
         run: bash scripts/p23/probe-iebc-form34b-sample.sh
+      - name: Probe official Form 34B national bulk endpoint
+        run: bash scripts/p23/probe-iebc-form34b-bulk.sh
       - name: Retain official sample for visual evidence review
         uses: actions/upload-artifact@v4
         with:
