@@ -57,28 +57,33 @@ const authorizedExplicit=new Set(['official_unavailable','retired_replaced']);
 for(const state of configured){
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
   const matches=ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code);
-  assert(matches.length===1,`${state.geo_code}/${state.indicator_code}: explicit evidence state must map to exactly one public slot, got ${matches.length}`);
-  const row=matches[0];
-  assert(row.resolved===true&&row.status===state.status,`${state.geo_code}/${state.indicator_code}: configured evidence state not resolved correctly`);
-  assert(row.reason===state.reason&&row.period_label===state.period_label&&row.source===state.source&&row.source_url===state.source_url,`${state.geo_code}/${state.indicator_code}: evidence-state provenance diverged`);
+  assert(matches.length>=1,`${state.geo_code}/${state.indicator_code}: explicit evidence state must map to at least one public slot, got ${matches.length}`);
+  assert(matches.every(row=>row.resolved===true&&row.status===state.status),`${state.geo_code}/${state.indicator_code}: configured evidence state not resolved correctly across all rendered occurrences`);
+  assert(matches.every(row=>row.reason===state.reason&&row.period_label===state.period_label&&row.source===state.source&&row.source_url===state.source_url),`${state.geo_code}/${state.indicator_code}: evidence-state provenance diverged across rendered occurrences`);
   if(state.status==='retired_replaced'){
     assert(Array.isArray(state.successor_indicator_codes)&&state.successor_indicator_codes.length>0,`${state.geo_code}/${state.indicator_code}: retired/replaced closure requires successor_indicator_codes`);
   }
 }
 for(const status of authorizedExplicit){
-  const configuredCount=configured.filter(s=>s.status===status).length;
-  assert(ledger.rows.filter(r=>r.status===status).length===configuredCount,`no ungoverned ${status} states may appear`);
+  const configuredStates=configured.filter(s=>s.status===status);
+  const expectedRenderedRows=configuredStates.reduce((count,state)=>count+ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code).length,0);
+  assert(ledger.rows.filter(r=>r.status===status).length===expectedRenderedRows,`no ungoverned ${status} rendered states may appear`);
 }
 
 const officialUnavailable=configured.filter(s=>s.status==='official_unavailable');
 const p22Codes=new Set(['IND-DROUGHT-EARLY-WARNING','IND-FOOD-SECURITY-PHASE','IND-RAINFALL-TEMPERATURE']);
+const p23CensusCodes=new Set(['IND-POPULATION','IND-HOUSEHOLD-SIZE']);
 const p22Unavailable=officialUnavailable.filter(s=>p22Codes.has(s.indicator_code));
-const preP22Unavailable=officialUnavailable.filter(s=>!p22Codes.has(s.indicator_code));
-assert(preP22Unavailable.length===48,`pre-P22 official-unavailable inventory must remain 48 states, got ${preP22Unavailable.length}`);
+const p23CensusUnavailable=officialUnavailable.filter(s=>s.level==='constituency'&&p23CensusCodes.has(s.indicator_code));
+const legacyUnavailable=officialUnavailable.filter(s=>!p22Codes.has(s.indicator_code)&&!(s.level==='constituency'&&p23CensusCodes.has(s.indicator_code)));
+assert(legacyUnavailable.length===48,`pre-P22/P23 official-unavailable inventory must remain 48 states, got ${legacyUnavailable.length}`);
 assert(p22Unavailable.length===66,`P22 terminal snapshot must contribute exactly 66 governed official-unavailable states, got ${p22Unavailable.length}`);
-assert(officialUnavailable.length===114,`official-unavailable inventory must reconcile 48 existing + 66 P22 = 114, got ${officialUnavailable.length}`);
+assert(p23CensusUnavailable.length===580,`P23 census publication closure must contribute exactly 580 geography/indicator evidence states, got ${p23CensusUnavailable.length}`);
+assert(officialUnavailable.length===694,`official-unavailable evidence inventory must reconcile 48 legacy + 66 P22 + 580 P23 census = 694, got ${officialUnavailable.length}`);
 assert(p22Unavailable.every(s=>s.as_of==='2026-09-01'&&s.evidence_constraint==='current_observation_unavailable_under_p22_contract'), 'P22 unavailable states must retain snapshot date and evidence-constraint marker');
 assert(p22Unavailable.every(s=>String(s.refresh_trigger||'').length>0),'P22 unavailable states must retain refresh triggers');
+assert(p23CensusUnavailable.every(s=>s.as_of==='2026-09-02'&&s.evidence_constraint==='official_publication_not_available_at_current_290_constituency_boundary'),'P23 census unavailable states must retain boundary-publication evidence constraint');
+assert(p23CensusUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P23 census unavailable states must retain refresh triggers');
 
 // The canonical generated indicator registry is authoritative. The UI taxonomy may
 // enrich missing metadata, but it must never downgrade an already-active indicator
@@ -89,5 +94,5 @@ assert(!profile.includes("i.lifecycle_status=d.status||i.lifecycle_status||'acti
 console.log(`P18_COMPLETENESS_VALIDATE_OK slots=${summary.total_slots} resolved=${summary.resolved_slots} unresolved=${summary.unresolved_slots}`);
 console.log(`P18_NO_UNKNOWN_BLANKS_OK unknown=${summary.unknown_missing}`);
 console.log(`P18_GOVERNED_CLOSURE_STATES_OK configured=${configured.length} unavailable=${officialUnavailable.length} retired_replaced=${configured.filter(s=>s.status==='retired_replaced').length}`);
-console.log(`P18_P22_UNAVAILABLE_RECONCILIATION_OK pre_p22=${preP22Unavailable.length} p22=${p22Unavailable.length} total=${officialUnavailable.length}`);
+console.log(`P18_P22_P23_UNAVAILABLE_RECONCILIATION_OK legacy=${legacyUnavailable.length} p22=${p22Unavailable.length} p23_census=${p23CensusUnavailable.length} total=${officialUnavailable.length}`);
 console.log('P18_CANONICAL_LIFECYCLE_AUTHORITY_OK');
