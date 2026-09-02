@@ -1,0 +1,48 @@
+name: P23 KNBS constituency census probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-knbs-constituency-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install workbook reader
+        run: python -m pip install --disable-pip-version-check openpyxl
+      - name: Download official KNBS administrative-unit workbook
+        run: |
+          python - <<'PY'
+          from urllib.request import Request, urlopen
+          url='https://new.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Population-households-density-by-administrative-units.xlsx'
+          req=Request(url,headers={'User-Agent':'KenyaDataAtlas/1.0 (+https://github.com/dansamuka/kenya-data-atlas)'})
+          with urlopen(req,timeout=60) as r, open('/tmp/kphc-admin.xlsx','wb') as f:
+              f.write(r.read())
+          PY
+      - name: Inspect workbook schema
+        run: |
+          python - <<'PY'
+          from openpyxl import load_workbook
+          p='/tmp/kphc-admin.xlsx'
+          wb=load_workbook(p,read_only=True,data_only=True)
+          print('WORKBOOK_SHEETS', wb.sheetnames)
+          for ws in wb.worksheets:
+              print('SHEET',repr(ws.title),'ROWS',ws.max_row,'COLS',ws.max_column)
+              for i,row in enumerate(ws.iter_rows(values_only=True),1):
+                  vals=[v for v in row if v is not None]
+                  if vals:
+                      print('ROW',i,repr(vals[:20]))
+                  if i>=20:
+                      break
+          PY
