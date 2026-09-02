@@ -43,3 +43,5 @@ jobs:
           git commit -m 'feat(p23): govern utilisation and facility-density gaps'
           git pull --rebase origin main
           git push origin HEAD:main
+
+# Trigger marker: contract and validators are present on main.
