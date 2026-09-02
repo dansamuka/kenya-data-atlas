@@ -1,0 +1,69 @@
+name: P23X ward voter materialization
+
+on:
+  push:
+    branches: [p23x/ward-voter-materialization]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: p23x/ward-voter-materialization
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm ci
+      - name: Wire deterministic P23X ward-voter build and validation
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = JSON.parse(fs.readFileSync('package.json','utf8'));
+          const append = (key, command, anchor) => {
+            if (p.scripts[key]?.includes(command)) return;
+            if (!p.scripts[key]) throw new Error(`missing script ${key}`);
+            if (!p.scripts[key].includes(anchor)) throw new Error(`anchor not found in ${key}: ${anchor}`);
+            p.scripts[key] = p.scripts[key].replace(anchor, `${anchor} && ${command}`);
+          };
+          append('catalogue:build', 'node scripts/p23/build-ward-voters.mjs catalogue', 'node scripts/p23/build-constituency-voters.mjs catalogue');
+          append('indicators:build', 'node scripts/p23/build-ward-voters.mjs indicators', 'node scripts/p23/build-constituency-voters.mjs indicators');
+          append('p23:validate', 'node scripts/p23/validate-ward-voters.mjs', 'node scripts/p23/validate-constituency-voter-readiness.mjs');
+          fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
+          NODE
+      - name: Materialize official ward voter catalogue and observations
+        run: |
+          node scripts/p23/build-ward-voters.mjs catalogue
+          node scripts/p23/build-ward-voters.mjs indicators
+          node scripts/indicators/build-cross-level-eligibility.mjs
+          node scripts/prep05/build-place-facts.mjs
+          node scripts/completeness/build-slot-ledger.mjs
+          node scripts/completeness/build-local-indicator-cascade.mjs
+          node scripts/p17/build-release-manifest.mjs
+      - name: Validate P23X materialization
+        run: |
+          node scripts/p23/validate-ward-voters.mjs
+          node scripts/indicators/validate-registry.mjs
+          node scripts/completeness/validate-slot-ledger.mjs
+          node scripts/completeness/validate-local-indicator-cascade.mjs
+          npm test
+      - name: Commit deterministic materialization
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package.json data/catalogue/registry data/indicators/registry data/place-facts data/completeness data/p17
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -m 'feat(p23x): publish 1440 governed ward voter observations'
+          git push origin HEAD:p23x/ward-voter-materialization
