@@ -3,7 +3,6 @@ import { writeFile } from 'node:fs/promises';
 const ARC_ITEM = '9c12cc5d3d244a8bad34bce09a28540b';
 const ARC_LAYER = 'https://services8.arcgis.com/oTalEaSXAuyNT7xf/arcgis/rest/services/Constituency_Results_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=2000&f=json';
 const VOTER_SOURCE = 'https://raw.githubusercontent.com/samy-migwi/kenya_2022_voters_dashboard_app/29b269a6562262a77faf6d22ba5837f46d35df75/data/voters.csv';
-const EXPECTED_DISCREPANCY_CODES = [11,27,31,32,49,55,58,59,67,74,77,86,109,113,132,144,147,164,167,175,178,187,189,209,210,211,220,232,247,251,256,258,261,268,269,278,285,286];
 const assert = (ok,msg) => { if(!ok) throw new Error(`P23 turnout reconciliation: ${msg}`); };
 const get = async url => {
   const r = await fetch(url,{headers:{'User-Agent':'Kenya-Data-Atlas-P23'}});
@@ -42,8 +41,8 @@ for(const f of features) {
   const m=pcode.match(/(\d{3})$/);
   assert(m,`missing constituency code in ${pcode}`);
   const code=Number(m[1]);
-  const registered=toInt(a.Registered__Voters,`${code} registered`);
-  assert(registered===regByCode.get(code),`${code} ${a.Constituency}: registered voters ${registered} != official ${regByCode.get(code)}`);
+  const sourceRegistered=toInt(a.Registered__Voters,`${code} registered`);
+  const officialRegistered=regByCode.get(code);
   const raila=toInt(a.Raila,`${code} Raila`);
   const ruto=toInt(a.Ruto,`${code} Ruto`);
   const mwaure=toInt(a.Mwaure,`${code} Mwaure`);
@@ -53,15 +52,23 @@ for(const f of features) {
   const transcribedIebcTotal=toInt(a.IEBC_Total__As_per_Forms_,`${code} IEBC total`);
   const rejected=toInt(a.Rejected_votes,`${code} rejected`);
   assert(candidateTotal===citizenTotal,`${code}: candidate sum ${candidateTotal} != citizen arithmetic ${citizenTotal}`);
-  assert(candidateTotal+rejected<=registered,`${code}: votes cast exceeds registered voters`);
-  const discrepancy=transcribedIebcTotal-candidateTotal;
+  const voterMatch=sourceRegistered===officialRegistered;
+  const voteDiscrepancy=transcribedIebcTotal-candidateTotal;
+  const votesFitOfficial=candidateTotal+rejected<=officialRegistered;
+  const holdReasons=[];
+  if(!voterMatch) holdReasons.push('registered_voter_mismatch');
+  if(voteDiscrepancy!==0) holdReasons.push('valid_vote_total_mismatch');
+  if(!votesFitOfficial) holdReasons.push('votes_cast_exceeds_official_registered_voters');
   rows.push({
     constituency_code:code,
     source_name:String(a.Constituency||'').trim(),
     source_boundary_name:String(a.ADM2_EN||'').trim(),
     source_pcode:pcode,
     county_name:String(a.County_Name||a.County_Nam||a.ADM1_EN||'').trim(),
-    registered_voters:registered,
+    source_registered_voters:sourceRegistered,
+    official_registered_voters:officialRegistered,
+    registered_voter_difference:sourceRegistered-officialRegistered,
+    registered_voter_match:voterMatch,
     raila_votes:raila,
     ruto_votes:ruto,
     mwaure_votes:mwaure,
@@ -69,22 +76,28 @@ for(const f of features) {
     candidate_sum_valid_votes:candidateTotal,
     transcribed_iebc_total_valid_votes:transcribedIebcTotal,
     rejected_ballots:rejected,
-    valid_vote_discrepancy:discrepancy,
+    valid_vote_discrepancy:voteDiscrepancy,
     source_turnout:a.Turnout==null?null:Number(a.Turnout),
-    arithmetic_turnout_pct:Number((((candidateTotal+rejected)/registered)*100).toFixed(6)),
-    verification_status:discrepancy===0?'arithmetic_reconciled':'requires_direct_form34b',
+    arithmetic_turnout_pct:voterMatch && voteDiscrepancy===0 && votesFitOfficial
+      ? Number((((candidateTotal+rejected)/officialRegistered)*100).toFixed(6))
+      : null,
+    verification_status:holdReasons.length===0?'arithmetic_reconciled':'requires_direct_form34b',
+    hold_reasons:holdReasons,
   });
 }
 rows.sort((a,b)=>a.constituency_code-b.constituency_code);
 assert(new Set(rows.map(r=>r.constituency_code)).size===290,'duplicate constituency code');
 assert(rows.every((r,i)=>r.constituency_code===i+1),'constituency code sequence is not 1..290');
-const discrepancies=rows.filter(r=>r.verification_status==='requires_direct_form34b');
-assert(discrepancies.length===38,`expected 38 direct-form holds, found ${discrepancies.length}`);
-assert(JSON.stringify(discrepancies.map(r=>r.constituency_code))===JSON.stringify(EXPECTED_DISCREPANCY_CODES),'direct-form hold set changed');
-assert(rows.filter(r=>r.verification_status==='arithmetic_reconciled').length===252,'expected 252 arithmetic-reconciled rows');
+
+const voterMismatches=rows.filter(r=>!r.registered_voter_match);
+const validVoteMismatches=rows.filter(r=>r.valid_vote_discrepancy!==0);
+const impossibleAgainstOfficial=rows.filter(r=>r.candidate_sum_valid_votes+r.rejected_ballots>r.official_registered_voters);
+const holds=rows.filter(r=>r.verification_status==='requires_direct_form34b');
+const publishable=rows.filter(r=>r.verification_status==='arithmetic_reconciled');
 
 const totals={
-  registered_voters:rows.reduce((s,r)=>s+r.registered_voters,0),
+  official_registered_voters:rows.reduce((s,r)=>s+r.official_registered_voters,0),
+  source_registered_voters:rows.reduce((s,r)=>s+r.source_registered_voters,0),
   raila_votes:rows.reduce((s,r)=>s+r.raila_votes,0),
   ruto_votes:rows.reduce((s,r)=>s+r.ruto_votes,0),
   mwaure_votes:rows.reduce((s,r)=>s+r.mwaure_votes,0),
@@ -93,28 +106,41 @@ const totals={
   transcribed_iebc_total_valid_votes:rows.reduce((s,r)=>s+r.transcribed_iebc_total_valid_votes,0),
   rejected_ballots:rows.reduce((s,r)=>s+r.rejected_ballots,0),
 };
-assert(totals.registered_voters===22102532,'reconciled registered-voter national total changed');
+assert(totals.official_registered_voters===22102532,'official registered-voter national total changed');
 
 const payload={
-  schema_version:'1.0.0',
+  schema_version:'1.1.0',
   status:'candidate_extraction_reconciled_not_yet_published',
   arcgis_item_id:ARC_ITEM,
   arcgis_layer_url:ARC_LAYER,
   official_registered_voter_extraction:VOTER_SOURCE,
   official_form_portal:'https://forms.iebc.or.ke/',
-  formula:'turnout_pct = 100 * (verified_valid_votes + rejected_ballots) / registered_voters',
+  formula:'turnout_pct = 100 * (verified_valid_votes + rejected_ballots) / official_registered_voters',
   policy:{
     publish_arithmetic_reconciled_rows:false,
-    reason:'All 290 rows remain unpublished until the direct Form 34B exception set is resolved and national/county reconciliation passes as one tranche.',
+    reason:'Only rows matching the official registered-voter schedule and internally reconciling valid votes can be promoted; all others require direct Form 34B verification.',
     no_parent_inheritance:true,
     no_fuzzy_geography_matching:true,
+    no_substitution_of_source_registered_voters:true,
   },
-  counts:{source_rows:290,registered_voter_matches:290,arithmetic_reconciled:252,requires_direct_form34b:38},
+  counts:{
+    source_rows:290,
+    registered_voter_matches:290-voterMismatches.length,
+    registered_voter_mismatches:voterMismatches.length,
+    valid_vote_mismatches:validVoteMismatches.length,
+    votes_exceed_official_registered:impossibleAgainstOfficial.length,
+    arithmetic_reconciled:publishable.length,
+    requires_direct_form34b:holds.length,
+  },
   totals,
-  direct_form34b_constituency_codes:EXPECTED_DISCREPANCY_CODES,
+  direct_form34b_constituency_codes:holds.map(r=>r.constituency_code),
+  registered_voter_mismatch_codes:voterMismatches.map(r=>r.constituency_code),
+  valid_vote_mismatch_codes:validVoteMismatches.map(r=>r.constituency_code),
   rows,
 };
 await writeFile('/tmp/p23-turnout-reconciliation.json',JSON.stringify(payload,null,2)+'\n');
-console.log(`P23_TURNOUT_RECONCILIATION_OK rows=290 registered_matches=290 arithmetic_reconciled=252 direct_form34b=38 registered_total=${totals.registered_voters}`);
-console.log(`P23_TURNOUT_DIRECT_FORM_CODES ${EXPECTED_DISCREPANCY_CODES.join(',')}`);
-console.log(`P23_TURNOUT_TRANSCRIPTION_TOTALS candidate_valid=${totals.candidate_sum_valid_votes} transcribed_iebc_valid=${totals.transcribed_iebc_total_valid_votes} rejected=${totals.rejected_ballots}`);
+console.log(`P23_TURNOUT_RECONCILIATION_OK rows=290 voter_matches=${290-voterMismatches.length} voter_mismatches=${voterMismatches.length} valid_vote_mismatches=${validVoteMismatches.length} publishable=${publishable.length} direct_form34b=${holds.length}`);
+console.log(`P23_TURNOUT_VOTER_MISMATCH_CODES ${voterMismatches.map(r=>r.constituency_code).join(',')||'none'}`);
+console.log(`P23_TURNOUT_VALID_VOTE_MISMATCH_CODES ${validVoteMismatches.map(r=>r.constituency_code).join(',')||'none'}`);
+console.log(`P23_TURNOUT_DIRECT_FORM_CODES ${holds.map(r=>r.constituency_code).join(',')||'none'}`);
+console.log(`P23_TURNOUT_TRANSCRIPTION_TOTALS official_registered=${totals.official_registered_voters} source_registered=${totals.source_registered_voters} candidate_valid=${totals.candidate_sum_valid_votes} transcribed_iebc_valid=${totals.transcribed_iebc_total_valid_votes} rejected=${totals.rejected_ballots}`);
