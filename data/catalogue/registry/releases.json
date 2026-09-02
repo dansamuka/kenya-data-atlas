@@ -830,5 +830,21 @@
     "version_label": "P21 governed hard-county replacement",
     "release_notes": "Economic Survey 2026; Table 11.9 — Distribution of Class C (Rural Roads) by County and Surface Type, 2023–2025. The Atlas promotes only the published Total column for 2025 provisional Class C rural roads. Published totals are not recomputed from rounded surface components and Class C is not represented as all-class county road length.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "7db0e64f-0058-5ade-8cb7-a0c2dd7ec88b",
+    "release_code": "REL-IEBC-VOTERS-CONSTITUENCY-2022-P23",
+    "dataset_id": "94e53d9c-c915-5e24-8d41-9f7576104173",
+    "title": "Kenya Gazette Notice No. 7290 — Registered Voters per Constituency",
+    "reference_period_start": "2022-06-20",
+    "reference_period_end": "2022-06-20",
+    "published_at": "2022-06-21",
+    "discovered_at": "2026-09-01T13:00:00.000Z",
+    "ingested_at": "2026-09-01T13:00:00.000Z",
+    "release_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf",
+    "release_status": "published",
+    "version_label": "P23 constituency promotion",
+    "release_notes": "Second Schedule cross-check; published values use the audited Sprint 2 B — Official derived treatment from exact official child-ward sums.",
+    "supersedes_release_id": ""
   }
 ]
