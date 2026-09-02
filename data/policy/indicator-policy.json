@@ -55078,6 +55078,3486 @@
       }
     },
     {
+      "series_id": "db59549b-294d-55b5-8a73-1294e106732e",
+      "series_code": "KDA-VOTERS-CON-001-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "59549197-adae-5f77-8134-c1ff6ffd81e1",
+      "series_code": "KDA-VOTERS-CON-002-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0b5fd97a-2ce2-5f4a-8ab0-889ef256348f",
+      "series_code": "KDA-VOTERS-CON-003-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fdc2e83f-0c50-564d-8089-c5077d2710b9",
+      "series_code": "KDA-VOTERS-CON-004-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ddbad5f3-5ed8-5ba1-84a2-ea5e6853c5e4",
+      "series_code": "KDA-VOTERS-CON-005-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bcadcc57-3c31-5840-8915-a66f066c776f",
+      "series_code": "KDA-VOTERS-CON-006-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a6ea1698-9825-54b3-8f09-cbd94c98aacf",
+      "series_code": "KDA-VOTERS-CON-007-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "eacce657-7b94-56b7-88e2-cc8dfb677067",
+      "series_code": "KDA-VOTERS-CON-008-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8da05c63-60c7-568e-843d-7233085e608d",
+      "series_code": "KDA-VOTERS-CON-009-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6cb930aa-a115-54b5-87f3-c4c027faa51a",
+      "series_code": "KDA-VOTERS-CON-010-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7f638902-8361-5ee6-8f8b-5faf95fe1297",
+      "series_code": "KDA-VOTERS-CON-011-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fec13037-c3bc-5f42-8cae-7cba2e8f2f3a",
+      "series_code": "KDA-VOTERS-CON-012-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c40e6e5c-fd3f-5d49-8458-3c3f064eb730",
+      "series_code": "KDA-VOTERS-CON-013-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "18e87cee-ce80-596a-80d5-aab97a68b6ed",
+      "series_code": "KDA-VOTERS-CON-014-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "94e359d3-78d1-568c-8828-6469dd899ae5",
+      "series_code": "KDA-VOTERS-CON-015-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "39074dbd-fd34-5814-8691-bf1dae8508fa",
+      "series_code": "KDA-VOTERS-CON-016-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f54c1e08-de6d-5432-8e75-0b9266808238",
+      "series_code": "KDA-VOTERS-CON-017-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ae4f4f14-7953-569e-8c52-b6b07273e75f",
+      "series_code": "KDA-VOTERS-CON-018-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0ca4da9c-a377-5352-856e-d2c052e98dda",
+      "series_code": "KDA-VOTERS-CON-019-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e187186e-13ca-5dcf-880c-47a42a7e6cba",
+      "series_code": "KDA-VOTERS-CON-020-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f04c0c98-74e1-5240-894a-6a9ffc6b25be",
+      "series_code": "KDA-VOTERS-CON-021-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8d0ceb26-2409-5234-8cf6-fee0d039a688",
+      "series_code": "KDA-VOTERS-CON-022-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2a1555fb-e66c-5e18-8ea4-f03b7c04f6b4",
+      "series_code": "KDA-VOTERS-CON-023-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9263b07f-3b27-561b-8aa4-35ddaa0458b5",
+      "series_code": "KDA-VOTERS-CON-024-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7dc1e74d-cf86-5f64-8529-f6ed63b2f0ee",
+      "series_code": "KDA-VOTERS-CON-025-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "cefef6e8-d3ec-56a6-8608-a6da614fc953",
+      "series_code": "KDA-VOTERS-CON-026-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1f75b669-3314-5349-821e-63bcb21e32ac",
+      "series_code": "KDA-VOTERS-CON-027-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2f6bddc1-8d84-5f98-8f61-6a0e205b8188",
+      "series_code": "KDA-VOTERS-CON-028-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e1d5e7f6-cded-59ac-8660-aa72aaa37079",
+      "series_code": "KDA-VOTERS-CON-029-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "437342f1-f59d-5bd1-827a-be5d4b52bb66",
+      "series_code": "KDA-VOTERS-CON-030-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8de725a8-0db6-5550-8337-ffec50bc2507",
+      "series_code": "KDA-VOTERS-CON-031-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "77aa1a4c-7756-5d8b-8c5e-d5d6cf65a4cf",
+      "series_code": "KDA-VOTERS-CON-032-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c71a8e9c-af86-51d6-87e2-9e4f48426dc4",
+      "series_code": "KDA-VOTERS-CON-033-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "21970069-f364-5a5d-8e60-d3f5ad7b2b88",
+      "series_code": "KDA-VOTERS-CON-034-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5c937478-8d81-5146-8df9-168bc802be24",
+      "series_code": "KDA-VOTERS-CON-035-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "df8dbc0a-9bfd-53c9-8ced-91c72d9e55a2",
+      "series_code": "KDA-VOTERS-CON-036-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9af6815a-907d-5ce3-8305-64c93096696b",
+      "series_code": "KDA-VOTERS-CON-037-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "167f0951-81e4-565b-8933-471274587349",
+      "series_code": "KDA-VOTERS-CON-038-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "582392f7-8092-5853-829a-35a85ff98bef",
+      "series_code": "KDA-VOTERS-CON-039-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "01bb2a49-c466-5aa8-8f46-07196b7c2e81",
+      "series_code": "KDA-VOTERS-CON-040-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "df12428a-f14c-568e-8a42-ceb9a8912e7e",
+      "series_code": "KDA-VOTERS-CON-041-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3d823bfa-1d1c-5890-8248-c991973ba6eb",
+      "series_code": "KDA-VOTERS-CON-042-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3086b5f2-b04c-59f3-8d5b-1cb91f25beba",
+      "series_code": "KDA-VOTERS-CON-043-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "48ed114e-5c1f-5f72-8f46-1f129cddfe21",
+      "series_code": "KDA-VOTERS-CON-044-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fa6ad751-43f3-5dba-8ed9-3d1e921912b6",
+      "series_code": "KDA-VOTERS-CON-045-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3270b4bc-c05f-5b5c-8572-5f87092cad5d",
+      "series_code": "KDA-VOTERS-CON-046-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "25446525-6bd5-54ff-8efb-dbd1c26a7450",
+      "series_code": "KDA-VOTERS-CON-047-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "691568cb-bb15-54b3-8167-bf1d928f0bf4",
+      "series_code": "KDA-VOTERS-CON-048-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2dbb132b-44bb-55b5-83c4-990dabe63556",
+      "series_code": "KDA-VOTERS-CON-049-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "098614f7-bd04-5bf0-8485-8c6a71cf2678",
+      "series_code": "KDA-VOTERS-CON-050-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "97394a5c-0fc8-5f6c-8eaf-585000311ade",
+      "series_code": "KDA-VOTERS-CON-051-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7ead26d2-b031-536f-84c8-bb08e7627a83",
+      "series_code": "KDA-VOTERS-CON-052-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "404ea1fa-257f-5eaa-8529-526ab11f26a0",
+      "series_code": "KDA-VOTERS-CON-053-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9416adb5-7d87-58a2-861d-4433fd5007f1",
+      "series_code": "KDA-VOTERS-CON-054-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2d567be1-f457-5487-8046-bb4686cb5291",
+      "series_code": "KDA-VOTERS-CON-055-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8ecbde4e-b8bf-58d2-8344-0e65f1e3eb7d",
+      "series_code": "KDA-VOTERS-CON-056-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e5e021dc-a720-52c2-8ed7-e50cfef0b8e6",
+      "series_code": "KDA-VOTERS-CON-057-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8de5cfd1-d53b-5586-883e-7bce3cb0e5e2",
+      "series_code": "KDA-VOTERS-CON-058-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e1bddba8-e61a-5db3-8556-2caa4511e5a8",
+      "series_code": "KDA-VOTERS-CON-059-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "21d37a69-d63a-5f5a-802a-f145b7031da1",
+      "series_code": "KDA-VOTERS-CON-060-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "61127cc4-1ebf-57e6-8423-8512f00650fd",
+      "series_code": "KDA-VOTERS-CON-061-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7859cad1-88c7-5663-87fc-804185310782",
+      "series_code": "KDA-VOTERS-CON-062-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5e95c984-f336-5b55-8267-1a07d182674b",
+      "series_code": "KDA-VOTERS-CON-063-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "10eb9ffa-a712-5f81-8f45-659aecebf0ce",
+      "series_code": "KDA-VOTERS-CON-064-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9e956f91-d5e8-5d39-8024-0337dd105304",
+      "series_code": "KDA-VOTERS-CON-065-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d2640e26-dfb7-5316-848e-797111cf33a6",
+      "series_code": "KDA-VOTERS-CON-066-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ed4d565f-961b-53a8-8bb0-eb7149819f65",
+      "series_code": "KDA-VOTERS-CON-067-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "57a899ed-d76b-5227-8d54-562331115a42",
+      "series_code": "KDA-VOTERS-CON-068-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a3535131-6be7-5183-8519-92284b458831",
+      "series_code": "KDA-VOTERS-CON-069-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "51cdf873-9be2-5ef2-8e91-a58e2127261c",
+      "series_code": "KDA-VOTERS-CON-070-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c14f24d6-94c1-573b-85e9-db1d8acbbe17",
+      "series_code": "KDA-VOTERS-CON-071-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ba84fcb3-70a8-556c-8e01-ebfd33d9fa83",
+      "series_code": "KDA-VOTERS-CON-072-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ba30a458-a8ef-5f41-85ed-fee56919ff21",
+      "series_code": "KDA-VOTERS-CON-073-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3998c29e-16bf-5d1e-897e-0acb100329e3",
+      "series_code": "KDA-VOTERS-CON-074-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "171695d9-d8b1-58df-8f32-363278c16582",
+      "series_code": "KDA-VOTERS-CON-075-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5530ed5c-ccb3-52f6-8be2-7e2eb4169281",
+      "series_code": "KDA-VOTERS-CON-076-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9176a344-ac0e-5bed-8f9c-8e9a18c6b5e8",
+      "series_code": "KDA-VOTERS-CON-077-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "39af4b22-b80d-5933-8670-58f9a23c8629",
+      "series_code": "KDA-VOTERS-CON-078-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "41eda26c-86a7-5943-8c71-80761f9b7215",
+      "series_code": "KDA-VOTERS-CON-079-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1ce8cad4-eb2e-5b05-887f-ae04baabe773",
+      "series_code": "KDA-VOTERS-CON-080-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4d9061ab-66fd-5e8c-8036-4da5b0ea2327",
+      "series_code": "KDA-VOTERS-CON-081-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "16d95ecf-1a1e-592e-8546-a6d663ed47d8",
+      "series_code": "KDA-VOTERS-CON-082-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1bf154c9-ee03-5432-8503-82f1a15ac307",
+      "series_code": "KDA-VOTERS-CON-083-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e76b36e5-2815-5259-8eff-5d2210288155",
+      "series_code": "KDA-VOTERS-CON-084-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "269010c9-8110-54ae-82fd-923ab6ee746f",
+      "series_code": "KDA-VOTERS-CON-085-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2a3ce00f-e68d-505e-833f-1150ca2be7ef",
+      "series_code": "KDA-VOTERS-CON-086-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7355ef60-f4e8-5bc4-8840-c8b9a085c1f7",
+      "series_code": "KDA-VOTERS-CON-087-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "db039ac9-87a4-5112-86c5-62cbc3fa8bdc",
+      "series_code": "KDA-VOTERS-CON-088-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d029fd91-6c76-5de5-8da5-28c611187f22",
+      "series_code": "KDA-VOTERS-CON-089-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e3b8d730-32f1-591a-82ea-53ca09485aff",
+      "series_code": "KDA-VOTERS-CON-090-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "916ef673-3ee2-57bc-8d97-acb702c94c3e",
+      "series_code": "KDA-VOTERS-CON-091-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6241540f-0e42-5b45-8b43-27c815f7e5ea",
+      "series_code": "KDA-VOTERS-CON-092-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6234d4db-e28b-537f-8c25-4e833997babb",
+      "series_code": "KDA-VOTERS-CON-093-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b358c1dd-a921-5230-870e-48529cd4ef77",
+      "series_code": "KDA-VOTERS-CON-094-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0bd9e3e1-fc76-53e8-8bea-0a03c0c5e34f",
+      "series_code": "KDA-VOTERS-CON-095-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d623fbb0-d106-50f7-850a-f1fff39d3c83",
+      "series_code": "KDA-VOTERS-CON-096-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a257a681-31b8-5124-8fc8-4bac05de5ecd",
+      "series_code": "KDA-VOTERS-CON-097-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e35ace11-de7c-559d-8867-1bd06f123a69",
+      "series_code": "KDA-VOTERS-CON-098-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d3400247-b0a6-5823-8cc8-5c99b10e1fd0",
+      "series_code": "KDA-VOTERS-CON-099-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "736f90d0-00d0-57c9-820c-c76c0bd8983d",
+      "series_code": "KDA-VOTERS-CON-100-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f69e013a-24b2-52a6-88be-339e2de84dfc",
+      "series_code": "KDA-VOTERS-CON-101-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "41ff5a4a-34c1-5558-801a-849d34f1a555",
+      "series_code": "KDA-VOTERS-CON-102-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "df18b7be-9403-5b5f-812c-26e6de3bb731",
+      "series_code": "KDA-VOTERS-CON-103-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "50a7c351-fb26-52ed-8d33-bb38ac55812f",
+      "series_code": "KDA-VOTERS-CON-104-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "09651d68-d5b1-53fe-870b-98daceebf87c",
+      "series_code": "KDA-VOTERS-CON-105-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e5fd8648-9bc0-5c6f-8ca6-2e5285ad39c4",
+      "series_code": "KDA-VOTERS-CON-106-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6775919e-9f01-597d-8fe4-5e805de85c15",
+      "series_code": "KDA-VOTERS-CON-107-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1f6cdb4d-0d71-53f5-81ad-e4a31bb71daa",
+      "series_code": "KDA-VOTERS-CON-108-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c6bb50bf-ec7c-5ac5-8225-7d2ef2eecbb1",
+      "series_code": "KDA-VOTERS-CON-109-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "147de2a6-6aea-57f9-8e17-175997b17320",
+      "series_code": "KDA-VOTERS-CON-110-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "79aef5a9-a91e-5e08-8235-3c3d752e2a91",
+      "series_code": "KDA-VOTERS-CON-111-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e3b9ec86-f83e-52e7-89fd-40438943c95e",
+      "series_code": "KDA-VOTERS-CON-112-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7026bf8d-d575-580f-8a74-e0e6a96909d6",
+      "series_code": "KDA-VOTERS-CON-113-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e33a8b8f-7b07-5c8d-8eff-3b618da5ecfe",
+      "series_code": "KDA-VOTERS-CON-114-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1ffaf812-ac37-5b18-8d36-caab4f3b2e1d",
+      "series_code": "KDA-VOTERS-CON-115-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "16af49c4-83e9-5e7f-83b3-adb39b3f5c9b",
+      "series_code": "KDA-VOTERS-CON-116-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "03d67e77-d0f8-5b6e-8bd2-79501f8f4bb5",
+      "series_code": "KDA-VOTERS-CON-117-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ca12c979-9366-5fef-823c-66cb95531e11",
+      "series_code": "KDA-VOTERS-CON-118-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "51614c35-9ea2-5a24-8300-2e9573209fcd",
+      "series_code": "KDA-VOTERS-CON-119-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3e565132-134a-5fd8-8560-7abed2fb7d73",
+      "series_code": "KDA-VOTERS-CON-120-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "de9ad4ab-b528-5419-8162-aaa7162c8749",
+      "series_code": "KDA-VOTERS-CON-121-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7d2cf906-cc15-5b23-8afa-24f5e477534d",
+      "series_code": "KDA-VOTERS-CON-122-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0ee1e1d0-5db5-5833-8a2c-1bb26b65b351",
+      "series_code": "KDA-VOTERS-CON-123-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5711ca2f-d1df-59bb-8a0d-2dd980223ac7",
+      "series_code": "KDA-VOTERS-CON-124-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a63827f5-f7ff-5f40-8094-7817f054a1c8",
+      "series_code": "KDA-VOTERS-CON-125-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e1812464-a3f2-5369-83ff-4d6e0b69be03",
+      "series_code": "KDA-VOTERS-CON-126-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3c3ee9b0-c990-549e-8225-1ea81f6ea952",
+      "series_code": "KDA-VOTERS-CON-127-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d946f6ab-1ced-5dda-843e-be1856cdcd84",
+      "series_code": "KDA-VOTERS-CON-128-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8e85764e-ca9e-5b74-85c9-64ec3c734494",
+      "series_code": "KDA-VOTERS-CON-129-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f7636130-9f90-5ae9-880e-04aefae8ae42",
+      "series_code": "KDA-VOTERS-CON-130-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2325d5cb-28a0-5a5d-8da1-bb34b974d6b7",
+      "series_code": "KDA-VOTERS-CON-131-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1f68a5e6-d0f7-5088-8661-ce84b589d36b",
+      "series_code": "KDA-VOTERS-CON-132-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "35878a42-8310-57ec-825f-3903e8089b58",
+      "series_code": "KDA-VOTERS-CON-133-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "39a4ac11-e4b6-5eb2-8a79-3e0ad3585073",
+      "series_code": "KDA-VOTERS-CON-134-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fb0ed9e4-00de-5b31-8eb8-9e99c287f7fb",
+      "series_code": "KDA-VOTERS-CON-135-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6d61d65f-ede7-51f8-81a3-000b89cfe825",
+      "series_code": "KDA-VOTERS-CON-136-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9554de73-2d48-56e6-838f-5acfb44aafa4",
+      "series_code": "KDA-VOTERS-CON-137-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0b709412-f619-5895-8664-959a04484ff5",
+      "series_code": "KDA-VOTERS-CON-138-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2c8c71ae-92f0-58b9-8012-282091b1776d",
+      "series_code": "KDA-VOTERS-CON-139-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1bcc361f-4e8a-5b98-882f-635937f3eea4",
+      "series_code": "KDA-VOTERS-CON-140-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "da10af16-a59e-5d02-851f-68512f94104e",
+      "series_code": "KDA-VOTERS-CON-141-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "52ed656d-e4d4-57e1-806d-576b1756d3d2",
+      "series_code": "KDA-VOTERS-CON-142-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bfb661fe-befb-5719-8424-22d53c747146",
+      "series_code": "KDA-VOTERS-CON-143-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ced5469c-c53c-57a4-89ee-c0b34f868daa",
+      "series_code": "KDA-VOTERS-CON-144-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f0d2a6e9-a372-578f-8acb-bf3e0c69e379",
+      "series_code": "KDA-VOTERS-CON-145-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5c494c53-cc63-54cd-8ec6-f2f2e6783bef",
+      "series_code": "KDA-VOTERS-CON-146-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3b1c1905-c52f-5dfb-884f-902e4ce68d8c",
+      "series_code": "KDA-VOTERS-CON-147-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b8c4f101-326e-502b-8888-c1063353de53",
+      "series_code": "KDA-VOTERS-CON-148-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ac93be79-b001-502c-8243-b3aa4c58500c",
+      "series_code": "KDA-VOTERS-CON-149-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "315d78d4-c1a9-5840-8357-fbb9c8e7e0f0",
+      "series_code": "KDA-VOTERS-CON-150-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0daf408e-8e9e-5dbb-808b-9c9c6c850706",
+      "series_code": "KDA-VOTERS-CON-151-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "833fba59-e120-51a8-8d92-347963b76c74",
+      "series_code": "KDA-VOTERS-CON-152-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "11a2168d-43ce-58c1-8915-a6e21b312e7c",
+      "series_code": "KDA-VOTERS-CON-153-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "91ba187b-f6aa-56db-84dc-fe0051f7ee7d",
+      "series_code": "KDA-VOTERS-CON-154-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1e01f44f-b352-5fd9-813b-c575092794d9",
+      "series_code": "KDA-VOTERS-CON-155-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1ea97a52-e842-518f-8888-481fa0407264",
+      "series_code": "KDA-VOTERS-CON-156-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "968684f7-e455-5037-841a-898de08f17cd",
+      "series_code": "KDA-VOTERS-CON-157-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a2eb86d4-3edb-5dd2-8665-2bfc70c16058",
+      "series_code": "KDA-VOTERS-CON-158-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "15289128-1784-53f5-8271-1b1b104d2277",
+      "series_code": "KDA-VOTERS-CON-159-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "849dc433-c052-51ca-85f0-49718d9f6690",
+      "series_code": "KDA-VOTERS-CON-160-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "532980ed-471f-5ead-8527-f3804e425446",
+      "series_code": "KDA-VOTERS-CON-161-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a7af58f0-f153-5c0f-8ad6-47e1f9c9cc4a",
+      "series_code": "KDA-VOTERS-CON-162-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "43060d10-a982-59bf-8eb1-bfc56f03547a",
+      "series_code": "KDA-VOTERS-CON-163-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "cfbbfc5f-9a9a-5a1a-8309-48e5ebfb1a12",
+      "series_code": "KDA-VOTERS-CON-164-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "226ce883-c989-55c9-84a8-9247d08888df",
+      "series_code": "KDA-VOTERS-CON-165-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fa31b327-3f63-5437-8fa9-2ad69f392e9d",
+      "series_code": "KDA-VOTERS-CON-166-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "49a3b04c-c76a-5e45-814e-670236060579",
+      "series_code": "KDA-VOTERS-CON-167-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e8c37d63-d797-5bb4-8112-7c76bd0f4dba",
+      "series_code": "KDA-VOTERS-CON-168-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "af105f9f-7914-580f-8e49-c32507bec2eb",
+      "series_code": "KDA-VOTERS-CON-169-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6217bf97-b934-513c-8310-723b214f8810",
+      "series_code": "KDA-VOTERS-CON-170-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e8390d73-c65b-5627-8e0a-bf684984abc5",
+      "series_code": "KDA-VOTERS-CON-171-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dd6a2cf7-f0d1-5ba7-8da5-619b5221b9a5",
+      "series_code": "KDA-VOTERS-CON-172-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e234bf69-ad9c-53f3-87d5-67d30171fe33",
+      "series_code": "KDA-VOTERS-CON-173-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1a6a6c81-c858-5f0c-82dc-230ce2c2c353",
+      "series_code": "KDA-VOTERS-CON-174-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "074cfd5a-a5e8-59c7-8aec-d89d70d8e39e",
+      "series_code": "KDA-VOTERS-CON-175-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "946e5be1-619b-5876-8341-22a7450b2bd0",
+      "series_code": "KDA-VOTERS-CON-176-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5bff79c0-3eb3-58a0-88f0-1c599c813556",
+      "series_code": "KDA-VOTERS-CON-177-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8fb4a795-78e9-5efa-898e-6ee556f9008c",
+      "series_code": "KDA-VOTERS-CON-178-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a90d8dab-4b5e-5b6a-84f0-ef3cf4df9291",
+      "series_code": "KDA-VOTERS-CON-179-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "475a455c-b17c-5620-8ad1-128956ba915b",
+      "series_code": "KDA-VOTERS-CON-180-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a21536dd-7383-5d00-8ae7-4b1c854c587a",
+      "series_code": "KDA-VOTERS-CON-181-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c06d0c83-a228-580c-8b4a-0dc1869bb1d5",
+      "series_code": "KDA-VOTERS-CON-182-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f0849cfc-a642-5061-849f-37dd24f088fa",
+      "series_code": "KDA-VOTERS-CON-183-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "93aebf9f-c7fd-5430-83f5-bd49e71e7b54",
+      "series_code": "KDA-VOTERS-CON-184-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "59a671e4-c6d4-5056-8d04-ba16a649650b",
+      "series_code": "KDA-VOTERS-CON-185-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f879e183-5969-5674-8389-186d8f52f814",
+      "series_code": "KDA-VOTERS-CON-186-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "30ec1c4a-f412-5069-813a-9244e4e2dc2a",
+      "series_code": "KDA-VOTERS-CON-187-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d45b6319-792e-5f6c-8857-910ee93a1adb",
+      "series_code": "KDA-VOTERS-CON-188-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dee29d95-c592-51e3-87b1-509a4397ba76",
+      "series_code": "KDA-VOTERS-CON-189-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f9324850-9b79-52af-8811-953b67901c1d",
+      "series_code": "KDA-VOTERS-CON-190-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "88cc2c17-dbf6-5f52-86b5-22a41d0e549d",
+      "series_code": "KDA-VOTERS-CON-191-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "32d374ba-bad7-5eb8-8eaa-fa58013d324a",
+      "series_code": "KDA-VOTERS-CON-192-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "794c788c-f6ed-51f5-8e57-d6533295c020",
+      "series_code": "KDA-VOTERS-CON-193-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2bb7f337-052d-5ac8-8df3-84d19e23dd7b",
+      "series_code": "KDA-VOTERS-CON-194-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c02b671b-a6f3-59ba-8b52-f66132cdb6fa",
+      "series_code": "KDA-VOTERS-CON-195-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f0ef46c0-2619-5a47-887c-3c25ef48e1be",
+      "series_code": "KDA-VOTERS-CON-196-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9cc8052d-eb09-531f-80d7-57bc6102a843",
+      "series_code": "KDA-VOTERS-CON-197-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5149641f-832d-5e87-8e32-b4dee14789fe",
+      "series_code": "KDA-VOTERS-CON-198-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0f4af7a8-d6c6-5e71-8b3d-fac19281c5a8",
+      "series_code": "KDA-VOTERS-CON-199-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "61cceb74-cb7b-5b76-87e2-4cedf2c6722c",
+      "series_code": "KDA-VOTERS-CON-200-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "25f8712a-42d1-5a00-8c13-57c9a17ed291",
+      "series_code": "KDA-VOTERS-CON-201-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "346f75b6-8460-5461-8644-01efc7406fa6",
+      "series_code": "KDA-VOTERS-CON-202-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "668c8a06-1311-5f1b-89d7-a06634aa69ca",
+      "series_code": "KDA-VOTERS-CON-203-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2a467c34-bb46-5af2-887e-b391715eb854",
+      "series_code": "KDA-VOTERS-CON-204-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3d8b8be5-7bce-561c-8754-f52b3553c054",
+      "series_code": "KDA-VOTERS-CON-205-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "61bfd063-f3f5-5b49-8f7e-a7b5f53d66c0",
+      "series_code": "KDA-VOTERS-CON-206-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f27a13ad-894e-5dfd-8ab6-7982ecb9a619",
+      "series_code": "KDA-VOTERS-CON-207-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f07dc298-710f-5e24-81de-58fdf89702df",
+      "series_code": "KDA-VOTERS-CON-208-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "76b2f6be-a4ab-5ef2-89a5-8a30d400d01b",
+      "series_code": "KDA-VOTERS-CON-209-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8ca365db-2662-5c21-8df8-f4a0ff669f1a",
+      "series_code": "KDA-VOTERS-CON-210-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "201737cb-2302-5242-8f76-86f1be12a861",
+      "series_code": "KDA-VOTERS-CON-211-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9ce5f4aa-fe74-50ee-80ab-6a5a662700cb",
+      "series_code": "KDA-VOTERS-CON-212-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dee09f73-516a-54c2-8429-05e79d580882",
+      "series_code": "KDA-VOTERS-CON-213-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a5a37ca7-4e7d-5c62-8611-288b73bab545",
+      "series_code": "KDA-VOTERS-CON-214-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "31b4dbd1-c6be-5bc6-8aee-44191d982cec",
+      "series_code": "KDA-VOTERS-CON-215-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "78509e39-6440-5add-8716-7c1968105e10",
+      "series_code": "KDA-VOTERS-CON-216-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e9dc95c9-62bb-556a-831f-2ed09a78c639",
+      "series_code": "KDA-VOTERS-CON-217-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "17dfe7c0-05ad-5118-8c28-2ed23b1d5e78",
+      "series_code": "KDA-VOTERS-CON-218-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e943ce11-be83-5199-8cbe-0e91eff41b60",
+      "series_code": "KDA-VOTERS-CON-219-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4aa5f180-0672-51dc-8d18-4949d09c9898",
+      "series_code": "KDA-VOTERS-CON-220-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0e493b18-bf6e-5762-8f80-266f0007c717",
+      "series_code": "KDA-VOTERS-CON-221-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4533a110-212e-5b69-8eac-fa2d3e483b62",
+      "series_code": "KDA-VOTERS-CON-222-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "aecb5080-476d-5eae-846e-a910189e2c6a",
+      "series_code": "KDA-VOTERS-CON-223-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "137238a1-6bde-5bc7-8387-c54a2bd5aae5",
+      "series_code": "KDA-VOTERS-CON-224-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f04edc88-a096-5c2a-80e1-997876322d7c",
+      "series_code": "KDA-VOTERS-CON-225-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d3df3e73-5eeb-56bd-874d-e18319a9231e",
+      "series_code": "KDA-VOTERS-CON-226-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2abeca07-c94f-5c69-869d-ff83f2c0a11d",
+      "series_code": "KDA-VOTERS-CON-227-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1fb78b16-4da7-50df-8685-f478bbd93823",
+      "series_code": "KDA-VOTERS-CON-228-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "64ec494f-c324-57cc-87e2-448bbc7bf0ca",
+      "series_code": "KDA-VOTERS-CON-229-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2cd9ce4c-2681-52d9-83dd-475e8c3e48dd",
+      "series_code": "KDA-VOTERS-CON-230-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0515a640-4863-5fb8-8bb5-573ac5a38f54",
+      "series_code": "KDA-VOTERS-CON-231-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "21d8ccbd-a22d-5d92-8e3f-c2862fd5a014",
+      "series_code": "KDA-VOTERS-CON-232-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "646edad4-e967-5865-8714-164c70d89990",
+      "series_code": "KDA-VOTERS-CON-233-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7a0ce499-779a-537a-8c5a-21a846143e02",
+      "series_code": "KDA-VOTERS-CON-234-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a9294ab1-5165-52ae-8d4d-71f1808844ff",
+      "series_code": "KDA-VOTERS-CON-235-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e9b9f228-0cf8-589e-8872-4b698cb92b51",
+      "series_code": "KDA-VOTERS-CON-236-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4b88d181-cbf9-5b09-8509-3f1289d70baf",
+      "series_code": "KDA-VOTERS-CON-237-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7b7df5e0-be69-52a8-85e3-7088ccebed91",
+      "series_code": "KDA-VOTERS-CON-238-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "14dcb83c-145b-5dd2-827d-e05d6b38a072",
+      "series_code": "KDA-VOTERS-CON-239-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ce4dcf89-3d14-53e9-848f-8b6e3b6b88c3",
+      "series_code": "KDA-VOTERS-CON-240-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fb0e84fa-6ab1-51ca-8754-dcf2a341b2fe",
+      "series_code": "KDA-VOTERS-CON-241-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5fe32ab7-7ab7-577e-82ac-18d6764cdee8",
+      "series_code": "KDA-VOTERS-CON-242-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7f4bf7c9-dc73-5ca7-8ee5-ad73cd2c3959",
+      "series_code": "KDA-VOTERS-CON-243-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b9c00d9b-e65f-5c33-8452-60d8eaf67df3",
+      "series_code": "KDA-VOTERS-CON-244-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "45249dec-f09f-51da-8ddb-9d137fba4192",
+      "series_code": "KDA-VOTERS-CON-245-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "aa2bffea-9f31-5c0a-8cbe-e2e30ab59630",
+      "series_code": "KDA-VOTERS-CON-246-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6eb55420-e909-5193-858d-9cdc34d1cc83",
+      "series_code": "KDA-VOTERS-CON-247-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4a6655cf-5382-5feb-8819-ff656bc2ad89",
+      "series_code": "KDA-VOTERS-CON-248-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "979d3566-4856-589f-8035-4cc3093cd3e7",
+      "series_code": "KDA-VOTERS-CON-249-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "61971cc4-d5c4-5361-8e42-90e9268fae07",
+      "series_code": "KDA-VOTERS-CON-250-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ed9d2f8b-a233-55b5-8553-99c92d526404",
+      "series_code": "KDA-VOTERS-CON-251-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2f6fac04-8d12-58d6-8096-d2a613e19678",
+      "series_code": "KDA-VOTERS-CON-252-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "27fbf8af-fe40-5913-8284-ed3758455364",
+      "series_code": "KDA-VOTERS-CON-253-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "60282d7e-1f7e-5039-8165-83cdbcab7d5b",
+      "series_code": "KDA-VOTERS-CON-254-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ab03d816-c374-575f-8799-6708b02b7774",
+      "series_code": "KDA-VOTERS-CON-255-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ed883e16-a52e-597f-8dc4-1f4ecd20bae0",
+      "series_code": "KDA-VOTERS-CON-256-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0351185e-aefc-55be-8c73-cef8c4318748",
+      "series_code": "KDA-VOTERS-CON-257-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "63708bf1-33d7-5cc5-8b1f-4e3b5afd0d68",
+      "series_code": "KDA-VOTERS-CON-258-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3f1be4f1-f978-5c7e-87a3-1b1e45b6dfef",
+      "series_code": "KDA-VOTERS-CON-259-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "55cddb93-4966-5f9b-864e-4c548ea7be9b",
+      "series_code": "KDA-VOTERS-CON-260-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8b224b70-d23a-53d6-8f7d-0c1cf40240b1",
+      "series_code": "KDA-VOTERS-CON-261-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "abd3f959-3ba7-5fc7-8025-95b5bd5c745b",
+      "series_code": "KDA-VOTERS-CON-262-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5e5d88b1-5307-5089-84ae-e487c45b3c0e",
+      "series_code": "KDA-VOTERS-CON-263-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "303f251c-70d0-533c-8e24-81fd37124f69",
+      "series_code": "KDA-VOTERS-CON-264-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3bb7d23c-5d29-5c2d-84fb-4fe4f5539743",
+      "series_code": "KDA-VOTERS-CON-265-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a52beb66-0a10-5fef-8646-2e57419bbace",
+      "series_code": "KDA-VOTERS-CON-266-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7a36a5b1-6dd6-51b7-8235-d4e422da5c22",
+      "series_code": "KDA-VOTERS-CON-267-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dc8c51f0-75da-5763-850a-946369b70aa0",
+      "series_code": "KDA-VOTERS-CON-268-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "938f55ac-436c-5157-8528-671f2ce642fb",
+      "series_code": "KDA-VOTERS-CON-269-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0395f6c1-c724-5f7e-88ea-8c30464f61cf",
+      "series_code": "KDA-VOTERS-CON-270-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f844c257-9c32-5f50-897b-4c4c1df72338",
+      "series_code": "KDA-VOTERS-CON-271-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "785fcd6f-0380-5974-86b7-194b21aae363",
+      "series_code": "KDA-VOTERS-CON-272-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e83a853a-438c-5dac-82a9-84e31c842c0f",
+      "series_code": "KDA-VOTERS-CON-273-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "27285d66-08b0-5282-8137-671be0a8b16f",
+      "series_code": "KDA-VOTERS-CON-274-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ddba037d-ac32-5560-8a5b-a4880eb75e5d",
+      "series_code": "KDA-VOTERS-CON-275-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3947bf1a-12d0-54bd-8adf-01c826bfb66f",
+      "series_code": "KDA-VOTERS-CON-276-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6351eeda-73f4-56bb-833c-ee28615898f8",
+      "series_code": "KDA-VOTERS-CON-277-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ba1eaa84-ff78-5e39-8d9f-bc1ae55492f0",
+      "series_code": "KDA-VOTERS-CON-278-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3f2d4669-7098-52de-8d5f-7d4146e13b2d",
+      "series_code": "KDA-VOTERS-CON-279-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d6022b25-dd0a-529c-843b-298ef6db4844",
+      "series_code": "KDA-VOTERS-CON-280-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "96ed3dc6-97a6-5fc1-84ec-bf9c3f6bd4b3",
+      "series_code": "KDA-VOTERS-CON-281-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7eeba62d-c655-5043-876d-bbc0385a90ce",
+      "series_code": "KDA-VOTERS-CON-282-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "928f36f8-4398-543e-8ffb-c04204df3c1b",
+      "series_code": "KDA-VOTERS-CON-283-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "69f01e4e-d562-51bf-8dd3-81dac938c695",
+      "series_code": "KDA-VOTERS-CON-284-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9a6b8f26-5141-51f8-80f9-4efe60ac0d9c",
+      "series_code": "KDA-VOTERS-CON-285-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "36f23714-cc51-5689-8e7d-d8aa6fea738f",
+      "series_code": "KDA-VOTERS-CON-286-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4f1f3f11-9a67-5cc8-814a-1cb0f140ad80",
+      "series_code": "KDA-VOTERS-CON-287-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "20b6a3f1-5d94-5cca-85af-faaa2bf8394d",
+      "series_code": "KDA-VOTERS-CON-288-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3d70cab7-e7de-590d-8142-a11ee549ab15",
+      "series_code": "KDA-VOTERS-CON-289-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5e6c16a6-a924-534c-888b-d5ede8ee0d39",
+      "series_code": "KDA-VOTERS-CON-290-2022",
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "unit_code": "persons",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
       "series_id": "de1ff275-053c-5aac-afb8-5f23c4059a29",
       "series_code": "KDA-VOTERS-KEN",
       "indicator_code": "IND-REGISTERED-VOTERS",
