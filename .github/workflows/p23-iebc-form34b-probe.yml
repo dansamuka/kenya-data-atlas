@@ -2,8 +2,11 @@ name: P23 IEBC Form 34B probe
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - p23/constituency-turnout-probe
     paths:
+      - scripts/p23/probe-iebc-form34b.sh
       - .github/workflows/p23-iebc-form34b-probe.yml
   workflow_dispatch:
 
@@ -19,4 +22,4 @@ jobs:
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
 
-# Trigger marker: test one presidential Form 34B constituency drilldown.
+# Feature-branch trigger is intentionally scoped to the P23 turnout probe.
