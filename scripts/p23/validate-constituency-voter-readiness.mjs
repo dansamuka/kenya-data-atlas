@@ -42,10 +42,11 @@ for(let code=1;code<=290;code++)assert(byCode.has(code),`canonical constituency 
 
 const targetSlots=ledger.rows.filter(r=>r.level==='constituency'&&r.indicator_code==='IND-REGISTERED-VOTERS');
 assert(targetSlots.length===870,`expected 870 constituency voter slot instances, found ${targetSlots.length}`);
-assert(targetSlots.every(r=>r.completion_phase==='P23'),'a constituency voter slot instance is not assigned to P23');
 if(promoted){
+  assert(targetSlots.every(r=>r.completion_phase==='complete'),'promoted voter slot instances must be reclassified to complete');
   assert(targetSlots.every(r=>r.resolved===true),'promoted contract requires every target slot instance to be resolved');
 }else{
+  assert(targetSlots.every(r=>r.completion_phase==='P23'),'pre-promotion voter slot instances must remain assigned to P23');
   assert(targetSlots.every(r=>r.resolved===false),'readiness contract must precede native promotion; a target slot instance is already resolved');
 }
 const expectedTabs=['overview','people','representation'];
