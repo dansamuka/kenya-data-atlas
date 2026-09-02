@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const ARC_ITEM = '9c12cc5d3d244a8bad34bce09a28540b';
 const ARC_LAYER = 'https://services8.arcgis.com/oTalEaSXAuyNT7xf/arcgis/rest/services/Constituency_Results_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=2000&f=json';
@@ -12,6 +12,20 @@ const get = async url => {
 const toInt = (v,label) => {
   const n=Number(v); assert(Number.isInteger(n) && n>=0,`${label} invalid (${v})`); return n;
 };
+const norm = v => String(v||'')
+  .toUpperCase().replace(/&/g,' AND ')
+  .replace(/[’'`./,_()\-]+/g,' ')
+  .replace(/\s+/g,' ').trim();
+
+const geographies=JSON.parse(await readFile('data/geography/registry/geographies.json','utf8'));
+const constituencies=geographies.filter(g=>g.level==='constituency');
+assert(constituencies.length===290,`canonical constituency registry != 290 (${constituencies.length})`);
+const canonicalByName=new Map(constituencies.map(g=>[norm(g.name),g]));
+const aliases=new Map([
+  [norm("Chuka/Igambang'ombe"), norm("Chuka/Igambang'om")],
+  [norm('Suba North'), norm('Mbita')],
+  [norm('Suba South'), norm('Suba')],
+]);
 
 const arc = await (await get(ARC_LAYER)).json();
 assert(!arc.error,`ArcGIS error ${JSON.stringify(arc.error)}`);
@@ -35,12 +49,18 @@ assert(regByCode.size===290,'official voter aggregate does not cover 290 constit
 assert([...regByCode.values()].reduce((a,b)=>a+b,0)===22102532,'official domestic registered-voter total changed');
 
 const rows=[];
+const unmatched=[];
 for(const f of features) {
   const a=f.attributes||{};
-  const pcode=String(a.ADM2_PCODE||'');
-  const m=pcode.match(/(\d{3})$/);
-  assert(m,`missing constituency code in ${pcode}`);
-  const code=Number(m[1]);
+  const sourceName=String(a.Constituency||'').trim();
+  const sourcePcode=String(a.ADM2_PCODE||'');
+  const pm=sourcePcode.match(/(\d{3})$/);
+  const sourceBoundaryCode=pm?Number(pm[1]):null;
+  const sourceKey=norm(sourceName);
+  const canonicalKey=aliases.get(sourceKey)||sourceKey;
+  const geo=canonicalByName.get(canonicalKey);
+  if(!geo){ unmatched.push(sourceName); continue; }
+  const code=Number(geo.constituency_code);
   const sourceRegistered=toInt(a.Registered__Voters,`${code} registered`);
   const officialRegistered=regByCode.get(code);
   const raila=toInt(a.Raila,`${code} Raila`);
@@ -61,9 +81,15 @@ for(const f of features) {
   if(!votesFitOfficial) holdReasons.push('votes_cast_exceeds_official_registered_voters');
   rows.push({
     constituency_code:code,
-    source_name:String(a.Constituency||'').trim(),
+    geography_id:geo.geography_id,
+    geo_code:geo.geo_code,
+    canonical_name:geo.name,
+    source_name:sourceName,
     source_boundary_name:String(a.ADM2_EN||'').trim(),
-    source_pcode:pcode,
+    source_pcode:sourcePcode,
+    source_boundary_code:sourceBoundaryCode,
+    source_boundary_code_matches_canonical:sourceBoundaryCode===code,
+    attachment_method:sourceKey===canonicalKey?'exact_name':'explicit_alias',
     county_name:String(a.County_Name||a.County_Nam||a.ADM1_EN||'').trim(),
     source_registered_voters:sourceRegistered,
     official_registered_voters:officialRegistered,
@@ -85,13 +111,16 @@ for(const f of features) {
     hold_reasons:holdReasons,
   });
 }
+assert(unmatched.length===0,`unmatched constituency names: ${unmatched.join(' | ')}`);
 rows.sort((a,b)=>a.constituency_code-b.constituency_code);
-assert(new Set(rows.map(r=>r.constituency_code)).size===290,'duplicate constituency code');
-assert(rows.every((r,i)=>r.constituency_code===i+1),'constituency code sequence is not 1..290');
+assert(rows.length===290,'canonical attachment did not yield 290 rows');
+assert(new Set(rows.map(r=>r.constituency_code)).size===290,'duplicate canonical constituency attachment');
+assert(rows.every((r,i)=>r.constituency_code===i+1),'canonical constituency sequence is not 1..290');
 
 const voterMismatches=rows.filter(r=>!r.registered_voter_match);
 const validVoteMismatches=rows.filter(r=>r.valid_vote_discrepancy!==0);
 const impossibleAgainstOfficial=rows.filter(r=>r.candidate_sum_valid_votes+r.rejected_ballots>r.official_registered_voters);
+const boundaryCodeMismatches=rows.filter(r=>!r.source_boundary_code_matches_canonical);
 const holds=rows.filter(r=>r.verification_status==='requires_direct_form34b');
 const publishable=rows.filter(r=>r.verification_status==='arithmetic_reconciled');
 
@@ -107,15 +136,21 @@ const totals={
   rejected_ballots:rows.reduce((s,r)=>s+r.rejected_ballots,0),
 };
 assert(totals.official_registered_voters===22102532,'official registered-voter national total changed');
+assert(totals.source_registered_voters===22102532,'source registered-voter national total changed');
 
 const payload={
-  schema_version:'1.1.0',
+  schema_version:'1.2.0',
   status:'candidate_extraction_reconciled_not_yet_published',
   arcgis_item_id:ARC_ITEM,
   arcgis_layer_url:ARC_LAYER,
   official_registered_voter_extraction:VOTER_SOURCE,
   official_form_portal:'https://forms.iebc.or.ke/',
   formula:'turnout_pct = 100 * (verified_valid_votes + rejected_ballots) / official_registered_voters',
+  geography_attachment:{
+    method:'exact normalized canonical constituency name, with only enumerated aliases',
+    explicit_aliases:Object.fromEntries(aliases),
+    source_boundary_pcode_is_not_authoritative:true,
+  },
   policy:{
     publish_arithmetic_reconciled_rows:false,
     reason:'Only rows matching the official registered-voter schedule and internally reconciling valid votes can be promoted; all others require direct Form 34B verification.',
@@ -129,6 +164,7 @@ const payload={
     registered_voter_mismatches:voterMismatches.length,
     valid_vote_mismatches:validVoteMismatches.length,
     votes_exceed_official_registered:impossibleAgainstOfficial.length,
+    source_boundary_code_mismatches:boundaryCodeMismatches.length,
     arithmetic_reconciled:publishable.length,
     requires_direct_form34b:holds.length,
   },
@@ -136,11 +172,13 @@ const payload={
   direct_form34b_constituency_codes:holds.map(r=>r.constituency_code),
   registered_voter_mismatch_codes:voterMismatches.map(r=>r.constituency_code),
   valid_vote_mismatch_codes:validVoteMismatches.map(r=>r.constituency_code),
+  source_boundary_code_mismatch_codes:boundaryCodeMismatches.map(r=>r.constituency_code),
   rows,
 };
 await writeFile('/tmp/p23-turnout-reconciliation.json',JSON.stringify(payload,null,2)+'\n');
-console.log(`P23_TURNOUT_RECONCILIATION_OK rows=290 voter_matches=${290-voterMismatches.length} voter_mismatches=${voterMismatches.length} valid_vote_mismatches=${validVoteMismatches.length} publishable=${publishable.length} direct_form34b=${holds.length}`);
+console.log(`P23_TURNOUT_RECONCILIATION_OK rows=290 voter_matches=${290-voterMismatches.length} voter_mismatches=${voterMismatches.length} valid_vote_mismatches=${validVoteMismatches.length} boundary_code_mismatches=${boundaryCodeMismatches.length} publishable=${publishable.length} direct_form34b=${holds.length}`);
 console.log(`P23_TURNOUT_VOTER_MISMATCH_CODES ${voterMismatches.map(r=>r.constituency_code).join(',')||'none'}`);
+console.log(`P23_TURNOUT_BOUNDARY_CODE_MISMATCH_CODES ${boundaryCodeMismatches.map(r=>r.constituency_code).join(',')||'none'}`);
 console.log(`P23_TURNOUT_VALID_VOTE_MISMATCH_CODES ${validVoteMismatches.map(r=>r.constituency_code).join(',')||'none'}`);
 console.log(`P23_TURNOUT_DIRECT_FORM_CODES ${holds.map(r=>r.constituency_code).join(',')||'none'}`);
 console.log(`P23_TURNOUT_TRANSCRIPTION_TOTALS official_registered=${totals.official_registered_voters} source_registered=${totals.source_registered_voters} candidate_valid=${totals.candidate_sum_valid_votes} transcribed_iebc_valid=${totals.transcribed_iebc_total_valid_votes} rejected=${totals.rejected_ballots}`);
