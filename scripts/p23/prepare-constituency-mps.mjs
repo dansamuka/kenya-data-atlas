@@ -39,12 +39,11 @@ function tableHeaders(html){
 function rowFields(row,headers){
   const raw=[...row.matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/gi)].map(m=>({attrs:m[1],value:text(m[2])}));
   if(raw.length<4)return null;
-  let constituencyIndex=-1;
   const labels=raw.map(cell=>{
     const m=cell.attrs.match(/(?:data-label|headers|aria-label)\s*=\s*["']([^"']+)["']/i);
     return m?labelNorm(m[1]):'';
   });
-  constituencyIndex=labels.findIndex(label=>label.includes('constituency'));
+  let constituencyIndex=labels.findIndex(label=>label.includes('constituency'));
   if(constituencyIndex<0&&headers?.constituency>=0)constituencyIndex=headers.constituency;
   if(constituencyIndex<0||constituencyIndex>=raw.length)return null;
   const cells=raw.map(x=>x.value);
@@ -81,7 +80,7 @@ for(let page=0;page<60;page++){
     const key=matchKey(f.constituency),geo=canonical.get(key);
     if(!geo)continue;
     if(f.status&&f.status.toUpperCase()!=='ELECTED')continue;
-    assert(f.member&&f.party,`matched ${f.constituency} but member/party missing on page ${page}; cells=${f.raw.join(' | ')}`);
+    assert(f.member,`matched ${f.constituency} but member name missing on page ${page}; cells=${f.raw.join(' | ')}`);
     found.push({
       geo_code:geo.geo_code,
       constituency_code:Number(geo.constituency_code),
@@ -90,6 +89,7 @@ for(let page=0;page<60;page++){
       published_constituency:f.constituency,
       member_name:f.member,
       party:f.party,
+      party_source_status:f.party?'published':'source_blank',
       status:f.status||'Elected',
       source_page:url
     });
@@ -111,7 +111,7 @@ const rows=[...byGeo.values()].sort((a,b)=>a.constituency_code-b.constituency_co
 const missing=geos.filter(g=>!byGeo.has(g.geo_code)).map(g=>`${g.constituency_code}:${g.name}`);
 assert(rows.length===290,`expected 290 matched constituency MPs; got ${rows.length}; missing=${missing.slice(0,30).join('|')}`);
 assert(new Set(rows.map(r=>r.constituency_code)).size===290,'duplicate constituency codes after reconciliation');
-assert(rows.every(r=>r.member_name&&r.party&&r.source_page),'incomplete roster row');
+assert(rows.every(r=>r.member_name&&r.source_page),'incomplete MP identity row');
 
 const snapshot={
   schema_version:'kda.p23.constituency-mp-source.v1',
@@ -119,10 +119,10 @@ const snapshot={
   source_url:SOURCE,
   parliamentary_session:'13th Parliament',
   source_as_of_label:'12 Aug 2026',
-  retrieval_note:'Prepared from the official server-rendered National Assembly member roster using the explicit constituency column (never the county column). Member/party extraction tolerates inconsistent HTML cell labels but never relaxes the exact 290-constituency reconciliation. Nominated members and county women representatives are not constituency observations.',
-  coverage:{constituencies:rows.length},
+  retrieval_note:'Prepared from the official server-rendered National Assembly member roster using the explicit constituency column (never the county column). Published blank party fields are retained as source_blank and never inferred. The exact 290-constituency reconciliation is mandatory. Nominated members and county women representatives are not constituency observations.',
+  coverage:{constituencies:rows.length,party_published:rows.filter(r=>r.party).length,party_source_blank:rows.filter(r=>!r.party).length},
   rows
 };
 await mkdir(path.join(root,path.dirname(OUT)),{recursive:true});
 await writeFile(path.join(root,OUT),JSON.stringify(snapshot,null,2)+'\n');
-console.log(`P23_MP_SOURCE_OK constituencies=${rows.length} first=${rows[0].constituency} last=${rows.at(-1).constituency}`);
+console.log(`P23_MP_SOURCE_OK constituencies=${rows.length} party_published=${snapshot.coverage.party_published} party_source_blank=${snapshot.coverage.party_source_blank} first=${rows[0].constituency} last=${rows.at(-1).constituency}`);
