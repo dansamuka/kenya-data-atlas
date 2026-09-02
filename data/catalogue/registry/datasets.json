@@ -992,5 +992,20 @@
     "publication_status": "published",
     "methodology_url": "data/p23/ngcdf-allocation-contract.json",
     "known_limitations": "The report publishes exact budget ceilings by ward-count class rather than 290 repeated constituency rows. Atlas observations are therefore classified Official derived (B), using only each constituency’s canonical child-ward count."
+  },
+  {
+    "dataset_id": "27e848fb-6fa3-546a-8cbd-ec43235f9c1e",
+    "dataset_code": "DS-IEBC-VOTERS-WARD-2022-P23X",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "Registered Voters — 2022 County Assembly Ward Gazette Schedule",
+    "description": "IEBC 2022 registered voters for 1,450 domestic County Assembly Ward source rows. 1,440 are attached to canonical Atlas ward geometry through the audited Sprint 2 mapping; ten Mandera East/Lafey rows remain held from spatial attribution.",
+    "topic": "Elections",
+    "geographic_coverage": [
+      "ward"
+    ],
+    "frequency": "electoral_cycle",
+    "publication_status": "published",
+    "methodology_url": "data/sprint2/README.md",
+    "known_limitations": "Ten official Mandera East/Lafey CAW rows remain in higher-level statistical totals but are withheld from canonical ward geometry because the current external boundary layer conflicts with the operative IEBC configuration. 54 published rows require an explicit source-to-canonical ward crosswalk and are badged B."
   }
 ]
