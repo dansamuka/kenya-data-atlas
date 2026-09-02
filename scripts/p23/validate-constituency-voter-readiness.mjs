@@ -16,7 +16,18 @@ assert(contract.indicator_code==='IND-REGISTERED-VOTERS','wrong first-tranche in
 assert(contract.target_geography_count===290&&contract.target_observation_count===290,'target must remain 290 canonical observations');
 assert(contract.expected_existing_p23_slot_instances===870,'target must remain 870 existing P23 slot instances');
 assert(summary.total_slots===20115,'governed denominator changed');
-assert((summary.by_completion_phase?.P23||0)===3190,'P23 queue changed before first P23 promotion');
+
+const promoted=contract.status==='promoted_complete';
+if(promoted){
+  assert(contract.completion?.p23_slot_instances_resolved===870,'promoted completion must record 870 resolved slot instances');
+  assert(contract.completion?.post_promotion_p23_remaining===2320,'promoted completion must record 2,320 remaining P23 slots');
+  assert((summary.by_completion_phase?.P23||0)===contract.completion.post_promotion_p23_remaining,'live P23 queue does not match promoted completion contract');
+  assert(summary.resolved_slots===contract.completion.post_promotion_resolved_slots,'live resolved-slot total does not match promoted completion contract');
+  assert(summary.unresolved_slots===contract.completion.post_promotion_unresolved_slots,'live unresolved-slot total does not match promoted completion contract');
+  assert(summary.unknown_missing===contract.completion.post_promotion_unknown_missing,'live unknown-missing total does not match promoted completion contract');
+}else{
+  assert((summary.by_completion_phase?.P23||0)===3190,'P23 queue changed before first P23 promotion');
+}
 
 const constituencies=geographies.filter(g=>g.level==='constituency');
 assert(constituencies.length===290,`canonical constituency count ${constituencies.length} != 290`);
@@ -32,7 +43,11 @@ for(let code=1;code<=290;code++)assert(byCode.has(code),`canonical constituency 
 const targetSlots=ledger.rows.filter(r=>r.level==='constituency'&&r.indicator_code==='IND-REGISTERED-VOTERS');
 assert(targetSlots.length===870,`expected 870 constituency voter slot instances, found ${targetSlots.length}`);
 assert(targetSlots.every(r=>r.completion_phase==='P23'),'a constituency voter slot instance is not assigned to P23');
-assert(targetSlots.every(r=>r.resolved===false),'readiness contract must precede native promotion; a target slot instance is already resolved');
+if(promoted){
+  assert(targetSlots.every(r=>r.resolved===true),'promoted contract requires every target slot instance to be resolved');
+}else{
+  assert(targetSlots.every(r=>r.resolved===false),'readiness contract must precede native promotion; a target slot instance is already resolved');
+}
 const expectedTabs=['overview','people','representation'];
 assert(JSON.stringify([...new Set(targetSlots.map(r=>r.tab))].sort())===JSON.stringify(expectedTabs),'constituency voter slot surfaces changed');
 for(const geo of constituencies){
@@ -75,8 +90,13 @@ for(const anchor of contract.locked_anchors||[])assert(totals.get(anchor.constit
 
 assert(contract.canonicalisation_rules.some(x=>x.includes('Do not inherit county')),'anti-inheritance rule missing');
 assert(contract.canonicalisation_rules.some(x=>x.includes('Mandera East/Lafey')),'Mandera/Lafey statistical-versus-spatial rule missing');
-assert(contract.scope_note.includes('does not itself resolve a slot instance'),'readiness tranche must not claim completion');
+if(promoted){
+  assert(contract.scope_note.includes('registered-voter tranche is closed'),'promoted contract must close the registered-voter tranche');
+  assert(contract.next_tranche?.status==='in_progress','promoted contract must identify the next active P23 tranche');
+}else{
+  assert(contract.scope_note.includes('does not itself resolve a slot instance'),'readiness tranche must not claim completion');
+}
 
-console.log(`P23_VOTER_READINESS_OK source_wards=${rows.length} constituencies=${totals.size} target_observations=${contract.target_observation_count} target_slot_instances=${targetSlots.length}`);
+console.log(`P23_VOTER_READINESS_OK state=${promoted?'promoted_complete':'pre_promotion'} source_wards=${rows.length} constituencies=${totals.size} target_observations=${contract.target_observation_count} target_slot_instances=${targetSlots.length}`);
 console.log(`P23_VOTER_SOURCE_TOTAL_OK total=${contract.deterministic_extraction.national_domestic_total}`);
 console.log('P23_VOTER_ANTI_INHERITANCE_OK');
