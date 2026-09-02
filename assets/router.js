@@ -141,7 +141,7 @@
     document.head.appendChild(style);
   }
   let siteV2ScriptsLoaded=false;
-  function loadSiteV2Scripts(){
+  function appendV2Scripts(){
     if(siteV2ScriptsLoaded)return;
     siteV2ScriptsLoaded=true;
     const script=document.createElement('script');script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);
@@ -153,15 +153,27 @@
     installV2CriticalCompatibility();
     const css=document.createElement('link');css.rel='stylesheet';css.href='assets/site-v2.css';css.dataset.kdaSiteV2='true';document.head.appendChild(css);
     const compatCss=document.createElement('link');compatCss.rel='stylesheet';compatCss.href='assets/v2-p16-compat.css';compatCss.dataset.kdaV2P16Compat='true';document.head.appendChild(compatCss);
-    const routeCss=document.createElement('link');routeCss.rel='stylesheet';routeCss.href='assets/site-v2-route.css';routeCss.dataset.kdaSiteV2Route='true';document.head.appendChild(routeCss);
 
+    /* Preserve the original direct-route asset ordering. Compare's cold-load
+     * paint guard was tuned with site-v2.js requested before the route CSS and
+     * route interaction layer. The Home optimization below changes only when
+     * progressive-enhancement scripts start on an untouched Home load. */
+    if((current?.view||parse().view)!=='home'){
+      siteV2ScriptsLoaded=true;
+      const script=document.createElement('script');script.src='assets/site-v2.js';script.defer=true;script.dataset.kdaSiteV2='true';document.head.appendChild(script);
+      const routeCss=document.createElement('link');routeCss.rel='stylesheet';routeCss.href='assets/site-v2-route.css';routeCss.dataset.kdaSiteV2Route='true';document.head.appendChild(routeCss);
+      const routeScript=document.createElement('script');routeScript.src='assets/site-v2-route.js';routeScript.defer=true;routeScript.dataset.kdaSiteV2Route='true';document.head.appendChild(routeScript);
+      const pwa=document.createElement('script');pwa.src='assets/pwa-v2.js';pwa.defer=true;pwa.dataset.kdaPwaV2='true';document.head.appendChild(pwa);
+      return;
+    }
+
+    const routeCss=document.createElement('link');routeCss.rel='stylesheet';routeCss.href='assets/site-v2-route.css';routeCss.dataset.kdaSiteV2Route='true';document.head.appendChild(routeCss);
     /* P16 Home performance contract: the v2 layers are progressive enhancement,
      * not first-paint dependencies. Loading them on an untouched Home page made
      * their document-wide observers compete with app.js/pulse first-paint work,
-     * pushing Lighthouse TBT over budget. Direct non-Home loads still get the
-     * v2 layers immediately; Home loads them on the first user intent or when a
-     * real route transition needs them. No data/provenance contract is changed. */
-    if((current?.view||parse().view)!=='home'){loadSiteV2Scripts();return;}
+     * pushing Lighthouse TBT over budget. Home loads them on the first user
+     * intent or when a real route transition needs them. No data/provenance
+     * contract or Lighthouse threshold is changed. */
     let armed=true;
     const cleanup=()=>{
       if(!armed)return;armed=false;
@@ -170,13 +182,13 @@
       document.removeEventListener('keydown',onIntent,true);
       document.removeEventListener('touchstart',onIntent,true);
     };
-    const activate=()=>{cleanup();loadSiteV2Scripts();};
+    const activate=()=>{cleanup();appendV2Scripts();};
     const onRoute=event=>{if(event.detail?.view&&event.detail.view!=='home')activate();};
     const onIntent=()=>activate();
     window.addEventListener('kda:route',onRoute);
-    document.addEventListener('pointerdown',onIntent,true,{passive:true});
+    document.addEventListener('pointerdown',onIntent,{capture:true,passive:true});
     document.addEventListener('keydown',onIntent,true);
-    document.addEventListener('touchstart',onIntent,true,{passive:true});
+    document.addEventListener('touchstart',onIntent,{capture:true,passive:true});
   }
   function loadRankingsVisualV2(){
     if((current?.view||parse().view)!=='rankings'||document.querySelector('script[data-kda-rankings-visual-v2]'))return;
