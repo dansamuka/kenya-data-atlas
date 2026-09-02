@@ -121,7 +121,7 @@
     const unitChip=unitLabel(unit)?`<span class="unit-chip" title="Unit of measurement: ${esc(unit?.name||unitLabel(unit))}">${esc(unitLabel(unit))}</span>`:'';
     if(life==='active'&&pair){
       const source=agencyFor(pair.series);
-      return `<article class="place-profile-card lifecycle-active" data-indicator-code="${esc(code)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-card-value-row"><div class="place-card-value">${esc(formatValue(pair.obs.text_value??pair.obs.value,unit))}</div>${unitChip}</div><div class="place-card-meta place-card-source"><strong>${esc(pair.obs.period_label)}</strong><span>${esc(source)}</span></div>${uncertaintyHtml(ind,pair,unit)}</article>`;
+      return `<article class="place-profile-card lifecycle-active" data-indicator-code="${esc(code)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span>${qualityBadge(pair.obs.badge)}</div><div class="place-card-value-row"><div class="place-card-value">${esc(formatValue((String(pair.obs.text_value??'').trim()!==''?pair.obs.text_value:pair.obs.value),unit))}</div>${unitChip}</div><div class="place-card-meta place-card-source"><strong>${esc(pair.obs.period_label)}</strong><span>${esc(source)}</span></div>${uncertaintyHtml(ind,pair,unit)}</article>`;
     }
     if(life==='active'){
       const note=ind.expected_availability_note||`No observation is currently available for ${geo.name} at ${geo.level} level.`;
@@ -157,7 +157,7 @@
   function downloadCurrent(){
     if(!currentGeo)return;const codes=slotCodes(currentGeo,currentTab),rows=[['indicator_code','indicator','lifecycle','value','unit','period','source'].join(',')];
     const q=v=>`"${String(v??'').replaceAll('"','""')}"`;
-    for(const code of codes){const i=state.indicatorByCode.get(code);if(!i)continue;const p=latestPair(currentGeo.geography_id,i),u=unitFor(i);rows.push([q(code),q(i.name),q(i.lifecycle_status),q(p?.obs?.text_value??p?.obs?.value??''),q(unitLabel(u)),q(p?.obs?.period_label??''),q(p?agencyFor(p.series):(i.expected_source||''))].join(','));}
+    for(const code of codes){const i=state.indicatorByCode.get(code);if(!i)continue;const p=latestPair(currentGeo.geography_id,i),u=unitFor(i);rows.push([q(code),q(i.name),q(i.lifecycle_status),q((String(p?.obs?.text_value??'').trim()!==''?p.obs.text_value:(p?.obs?.value??''))),q(unitLabel(u)),q(p?.obs?.period_label??''),q(p?agencyFor(p.series):(i.expected_source||''))].join(','));}
     const blob=new Blob([rows.join('\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kenya-data-atlas-${currentGeo.geo_code.toLowerCase()}-${currentTab}.csv`;a.click();URL.revokeObjectURL(a.href);
   }
 
