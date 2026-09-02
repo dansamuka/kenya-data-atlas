@@ -1,0 +1,56 @@
+{
+  "schema_version": "kda.p23.parliament-current-mp-fallbacks.v1",
+  "authority": "Parliament of Kenya — National Assembly",
+  "purpose": "Current official Parliament identity evidence used only for canonical constituencies omitted or misspelled in the live roster table. These rows may fill identity gaps only; they do not override a higher-quality matching live-roster row.",
+  "as_of": "2026-08-12",
+  "rows": [
+    {
+      "constituency": "Isiolo South",
+      "member_name": "TUBI, Mohamed Tubi",
+      "party": "UDA",
+      "source_url": "https://parliament.go.ke/the-national-assembly/hon-tubi-mohamed-tubi",
+      "supporting_url": "https://parliament.go.ke/sites/default/files/2026-03/Thursday%2C%20March%205%2C%202026%20at%202.30%20PM.pdf",
+      "evidence_note": "Official Parliament profile identifies Isiolo South and UDA; Votes and Proceedings records administration of oath to Tubi, Mohamed Tubi, Member-elect for Isiolo South on 5 March 2026."
+    },
+    {
+      "constituency": "Buuri",
+      "member_name": "Mugambi Rindikiri",
+      "party": "UDA",
+      "source_url": "https://www.parliament.go.ke/sites/default/files/2026-06/The%20Hansard%20-%20Tuesday%2C%209%20June%202026_0.pdf",
+      "supporting_url": "https://www.parliament.go.ke/node/25308",
+      "evidence_note": "Official June 2026 Hansard identifies Hon. Mugambi Rindikiri (Buuri, UDA); Parliament news in March 2026 also identifies him as Buuri MP."
+    },
+    {
+      "constituency": "Suna East",
+      "member_name": "Nuh, Junet Sheikh",
+      "party": "ODM",
+      "source_url": "https://parliament.go.ke/index.php/node/3418",
+      "supporting_url": "https://parliament.go.ke/the-national-assembly/leadership/minority-leader",
+      "evidence_note": "Official Parliament profile says Member of Parliament, Suna East Constituency, to date and ODM; current leadership page confirms Junet Mohamed as Suna East MP in the 13th Parliament."
+    },
+    {
+      "constituency": "Ruaraka",
+      "member_name": "Kajwang’, Francis Tom Joseph",
+      "party": "ODM",
+      "source_url": "https://parliament.go.ke/the-national-assembly/hon-kajwang-francis-tom-joseph",
+      "supporting_url": "https://www.parliament.go.ke/sites/default/files/2026-04/The%20Hansard%20-%20Wednesday%2C%208%20April%202026%20%28A%29.pdf",
+      "evidence_note": "Official Parliament profile records service to date as Member of Parliament, Ruaraka Constituency and ODM; April 2026 Hansard identifies Hon. TJ Kajwang’ (Ruaraka, ODM)."
+    },
+    {
+      "constituency": "Embakasi South",
+      "member_name": "Mawathe, Julius Musili",
+      "party": "WDM-K",
+      "source_url": "https://www.parliament.go.ke/index.php/the-national-assembly/hon-mawathe-julius-musili-0",
+      "supporting_url": "https://www.parliament.go.ke/sites/default/files/2026-06/The%20Hansard%20-%20Tuesday%2C%2016%20June%202026.pdf",
+      "evidence_note": "Official Parliament profile records service to date as Member of Parliament, Embakasi South; June 2026 Hansard identifies Hon. Julius Mawathe (Embakasi South, WDM)."
+    },
+    {
+      "constituency": "Embakasi North",
+      "member_name": "Gakuya, James Mwangi",
+      "party": "UDA",
+      "source_url": "https://www.parliament.go.ke/index.php/node/3228",
+      "supporting_url": "https://parliament.go.ke/index.php/the-national-assembly/news-events?page=167&title=+",
+      "evidence_note": "Official Parliament profile records service to date as Member of Parliament, Embakasi North; August 2026 Parliament news identifies Hon. James Gakuya (Embakasi North). Live 2022 roster also publishes GAKUYA JAMES MWANGI under misspelled EMBAKASSI NORTH with UDA and Elected status."
+    }
+  ]
+}
