@@ -41,7 +41,7 @@ jobs:
           python -m pip install --disable-pip-version-check shapely
 
       - name: Freeze official Parliament constituency roster
-        run: node scripts/p23/prepare-constituency-mps.mjs
+        run: node scripts/p23/prepare-constituency-mps-final.mjs
 
       - name: Deterministic Atlas rebuild
         run: npm run build:data
