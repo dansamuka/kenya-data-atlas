@@ -1,0 +1,109 @@
+{
+  "schema_version": "kda.local-indicator-cascade-decisions.v1",
+  "as_of": "2026-09-02",
+  "note": "Only decisions that are already defensible are pre-classified. Every unlisted active county indicator remains review_required and must be investigated before P23X/P24X/P26 closure.",
+  "decisions": [
+    {
+      "indicator_code": "IND-LAND-AREA",
+      "level": "constituency",
+      "disposition": "spatial_derivation",
+      "reason": "Canonical 2012-01 constituency geometry already produces a complete reproducible boundary-derived area series. County official area is not inherited downward."
+    },
+    {
+      "indicator_code": "IND-LAND-AREA",
+      "level": "ward",
+      "disposition": "spatial_derivation",
+      "reason": "Canonical 2012-01 ward geometry already produces a complete reproducible boundary-derived area series. Parent area is not inherited downward."
+    },
+    {
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "level": "constituency",
+      "disposition": "exact_aggregation",
+      "reason": "Canonical constituency values are exact sums of official IEBC Gazette Notice No. 7290 child-ward register rows under the established P23 contract."
+    },
+    {
+      "indicator_code": "IND-COUNTY-BUDGET-TOTAL",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "This is a county-government-wide budget measure, not a constituency allocation. A separate official local allocation indicator may be added where one exists."
+    },
+    {
+      "indicator_code": "IND-COUNTY-BUDGET-TOTAL",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "This is a county-government-wide budget measure, not a ward allocation. A separate official local allocation indicator may be added where one exists."
+    },
+    {
+      "indicator_code": "IND-COUNTY-EXPENDITURE-TOTAL",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "This is county-government-wide expenditure, not an official constituency expenditure allocation."
+    },
+    {
+      "indicator_code": "IND-COUNTY-EXPENDITURE-TOTAL",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "This is county-government-wide expenditure, not an official ward expenditure allocation."
+    },
+    {
+      "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "County budget absorption measures the county government as an institution and cannot be inherited or allocated to electoral constituencies."
+    },
+    {
+      "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "County budget absorption measures the county government as an institution and cannot be inherited or allocated to wards."
+    },
+    {
+      "indicator_code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "County development-budget absorption is an institutional county-government measure, not a constituency observation."
+    },
+    {
+      "indicator_code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "County development-budget absorption is an institutional county-government measure, not a ward observation."
+    },
+    {
+      "indicator_code": "IND-COUNTY-OSR",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "Own-source-revenue performance is reported for the county government and is not an electoral-constituency measure."
+    },
+    {
+      "indicator_code": "IND-COUNTY-OSR",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "Own-source-revenue performance is reported for the county government and is not a ward measure."
+    },
+    {
+      "indicator_code": "IND-COUNTY-PENDING-BILLS",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "Pending bills are county-government liabilities and cannot be geographically inherited to constituencies."
+    },
+    {
+      "indicator_code": "IND-COUNTY-PENDING-BILLS",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "Pending bills are county-government liabilities and cannot be geographically inherited to wards."
+    },
+    {
+      "indicator_code": "IND-COUNTY-AUDIT-OPINION",
+      "level": "constituency",
+      "disposition": "not_applicable",
+      "reason": "The audit opinion applies to the County Executive financial statements as an institutional reporting entity, not to constituencies."
+    },
+    {
+      "indicator_code": "IND-COUNTY-AUDIT-OPINION",
+      "level": "ward",
+      "disposition": "not_applicable",
+      "reason": "The audit opinion applies to the County Executive financial statements as an institutional reporting entity, not to wards."
+    }
+  ]
+}
