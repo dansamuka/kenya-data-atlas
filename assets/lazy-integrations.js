@@ -192,16 +192,22 @@
       .catch(error=>{console.warn('Opportunity Finder load:',error?.message||error);return null;});
     return opportunityPromise;
   }
+  function loadCountyIQUX(){
+    if(window.KDACountyIQUX){window.KDACountyIQUX.boot?.();return Promise.resolve(window.KDACountyIQUX);}
+    return Promise.all([
+      KDA.loadStyle('assets/countyiq-ux.css',{id:'kda-countyiq-ux-css'}),
+      KDA.loadScript('assets/countyiq-ux.js',{id:'kda-countyiq-ux'})
+    ]).then(()=>{window.KDACountyIQUX?.boot?.();return window.KDACountyIQUX||null;});
+  }
   function loadCountyIQ(){
     installCountyIQDataGuard();
-    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));
+    if(window.KDACountyIQ)return Promise.all([Promise.resolve(window.KDACountyIQ.boot()),loadCountyIQUX()]).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=Promise.all([
-      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css'],['assets/countyiq-ux.css','kda-countyiq-ux-css']]),
-      loadHardening(),loadPolish()
+      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),
+      loadCountyIQUX(),loadHardening(),loadPolish()
     ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))
       .then(()=>window.KDACountyIQ?.boot?.()||null)
-      .then(()=>KDA.loadScript('assets/countyiq-ux.js',{id:'kda-countyiq-ux'}))
       .then(()=>window.KDACountyIQUX?.boot?.()||null)
       .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadCompletionSurface()]))
       .then(value=>{redriveRoute();return value;})
