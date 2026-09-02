@@ -22,7 +22,9 @@
    * levels stores its own shareable sub-state in the Compare hash and already
    * manages the active panel itself. Persist those cross-level hashes with the
    * native History method so changing a geography cannot trigger a second full
-   * Compare render. Other replaces still flow through the router normally. */
+   * Compare render. Critically, never let an async Compare render that finishes
+   * after the user has left Compare replace the new route with a stale Compare
+   * URL. Other replaces still flow through the router normally. */
   function installCompareReplaceGuard(){
     if(history.replaceState?.__kdaCompareIdempotent)return;
     const routedReplace=history.replaceState.bind(history);
@@ -33,6 +35,12 @@
           const target=new URL(url,location.href);
           const hash=target.hash||'';
           const compareHash=/^#\/compare(?:\?|$)/.test(hash);
+          const currentHash=location.hash||'';
+          const onCompare=/^#\/compare(?:\?|$)/.test(currentHash)||currentHash==='#compare';
+          /* compare-cross-level.js can finish a data/render cycle after another
+           * navigation has already committed. That late persist is state for the
+           * old view, not a navigation request, so discard it. */
+          if(compareHash&&!onCompare)return;
           const crossLevel=compareHash&&new URLSearchParams(hash.split('?')[1]||'').get('mode')==='cross-level';
           if(crossLevel)return nativeReplace.call(history,state,title,target.href);
           if(compareHash&&target.href===location.href)return;
