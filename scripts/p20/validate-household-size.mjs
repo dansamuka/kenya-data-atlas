@@ -54,8 +54,8 @@ try {
   const constituencyRows = ledger.rows.filter(row => row.level === 'constituency' && row.indicator_code === 'IND-HOUSEHOLD-SIZE');
   assert(constituencyRows.length === 290, `expected 290 constituency household-size slots, found ${constituencyRows.length}`);
   assert(constituencyRows.every(row => row.geographic_method !== 'inherited'), 'county household-size observations must not be inherited into constituencies');
-  assert(constituencyRows.every(row => row.value == null), 'constituency household-size slots must not acquire a fabricated numeric value');
-  assert(constituencyRows.every(row => row.resolved === false || row.resolution_status === 'official_unavailable'), 'later phases may only resolve constituency household-size slots through an explicit governed closure');
+  assert(constituencyRows.every(row => row.value == null || row.value === ''), 'constituency household-size slots must not acquire a fabricated numeric value');
+  assert(constituencyRows.every(row => row.resolved === false || row.status === 'official_unavailable'), 'later phases may only resolve constituency household-size slots through an explicit governed closure');
 
   assert(count === 47, `expected 47 household-size observations, got ${count}`);
   console.log('P20_HOUSEHOLD_SIZE_47_RECONCILIATION_OK');
