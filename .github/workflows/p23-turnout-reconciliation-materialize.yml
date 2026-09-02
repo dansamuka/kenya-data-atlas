@@ -1,0 +1,54 @@
+name: P23 turnout reconciliation materialize
+
+on:
+  push:
+    branches:
+      - p23/constituency-turnout-probe
+    paths:
+      - scripts/p23/reconcile-turnout-transcription.mjs
+      - data/p23/constituency-turnout-promotion-contract.json
+      - .github/workflows/p23-turnout-reconciliation-materialize.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p23/constituency-turnout-probe
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Reconcile source evidence
+        run: node scripts/p23/reconcile-turnout-transcription.mjs
+      - name: Verify promotion boundary
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const contract=JSON.parse(fs.readFileSync('data/p23/constituency-turnout-promotion-contract.json','utf8'));
+          const r=JSON.parse(fs.readFileSync('/tmp/p23-turnout-reconciliation.json','utf8'));
+          const holds=r.direct_form34b_constituency_codes||[];
+          if(r.counts?.source_rows!==contract.publication_gate.required_source_rows) throw new Error('source-row boundary mismatch');
+          if(r.counts?.arithmetic_reconciled!==contract.publication_gate.required_publishable_rows) throw new Error(`publishable mismatch ${r.counts?.arithmetic_reconciled}`);
+          if(r.counts?.requires_direct_form34b!==contract.publication_gate.required_direct_form34b_holds) throw new Error(`hold-count mismatch ${r.counts?.requires_direct_form34b}`);
+          if(JSON.stringify(holds)!==JSON.stringify(contract.direct_form34b_hold_constituency_codes)) throw new Error('hold-set mismatch');
+          console.log(`P23_TURNOUT_MATERIALIZATION_GATE_OK publishable=${r.counts.arithmetic_reconciled} holds=${r.counts.requires_direct_form34b}`);
+          NODE
+      - name: Materialize governed evidence
+        run: cp /tmp/p23-turnout-reconciliation.json data/p23/constituency-turnout-reconciliation.json
+      - name: Commit materialized evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p23/constituency-turnout-reconciliation.json
+          if git diff --cached --quiet; then
+            echo "P23_TURNOUT_RECONCILIATION_ALREADY_CURRENT"
+          else
+            git commit -m "data(p23): materialize constituency turnout reconciliation"
+            git push origin HEAD:p23/constituency-turnout-probe
+          fi
