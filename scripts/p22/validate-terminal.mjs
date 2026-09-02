@@ -66,10 +66,12 @@ assert(!p22Rows.some(r=>r.geo_code===nyeri.geo_code),'Nyeri must not enter the P
 assert(queue.schema_version==='kda.completeness.p22-work-queue.v1'&&queue.phase==='P22','P22 work queue schema/phase mismatch');
 assert(queue.remaining_slots===0&&queue.family_count===0&&Object.keys(queue.family_counts||{}).length===0,'P22 queue must be terminally empty');
 assert((summary.by_completion_phase?.P22||0)===0,'completeness summary must have zero P22 unresolved rows');
-assert(summary.total_slots===20115,'governed slot denominator must remain 20,115');
+assert(summary.total_slots>=20115,'governed slot denominator must not fall below the historical 20,115-slot baseline');
 assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'live completion totals must reconcile to the governed denominator');
 assert(summary.unknown_missing===0,'unknown_missing must remain zero');
-assert(summary.by_status?.official_unavailable===114,'official_unavailable count must equal prior 48 plus 66 P22 closures = 114');
+const p22UnavailableRows=p22Rows.filter(r=>r.status==='official_unavailable');
+assert(p22UnavailableRows.length===66,'P22 must contribute exactly 66 official-unavailable closures');
+assert((summary.by_status?.official_unavailable||0)>=66,'global official_unavailable count must include the 66 P22 closures; later phases may add more');
 
 const p22=(roadmap.phases||[]).find(p=>p.id==='P22');
 assert(p22?.status==='complete','P22 roadmap status must be complete');
