@@ -3,7 +3,20 @@
   'use strict';
   const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
   const set=(el,value)=>{if(el&&el.textContent!==value)el.textContent=value;};
-  let timer=null;
+  let timer=null,countyIqUxPromise=null;
+
+  function loadCountyIQUX(){
+    if(window.KDACountyIQUX){window.KDACountyIQUX.boot?.();return Promise.resolve(window.KDACountyIQUX);}
+    if(countyIqUxPromise)return countyIqUxPromise;
+    const KDA=window.KDAData;
+    if(!KDA?.loadStyle||!KDA?.loadScript)return Promise.resolve(null);
+    countyIqUxPromise=Promise.all([
+      KDA.loadStyle('assets/countyiq-ux.css',{id:'kda-countyiq-ux-css'}),
+      KDA.loadScript('assets/countyiq-ux.js',{id:'kda-countyiq-ux'})
+    ]).then(()=>{window.KDACountyIQUX?.boot?.();return window.KDACountyIQUX||null;})
+      .catch(error=>{console.warn('CountyIQ UX load:',error?.message||error);countyIqUxPromise=null;return null;});
+    return countyIqUxPromise;
+  }
 
   function cleanCountyIQ(){
     const root=$('#countyiq-view');if(!root)return;
@@ -50,6 +63,6 @@
     cleanCountyIQ();
   }
   function schedule(){clearTimeout(timer);timer=setTimeout(clean,0);}
-  function boot(){clean();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});window.addEventListener('kda:route',schedule);setTimeout(clean,650);}
+  function boot(){loadCountyIQUX();clean();new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});window.addEventListener('kda:route',schedule);setTimeout(clean,650);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();

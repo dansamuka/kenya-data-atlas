@@ -3,7 +3,9 @@
   'use strict';
   let scheduled=false;
   let observer=null;
+  let observedRoot=null;
   let backTop=null;
+  let listenersInstalled=false;
 
   const $=(selector,root=document)=>root.querySelector(selector);
   const $$=(selector,root=document)=>Array.from(root.querySelectorAll(selector));
@@ -49,14 +51,17 @@
     if(nav.dataset.items!==desired){
       nav.dataset.items=desired;
       nav.innerHTML=items.map(([label,node],index)=>`<a href="#${node.id}"${index===0?' aria-current="true"':''}>${label}</a>`).join('');
-      nav.addEventListener('click',event=>{
-        const link=event.target.closest('a');
-        if(!link)return;
-        const target=document.getElementById(link.getAttribute('href').slice(1));
-        if(!target)return;
-        event.preventDefault();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-      });
+      if(nav.dataset.bound!=='true'){
+        nav.dataset.bound='true';
+        nav.addEventListener('click',event=>{
+          const link=event.target.closest('a');
+          if(!link)return;
+          const target=document.getElementById(link.getAttribute('href').slice(1));
+          if(!target)return;
+          event.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+      }
     }
   }
 
@@ -77,6 +82,14 @@
     if(!list)return;
     const items=$$(itemSelector,list);
     if(!items.length)return;
+
+    if(items.length<=limit){
+      const stale=list.nextElementSibling;
+      if(stale?.classList.contains('ciq-disclosure-actions'))stale.remove();
+      items.forEach(item=>{item.classList.add('ciq-progressive-item');item.hidden=false;});
+      return;
+    }
+
     let actions=list.nextElementSibling;
     if(!actions?.classList.contains('ciq-disclosure-actions')){
       actions=document.createElement('div');
@@ -88,7 +101,6 @@
       item.classList.add('ciq-progressive-item');
       item.hidden=!state&&index>=limit;
     });
-    if(items.length<=limit){actions.remove();return;}
     let button=$('.ciq-disclosure-button',actions);
     if(!button){
       button=document.createElement('button');
@@ -131,35 +143,63 @@
     links.forEach(link=>{if(link===current)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
   }
 
-  function enhance(){
-    scheduled=false;
-    if(!isCountyIQ())return;
-    ensureJumpNav();
-    wrapFiscalTable();
-    progressiveList('#ciq-evidence-list','.evidence-item',4,'evidence records');
-    progressiveList('#opportunity-list','.opportunity-card',4,'programmes');
-    ensureBackTop();
-    syncActiveNav();
+  function connectObserver(){
+    const root=routeRoot();
+    if(!observer)observer=new MutationObserver(()=>scheduleFrame());
+    if(root===observedRoot&&root?.isConnected)return;
+    observer.disconnect();
+    observedRoot=root||null;
+    if(observedRoot)observer.observe(observedRoot,{childList:true,subtree:true});
   }
 
-  /* Apply layout-affecting disclosure work in the current task's microtask
-   * checkpoint. Waiting for requestAnimationFrame allowed the expanded fiscal
-   * table and long lists to paint once before being collapsed, creating CLS. */
-  function schedule(){
+  function enhance(){
+    scheduled=false;
+    if(!isCountyIQ()){connectObserver();return;}
+
+    /* UX enhancement mutates the same route subtree it observes. Disconnecting
+     * around our own writes prevents observer self-feedback while asynchronous
+     * CountyIQ data/evidence mutations still schedule a later coalesced pass. */
+    observer?.disconnect();
+    try{
+      ensureJumpNav();
+      wrapFiscalTable();
+      progressiveList('#ciq-evidence-list','.evidence-item',4,'evidence records');
+      progressiveList('#opportunity-list','.opportunity-card',4,'programmes');
+      ensureBackTop();
+      syncActiveNav();
+    }finally{
+      observedRoot=null;
+      connectObserver();
+    }
+  }
+
+  /* Explicit route/bootstrap work gets one microtask pass so disclosures can be
+   * applied before paint. Mutation-driven follow-ups use animation frames, which
+   * prevents an asynchronous render stream from monopolising the microtask queue. */
+  function scheduleInitial(){
     if(scheduled)return;
     scheduled=true;
     if(typeof queueMicrotask==='function')queueMicrotask(enhance);
     else Promise.resolve().then(enhance);
   }
+  function scheduleFrame(){
+    if(scheduled)return;
+    scheduled=true;
+    if(typeof requestAnimationFrame==='function')requestAnimationFrame(enhance);
+    else setTimeout(enhance,0);
+  }
+  function routeSchedule(){
+    connectObserver();
+    scheduleInitial();
+  }
 
   function boot(){
-    schedule();
-    if(!observer){
-      observer=new MutationObserver(schedule);
-      observer.observe(document.body,{childList:true,subtree:true});
-      window.addEventListener('hashchange',schedule);
+    routeSchedule();
+    if(!listenersInstalled){
+      listenersInstalled=true;
+      window.addEventListener('hashchange',routeSchedule);
       window.addEventListener('scroll',syncActiveNav,{passive:true});
-      window.addEventListener('kda:route',schedule);
+      window.addEventListener('kda:route',routeSchedule);
     }
     return true;
   }
