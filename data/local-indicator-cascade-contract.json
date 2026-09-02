@@ -1,0 +1,65 @@
+{
+  "schema_version": "kda.local-indicator-cascade.v1",
+  "status": "mandatory",
+  "scope_rule": "Every active county-level indicator must have an explicit constituency and ward disposition before P26 completion.",
+  "denominator_policy": "The historical 20115-slot baseline is not a scope ceiling. Add governed child slots when the cascade audit identifies additional local representation requirements.",
+  "levels": ["constituency", "ward"],
+  "allowed_dispositions": [
+    "direct_official",
+    "exact_aggregation",
+    "spatial_derivation",
+    "matched_local_calculation",
+    "modelled_estimate",
+    "governed_unavailable",
+    "not_applicable"
+  ],
+  "source_priority": [
+    "primary_official_local",
+    "exact_official_child_aggregation",
+    "official_administrative_or_geocoded_records",
+    "authoritative_geometry_derivation",
+    "approved_transparent_model",
+    "governed_closure"
+  ],
+  "prohibited": [
+    "county_to_constituency_value_inheritance",
+    "county_to_ward_value_inheritance",
+    "constituency_to_ward_value_inheritance",
+    "arbitrary_equal_split",
+    "unverified_subcounty_constituency_equivalence",
+    "parent_rate_downscaling",
+    "incompatible_geography_numerator_denominator",
+    "closing_source_acquisition_as_unavailable_only_because_automation_is_blocked"
+  ],
+  "required_metrics": [
+    "active_county_indicators",
+    "constituency_disposition_count",
+    "constituency_disposition_pct",
+    "constituency_numeric_indicator_count",
+    "ward_disposition_count",
+    "ward_disposition_pct",
+    "ward_numeric_indicator_count",
+    "disposition_counts_by_method",
+    "prohibited_parent_child_inheritance_count"
+  ],
+  "p23x_acceptance": {
+    "constituency_disposition_pct": 100,
+    "prohibited_county_to_constituency_inheritance": 0,
+    "require_materialisation_of_all_defensible_values": true,
+    "allow_scope_expansion": true
+  },
+  "p24x_acceptance": {
+    "ward_disposition_pct": 100,
+    "prohibited_parent_to_ward_inheritance": 0,
+    "require_materialisation_of_all_defensible_values": true,
+    "require_additive_reconciliation_where_meaningful": true,
+    "allow_scope_expansion": true
+  },
+  "p26_acceptance": {
+    "constituency_disposition_pct": 100,
+    "ward_disposition_pct": 100,
+    "prohibited_parent_child_inheritance_count": 0,
+    "unknown_missing": 0,
+    "resolved_slots_must_equal_current_governed_denominator": true
+  }
+}

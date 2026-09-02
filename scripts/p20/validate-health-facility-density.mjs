@@ -26,7 +26,15 @@ try{
   for(const c of counties){const src=srcByGeo.get(c.geo_code),pair=byGeo.get(c.geography_id);assert(src&&pair,`${c.geo_code}: source/observation missing`);const expected=Math.round((Number(src.facilities_assessed)/Number(src.projected_population_2023)*10000)*10)/10;assert(Number(src.value)===expected,`${c.geo_code}: source rate is not recomputable`);assert(Number(pair.o.value)===expected,`${c.geo_code}: observation rate mismatch`);assert(pair.o.badge==='B'&&pair.o.geographic_method==='aggregated'&&pair.s.geographic_method==='aggregated',`${c.geo_code}: transparent derived Badge B/aggregated provenance required`);assert(pair.s.dataset_id===dataset.dataset_id,`${c.geo_code}: dataset mismatch`);assert(String(pair.o.notes).includes(String(src.facilities_assessed))&&String(pair.o.notes).includes(String(src.projected_population_2023)),`${c.geo_code}: numerator/denominator trace missing`);const row=ledger.rows.find(r=>r.level==='county'&&r.geo_code===c.geo_code&&r.indicator_code==='IND-HEALTH-FACILITY-DENSITY');assert(row?.resolved===true,`${c.geo_code}: completeness slot must resolve`);assert(Number(row.value)===expected,`${c.geo_code}: ledger rate mismatch`);}
   const lower=ledger.rows.filter(r=>['constituency','ward'].includes(r.level)&&r.indicator_code==='IND-HEALTH-FACILITY-DENSITY');
   assert(lower.length===1740,`expected 290 constituency + 1450 ward density slots, found ${lower.length}`);
-  assert(lower.every(r=>r.resolved===false),'county density must not be inherited to constituency/ward');
+  for(const row of lower){
+    assert(row.source_status!=='inherited'&&row.geographic_method!=='inherited',`${row.geo_code}: county density must not be inherited to ${row.level}`);
+    if(!row.resolved)continue;
+    const closure=row.resolution_status||row.status;
+    assert(closure==='official_unavailable',`${row.geo_code}: resolved lower-level density slot must be explicit official_unavailable closure, got ${closure}`);
+    assert(row.observation_id==null||row.observation_id==='',`${row.geo_code}: governed closure must not have an observation`);
+    assert(row.series_code==null||row.series_code==='',`${row.geo_code}: governed closure must not have a series`);
+    assert(row.value==null||row.value==='',`${row.geo_code}: governed closure must not manufacture a value`);
+  }
   console.log('P20_FACILITY_DENSITY_47X1_OK promoted=47 badge=B');
-  console.log('P20_FACILITY_DENSITY_DENOMINATOR_OK year=2023 facilities=14883 population=51525585 lower_level_inheritance=false');
+  console.log('P20_FACILITY_DENSITY_DENOMINATOR_OK year=2023 facilities=14883 population=51525585 lower_level_inheritance=false governed_closures_allowed=true');
 }catch(error){console.error(error.message||error);process.exit(1);}

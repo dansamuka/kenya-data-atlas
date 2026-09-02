@@ -22,3 +22,7 @@ jobs:
         run: node scripts/project/validate-data-completion-execution.mjs
       - name: Validate P22 NDMA eligibility and freshness contract
         run: node scripts/p22/validate-ndma-freshness.mjs
+      - name: Build county-to-local indicator cascade audit
+        run: node scripts/completeness/build-local-indicator-cascade.mjs
+      - name: Validate local indicator cascade structure and no-inheritance gate
+        run: node scripts/completeness/validate-local-indicator-cascade.mjs

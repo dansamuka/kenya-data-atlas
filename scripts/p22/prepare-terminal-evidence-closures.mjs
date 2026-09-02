@@ -42,10 +42,14 @@ const evidencePath='data/completeness/evidence-states.json';
 const evidence=json(evidencePath);
 evidence.definition='Explicit resolved states for governed public slots where primary official evidence establishes that the requested observation is unavailable, or where a governed phase decision retires/replaces a weak placeholder. P22 time-sensitive closures may also resolve a snapshot when the exact current county observation is unavailable under explicit freshness, geography or measure-definition contracts. These states never manufacture a zero, proxy, regional inheritance or synthetic observation.';
 const indicatorCodes=(closure.families||[]).map(f=>f.indicator_code);
-evidence.states=(evidence.states||[]).filter(s=>!(s.level==='county'&&indicatorCodes.includes(s.indicator_code)));
+const currentStates=evidence.states||[];
+const firstP22Index=currentStates.findIndex(s=>s.level==='county'&&indicatorCodes.includes(s.indicator_code));
+const retainedStates=currentStates.filter(s=>!(s.level==='county'&&indicatorCodes.includes(s.indicator_code)));
+const insertionIndex=firstP22Index>=0?Math.min(firstP22Index,retainedStates.length):retainedStates.length;
+const generated=[];
 for(const family of closure.families){
   assert(family.status==='official_unavailable',`${family.indicator_code}: terminal status must be official_unavailable`);
-  evidence.states.push({
+  generated.push({
     level:'county',
     geo_codes:codes,
     indicator_code:family.indicator_code,
@@ -59,6 +63,7 @@ for(const family of closure.families){
     reason:family.reason
   });
 }
+evidence.states=[...retainedStates.slice(0,insertionIndex),...generated,...retainedStates.slice(insertionIndex)];
 writeJson(evidencePath,evidence);
 
 const roadmapPath='data/data-completion-roadmap.json';
