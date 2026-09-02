@@ -1,0 +1,72 @@
+name: P23 NG-CDF allocation materialization
+
+on:
+  push:
+    branches:
+      - watchdog/p23-ngcdf-finance
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p23-ngcdf-allocation-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out tranche branch
+        uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-ngcdf-finance
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check shapely
+
+      - name: Wire allocation builder into deterministic pipeline
+        run: node scripts/p23/enable-ngcdf-allocation.mjs
+
+      - name: Deterministic Atlas rebuild
+        run: npm run build:data
+
+      - name: Validate NG-CDF allocation promotion
+        run: node scripts/p23/validate-ngcdf-allocation.mjs
+
+      - name: Full Atlas validation
+        run: npm test
+
+      - name: Geography audit
+        run: npm run geography:audit
+
+      - name: Commit validated materialization
+        if: success()
+        shell: bash
+        run: |
+          rm -f .github/workflows/p23-ngcdf-allocation-materialize.yml
+          rm -f scripts/p23/probe-ngcdf-finance.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A package.json data scripts .github/workflows/p23-ngcdf-allocation-materialize.yml
+          if git diff --cached --quiet; then
+            echo "No materialization changes to commit."
+            exit 0
+          fi
+          git commit -m "feat(p23): materialize official NG-CDF constituency allocation"
+          git push origin HEAD:watchdog/p23-ngcdf-finance
