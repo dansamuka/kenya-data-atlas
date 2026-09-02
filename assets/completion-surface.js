@@ -18,6 +18,32 @@
   const phaseToken=/\bP\d{2}(?:[-–—]?v\d+(?:\.\d+)*)?\b/gi;
   let crossLevelPromise=null;
 
+  /* The router intentionally re-renders after history.replaceState(). Across
+   * levels stores its own shareable sub-state in the Compare hash and already
+   * manages the active panel itself. Persist those cross-level hashes with the
+   * native History method so changing a geography cannot trigger a second full
+   * Compare render. Other replaces still flow through the router normally. */
+  function installCompareReplaceGuard(){
+    if(history.replaceState?.__kdaCompareIdempotent)return;
+    const routedReplace=history.replaceState.bind(history);
+    const nativeReplace=History.prototype.replaceState;
+    const guarded=function(state,title,url){
+      if(state===null&&typeof url==='string'){
+        try{
+          const target=new URL(url,location.href);
+          const hash=target.hash||'';
+          const compareHash=/^#\/compare(?:\?|$)/.test(hash);
+          const crossLevel=compareHash&&new URLSearchParams(hash.split('?')[1]||'').get('mode')==='cross-level';
+          if(crossLevel)return nativeReplace.call(history,state,title,target.href);
+          if(compareHash&&target.href===location.href)return;
+        }catch(_){/* let the router/native implementation validate the URL */}
+      }
+      return routedReplace(state,title,url);
+    };
+    guarded.__kdaCompareIdempotent=true;
+    history.replaceState=guarded;
+  }
+
   function cleanText(value){
     if(!value||!phaseToken.test(value)){
       phaseToken.lastIndex=0;
@@ -102,6 +128,7 @@
     const KDA=window.KDAData;
     if(!KDA)return Promise.resolve(null);
 
+    installCompareReplaceGuard();
     crossLevelPromise=(async()=>{
       await window.KDAOptional?.loadCompare?.();
       await KDA.loadStyle('assets/compare-cross-level.css',{id:'kda-compare-cross-level-css'});
