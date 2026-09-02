@@ -142,7 +142,15 @@
     syncActiveNav();
   }
 
-  function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(enhance);}
+  /* Apply layout-affecting disclosure work in the current task's microtask
+   * checkpoint. Waiting for requestAnimationFrame allowed the expanded fiscal
+   * table and long lists to paint once before being collapsed, creating CLS. */
+  function schedule(){
+    if(scheduled)return;
+    scheduled=true;
+    if(typeof queueMicrotask==='function')queueMicrotask(enhance);
+    else Promise.resolve().then(enhance);
+  }
 
   function boot(){
     schedule();
