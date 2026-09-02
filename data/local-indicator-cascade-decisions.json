@@ -230,6 +230,42 @@
       "level": "ward",
       "disposition": "governed_unavailable",
       "reason": "KENPHIA prevalence is not published as a ward-domain estimate. Downscaling a county prevalence rate would create unsupported local precision and is prohibited under the cascade contract."
+    },
+    {
+      "indicator_code": "IND-STUNTING-RATE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical child-stunting rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with survey precision adequate for Atlas publication, so the county rate cannot be inherited or naively reweighted."
+    },
+    {
+      "indicator_code": "IND-STUNTING-RATE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The KDHS child-stunting estimate is not a ward-domain statistic. Copying or downscaling the county survey percentage would create unsupported local precision and is prohibited by the cascade contract."
+    },
+    {
+      "indicator_code": "IND-MATERNAL-HEALTH",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Skilled birth attendance is canonically defined from KDHS 2022 survey estimates. No official current-constituency domain estimate with compatible survey weighting is published, so county values cannot be inherited to constituencies."
+    },
+    {
+      "indicator_code": "IND-MATERNAL-HEALTH",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "KDHS 2022 skilled birth attendance is not published as a ward-domain estimate. Ward publication would require a valid domain sample and weighting design rather than copying the county percentage."
+    },
+    {
+      "indicator_code": "IND-IMMUNIZATION-RATE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Basic immunisation is canonically defined from KDHS 2022 Table 10.4C for children age 12–23 months. No official current-constituency domain estimate with compatible survey weighting is published, so the county estimate cannot be inherited."
+    },
+    {
+      "indicator_code": "IND-IMMUNIZATION-RATE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The KDHS 2022 basic-immunisation estimate is not a ward-domain statistic. Downscaling the county rate without the survey design and valid ward-domain sample would create false precision."
     }
   ]
 }
