@@ -7,8 +7,7 @@ on:
       - p23/constituency-turnout-probe
     paths:
       - scripts/p23/probe-iebc-form34b.sh
-      - scripts/p23/probe-iebc-form34b-sample.sh
-      - scripts/p23/probe-iebc-form34b-bulk.sh
+      - scripts/p23/probe-iebc-form34b-pages.sh
       - .github/workflows/p23-iebc-form34b-probe.yml
   workflow_dispatch:
 
@@ -23,16 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
-      - name: Inspect official Form 34B sample fields
-        run: bash scripts/p23/probe-iebc-form34b-sample.sh
-      - name: Probe official Form 34B national bulk endpoint
-        run: bash scripts/p23/probe-iebc-form34b-bulk.sh
-      - name: Retain official sample for visual evidence review
-        uses: actions/upload-artifact@v4
-        with:
-          name: p23-iebc-form34b-sample
-          path: /tmp/iebc-form34b-sample
-          if-no-files-found: error
-          retention-days: 7
+      - name: Resolve Form 34B result-grid pagination
+        run: bash scripts/p23/probe-iebc-form34b-pages.sh
 
-# Feature-branch trigger is intentionally scoped to the P23 turnout probe.
+# Feature-branch trigger is intentionally scoped to P23 source discovery.
