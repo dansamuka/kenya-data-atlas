@@ -1,0 +1,59 @@
+name: Watchdog P23X KDHS literacy tranche
+
+on:
+  push:
+    branches:
+      - watchdog/p23x-kdhs-literacy-20260902
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: ${{ !startsWith(github.event.head_commit.message, 'data(p23x): govern KDHS women literacy child domains') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply governed child-domain decisions
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'data/local-indicator-cascade-decisions.json';
+          const doc = JSON.parse(fs.readFileSync(p, 'utf8'));
+          const additions = [
+            {
+              indicator_code: 'IND-LITERACY-RATE',
+              level: 'constituency',
+              disposition: 'governed_unavailable',
+              reason: 'The canonical women age 15–49 literacy rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with compatible survey weighting and precision, so the county rate cannot be inherited or naively reweighted.'
+            },
+            {
+              indicator_code: 'IND-LITERACY-RATE',
+              level: 'ward',
+              disposition: 'governed_unavailable',
+              reason: 'The KDHS women age 15–49 literacy estimate is not a ward-domain statistic. Publishing or downscaling the county percentage at ward level without a valid survey-domain sample and weighting design would create unsupported local precision.'
+            }
+          ];
+          for (const row of additions) {
+            const exists = doc.decisions.some(d => d.indicator_code === row.indicator_code && d.level === row.level);
+            if (!exists) doc.decisions.push(row);
+          }
+          fs.writeFileSync(p, JSON.stringify(doc, null, 2) + '\n');
+          NODE
+      - name: Rebuild and validate cascade audit
+        run: |
+          node scripts/completeness/build-local-indicator-cascade.mjs
+          node scripts/completeness/validate-local-indicator-cascade.mjs
+      - name: Commit coherent generated tranche
+        run: |
+          rm .github/workflows/watchdog-p23x-kdhs-literacy.yml
+          git config user.name "Kenya Atlas Watchdog"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/local-indicator-cascade-decisions.json data/completeness/local-indicator-cascade.json data/completeness/local-indicator-cascade-summary.json .github/workflows/watchdog-p23x-kdhs-literacy.yml
+          git commit -m "data(p23x): govern KDHS women literacy child domains"
+          git push origin HEAD
