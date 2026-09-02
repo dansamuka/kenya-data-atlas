@@ -17,6 +17,40 @@
     "Full phase completion still requires the original phase acceptance gate even if some of its slots were resolved earlier by an accelerator.",
     "P24 cannot claim completion before full P23 acceptance, and P26 remains the final convergence gate."
   ],
+  "local_derivation_priority": {
+    "status": "active",
+    "goal": "Maximise constituency and ward coverage from existing county and national evidence wherever a genuine lower-level derivation can be reproduced without copying parent values.",
+    "allowed_methods": [
+      "direct official constituency or ward observations",
+      "exact official child-row aggregation into the target geography",
+      "point-in-polygon aggregation of source-backed facilities or services to authoritative target geometries",
+      "area or other physical derivation from authoritative geometry",
+      "ratio/rate/density calculation from independently sourced target-level numerators and denominators",
+      "explicit official crosswalk or allocation formula where the source itself defines the lower-level allocation"
+    ],
+    "prohibited_methods": [
+      "copying one county value to every constituency or ward in that county",
+      "copying one constituency value to every child ward",
+      "population-weighting a county rate downward without source-backed target-level numerator/denominator inputs",
+      "forcing ambiguous Mandera East/Lafey geometry assignments",
+      "reverse-engineering values from maps, charts or rounded display components"
+    ],
+    "priority_order": [
+      "land area and other geometry-native measures",
+      "registered voters and election measures from official ward/constituency schedules",
+      "population and household measures where KNBS publishes target-level tables",
+      "health-facility and school/service counts from source-backed point or establishment records",
+      "facility/school/service densities using target-level population denominators",
+      "representation and NG-CDF administrative measures",
+      "other county indicators only where an independently reproducible target-level derivation contract exists"
+    ],
+    "acceptance": [
+      "Every derived local observation identifies its target-level numerator/source rows, denominator where applicable, boundary vintage and derivation method.",
+      "Derived child values reconcile back to the authoritative parent total when the measure is additive and boundary-compatible.",
+      "No child observation is created solely because a parent observation exists.",
+      "Known spatial holds remain unresolved rather than force-matched."
+    ]
+  },
   "tracks": [
     {
       "track_id": "county_completion",
@@ -34,14 +68,14 @@
       "sequence": ["P23A", "P23"],
       "current_focus": "P23",
       "feeds_phase": "P23",
-      "rule": "P23 is now the current documented completion phase. Promote reusable national constituency pipelines only into existing P23 slots and retain full 290-constituency reconciliation as the phase acceptance gate."
+      "rule": "P23 is now the current documented completion phase. Promote reusable national constituency pipelines only into existing P23 slots and retain full 290-constituency reconciliation as the phase acceptance gate. Prioritise target-level derivations from existing county/national source families before adding unrelated new indicators."
     },
     {
       "track_id": "final_convergence",
       "label": "Final convergence",
       "status": "planned",
       "sequence": ["P24", "P25", "P26"],
-      "rule": "Ward completion, final public-surface closure and the permanent 100% gate retain their original dependencies and acceptance semantics."
+      "rule": "Ward completion, final public-surface closure and the permanent 100% gate retain their original dependencies and acceptance semantics. P24 must maximise source-backed ward derivations before governed closure states are used."
     }
   ],
   "accelerators": {
@@ -57,6 +91,8 @@
       "initial_pipeline_order": [
         "registered voters / constituency electorate",
         "official turnout history where citable and comparable",
+        "population/household measures from official KNBS target-level tables where available",
+        "health-facility and school/service aggregation where source points/establishments and boundary contracts are defensible",
         "current MP identity",
         "NG-CDF allocation",
         "NG-CDF utilisation or implementation only where a nationally comparable official source exists"
@@ -91,8 +127,11 @@
   "next_actions": [
     "Use data/p23/constituency-voter-promotion-contract.json as the first P23 promotion authority and verify the pinned IEBC extraction against all 290 canonical constituency geographies and the 870 existing P23 voter slot instances across overview, people and representation.",
     "Native-promote exactly 290 constituency registered-voter observations as B — Official derived values without changing the 20,115-slot denominator; rebuild completeness and require exactly 870 P23 slot instances to resolve.",
-    "After voter promotion, proceed to official constituency turnout history only where period and boundary vintage are explicit and comparable.",
+    "Then run a cascade-first P23 inventory: for every county indicator, test whether an official target-level table, exact child-row aggregation, source-backed point/service aggregation, geometry derivation, or target-level numerator/denominator calculation can create a genuine constituency observation.",
+    "Prioritise currently advertised local gaps: constituency population, constituency household size, and constituency/ward health-facility density, but promote only where their target-level source/denominator contracts are independently defensible.",
+    "Proceed to official constituency turnout history where period and boundary vintage are explicit and comparable.",
     "Build the current MP identity roster from an official parliamentary source before NG-CDF tranches.",
-    "Do not start P24 numeric promotion until P23 acceptance is complete and the ward geography/source contract is independently defensible."
+    "After P23 acceptance, repeat the same cascade-first inventory for P24 wards before using closure states.",
+    "Do not force the ten Mandera East/Lafey ward geometry holds; keep them explicit until authoritative reconciliation."
   ]
 }
