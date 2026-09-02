@@ -45,3 +45,5 @@ jobs:
           git commit -m 'feat(p23): govern constituency census publication gaps'
           git pull --rebase origin main
           git push origin HEAD:main
+
+# Retry marker: NG-CDF validator now permits forward P23 completion progress.
