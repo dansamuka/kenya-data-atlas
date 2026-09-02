@@ -977,5 +977,20 @@
     "publication_status": "published",
     "methodology_url": "data/p23/constituency-mp-roster-contract.json",
     "known_limitations": "Roster is a point-in-time representation snapshot. Party/member changes after the stated source as-of date require a new release; nominated members and county women representatives are excluded from constituency MP identity."
+  },
+  {
+    "dataset_id": "ccf971c1-fa19-57cc-9627-843be5a9c3d8",
+    "dataset_code": "DS-NGCDF-CONSTITUENCY-ALLOCATION-FY2025-26-P23",
+    "source_id": "85c71817-4f75-589f-942b-c34b4f067407",
+    "title": "NG-CDF constituency budget ceilings — FY2025/26",
+    "description": "Parliament-approved FY2025/26 NG-CDF constituency budget ceilings, deterministically assigned from the official ward-count bands to the canonical 290 constituencies.",
+    "topic": "Public finance",
+    "geographic_coverage": [
+      "constituency"
+    ],
+    "frequency": "annual",
+    "publication_status": "published",
+    "methodology_url": "data/p23/ngcdf-allocation-contract.json",
+    "known_limitations": "The report publishes exact budget ceilings by ward-count class rather than 290 repeated constituency rows. Atlas observations are therefore classified Official derived (B), using only each constituency’s canonical child-ward count."
   }
 ]

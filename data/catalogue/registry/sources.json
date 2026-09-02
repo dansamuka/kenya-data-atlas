@@ -286,5 +286,22 @@
     "assessment_status": "approved_with_conditions",
     "assessment_note": "Use only constituency-elected member rows that reconcile one-to-one to the canonical constituency registry; preserve roster as-of date.",
     "active": true
+  },
+  {
+    "source_id": "85c71817-4f75-589f-942b-c34b4f067407",
+    "source_code": "PARLIAMENT-NGCDF-BUDGET-CEILINGS",
+    "agency_id": "0c63c407-e77e-5279-8253-2ef6358929ee",
+    "name": "National Assembly NG-CDF constituency budget-ceiling reports",
+    "source_type": "official_report",
+    "landing_page_url": "https://libraryir.parliament.go.ke/items/2748fccd-b60c-47df-a1ed-f39486494a07",
+    "expected_cadence": "annual",
+    "source_priority": "critical",
+    "access_method": "official_document_repository",
+    "reuse_status": "public_official_report",
+    "licence_name": null,
+    "licence_url": null,
+    "attribution_text": "Source: Parliament of Kenya — National Assembly, NG-CDF constituency budget ceilings",
+    "assessment_status": "approved_with_conditions",
+    "assessment_note": "Use the exact Parliament-approved ward-count ceiling for the stated fiscal year. Constituency values are official derivations from canonical ward counts; no parent-geography inheritance."
   }
 ]

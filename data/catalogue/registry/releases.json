@@ -862,5 +862,21 @@
     "version_label": "P23 constituency MP roster",
     "release_notes": "Official Parliament roster reconciled exactly 290/290 to the canonical constituency registry. Member name and party remain categorical text; no inferred party or parent-geography identity.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "9ab06c09-0ebc-5ec3-b98b-06d3fdb50855",
+    "release_code": "REL-NGCDF-CONSTITUENCY-ALLOCATION-FY2025-26-P23",
+    "dataset_id": "ccf971c1-fa19-57cc-9627-843be5a9c3d8",
+    "title": "NG-CDF constituency budget ceilings — FY2025/26",
+    "reference_period_start": "2025-07-01",
+    "reference_period_end": "2026-06-30",
+    "published_at": "2025-08-06",
+    "discovered_at": "2026-09-02T08:55:00.000Z",
+    "ingested_at": "2026-09-02T08:55:00.000Z",
+    "release_url": "https://libraryir.parliament.go.ke/bitstreams/2f057dd5-e327-4ceb-9673-286079f4be1e/download",
+    "release_status": "published",
+    "version_label": "FY2025/26 Parliament-approved ceilings",
+    "release_notes": "Official Parliament Table 3 ward-count bands applied deterministically to the canonical constituency→ward hierarchy. Values are budget ceilings, not disbursements or expenditure.",
+    "supersedes_release_id": ""
   }
 ]

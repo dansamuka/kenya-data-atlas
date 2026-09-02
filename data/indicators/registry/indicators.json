@@ -2295,7 +2295,7 @@
     "indicator_code": "IND-NG-CDF-ALLOCATION",
     "name": "NG-CDF allocation (financial year)",
     "short_name": "NG-CDF allocation (financial year)",
-    "description": "Constituency NG-CDF allocation for the financial year.",
+    "description": "Annual constituency NG-CDF budget ceiling approved by Parliament for the stated financial year.",
     "topic": "Representation",
     "subtopic": "representation",
     "unit_id": "5861b255-10c3-53f8-a3a2-96aa4bd4e3fb",
@@ -2303,20 +2303,20 @@
     "preferred_frequency": "irregular",
     "minimum_geo_level": "constituency",
     "minimum_denominator": null,
-    "methodology_url": "",
+    "methodology_url": "data/p23/ngcdf-allocation-contract.json",
     "comparable": true,
-    "active": false,
-    "lifecycle_status": "planned",
-    "expected_source": "NG-CDF Board",
-    "expected_source_url": "",
-    "expected_availability_note": "Do not promote until a specific citable report/page is identified.",
+    "active": true,
+    "lifecycle_status": "active",
+    "expected_source": "Parliament of Kenya — National Assembly NG-CDF budget-ceiling report",
+    "expected_source_url": "https://libraryir.parliament.go.ke/items/2748fccd-b60c-47df-a1ed-f39486494a07",
+    "expected_availability_note": "Official derived from Parliament-approved ward-count budget-ceiling bands and canonical constituency child-ward counts; never inherit a county value.",
     "tab": "representation",
     "applies_to_levels": [
       "constituency"
     ],
     "applies_to_geography_subset": "",
     "requires_sampling_uncertainty": false,
-    "ranking_allowed": true
+    "ranking_allowed": false
   },
   {
     "indicator_id": "54f620d5-b6a3-5d4f-b991-e2073484073f",

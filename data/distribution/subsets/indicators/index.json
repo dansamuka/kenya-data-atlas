@@ -479,8 +479,8 @@
     "indicator_code": "IND-NG-CDF-ALLOCATION",
     "name": "NG-CDF allocation (financial year)",
     "path": "data/distribution/subsets/indicators/IND-NG-CDF-ALLOCATION.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 290,
+    "observation_count": 290
   },
   {
     "indicator_code": "IND-NG-CDF-UTILIZATION",
