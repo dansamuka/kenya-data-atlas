@@ -26,7 +26,9 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
       - name: Materialise governed closure evidence
-        run: python scripts/p23/apply-constituency-census-closures.py
+        run: |
+          python scripts/p23/apply-constituency-census-closures.py
+          sed -i 's/P18_P22_UNAVAILABLE_RECONCILIATION_OK pre_p22=${preP22Unavailable.length} p22=${p22Unavailable.length} total=${officialUnavailable.length}/P18_P22_P23_UNAVAILABLE_RECONCILIATION_OK legacy=${legacyUnavailable.length} p22=${p22Unavailable.length} p23_census=${p23CensusUnavailable.length} total=${officialUnavailable.length}/' scripts/completeness/validate-slot-ledger.mjs
       - name: Rebuild and validate completeness
         run: |
           node scripts/completeness/build-slot-ledger.mjs
