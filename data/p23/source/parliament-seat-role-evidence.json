@@ -5,7 +5,7 @@
   "source_url": "https://www.parliament.go.ke/sites/default/files/2025-07/Tuesday%2C%20July%201%2C%202025%20At%202.30pm.pdf",
   "source_period": "2025-07-01",
   "source_table": "CONSTITUENCY AND SPECIAL INTERESTS / MEMBER’S NAME",
-  "usage_rule": "This file supplies seat-role classification only. Current member identity, party and elected status must still come from the live 13th-Parliament roster used by the P23 snapshot. A historical name match may exclude a candidate explicitly labelled CWR, but may never introduce or replace a current holder.",
+  "usage_rule": "This file supplies seat-role classification only. Current member identity, party and elected status must still come from the live 13th-Parliament roster used by the P23 snapshot. A historical name match may exclude a candidate explicitly labelled CWR, but may never introduce or replace a current holder. Where Parliament's historical table orders a person's names differently from the live roster, member_name follows the live-roster order for deterministic linkage and source_member_name preserves the exact historical-table transcription.",
   "evidence": [
     {
       "target_constituency": "Kiambu",
@@ -23,7 +23,8 @@
     },
     {
       "target_constituency": "Vihiga",
-      "member_name": "Kagesi, Kivai Ernest Ogesi",
+      "member_name": "Kagesi Ernest Ogesi Kivai",
+      "source_member_name": "Kagesi, Kivai Ernest Ogesi",
       "seat_label": "Vihiga",
       "seat_role": "constituency_mp",
       "source_row": 272
