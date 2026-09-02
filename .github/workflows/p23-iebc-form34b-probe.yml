@@ -19,4 +19,4 @@ jobs:
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
 
-# Trigger marker: probe script is present on main.
+# Trigger marker: presidential form-type mapping probe.
