@@ -134,7 +134,11 @@
     if(name==='indicator')renderIndicatorRanking(d);if(name==='gaps')renderGaps(d);if(name==='evidence')renderEvidence(d);
   }
   function bind(d){
-    $('#ri-tabs').onclick=e=>{const b=e.target.closest('[data-ri-tab]');if(b)activate(b.dataset.riTab,d);};
+    const tabs=$('#ri-tabs');
+    if(tabs&&tabs.dataset.riBound!=='true'){
+      tabs.dataset.riBound='true';
+      $$('[data-ri-tab]',tabs).forEach(button=>button.addEventListener('click',()=>activate(button.dataset.riTab,d)));
+    }
     $('#ri-indicator-select').onchange=()=>renderIndicatorRanking(d);$('#ri-indicator-search').oninput=()=>renderIndicatorRanking(d);
     $('#ri-gap-county').onchange=()=>renderGaps(d);$('#ri-evidence-county').onchange=()=>renderEvidence(d);
   }
