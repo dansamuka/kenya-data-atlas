@@ -23,7 +23,13 @@ assert(geos.length===290,'canonical constituency registry must contain 290 rows'
 const countyByCode=new Map(counties.map(g=>[g.geo_code,g.name]));
 const expectedCounty=r=>countyByCode.get(String(r.geo_code).match(/^KEN-C\d{3}/)?.[0]||'')||'';
 const canonical=new Map();for(const g of geos){const k=norm(g.name);assert(k&&!canonical.has(k),`canonical normalized name collision: ${g.name}`);canonical.set(k,g);}
-const aliases=new Map([['CHUKAIGAMBANGOMBE','CHUKAIGAMBANGOMBE'],['KILIFINORTH','KILIFINORTH'],['KILIFISOUTH','KILIFISOUTH'],['KITUTUCHACHENORTH','KITUTUCHACHENORTH'],['KITUTUCHACHESOUTH','KITUTUCHACHESOUTH'],['HOMABAYTOWN','HOMABAYTOWN'],['OLJOROOROK','OLJOROOROK'],['MTELGON','MTELGON']]);
+const aliases=new Map([
+  ['CHUKAIGAMBANGOMBE','CHUKAIGAMBANGOM'],
+  ['SUBANORTH','MBITA'],
+  ['SUBASOUTH','SUBA'],
+  ['KAMKUNJI','KAMUKUNJI'],
+  ['KILIFINORTH','KILIFINORTH'],['KILIFISOUTH','KILIFISOUTH'],['KITUTUCHACHENORTH','KITUTUCHACHENORTH'],['KITUTUCHACHESOUTH','KITUTUCHACHESOUTH'],['HOMABAYTOWN','HOMABAYTOWN'],['OLJOROOROK','OLJOROOROK'],['MTELGON','MTELGON']
+]);
 const matchKey=s=>aliases.get(norm(s))||norm(s);
 const roleMap=new Map((roleEvidence.evidence||[]).map(e=>[`${norm(e.target_constituency)}|${personNorm(e.member_name)}`,e]));
 const seatRole=r=>roleMap.get(`${norm(r.constituency)}|${personNorm(r.member_name)}`)||null;
@@ -62,17 +68,17 @@ const quality=r=>100*Number(explicitElected(r))+20*Number(countyMatches(r))+5*Nu
 
 const found=[];let emptyPages=0;
 for(let page=0;page<60;page++){
-  const url=`${SOURCE}?field_employment_history_value=&field_name_value=&field_parliament_value=2022&page=${page}`;
+  const url=`${SOURCE}?field_employment_history_value=&field_name_value=+&field_parliament_value=2022&order=field_constituency&page=${page}&sort=asc`;
   const res=await fetch(url,{headers:{'User-Agent':UA,'Accept':'text/html'}});assert(res.ok,`official roster page ${page} fetch failed (${res.status})`);
   const html=await res.text(),h=tableHeaders(html),trs=[...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m=>m[1]);let n=0;
   for(const tr of trs){
     const f=rowFields(tr,h);if(!f)continue;const geo=canonical.get(matchKey(f.constituency));if(!geo)continue;
     if(/^NOMINATED$/i.test(f.status||''))continue;
     assert(f.member,`matched ${f.constituency} but member name missing; cells=${f.raw.join(' | ')}`);
-    const r={geo_code:geo.geo_code,constituency_code:Number(geo.constituency_code),constituency:geo.name,published_county:f.county,published_constituency:f.constituency,member_name:f.member,party:f.party,party_source_status:f.party?'published':'source_blank',status:f.status,status_source_state:f.status?'published':'source_blank',source_page:url,profile_url:f.profile_url};
+    const r={geo_code:geo.geo_code,constituency_code:Number(geo.constituency_code),constituency:geo.name,published_county:f.county,published_constituency:f.constituency,member_name:f.member,party:f.party,party_source_status:f.party?'published':'source_blank',status:f.status,status_source_state:f.status?'published':'source_blank',source_page:url,profile_url:f.profile_url,geography_crosswalk:matchKey(f.constituency)!==norm(f.constituency)?`${f.constituency} -> ${geo.name}`:''};
     r.expected_county=expectedCounty(r);r.county_reconciliation=r.published_county?(countyMatches(r)?'match':'mismatch'):'source_blank';found.push(r);n++;
   }
-  if(n===0)emptyPages++;else emptyPages=0;if(page>30&&emptyPages>=3)break;
+  if(n===0)emptyPages++;else emptyPages=0;if(page>35&&emptyPages>=3)break;
 }
 const grouped=new Map();for(const r of found){if(!grouped.has(r.geo_code))grouped.set(r.geo_code,[]);const g=grouped.get(r.geo_code);if(!g.some(x=>x.member_name===r.member_name&&x.party===r.party&&x.published_county===r.published_county&&x.status===r.status))g.push(r);}
 const selected=[],collisionResolutions=[];
@@ -87,6 +93,6 @@ for(const geo of geos){
 const rows=selected.sort((a,b)=>a.constituency_code-b.constituency_code),missing=geos.filter(g=>!rows.some(r=>r.geo_code===g.geo_code)).map(g=>`${g.constituency_code}:${g.name}`);
 assert(rows.length===290,`expected 290 constituency MP identities; got ${rows.length}; missing=${missing.slice(0,30).join('|')}`);
 assert(new Set(rows.map(r=>r.constituency_code)).size===290,'duplicate constituency codes after official-source resolution');assert(rows.every(r=>r.member_name&&r.source_page),'incomplete MP identity row');
-const snapshot={schema_version:'kda.p23.constituency-mp-source.v1',source_authority:'Parliament of Kenya — National Assembly',source_url:SOURCE,parliamentary_session:'13th Parliament',source_as_of_label:'12 Aug 2026',retrieval_note:'MP identity is taken from the live official Parliament roster. Explicit Elected status is preferred when duplicate rows exist, but a blank published status is preserved rather than treated as missing because this tranche measures office-holder identity, not election-status classification. Nominated rows and rows identified by official Parliament seat-role evidence as county woman representative are excluded. Published blank party/status fields remain source_blank; no person, party or status is inferred.',coverage:{constituencies:rows.length,explicit_elected:rows.filter(explicitElected).length,status_source_blank:rows.filter(r=>!r.status).length,party_published:rows.filter(r=>r.party).length,party_source_blank:rows.filter(r=>!r.party).length,county_match:rows.filter(countyMatches).length,resolved_collisions:collisionResolutions.length},role_evidence_source:roleEvidence.source_url,collision_resolutions:collisionResolutions,rows};
+const snapshot={schema_version:'kda.p23.constituency-mp-source.v1',source_authority:'Parliament of Kenya — National Assembly',source_url:SOURCE,parliamentary_session:'13th Parliament',source_as_of_label:'12 Aug 2026',retrieval_note:'MP identity is taken from the live official Parliament roster, using the constituency-sorted 2022 session view for deterministic coverage. Explicit Elected status is preferred when duplicate rows exist, but a blank published status is preserved because this tranche measures office-holder identity. Nominated rows and official CWR-classified rows are excluded. Current Parliament labels Suba North/Suba South are crosswalked to the Atlas canonical 2012 registry labels Mbita/Suba; published labels are retained. Published blank party/status fields remain source_blank; no person, party or status is inferred.',coverage:{constituencies:rows.length,explicit_elected:rows.filter(explicitElected).length,status_source_blank:rows.filter(r=>!r.status).length,party_published:rows.filter(r=>r.party).length,party_source_blank:rows.filter(r=>!r.party).length,county_match:rows.filter(countyMatches).length,crosswalked_names:rows.filter(r=>r.geography_crosswalk).length,resolved_collisions:collisionResolutions.length},role_evidence_source:roleEvidence.source_url,collision_resolutions:collisionResolutions,rows};
 await mkdir(path.join(root,path.dirname(OUT)),{recursive:true});await writeFile(path.join(root,OUT),JSON.stringify(snapshot,null,2)+'\n');
-console.log(`P23_MP_SOURCE_OK constituencies=${rows.length} explicit_elected=${snapshot.coverage.explicit_elected} status_source_blank=${snapshot.coverage.status_source_blank} party_source_blank=${snapshot.coverage.party_source_blank}`);
+console.log(`P23_MP_SOURCE_OK constituencies=${rows.length} explicit_elected=${snapshot.coverage.explicit_elected} status_source_blank=${snapshot.coverage.status_source_blank} crosswalked=${snapshot.coverage.crosswalked_names}`);
