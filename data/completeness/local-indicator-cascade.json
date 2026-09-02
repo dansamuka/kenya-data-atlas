@@ -853,9 +853,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Basic immunisation is canonically defined from KDHS 2022 Table 10.4C for children age 12–23 months. No official current-constituency domain estimate with compatible survey weighting is published, so the county estimate cannot be inherited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -868,9 +868,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KDHS 2022 basic-immunisation estimate is not a ward-domain statistic. Downscaling the county rate without the survey design and valid ward-domain sample would create false precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1003,9 +1003,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical women age 15–49 literacy rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with compatible survey weighting and precision, so the county rate cannot be inherited or naively reweighted.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1018,9 +1018,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KDHS women age 15–49 literacy estimate is not a ward-domain statistic. Publishing or downscaling the county percentage at ward level without a valid survey-domain sample and weighting design would create unsupported local precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1213,9 +1213,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Skilled birth attendance is canonically defined from KDHS 2022 survey estimates. No official current-constituency domain estimate with compatible survey weighting is published, so county values cannot be inherited to constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1228,9 +1228,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KDHS 2022 skilled birth attendance is not published as a ward-domain estimate. Ward publication would require a valid domain sample and weighting design rather than copying the county percentage.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1543,9 +1543,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical child-stunting rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with survey precision adequate for Atlas publication, so the county rate cannot be inherited or naively reweighted.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1558,9 +1558,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KDHS child-stunting estimate is not a ward-domain statistic. Copying or downscaling the county survey percentage would create unsupported local precision and is prohibited by the cascade contract.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {

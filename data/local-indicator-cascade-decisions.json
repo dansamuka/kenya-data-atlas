@@ -266,6 +266,18 @@
       "level": "ward",
       "disposition": "governed_unavailable",
       "reason": "The KDHS 2022 basic-immunisation estimate is not a ward-domain statistic. Downscaling the county rate without the survey design and valid ward-domain sample would create false precision."
+    },
+    {
+      "indicator_code": "IND-LITERACY-RATE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical women age 15–49 literacy rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with compatible survey weighting and precision, so the county rate cannot be inherited or naively reweighted."
+    },
+    {
+      "indicator_code": "IND-LITERACY-RATE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The KDHS women age 15–49 literacy estimate is not a ward-domain statistic. Publishing or downscaling the county percentage at ward level without a valid survey-domain sample and weighting design would create unsupported local precision."
     }
   ]
 }
