@@ -1,0 +1,48 @@
+{
+  "schema_version": "kda.p23.constituency-mp-roster.v1",
+  "phase": "P23",
+  "indicator_code": "IND-MP-IDENTITY",
+  "target_level": "constituency",
+  "target_count": 290,
+  "source": {
+    "authority": "Parliament of Kenya — National Assembly",
+    "source_url": "https://www.parliament.go.ke/the-national-assembly/mps",
+    "parliamentary_session": "13th Parliament",
+    "source_as_of_label": "12 Aug 2026",
+    "source_claim": "The official National Assembly roster states that there are currently 290 members elected by registered votes and publishes member, county, constituency, party and status fields."
+  },
+  "method": {
+    "type": "direct_official_roster",
+    "snapshot_path": "data/p23/source/constituency-mps-13th-parliament.json",
+    "preparation": "Fetch the official Parliament roster pages, retain only rows whose constituency reconciles one-to-one to the canonical 290-constituency registry, then freeze the checked source rows as the release snapshot.",
+    "canonical_mapping": "Normalized constituency name plus explicit source row metadata; no county or party inference.",
+    "observation_value": "Text category containing the published member name and party.",
+    "badge": "A",
+    "geographic_method": "direct"
+  },
+  "acceptance": [
+    "Exactly 290 canonical constituencies reconcile to exactly one elected National Assembly member.",
+    "Every promoted row retains the Parliament-published member name, party, constituency and source URL.",
+    "Nominated members and county women representatives are excluded because they do not occupy a constituency MP slot.",
+    "No constituency identity is inferred from county membership or copied from a parent geography.",
+    "Duplicate, missing or ambiguous constituency matches fail the tranche.",
+    "Canonical build is deterministic from the frozen source snapshot.",
+    "Completeness improves by exactly 290 governed P23 slot instances and unknown_missing remains zero.",
+    "Full Atlas validation and P16 release audit remain green before promotion to main."
+  ],
+  "cascade_context": {
+    "remaining_before_this_tranche": 2320,
+    "remaining_slot_families_per_constituency": [
+      "IND-POPULATION on overview",
+      "IND-POPULATION on people",
+      "IND-HOUSEHOLD-SIZE on people",
+      "IND-MP-IDENTITY on representation",
+      "IND-NG-CDF-ALLOCATION on representation",
+      "IND-NG-CDF-UTILIZATION on representation",
+      "IND-TURNOUT-HISTORY on representation",
+      "IND-HEALTH-FACILITY-DENSITY on infrastructure"
+    ],
+    "population_boundary_hold": "The KNBS constituency population/household table located during this audit is the 2009 census table and predates the current 290-constituency boundary system. It must not be silently mapped to the 2012-01 constituency registry.",
+    "health_density_hold": "KMHFR supports constituency/ward facility assignment, but a density requires a defensible target-level population denominator; facility counts alone must not be presented as population density."
+  }
+}
