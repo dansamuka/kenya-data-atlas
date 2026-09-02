@@ -9,7 +9,9 @@ Two machine-readable authorities now work together without changing the historic
 
 ## Completed implementation phases
 
+<!-- P17_STATUS_START -->
 **P00–P17 are complete.** Kenya Data Atlas v1.0.0 remains the closed reproducible statistical/data release. P14 remains a separately governed v1.1 Beta action layer.
+<!-- P17_STATUS_END -->
 
 The P18–P26 programme continues independently and does not rewrite the historical P00–P17 release ledger.
 
