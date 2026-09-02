@@ -563,8 +563,8 @@
     "indicator_code": "IND-REGISTERED-VOTERS",
     "name": "Registered voters",
     "path": "data/distribution/subsets/indicators/IND-REGISTERED-VOTERS.json",
-    "series_count": 338,
-    "observation_count": 340
+    "series_count": 1778,
+    "observation_count": 1780
   },
   {
     "indicator_code": "IND-REMITTANCES-GDP",
