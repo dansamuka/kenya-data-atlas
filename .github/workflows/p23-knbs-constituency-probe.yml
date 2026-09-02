@@ -22,14 +22,23 @@ jobs:
       - name: Install workbook reader
         run: python -m pip install --disable-pip-version-check openpyxl
       - name: Download official KNBS administrative-unit workbook
+        shell: bash
         run: |
-          python - <<'PY'
-          from urllib.request import Request, urlopen
-          url='https://new.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Population-households-density-by-administrative-units.xlsx'
-          req=Request(url,headers={'User-Agent':'KenyaDataAtlas/1.0 (+https://github.com/dansamuka/kenya-data-atlas)'})
-          with urlopen(req,timeout=60) as r, open('/tmp/kphc-admin.xlsx','wb') as f:
-              f.write(r.read())
-          PY
+          set -euxo pipefail
+          urls=(
+            'https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Population-households-density-by-administrative-units.xlsx'
+            'https://new.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Population-households-density-by-administrative-units.xlsx'
+          )
+          ok=0
+          for url in "${urls[@]}"; do
+            if curl --fail --location --retry 2 --connect-timeout 20 --max-time 90 -A 'Mozilla/5.0 KenyaDataAtlas/1.0' "$url" -o /tmp/kphc-admin.xlsx; then
+              test "$(stat -c%s /tmp/kphc-admin.xlsx)" -gt 10000
+              file /tmp/kphc-admin.xlsx
+              ok=1
+              break
+            fi
+          done
+          test "$ok" = 1
       - name: Inspect workbook schema
         run: |
           python - <<'PY'
@@ -39,10 +48,12 @@ jobs:
           print('WORKBOOK_SHEETS', wb.sheetnames)
           for ws in wb.worksheets:
               print('SHEET',repr(ws.title),'ROWS',ws.max_row,'COLS',ws.max_column)
+              seen=0
               for i,row in enumerate(ws.iter_rows(values_only=True),1):
                   vals=[v for v in row if v is not None]
                   if vals:
-                      print('ROW',i,repr(vals[:20]))
-                  if i>=20:
+                      print('ROW',i,repr(vals[:24]))
+                      seen+=1
+                  if seen>=25:
                       break
           PY
