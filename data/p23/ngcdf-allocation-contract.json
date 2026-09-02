@@ -1,0 +1,61 @@
+{
+  "schema_version": "kda.p23.ngcdf-allocation.v1",
+  "phase": "P23",
+  "status": "source_ready",
+  "target_indicator_code": "IND-NGCDF-ALLOCATION",
+  "target_level": "constituency",
+  "target_constituencies": 290,
+  "target_canonical_observations": 290,
+  "target_governed_slot_instances": 290,
+  "fiscal_period": "FY2025/26",
+  "authority": {
+    "publisher": "Parliament of Kenya — National Assembly",
+    "document_title": "Report on the Proposed Budget Ceiling for Constituencies for the Financial Year 2025/2026",
+    "issued": "2025-08-06",
+    "item_url": "https://libraryir.parliament.go.ke/items/2748fccd-b60c-47df-a1ed-f39486494a07",
+    "report_url": "https://libraryir.parliament.go.ke/bitstreams/2f057dd5-e327-4ceb-9673-286079f4be1e/download",
+    "table": "Table 3 — grand allocation by number of wards per constituency",
+    "report_page": "12 of 13"
+  },
+  "derivation": {
+    "classification": "Official derived",
+    "quality_badge": "B",
+    "rule": "Count each constituency's canonical child wards in the Atlas electoral registry, then apply the exact FY2025/26 Parliament-approved budget ceiling published for that ward-count class.",
+    "prohibited": [
+      "county-to-constituency inheritance",
+      "missing-value fill",
+      "interpolation between ward-count classes",
+      "manual constituency overrides without a new official source contract"
+    ],
+    "ward_count_bands": [
+      {"wards": 3, "constituencies": 21, "allocation_kes": 173351923},
+      {"wards": 4, "constituencies": 79, "allocation_kes": 182982585},
+      {"wards": 5, "constituencies": 106, "allocation_kes": 192613248},
+      {"wards": 6, "constituencies": 54, "allocation_kes": 202243910},
+      {"wards": 7, "constituencies": 23, "allocation_kes": 211874573},
+      {"wards": 8, "constituencies": 7, "allocation_kes": 221505235}
+    ],
+    "required_registry_distribution": {
+      "3": 21,
+      "4": 79,
+      "5": 106,
+      "6": 54,
+      "7": 23,
+      "8": 7
+    }
+  },
+  "acceptance": [
+    "Canonical registry contains exactly 290 constituencies and 1,450 wards.",
+    "Every ward has exactly one canonical constituency parent for this derivation.",
+    "The canonical constituency ward-count distribution exactly matches Parliament Table 3: 21/79/106/54/23/7 for 3–8 wards.",
+    "Exactly 290 FY2025/26 allocation observations are generated.",
+    "All observations are marked derived from an official formula and carry badge B, not direct badge A.",
+    "No county value is inherited or manufactured."
+  ],
+  "intended_post_promotion": {
+    "resolved_slots": 5324,
+    "unresolved_slots": 14791,
+    "p23_remaining_slots": 1740,
+    "unknown_missing": 0
+  }
+}
