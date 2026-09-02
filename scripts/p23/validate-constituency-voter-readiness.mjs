@@ -16,15 +16,17 @@ assert(contract.indicator_code==='IND-REGISTERED-VOTERS','wrong first-tranche in
 assert(contract.target_geography_count===290&&contract.target_observation_count===290,'target must remain 290 canonical observations');
 assert(contract.expected_existing_p23_slot_instances===870,'target must remain 870 existing P23 slot instances');
 assert(summary.total_slots===20115,'governed denominator changed');
+assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'live completeness arithmetic changed');
 
 const promoted=contract.status==='promoted_complete';
 if(promoted){
   assert(contract.completion?.p23_slot_instances_resolved===870,'promoted completion must record 870 resolved slot instances');
   assert(contract.completion?.post_promotion_p23_remaining===2320,'promoted completion must record 2,320 remaining P23 slots');
-  assert((summary.by_completion_phase?.P23||0)===contract.completion.post_promotion_p23_remaining,'live P23 queue does not match promoted completion contract');
-  assert(summary.resolved_slots===contract.completion.post_promotion_resolved_slots,'live resolved-slot total does not match promoted completion contract');
-  assert(summary.unresolved_slots===contract.completion.post_promotion_unresolved_slots,'live unresolved-slot total does not match promoted completion contract');
-  assert(summary.unknown_missing===contract.completion.post_promotion_unknown_missing,'live unknown-missing total does not match promoted completion contract');
+  // The completion block is a historical checkpoint for the voter tranche, not a freeze on later P23 progress.
+  assert((summary.by_completion_phase?.P23||0)<=contract.completion.post_promotion_p23_remaining,'live P23 queue regressed above voter-promotion checkpoint');
+  assert(summary.resolved_slots>=contract.completion.post_promotion_resolved_slots,'live resolved slots regressed below voter-promotion checkpoint');
+  assert(summary.unresolved_slots<=contract.completion.post_promotion_unresolved_slots,'live unresolved slots regressed above voter-promotion checkpoint');
+  assert(summary.unknown_missing===contract.completion.post_promotion_unknown_missing,'live unknown-missing state regressed');
 }else{
   assert((summary.by_completion_phase?.P23||0)===3190,'P23 queue changed before first P23 promotion');
 }
@@ -43,8 +45,8 @@ for(let code=1;code<=290;code++)assert(byCode.has(code),`canonical constituency 
 const targetSlots=ledger.rows.filter(r=>r.level==='constituency'&&r.indicator_code==='IND-REGISTERED-VOTERS');
 assert(targetSlots.length===870,`expected 870 constituency voter slot instances, found ${targetSlots.length}`);
 if(promoted){
-  assert(targetSlots.every(r=>r.completion_phase==='complete'),'promoted voter slot instances must be reclassified to complete');
-  assert(targetSlots.every(r=>r.resolved===true),'promoted contract requires every target slot instance to be resolved');
+  assert(targetSlots.every(r=>r.completion_phase==='complete'),'promoted voter slot instances must remain reclassified to complete');
+  assert(targetSlots.every(r=>r.resolved===true),'promoted contract requires every target slot instance to remain resolved');
 }else{
   assert(targetSlots.every(r=>r.completion_phase==='P23'),'pre-promotion voter slot instances must remain assigned to P23');
   assert(targetSlots.every(r=>r.resolved===false),'readiness contract must precede native promotion; a target slot instance is already resolved');
@@ -98,6 +100,6 @@ if(promoted){
   assert(contract.scope_note.includes('does not itself resolve a slot instance'),'readiness tranche must not claim completion');
 }
 
-console.log(`P23_VOTER_READINESS_OK state=${promoted?'promoted_complete':'pre_promotion'} source_wards=${rows.length} constituencies=${totals.size} target_observations=${contract.target_observation_count} target_slot_instances=${targetSlots.length}`);
+console.log(`P23_VOTER_READINESS_OK state=${promoted?'promoted_complete':'pre_promotion'} source_wards=${rows.length} constituencies=${totals.size} target_observations=${contract.target_observation_count} target_slot_instances=${targetSlots.length} live_p23=${summary.by_completion_phase?.P23||0}`);
 console.log(`P23_VOTER_SOURCE_TOTAL_OK total=${contract.deterministic_extraction.national_domestic_total}`);
 console.log('P23_VOTER_ANTI_INHERITANCE_OK');
