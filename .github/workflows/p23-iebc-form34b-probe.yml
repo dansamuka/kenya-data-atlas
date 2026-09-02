@@ -8,6 +8,7 @@ on:
     paths:
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-pages.sh
+      - scripts/p23/probe-iebc-form34b-manifest.sh
       - .github/workflows/p23-iebc-form34b-probe.yml
   workflow_dispatch:
 
@@ -17,12 +18,21 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
       - name: Resolve Form 34B result-grid pagination
         run: bash scripts/p23/probe-iebc-form34b-pages.sh
+      - name: Build official Form 34B source manifest
+        run: bash scripts/p23/probe-iebc-form34b-manifest.sh
+      - name: Retain source manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-manifest
+          path: /tmp/p23-form34b-manifest.json
+          if-no-files-found: error
+          retention-days: 7
 
 # Feature-branch trigger is intentionally scoped to P23 source discovery.
