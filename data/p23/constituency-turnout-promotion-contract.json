@@ -1,0 +1,61 @@
+{
+  "schema_version": "kda.p23.constituency-turnout-promotion.v1",
+  "contract_id": "P23-CONSTITUENCY-TURNOUT-2022",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "reference_date": "2022-08-09",
+  "formula": "100 * (candidate_sum_valid_votes + rejected_ballots) / official_registered_voters",
+  "source_transcription": {
+    "item_id": "9c12cc5d3d244a8bad34bce09a28540b",
+    "title": "Constituency Level Results for Kenya Presidential Election 2022 - Public Tally",
+    "owner": "MapsBySifa",
+    "item_url": "https://www.arcgis.com/home/item.html?id=9c12cc5d3d244a8bad34bce09a28540b",
+    "feature_layer_url": "https://services8.arcgis.com/oTalEaSXAuyNT7xf/arcgis/rest/services/Constituency_Results_gdb/FeatureServer/0",
+    "item_modified_epoch_ms": 1661425454000,
+    "normalized_rows_sha256": "5db012a3e8ad3a2dc6abd06d96ff0a12e47ec6ad6c5806f1bf3d556aff9efd7d",
+    "role": "Secondary public transcription of constituency-level IEBC Form 34B totals. It is never authoritative over the official IEBC registered-voter schedule or a directly inspected Form 34B."
+  },
+  "official_registered_voter_source": {
+    "pinned_extraction_url": "https://raw.githubusercontent.com/samy-migwi/kenya_2022_voters_dashboard_app/29b269a6562262a77faf6d22ba5837f46d35df75/data/voters.csv",
+    "official_document_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf",
+    "expected_ward_rows": 1450,
+    "expected_constituencies": 290,
+    "expected_national_registered_voters": 22102532
+  },
+  "official_form_portal": {
+    "url": "https://forms.iebc.or.ke/",
+    "expected_reported_form34b_units": 291,
+    "expected_domestic_constituencies": 290,
+    "excluded_reporting_unit": "DIASPORA"
+  },
+  "geography_attachment": {
+    "method": "Exact normalized constituency-name attachment to the canonical registry; no fuzzy matching and no parent inheritance.",
+    "explicit_aliases": {
+      "CHUKA IGAMBANG OMBE": "CHUKA IGAMBANG OM",
+      "SUBA NORTH": "MBITA",
+      "SUBA SOUTH": "SUBA"
+    },
+    "source_boundary_pcode_authoritative": false
+  },
+  "publication_gate": {
+    "required_source_rows": 290,
+    "required_publishable_rows": 250,
+    "required_direct_form34b_holds": 40,
+    "requirements": [
+      "Source row maps uniquely to one canonical constituency by exact normalized name or an enumerated alias.",
+      "Source registered-voter value equals the official IEBC constituency total aggregated from the official ward schedule.",
+      "The sum of the four presidential candidate vote fields equals the transcription's IEBC total valid-vote field.",
+      "Valid votes plus rejected ballots do not exceed official registered voters.",
+      "No source boundary pcode, county total, parent value, fuzzy match, interpolation or model is substituted for constituency evidence."
+    ],
+    "published_source_class": "external",
+    "published_statistical_status": "provisional",
+    "published_badge": "E"
+  },
+  "direct_form34b_hold_constituency_codes": [
+    11, 27, 31, 32, 49, 55, 58, 59, 67, 74, 77, 86, 109, 113, 132, 144, 147, 158, 159, 164,
+    167, 175, 178, 187, 189, 209, 210, 211, 220, 232, 247, 251, 256, 258, 261, 268, 269, 278, 285, 286
+  ],
+  "hold_policy": "A held constituency receives no turnout series or observation until its direct official Form 34B resolves the discrepancy. Holds remain P23 unresolved and are not converted to an official-unavailable closure.",
+  "no_parent_inheritance": true,
+  "no_fuzzy_geography_matching": true
+}
