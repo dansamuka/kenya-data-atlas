@@ -268,5 +268,23 @@
     "assessment_status": "approved_with_conditions",
     "assessment_note": "Categorical audit opinions may be published only where the official appendix supplies an exact county mapping.",
     "active": true
+  },
+  {
+    "source_id": "8d9e1985-5fab-515b-9119-1e1d051f63b0",
+    "source_code": "PARLIAMENT-NA-MEMBERS",
+    "agency_id": "0c63c407-e77e-5279-8253-2ef6358929ee",
+    "name": "National Assembly Members roster",
+    "source_type": "official_registry",
+    "landing_page_url": "https://www.parliament.go.ke/the-national-assembly/mps",
+    "expected_cadence": "irregular",
+    "source_priority": "critical",
+    "access_method": "web_registry",
+    "reuse_status": "public_official_registry",
+    "licence_name": null,
+    "licence_url": null,
+    "attribution_text": "Source: Parliament of Kenya — National Assembly",
+    "assessment_status": "approved_with_conditions",
+    "assessment_note": "Use only constituency-elected member rows that reconcile one-to-one to the canonical constituency registry; preserve roster as-of date.",
+    "active": true
   }
 ]

@@ -163,5 +163,16 @@
     "jurisdiction": "Kenya",
     "description": "Kenya’s supreme public-sector audit institution and publisher of county-government audit opinions.",
     "active": true
+  },
+  {
+    "agency_id": "0c63c407-e77e-5279-8253-2ef6358929ee",
+    "agency_code": "PARLIAMENT-KE",
+    "name": "Parliament of Kenya",
+    "abbreviation": "Parliament",
+    "agency_type": "legislature",
+    "official_url": "https://www.parliament.go.ke/",
+    "jurisdiction": "Kenya",
+    "description": "Official Parliament of Kenya publisher for National Assembly membership and proceedings.",
+    "active": true
   }
 ]

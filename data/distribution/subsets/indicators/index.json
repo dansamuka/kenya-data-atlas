@@ -465,8 +465,8 @@
     "indicator_code": "IND-MP-IDENTITY",
     "name": "Member of Parliament (name, party)",
     "path": "data/distribution/subsets/indicators/IND-MP-IDENTITY.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 290,
+    "observation_count": 290
   },
   {
     "indicator_code": "IND-NET-MIGRATION",

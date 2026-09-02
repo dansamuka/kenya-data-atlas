@@ -846,5 +846,21 @@
     "version_label": "P23 constituency promotion",
     "release_notes": "Second Schedule cross-check; published values use the audited Sprint 2 B — Official derived treatment from exact official child-ward sums.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "6dda7eba-3359-55d9-9e71-fc99c5bac919",
+    "release_code": "REL-PARLIAMENT-CONSTITUENCY-MPS-2026-08-12-P23",
+    "dataset_id": "7ed657cc-d96d-5c2b-88c5-26324007e808",
+    "title": "National Assembly members — 13th Parliament, source roster as at 12 Aug 2026",
+    "reference_period_start": "2026-08-12",
+    "reference_period_end": "2026-08-12",
+    "published_at": "2026-08-12",
+    "discovered_at": "2026-09-02T05:45:00.000Z",
+    "ingested_at": "2026-09-02T05:45:00.000Z",
+    "release_url": "https://www.parliament.go.ke/the-national-assembly/mps",
+    "release_status": "published",
+    "version_label": "P23 constituency MP roster",
+    "release_notes": "Official Parliament roster reconciled exactly 290/290 to the canonical constituency registry. Member name and party remain categorical text; no inferred party or parent-geography identity.",
+    "supersedes_release_id": ""
   }
 ]

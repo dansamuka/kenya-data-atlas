@@ -2363,7 +2363,7 @@
     {
       "indicator_id": "a181ac44-f24a-58c2-9434-6742d19c8b44",
       "name": "Member of Parliament (name, party)",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-MP-IDENTITY",
       "domain": "governance",
@@ -2375,25 +2375,25 @@
         "eligible": false
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "positional_only",
         "higher_is_better": null,
         "requires_sampling_uncertainty": false,
-        "static_reason_not_allowed": null
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
         "required_for_ranking": false
       },
       "trend": {
-        "allowed": true,
+        "allowed": false,
         "rule": "At least two numeric observations are required; directional wording uses the canonical direction rule and matched comparisons require comparable periods.",
-        "static_reason_not_allowed": null
+        "static_reason_not_allowed": "Indicator is categorical or not marked comparable."
       },
       "inheritance": {
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "67c7b4f9-2c17-57a5-8e3b-6d5618f27ba6",
@@ -53323,6 +53323,3486 @@
       "cross_level_comparison": {
         "eligible": true,
         "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "28226583-6c1a-5ed4-8691-a591cf7dc84c",
+      "series_code": "KDA-P23-MP-001",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1c52887f-da5e-59e6-b22a-39e9d8ef7cd8",
+      "series_code": "KDA-P23-MP-002",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4a0a73a6-412b-5a1c-b394-4e290837d690",
+      "series_code": "KDA-P23-MP-003",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f480d20b-1bf4-5f84-b7e4-2de6769db097",
+      "series_code": "KDA-P23-MP-004",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f55848c0-b4fd-5517-a1d6-343c4b7ce976",
+      "series_code": "KDA-P23-MP-005",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0361c61f-de1e-5e2f-ac1d-5668223e1bd2",
+      "series_code": "KDA-P23-MP-006",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8b6a51d9-7993-55a4-abfb-1d9be4f29949",
+      "series_code": "KDA-P23-MP-007",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7c9281bd-f810-51b1-85e9-9e4659b38ae5",
+      "series_code": "KDA-P23-MP-008",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0b8b1538-87cd-5abc-a23d-31747180dc3f",
+      "series_code": "KDA-P23-MP-009",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6ce2ea8a-e18a-5e35-9260-234cf283fd26",
+      "series_code": "KDA-P23-MP-010",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a38f9975-7338-531d-a6d8-6a7aba771046",
+      "series_code": "KDA-P23-MP-011",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dfb465c3-9c95-556d-a43c-940d84f35b8a",
+      "series_code": "KDA-P23-MP-012",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f819c36c-32d4-5db4-bbe4-3128fba8cab0",
+      "series_code": "KDA-P23-MP-013",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9af2b799-4e22-5204-bddd-d6382e777386",
+      "series_code": "KDA-P23-MP-014",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fa16fe40-561a-5cf4-9ce2-dca64e6393e3",
+      "series_code": "KDA-P23-MP-015",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "532da608-2325-5d71-a8ee-fe5b7965be1f",
+      "series_code": "KDA-P23-MP-016",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2e113d33-aae1-5b07-bd58-689abd145474",
+      "series_code": "KDA-P23-MP-017",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "08362a30-05c4-5c1f-8fd9-0a221f0410c7",
+      "series_code": "KDA-P23-MP-018",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3911b4a5-bda5-560b-b369-cabeebc46f88",
+      "series_code": "KDA-P23-MP-019",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ebdf2e50-ec99-5bdd-be79-1728e7ddbd52",
+      "series_code": "KDA-P23-MP-020",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b321ad00-4e69-5324-b317-12021da7792e",
+      "series_code": "KDA-P23-MP-021",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f1344684-e779-5e6a-8445-367d2b105b99",
+      "series_code": "KDA-P23-MP-022",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2a70f4c2-ee61-58d9-9898-200e3a9fdac7",
+      "series_code": "KDA-P23-MP-023",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "21f55edd-297f-5698-864a-05ee95cdcd0e",
+      "series_code": "KDA-P23-MP-024",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ce9eddb7-a984-5b52-92ff-9aef578481d8",
+      "series_code": "KDA-P23-MP-025",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ef119d1c-dc62-5b69-a406-e3c44e4212d9",
+      "series_code": "KDA-P23-MP-026",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1ee091d2-a57c-56ad-bccb-98560d50166e",
+      "series_code": "KDA-P23-MP-027",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "64502d35-f17c-5e9f-b87d-136c60f8b9d8",
+      "series_code": "KDA-P23-MP-028",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b1da80bf-2279-54d6-bb38-1be20300b4d7",
+      "series_code": "KDA-P23-MP-029",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0a229390-c3ff-544c-a7b1-6d6035b35d0d",
+      "series_code": "KDA-P23-MP-030",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e7aa3d05-b88f-5c2b-9e4c-3b1fd1ed01ec",
+      "series_code": "KDA-P23-MP-031",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9364b689-eedf-5ecc-93a5-7990da26e6a4",
+      "series_code": "KDA-P23-MP-032",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "efa9ad0b-e44b-561f-a89d-b8cc7d3f2ca1",
+      "series_code": "KDA-P23-MP-033",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fc3bb33d-932a-5521-9065-8c51cc5acc98",
+      "series_code": "KDA-P23-MP-034",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d2f7f217-fee9-573b-bf2c-795e1c40f039",
+      "series_code": "KDA-P23-MP-035",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "cd19dcc1-154d-5bff-9521-621c93841c2d",
+      "series_code": "KDA-P23-MP-036",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "38f3cb8f-0eec-5e50-b908-c8c6b67b87bd",
+      "series_code": "KDA-P23-MP-037",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dc98ac76-dfca-55ec-b941-3f235f11c7d0",
+      "series_code": "KDA-P23-MP-038",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "85db80ab-c6ac-557c-b948-92ee92d5fb75",
+      "series_code": "KDA-P23-MP-039",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fd4263c7-c840-5210-96ac-6120401ebeb3",
+      "series_code": "KDA-P23-MP-040",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "707a4170-7736-5ed5-8a4c-ac96fa8374df",
+      "series_code": "KDA-P23-MP-041",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "327cbf6e-a6a2-59d4-a514-6c3047438025",
+      "series_code": "KDA-P23-MP-042",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "64eafdaa-1919-57dc-a27c-d7323d707ab1",
+      "series_code": "KDA-P23-MP-043",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bed6066c-d86f-519c-8f96-87a8501a625c",
+      "series_code": "KDA-P23-MP-044",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bb520ec3-af92-5c40-9a5b-1d03c0a292f5",
+      "series_code": "KDA-P23-MP-045",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a2e890b0-e871-5a20-8806-4ad9b1ff4105",
+      "series_code": "KDA-P23-MP-046",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e02588cf-42de-5a84-94aa-d82bfba5b870",
+      "series_code": "KDA-P23-MP-047",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2281bafc-40a4-5e24-b93e-bb0804b81fe3",
+      "series_code": "KDA-P23-MP-048",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "63365345-f817-564e-963a-209a16f11b4b",
+      "series_code": "KDA-P23-MP-049",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6264099f-2336-5a29-906c-7dce87ddfd7d",
+      "series_code": "KDA-P23-MP-050",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b9a2d6cd-06d0-5e56-9a64-f0785be4ab35",
+      "series_code": "KDA-P23-MP-051",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9980c3c5-085e-5110-98e4-05cfc89ae126",
+      "series_code": "KDA-P23-MP-052",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "78a5a369-3619-5af9-b497-f8cf5163ba06",
+      "series_code": "KDA-P23-MP-053",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "34cb20ab-8873-5bc5-898a-4673da1770ed",
+      "series_code": "KDA-P23-MP-054",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "881eae41-583b-580a-8c95-ef1d3d6a6917",
+      "series_code": "KDA-P23-MP-055",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fc6e900f-fad2-555c-8e81-e6de39f0b207",
+      "series_code": "KDA-P23-MP-056",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "be174f52-bfd0-5d56-a937-4c4c93eded63",
+      "series_code": "KDA-P23-MP-057",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1b32fdd5-7557-5939-a7a7-10d2e9cd9fcb",
+      "series_code": "KDA-P23-MP-058",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6437d2b8-ca5f-57c4-97ac-be9559f66e25",
+      "series_code": "KDA-P23-MP-059",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "77ed2eb7-70b2-5a61-af28-ae520ffc9b10",
+      "series_code": "KDA-P23-MP-060",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0568a4f6-6b8c-5cb0-b5a4-a5d7d906d37a",
+      "series_code": "KDA-P23-MP-061",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6b4e151e-b2d3-54e1-b1da-4b821000c879",
+      "series_code": "KDA-P23-MP-062",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0d4ef87f-4d1b-5a56-a436-8771a5648578",
+      "series_code": "KDA-P23-MP-063",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "eab99ac4-a017-5881-9bdf-acf6048503a0",
+      "series_code": "KDA-P23-MP-064",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d9221998-06f1-5f9c-9828-e201a5ed50ab",
+      "series_code": "KDA-P23-MP-065",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1209f8a2-bbc4-5101-93ee-323bb8221514",
+      "series_code": "KDA-P23-MP-066",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1f475fc6-d819-5189-8e80-90709b46c74c",
+      "series_code": "KDA-P23-MP-067",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "09482a06-6517-506f-8427-cb905a3f65e3",
+      "series_code": "KDA-P23-MP-068",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3159ff2f-be07-5222-bc3f-a2a3e872a6fb",
+      "series_code": "KDA-P23-MP-069",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d01759e1-b2ba-593c-a511-f01ed5e33081",
+      "series_code": "KDA-P23-MP-070",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b76fa486-500a-552c-8ba8-07cf81c5ddb6",
+      "series_code": "KDA-P23-MP-071",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3040abe1-bea4-5fe2-9a24-61d4fbf40422",
+      "series_code": "KDA-P23-MP-072",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b9e4fe77-0806-5353-bf19-5f2a6a20972f",
+      "series_code": "KDA-P23-MP-073",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a2cd9cc9-dead-5684-8a46-60e9a5a00e56",
+      "series_code": "KDA-P23-MP-074",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4d376da6-18e2-57e8-9733-6ced627a5b31",
+      "series_code": "KDA-P23-MP-075",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dd5be2ab-f081-563d-8656-ba9d4070eebc",
+      "series_code": "KDA-P23-MP-076",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "88bbfded-1fbc-5120-be0e-3b6197c14e84",
+      "series_code": "KDA-P23-MP-077",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "21986abf-8790-52a8-a824-5af729eb2ce5",
+      "series_code": "KDA-P23-MP-078",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d4319c8a-a25e-51f8-afdb-edb04b963e0c",
+      "series_code": "KDA-P23-MP-079",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b2b1f2fe-1110-5602-bbcc-2ef8055073c0",
+      "series_code": "KDA-P23-MP-080",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1b21d4cd-a769-51b9-810e-0219130dd9a7",
+      "series_code": "KDA-P23-MP-081",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "acb3f3ba-9d11-5f53-a4a3-5241da99f3e9",
+      "series_code": "KDA-P23-MP-082",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "93b31ade-1ddd-5735-8b00-2a6c0535f5c4",
+      "series_code": "KDA-P23-MP-083",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "228b5017-4ed5-5fea-b4f7-c58caa1c3137",
+      "series_code": "KDA-P23-MP-084",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c4e7ba93-4a69-56db-9e29-13e06b323373",
+      "series_code": "KDA-P23-MP-085",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "28af777e-1f34-5876-9da7-1ffa244fa264",
+      "series_code": "KDA-P23-MP-086",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4f5971e8-311b-5591-a8cb-767abade93b9",
+      "series_code": "KDA-P23-MP-087",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5b8b1282-16d8-58fa-9fd7-616266dfc085",
+      "series_code": "KDA-P23-MP-088",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ec7d8eec-efc5-556e-a708-158fe2d276fd",
+      "series_code": "KDA-P23-MP-089",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f9566253-e909-5401-92ff-ac329562a4ff",
+      "series_code": "KDA-P23-MP-090",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "39d11b54-736b-537c-a400-60241e93e152",
+      "series_code": "KDA-P23-MP-091",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b30c4722-1aa4-50e5-96d3-19ca037f03a7",
+      "series_code": "KDA-P23-MP-092",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e7f8c96b-73de-59fe-be01-46d252319f0a",
+      "series_code": "KDA-P23-MP-093",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a9cbab5c-9b47-576f-a7b2-44f37c92195d",
+      "series_code": "KDA-P23-MP-094",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7743bf91-e22b-5521-8442-e0e4c0e274b3",
+      "series_code": "KDA-P23-MP-095",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "62e38826-b509-5775-84fd-646732573b0b",
+      "series_code": "KDA-P23-MP-096",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9d6e25b8-9812-5e87-97be-9dd7b27bd4a7",
+      "series_code": "KDA-P23-MP-097",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8f9cf1c3-c4a5-5a30-a8fa-46c6ae834841",
+      "series_code": "KDA-P23-MP-098",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d8c29aeb-d1b6-58b3-a6e1-32de0d103e82",
+      "series_code": "KDA-P23-MP-099",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "11aeb252-a959-5559-a97e-7cea03a1e150",
+      "series_code": "KDA-P23-MP-100",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bb579f84-acfb-5bbe-b1eb-8bf624bf63eb",
+      "series_code": "KDA-P23-MP-101",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "001b057c-d495-59ea-968d-24272faa171a",
+      "series_code": "KDA-P23-MP-102",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6d9a2cb3-3d25-5e44-80c4-d92d7fa37e3d",
+      "series_code": "KDA-P23-MP-103",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "192d8f0b-9e20-5ca0-878a-2fdf036c5498",
+      "series_code": "KDA-P23-MP-104",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5796bf5d-0c5b-5ae4-8f1a-d066aa6229ec",
+      "series_code": "KDA-P23-MP-105",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ae8b24ed-527b-56f1-8a0c-68a380d10135",
+      "series_code": "KDA-P23-MP-106",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "de60e3c9-1bfb-5f68-a500-f16bf4ecb210",
+      "series_code": "KDA-P23-MP-107",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e1e5eba4-e766-5997-bba9-ff8c52a44a69",
+      "series_code": "KDA-P23-MP-108",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8ec29d5d-2691-5432-ada2-d815a4972093",
+      "series_code": "KDA-P23-MP-109",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f3f593b9-2036-5ba0-ba58-e50bc8832891",
+      "series_code": "KDA-P23-MP-110",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "640a2afa-a539-5b65-bf57-fd1113417db3",
+      "series_code": "KDA-P23-MP-111",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6c29e7a1-d33f-52d9-b0e2-f346b9682ce1",
+      "series_code": "KDA-P23-MP-112",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3c502bc9-c3d3-5275-8ce9-3b963d292391",
+      "series_code": "KDA-P23-MP-113",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "38d48e7e-0746-55c4-a4c0-72ab1187c181",
+      "series_code": "KDA-P23-MP-114",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b576dc82-1622-56dd-9fea-35f374998d7d",
+      "series_code": "KDA-P23-MP-115",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "16d6c80d-d405-5cab-b954-2028c1b78d91",
+      "series_code": "KDA-P23-MP-116",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "49c1bfd2-fba9-5c08-99c7-151b67058364",
+      "series_code": "KDA-P23-MP-117",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f10a603f-06e0-5f17-b741-9d1d9ccd195f",
+      "series_code": "KDA-P23-MP-118",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2df8c5d6-12cf-5391-b6ea-67a370210245",
+      "series_code": "KDA-P23-MP-119",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9b5631ee-fe85-5fe1-a058-ebc2ecb1f397",
+      "series_code": "KDA-P23-MP-120",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b61e53cf-98c0-57f2-b5fd-32566faf9a3f",
+      "series_code": "KDA-P23-MP-121",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6659f828-036c-527b-b635-dec12e0a4856",
+      "series_code": "KDA-P23-MP-122",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bd8383f7-edb7-54bf-9ce8-147a949f000b",
+      "series_code": "KDA-P23-MP-123",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8fb4d3f2-95a3-5264-82c1-499e82947716",
+      "series_code": "KDA-P23-MP-124",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f89ad1f7-a47b-560f-9f57-ab4757931ac2",
+      "series_code": "KDA-P23-MP-125",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8b46a81c-01f5-553d-aedf-9dfa20db86ac",
+      "series_code": "KDA-P23-MP-126",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ac8e6e91-2bc9-5484-bb74-3e842f7f6a51",
+      "series_code": "KDA-P23-MP-127",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "11875b7b-b825-5468-8b09-da8a781c29e6",
+      "series_code": "KDA-P23-MP-128",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b10e29f8-293d-57a9-9bf2-7f7d316e57d6",
+      "series_code": "KDA-P23-MP-129",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "210383e4-6916-5dac-9768-ea5bde4ce383",
+      "series_code": "KDA-P23-MP-130",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fc7f954e-ca9f-56d3-82e0-ef4b31787df7",
+      "series_code": "KDA-P23-MP-131",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3ed5cd52-365c-5f6b-892c-d17c3aca090b",
+      "series_code": "KDA-P23-MP-132",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "31277d43-40d5-5f02-93e1-53a53034b42e",
+      "series_code": "KDA-P23-MP-133",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "422d1a39-61d1-5366-88ba-869d5fdba111",
+      "series_code": "KDA-P23-MP-134",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8f89c0fa-7c7f-522b-8616-062e9c923d1e",
+      "series_code": "KDA-P23-MP-135",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "139631b4-9604-517f-9176-2d39c916f4b7",
+      "series_code": "KDA-P23-MP-136",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2c91029a-139c-57d2-a78e-a1922c67152e",
+      "series_code": "KDA-P23-MP-137",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "15de7d6f-fa38-5f1f-b79e-335789ca2b24",
+      "series_code": "KDA-P23-MP-138",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "62896152-7c23-5567-a2a9-ac8327709420",
+      "series_code": "KDA-P23-MP-139",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f2fbaa68-7a35-50b1-8761-79c314810ef2",
+      "series_code": "KDA-P23-MP-140",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "149bd4ff-fcc7-581f-b2fe-a89be1160297",
+      "series_code": "KDA-P23-MP-141",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1d8ceb3d-0b79-5b04-a8c4-98fa15af9288",
+      "series_code": "KDA-P23-MP-142",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fa9eb4ad-6626-5661-9a73-5da8af9758be",
+      "series_code": "KDA-P23-MP-143",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e4137ee3-01e7-53a1-bab3-2101e553244a",
+      "series_code": "KDA-P23-MP-144",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a37894ab-d0f8-5d24-8c56-14ccad8f0616",
+      "series_code": "KDA-P23-MP-145",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d7bb3cec-f594-57cd-9c0a-add2c5a52dfe",
+      "series_code": "KDA-P23-MP-146",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "93e15351-82fd-5c89-b33e-7e8f9606633a",
+      "series_code": "KDA-P23-MP-147",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "de154ce5-bd28-57cb-8ffb-fc003320c37b",
+      "series_code": "KDA-P23-MP-148",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3b1978fd-bd28-5636-9717-0340e7fe4563",
+      "series_code": "KDA-P23-MP-149",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d997e7bf-0e65-54e6-b5a9-eb20f177cf93",
+      "series_code": "KDA-P23-MP-150",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "86677a34-8c2d-50d3-b43a-1fa969e7b62d",
+      "series_code": "KDA-P23-MP-151",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "94c98705-5561-5e10-bea7-900c95931681",
+      "series_code": "KDA-P23-MP-152",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4cb8a785-2a7a-597b-ab31-9ca78b1f613a",
+      "series_code": "KDA-P23-MP-153",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f2aa7aee-dbc1-55b5-afa1-16ad1479b13d",
+      "series_code": "KDA-P23-MP-154",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3b4c04c5-756d-56c6-866c-16648a4d4631",
+      "series_code": "KDA-P23-MP-155",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2a321a0a-b7ee-5dbe-916d-602998ad48aa",
+      "series_code": "KDA-P23-MP-156",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dacfa23c-232a-535f-98a6-234610ddaf87",
+      "series_code": "KDA-P23-MP-157",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d4a8d635-b568-5ce6-b4c8-80566bf2f704",
+      "series_code": "KDA-P23-MP-158",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fc019e6c-6441-5686-8814-a98388403fd8",
+      "series_code": "KDA-P23-MP-159",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "643afb2a-f55b-5f8f-af52-f34a9b835996",
+      "series_code": "KDA-P23-MP-160",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6394a1fd-5cdd-51d0-b3a5-a41a9bebf764",
+      "series_code": "KDA-P23-MP-161",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "22d87cc7-0631-5dd7-b6e5-368fc2052629",
+      "series_code": "KDA-P23-MP-162",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "de466387-4860-5d16-b241-7b23dba05a6b",
+      "series_code": "KDA-P23-MP-163",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c8c76bb1-ca95-50ea-8241-4c12c81eff98",
+      "series_code": "KDA-P23-MP-164",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "60b1fe1d-2ed3-5a56-b159-ddce210b05ba",
+      "series_code": "KDA-P23-MP-165",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "45761468-8356-5389-8a3a-9fddb247660a",
+      "series_code": "KDA-P23-MP-166",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f1e384ce-9898-52b0-a1e0-08c19f5a2cc8",
+      "series_code": "KDA-P23-MP-167",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "55017c03-b007-50b4-85c4-2ff3f35f2d1b",
+      "series_code": "KDA-P23-MP-168",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0bc2e23a-0cd0-56a7-b916-a02de0a39f13",
+      "series_code": "KDA-P23-MP-169",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d7a3a560-d5ed-5a10-85e9-754e8503087e",
+      "series_code": "KDA-P23-MP-170",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d65d282e-4b04-5858-a17f-b235d931bf6d",
+      "series_code": "KDA-P23-MP-171",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "74743a04-3fc0-5a68-ae63-8c3b052b6f37",
+      "series_code": "KDA-P23-MP-172",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f88128a7-2f86-56fd-ba22-cba289cd307c",
+      "series_code": "KDA-P23-MP-173",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4a53085f-0894-5a20-a137-a1b8a7d5c1ed",
+      "series_code": "KDA-P23-MP-174",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "61348002-3266-57a0-b0f2-59e4e75d1aef",
+      "series_code": "KDA-P23-MP-175",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3e7668a9-b76c-5eda-b7c2-4996b6e00512",
+      "series_code": "KDA-P23-MP-176",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7f9b0642-8fa9-5b7a-88d8-4dd606619708",
+      "series_code": "KDA-P23-MP-177",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0fa061c5-2faf-5597-aed5-567f5b9b1962",
+      "series_code": "KDA-P23-MP-178",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1c7b3e88-6e91-5652-967a-483c5032f382",
+      "series_code": "KDA-P23-MP-179",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "20eefb4b-ee5a-59d9-8a4f-3a78cbb7361a",
+      "series_code": "KDA-P23-MP-180",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f06f4582-05c3-5809-a7b8-203eb17d92e5",
+      "series_code": "KDA-P23-MP-181",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a5cc8b9f-7d55-5042-b0dd-5da68eb9b57d",
+      "series_code": "KDA-P23-MP-182",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5e0f32a0-21c9-5bb9-9920-37336c3c998c",
+      "series_code": "KDA-P23-MP-183",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a0490de1-b430-559b-9f51-363381c07cfc",
+      "series_code": "KDA-P23-MP-184",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4fe0820d-3372-5b87-b3c8-e21ced424d62",
+      "series_code": "KDA-P23-MP-185",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1457a9e0-7c67-53a2-970f-9fac4c2617d6",
+      "series_code": "KDA-P23-MP-186",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c0972f1a-f28e-56f2-8db8-76851b52b66a",
+      "series_code": "KDA-P23-MP-187",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b04a53b2-7356-53ec-8e69-db9ed44b3565",
+      "series_code": "KDA-P23-MP-188",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "74f9c73e-bd23-5484-a27b-08f99879f529",
+      "series_code": "KDA-P23-MP-189",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8fd1c689-16b9-5f6c-8050-74cb0a2bf741",
+      "series_code": "KDA-P23-MP-190",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f798d3f7-0590-5a48-b0e8-be6c81d40919",
+      "series_code": "KDA-P23-MP-191",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3b1aa4cd-7ab8-5d2b-9f1b-620669a49789",
+      "series_code": "KDA-P23-MP-192",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2085687f-be9f-523c-9ea3-7f03fa3d6342",
+      "series_code": "KDA-P23-MP-193",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "408c1338-8819-59eb-8304-83380c7fa4da",
+      "series_code": "KDA-P23-MP-194",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4a82aabd-302e-5d31-90f4-78318060f265",
+      "series_code": "KDA-P23-MP-195",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "24062866-9ab0-5479-a1e9-9508a13bb5a2",
+      "series_code": "KDA-P23-MP-196",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e9857d9c-dbd6-5fa6-a469-0239e0723db5",
+      "series_code": "KDA-P23-MP-197",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1795deb0-6a98-50fd-823e-9bcae95f8c2e",
+      "series_code": "KDA-P23-MP-198",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "04b88041-0b15-57bf-a69f-cec15203124a",
+      "series_code": "KDA-P23-MP-199",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d4d207fa-7748-59d9-b25f-b064ec4c9003",
+      "series_code": "KDA-P23-MP-200",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5d74436d-5d7c-5a37-919e-0a56d79a7e4f",
+      "series_code": "KDA-P23-MP-201",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "eeba5901-d425-5251-8a8a-4ddedeb11d53",
+      "series_code": "KDA-P23-MP-202",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bf76fa3b-5472-518d-ae20-5dc7d214bf90",
+      "series_code": "KDA-P23-MP-203",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "79edb5cd-9fc1-57cd-bcea-73361c93502a",
+      "series_code": "KDA-P23-MP-204",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4c45366f-a964-5b81-9c38-9522fdc7d84a",
+      "series_code": "KDA-P23-MP-205",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fd13e2db-0d30-5c8e-a7e1-fd9628ce8287",
+      "series_code": "KDA-P23-MP-206",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e0588558-e538-546f-b558-6b4c12c31ccf",
+      "series_code": "KDA-P23-MP-207",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4ffc3fc5-f9aa-5c8c-810d-eea11e78e944",
+      "series_code": "KDA-P23-MP-208",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a20c4fdc-5db8-5d07-aaca-36ec6b04dcee",
+      "series_code": "KDA-P23-MP-209",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9a97d217-21bc-54d9-8b08-655f63e7155a",
+      "series_code": "KDA-P23-MP-210",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9e73760a-3534-5a2c-834e-18e3dfb989ec",
+      "series_code": "KDA-P23-MP-211",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5de0eca7-5aee-5a53-b002-e58347db8234",
+      "series_code": "KDA-P23-MP-212",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e17ef989-91e2-53d1-bf8b-7dae62676532",
+      "series_code": "KDA-P23-MP-213",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ba63b62f-13df-50bc-bb80-e5ea12fe1248",
+      "series_code": "KDA-P23-MP-214",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4db3bdcb-97ba-5309-a4cb-78aadfabebcf",
+      "series_code": "KDA-P23-MP-215",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8c0cbe8b-b2ac-528b-88b6-5f16cec40c3f",
+      "series_code": "KDA-P23-MP-216",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "fab442a4-b1c7-5899-a41f-559a8da7e9ec",
+      "series_code": "KDA-P23-MP-217",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "10972356-5e74-5e9b-9490-f0cd66afc1d1",
+      "series_code": "KDA-P23-MP-218",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "61f54d80-f143-5fd8-b609-d1a735fbe3b7",
+      "series_code": "KDA-P23-MP-219",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "53cac71d-b101-54ed-9754-7631ff466138",
+      "series_code": "KDA-P23-MP-220",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1a280d41-29b6-5b8e-abe4-c681a290030b",
+      "series_code": "KDA-P23-MP-221",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "187dbecd-9640-5286-a2f8-6ff94be73d9b",
+      "series_code": "KDA-P23-MP-222",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f161d245-1e59-5cbd-89cd-f966a3b4adc5",
+      "series_code": "KDA-P23-MP-223",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9b5a3ee8-e169-552f-899c-ab59fe6bc07c",
+      "series_code": "KDA-P23-MP-224",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6c96c240-3480-57f7-b829-cf3827939924",
+      "series_code": "KDA-P23-MP-225",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b2754b60-7ef1-50a8-9e6c-f2b720d73dc9",
+      "series_code": "KDA-P23-MP-226",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ac3205c0-053a-58e7-a071-0ae3135a34cf",
+      "series_code": "KDA-P23-MP-227",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b59f6863-f35b-5b8d-afe3-4ff29df8ca17",
+      "series_code": "KDA-P23-MP-228",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1b9cac50-7026-569f-8772-a25d7a610300",
+      "series_code": "KDA-P23-MP-229",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1a99f357-fb16-5232-9028-9b7f6b6de5ea",
+      "series_code": "KDA-P23-MP-230",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c6b4e663-66f4-5bce-be1b-e0c1e666ac6b",
+      "series_code": "KDA-P23-MP-231",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "450b71af-f26f-553e-b448-a4b605e4e1a7",
+      "series_code": "KDA-P23-MP-232",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8d01f3b2-82c9-55c5-9ff3-78be14f88b81",
+      "series_code": "KDA-P23-MP-233",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "20f3957e-2c87-5c2b-8dec-0c4e0517dc42",
+      "series_code": "KDA-P23-MP-234",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bb87421c-5f40-528a-b15b-86b58bb5cdab",
+      "series_code": "KDA-P23-MP-235",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e371229e-c6c7-50fb-bcb4-527ced495460",
+      "series_code": "KDA-P23-MP-236",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3e9051e9-cb38-5266-90a5-f009cbd0149a",
+      "series_code": "KDA-P23-MP-237",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "63bb59d6-2882-5494-89e6-35993ff3999d",
+      "series_code": "KDA-P23-MP-238",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "72f7c6d8-cd91-5737-8ff6-927074db2958",
+      "series_code": "KDA-P23-MP-239",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3da111fa-3984-5300-84f5-f2cee20ae382",
+      "series_code": "KDA-P23-MP-240",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "47b4dbfd-8536-5dbd-861e-7c95e5097307",
+      "series_code": "KDA-P23-MP-241",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9206fc53-999a-5e99-a523-a6232e0ca37a",
+      "series_code": "KDA-P23-MP-242",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6abdbb5e-55b6-5345-b08f-192fa432dceb",
+      "series_code": "KDA-P23-MP-243",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "1e3c4979-43d2-5bac-97af-46a98db1a1ff",
+      "series_code": "KDA-P23-MP-244",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "0152142b-e5c7-50d3-a60f-029daf0733a9",
+      "series_code": "KDA-P23-MP-245",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a6577e4d-5289-5835-8c99-50a9fa9c88cb",
+      "series_code": "KDA-P23-MP-246",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4980b968-2cc4-52e4-958c-4bc949c4110b",
+      "series_code": "KDA-P23-MP-247",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2f743861-e00f-59c1-8cdb-f516c884c04f",
+      "series_code": "KDA-P23-MP-248",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ef3f60ab-53ec-5c02-8aa4-9a71ed35fc31",
+      "series_code": "KDA-P23-MP-249",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "dac4b3a5-d508-533a-94aa-fa6022cabf9e",
+      "series_code": "KDA-P23-MP-250",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c993b67d-6a1a-5ff3-b3de-6aa45b718dc1",
+      "series_code": "KDA-P23-MP-251",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "13bcf3d8-5f2a-5b3a-b363-7e3b1aaab12c",
+      "series_code": "KDA-P23-MP-252",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "eb2b53d7-11db-52ac-bb7c-98bc45ae525d",
+      "series_code": "KDA-P23-MP-253",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e02dac56-b011-5d57-a969-cd2bd9b3cdbe",
+      "series_code": "KDA-P23-MP-254",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "528aa641-74d8-59f2-92d8-2acf07ca43c2",
+      "series_code": "KDA-P23-MP-255",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "2aa10355-136a-5daf-9638-83602718d129",
+      "series_code": "KDA-P23-MP-256",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "8eb27d2d-56e2-5ffc-941c-6e4e4c3ae092",
+      "series_code": "KDA-P23-MP-257",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "43d09a6f-00fd-5ba0-aa8a-1e567e532df3",
+      "series_code": "KDA-P23-MP-258",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "52850205-c809-5fde-8d3f-240a322abd61",
+      "series_code": "KDA-P23-MP-259",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e6e2df2c-5ba8-51b8-8d71-03ac0f016af1",
+      "series_code": "KDA-P23-MP-260",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "c250d256-3061-5940-8ac3-f1c2746c2c4b",
+      "series_code": "KDA-P23-MP-261",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5055644d-3c59-5e6e-87a8-837ddf2f9816",
+      "series_code": "KDA-P23-MP-262",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a5000b1f-6664-5fb6-a3d9-6408ac4522f5",
+      "series_code": "KDA-P23-MP-263",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "261e38d7-b6f6-5bfa-9918-2b159c5b16c0",
+      "series_code": "KDA-P23-MP-264",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5479fdac-c004-5800-aeb7-222e45c9529d",
+      "series_code": "KDA-P23-MP-265",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "46a84895-f804-5b7b-a453-7e768749dcc6",
+      "series_code": "KDA-P23-MP-266",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f0198e39-f1ed-55e9-9c34-88d45cd81a66",
+      "series_code": "KDA-P23-MP-267",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "7530bc33-20e7-5a94-b910-72a2231529ac",
+      "series_code": "KDA-P23-MP-268",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9f635b38-83cd-59f8-b574-bc40f19361f6",
+      "series_code": "KDA-P23-MP-269",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "f09ff325-9597-5256-aebf-cf811b6f7290",
+      "series_code": "KDA-P23-MP-270",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "bcb2fcde-4c57-50d9-a1d0-5aeb63334eed",
+      "series_code": "KDA-P23-MP-271",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e8817534-3115-53f9-bba7-e5ac07b65fe1",
+      "series_code": "KDA-P23-MP-272",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "9a20384d-e856-5cb7-be02-402c578d7baa",
+      "series_code": "KDA-P23-MP-273",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5ff338c1-6052-5d5b-a340-2994d154ce0f",
+      "series_code": "KDA-P23-MP-274",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "87749b2c-d67e-5328-829f-a5bb3c09651d",
+      "series_code": "KDA-P23-MP-275",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3ed05bb4-e00b-5074-8ce8-8b2d3d1ca576",
+      "series_code": "KDA-P23-MP-276",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "4c252280-5a13-5028-8bd1-616d32bb174f",
+      "series_code": "KDA-P23-MP-277",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "71143db9-e01f-5cc7-8793-534671871ff8",
+      "series_code": "KDA-P23-MP-278",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d8230ec8-eb63-51c2-b839-d53a8d89da64",
+      "series_code": "KDA-P23-MP-279",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "a89ad748-0924-54ee-be1b-351630b9e7d3",
+      "series_code": "KDA-P23-MP-280",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "6b9224f9-f8ee-5c52-b9ff-30968a532a43",
+      "series_code": "KDA-P23-MP-281",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d48fc89b-a426-5369-8654-4f534b05f80f",
+      "series_code": "KDA-P23-MP-282",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "d8e5c1aa-2c03-5294-9128-054b9902f82d",
+      "series_code": "KDA-P23-MP-283",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "b7e5a3ec-3288-5f5c-9fe9-38d8630589bc",
+      "series_code": "KDA-P23-MP-284",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "36ea4ae9-360d-502a-aec2-496c1ff01eca",
+      "series_code": "KDA-P23-MP-285",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "54a99f1a-e7d8-580e-82bd-47c07b80471c",
+      "series_code": "KDA-P23-MP-286",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "cb965554-c856-5568-84aa-afd26f4d87b7",
+      "series_code": "KDA-P23-MP-287",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "ae1b6434-a23d-5906-8f38-e688dbabeff0",
+      "series_code": "KDA-P23-MP-288",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "e911a156-a3a7-522d-9be6-166be7c3a41e",
+      "series_code": "KDA-P23-MP-289",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "5c783fe3-923d-543e-854c-9e2b653c0d80",
+      "series_code": "KDA-P23-MP-290",
+      "indicator_code": "IND-MP-IDENTITY",
+      "unit_code": "category",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
       }
     },
     {

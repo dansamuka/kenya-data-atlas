@@ -962,5 +962,20 @@
     "publication_status": "published",
     "methodology_url": "data/p23/constituency-voter-promotion-contract.json",
     "known_limitations": "2022 election-register vintage. No county value is inherited. Mandera East/Lafey ward geometry hold does not affect constituency statistical totals."
+  },
+  {
+    "dataset_id": "7ed657cc-d96d-5c2b-88c5-26324007e808",
+    "dataset_code": "DS-PARLIAMENT-CONSTITUENCY-MPS-13TH-P23",
+    "source_id": "8d9e1985-5fab-515b-9119-1e1d051f63b0",
+    "title": "13th Parliament — constituency-elected National Assembly members",
+    "description": "Official National Assembly roster mapped one-to-one to Kenya’s 290 current constituencies, retaining member name and party.",
+    "topic": "Representation",
+    "geographic_coverage": [
+      "constituency"
+    ],
+    "frequency": "irregular",
+    "publication_status": "published",
+    "methodology_url": "data/p23/constituency-mp-roster-contract.json",
+    "known_limitations": "Roster is a point-in-time representation snapshot. Party/member changes after the stated source as-of date require a new release; nominated members and county women representatives are excluded from constituency MP identity."
   }
 ]
