@@ -7,7 +7,7 @@
   if(!KDA)return;
 
   let promise=null,countyIqPromise=null,evidenceHubPromise=null,opportunityPromise=null,rankingsPromise=null,mapVotersPromise=null,seriesBrowserPromise=null,vizPromise=null;
-  let comparePromise=null,geoPromise=null,hardeningPromise=null,polishPromise=null,publicCleanupPromise=null,siteSearchPromise=null,placeProfilePromise=null,completionSurfacePromise=null;
+  let comparePromise=null,geoPromise=null,hardeningPromise=null,polishPromise=null,publicCleanupPromise=null,siteSearchPromise=null,placeProfilePromise=null,completionSurfacePromise=null,visualClarityPromise=null;
   let countyIqDataGuardInstalled=false;
 
   function finiteValue(value){return value!==null&&value!==undefined&&value!==''&&Number.isFinite(Number(value));}
@@ -54,6 +54,14 @@
     ]).then(()=>window.KDAVizEnhancements||null)
       .catch(error=>{console.warn('Visualisation enhancements load:',error?.message||error);return null;});
     return vizPromise;
+  }
+  function loadVisualClarity(){
+    if(window.KDAVisualClarity){window.KDAVisualClarity.run?.();return Promise.resolve(window.KDAVisualClarity);}
+    if(visualClarityPromise)return visualClarityPromise;
+    visualClarityPromise=KDA.loadScript('assets/visual-clarity-cleanup.js',{id:'kda-visual-clarity-cleanup'})
+      .then(()=>{window.KDAVisualClarity?.run?.();return window.KDAVisualClarity||null;})
+      .catch(error=>{console.warn('Visual clarity cleanup load:',error?.message||error);visualClarityPromise=null;return null;});
+    return visualClarityPromise;
   }
   function loadHardening(){
     if(hardeningPromise)return hardeningPromise;
@@ -215,6 +223,7 @@
   const routeNeedsCompare=hash=>/^#\/compare(?:\/|\?|$)/.test(hash)||/^#compare$/.test(hash);
   const routeNeedsViz=hash=>/^#\/(?:pulse|explore|compare|series|rankings)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|compare$|series|rankings$)/.test(hash);
   const routeNeedsCompletion=hash=>/^#\/(?:explore|data|compare|rankings|countyiq)(?:\/|\?|$)/.test(hash)||/^#(?:map\/|catalogue|compare$|rankings$|countyiq$)/.test(hash);
+  const routeNeedsVisualClarity=hash=>!hash||hash==='#'||hash==='#/'||/^#\/(?:pulse|rankings)(?:\/|\?|$)/.test(hash)||/^#(?:pulse|rankings)$/.test(hash);
   function loadForHash(hash){
     if(routeNeedsOptional(hash))loadOptionalIntegrations();
     if(routeNeedsExplore(hash))loadGeo();
@@ -224,6 +233,7 @@
     if(routeNeedsCompare(hash))loadCompare();
     if(routeNeedsViz(hash))loadViz();
     if(routeNeedsCompletion(hash))loadCompletionSurface();
+    if(routeNeedsVisualClarity(hash))loadVisualClarity();
   }
   loadForHash(location.hash);
   window.addEventListener('hashchange',()=>loadForHash(location.hash));
@@ -237,6 +247,7 @@
     if(view==='compare')loadCompare();
     if(['pulse','explore','compare','series','rankings'].includes(view))loadViz();
     if(['explore','data','compare','rankings','countyiq'].includes(view))loadCompletionSurface();
+    if(['home','pulse','rankings'].includes(view))loadVisualClarity();
   });
-  window.KDAOptional={load:loadOptionalIntegrations,loadCompare,loadGeo,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder,loadSiteSearch,loadHardening,loadViz,loadPlaceProfile,loadCompletionSurface};
+  window.KDAOptional={load:loadOptionalIntegrations,loadCompare,loadGeo,loadMapVoters,loadSeriesBrowser,loadRankings,loadCountyIQ,loadOpportunityFinder,loadSiteSearch,loadHardening,loadViz,loadVisualClarity,loadPlaceProfile,loadCompletionSurface};
 })();
