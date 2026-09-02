@@ -118,7 +118,14 @@
     if(restoringCompare)return;restoringCompare=true;
     try{
       await window.KDACompare?.boot?.();
-      const rows=await geographies(),byCode=mapByCode(rows),mode=r.params.get('mode')==='life'?'life':'direct';
+      const requested=r.params.get('mode'),mode=requested==='life'?'life':requested==='cross-level'?'cross-level':'direct';
+      if(mode==='cross-level'){
+        await window.KDAOptional?.loadCompletionSurface?.();
+        await window.KDACompareCross?.boot?.();
+        window.KDACompareCross?.activate?.({persistMode:false});
+        return;
+      }
+      const rows=await geographies(),byCode=mapByCode(rows);
       const modeBtn=$(`[data-compare-mode="${mode}"]`);if(modeBtn&&!modeBtn.classList.contains('active')){modeBtn.click();await nextFrame();}
       if(mode==='direct'){
         const desired=(r.params.get('places')||'').split(',').filter(Boolean).map(code=>byCode.get(code)?.name).filter(Boolean).slice(0,4);
@@ -134,7 +141,11 @@
   }
   async function syncCompareUrl(){
     if(restoringCompare||route().view!=='compare')return;
-    const rows=await geographies(),byName=mapByName(rows),active=$('[data-compare-mode].active')?.dataset.compareMode||'direct',params=new URLSearchParams();params.set('mode',active);
+    const active=$('[data-compare-mode].active')?.dataset.compareMode||'direct';
+    if(active==='cross-level'){
+      const current=new URLSearchParams(route().params||'');current.set('mode','cross-level');R.replace('compare','',current,{scroll:false});return;
+    }
+    const rows=await geographies(),byName=mapByName(rows),params=new URLSearchParams();params.set('mode',active);
     if(active==='direct'){
       const codes=$$('#compare-place-strip select').map(s=>byName.get(s.value)?.geo_code).filter(Boolean);if(codes.length)params.set('places',codes.join(','));
     }else{
@@ -142,8 +153,8 @@
     }
     R.replace('compare','',params,{scroll:false});
   }
-  $('#compare')?.addEventListener('change',()=>setTimeout(syncCompareUrl,0));
-  $('#compare')?.addEventListener('click',event=>{if(event.target.closest('[data-compare-mode],#compare-add-place,.remove-place,#life-swap'))setTimeout(syncCompareUrl,40);});
+  $('#compare')?.addEventListener('change',event=>{if(event.target.closest('[data-compare-panel="cross-level"]'))return;setTimeout(syncCompareUrl,0);});
+  $('#compare')?.addEventListener('click',event=>{if(event.target.closest('[data-compare-panel="cross-level"]'))return;if(event.target.closest('[data-compare-mode],#compare-add-place,.remove-place,#life-swap'))setTimeout(syncCompareUrl,40);});
 
   // ---------------------------------------------- Explore namespaced map state
   async function restoreExplore(r){
