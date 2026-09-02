@@ -104,6 +104,15 @@
     if(!isGlobalSearchShortcut(event))return;
     event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
   }
+  function handleGlobalSearchTriggerKey(event){
+    if(event.key!=='Enter'&&event.key!==' ')return;
+    const trigger=event.target?.closest?.('[data-focus-search]');
+    if(!trigger)return;
+    /* Firefox can deliver keyboard activation before the lazy site-search
+     * onclick has been installed. Own the key at the router layer so Enter and
+     * Space always honour the same Home → search-focus contract as pointer use. */
+    event.preventDefault();event.stopImmediatePropagation();openGlobalSearch();
+  }
   function protectCompareCriticalPaint(){
     const KDA=window.KDAData;
     if(!KDA||KDA.__compareCriticalPaintGuard||typeof KDA.registries!=='function')return;
@@ -155,6 +164,7 @@
    * keydown while still delivering keyup, so listen to both phases. */
   document.addEventListener('keydown',handleGlobalSearchShortcut,true);
   document.addEventListener('keyup',handleGlobalSearchShortcut,true);
+  document.addEventListener('keydown',handleGlobalSearchTriggerKey,true);
 
   new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(ownDynamicView))).observe(document.body,{childList:true,subtree:true});
 
@@ -169,4 +179,3 @@
   protectCompareCriticalPaint();
   loadSiteV2();
 })();
-
