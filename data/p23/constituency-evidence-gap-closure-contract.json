@@ -1,0 +1,37 @@
+{
+  "schema_version": "kda.p23.constituency-evidence-gap-closure.v1",
+  "contract_id": "P23-CONSTITUENCY-EVIDENCE-GAPS-2026-09-02",
+  "as_of": "2026-09-02",
+  "level": "constituency",
+  "boundary_version": "2012-01",
+  "expected_constituencies": 290,
+  "decisions": [
+    {
+      "indicator_code": "IND-NG-CDF-UTILIZATION",
+      "status": "official_unavailable",
+      "period_label": "Official publication review · 2026-09-02",
+      "source": "National Government Constituencies Development Fund Board — disbursement and audit/public-accountability pages",
+      "source_url": "https://ngcdf.go.ke/disbursement/",
+      "reason": "The NG-CDF Board publishes constituency allocations and disbursements, and states that Fund utilisation is tracked through constituency internal audit and Board/Auditor-General oversight. The public national surface reviewed does not publish one comparable utilisation-rate percentage for all current 290 constituencies. Disbursement is explicitly a transfer of funds to constituencies for approved projects and is not treated as expenditure/utilisation. The Atlas therefore does not derive a utilisation percentage from allocation or disbursement amounts.",
+      "evidence_constraint": "national_comparable_ngcdf_utilization_rate_not_publicly_published",
+      "refresh_trigger": "Replace this closure when the NG-CDF Board, Auditor-General or another primary official authority publishes a nationally comparable current-290 constituency utilisation/expenditure table with a common fiscal period and denominator."
+    },
+    {
+      "indicator_code": "IND-HEALTH-FACILITY-DENSITY",
+      "status": "official_unavailable",
+      "period_label": "2023 health-facility census definition · current 290-constituency boundary",
+      "source": "Ministry of Health — Kenya Master Health Facility Registry (KMHFR)",
+      "source_url": "https://kmhfr.health.go.ke/public/facilities",
+      "reason": "KMHFR provides official facility records with constituency location and can support constituency facility counts. The Atlas indicator, however, is health facilities assessed per 10,000 residents and requires a population denominator aligned to the current 290-constituency boundary and reference period. The governed P23 census review found no direct current-290 constituency population series or authoritative crosswalk supporting that denominator. A facility count is not relabelled as a population density, and no county/sub-county population is inherited downward.",
+      "evidence_constraint": "facility_count_available_but_constituency_population_denominator_unavailable",
+      "refresh_trigger": "Replace this closure when an authoritative current-290 constituency population denominator aligned to the facility-count reference period is published or can be deterministically derived under an approved boundary crosswalk."
+    }
+  ],
+  "rules": [
+    "Do not treat NG-CDF allocation or disbursement as utilisation or expenditure.",
+    "Do not manufacture an NG-CDF utilisation percentage from unlike fiscal-period quantities.",
+    "Do not treat a health-facility count as a per-population density.",
+    "Do not inherit county or sub-county population to a constituency denominator.",
+    "Every closure must preserve a primary official source, reason and refresh trigger."
+  ]
+}
