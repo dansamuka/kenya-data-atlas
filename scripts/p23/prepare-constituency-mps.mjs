@@ -11,6 +11,7 @@ const readJson=async p=>JSON.parse(await readFile(path.join(root,p),'utf8'));
 const decode=s=>String(s||'').replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&#0*39;|&apos;/gi,"'").replace(/&quot;/gi,'"').replace(/&ndash;|&mdash;/gi,'-').replace(/&#x2019;|&#8217;/gi,"'").replace(/&#x2013;|&#8211;/gi,'-');
 const text=s=>decode(String(s||'').replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim());
 const norm=s=>text(s).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/\bCONSTITUENCY\b/g,'').replace(/[^A-Z0-9]+/g,'').trim();
+const labelNorm=s=>text(s).toLowerCase().replace(/[^a-z]+/g,'');
 
 const geos=(await readJson('data/geography/registry/geographies.json')).filter(g=>g.level==='constituency');
 assert(geos.length===290,'canonical constituency registry must contain 290 rows');
@@ -24,35 +25,62 @@ const aliases=new Map([
 ]);
 const matchKey=s=>aliases.get(norm(s))||norm(s);
 
+function tableHeaders(html){
+  const headerRow=[...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)]
+    .map(m=>m[1])
+    .find(row=>/<th\b/i.test(row)&&/constituency/i.test(text(row)));
+  if(!headerRow)return null;
+  const labels=[...headerRow.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map(m=>labelNorm(m[1]));
+  const indexFor=(...needles)=>labels.findIndex(label=>needles.some(n=>label.includes(n)));
+  const h={member:indexFor('member','name'),county:indexFor('county'),constituency:indexFor('constituency'),party:indexFor('party'),status:indexFor('status')};
+  return h.constituency>=0&&h.party>=0?h:null;
+}
+
+function rowFields(row,headers){
+  const raw=[...row.matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/gi)].map(m=>({attrs:m[1],value:text(m[2])}));
+  if(raw.length<4)return null;
+  const labelled=new Map();
+  for(const cell of raw){
+    const m=cell.attrs.match(/(?:data-label|headers|aria-label)\s*=\s*["']([^"']+)["']/i);
+    if(m)labelled.set(labelNorm(m[1]),cell.value);
+  }
+  const byLabel=(...needles)=>{for(const [label,value] of labelled){if(needles.some(n=>label.includes(n)))return value;}return '';};
+  let member=byLabel('member','name'),county=byLabel('county'),constituency=byLabel('constituency'),party=byLabel('party'),status=byLabel('status');
+  if(!constituency&&headers){
+    const cells=raw.map(x=>x.value);
+    member=headers.member>=0?cells[headers.member]:'';
+    county=headers.county>=0?cells[headers.county]:'';
+    constituency=cells[headers.constituency]||'';
+    party=cells[headers.party]||'';
+    status=headers.status>=0?cells[headers.status]:'';
+  }
+  return {member,county,constituency,party,status};
+}
+
 const found=[]; let emptyPages=0;
 for(let page=0;page<60;page++){
   const url=`${SOURCE}?field_employment_history_value=&field_name_value=&field_parliament_value=2022&page=${page}`;
   const res=await fetch(url,{headers:{'User-Agent':UA,'Accept':'text/html'}});
   assert(res.ok,`official roster page ${page} fetch failed (${res.status})`);
   const html=await res.text();
+  const headers=tableHeaders(html);
   const rows=[...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(m=>m[1]);
   let pageMatches=0;
   for(const row of rows){
-    const cells=[...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(m=>text(m[1]));
-    if(cells.length<5)continue;
-    const candidates=[];
-    for(let i=0;i<cells.length;i++){const key=matchKey(cells[i]);if(canonical.has(key))candidates.push({i,key,geo:canonical.get(key)});}
-    if(!candidates.length)continue;
-    const constituency=candidates.find(x=>x.i>=2)||candidates[0];
-    const member=cells.slice(0,constituency.i).find(x=>/^HON\.?\s/i.test(x))||cells[0];
-    const after=cells.slice(constituency.i+1).filter(Boolean);
-    const party=after.find(x=>x.length<=30&&!/^(ELECTED|NOMINATED|MORE\.?\.?)$/i.test(x))||'';
-    const status=after.find(x=>/^(ELECTED|NOMINATED)$/i.test(x))||'';
-    if(!member||!party)continue;
-    if(status&&status.toUpperCase()!=='ELECTED')continue;
+    const f=rowFields(row,headers);if(!f)continue;
+    const key=matchKey(f.constituency),geo=canonical.get(key);
+    if(!geo)continue;
+    if(f.status&&f.status.toUpperCase()!=='ELECTED')continue;
+    assert(f.member&&f.party,`matched ${f.constituency} but member/party missing on page ${page}`);
     found.push({
-      geo_code:constituency.geo.geo_code,
-      constituency_code:Number(constituency.geo.constituency_code),
-      constituency:constituency.geo.name,
-      published_constituency:cells[constituency.i],
-      member_name:member,
-      party,
-      status:status||'Elected',
+      geo_code:geo.geo_code,
+      constituency_code:Number(geo.constituency_code),
+      constituency:geo.name,
+      published_county:f.county,
+      published_constituency:f.constituency,
+      member_name:f.member,
+      party:f.party,
+      status:f.status||'Elected',
       source_page:url
     });
     pageMatches++;
@@ -66,12 +94,12 @@ for(const row of found){
   const prev=byGeo.get(row.geo_code);
   if(prev){
     const same=prev.member_name===row.member_name&&prev.party===row.party;
-    assert(same,`conflicting official roster rows for ${row.geo_code}: ${prev.member_name} / ${row.member_name}`);
+    assert(same,`conflicting official constituency rows for ${row.geo_code}: ${prev.member_name} / ${row.member_name}`);
   }else byGeo.set(row.geo_code,row);
 }
 const rows=[...byGeo.values()].sort((a,b)=>a.constituency_code-b.constituency_code);
 const missing=geos.filter(g=>!byGeo.has(g.geo_code)).map(g=>`${g.constituency_code}:${g.name}`);
-assert(rows.length===290,`expected 290 matched constituency MPs; got ${rows.length}; missing=${missing.slice(0,20).join('|')}`);
+assert(rows.length===290,`expected 290 matched constituency MPs; got ${rows.length}; missing=${missing.slice(0,30).join('|')}`);
 assert(new Set(rows.map(r=>r.constituency_code)).size===290,'duplicate constituency codes after reconciliation');
 assert(rows.every(r=>r.member_name&&r.party&&r.source_page),'incomplete roster row');
 
@@ -81,7 +109,7 @@ const snapshot={
   source_url:SOURCE,
   parliamentary_session:'13th Parliament',
   source_as_of_label:'12 Aug 2026',
-  retrieval_note:'Prepared from the official server-rendered National Assembly member roster. Only rows reconciling to the canonical 290 constituency names are retained; nominated members and county women representatives are not constituency observations.',
+  retrieval_note:'Prepared from the official server-rendered National Assembly member roster using the explicit constituency column (never the county column). Only rows reconciling to the canonical 290 constituency names are retained; nominated members and county women representatives are not constituency observations.',
   coverage:{constituencies:rows.length},
   rows
 };
