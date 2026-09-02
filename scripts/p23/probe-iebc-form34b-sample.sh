@@ -26,18 +26,17 @@ echo '=== VIEW ROUTES ==='
 grep -Eo '(href|src)=["'"'][^"'"']+["'"']' /tmp/iebc-form34b-view.html | head -n 80 || true
 
 echo '=== PDF/TEXT INSPECTION ==='
-if command -v pdfinfo >/dev/null 2>&1; then
-  pdfinfo /tmp/iebc-form34b-sample | head -n 40 || true
+if ! command -v pdftotext >/dev/null 2>&1; then
+  sudo apt-get update -qq
+  sudo apt-get install -y -qq poppler-utils >/dev/null
 fi
-if command -v pdftotext >/dev/null 2>&1; then
-  pdftotext -layout /tmp/iebc-form34b-sample /tmp/iebc-form34b-sample.txt || true
-  if test -s /tmp/iebc-form34b-sample.txt; then
-    echo "TEXT_BYTES=$(wc -c < /tmp/iebc-form34b-sample.txt)"
-    grep -Ein 'registered|votes cast|valid votes|rejected|turnout|constituency|presidential|candidate|total' /tmp/iebc-form34b-sample.txt | head -n 160 || true
-    echo '=== TEXT HEAD ==='
-    sed -n '1,140p' /tmp/iebc-form34b-sample.txt
-  fi
+pdfinfo /tmp/iebc-form34b-sample | head -n 40 || true
+pdftotext -layout /tmp/iebc-form34b-sample /tmp/iebc-form34b-sample.txt || true
+if test -s /tmp/iebc-form34b-sample.txt; then
+  echo "TEXT_BYTES=$(wc -c < /tmp/iebc-form34b-sample.txt)"
+  grep -Ein 'registered|votes cast|valid votes|rejected|turnout|constituency|presidential|candidate|total' /tmp/iebc-form34b-sample.txt | head -n 160 || true
+  echo '=== TEXT HEAD ==='
+  sed -n '1,180p' /tmp/iebc-form34b-sample.txt
 else
-  echo 'PDFTOTEXT_UNAVAILABLE=1'
-  strings /tmp/iebc-form34b-sample | grep -Ei 'registered|votes cast|valid votes|rejected|turnout|constituency|presidential|candidate|total' | head -n 160 || true
+  echo 'PDF_TEXT_LAYER_EMPTY=1'
 fi
