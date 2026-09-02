@@ -18,7 +18,10 @@ if(new Set(ss.map(s=>s.geography_id)).size!==290)fail('duplicate/missing MP geog
 if(!datasets.some(d=>d.dataset_code==='DS-PARLIAMENT-CONSTITUENCY-MPS-13TH-P23'))fail('P23 MP dataset missing');
 if(!releases.some(r=>r.release_code==='REL-PARLIAMENT-CONSTITUENCY-MPS-2026-08-12-P23'))fail('P23 MP release missing');
 if(summary.total_slots!==20115)fail(`governed denominator changed: ${summary.total_slots}`);
-if(summary.resolved_slots!==5034||summary.unresolved_slots!==15081)fail(`unexpected completeness after MP promotion: ${summary.resolved_slots}/${summary.unresolved_slots}`);
-if(summary.by_completion_phase?.P23!==2030)fail(`expected P23 remaining=2030, got ${summary.by_completion_phase?.P23}`);
+// 5,034 resolved / 15,081 unresolved / 2,030 P23 rows was the terminal MP checkpoint.
+// Later P23 promotions are allowed to improve global completeness but may never regress it.
+if(summary.resolved_slots<5034)fail(`resolved slots regressed below MP checkpoint: ${summary.resolved_slots}`);
+if(summary.unresolved_slots>15081)fail(`unresolved slots regressed above MP checkpoint: ${summary.unresolved_slots}`);
+if((summary.by_completion_phase?.P23??Infinity)>2030)fail(`P23 queue regressed above MP checkpoint: ${summary.by_completion_phase?.P23}`);
 if(summary.unknown_missing!==0)fail(`unknown_missing=${summary.unknown_missing}`);
-console.log('P23_MP_PROMOTION_OK source=290 series=290 observations=290 resolved=5034 p23_remaining=2030 unknown=0');
+console.log(`P23_MP_PROMOTION_OK source=290 series=290 observations=290 resolved=${summary.resolved_slots} p23_remaining=${summary.by_completion_phase?.P23} unknown=0`);
