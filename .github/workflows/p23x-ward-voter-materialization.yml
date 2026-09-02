@@ -46,6 +46,8 @@ jobs:
           node scripts/p23/build-ward-voters.mjs indicators
           node scripts/indicators/build-cross-level-eligibility.mjs
           node scripts/prep05/build-place-facts.mjs
+          npm run countyiq:build
+          npm run distribution:build
           node scripts/completeness/build-slot-ledger.mjs
           node scripts/completeness/build-local-indicator-cascade.mjs
           node scripts/p17/build-release-manifest.mjs
@@ -60,7 +62,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json data/catalogue/registry data/indicators/registry data/place-facts data/completeness data/p17
+          git add package.json data/catalogue/registry data/indicators/registry data/place-facts data/completeness data/countyiq data/results data/distribution data/p17
           if git diff --cached --quiet; then
             echo 'No generated changes to commit.'
             exit 0
