@@ -1,0 +1,47 @@
+name: P23 NG-CDF finance source probe
+
+on:
+  push:
+    branches:
+      - watchdog/p23-ngcdf-finance
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p23-ngcdf-finance-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out tranche branch
+        uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-ngcdf-finance
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Probe official allocation and disbursement payloads
+        run: node scripts/p23/probe-ngcdf-finance.mjs
+
+      - name: Commit frozen source probe
+        if: success()
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p23/source/ngcdf-finance-source-probe.json
+          if git diff --cached --quiet; then
+            echo "No probe changes to commit."
+            exit 0
+          fi
+          git commit -m "data(p23): freeze official NG-CDF finance source probe"
+          git push origin HEAD:watchdog/p23-ngcdf-finance
