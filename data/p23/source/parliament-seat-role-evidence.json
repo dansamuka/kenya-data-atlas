@@ -1,0 +1,25 @@
+{
+  "schema_version": "kda.p23.parliament-seat-role-evidence.v1",
+  "purpose": "Resolve same-name county/constituency collisions in the live Parliament roster without using historical documents as current-holder evidence.",
+  "authority": "Parliament of Kenya — National Assembly",
+  "source_url": "https://www.parliament.go.ke/sites/default/files/2025-07/Tuesday%2C%20July%201%2C%202025%20At%202.30pm.pdf",
+  "source_period": "2025-07-01",
+  "source_table": "CONSTITUENCY AND SPECIAL INTERESTS / MEMBER’S NAME",
+  "usage_rule": "This file supplies seat-role classification only. Current member identity, party and elected status must still come from the live 13th-Parliament roster used by the P23 snapshot. A historical name match may exclude a candidate explicitly labelled CWR, but may never introduce or replace a current holder.",
+  "evidence": [
+    {
+      "target_constituency": "Kiambu",
+      "member_name": "Waithaka, John Machua",
+      "seat_label": "Kiambu",
+      "seat_role": "constituency_mp",
+      "source_row": 80
+    },
+    {
+      "target_constituency": "Kiambu",
+      "member_name": "Muratha, Anne Wanjiku Mugo",
+      "seat_label": "Kiambu (CWR)",
+      "seat_role": "county_woman_representative",
+      "source_row": 81
+    }
+  ]
+}
