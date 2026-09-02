@@ -197,10 +197,12 @@
     if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));
     if(countyIqPromise)return countyIqPromise;
     countyIqPromise=Promise.all([
-      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),
+      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css'],['assets/countyiq-ux.css','kda-countyiq-ux-css']]),
       loadHardening(),loadPolish()
     ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))
       .then(()=>window.KDACountyIQ?.boot?.()||null)
+      .then(()=>KDA.loadScript('assets/countyiq-ux.js',{id:'kda-countyiq-ux'}))
+      .then(()=>window.KDACountyIQUX?.boot?.()||null)
       .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadCompletionSurface()]))
       .then(value=>{redriveRoute();return value;})
       .catch(countyIqFailure);
