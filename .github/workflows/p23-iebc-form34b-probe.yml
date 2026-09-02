@@ -9,6 +9,7 @@ on:
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-pages.sh
       - scripts/p23/probe-turnout-transcription.sh
+      - scripts/p23/reconcile-turnout-transcription.mjs
       - .github/workflows/p23-iebc-form34b-probe.yml
   workflow_dispatch:
 
@@ -31,13 +32,20 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - name: Probe candidate turnout transcription layer
         run: bash scripts/p23/probe-turnout-transcription.sh
+      - name: Reconcile transcription to official constituency voter schedule
+        run: node scripts/p23/reconcile-turnout-transcription.mjs
       - name: Retain transcription evidence
         uses: actions/upload-artifact@v4
         with:
           name: p23-turnout-transcription-evidence
-          path: /tmp/p23-turnout-transcription-envelope.json
+          path: |
+            /tmp/p23-turnout-transcription-envelope.json
+            /tmp/p23-turnout-reconciliation.json
           if-no-files-found: error
           retention-days: 7
 
