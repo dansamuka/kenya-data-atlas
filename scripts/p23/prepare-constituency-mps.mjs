@@ -33,28 +33,38 @@ function tableHeaders(html){
   const labels=[...headerRow.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map(m=>labelNorm(m[1]));
   const indexFor=(...needles)=>labels.findIndex(label=>needles.some(n=>label.includes(n)));
   const h={member:indexFor('member','name'),county:indexFor('county'),constituency:indexFor('constituency'),party:indexFor('party'),status:indexFor('status')};
-  return h.constituency>=0&&h.party>=0?h:null;
+  return h.constituency>=0?h:null;
 }
 
 function rowFields(row,headers){
   const raw=[...row.matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/gi)].map(m=>({attrs:m[1],value:text(m[2])}));
   if(raw.length<4)return null;
-  const labelled=new Map();
-  for(const cell of raw){
+  let constituencyIndex=-1;
+  const labels=raw.map(cell=>{
     const m=cell.attrs.match(/(?:data-label|headers|aria-label)\s*=\s*["']([^"']+)["']/i);
-    if(m)labelled.set(labelNorm(m[1]),cell.value);
+    return m?labelNorm(m[1]):'';
+  });
+  constituencyIndex=labels.findIndex(label=>label.includes('constituency'));
+  if(constituencyIndex<0&&headers?.constituency>=0)constituencyIndex=headers.constituency;
+  if(constituencyIndex<0||constituencyIndex>=raw.length)return null;
+  const cells=raw.map(x=>x.value);
+  const constituency=cells[constituencyIndex]||'';
+  const labelledValue=(needle)=>{const i=labels.findIndex(label=>label.includes(needle));return i>=0?cells[i]:'';};
+  let member=labelledValue('member')||labelledValue('name');
+  let party=labelledValue('party');
+  let county=labelledValue('county');
+  let status=labelledValue('status');
+  if(!member&&headers?.member>=0)member=cells[headers.member]||'';
+  if(!party&&headers?.party>=0)party=cells[headers.party]||'';
+  if(!county&&headers?.county>=0)county=cells[headers.county]||'';
+  if(!status&&headers?.status>=0)status=cells[headers.status]||'';
+  if(!member)member=cells.find((value,i)=>i!==constituencyIndex&&/^HON\.?\s/i.test(value))||cells.slice(0,constituencyIndex).filter(Boolean).at(-1)||'';
+  if(!status)status=cells.find(value=>/^(ELECTED|NOMINATED)$/i.test(value))||'';
+  if(!party){
+    const excluded=new Set([member,county,constituency,status,'More...','More..','More.','More']);
+    party=cells.slice(constituencyIndex+1).find(value=>value&&!excluded.has(value)&&!/^(ELECTED|NOMINATED)$/i.test(value)&&value.length<=45)||'';
   }
-  const byLabel=(...needles)=>{for(const [label,value] of labelled){if(needles.some(n=>label.includes(n)))return value;}return '';};
-  let member=byLabel('member','name'),county=byLabel('county'),constituency=byLabel('constituency'),party=byLabel('party'),status=byLabel('status');
-  if(!constituency&&headers){
-    const cells=raw.map(x=>x.value);
-    member=headers.member>=0?cells[headers.member]:'';
-    county=headers.county>=0?cells[headers.county]:'';
-    constituency=cells[headers.constituency]||'';
-    party=cells[headers.party]||'';
-    status=headers.status>=0?cells[headers.status]:'';
-  }
-  return {member,county,constituency,party,status};
+  return {member,county,constituency,party,status,raw:cells};
 }
 
 const found=[]; let emptyPages=0;
@@ -71,7 +81,7 @@ for(let page=0;page<60;page++){
     const key=matchKey(f.constituency),geo=canonical.get(key);
     if(!geo)continue;
     if(f.status&&f.status.toUpperCase()!=='ELECTED')continue;
-    assert(f.member&&f.party,`matched ${f.constituency} but member/party missing on page ${page}`);
+    assert(f.member&&f.party,`matched ${f.constituency} but member/party missing on page ${page}; cells=${f.raw.join(' | ')}`);
     found.push({
       geo_code:geo.geo_code,
       constituency_code:Number(geo.constituency_code),
@@ -109,7 +119,7 @@ const snapshot={
   source_url:SOURCE,
   parliamentary_session:'13th Parliament',
   source_as_of_label:'12 Aug 2026',
-  retrieval_note:'Prepared from the official server-rendered National Assembly member roster using the explicit constituency column (never the county column). Only rows reconciling to the canonical 290 constituency names are retained; nominated members and county women representatives are not constituency observations.',
+  retrieval_note:'Prepared from the official server-rendered National Assembly member roster using the explicit constituency column (never the county column). Member/party extraction tolerates inconsistent HTML cell labels but never relaxes the exact 290-constituency reconciliation. Nominated members and county women representatives are not constituency observations.',
   coverage:{constituencies:rows.length},
   rows
 };
