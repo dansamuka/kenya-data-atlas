@@ -77,6 +77,18 @@
     if(!list)return;
     const items=$$(itemSelector,list);
     if(!items.length)return;
+
+    /* Keep the no-disclosure case mutation-idempotent. Under the microtask-based
+     * MutationObserver scheduler, creating and immediately removing an actions
+     * node on every pass retriggers the observer indefinitely and can starve the
+     * browser event loop. */
+    if(items.length<=limit){
+      const stale=list.nextElementSibling;
+      if(stale?.classList.contains('ciq-disclosure-actions'))stale.remove();
+      items.forEach(item=>{item.classList.add('ciq-progressive-item');item.hidden=false;});
+      return;
+    }
+
     let actions=list.nextElementSibling;
     if(!actions?.classList.contains('ciq-disclosure-actions')){
       actions=document.createElement('div');
@@ -88,7 +100,6 @@
       item.classList.add('ciq-progressive-item');
       item.hidden=!state&&index>=limit;
     });
-    if(items.length<=limit){actions.remove();return;}
     let button=$('.ciq-disclosure-button',actions);
     if(!button){
       button=document.createElement('button');
