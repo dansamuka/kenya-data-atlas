@@ -15,62 +15,51 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - name: Guard expected stalled head
-        run: |
-          test "$(git rev-parse HEAD^)" = "c60c83e088e6329b156ca957aaa0cdae9cb38547"
-      - name: Patch CountyIQ UX into route-aware loader
+        run: test "$(git rev-parse HEAD^)" = "d59562fe09d82287c7e0e338c9a4bb6daecedab0"
+      - name: Patch CountyIQ UX to load in parallel with data boot
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('assets/lazy-integrations.js')
           s = p.read_text()
-          old = """  function loadCountyIQ(){
-    installCountyIQDataGuard();
-    if(window.KDACountyIQ)return Promise.resolve(window.KDACountyIQ.boot()).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));
-    if(countyIqPromise)return countyIqPromise;
-    countyIqPromise=Promise.all([
-      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),
-      loadHardening(),loadPolish()
-    ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))
-      .then(()=>window.KDACountyIQ?.boot?.()||null)
-      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadCompletionSurface()]))
-      .then(value=>{redriveRoute();return value;})
-      .catch(countyIqFailure);
-    return countyIqPromise;
-  }
-"""
-          new = """  function loadCountyIQUX(){
-    if(window.KDACountyIQUX){window.KDACountyIQUX.boot?.();return Promise.resolve(window.KDACountyIQUX);}
-    return Promise.all([
-      KDA.loadStyle('assets/countyiq-ux.css',{id:'kda-countyiq-ux-css'}),
-      KDA.loadScript('assets/countyiq-ux.js',{id:'kda-countyiq-ux'})
-    ]).then(()=>{window.KDACountyIQUX?.boot?.();return window.KDACountyIQUX||null;});
-  }
-  function loadCountyIQ(){
-    installCountyIQDataGuard();
-    if(window.KDACountyIQ)return Promise.all([Promise.resolve(window.KDACountyIQ.boot()),loadCountyIQUX()]).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));
-    if(countyIqPromise)return countyIqPromise;
-    countyIqPromise=Promise.all([
-      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),
-      loadCountyIQUX(),loadHardening(),loadPolish()
-    ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))
-      .then(()=>window.KDACountyIQ?.boot?.()||null)
-      .then(()=>window.KDACountyIQUX?.boot?.()||null)
-      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadCompletionSurface()]))
-      .then(value=>{redriveRoute();return value;})
-      .catch(countyIqFailure);
-    return countyIqPromise;
-  }
-"""
-          if old not in s:
-              raise SystemExit('Expected CountyIQ loader block not found; refusing unsafe patch')
-          p.write_text(s.replace(old, new, 1))
+          start = s.index('  function loadCountyIQ(){')
+          end = s.index('\n\n  const routeNeedsOptional', start)
+          current = s[start:end]
+          if "KDA.loadScript('assets/countyiq-ux.js'" not in current:
+              raise SystemExit('Current CountyIQ UX loader contract not found; refusing unsafe patch')
+          new = '\n'.join([
+              '  function loadCountyIQUX(){',
+              '    if(window.KDACountyIQUX){window.KDACountyIQUX.boot?.();return Promise.resolve(window.KDACountyIQUX);}',
+              "    return Promise.all([",
+              "      KDA.loadStyle('assets/countyiq-ux.css',{id:'kda-countyiq-ux-css'}),",
+              "      KDA.loadScript('assets/countyiq-ux.js',{id:'kda-countyiq-ux'})",
+              "    ]).then(()=>{window.KDACountyIQUX?.boot?.();return window.KDACountyIQUX||null;});",
+              '  }',
+              '  function loadCountyIQ(){',
+              '    installCountyIQDataGuard();',
+              '    if(window.KDACountyIQ)return Promise.all([Promise.resolve(window.KDACountyIQ.boot()),loadCountyIQUX()]).then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadHardening(),loadCompletionSurface()]));',
+              '    if(countyIqPromise)return countyIqPromise;',
+              '    countyIqPromise=Promise.all([',
+              "      styles([['assets/countyiq-view.css','kda-countyiq-css'],['assets/p05-breadth.css','kda-p05-breadth-css']]),",
+              '      loadCountyIQUX(),loadHardening(),loadPolish()',
+              "    ]).then(()=>KDA.loadScript('assets/countyiq-view.js',{id:'kda-countyiq-view'}))",
+              '      .then(()=>window.KDACountyIQ?.boot?.()||null)',
+              '      .then(()=>window.KDACountyIQUX?.boot?.()||null)',
+              '      .then(()=>Promise.allSettled([loadEvidenceHub(),loadOpportunityFinder(),loadPublicCleanup(),loadCompletionSurface()]))',
+              '      .then(value=>{redriveRoute();return value;})',
+              '      .catch(countyIqFailure);',
+              '    return countyIqPromise;',
+              '  }',
+          ])
+          p.write_text(s[:start] + new + s[end:])
           PY
+          node --check assets/lazy-integrations.js
           git diff --check
       - name: Install Atlas dependencies
         run: npm ci
@@ -90,5 +79,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git rm .github/workflows/watchdog-p16-countyiq-repair.yml
           git add assets/lazy-integrations.js
-          git commit -m "fix(p16): load CountyIQ UX through route loader"
+          git commit -m "fix(p16): load CountyIQ UX alongside data boot"
           git push origin HEAD:main
