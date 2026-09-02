@@ -20,6 +20,20 @@
       "seat_label": "Kiambu (CWR)",
       "seat_role": "county_woman_representative",
       "source_row": 81
+    },
+    {
+      "target_constituency": "Vihiga",
+      "member_name": "Kagesi, Kivai Ernest Ogesi",
+      "seat_label": "Vihiga",
+      "seat_role": "constituency_mp",
+      "source_row": 272
+    },
+    {
+      "target_constituency": "Vihiga",
+      "member_name": "Adagala, Beatrice Kahai",
+      "seat_label": "Vihiga (CWR)",
+      "seat_role": "county_woman_representative",
+      "source_row": 273
     }
   ]
 }
