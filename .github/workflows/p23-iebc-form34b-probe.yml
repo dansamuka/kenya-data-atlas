@@ -8,7 +8,6 @@ on:
     paths:
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-pages.sh
-      - scripts/p23/probe-iebc-form34b-manifest.sh
       - scripts/p23/probe-turnout-transcription.sh
       - .github/workflows/p23-iebc-form34b-probe.yml
   workflow_dispatch:
@@ -17,27 +16,31 @@ permissions:
   contents: read
 
 jobs:
-  probe:
+  portal-boundary:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
       - name: Resolve Form 34B result-grid pagination
         run: bash scripts/p23/probe-iebc-form34b-pages.sh
-      - name: Build official Form 34B source manifest
-        run: bash scripts/p23/probe-iebc-form34b-manifest.sh
+
+  transcription:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
       - name: Probe candidate turnout transcription layer
         run: bash scripts/p23/probe-turnout-transcription.sh
-      - name: Retain source evidence
+      - name: Retain transcription evidence
         uses: actions/upload-artifact@v4
         with:
-          name: p23-turnout-source-evidence
-          path: |
-            /tmp/p23-form34b-manifest.json
-            /tmp/p23-turnout-transcription-envelope.json
+          name: p23-turnout-transcription-evidence
+          path: /tmp/p23-turnout-transcription-envelope.json
           if-no-files-found: error
           retention-days: 7
 
 # Feature-branch trigger is intentionally scoped to P23 source discovery.
+# The expensive 291-detail-page Form 34B manifest crawl is deliberately excluded
+# from routine pushes because the official portal intermittently throttles/TLS-times out.
