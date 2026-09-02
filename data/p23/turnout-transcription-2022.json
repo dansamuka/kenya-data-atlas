@@ -1,0 +1,13 @@
+{
+  "schema_version": "kda.p23.turnout-transcription-snapshot.v1",
+  "source_item_id": "9c12cc5d3d244a8bad34bce09a28540b",
+  "source_item_title": "Constituency Level Results for Kenya Presidential Election 2022 - Public Tally",
+  "source_owner": "MapsBySifa",
+  "source_item_modified": 1661425454000,
+  "source_service_url": "https://services8.arcgis.com/oTalEaSXAuyNT7xf/arcgis/rest/services/Constituency_Results_gdb/FeatureServer",
+  "source_layer_id": 0,
+  "source_layer_name": "ConstituencyData_Source2",
+  "captured_at": "2026-09-02T15:09:38.000Z",
+  "source_role": "secondary transcription of IEBC 2022 constituency Form 34B totals; never authoritative over official IEBC voter schedule or direct Form 34B evidence",
+  "rows": []
+}
