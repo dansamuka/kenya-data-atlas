@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.local-indicator-cascade-decisions.v1",
-  "as_of": "2026-09-02",
+  "as_of": "2026-09-03",
   "note": "Only decisions that are already defensible are pre-classified. Every unlisted active county indicator remains review_required and must be investigated before P23X/P24X/P26 closure.",
   "decisions": [
     {
@@ -278,6 +278,18 @@
       "level": "ward",
       "disposition": "governed_unavailable",
       "reason": "The KDHS women age 15–49 literacy estimate is not a ward-domain statistic. Publishing or downscaling the county percentage at ward level without a valid survey-domain sample and weighting design would create unsupported local precision."
+    },
+    {
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical Class C rural-road total is published by KNBS on a county basis. No official current-290 constituency allocation is published in that source, and the Atlas has no approved authoritative Class C road-line spatial derivation that can reproduce the county accounting total without introducing boundary or network-classification error."
+    },
+    {
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The governed Class C road-length source publishes county totals, not ward totals. Without an approved authoritative Class C road-line dataset and deterministic boundary intersection/reconciliation pipeline, county kilometres cannot be inherited, divided, or estimated for wards."
     }
   ]
 }
