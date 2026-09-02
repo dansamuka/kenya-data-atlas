@@ -3,19 +3,21 @@
   "as_of": "2026-09-02",
   "active_county_indicators": 54,
   "required_level_decisions": 108,
-  "constituency_disposition_count": 9,
-  "constituency_disposition_pct": 16.67,
+  "constituency_disposition_count": 19,
+  "constituency_disposition_pct": 35.19,
   "constituency_numeric_indicator_count": 2,
-  "constituency_review_required": 45,
-  "ward_disposition_count": 8,
-  "ward_disposition_pct": 14.81,
-  "ward_numeric_indicator_count": 1,
-  "ward_review_required": 46,
+  "constituency_review_required": 35,
+  "ward_disposition_count": 19,
+  "ward_disposition_pct": 35.19,
+  "ward_numeric_indicator_count": 2,
+  "ward_review_required": 35,
   "disposition_counts_by_method": {
-    "review_required": 91,
+    "governed_unavailable": 20,
+    "review_required": 70,
     "not_applicable": 14,
     "spatial_derivation": 2,
-    "exact_aggregation": 1
+    "exact_aggregation": 1,
+    "direct_official": 1
   },
   "prohibited_parent_child_inheritance_count": 0
 }

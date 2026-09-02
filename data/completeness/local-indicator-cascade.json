@@ -13,9 +13,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Agriculture share of GCP requires a constituency agriculture numerator and constituency GCP denominator on the same accounting basis. Neither is published for the current 290 constituencies, so the county share cannot be inherited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -28,9 +28,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Agriculture share of GCP requires matched ward numerator and denominator economic accounts. Those are not published in the governed source, and the county percentage cannot be copied downward.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -43,9 +43,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Agriculture GVA is sourced from county economic accounts. The source does not publish current electoral-constituency GVA, and no governed small-area production model has been approved for deterministic disaggregation.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -58,9 +58,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Agriculture GVA is a county-accounting measure in the governed source. Ward values cannot be inferred by land area, population or equal allocation without fabricating local output.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -133,9 +133,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Modern contraceptive use is published canonically as a KDHS county-domain estimate. No official current-constituency domain estimate is available in the governed source, and parent survey estimates cannot be inherited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -148,9 +148,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Modern contraceptive use is a survey estimate whose published domain is county. No valid official ward estimate is available; county values cannot be copied or proportionally allocated to wards.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -433,9 +433,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical FGM measure is a sensitive KDHS county-domain estimate with ranking withheld. No official current-constituency estimate with valid survey precision is published, so local downscaling is prohibited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -448,9 +448,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical FGM measure is not a ward-domain estimate. Inheriting or modelling the county percentage at ward level without an approved survey-domain method would create false precision for a sensitive indicator.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -493,9 +493,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS Gross County Product is an official county economic-accounting product. No compatible official current-290 constituency GCP allocation is published, and allocating county GCP by population, land area or equal shares would manufacture local economic output.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -508,9 +508,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS Gross County Product is published at county level. No official ward GCP allocation exists in the governed source, and parent GCP cannot be divided or inherited to wards.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -613,9 +613,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical HIV prevalence series uses KENPHIA county estimates with published uncertainty. No official current-constituency prevalence estimates with comparable uncertainty are available in the governed source, so county prevalence cannot be inherited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -628,9 +628,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KENPHIA prevalence is not published as a ward-domain estimate. Downscaling a county prevalence rate would create unsupported local precision and is prohibited under the cascade contract.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -643,9 +643,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical home-birth rate is a KDHS county-domain survey estimate. No official constituency-domain rate with compatible weighting and denominator is published, so the county rate cannot be inherited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -658,9 +658,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KDHS estimate is not a ward-domain statistic. Publishing the county percentage at ward level, or recomputing it without the survey design and valid domain sample, would be misleading.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1153,9 +1153,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Manufacturing share of GCP requires matched constituency manufacturing GVA and total GCP. The official county accounts do not publish these for current constituencies, so no local percentage is defensible.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1168,9 +1168,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Manufacturing share of GCP requires matched ward manufacturing GVA and total GCP. Neither is published, and county shares must not be inherited to wards.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1183,9 +1183,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Manufacturing GVA is published through county economic accounts, not current electoral constituencies. No source-backed constituency allocation or approved small-area model is available.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1198,9 +1198,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Manufacturing GVA is a county economic-accounting measure. Ward values are not published and cannot be proportionally inherited from the county total.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1434,13 +1434,13 @@
       "topic": "Elections",
       "level": "ward",
       "expected_geographies": 1450,
-      "canonical_series": 0,
-      "canonical_latest_observations": 0,
-      "canonical_value_observations": 0,
+      "canonical_series": 1440,
+      "canonical_latest_observations": 1440,
+      "canonical_value_observations": 1440,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "direct_official",
+      "disposition_reason": "IEBC Gazette Notice No. 7290 publishes the ward register directly. The Atlas already materialises 1,440 confidently mapped ward rows; the ten Mandera East/Lafey source rows remain explicitly withheld from canonical ward geometry until the spatial hold is reconciled rather than force-matched or inherited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1573,9 +1573,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical estimate is a KDHS county-domain survey estimate with published weighting and denominator semantics. The Atlas has no official current-constituency estimate or survey design supporting direct constituency publication; county survey rates cannot be inherited or naively reweighted.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1588,9 +1588,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KDHS county-domain estimate is not designed as a ward estimate. No official ward-domain estimate is published, and downscaling a county survey rate would misstate sampling precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
