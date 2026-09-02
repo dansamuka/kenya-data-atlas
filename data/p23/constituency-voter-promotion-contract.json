@@ -2,7 +2,7 @@
   "schema_version": "kda.p23.constituency-voter-promotion.v1",
   "phase": "P23",
   "accelerator": "P23A",
-  "status": "promotion_readiness",
+  "status": "promoted_complete",
   "effective_from": "2026-09-01",
   "indicator_code": "IND-REGISTERED-VOTERS",
   "target_level": "constituency",
@@ -61,5 +61,44 @@
     "After native promotion and deterministic rebuild, exactly 290 canonical observations exist for this family and the corresponding 870 slot instances become resolved published_derived rows without changing total_slots=20,115.",
     "Full Atlas validation and P16 release gates pass before merge of the promotion tranche."
   ],
-  "scope_note": "This readiness contract validates and freezes the source/canonicalisation rules for the first P23 tranche. It does not itself resolve a slot instance or publish a duplicate observation."
+  "completion": {
+    "completed_at": "2026-09-02",
+    "materialization_commit": "4036c4db17f6e4b7359530a8093795c035d1a5bc",
+    "merge_commit": "210ca743879a46d8fef21017a17c617a8396ad3c",
+    "generated_registry_commit": "56e914806f74d60961e73bdaf960cb432f555184",
+    "canonical_observations_promoted": 290,
+    "p23_slot_instances_resolved": 870,
+    "governed_total_slots": 20115,
+    "post_promotion_resolved_slots": 4744,
+    "post_promotion_unresolved_slots": 15371,
+    "post_promotion_p23_remaining": 2320,
+    "post_promotion_unknown_missing": 0,
+    "validation_state": "Validate Atlas data and P16 release audit passed on the generated-registry main commit."
+  },
+  "next_tranche": {
+    "status": "in_progress",
+    "name": "cascade-first constituency inventory",
+    "objective": "Test the remaining P23 indicator families for genuine constituency-level derivation before introducing governed closure states.",
+    "priority": [
+      "official KNBS constituency population and household measures where target-level tables are actually published",
+      "source-backed health-facility and school/service aggregation to authoritative constituency boundaries",
+      "official constituency turnout history with explicit election and boundary vintage",
+      "current MP identity from an official parliamentary source",
+      "NG-CDF allocation and utilisation only from nationally comparable official administrative sources"
+    ],
+    "rules": [
+      "Do not copy county observations downward.",
+      "Do not population-weight county rates downward without independently sourced constituency numerators and denominators.",
+      "Retain source, period, geography vintage and derivation metadata for every local observation.",
+      "Leave unresolved mappings unresolved rather than force-matching them."
+    ],
+    "initial_source_check": {
+      "agency": "Kenya National Bureau of Statistics (KNBS)",
+      "publication_family": "2019 Kenya Population and Housing Census",
+      "candidate_publication": "Volume II — Distribution of Population by Administrative Units",
+      "status": "source family confirmed; target constituency table extraction and canonical reconciliation still required before any promotion",
+      "official_results_page": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/"
+    }
+  },
+  "scope_note": "The registered-voter tranche is closed. The next P23 work is the governed cascade-first constituency inventory; no further voter slot or denominator change is authorised by this file."
 }
