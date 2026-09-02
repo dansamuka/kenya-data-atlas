@@ -22,6 +22,12 @@
       "reason": "Canonical constituency values are exact sums of official IEBC Gazette Notice No. 7290 child-ward register rows under the established P23 contract."
     },
     {
+      "indicator_code": "IND-REGISTERED-VOTERS",
+      "level": "ward",
+      "disposition": "direct_official",
+      "reason": "IEBC Gazette Notice No. 7290 publishes the ward register directly. The Atlas already materialises 1,440 confidently mapped ward rows; the ten Mandera East/Lafey source rows remain explicitly withheld from canonical ward geometry until the spatial hold is reconciled rather than force-matched or inherited."
+    },
+    {
       "indicator_code": "IND-COUNTY-BUDGET-TOTAL",
       "level": "constituency",
       "disposition": "not_applicable",
@@ -104,6 +110,126 @@
       "level": "ward",
       "disposition": "not_applicable",
       "reason": "The audit opinion applies to the County Executive financial statements as an institutional reporting entity, not to wards."
+    },
+    {
+      "indicator_code": "IND-GCP-CURRENT",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "KNBS Gross County Product is an official county economic-accounting product. No compatible official current-290 constituency GCP allocation is published, and allocating county GCP by population, land area or equal shares would manufacture local economic output."
+    },
+    {
+      "indicator_code": "IND-GCP-CURRENT",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "KNBS Gross County Product is published at county level. No official ward GCP allocation exists in the governed source, and parent GCP cannot be divided or inherited to wards."
+    },
+    {
+      "indicator_code": "IND-AGRICULTURE-GVA",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Agriculture GVA is sourced from county economic accounts. The source does not publish current electoral-constituency GVA, and no governed small-area production model has been approved for deterministic disaggregation."
+    },
+    {
+      "indicator_code": "IND-AGRICULTURE-GVA",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "Agriculture GVA is a county-accounting measure in the governed source. Ward values cannot be inferred by land area, population or equal allocation without fabricating local output."
+    },
+    {
+      "indicator_code": "IND-MANUFACTURING-GVA",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Manufacturing GVA is published through county economic accounts, not current electoral constituencies. No source-backed constituency allocation or approved small-area model is available."
+    },
+    {
+      "indicator_code": "IND-MANUFACTURING-GVA",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "Manufacturing GVA is a county economic-accounting measure. Ward values are not published and cannot be proportionally inherited from the county total."
+    },
+    {
+      "indicator_code": "IND-AGRICULTURE-GCP-SHARE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Agriculture share of GCP requires a constituency agriculture numerator and constituency GCP denominator on the same accounting basis. Neither is published for the current 290 constituencies, so the county share cannot be inherited."
+    },
+    {
+      "indicator_code": "IND-AGRICULTURE-GCP-SHARE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "Agriculture share of GCP requires matched ward numerator and denominator economic accounts. Those are not published in the governed source, and the county percentage cannot be copied downward."
+    },
+    {
+      "indicator_code": "IND-MANUFACTURING-GCP-SHARE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Manufacturing share of GCP requires matched constituency manufacturing GVA and total GCP. The official county accounts do not publish these for current constituencies, so no local percentage is defensible."
+    },
+    {
+      "indicator_code": "IND-MANUFACTURING-GCP-SHARE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "Manufacturing share of GCP requires matched ward manufacturing GVA and total GCP. Neither is published, and county shares must not be inherited to wards."
+    },
+    {
+      "indicator_code": "IND-TEENAGE-PREGNANCY",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical estimate is a KDHS county-domain survey estimate with published weighting and denominator semantics. The Atlas has no official current-constituency estimate or survey design supporting direct constituency publication; county survey rates cannot be inherited or naively reweighted."
+    },
+    {
+      "indicator_code": "IND-TEENAGE-PREGNANCY",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The KDHS county-domain estimate is not designed as a ward estimate. No official ward-domain estimate is published, and downscaling a county survey rate would misstate sampling precision."
+    },
+    {
+      "indicator_code": "IND-HOME-BIRTH-RATE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical home-birth rate is a KDHS county-domain survey estimate. No official constituency-domain rate with compatible weighting and denominator is published, so the county rate cannot be inherited."
+    },
+    {
+      "indicator_code": "IND-HOME-BIRTH-RATE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The KDHS estimate is not a ward-domain statistic. Publishing the county percentage at ward level, or recomputing it without the survey design and valid domain sample, would be misleading."
+    },
+    {
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "Modern contraceptive use is published canonically as a KDHS county-domain estimate. No official current-constituency domain estimate is available in the governed source, and parent survey estimates cannot be inherited."
+    },
+    {
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "Modern contraceptive use is a survey estimate whose published domain is county. No valid official ward estimate is available; county values cannot be copied or proportionally allocated to wards."
+    },
+    {
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical FGM measure is a sensitive KDHS county-domain estimate with ranking withheld. No official current-constituency estimate with valid survey precision is published, so local downscaling is prohibited."
+    },
+    {
+      "indicator_code": "IND-FGM-CHILD-MARRIAGE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical FGM measure is not a ward-domain estimate. Inheriting or modelling the county percentage at ward level without an approved survey-domain method would create false precision for a sensitive indicator."
+    },
+    {
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "level": "constituency",
+      "disposition": "governed_unavailable",
+      "reason": "The canonical HIV prevalence series uses KENPHIA county estimates with published uncertainty. No official current-constituency prevalence estimates with comparable uncertainty are available in the governed source, so county prevalence cannot be inherited."
+    },
+    {
+      "indicator_code": "IND-HIV-PREVALENCE",
+      "level": "ward",
+      "disposition": "governed_unavailable",
+      "reason": "KENPHIA prevalence is not published as a ward-domain estimate. Downscaling a county prevalence rate would create unsupported local precision and is prohibited under the cascade contract."
     }
   ]
 }
