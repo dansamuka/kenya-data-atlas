@@ -1,0 +1,41 @@
+{
+  "schema_version": "kda.p23x.child-domain-review.v1",
+  "as_of": "2026-09-03",
+  "source": {
+    "publisher": "Kenya National Bureau of Statistics (KNBS)",
+    "title": "2023/24 Kenya Housing Survey Basic Report",
+    "url": "https://www.knbs.or.ke/reports/2023-24-kenya-housing-survey-basic-report/",
+    "canonical_domain": "county"
+  },
+  "review_basis": "The canonical Atlas definitions identify these measures as county-level 2023/24 Kenya Housing Survey percentages. No governed current-290 constituency or 1,450-ward survey-domain series is materialised in the Atlas. Parent county survey percentages must not be inherited, proportionally allocated, or treated as local estimates without a published child-domain design and compatible weighting.",
+  "indicators": [
+    {
+      "indicator_code": "IND-INTERNET-USE",
+      "canonical_definition": "Share of individuals aged 3 years and above who used the internet in the 2023/24 Kenya Housing Survey.",
+      "constituency_recommendation": "governed_unavailable",
+      "ward_recommendation": "governed_unavailable",
+      "reason": "The governed source is a county-level household survey series. No compatible official constituency or ward domain estimate is present in the canonical registry; copying or downscaling the county percentage would create unsupported local precision."
+    },
+    {
+      "indicator_code": "IND-COMPUTER-USE",
+      "canonical_definition": "Share of individuals aged 3 years and above who used a computer in the 2023/24 Kenya Housing Survey.",
+      "constituency_recommendation": "governed_unavailable",
+      "ward_recommendation": "governed_unavailable",
+      "reason": "The governed source is a county-level household survey series. No compatible official constituency or ward domain estimate is present in the canonical registry; parent survey percentages cannot be inherited or naively reweighted."
+    },
+    {
+      "indicator_code": "IND-MAIN-GRID-ELECTRICITY",
+      "canonical_definition": "Share of households connected to electricity on the main grid in the 2023/24 Kenya Housing Survey.",
+      "constituency_recommendation": "governed_unavailable",
+      "ward_recommendation": "governed_unavailable",
+      "reason": "The governed Atlas series is the KNBS county survey percentage. A lower-level value would require an official child-domain estimate with compatible household denominator and weighting; county percentages cannot be allocated to constituencies or wards."
+    }
+  ],
+  "closure_state": "review_complete_pending_authoritative_decision_merge",
+  "prohibited_methods": [
+    "parent_to_child_inheritance",
+    "population_proportional_allocation",
+    "equal_split",
+    "unweighted_child_recalculation"
+  ]
+}
