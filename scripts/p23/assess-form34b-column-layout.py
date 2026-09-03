@@ -11,8 +11,8 @@ HELPER = runpy.run_path(os.path.join(HERE, "assess-form34b-field-labels.py"))
 TARGETS = HELPER["TARGETS"]
 read_words = HELPER["read_words"]
 build_segments = HELPER["build_segments"]
-locate_targets = HELPER["locate_targets"]
-evaluate_locations = HELPER["evaluate_locations"]
+locate_ordered_targets = HELPER["locate_ordered_targets"]
+center_x = HELPER["center_x"]
 
 NUMERIC_TOKEN = re.compile(r"^[0-9][0-9,.\s]*$")
 
@@ -64,63 +64,95 @@ def read_numeric_tokens(path):
     return tokens, page_dims
 
 
+def empty_stats(page=0):
+    return {
+        field: {
+            "page": page,
+            "numeric_tokens": 0,
+            "row_bands": 0,
+            "mean_conf": -1.0,
+            "x_center": 0.0,
+            "half_width": 0.0,
+        }
+        for field in TARGETS
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("tsv")
     args = parser.parse_args()
 
     words = read_words(args.tsv)
-    findings = locate_targets(build_segments(words))
-    located = evaluate_locations(findings)
+    ordered = locate_ordered_targets(build_segments(words))
     numeric_tokens, page_dims = read_numeric_tokens(args.tsv)
 
-    centers = {}
+    if not ordered:
+        stats = empty_stats()
+        print(
+            "P23_FORM34B_COLUMN_LAYOUT "
+            + " ".join(
+                f"{field}=page:0,tokens:0,row_bands:0,mean_conf:-1.00,x_center:0.0,half_width:0.0"
+                for field in TARGETS
+            )
+        )
+        print(
+            "P23_FORM34B_COLUMN_LAYOUT_FEASIBLE ordered_triplet=false "
+            "density_ok=false feasible=false values_emitted=0"
+        )
+        return
+
+    findings = ordered["findings"]
+    page = ordered["page"]
+    page_height = page_dims.get(page, (0, 0))[1]
+    valid_center = center_x(findings["total_valid_votes"])
+    rejected_center = center_x(findings["rejected_ballots"])
+    adjacent_spacing = rejected_center - valid_center
+
+    # Total Valid Votes and Rejected Ballots are adjacent columns on Form 34B.
+    # Use their observed header spacing as the scan-specific column-width scale.
+    # Registered Voters is separated from Total Valid Votes by candidate columns,
+    # so it gets the same calibrated half-width around its own ordered header
+    # center rather than a midpoint across unrelated columns.
+    calibrated_half_width = max(35.0, min(180.0, adjacent_spacing * 0.45))
+    header_bottom = max(finding["bbox"][3] for finding in findings.values())
+    footer_limit = page_height * 0.90 if page_height else float("inf")
+
     stats = {}
     for field in TARGETS:
-        finding = findings[field]
-        left, top, right, bottom = finding["bbox"]
-        center = (left + right) / 2 if right > left else 0.0
-        centers[field] = center
-        width = max(1.0, right - left)
-        margin = max(35.0, width * 0.30)
-        page = finding["page"]
-        page_height = page_dims.get(page, (0, 0))[1]
-
+        x_center = center_x(findings[field])
         candidates = []
         for token in numeric_tokens:
             if token["page"] != page:
                 continue
-            token_center = token["left"] + token["width"] / 2
-            token_mid_y = token["top"] + token["height"] / 2
-            if token_center < left - margin or token_center > right + margin:
+            token_center = token["left"] + token["width"] / 2.0
+            token_mid_y = token["top"] + token["height"] / 2.0
+            if abs(token_center - x_center) > calibrated_half_width:
                 continue
-            if token_mid_y <= bottom:
+            if token_mid_y <= header_bottom:
                 continue
-            # Avoid signature/footer regions while keeping the table body.
-            if page_height and token_mid_y >= page_height * 0.86:
+            if token_mid_y >= footer_limit:
                 continue
             candidates.append(token)
 
         confs = [token["conf"] for token in candidates if token["conf"] >= 0]
-        y_bands = {round((token["top"] + token["height"] / 2) / 12) for token in candidates}
+        y_bands = {round((token["top"] + token["height"] / 2.0) / 12) for token in candidates}
         stats[field] = {
             "page": page,
             "numeric_tokens": len(candidates),
             "row_bands": len(y_bands),
             "mean_conf": sum(confs) / len(confs) if confs else -1.0,
+            "x_center": x_center,
+            "half_width": calibrated_half_width,
         }
 
-    order_ok = (
-        all(located.values())
-        and centers["registered_voters"] < centers["total_valid_votes"] < centers["rejected_ballots"]
-    )
     density_ok = all(
         stats[field]["numeric_tokens"] >= 3
         and stats[field]["row_bands"] >= 3
         and stats[field]["mean_conf"] >= 35
         for field in TARGETS
     )
-    feasible = all(located.values()) and order_ok and density_ok
+    feasible = density_ok
 
     print(
         "P23_FORM34B_COLUMN_LAYOUT "
@@ -129,14 +161,16 @@ def main():
                 f"{field}=page:{stats[field]['page']},"
                 f"tokens:{stats[field]['numeric_tokens']},"
                 f"row_bands:{stats[field]['row_bands']},"
-                f"mean_conf:{stats[field]['mean_conf']:.2f}"
+                f"mean_conf:{stats[field]['mean_conf']:.2f},"
+                f"x_center:{stats[field]['x_center']:.1f},"
+                f"half_width:{stats[field]['half_width']:.1f}"
             )
             for field in TARGETS
         )
     )
     print(
-        f"P23_FORM34B_COLUMN_LAYOUT_FEASIBLE labels={sum(located.values())}/3 "
-        f"order_ok={str(order_ok).lower()} density_ok={str(density_ok).lower()} "
+        f"P23_FORM34B_COLUMN_LAYOUT_FEASIBLE ordered_triplet=true "
+        f"adjacent_spacing={adjacent_spacing:.1f} density_ok={str(density_ok).lower()} "
         f"feasible={str(feasible).lower()} values_emitted=0"
     )
 
