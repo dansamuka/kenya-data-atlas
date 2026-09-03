@@ -12,7 +12,6 @@ on:
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
-      - scripts/p23/discover-iebc-form34b-manifest-v2.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-ocr-feasibility.mjs
@@ -26,7 +25,6 @@ on:
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
-      - scripts/p23/discover-iebc-form34b-manifest-v2.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-ocr-feasibility.mjs
@@ -46,7 +44,7 @@ jobs:
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
       - name: Discover official Form 34B source manifest
-        run: python3 scripts/p23/discover-iebc-form34b-manifest-v2.py --output /tmp/iebc-2022-form34b-source-manifest.json
+        run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
         run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
       - name: Upload source-reference manifest
