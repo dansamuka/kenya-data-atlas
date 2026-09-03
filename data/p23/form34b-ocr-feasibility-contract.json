@@ -29,6 +29,7 @@
     "No OCR-derived integer is promoted to the canonical registry by this probe."
   ],
   "promotion_rule": "Passing this sample gate only authorises design of a separate reproducible extraction-and-verification pipeline. Canonical turnout still requires source-level verification of registered voters, total valid votes and rejected ballots for every promoted constituency, denominator reconciliation and all P23 turnout acceptance checks.",
+  "required_next_gate_if_feasible": "Create a separate extraction contract that distinguishes machine transcription from verified source integers, requires source-image evidence for each numeric field, reconciles the Form 34B registered-voter denominator to the governed IEBC register, and permits partial unresolved rows rather than silent correction.",
   "prohibited": [
     "bulk OCR promotion from this probe",
     "silent correction of OCR values to expected totals",
