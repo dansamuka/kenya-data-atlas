@@ -63,7 +63,7 @@ def fetch_text(opener, url, retries=3):
             request = Request(url, headers={"User-Agent": USER_AGENT})
             with opener.open(request, timeout=60) as response:
                 return response.read().decode("utf-8", errors="replace")
-        except Exception as exc:  # network failures are retried but never hidden
+        except Exception as exc:
             last = exc
             if attempt + 1 < retries:
                 time.sleep(1.5 * (attempt + 1))
@@ -85,7 +85,8 @@ def with_query(url, **updates):
 def discover_page_urls(first_url, first_html):
     parser = GridParser()
     parser.feed(first_html)
-    total_match = re.search(r"Showing\s+\d+\s*-\s*\d+\s+of\s+([\d,]+)\s+items?", first_html, re.I)
+    plain = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", first_html))
+    total_match = re.search(r"Showing\s+\d+\s*-\s*\d+\s+of\s+([\d,]+)\s+items?", plain, re.I)
     total = int(total_match.group(1).replace(",", "")) if total_match else None
 
     page_urls = {1: first_url}
