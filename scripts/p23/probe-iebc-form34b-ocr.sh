@@ -7,6 +7,7 @@ cookie='/tmp/iebc-form34b-ocr-cookies.txt'
 pdf='/tmp/iebc-form34b-ocr-changamwe.pdf'
 prefix='/tmp/iebc-form34b-ocr-page'
 list='/tmp/iebc-form34b-ocr-images.txt'
+raw_tsv='/tmp/iebc-form34b-ocr-raw.tsv'
 tsv='/tmp/iebc-form34b-ocr.tsv'
 
 node scripts/p23/validate-form34b-ocr-feasibility.mjs
@@ -22,9 +23,36 @@ count="$(wc -l < "$list" | tr -d ' ')"
 [[ "$count" == '3' ]] || { echo "Expected 3 rendered sample pages, got $count" >&2; exit 1; }
 
 # Tesseract accepts an image-list text file, allowing one OCR invocation across
-# all three governed sample pages. TSV output retains token confidence without
-# treating OCR as canonical evidence.
-tesseract "$list" stdout --psm 3 tsv 2>/dev/null > "$tsv"
+# all three governed sample pages. Its TSV page_num can reset for each image, so
+# preserve the one-invocation cost but rewrite page_num from the three level-1
+# image roots before any spatial diagnostic uses the coordinates.
+tesseract "$list" stdout --psm 3 tsv 2>/dev/null > "$raw_tsv"
+python3 - "$raw_tsv" "$tsv" "$count" <<'PY'
+import csv,sys
+src,dst,expected=sys.argv[1],sys.argv[2],int(sys.argv[3])
+with open(src,encoding='utf-8',errors='replace',newline='') as source:
+    reader=csv.DictReader(source,delimiter='\t')
+    fields=reader.fieldnames
+    if not fields or 'page_num' not in fields or 'level' not in fields:
+        raise SystemExit('Unexpected Tesseract TSV schema')
+    rows=[]
+    physical_page=0
+    for row in reader:
+        try: level=int(row.get('level') or 0)
+        except ValueError: level=0
+        if level==1:
+            physical_page += 1
+        if physical_page < 1:
+            raise SystemExit('TSV content appeared before the first page root')
+        row['page_num']=str(physical_page)
+        rows.append(row)
+if physical_page != expected:
+    raise SystemExit(f'Expected {expected} OCR page roots, got {physical_page}')
+with open(dst,'w',encoding='utf-8',newline='') as target:
+    writer=csv.DictWriter(target,fieldnames=fields,delimiter='\t',lineterminator='\n')
+    writer.writeheader(); writer.writerows(rows)
+print(f'P23_FORM34B_OCR_PAGE_INDEX normalized_pages={physical_page} expected_pages={expected}')
+PY
 
 python3 - "$tsv" <<'PY'
 import csv,re,sys
