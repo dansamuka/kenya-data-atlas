@@ -1,0 +1,38 @@
+{
+  "schema_version": "kda.p23.form34b-ocr-feasibility.v1",
+  "contract_id": "P23-IEBC-2022-FORM34B-OCR-FEASIBILITY-2026-09-03",
+  "as_of": "2026-09-03",
+  "purpose": "Test whether one official IEBC Form 34B image-scan can yield a sufficiently legible machine transcription to justify a separate governed extraction pipeline. This contract does not authorise turnout materialization.",
+  "source_contract": "data/p23/form34b-source-index-contract.json",
+  "turnout_contract": "data/p23/constituency-turnout-readiness-contract.json",
+  "sample": {
+    "constituency_code": 1,
+    "constituency_name": "Changamwe",
+    "geo_code": "KEN-C001-CON001",
+    "form_id": 277629,
+    "download_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277629",
+    "expected_pages": 3,
+    "canonical_registered_voters": 93561
+  },
+  "known_source_state": {
+    "mime_type": "application/pdf",
+    "pdf_version": "1.4",
+    "text_layer": "no_meaningful_text_layer",
+    "implication": "A source-image transcription step is required if Form 34B is to be used for numeric turnout materialization."
+  },
+  "feasibility_checks": [
+    "The downloaded file remains an official IEBC PDF for the governed sample form ID.",
+    "The page count remains three for the governed sample.",
+    "OCR is run only against the sample during this gate; no 290-form bulk transcription is authorised.",
+    "The OCR output contains meaningful alphabetic and numeric content rather than an empty or near-empty transcript.",
+    "Relevant election-form concepts can be located in the transcript with usable OCR confidence.",
+    "No OCR-derived integer is promoted to the canonical registry by this probe."
+  ],
+  "promotion_rule": "Passing this sample gate only authorises design of a separate reproducible extraction-and-verification pipeline. Canonical turnout still requires source-level verification of registered voters, total valid votes and rejected ballots for every promoted constituency, denominator reconciliation and all P23 turnout acceptance checks.",
+  "prohibited": [
+    "bulk OCR promotion from this probe",
+    "silent correction of OCR values to expected totals",
+    "using candidate/media/citizen tallies as substitutes for official Form 34B",
+    "closing any IND-TURNOUT-HISTORY slot from sample-only evidence"
+  ]
+}
