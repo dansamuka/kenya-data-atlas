@@ -34,9 +34,12 @@ for(const name of ['registered_voters','total_valid_votes','rejected_ballots']){
 const states=new Set(c.field_evidence?.allowed_verification_states||[]);
 for(const s of ['machine_candidate','source_verified','source_unreadable','source_mismatch']) assert(states.has(s),`field state ${s} missing`);
 assert(c.field_evidence?.promotion_state_required==='source_verified','machine candidates must not be promotable');
+const rowStates=new Set(c.row_verification_states||[]);
+for(const s of ['pending_source_verification','verified','partial_unresolved','source_unreadable','denominator_mismatch','arithmetic_mismatch']) assert(rowStates.has(s),`row state ${s} missing`);
+assert(c.promotion_policy?.permitted_row_state==='verified','only verified rows may promote');
 assert((c.turnout_derivation?.preconditions||[]).length>=5,'turnout preconditions incomplete');
 assert((c.prohibited_methods||[]).some(x=>x.includes('raw OCR')),'raw OCR promotion prohibition missing');
 assert((c.prohibited_methods||[]).some(x=>x.includes('silently correcting')),'silent correction prohibition missing');
 assert(String(c.promotion_policy?.partial_rows||'').includes('do not create series or observations'),'partial-row non-promotion rule missing');
 
-console.log(`P23_FORM34B_EXTRACTION_CONTRACT_OK geographies=290 p23_remaining=${summary.by_completion_phase.P23} denominator=${summary.total_slots} machine_promotion=blocked`);
+console.log(`P23_FORM34B_EXTRACTION_CONTRACT_OK geographies=290 p23_remaining=${summary.by_completion_phase.P23} denominator=${summary.total_slots} pending_state=governed machine_promotion=blocked`);
