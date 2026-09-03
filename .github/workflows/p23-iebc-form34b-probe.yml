@@ -10,6 +10,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
+      - scripts/p23/validate-iebc-form34b-source-manifest.mjs
   pull_request:
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
@@ -18,6 +19,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
+      - scripts/p23/validate-iebc-form34b-source-manifest.mjs
   workflow_dispatch:
 
 permissions:
@@ -37,6 +39,8 @@ jobs:
         run: bash scripts/p23/probe-iebc-form34b-download.sh
       - name: Discover official Form 34B source manifest
         run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Validate source-reference manifest boundary
+        run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
       - name: Upload source-reference manifest
         if: always()
         uses: actions/upload-artifact@v4
