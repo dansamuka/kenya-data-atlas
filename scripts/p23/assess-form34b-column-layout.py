@@ -31,36 +31,40 @@ def as_float(value, default=-1.0):
         return default
 
 
-def read_numeric_tokens(path):
+def read_numeric_tokens(paths):
+    if isinstance(paths, str):
+        paths = [paths]
     tokens = []
     page_dims = {}
-    with open(path, encoding="utf-8", errors="replace") as handle:
-        for row in csv.DictReader(handle, delimiter="\t"):
-            page = as_int(row.get("page_num"))
-            level = as_int(row.get("level"))
-            width = as_int(row.get("width"))
-            height = as_int(row.get("height"))
-            if level == 1 and page:
-                page_dims[page] = (width, height)
+    for source_index, path in enumerate(paths):
+        with open(path, encoding="utf-8", errors="replace") as handle:
+            for row in csv.DictReader(handle, delimiter="\t"):
+                page = as_int(row.get("page_num"))
+                level = as_int(row.get("level"))
+                width = as_int(row.get("width"))
+                height = as_int(row.get("height"))
+                if level == 1 and page and page not in page_dims:
+                    page_dims[page] = (width, height)
 
-            raw = (row.get("text") or "").strip()
-            if not raw or not NUMERIC_TOKEN.fullmatch(raw):
-                continue
-            digits = re.sub(r"\D", "", raw)
-            if not digits:
-                continue
-            tokens.append(
-                {
-                    "page": page,
-                    "left": as_int(row.get("left")),
-                    "top": as_int(row.get("top")),
-                    "width": width,
-                    "height": height,
-                    "conf": as_float(row.get("conf")),
-                    # Numeric transcription is deliberately discarded here.
-                    "digit_count": len(digits),
-                }
-            )
+                raw = (row.get("text") or "").strip()
+                if not raw or not NUMERIC_TOKEN.fullmatch(raw):
+                    continue
+                digits = re.sub(r"\D", "", raw)
+                if not digits:
+                    continue
+                tokens.append(
+                    {
+                        "source": source_index,
+                        "page": page,
+                        "left": as_int(row.get("left")),
+                        "top": as_int(row.get("top")),
+                        "width": width,
+                        "height": height,
+                        "conf": as_float(row.get("conf")),
+                        # Numeric transcription is deliberately discarded here.
+                        "digit_count": len(digits),
+                    }
+                )
     return tokens, page_dims
 
 
@@ -71,6 +75,7 @@ def empty_stats(page=0):
             "numeric_tokens": 0,
             "row_bands": 0,
             "mean_conf": -1.0,
+            "sources": 0,
             "x_center": 0.0,
             "half_width": 0.0,
         }
@@ -81,21 +86,24 @@ def empty_stats(page=0):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("tsv", nargs="+")
+    parser.add_argument("--numeric-density-tsv", action="append", default=[])
     args = parser.parse_args()
 
-    # Geometry labels may use supplemental label-only OCR sources, but numeric
-    # density is always read exclusively from the first, governed primary OCR
-    # TSV. Supplemental sources have their digit-bearing rows removed upstream.
+    # Geometry labels may use supplemental label-only OCR sources. Numeric
+    # density may additionally inspect governed alternate OCR TSVs, but only
+    # token geometry/count/confidence are retained: transcriptions are discarded
+    # immediately and are never printed, written to an artifact, or promoted.
     words = read_words(args.tsv)
     ordered = locate_ordered_targets(build_segments(words))
-    numeric_tokens, page_dims = read_numeric_tokens(args.tsv[0])
+    density_sources = [args.tsv[0], *args.numeric_density_tsv]
+    numeric_tokens, page_dims = read_numeric_tokens(density_sources)
 
     if not ordered:
         stats = empty_stats()
         print(
             "P23_FORM34B_COLUMN_LAYOUT "
             + " ".join(
-                f"{field}=page:0,tokens:0,row_bands:0,mean_conf:-1.00,x_center:0.0,half_width:0.0"
+                f"{field}=page:0,tokens:0,row_bands:0,mean_conf:-1.00,sources:0,x_center:0.0,half_width:0.0"
                 for field in TARGETS
             )
         )
@@ -114,9 +122,6 @@ def main():
 
     # Total Valid Votes and Rejected Ballots are adjacent columns on Form 34B.
     # Use their observed header spacing as the scan-specific column-width scale.
-    # Registered Voters is separated from Total Valid Votes by candidate columns,
-    # so it gets the same calibrated half-width around its own ordered header
-    # center rather than a midpoint across unrelated columns.
     calibrated_half_width = max(35.0, min(180.0, adjacent_spacing * 0.45))
     header_bottom = max(finding["bbox"][3] for finding in findings.values())
     footer_limit = page_height * 0.90 if page_height else float("inf")
@@ -140,11 +145,13 @@ def main():
 
         confs = [token["conf"] for token in candidates if token["conf"] >= 0]
         y_bands = {round((token["top"] + token["height"] / 2.0) / 12) for token in candidates}
+        sources = {token["source"] for token in candidates}
         stats[field] = {
             "page": page,
             "numeric_tokens": len(candidates),
             "row_bands": len(y_bands),
             "mean_conf": sum(confs) / len(confs) if confs else -1.0,
+            "sources": len(sources),
             "x_center": x_center,
             "half_width": calibrated_half_width,
         }
@@ -165,6 +172,7 @@ def main():
                 f"tokens:{stats[field]['numeric_tokens']},"
                 f"row_bands:{stats[field]['row_bands']},"
                 f"mean_conf:{stats[field]['mean_conf']:.2f},"
+                f"sources:{stats[field]['sources']},"
                 f"x_center:{stats[field]['x_center']:.1f},"
                 f"half_width:{stats[field]['half_width']:.1f}"
             )
@@ -174,7 +182,7 @@ def main():
     print(
         f"P23_FORM34B_COLUMN_LAYOUT_FEASIBLE ordered_triplet=true "
         f"adjacent_spacing={adjacent_spacing:.1f} density_ok={str(density_ok).lower()} "
-        f"feasible={str(feasible).lower()} values_emitted=0"
+        f"density_sources={len(density_sources)} feasible={str(feasible).lower()} values_emitted=0"
     )
 
 
