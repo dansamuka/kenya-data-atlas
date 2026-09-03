@@ -7,12 +7,14 @@ on:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - scripts/p23/probe-iebc-form34b.sh
+      - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
   pull_request:
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - scripts/p23/probe-iebc-form34b.sh
+      - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
   workflow_dispatch:
 
@@ -22,10 +24,20 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Validate governed turnout readiness contract
         run: node scripts/p23/validate-constituency-turnout-readiness.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
+      - name: Discover official Form 34B source manifest
+        run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Upload source-reference manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-source-manifest
+          path: /tmp/iebc-2022-form34b-source-manifest.json
+          if-no-files-found: error
+          retention-days: 7
