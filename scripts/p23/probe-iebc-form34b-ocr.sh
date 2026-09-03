@@ -9,6 +9,8 @@ prefix='/tmp/iebc-form34b-ocr-page'
 list='/tmp/iebc-form34b-ocr-images.txt'
 raw_tsv='/tmp/iebc-form34b-ocr-raw.tsv'
 tsv='/tmp/iebc-form34b-ocr.tsv'
+label_raw_tsv='/tmp/iebc-form34b-labels-page1-raw.tsv'
+label_tsv='/tmp/iebc-form34b-labels-page1.tsv'
 
 node scripts/p23/validate-form34b-ocr-feasibility.mjs
 curl -fsSL --connect-timeout 20 --max-time 60 -A "$ua" -c "$cookie" -b "$cookie" "$base/" -o /tmp/iebc-form34b-ocr-home.html
@@ -52,6 +54,38 @@ with open(dst,'w',encoding='utf-8',newline='') as target:
     writer=csv.DictWriter(target,fieldnames=fields,delimiter='\t',lineterminator='\n')
     writer.writeheader(); writer.writerows(rows)
 print(f'P23_FORM34B_OCR_PAGE_INDEX normalized_pages={physical_page} expected_pages={expected}')
+PY
+
+# The primary layout OCR misses the Registered Voters anchor on this scan. Run
+# one additional sparse-text pass against physical page 1 only. This artifact is
+# label evidence only: any row containing a digit is blanked before downstream
+# matching, so this recovery pass cannot supply or promote numeric vote values.
+page1="$(head -n 1 "$list")"
+[[ -f "$page1" ]] || { echo "Missing rendered page 1 image" >&2; exit 1; }
+tesseract "$page1" stdout --psm 11 tsv 2>/dev/null > "$label_raw_tsv"
+python3 - "$label_raw_tsv" "$label_tsv" <<'PY'
+import csv,re,sys
+src,dst=sys.argv[1],sys.argv[2]
+alpha_tokens=0
+numeric_rows_retained=0
+with open(src,encoding='utf-8',errors='replace',newline='') as source:
+    reader=csv.DictReader(source,delimiter='\t')
+    fields=reader.fieldnames
+    if not fields or 'page_num' not in fields or 'text' not in fields:
+        raise SystemExit('Unexpected label-recovery TSV schema')
+    rows=[]
+    for row in reader:
+        row['page_num']='1'
+        raw=(row.get('text') or '').strip()
+        if re.search(r'\d',raw):
+            row['text']=''
+        elif re.search(r'[A-Za-z]',raw):
+            alpha_tokens += 1
+        rows.append(row)
+with open(dst,'w',encoding='utf-8',newline='') as target:
+    writer=csv.DictWriter(target,fieldnames=fields,delimiter='\t',lineterminator='\n')
+    writer.writeheader(); writer.writerows(rows)
+print(f'P23_FORM34B_LABEL_RECOVERY page=1 psm=11 alpha_tokens={alpha_tokens} numeric_rows_retained={numeric_rows_retained}')
 PY
 
 python3 - "$tsv" <<'PY'
