@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
+      - data/p23/form34b-source-index-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -15,6 +16,7 @@ on:
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
+      - data/p23/form34b-source-index-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -35,6 +37,8 @@ jobs:
         run: node scripts/p23/validate-constituency-turnout-readiness.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
+      - name: Install deterministic PDF text inspection tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
       - name: Probe Form 34B download transport and text layer
         run: bash scripts/p23/probe-iebc-form34b-download.sh
       - name: Discover official Form 34B source manifest
