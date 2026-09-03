@@ -15,6 +15,8 @@ locate_ordered_targets = HELPER["locate_ordered_targets"]
 center_x = HELPER["center_x"]
 
 NUMERIC_TOKEN = re.compile(r"^[0-9][0-9,.\s]*$")
+PROFILE_OFFSETS = (-350, -280, -210, -140, -70, 0, 70, 140, 210, 280, 350)
+PROFILE_HALF_WIDTH = 30.0
 
 
 def as_int(value, default=0):
@@ -66,6 +68,21 @@ def read_numeric_tokens(paths):
                     }
                 )
     return tokens, page_dims
+
+
+def density_stats(tokens):
+    confs = [token["conf"] for token in tokens if token["conf"] >= 0]
+    y_bands = {
+        round((token["top"] + token["height"] / 2.0) / 12)
+        for token in tokens
+    }
+    sources = {token["source"] for token in tokens}
+    return {
+        "numeric_tokens": len(tokens),
+        "row_bands": len(y_bands),
+        "mean_conf": sum(confs) / len(confs) if confs else -1.0,
+        "sources": len(sources),
+    }
 
 
 def empty_stats(page=0):
@@ -126,32 +143,28 @@ def main():
     header_bottom = max(finding["bbox"][3] for finding in findings.values())
     footer_limit = page_height * 0.90 if page_height else float("inf")
 
+    body_tokens = []
+    for token in numeric_tokens:
+        if token["page"] != page:
+            continue
+        token_mid_y = token["top"] + token["height"] / 2.0
+        if token_mid_y <= header_bottom or token_mid_y >= footer_limit:
+            continue
+        body_tokens.append(token)
+
     stats = {}
     for field in TARGETS:
         x_center = center_x(findings[field])
         candidates = []
-        for token in numeric_tokens:
-            if token["page"] != page:
-                continue
+        for token in body_tokens:
             token_center = token["left"] + token["width"] / 2.0
-            token_mid_y = token["top"] + token["height"] / 2.0
-            if abs(token_center - x_center) > calibrated_half_width:
-                continue
-            if token_mid_y <= header_bottom:
-                continue
-            if token_mid_y >= footer_limit:
-                continue
-            candidates.append(token)
+            if abs(token_center - x_center) <= calibrated_half_width:
+                candidates.append(token)
 
-        confs = [token["conf"] for token in candidates if token["conf"] >= 0]
-        y_bands = {round((token["top"] + token["height"] / 2.0) / 12) for token in candidates}
-        sources = {token["source"] for token in candidates}
+        lane = density_stats(candidates)
         stats[field] = {
             "page": page,
-            "numeric_tokens": len(candidates),
-            "row_bands": len(y_bands),
-            "mean_conf": sum(confs) / len(confs) if confs else -1.0,
-            "sources": len(sources),
+            **lane,
             "x_center": x_center,
             "half_width": calibrated_half_width,
         }
@@ -179,6 +192,35 @@ def main():
             for field in TARGETS
         )
     )
+
+    # Rejected Ballots is the only unresolved lane in the governed sample. Map a
+    # fixed-width horizontal density profile around its verified header center.
+    # This diagnostic cannot relocate the column or make it feasible: it only
+    # shows whether existing numeric OCR clusters are horizontally displaced.
+    profile = []
+    for offset in PROFILE_OFFSETS:
+        probe_center = rejected_center + offset
+        candidates = []
+        for token in body_tokens:
+            token_center = token["left"] + token["width"] / 2.0
+            if abs(token_center - probe_center) <= PROFILE_HALF_WIDTH:
+                candidates.append(token)
+        lane = density_stats(candidates)
+        profile.append((offset, lane))
+
+    print(
+        "P23_FORM34B_REJECTED_DENSITY_PROFILE "
+        + " ".join(
+            (
+                f"offset:{offset:+d}=tokens:{lane['numeric_tokens']},"
+                f"row_bands:{lane['row_bands']},"
+                f"mean_conf:{lane['mean_conf']:.2f},sources:{lane['sources']}"
+            )
+            for offset, lane in profile
+        )
+        + " values_emitted=0 relocation_authorized=false"
+    )
+
     print(
         f"P23_FORM34B_COLUMN_LAYOUT_FEASIBLE ordered_triplet=true "
         f"adjacent_spacing={adjacent_spacing:.1f} density_ok={str(density_ok).lower()} "
