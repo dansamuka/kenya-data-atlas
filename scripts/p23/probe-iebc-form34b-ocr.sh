@@ -11,6 +11,7 @@ raw_tsv='/tmp/iebc-form34b-ocr-raw.tsv'
 tsv='/tmp/iebc-form34b-ocr.tsv'
 label_raw_tsv='/tmp/iebc-form34b-labels-page1-raw.tsv'
 label_tsv='/tmp/iebc-form34b-labels-page1.tsv'
+numeric_raw_tsv='/tmp/iebc-form34b-numeric-page1-raw.tsv'
 
 node scripts/p23/validate-form34b-ocr-feasibility.mjs
 curl -fsSL --connect-timeout 20 --max-time 60 -A "$ua" -c "$cookie" -b "$cookie" "$base/" -o /tmp/iebc-form34b-ocr-home.html
@@ -86,6 +87,29 @@ with open(dst,'w',encoding='utf-8',newline='') as target:
     writer=csv.DictWriter(target,fieldnames=fields,delimiter='\t',lineterminator='\n')
     writer.writeheader(); writer.writerows(rows)
 print(f'P23_FORM34B_LABEL_RECOVERY page=1 psm=11 alpha_tokens={alpha_tokens} numeric_rows_retained={numeric_rows_retained}')
+PY
+
+# Use the same page image for a digits-only sparse OCR pass. This is strictly a
+# machine-readability diagnostic: the TSV stays in /tmp, raw transcriptions are
+# never printed or committed, and downstream code consumes only geometry/count/
+# confidence until a separate machine-candidate extraction gate is authorised.
+tesseract "$page1" stdout --psm 11 -c tessedit_char_whitelist='0123456789,.' tsv 2>/dev/null > "$numeric_raw_tsv"
+python3 - "$numeric_raw_tsv" <<'PY'
+import csv,re,sys
+path=sys.argv[1]
+count=0
+confs=[]
+with open(path,encoding='utf-8',errors='replace') as handle:
+    for row in csv.DictReader(handle,delimiter='\t'):
+        raw=(row.get('text') or '').strip()
+        if not raw or not re.search(r'\d',raw):
+            continue
+        count += 1
+        try: conf=float(row.get('conf','-1'))
+        except ValueError: conf=-1
+        if conf>=0: confs.append(conf)
+mean_conf=sum(confs)/len(confs) if confs else -1
+print(f'P23_FORM34B_NUMERIC_RECOVERY page=1 psm=11 numeric_tokens={count} mean_conf={mean_conf:.2f} values_emitted=0')
 PY
 
 python3 - "$tsv" <<'PY'
