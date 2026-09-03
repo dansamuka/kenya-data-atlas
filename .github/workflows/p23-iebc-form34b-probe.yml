@@ -109,4 +109,4 @@ jobs:
       - name: Assess target field-label coverage without values
         run: python3 scripts/p23/assess-form34b-field-labels.py /tmp/iebc-form34b-ocr.tsv /tmp/iebc-form34b-labels-page1.tsv
       - name: Assess target column geometry without values
-        run: python3 scripts/p23/assess-form34b-column-layout.py /tmp/iebc-form34b-ocr.tsv /tmp/iebc-form34b-labels-page1.tsv --numeric-density-tsv /tmp/iebc-form34b-labels-page1-raw.tsv --numeric-density-tsv /tmp/iebc-form34b-numeric-page1-raw.tsv
+        run: python3 scripts/p23/assess-form34b-column-layout.py /tmp/iebc-form34b-ocr.tsv /tmp/iebc-form34b-labels-page1.tsv --numeric-density-tsv /tmp/iebc-form34b-labels-page1-raw.tsv --numeric-density-tsv /tmp/iebc-form34b-numeric-page1-raw.tsv --numeric-density-tsv /tmp/iebc-form34b-numeric-page1-psm6-raw.tsv
