@@ -80,12 +80,15 @@ def empty_stats(page=0):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("tsv")
+    parser.add_argument("tsv", nargs="+")
     args = parser.parse_args()
 
+    # Geometry labels may use supplemental label-only OCR sources, but numeric
+    # density is always read exclusively from the first, governed primary OCR
+    # TSV. Supplemental sources have their digit-bearing rows removed upstream.
     words = read_words(args.tsv)
     ordered = locate_ordered_targets(build_segments(words))
-    numeric_tokens, page_dims = read_numeric_tokens(args.tsv)
+    numeric_tokens, page_dims = read_numeric_tokens(args.tsv[0])
 
     if not ordered:
         stats = empty_stats()
