@@ -1,0 +1,67 @@
+{
+  "schema_version": "kda.p23x.child-domain-review.v1",
+  "as_of": "2026-09-03",
+  "phase": "P23X/P24X",
+  "indicator_codes": [
+    "IND-HEALTH-FACILITY-COUNT",
+    "IND-HEALTH-FACILITY-DENSITY",
+    "IND-HEALTH-FACILITY-STOCK"
+  ],
+  "canonical_2023_census_source": {
+    "publisher": "Kenya Ministry of Health",
+    "publication": "Kenya Health Facility Census Report September 2023",
+    "source_url": "https://www.health.go.ke/sites/default/files/2024-01/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf",
+    "atlas_source_file": "data/p20/source/health-facility-density-2023.json",
+    "atlas_table_reference": "Table 2: County Summary; Facilities Targeted Over Facilities Assessed, Closed & Denied Access",
+    "canonical_domain": "county"
+  },
+  "official_registry_evidence": {
+    "publisher": "Kenya Ministry of Health",
+    "system": "Kenya Master Health Facility Registry (KMHFR)",
+    "public_facilities_url": "https://kmhfr.health.go.ke/public/facilities",
+    "verified_capabilities": [
+      "The public registry exposes facility-level records and supports county, constituency and ward administrative filters.",
+      "Public facility records expose constituency and ward labels alongside facility identity and operational metadata.",
+      "The registry is a live/current facility system and therefore is not automatically equivalent to the dated August-September 2023 Health Facility Census assessment universe."
+    ]
+  },
+  "assessment": {
+    "IND-HEALTH-FACILITY-COUNT": {
+      "constituency": "materialization_feasibility_pending",
+      "ward": "materialization_feasibility_pending",
+      "reason": "The canonical Atlas indicator is the dated 2023 Health Facility Census assessment count. Current KMHFR geography fields make child aggregation technically plausible, but a current registry count must not be substituted for the 2023 census assessment universe. A dated facility-level census extract or official child-level tabulation is required before materialization."
+    },
+    "IND-HEALTH-FACILITY-DENSITY": {
+      "constituency": "materialization_feasibility_pending",
+      "ward": "materialization_feasibility_pending",
+      "reason": "The canonical Atlas density is derived from the 2023 census-assessment numerator and a 2023 population denominator. Child-level publication requires a defensible dated facility numerator plus compatible constituency/ward population denominators and boundary-vintage reconciliation. County density must not be copied down or recomputed from a live registry against mismatched denominators."
+    },
+    "IND-HEALTH-FACILITY-STOCK": {
+      "constituency": "direct_official_aggregation_candidate",
+      "ward": "direct_official_aggregation_candidate",
+      "reason": "The live Ministry of Health KMHFR exposes facility records with constituency and ward fields, so an independently versioned current facility-stock series may be defensibly obtainable by direct official aggregation. It must remain distinct from the 2023 census-assessed count and must pass geography, status, duplicate and snapshot-date controls before publication."
+    }
+  },
+  "source_semantics_hold": {
+    "status": "review_required",
+    "note": "The Atlas P20 source file records a national 2023 facilities-assessed numerator of 14,883 from the report's county Table 2 counting rule, while the Ministry report executive summary describes 12,384 facilities as fully assessed. These may represent different census coverage concepts. No child-level derivation should proceed until the exact Table 2 numerator semantics are reconciled against the report. Existing county observations are not altered by this review tranche."
+  },
+  "required_next_evidence": [
+    "Reconcile the 14,883 Atlas Table 2 numerator with the report's 12,384 fully-assessed executive-summary figure and document the exact inclusion rule.",
+    "Locate an official dated 2023 facility-level census extract or official constituency/ward tabulation for the census-assessment indicators.",
+    "For a live KMHFR facility-stock series, capture a reproducible registry snapshot and verify operational-status, duplicate, moved-facility and administrative-geography rules.",
+    "Reconcile all constituency and ward labels/codes to the Atlas 290-constituency and 1,450-ward registries, retaining explicit spatial holds for unmatched or ambiguous records.",
+    "For density, obtain compatible child-level population denominators for the same reference period and boundary vintage before computing any rate.",
+    "Reconcile any proposed child aggregation back to the governing county totals where the source universe and period are intended to match."
+  ],
+  "prohibited_methods": [
+    "parent_to_child_inheritance",
+    "county_rate_copy_down",
+    "equal_split",
+    "population_proportional_facility_allocation",
+    "mixing_live_registry_counts_with_2023_census_denominators_without_explicit_versioning",
+    "silent_boundary_crosswalk",
+    "unverified_duplicate_or_closed-facility inclusion"
+  ],
+  "closure_state": "review_complete_materialization_and_source_semantics_evidence_pending"
+}
