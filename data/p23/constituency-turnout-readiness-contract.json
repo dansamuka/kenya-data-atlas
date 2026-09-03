@@ -1,0 +1,51 @@
+{
+  "schema_version": "kda.p23.constituency-turnout-readiness.v1",
+  "contract_id": "P23-IEBC-2022-CONSTITUENCY-TURNOUT-READINESS-2026-09-03",
+  "as_of": "2026-09-03",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "expected_geographies": 290,
+  "boundary_version": "2012-01",
+  "election": {
+    "name": "2022 General Election — Presidential",
+    "date": "2022-08-09",
+    "source_form": "Form 34B",
+    "primary_source": "Independent Electoral and Boundaries Commission (IEBC)",
+    "portal_url": "https://forms.iebc.or.ke",
+    "portal_role": "Official public result-form portal containing constituency Form 34B scans uploaded from the constituency result path."
+  },
+  "measure": {
+    "name": "Presidential voter turnout",
+    "unit": "percent",
+    "numerator": "total_valid_votes + rejected_ballots",
+    "denominator": "registered_voters",
+    "formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
+    "rounding": "Retain source integers; round display percentage only after calculation."
+  },
+  "authority_notes": [
+    "Form 34B is the regulated constituency collation form and records polling-station registered voters, total valid votes and rejected ballots.",
+    "The IEBC result path requires the Constituency Returning Officer to collate Form 34A results into Form 34B and upload the scanned Form 34B to the public portal.",
+    "Citizen or media transcriptions may be used only as non-canonical QA aids; canonical promotion requires official IEBC evidence."
+  ],
+  "reconciliation": {
+    "registered_voter_authority": "IEBC Gazette Notice No. 7290 / existing P23 constituency registered-voter series",
+    "rule": "The Form 34B constituency registered-voter total must reconcile to the canonical 2022 IEBC constituency voter denominator before turnout is promoted. Any mismatch remains unresolved and is investigated; it is never force-adjusted.",
+    "valid_vote_rule": "When candidate columns are extractable, their sum must equal Form 34B total valid votes.",
+    "range_rule": "0 <= turnout_pct <= 100"
+  },
+  "extraction": {
+    "probe_script": "scripts/p23/probe-iebc-form34b.sh",
+    "status": "official_portal_confirmed_extraction_pending",
+    "required_artifact": "A deterministic 290-row extraction manifest with constituency code/name, official Form 34B source reference, registered voters, total valid votes, rejected ballots, turnout percentage and extraction verification state.",
+    "ocr_policy": "OCR may assist discovery/transcription but no OCR-only value is promoted without source-level validation against the official Form 34B."
+  },
+  "acceptance": [
+    "Exactly 290 current constituency geographies are covered or explicitly unresolved; no silent omissions.",
+    "Every promoted row points to official IEBC Form 34B evidence from the 2022 presidential election.",
+    "All denominator values reconcile to the governed constituency registered-voter series.",
+    "All promoted turnout values satisfy numerator/denominator and range checks.",
+    "No county, ward, media or citizen-tally value is inherited or substituted for missing official constituency evidence.",
+    "The existing 20,115-slot completeness denominator does not change.",
+    "After materialization and rebuild, the 290 turnout-only P23 slot instances move to complete and P23 reaches its acceptance gate."
+  ]
+}
