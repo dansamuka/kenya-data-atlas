@@ -14,6 +14,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/assess-form34b-field-labels.py
+      - scripts/p23/assess-form34b-column-layout.py
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/build-form34b-extraction-queue.mjs
       - scripts/p23/validate-form34b-extraction-queue.mjs
@@ -33,6 +34,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/assess-form34b-field-labels.py
+      - scripts/p23/assess-form34b-column-layout.py
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/build-form34b-extraction-queue.mjs
       - scripts/p23/validate-form34b-extraction-queue.mjs
@@ -106,3 +108,5 @@ jobs:
         run: bash scripts/p23/probe-iebc-form34b-ocr.sh
       - name: Assess target field-label coverage without values
         run: python3 scripts/p23/assess-form34b-field-labels.py /tmp/iebc-form34b-ocr.tsv
+      - name: Assess target column geometry without values
+        run: python3 scripts/p23/assess-form34b-column-layout.py /tmp/iebc-form34b-ocr.tsv
