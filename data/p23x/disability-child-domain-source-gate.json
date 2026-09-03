@@ -1,0 +1,44 @@
+{
+  "schema_version": "kda.p23x.child-domain-source-gate.v1",
+  "as_of": "2026-09-03",
+  "indicator_code": "IND-DISABILITY-PREVALENCE",
+  "phase": "P23X/P24X",
+  "source_review": {
+    "publisher": "Kenya National Bureau of Statistics (KNBS)",
+    "canonical_publication": "2019 Kenya Population and Housing Census Analytical Report on Disability",
+    "canonical_table": "Table 2.13",
+    "canonical_domain": "county",
+    "canonical_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Disability.pdf",
+    "kenada_study_id": "KEN-KNBS-KPHC-2019-v01",
+    "kenada_catalogue_url": "https://statistics.knbs.or.ke/nada/index.php/catalog/116",
+    "questionnaire_documentation_url": "https://statistics.knbs.or.ke/nada/index.php/catalog/116/related-materials"
+  },
+  "verified_findings": [
+    "KNBS publishes the canonical Atlas disability-prevalence values at county level in KPHC Analytical Report on Disability Table 2.13.",
+    "KNBS KeNADA exposes the 2019 KPHC study metadata and documentation as an official census study for individuals and households.",
+    "Official 2019 KPHC questionnaire material contains constituency and ward geography fields, so child-domain feasibility cannot be rejected solely because the currently ingested published table is county-level.",
+    "The publicly inspectable KeNADA study page does not itself expose a verified child-level disability-prevalence table or enough variable/file detail to demonstrate that a reproducible constituency/ward extract matching the Atlas definition can be produced safely.",
+    "KNBS published census result tables reviewed for this gate describe administrative-unit and socio-economic releases, but no governed current-290 constituency or 1,450-ward disability-prevalence table matching Table 2.13 was identified."
+  ],
+  "publication_gate": {
+    "status": "blocked_pending_authoritative_child_data_evidence",
+    "constituency": "review_required",
+    "ward": "review_required",
+    "required_before_materialization": [
+      "Obtain an official KNBS constituency/ward disability tabulation using the same Washington Group threshold and denominator as the canonical Atlas measure, or obtain authorised/public microdata with usable child geography identifiers.",
+      "Verify the exact disability variables, denominator semantics, geography codes and disclosure constraints.",
+      "Reproduce the published 47-county Table 2.13 values from any proposed microdata transformation before publishing lower-level observations.",
+      "Reconcile source geography to the Atlas 290 constituencies and 1,450 wards; any boundary mismatch must remain an explicit spatial hold rather than be silently crosswalked."
+    ]
+  },
+  "prohibited_shortcuts": [
+    "parent_to_child_inheritance",
+    "county_rate_copy_down",
+    "population_proportional_allocation",
+    "equal_split",
+    "unverified_microdata_recalculation",
+    "silent_boundary_crosswalk"
+  ],
+  "recommended_next_action": "Request or locate an official KNBS child-level tabulation or verified KeNADA microdata extract; until that evidence is available, leave IND-DISABILITY-PREVALENCE child rows as review_required and continue P23X with another independently reviewable indicator.",
+  "closure_state": "source_gate_blocked_child_evidence_required"
+}
