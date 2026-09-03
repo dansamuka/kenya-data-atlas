@@ -14,16 +14,39 @@ assert(contract.indicator_code==='IND-TURNOUT-HISTORY','indicator must remain IN
 assert(contract.level==='constituency','target level must remain constituency');
 const constituencies=geographies.filter(g=>g.level==='constituency');
 assert(constituencies.length===290,`expected 290 canonical constituencies, got ${constituencies.length}`);
-assert(new Set(constituencies.map(g=>g.geo_code)).size===290,'canonical constituency geo_codes must be unique');
+const byGeoCode=new Map(constituencies.map(g=>[g.geo_code,g]));
+assert(byGeoCode.size===290,'canonical constituency geo_codes must be unique');
 assert(contract.expected_geographies===290,'contract geography count must remain 290');
 assert(contract.election?.date==='2022-08-09','election date must remain pinned to the 2022 General Election');
 assert(contract.election?.source_form==='Form 34B','source form must remain Form 34B');
 assert(new URL(contract.election?.portal_url).hostname==='forms.iebc.or.ke','primary source must remain the official IEBC forms portal');
 assert(contract.measure?.formula==='100 * (total_valid_votes + rejected_ballots) / registered_voters','turnout formula changed');
 assert(contract.reconciliation?.range_rule==='0 <= turnout_pct <= 100','range rule changed');
+
+const aliases=contract.source_name_reconciliation?.aliases||[];
+assert(aliases.length===3,'expected exactly three governed IEBC source-name aliases');
+const expectedAliases=new Map([
+  ['CHUKA/IGAMBANG\'OMBE','KEN-C013-CON061'],
+  ['SUBA NORTH','KEN-C043-CON251'],
+  ['SUBA SOUTH','KEN-C043-CON252']
+]);
+for(const alias of aliases){
+  assert(expectedAliases.get(alias.portal_name)===alias.geo_code,`unexpected source-name alias ${alias.portal_name} -> ${alias.geo_code}`);
+  const geo=byGeoCode.get(alias.geo_code);
+  assert(geo,`source-name alias target ${alias.geo_code} is not a canonical constituency`);
+  assert(Number(geo.constituency_code)===Number(alias.constituency_code),`${alias.portal_name}: constituency code diverged from canonical registry`);
+  assert(geo.name===alias.canonical_name,`${alias.portal_name}: canonical display name diverged from registry`);
+}
+const excluded=contract.source_name_reconciliation?.excluded_portal_rows||[];
+assert(excluded.length===1&&excluded[0].portal_name==='DIASPORA','diaspora must remain the sole governed non-canonical Form 34B portal row');
+assert(String(excluded[0].reason||'').toLowerCase().includes('290'),'diaspora exclusion reason must preserve the 290-territorial-constituency distinction');
+
+assert(contract.extraction?.source_manifest_script==='scripts/p23/discover-iebc-form34b-manifest.py','source manifest script contract changed');
+assert(contract.extraction?.download_transport_probe==='scripts/p23/probe-iebc-form34b-download.sh','download transport probe contract changed');
 assert(contract.extraction?.status==='official_portal_confirmed_extraction_pending','readiness must not claim materialization before a validated 290-row artifact exists');
 assert(Number(summary.by_completion_phase?.P23)===290,`expected turnout-only P23 remainder of 290, got ${summary.by_completion_phase?.P23}`);
 assert((contract.acceptance||[]).some(x=>x.includes('20,115-slot')),'governed denominator invariant missing');
 assert((contract.authority_notes||[]).some(x=>x.toLowerCase().includes('citizen')),'non-canonical QA-source rule missing');
+assert((contract.acceptance||[]).some(x=>x.toLowerCase().includes('diaspora')),'diaspora exclusion acceptance rule missing');
 
-console.log(`P23_TURNOUT_READINESS_OK constituencies=${constituencies.length} p23_remaining=${summary.by_completion_phase.P23} status=${contract.extraction.status}`);
+console.log(`P23_TURNOUT_READINESS_OK constituencies=${constituencies.length} aliases=${aliases.length} excluded_portal=${excluded.length} p23_remaining=${summary.by_completion_phase.P23} status=${contract.extraction.status}`);
