@@ -8,6 +8,8 @@ const assert=(ok,msg)=>{if(!ok)throw new Error(`P23 constituency turnout readine
 const contract=json('data/p23/constituency-turnout-readiness-contract.json');
 const geographies=json('data/geography/registry/geographies.json');
 const summary=json('data/completeness/summary.json');
+const sourceIndex=json('data/p23/form34b-source-index-contract.json');
+const extraction=json('data/p23/form34b-extraction-contract.json');
 
 assert(contract.schema_version==='kda.p23.constituency-turnout-readiness.v1','unexpected contract schema');
 assert(contract.indicator_code==='IND-TURNOUT-HISTORY','indicator must remain IND-TURNOUT-HISTORY');
@@ -42,11 +44,17 @@ assert(excluded.length===1&&excluded[0].portal_name==='DIASPORA','diaspora must 
 assert(String(excluded[0].reason||'').toLowerCase().includes('290'),'diaspora exclusion reason must preserve the 290-territorial-constituency distinction');
 
 assert(contract.extraction?.source_manifest_script==='scripts/p23/discover-iebc-form34b-manifest.py','source manifest script contract changed');
+assert(contract.extraction?.source_index_contract==='data/p23/form34b-source-index-contract.json','source-index contract link changed');
 assert(contract.extraction?.download_transport_probe==='scripts/p23/probe-iebc-form34b-download.sh','download transport probe contract changed');
-assert(contract.extraction?.status==='official_portal_confirmed_extraction_pending','readiness must not claim materialization before a validated 290-row artifact exists');
+assert(contract.extraction?.ocr_feasibility_contract==='data/p23/form34b-ocr-feasibility-contract.json','OCR feasibility contract link changed');
+assert(contract.extraction?.field_extraction_contract==='data/p23/form34b-extraction-contract.json','field extraction contract link changed');
+assert(contract.extraction?.field_extraction_validator==='scripts/p23/validate-form34b-extraction-contract.mjs','field extraction validator link changed');
+assert(contract.extraction?.status==='official_source_index_verified_numeric_extraction_pending','readiness must acknowledge verified source index while keeping numeric extraction pending');
+assert(sourceIndex.source_index_relation?.verified_rows===290,'verified Form 34B source-index coverage changed');
+assert(extraction.expected_geographies===290&&extraction.promotion_policy?.denominator_invariant===20115,'field extraction contract invariants changed');
 assert(Number(summary.by_completion_phase?.P23)===290,`expected turnout-only P23 remainder of 290, got ${summary.by_completion_phase?.P23}`);
 assert((contract.acceptance||[]).some(x=>x.includes('20,115-slot')),'governed denominator invariant missing');
 assert((contract.authority_notes||[]).some(x=>x.toLowerCase().includes('citizen')),'non-canonical QA-source rule missing');
 assert((contract.acceptance||[]).some(x=>x.toLowerCase().includes('diaspora')),'diaspora exclusion acceptance rule missing');
 
-console.log(`P23_TURNOUT_READINESS_OK constituencies=${constituencies.length} aliases=${aliases.length} excluded_portal=${excluded.length} p23_remaining=${summary.by_completion_phase.P23} status=${contract.extraction.status}`);
+console.log(`P23_TURNOUT_READINESS_OK constituencies=${constituencies.length} aliases=${aliases.length} excluded_portal=${excluded.length} source_index=${sourceIndex.source_index_relation.verified_rows}/290 p23_remaining=${summary.by_completion_phase.P23} status=${contract.extraction.status}`);
