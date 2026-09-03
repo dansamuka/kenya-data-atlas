@@ -1,0 +1,39 @@
+{
+  "schema_version": "kda.p23x.child-domain-review.v1",
+  "as_of": "2026-09-03",
+  "indicator_code": "IND-DISABILITY-PREVALENCE",
+  "canonical_source": {
+    "publisher": "Kenya National Bureau of Statistics (KNBS)",
+    "publication": "2019 Kenya Population and Housing Census Analytical Report on Disability",
+    "canonical_table": "Table 2.13",
+    "canonical_domain": "county",
+    "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Disability.pdf"
+  },
+  "official_child_domain_evidence": {
+    "questionnaire_geography_fields": [
+      "constituency",
+      "ward"
+    ],
+    "evidence_note": "The official 2019 KPHC questionnaire records constituency and ward geography, and KNBS exposes the census study metadata through KeNADA. However, the governed Atlas prevalence series is sourced from published Table 2.13 county totals. The current review did not identify a published official current-290 constituency or 1,450-ward disability-prevalence table matching the canonical Washington Group threshold and denominator.",
+    "kenada_catalogue_url": "https://statistics.knbs.or.ke/nada/index.php/catalog/116"
+  },
+  "assessment": {
+    "constituency": "materialization_feasibility_pending",
+    "ward": "materialization_feasibility_pending",
+    "reason": "This is census-derived rather than a county-domain sample survey, so governed_unavailable should not be assigned merely because the current Atlas source table is county-level. A defensible child-level series may be obtainable from an official KNBS tabulation or a reproducible KNBS microdata extract if the required geography identifiers, disability variables, denominator semantics, disclosure controls, and 2012 electoral-boundary compatibility can all be verified. Until then, county prevalence must not be inherited or downscaled."
+  },
+  "required_next_evidence": [
+    "Locate an official KNBS constituency/ward tabulation using the same disability definition and denominator, or confirm that no such publication exists.",
+    "If using KeNADA microdata, verify that public-access files expose usable constituency/ward identifiers and the Washington Group disability fields without disclosure restrictions.",
+    "Reproduce the published 47-county Table 2.13 values from any proposed microdata method before accepting child-level estimates.",
+    "Confirm compatibility with the Atlas current 290 constituencies and 1,450 wards; unresolved boundary mismatches must remain explicit spatial holds."
+  ],
+  "prohibited_methods": [
+    "parent_to_child_inheritance",
+    "population_proportional_allocation",
+    "equal_split",
+    "county_rate_copy_down",
+    "unverified_microdata_recalculation"
+  ],
+  "closure_state": "review_complete_child_materialization_feasibility_pending"
+}
