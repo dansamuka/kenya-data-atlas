@@ -28,7 +28,7 @@ permissions:
   contents: read
 
 jobs:
-  probe:
+  source-manifest:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -37,10 +37,6 @@ jobs:
         run: node scripts/p23/validate-constituency-turnout-readiness.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
-      - name: Install deterministic PDF text inspection tools
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
-      - name: Probe Form 34B download transport and text layer
-        run: bash scripts/p23/probe-iebc-form34b-download.sh
       - name: Discover official Form 34B source manifest
         run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
@@ -53,3 +49,13 @@ jobs:
           path: /tmp/iebc-2022-form34b-source-manifest.json
           if-no-files-found: error
           retention-days: 7
+
+  sample-pdf:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF text inspection tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Probe Form 34B download transport and text layer
+        run: bash scripts/p23/probe-iebc-form34b-download.sh
