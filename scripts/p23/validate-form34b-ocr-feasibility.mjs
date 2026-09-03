@@ -22,4 +22,5 @@ assert(geos.filter(g=>g.level==='constituency').length===290,'canonical constitu
 assert(Number(summary.by_completion_phase?.P23)===290,'sample OCR gate must not resolve P23 slots');
 assert((c.prohibited||[]).some(x=>x.includes('bulk OCR')),'bulk-promotion prohibition missing');
 assert(String(c.promotion_rule||'').includes('every promoted constituency'),'source-level verification rule missing');
+assert(String(c.required_next_gate_if_feasible||'').includes('partial unresolved rows'),'post-OCR extraction gate must preserve unresolved rows');
 console.log(`P23_FORM34B_OCR_CONTRACT_OK sample=${c.sample.constituency_name} form_id=${c.sample.form_id} p23_remaining=${summary.by_completion_phase.P23}`);
