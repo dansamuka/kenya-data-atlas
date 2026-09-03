@@ -8,6 +8,7 @@ on:
       - data/p23/constituency-turnout-readiness-contract.json
       - data/p23/form34b-source-index-contract.json
       - data/p23/form34b-ocr-feasibility-contract.json
+      - data/p23/form34b-extraction-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
@@ -15,12 +16,14 @@ on:
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-ocr-feasibility.mjs
+      - scripts/p23/validate-form34b-extraction-contract.mjs
   pull_request:
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - data/p23/form34b-source-index-contract.json
       - data/p23/form34b-ocr-feasibility-contract.json
+      - data/p23/form34b-extraction-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
@@ -28,6 +31,7 @@ on:
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-ocr-feasibility.mjs
+      - scripts/p23/validate-form34b-extraction-contract.mjs
   workflow_dispatch:
 
 permissions:
@@ -41,6 +45,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate governed turnout readiness contract
         run: node scripts/p23/validate-constituency-turnout-readiness.mjs
+      - name: Validate field-level extraction governance
+        run: node scripts/p23/validate-form34b-extraction-contract.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
       - name: Discover official Form 34B source manifest
@@ -61,6 +67,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Validate OCR and extraction contracts
+        run: node scripts/p23/validate-form34b-ocr-feasibility.mjs && node scripts/p23/validate-form34b-extraction-contract.mjs
       - name: Install deterministic PDF and OCR inspection tools
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr
       - name: Probe Form 34B download transport and text layer
