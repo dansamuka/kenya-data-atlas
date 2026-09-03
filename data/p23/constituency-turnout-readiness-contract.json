@@ -68,8 +68,11 @@
   "extraction": {
     "probe_script": "scripts/p23/probe-iebc-form34b.sh",
     "source_manifest_script": "scripts/p23/discover-iebc-form34b-manifest.py",
+    "source_index_contract": "data/p23/form34b-source-index-contract.json",
     "download_transport_probe": "scripts/p23/probe-iebc-form34b-download.sh",
-    "status": "official_portal_confirmed_extraction_pending",
+    "ocr_feasibility_contract": "data/p23/form34b-ocr-feasibility-contract.json",
+    "ocr_feasibility_probe": "scripts/p23/probe-iebc-form34b-ocr.sh",
+    "status": "official_source_index_verified_numeric_extraction_pending",
     "required_artifact": "A deterministic 290-row extraction manifest with constituency code/name, official Form 34B source reference, registered voters, total valid votes, rejected ballots, turnout percentage and extraction verification state.",
     "ocr_policy": "OCR may assist discovery/transcription but no OCR-only value is promoted without source-level validation against the official Form 34B."
   },
