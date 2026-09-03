@@ -23,11 +23,22 @@ TARGETS = {
     ],
 }
 
+FIELD_ANCHORS = {
+    "registered_voters": ["REGISTERED", "REGISTER"],
+    "total_valid_votes": ["VALID"],
+    "rejected_ballots": ["REJECTED", "REJECT"],
+}
+FIELD_ANCHOR_THRESHOLD = {
+    "registered_voters": 0.60,
+    "total_valid_votes": 0.70,
+    "rejected_ballots": 0.65,
+}
+
 MAX_WINDOW_WORDS = 5
 MAX_VERTICAL_SEGMENT_WORDS = 3
 MAX_VERTICAL_SEGMENT_WIDTH_PX = 700
 VERTICAL_GAP_PX = 180
-ORDERED_MATCH_LIMIT = 80
+ORDERED_MATCH_LIMIT = 120
 ORDERED_HEADER_Y_SPREAD_PX = 240
 
 
@@ -88,45 +99,68 @@ def token_alignment(candidate, target):
     return sum(scores) / len(scores), min(scores)
 
 
+def anchor_alignment(candidate, field):
+    source = candidate.split()
+    if not source:
+        return 0.0
+    return max(
+        SequenceMatcher(None, anchor, source_token).ratio()
+        for anchor in FIELD_ANCHORS[field]
+        for source_token in source
+    )
+
+
 def candidate_score(phrase, target):
     char_similarity = SequenceMatcher(None, phrase, target).ratio()
     token_mean, token_min = token_alignment(phrase, target)
     return char_similarity, token_mean, token_min
 
 
-def read_words(path):
+def read_words(paths):
+    if isinstance(paths, str):
+        paths = [paths]
     words = []
-    with open(path, encoding="utf-8", errors="replace") as handle:
-        for row in csv.DictReader(handle, delimiter="\t"):
-            text = clean((row.get("text") or "").strip())
-            if not text:
-                continue
-            # Numeric OCR content is excluded from this diagnostic. Geometry is
-            # retained only for alphabetic label tokens.
-            for word in text.split():
-                if not word.isalpha():
+    for source_index, path in enumerate(paths):
+        with open(path, encoding="utf-8", errors="replace") as handle:
+            for row in csv.DictReader(handle, delimiter="\t"):
+                text = clean((row.get("text") or "").strip())
+                if not text:
                     continue
-                words.append(
-                    {
-                        "text": word,
-                        "conf": as_float(row.get("conf")),
-                        "page": as_int(row.get("page_num")),
-                        "block": as_int(row.get("block_num")),
-                        "par": as_int(row.get("par_num")),
-                        "line": as_int(row.get("line_num")),
-                        "left": as_int(row.get("left")),
-                        "top": as_int(row.get("top")),
-                        "width": as_int(row.get("width")),
-                        "height": as_int(row.get("height")),
-                    }
-                )
+                # Numeric OCR content is excluded from this diagnostic. Geometry
+                # is retained only for alphabetic label tokens.
+                for word in text.split():
+                    if not word.isalpha():
+                        continue
+                    words.append(
+                        {
+                            "text": word,
+                            "conf": as_float(row.get("conf")),
+                            "page": as_int(row.get("page_num")),
+                            "block": as_int(row.get("block_num")),
+                            "par": as_int(row.get("par_num")),
+                            "line": as_int(row.get("line_num")),
+                            "left": as_int(row.get("left")),
+                            "top": as_int(row.get("top")),
+                            "width": as_int(row.get("width")),
+                            "height": as_int(row.get("height")),
+                            "source": source_index,
+                        }
+                    )
     return words
 
 
 def build_segments(words):
     grouped = defaultdict(list)
     for word in words:
-        grouped[(word["page"], word["block"], word["par"], word["line"])].append(word)
+        grouped[
+            (
+                word["source"],
+                word["page"],
+                word["block"],
+                word["par"],
+                word["line"],
+            )
+        ].append(word)
 
     segments = []
     for key, line_words in grouped.items():
@@ -141,21 +175,22 @@ def build_segments(words):
                     {
                         "phrase": phrase,
                         "mean_conf": mean_conf,
-                        "page": key[0],
+                        "source": key[0],
+                        "page": key[1],
                         "bbox": bbox_union(chunk),
                         "mode": "line",
                     }
                 )
 
     # Form 34B column headers can wrap onto two OCR lines. Join nearby segments
-    # only when their horizontal footprints materially overlap, preventing
-    # unrelated neighbouring columns from being merged.
-    by_page = defaultdict(list)
+    # only within the same OCR source and page when their horizontal footprints
+    # materially overlap.
+    by_source_page = defaultdict(list)
     for segment in segments:
-        by_page[segment["page"]].append(segment)
+        by_source_page[(segment["source"], segment["page"])].append(segment)
 
     vertical = []
-    for page_segments in by_page.values():
+    for page_segments in by_source_page.values():
         ordered = sorted(page_segments, key=lambda item: (item["bbox"][1], item["bbox"][0]))
         for i, upper in enumerate(ordered):
             for lower in ordered[i + 1 :]:
@@ -185,6 +220,7 @@ def build_segments(words):
                     {
                         "phrase": phrase,
                         "mean_conf": sum(confs) / len(confs) if confs else -1.0,
+                        "source": upper["source"],
                         "page": upper["page"],
                         "bbox": (
                             min(upper["bbox"][0], lower["bbox"][0]),
@@ -199,23 +235,22 @@ def build_segments(words):
     return segments + vertical
 
 
-def score_match(candidate, target):
+def score_match(candidate, target, field):
     char_similarity, token_mean, token_min = candidate_score(candidate["phrase"], target)
     candidate_words = len(candidate["phrase"].split())
     target_words = len(target.split())
     extra_words = abs(candidate_words - target_words)
     width = candidate["bbox"][2] - candidate["bbox"][0]
-    # Token similarity alone can over-reward a wide phrase containing target
-    # words from neighbouring columns. Penalise extra words and prefer compact
-    # spatial matches without changing the acceptance thresholds below.
     semantic_score = max(char_similarity, token_mean - 0.08 * extra_words)
     return {
         "char_similarity": char_similarity,
         "token_mean": token_mean,
         "token_min": token_min,
+        "anchor_score": anchor_alignment(candidate["phrase"], field),
         "semantic_score": semantic_score,
         "extra_words": extra_words,
         "mean_conf": candidate["mean_conf"],
+        "source": candidate["source"],
         "page": candidate["page"],
         "mode": candidate["mode"],
         "bbox": candidate["bbox"],
@@ -230,10 +265,15 @@ def score_match(candidate, target):
     }
 
 
-def finding_is_located(finding):
+def finding_is_located(field, finding):
     textual_match = finding["char_similarity"] >= 0.62
     spatial_token_match = finding["token_mean"] >= 0.72 and finding["token_min"] >= 0.55
-    return (textual_match or spatial_token_match) and finding["mean_conf"] >= 30
+    anchor_match = finding["anchor_score"] >= FIELD_ANCHOR_THRESHOLD[field]
+    return (
+        (textual_match or spatial_token_match)
+        and anchor_match
+        and finding["mean_conf"] >= 30
+    )
 
 
 def rank_target_matches(candidates, field, limit=None):
@@ -241,8 +281,13 @@ def rank_target_matches(candidates, field, limit=None):
     seen = set()
     for candidate in candidates:
         for target in TARGETS[field]:
-            match = score_match(candidate, target)
-            key = (match["page"], match["bbox"], match["target_variant"])
+            match = score_match(candidate, target, field)
+            key = (
+                match["source"],
+                match["page"],
+                match["bbox"],
+                match["target_variant"],
+            )
             if key in seen:
                 continue
             seen.add(key)
@@ -259,9 +304,11 @@ def locate_targets(candidates):
             "char_similarity": 0.0,
             "token_mean": 0.0,
             "token_min": 0.0,
+            "anchor_score": 0.0,
             "semantic_score": 0.0,
             "extra_words": 0,
             "mean_conf": -1.0,
+            "source": -1,
             "page": 0,
             "mode": "none",
             "bbox": (0, 0, 0, 0),
@@ -273,14 +320,13 @@ def locate_targets(candidates):
 
 def locate_ordered_targets(candidates):
     # Geometry must be selected jointly. Independent semantic maxima can choose
-    # repeated words from the wrong table area. Only already-acceptable label
-    # candidates may participate; the official left-to-right order and same-page
-    # header band are additional constraints, never weaker OCR thresholds.
+    # repeated words from the wrong table area. Only candidates satisfying the
+    # field-specific anchor and existing OCR acceptance thresholds participate.
     ranked = {
         field: [
             match
             for match in rank_target_matches(candidates, field, limit=ORDERED_MATCH_LIMIT)
-            if finding_is_located(match)
+            if finding_is_located(field, match)
         ]
         for field in TARGETS
     }
@@ -318,9 +364,11 @@ def locate_ordered_targets(candidates):
                     "rejected_ballots": rejected,
                 }
                 semantic_scores = [item["semantic_score"] for item in trio.values()]
+                anchor_scores = [item["anchor_score"] for item in trio.values()]
                 compactness = sum(bbox_width(item) for item in trio.values())
                 score = (
                     sum(semantic_scores) + 0.5 * min(semantic_scores),
+                    min(anchor_scores),
                     -y_spread,
                     -compactness,
                     -adjacent_gap,
@@ -334,18 +382,19 @@ def locate_ordered_targets(candidates):
                         "adjacent_gap": adjacent_gap,
                     }
 
-    if best is None:
-        return None
     return best
 
 
 def evaluate_locations(findings):
-    return {field: finding_is_located(finding) for field, finding in findings.items()}
+    return {
+        field: finding_is_located(field, finding)
+        for field, finding in findings.items()
+    }
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("tsv")
+    parser.add_argument("tsv", nargs="+")
     args = parser.parse_args()
 
     words = read_words(args.tsv)
@@ -364,9 +413,10 @@ def main():
                 f"char_similarity:{findings[field]['char_similarity']:.3f},"
                 f"token_similarity:{findings[field]['token_mean']:.3f},"
                 f"token_min:{findings[field]['token_min']:.3f},"
+                f"anchor:{findings[field]['anchor_score']:.3f},"
                 f"mean_conf:{findings[field]['mean_conf']:.2f},"
-                f"page:{findings[field]['page']},mode:{findings[field]['mode']},"
-                f"x_center:{center_x(findings[field]):.1f},"
+                f"source:{findings[field]['source']},page:{findings[field]['page']},"
+                f"mode:{findings[field]['mode']},x_center:{center_x(findings[field]):.1f},"
                 f"bbox_width:{bbox_width(findings[field])}"
             )
             for field in TARGETS
