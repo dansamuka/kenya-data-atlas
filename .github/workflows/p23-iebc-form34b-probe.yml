@@ -13,6 +13,8 @@ on:
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
+      - scripts/p23/build-form34b-extraction-queue.mjs
+      - scripts/p23/validate-form34b-extraction-queue.mjs
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-ocr-feasibility.mjs
@@ -28,6 +30,8 @@ on:
       - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
+      - scripts/p23/build-form34b-extraction-queue.mjs
+      - scripts/p23/validate-form34b-extraction-queue.mjs
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-ocr-feasibility.mjs
@@ -38,6 +42,25 @@ permissions:
   contents: read
 
 jobs:
+  extraction-queue:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate turnout and field-extraction governance
+        run: node scripts/p23/validate-constituency-turnout-readiness.mjs && node scripts/p23/validate-form34b-extraction-contract.mjs
+      - name: Build unresolved 290-row extraction queue
+        run: node scripts/p23/build-form34b-extraction-queue.mjs /tmp/p23-form34b-extraction-queue.json
+      - name: Validate extraction queue no-value gate
+        run: node scripts/p23/validate-form34b-extraction-queue.mjs /tmp/p23-form34b-extraction-queue.json
+      - name: Upload extraction work queue
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-extraction-queue
+          path: /tmp/p23-form34b-extraction-queue.json
+          if-no-files-found: error
+          retention-days: 7
+
   source-manifest:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
