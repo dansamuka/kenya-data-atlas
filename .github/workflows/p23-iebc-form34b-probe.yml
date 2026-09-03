@@ -5,6 +5,15 @@ on:
     branches: [main]
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
+      - data/p23/constituency-turnout-readiness-contract.json
+      - scripts/p23/probe-iebc-form34b.sh
+      - scripts/p23/validate-constituency-turnout-readiness.mjs
+  pull_request:
+    paths:
+      - .github/workflows/p23-iebc-form34b-probe.yml
+      - data/p23/constituency-turnout-readiness-contract.json
+      - scripts/p23/probe-iebc-form34b.sh
+      - scripts/p23/validate-constituency-turnout-readiness.mjs
   workflow_dispatch:
 
 permissions:
@@ -16,7 +25,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+      - name: Validate governed turnout readiness contract
+        run: node scripts/p23/validate-constituency-turnout-readiness.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
-
-# Trigger marker: test one presidential Form 34B constituency drilldown.
