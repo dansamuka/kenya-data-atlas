@@ -1,0 +1,52 @@
+{
+  "schema_version": "kda.p23.iebc-form34b-source-index.v1",
+  "contract_id": "P23-IEBC-2022-FORM34B-SOURCE-INDEX-2026-09-03",
+  "as_of": "2026-09-03",
+  "authority": {
+    "publisher": "Independent Electoral and Boundaries Commission (IEBC)",
+    "election": "2022 General Election — Presidential",
+    "form": "Form 34B",
+    "portal_url": "https://forms.iebc.or.ke",
+    "index_url": "https://forms.iebc.or.ke/index.php?r=site%2Findex&p=1&ft=2&l=2"
+  },
+  "verified_source_manifest": {
+    "portal_reported_items": 291,
+    "portal_rows_discovered": 291,
+    "canonical_constituencies": 290,
+    "canonical_matches": 290,
+    "governed_alias_matches": 3,
+    "excluded_noncanonical_rows": 1,
+    "canonical_rows_with_single_download_ref": 290,
+    "canonical_rows_with_single_view_ref": 290,
+    "sha256": "2aa0f3dec55340645d2ec9ff81380450ba8b0e93beecf7247f7afee8bf773ce2"
+  },
+  "source_index_relation": {
+    "verified_rows": 290,
+    "portal_row_id_formula": "constituency_code + 50",
+    "portal_row_id_offset": 50,
+    "form_id_formula": "constituency_code + 277628",
+    "form_id_offset": 277628,
+    "form_minus_portal_offset": 277578,
+    "first_constituency_code": 1,
+    "last_constituency_code": 290,
+    "first_form_id": 277629,
+    "last_form_id": 277918,
+    "detail_url_template": "https://forms.iebc.or.ke/index.php?r=site%2Findex&id={portal_row_id}&ft=2&p=1&es=",
+    "download_url_template": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id={form_id}",
+    "view_url_template": "https://forms.iebc.or.ke/index.php?r=site%2Fview-form&id={form_id}"
+  },
+  "noncanonical_portal_row": {
+    "portal_row_id": 341,
+    "portal_name": "DIASPORA",
+    "reported": "1 of 1 (100%)",
+    "treatment": "excluded_from_territorial_constituency_manifest"
+  },
+  "name_reconciliation_authority": "data/p23/constituency-turnout-readiness-contract.json#source_name_reconciliation",
+  "rules": [
+    "The source-index relation is a verified locator contract only; it must never be used to infer registered voters, valid votes, rejected ballots, turnout or any other result value.",
+    "Canonical constituency identity remains the KDA geo_code and official constituency code; source names are reconciled only through the governed alias decisions.",
+    "The DIASPORA row is official presidential evidence but is not one of KDA's 290 territorial constituencies and must not be force-mapped.",
+    "Any future portal drift, missing source reference, changed form ID or changed row count invalidates the live-source gate until reviewed.",
+    "Numeric turnout materialization remains blocked until official Form 34B integers are extracted and independently reconciled under the turnout readiness contract."
+  ]
+}
