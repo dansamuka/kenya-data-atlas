@@ -11,7 +11,7 @@ HELPER = runpy.run_path(os.path.join(HERE, "assess-form34b-field-labels.py"))
 TARGETS = HELPER["TARGETS"]
 read_words = HELPER["read_words"]
 build_segments = HELPER["build_segments"]
-locate_targets = HELER = HELPER["locate_targets"]
+locate_targets = HELPER["locate_targets"]
 evaluate_locations = HELPER["evaluate_locations"]
 
 NUMERIC_TOKEN = re.compile(r"^[0-9][0-9,.\s]*$")
@@ -57,7 +57,7 @@ def read_numeric_tokens(path):
                     "width": width,
                     "height": height,
                     "conf": as_float(row.get("conf")),
-                    # The numeric transcription is deliberately not retained.
+                    # Numeric transcription is deliberately discarded here.
                     "digit_count": len(digits),
                 }
             )
