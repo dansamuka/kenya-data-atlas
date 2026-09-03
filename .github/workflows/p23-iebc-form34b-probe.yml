@@ -11,6 +11,7 @@ on:
       - data/p23/form34b-extraction-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
+      - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/assess-form34b-field-labels.py
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -29,6 +30,7 @@ on:
       - data/p23/form34b-extraction-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
+      - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/assess-form34b-field-labels.py
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -74,6 +76,8 @@ jobs:
         run: node scripts/p23/validate-form34b-extraction-contract.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
+      - name: Probe official Form 34B bulk-download transport
+        run: bash scripts/p23/probe-iebc-form34b-download-all.sh
       - name: Discover official Form 34B source manifest
         run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
