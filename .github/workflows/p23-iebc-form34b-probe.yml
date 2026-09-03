@@ -7,23 +7,29 @@ on:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - data/p23/form34b-source-index-contract.json
+      - data/p23/form34b-ocr-feasibility-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
+      - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/discover-iebc-form34b-manifest-v2.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
+      - scripts/p23/validate-form34b-ocr-feasibility.mjs
   pull_request:
     paths:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - data/p23/form34b-source-index-contract.json
+      - data/p23/form34b-ocr-feasibility-contract.json
       - scripts/p23/probe-iebc-form34b.sh
       - scripts/p23/probe-iebc-form34b-download.sh
+      - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/discover-iebc-form34b-manifest-v2.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
+      - scripts/p23/validate-form34b-ocr-feasibility.mjs
   workflow_dispatch:
 
 permissions:
@@ -54,10 +60,12 @@ jobs:
 
   sample-pdf:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Install deterministic PDF text inspection tools
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Install deterministic PDF and OCR inspection tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr
       - name: Probe Form 34B download transport and text layer
         run: bash scripts/p23/probe-iebc-form34b-download.sh
+      - name: Run governed sample-only OCR feasibility gate
+        run: bash scripts/p23/probe-iebc-form34b-ocr.sh
