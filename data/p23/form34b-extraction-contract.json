@@ -1,0 +1,106 @@
+{
+  "schema_version": "kda.p23.form34b-extraction.v1",
+  "contract_id": "P23-IEBC-2022-FORM34B-EXTRACTION-2026-09-03",
+  "as_of": "2026-09-03",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "expected_geographies": 290,
+  "source_index_contract": "data/p23/form34b-source-index-contract.json",
+  "turnout_readiness_contract": "data/p23/constituency-turnout-readiness-contract.json",
+  "ocr_feasibility_contract": "data/p23/form34b-ocr-feasibility-contract.json",
+  "purpose": "Define the only permitted path from official IEBC Form 34B image scans to constituency turnout observations. Machine transcription is treated as a candidate reading, never as a verified source integer by itself.",
+  "required_row_fields": [
+    "geo_code",
+    "constituency_code",
+    "constituency_name",
+    "form_id",
+    "source_url",
+    "source_sha256",
+    "registered_voters",
+    "total_valid_votes",
+    "rejected_ballots",
+    "turnout_pct",
+    "verification_state"
+  ],
+  "numeric_fields": {
+    "registered_voters": {
+      "type": "integer",
+      "minimum": 1,
+      "verification": "Must be visually/source-image verified from the official Form 34B and exactly reconcile to the governed P23 IEBC registered-voter observation for the same constituency.",
+      "mismatch_treatment": "unresolved"
+    },
+    "total_valid_votes": {
+      "type": "integer",
+      "minimum": 0,
+      "verification": "Must be visually/source-image verified from the official Form 34B. Where candidate-vote rows are independently readable, their exact sum must reconcile to this total.",
+      "mismatch_treatment": "unresolved"
+    },
+    "rejected_ballots": {
+      "type": "integer",
+      "minimum": 0,
+      "verification": "Must be visually/source-image verified from the official Form 34B.",
+      "mismatch_treatment": "unresolved"
+    }
+  },
+  "field_evidence": {
+    "required_for_each_numeric_field": [
+      "page_number",
+      "source_image_sha256",
+      "machine_transcription",
+      "machine_confidence",
+      "verified_value",
+      "verification_method",
+      "verification_state"
+    ],
+    "allowed_verification_states": [
+      "machine_candidate",
+      "source_verified",
+      "source_unreadable",
+      "source_mismatch"
+    ],
+    "promotion_state_required": "source_verified"
+  },
+  "row_verification_states": [
+    "verified",
+    "partial_unresolved",
+    "source_unreadable",
+    "denominator_mismatch",
+    "arithmetic_mismatch"
+  ],
+  "turnout_derivation": {
+    "formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
+    "preconditions": [
+      "registered_voters verification_state is source_verified",
+      "total_valid_votes verification_state is source_verified",
+      "rejected_ballots verification_state is source_verified",
+      "registered_voters equals the governed P23 constituency registered-voter value",
+      "total_valid_votes + rejected_ballots <= registered_voters"
+    ],
+    "range_rule": "0 <= turnout_pct <= 100",
+    "rounding": "Store the exact source integers; calculate turnout from integers and round only the display percentage."
+  },
+  "promotion_policy": {
+    "permitted_row_state": "verified",
+    "partial_rows": "Remain unresolved and are retained in the extraction audit artifact. They do not create series or observations.",
+    "all_or_nothing_phase_rule": "P23 cannot close until all 290 existing turnout slot instances are either source-backed verified observations or an independently approved governed evidence closure. This extraction contract itself does not create such a closure.",
+    "denominator_invariant": 20115
+  },
+  "prohibited_methods": [
+    "promoting raw OCR or machine transcription without source-image verification",
+    "silently correcting OCR digits to make arithmetic or denominators reconcile",
+    "copying county, ward, media, citizen-tally or candidate-party values into missing Form 34B fields",
+    "using the verified form-id arithmetic relation to infer any result value",
+    "marking a partial or unreadable row verified",
+    "dropping an unresolved constituency from the 290-row extraction audit"
+  ],
+  "acceptance": [
+    "The extraction audit contains exactly 290 canonical constituency rows, including unresolved rows.",
+    "Every row points to its governed official IEBC Form 34B source reference and source-file digest.",
+    "Every promoted numeric field is individually source_verified with page-level evidence.",
+    "Every verified registered-voter value reconciles exactly to the governed P23 constituency voter denominator.",
+    "Every verified turnout value passes arithmetic and range rules.",
+    "No unresolved or mismatched row is silently repaired or omitted.",
+    "No observation is promoted unless the full row verification_state is verified.",
+    "The 20,115-slot governed completeness denominator remains unchanged."
+  ]
+}
