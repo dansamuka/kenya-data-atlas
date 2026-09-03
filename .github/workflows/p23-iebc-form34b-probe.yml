@@ -7,6 +7,7 @@ on:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - scripts/p23/probe-iebc-form34b.sh
+      - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
   pull_request:
@@ -14,6 +15,7 @@ on:
       - .github/workflows/p23-iebc-form34b-probe.yml
       - data/p23/constituency-turnout-readiness-contract.json
       - scripts/p23/probe-iebc-form34b.sh
+      - scripts/p23/probe-iebc-form34b-download.sh
       - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-constituency-turnout-readiness.mjs
   workflow_dispatch:
@@ -31,6 +33,8 @@ jobs:
         run: node scripts/p23/validate-constituency-turnout-readiness.mjs
       - name: Probe official IEBC 2022 result-form portal
         run: bash scripts/p23/probe-iebc-form34b.sh
+      - name: Probe Form 34B download transport and text layer
+        run: bash scripts/p23/probe-iebc-form34b-download.sh
       - name: Discover official Form 34B source manifest
         run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Upload source-reference manifest
