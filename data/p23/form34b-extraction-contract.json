@@ -61,6 +61,7 @@
     "promotion_state_required": "source_verified"
   },
   "row_verification_states": [
+    "pending_source_verification",
     "verified",
     "partial_unresolved",
     "source_unreadable",
