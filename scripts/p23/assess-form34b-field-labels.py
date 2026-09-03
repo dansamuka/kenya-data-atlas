@@ -27,6 +27,8 @@ MAX_WINDOW_WORDS = 5
 MAX_VERTICAL_SEGMENT_WORDS = 3
 MAX_VERTICAL_SEGMENT_WIDTH_PX = 700
 VERTICAL_GAP_PX = 180
+ORDERED_MATCH_LIMIT = 80
+ORDERED_HEADER_Y_SPREAD_PX = 240
 
 
 def clean(value):
@@ -53,6 +55,18 @@ def bbox_union(words):
     right = max(w["left"] + w["width"] for w in words)
     bottom = max(w["top"] + w["height"] for w in words)
     return (left, top, right, bottom)
+
+
+def center_x(finding):
+    return (finding["bbox"][0] + finding["bbox"][2]) / 2.0
+
+
+def center_y(finding):
+    return (finding["bbox"][1] + finding["bbox"][3]) / 2.0
+
+
+def bbox_width(finding):
+    return max(0, finding["bbox"][2] - finding["bbox"][0])
 
 
 def horizontal_overlap(a, b):
@@ -185,64 +199,148 @@ def build_segments(words):
     return segments + vertical
 
 
+def score_match(candidate, target):
+    char_similarity, token_mean, token_min = candidate_score(candidate["phrase"], target)
+    candidate_words = len(candidate["phrase"].split())
+    target_words = len(target.split())
+    extra_words = abs(candidate_words - target_words)
+    width = candidate["bbox"][2] - candidate["bbox"][0]
+    # Token similarity alone can over-reward a wide phrase containing target
+    # words from neighbouring columns. Penalise extra words and prefer compact
+    # spatial matches without changing the acceptance thresholds below.
+    semantic_score = max(char_similarity, token_mean - 0.08 * extra_words)
+    return {
+        "char_similarity": char_similarity,
+        "token_mean": token_mean,
+        "token_min": token_min,
+        "semantic_score": semantic_score,
+        "extra_words": extra_words,
+        "mean_conf": candidate["mean_conf"],
+        "page": candidate["page"],
+        "mode": candidate["mode"],
+        "bbox": candidate["bbox"],
+        "target_variant": target,
+        "rank": (
+            semantic_score,
+            -extra_words,
+            token_min,
+            -width,
+            candidate["mean_conf"],
+        ),
+    }
+
+
+def finding_is_located(finding):
+    textual_match = finding["char_similarity"] >= 0.62
+    spatial_token_match = finding["token_mean"] >= 0.72 and finding["token_min"] >= 0.55
+    return (textual_match or spatial_token_match) and finding["mean_conf"] >= 30
+
+
+def rank_target_matches(candidates, field, limit=None):
+    matches = []
+    seen = set()
+    for candidate in candidates:
+        for target in TARGETS[field]:
+            match = score_match(candidate, target)
+            key = (match["page"], match["bbox"], match["target_variant"])
+            if key in seen:
+                continue
+            seen.add(key)
+            matches.append(match)
+    matches.sort(key=lambda item: item["rank"], reverse=True)
+    return matches[:limit] if limit else matches
+
+
 def locate_targets(candidates):
     findings = {}
-    for field, variants in TARGETS.items():
-        best = None
-        for candidate in candidates:
-            for target in variants:
-                char_similarity, token_mean, token_min = candidate_score(candidate["phrase"], target)
-                candidate_words = len(candidate["phrase"].split())
-                target_words = len(target.split())
-                extra_words = abs(candidate_words - target_words)
-                bbox_width = candidate["bbox"][2] - candidate["bbox"][0]
-                # Token similarity alone can over-reward a wide phrase that happens
-                # to contain the target words from neighbouring columns. Penalise
-                # extra words and prefer the most compact spatial match.
-                semantic_score = max(char_similarity, token_mean - 0.08 * extra_words)
-                rank = (
-                    semantic_score,
-                    -extra_words,
-                    token_min,
-                    -bbox_width,
-                    candidate["mean_conf"],
-                )
-                if best is None or rank > best["rank"]:
-                    best = {
-                        "rank": rank,
-                        "char_similarity": char_similarity,
-                        "token_mean": token_mean,
-                        "token_min": token_min,
-                        "mean_conf": candidate["mean_conf"],
-                        "page": candidate["page"],
-                        "mode": candidate["mode"],
-                        "bbox": candidate["bbox"],
-                        "target_variant": target,
-                    }
-        findings[field] = best or {
+    for field in TARGETS:
+        matches = rank_target_matches(candidates, field, limit=1)
+        findings[field] = matches[0] if matches else {
             "char_similarity": 0.0,
             "token_mean": 0.0,
             "token_min": 0.0,
+            "semantic_score": 0.0,
+            "extra_words": 0,
             "mean_conf": -1.0,
             "page": 0,
             "mode": "none",
             "bbox": (0, 0, 0, 0),
             "target_variant": "",
+            "rank": (0.0, 0, 0.0, 0, -1.0),
         }
     return findings
 
 
+def locate_ordered_targets(candidates):
+    # Geometry must be selected jointly. Independent semantic maxima can choose
+    # repeated words from the wrong table area. Only already-acceptable label
+    # candidates may participate; the official left-to-right order and same-page
+    # header band are additional constraints, never weaker OCR thresholds.
+    ranked = {
+        field: [
+            match
+            for match in rank_target_matches(candidates, field, limit=ORDERED_MATCH_LIMIT)
+            if finding_is_located(match)
+        ]
+        for field in TARGETS
+    }
+
+    best = None
+    for valid in ranked["total_valid_votes"]:
+        valid_x = center_x(valid)
+        valid_y = center_y(valid)
+        for rejected in ranked["rejected_ballots"]:
+            if rejected["page"] != valid["page"]:
+                continue
+            rejected_x = center_x(rejected)
+            rejected_y = center_y(rejected)
+            adjacent_gap = rejected_x - valid_x
+            if adjacent_gap <= 25 or adjacent_gap > 600:
+                continue
+            if abs(rejected_y - valid_y) > ORDERED_HEADER_Y_SPREAD_PX:
+                continue
+            for registered in ranked["registered_voters"]:
+                if registered["page"] != valid["page"]:
+                    continue
+                registered_x = center_x(registered)
+                registered_y = center_y(registered)
+                if registered_x >= valid_x - 25:
+                    continue
+                y_spread = max(registered_y, valid_y, rejected_y) - min(
+                    registered_y, valid_y, rejected_y
+                )
+                if y_spread > ORDERED_HEADER_Y_SPREAD_PX:
+                    continue
+
+                trio = {
+                    "registered_voters": registered,
+                    "total_valid_votes": valid,
+                    "rejected_ballots": rejected,
+                }
+                semantic_scores = [item["semantic_score"] for item in trio.values()]
+                compactness = sum(bbox_width(item) for item in trio.values())
+                score = (
+                    sum(semantic_scores) + 0.5 * min(semantic_scores),
+                    -y_spread,
+                    -compactness,
+                    -adjacent_gap,
+                )
+                if best is None or score > best["score"]:
+                    best = {
+                        "score": score,
+                        "findings": trio,
+                        "page": valid["page"],
+                        "y_spread": y_spread,
+                        "adjacent_gap": adjacent_gap,
+                    }
+
+    if best is None:
+        return None
+    return best
+
+
 def evaluate_locations(findings):
-    # The original character-similarity threshold is preserved. The spatial
-    # fallback is stricter: every target token must have a plausible match and
-    # the average token similarity must be strong. No numeric OCR value is read
-    # or emitted by this diagnostic.
-    located = {}
-    for field, finding in findings.items():
-        textual_match = finding["char_similarity"] >= 0.62
-        spatial_token_match = finding["token_mean"] >= 0.72 and finding["token_min"] >= 0.55
-        located[field] = (textual_match or spatial_token_match) and finding["mean_conf"] >= 30
-    return located
+    return {field: finding_is_located(finding) for field, finding in findings.items()}
 
 
 def main():
@@ -254,6 +352,7 @@ def main():
     candidates = build_segments(words)
     findings = locate_targets(candidates)
     located = evaluate_locations(findings)
+    ordered = locate_ordered_targets(candidates)
     count = sum(located.values())
     feasible = count == 3
 
@@ -267,8 +366,8 @@ def main():
                 f"token_min:{findings[field]['token_min']:.3f},"
                 f"mean_conf:{findings[field]['mean_conf']:.2f},"
                 f"page:{findings[field]['page']},mode:{findings[field]['mode']},"
-                f"x_center:{(findings[field]['bbox'][0] + findings[field]['bbox'][2]) / 2:.1f},"
-                f"bbox_width:{findings[field]['bbox'][2] - findings[field]['bbox'][0]}"
+                f"x_center:{center_x(findings[field]):.1f},"
+                f"bbox_width:{bbox_width(findings[field])}"
             )
             for field in TARGETS
         )
@@ -277,6 +376,21 @@ def main():
         f"P23_FORM34B_FIELD_LOCATOR_FEASIBLE located={count}/3 "
         f"feasible={str(feasible).lower()} values_emitted=0"
     )
+
+    if ordered:
+        ordered_findings = ordered["findings"]
+        print(
+            "P23_FORM34B_ORDERED_HEADER_TRIPLET "
+            f"found=true page={ordered['page']} y_spread={ordered['y_spread']:.1f} "
+            f"adjacent_gap={ordered['adjacent_gap']:.1f} "
+            + " ".join(
+                f"{field}_x={center_x(ordered_findings[field]):.1f}"
+                for field in TARGETS
+            )
+            + " values_emitted=0"
+        )
+    else:
+        print("P23_FORM34B_ORDERED_HEADER_TRIPLET found=false values_emitted=0")
 
 
 if __name__ == "__main__":
