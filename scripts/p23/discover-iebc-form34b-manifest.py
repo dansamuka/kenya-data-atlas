@@ -15,6 +15,23 @@ BASE = "https://forms.iebc.or.ke"
 INDEX_PATH = "/index.php?r=site%2Findex&p=1&ft=2&l=2"
 USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 KenyaDataAtlas/1.0"
 
+# IEBC 2022 uses current electoral names for three constituencies whose KDA
+# canonical codes are already correct but whose stored display names reflect
+# earlier naming. These are explicit name aliases only; no boundary or value
+# crosswalk is performed.
+PORTAL_NAME_ALIASES = {
+    "CHUKA IGAMBANG OMBE": "KEN-C013-CON061",
+    "SUBA NORTH": "KEN-C043-CON251",
+    "SUBA SOUTH": "KEN-C043-CON252",
+}
+
+# Presidential Form 34B includes a diaspora collation row in addition to the
+# 290 territorial constituencies. It is official evidence, but it is not a
+# canonical KDA constituency geography and therefore must never be force-mapped.
+NON_CANONICAL_PORTAL_NAMES = {
+    "DIASPORA": "Official presidential diaspora collation row; outside the canonical 290 territorial constituencies.",
+}
+
 
 def normalize_name(value):
     value = unicodedata.normalize("NFKD", value or "")
@@ -102,9 +119,9 @@ def discover_page_urls(first_url, first_html):
             continue
         page_urls[page] = absolute
 
-    if total and len(page_urls) == 1:
+    if total:
         for page in range(2, math.ceil(total / 50) + 1):
-            page_urls[page] = with_query(first_url, page=page)
+            page_urls.setdefault(page, with_query(first_url, page=page))
     return total, dict(sorted(page_urls.items()))
 
 
@@ -152,11 +169,16 @@ def main():
         raise RuntimeError(f"Expected 290 canonical constituencies, found {len(constituencies)}")
 
     canonical_by_name = {}
+    canonical_by_code = {g["geo_code"]: g for g in constituencies}
     for geo in constituencies:
         key = normalize_name(geo.get("name"))
         if key in canonical_by_name:
             raise RuntimeError(f"Canonical constituency name normalization collision: {geo.get('name')}")
         canonical_by_name[key] = geo
+
+    for alias_name, geo_code in PORTAL_NAME_ALIASES.items():
+        if geo_code not in canonical_by_code:
+            raise RuntimeError(f"Alias {alias_name} targets missing canonical geo_code {geo_code}")
 
     cookie_jar = http.cookiejar.CookieJar()
     opener = build_opener(HTTPCookieProcessor(cookie_jar))
@@ -181,13 +203,33 @@ def main():
 
     portal_rows.sort(key=lambda row: row["portal_row_id"])
     matched = []
+    excluded_portal = []
     unmatched_portal = []
     matched_codes = set()
+
     for row in portal_rows:
-        geo = canonical_by_name.get(normalize_name(row["portal_name"]))
+        portal_key = normalize_name(row["portal_name"])
+        if portal_key in NON_CANONICAL_PORTAL_NAMES:
+            excluded_portal.append({
+                **row,
+                "exclusion_reason": NON_CANONICAL_PORTAL_NAMES[portal_key],
+            })
+            continue
+
+        geo = canonical_by_name.get(portal_key)
+        match_method = "exact_normalized_name"
+        alias_geo_code = None
+        if not geo:
+            alias_geo_code = PORTAL_NAME_ALIASES.get(portal_key)
+            geo = canonical_by_code.get(alias_geo_code) if alias_geo_code else None
+            match_method = "governed_source_name_alias" if geo else "unmatched"
+
         if not geo:
             unmatched_portal.append(row)
             continue
+        if geo["geo_code"] in matched_codes:
+            raise RuntimeError(f"Multiple IEBC portal rows mapped to {geo['geo_code']}")
+
         matched_codes.add(geo["geo_code"])
         detail_url = f"{BASE}/index.php?r=site%2Findex&id={row['portal_row_id']}&ft=2&p=1&es="
         detail_html = fetch_text(opener, detail_url)
@@ -195,10 +237,13 @@ def main():
         matched.append({
             "geo_code": geo["geo_code"],
             "geography_id": geo["geography_id"],
+            "constituency_code": geo.get("constituency_code"),
             "constituency_name": geo["name"],
             "portal_name": row["portal_name"],
             "portal_row_id": row["portal_row_id"],
             "portal_reported": row["reported"],
+            "match_method": match_method,
+            "alias_geo_code": alias_geo_code or "",
             "detail_url": detail_url,
             "form_status": status,
             "form_download_ids": download_ids,
@@ -212,7 +257,23 @@ def main():
         for geo in constituencies
         if geo["geo_code"] not in matched_codes
     ]
-    matched.sort(key=lambda row: row["geo_code"])
+    matched.sort(key=lambda row: int(row["constituency_code"] or 0))
+
+    with_download = sum(1 for row in matched if len(row["form_download_ids"]) == 1)
+    with_view = sum(1 for row in matched if len(row["form_view_ids"]) == 1)
+    all_reported = all(row["form_status"] == "reported" and row["portal_reported"] == "1 of 1 (100%)" for row in matched)
+    complete = (
+        portal_total == 291
+        and len(portal_rows) == 291
+        and len(matched) == 290
+        and not unmatched_portal
+        and not missing
+        and len(excluded_portal) == 1
+        and normalize_name(excluded_portal[0]["portal_name"]) == "DIASPORA"
+        and with_download == 290
+        and with_view == 290
+        and all_reported
+    )
 
     output = {
         "schema_version": "kda.p23.iebc-form34b-source-manifest.v1",
@@ -223,28 +284,37 @@ def main():
         "portal_rows_discovered": len(portal_rows),
         "canonical_constituencies": len(constituencies),
         "canonical_matches": len(matched),
+        "governed_alias_matches": sum(1 for row in matched if row["match_method"] == "governed_source_name_alias"),
+        "excluded_noncanonical_portal_rows": excluded_portal,
         "unmatched_portal_rows": unmatched_portal,
         "missing_canonical_constituencies": missing,
+        "canonical_rows_with_single_download_ref": with_download,
+        "canonical_rows_with_single_view_ref": with_view,
         "rows": matched,
-        "promotion_state": "source_reference_discovery_only",
-        "promotion_note": "This manifest proves source references only. It contains no turnout values and cannot resolve IND-TURNOUT-HISTORY until Form 34B integers are independently extracted and reconciled under the turnout readiness contract.",
+        "promotion_state": "source_reference_manifest_complete" if complete else "source_reference_discovery_incomplete",
+        "promotion_note": "This manifest proves official source references only. It contains no turnout values and cannot resolve IND-TURNOUT-HISTORY until Form 34B integers are independently extracted and reconciled under the turnout readiness contract.",
     }
 
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    with_download = sum(1 for row in matched if row["form_download_ids"])
     print(
         "P23_FORM34B_MANIFEST_DISCOVERY "
         f"portal_total={portal_total} discovered={len(portal_rows)} canonical_matches={len(matched)} "
-        f"unmatched_portal={len(unmatched_portal)} missing_canonical={len(missing)} with_download_ref={with_download}"
+        f"aliases={output['governed_alias_matches']} excluded={len(excluded_portal)} unmatched_portal={len(unmatched_portal)} "
+        f"missing_canonical={len(missing)} with_download_ref={with_download} with_view_ref={with_view} complete={complete}"
     )
+    if excluded_portal:
+        print("P23_FORM34B_EXCLUDED_PORTAL " + json.dumps(excluded_portal, ensure_ascii=False))
     if unmatched_portal:
         print("P23_FORM34B_UNMATCHED_PORTAL " + json.dumps(unmatched_portal, ensure_ascii=False))
     if missing:
         print("P23_FORM34B_MISSING_CANONICAL " + json.dumps(missing, ensure_ascii=False))
     print(f"P23_FORM34B_MANIFEST_PATH {output_path}")
+
+    if not complete:
+        raise RuntimeError("Form 34B source-reference manifest did not satisfy the governed 290-constituency acceptance gate")
 
 
 if __name__ == "__main__":
