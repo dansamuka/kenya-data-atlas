@@ -23,7 +23,9 @@ TARGETS = {
     ],
 }
 
-MAX_WINDOW_WORDS = 7
+MAX_WINDOW_WORDS = 5
+MAX_VERTICAL_SEGMENT_WORDS = 3
+MAX_VERTICAL_SEGMENT_WIDTH_PX = 700
 VERTICAL_GAP_PX = 180
 
 
@@ -152,6 +154,14 @@ def build_segments(words):
                     continue
                 if horizontal_overlap(upper["bbox"], lower["bbox"]) < 0.45:
                     continue
+                upper_words = len(upper["phrase"].split())
+                lower_words = len(lower["phrase"].split())
+                if upper_words > MAX_VERTICAL_SEGMENT_WORDS or lower_words > MAX_VERTICAL_SEGMENT_WORDS:
+                    continue
+                if (upper["bbox"][2] - upper["bbox"][0]) > MAX_VERTICAL_SEGMENT_WIDTH_PX:
+                    continue
+                if (lower["bbox"][2] - lower["bbox"][0]) > MAX_VERTICAL_SEGMENT_WIDTH_PX:
+                    continue
                 phrase = f'{upper["phrase"]} {lower["phrase"]}'
                 if len(phrase.split()) > MAX_WINDOW_WORDS:
                     continue
@@ -182,9 +192,19 @@ def locate_targets(candidates):
         for candidate in candidates:
             for target in variants:
                 char_similarity, token_mean, token_min = candidate_score(candidate["phrase"], target)
+                candidate_words = len(candidate["phrase"].split())
+                target_words = len(target.split())
+                extra_words = abs(candidate_words - target_words)
+                bbox_width = candidate["bbox"][2] - candidate["bbox"][0]
+                # Token similarity alone can over-reward a wide phrase that happens
+                # to contain the target words from neighbouring columns. Penalise
+                # extra words and prefer the most compact spatial match.
+                semantic_score = max(char_similarity, token_mean - 0.08 * extra_words)
                 rank = (
-                    max(char_similarity, token_mean),
+                    semantic_score,
+                    -extra_words,
                     token_min,
+                    -bbox_width,
                     candidate["mean_conf"],
                 )
                 if best is None or rank > best["rank"]:
@@ -246,7 +266,9 @@ def main():
                 f"token_similarity:{findings[field]['token_mean']:.3f},"
                 f"token_min:{findings[field]['token_min']:.3f},"
                 f"mean_conf:{findings[field]['mean_conf']:.2f},"
-                f"page:{findings[field]['page']},mode:{findings[field]['mode']}"
+                f"page:{findings[field]['page']},mode:{findings[field]['mode']},"
+                f"x_center:{(findings[field]['bbox'][0] + findings[field]['bbox'][2]) / 2:.1f},"
+                f"bbox_width:{findings[field]['bbox'][2] - findings[field]['bbox'][0]}"
             )
             for field in TARGETS
         )
