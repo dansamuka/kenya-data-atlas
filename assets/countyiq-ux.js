@@ -9,6 +9,8 @@
   let listenersInstalled=false;
   let printState=null;
   let countySyncing=false;
+  let lastActiveTab=null;
+  let lastRestoredTabKey='';
 
   const $=(selector,root=document)=>root.querySelector(selector);
   const $$=(selector,root=document)=>Array.from(root.querySelectorAll(selector));
@@ -17,6 +19,7 @@
     const route=window.KDARouter?.current?.();
     return route?.view==='countyiq'||/^#\/?countyiq(?:[/?]|$)/.test(location.hash)||Boolean(routeRoot()&&!routeRoot().hidden);
   };
+  const reducedMotion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function headingTarget(pattern){
     const root=routeRoot();
@@ -24,19 +27,41 @@
     return $$('h2,h3',root).find(node=>pattern.test(node.textContent.trim()))||null;
   }
 
+  function sectionTarget(pattern){
+    const heading=headingTarget(pattern);
+    return heading?.closest('.ciq-card,.kda-place-facts')||heading||null;
+  }
+
   function targets(){
     return [
       ['Overview',$('#countyiq-profile')||$('.ciq-principle')],
-      ['Economy',headingTarget(/^Gross County Product$/i)],
-      ['Public finance',headingTarget(/Twelve-year fiscal experience|Public finance/i)],
-      ['Outcomes',headingTarget(/Official county outcomes|Health & living standards/i)],
-      ['Development',headingTarget(/Education, economy, agriculture|Broader county indicators/i)],
+      ['Economy',sectionTarget(/^Gross County Product$/i)],
+      ['Public finance',sectionTarget(/Twelve-year fiscal experience|Public finance/i)],
+      ['Outcomes',sectionTarget(/Official county outcomes|Health & living standards/i)],
+      ['Development',sectionTarget(/Education, economy, agriculture|Broader county indicators/i)],
       ['Evidence',$('#ciq-evidence-hub')],
       ['Opportunities',$('#ciq-opportunity-finder')]
     ].filter(([,node])=>Boolean(node));
   }
 
   function slug(label){return`ciq-${label.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}`;}
+  function tabValue(link){return String(link?.dataset.ciqTab||'').replace(/^ciq-/,'');}
+
+  function centerActiveTab(nav,link,behavior='auto'){
+    if(!nav||!link||window.innerWidth>760)return;
+    const left=link.offsetLeft-(nav.clientWidth-link.clientWidth)/2;
+    try{nav.scrollTo({left:Math.max(0,left),behavior});}catch(_){nav.scrollLeft=Math.max(0,left);}
+  }
+
+  function persistTab(link){
+    const tab=tabValue(link);if(!tab)return;
+    const R=window.KDARouter;
+    const current=R?.current?.()||R?.parse?.();
+    if(current?.view!=='countyiq'||current.params?.get?.('tab')===tab)return;
+    const params=new URLSearchParams(current.params||'');
+    params.set('tab',tab);
+    try{R.replace('countyiq','',params,{scroll:false});}catch(_){/* section navigation still works */}
+  }
 
   function ensureJumpNav(){
     const root=routeRoot();
@@ -66,9 +91,36 @@
         const target=document.getElementById(link.getAttribute('href').slice(1));
         if(!target)return;
         event.preventDefault();
-        target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+        const behavior=reducedMotion()?'auto':'smooth';
+        target.scrollIntoView({behavior,block:'start'});
+        centerActiveTab(nav,link,behavior);
+        persistTab(link);
       });
     }
+  }
+
+  function restoreTabFromRoute(){
+    const R=window.KDARouter;
+    const route=R?.current?.()||R?.parse?.();
+    if(route?.view!=='countyiq')return;
+    const raw=route.params?.get?.('tab');
+    if(!raw)return;
+    const nav=$('.ciq-jump-nav');if(!nav)return;
+    const wanted=`ciq-${raw}`;
+    const link=$$('[data-ciq-tab]',nav).find(node=>node.dataset.ciqTab===wanted);
+    if(!link)return;
+    const target=document.getElementById(link.getAttribute('href').slice(1));
+    if(!target)return;
+    const key=`${route.params?.get?.('county')||''}|${raw}`;
+    if(lastRestoredTabKey===key)return;
+    lastRestoredTabKey=key;
+    requestAnimationFrame(()=>{
+      target.scrollIntoView({behavior:'auto',block:'start'});
+      requestAnimationFrame(()=>{
+        syncActiveNav();
+        centerActiveTab(nav,link,'auto');
+      });
+    });
   }
 
   function wrapFiscalTable(){
@@ -128,7 +180,7 @@
     backTop.className='ciq-ux-backtop';
     backTop.textContent='↑ Top';
     backTop.setAttribute('aria-label','Back to top of CountyIQ');
-    backTop.addEventListener('click',()=>routeRoot()?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}));
+    backTop.addEventListener('click',()=>routeRoot()?.scrollIntoView({behavior:reducedMotion()?'auto':'smooth',block:'start'}));
     document.body.appendChild(backTop);
     syncBackTop();
   }
@@ -139,12 +191,19 @@
     const nav=$('.ciq-jump-nav');
     if(!nav)return;
     const links=$$('a',nav);
+    if(!links.length)return;
+    const activationY=Math.max(210,Math.min(window.innerHeight*.34,320));
     let current=links[0];
     for(const link of links){
       const node=document.getElementById(link.getAttribute('href').slice(1));
-      if(node&&node.getBoundingClientRect().top<=176)current=link;
+      if(node&&node.getBoundingClientRect().top<=activationY)current=link;
     }
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-8)current=links.at(-1)||current;
     links.forEach(link=>{if(link===current)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
+    if(current!==lastActiveTab){
+      lastActiveTab=current;
+      centerActiveTab(nav,current,reducedMotion()?'auto':'smooth');
+    }
   }
 
   function countyCodeFromRoute(){
@@ -198,6 +257,11 @@
     if(!/^KEN-C\d{3}$/.test(code||''))return;
     const sync=()=>{
       if(window.KDACountyIQ?.state?.().currentCode!==code)window.KDACountyIQ?.render?.(code);
+      /* The Evidence Hub and Opportunity Finder own independent county state.
+       * Explicitly re-render them here rather than relying on listener ordering
+       * around the route replacement; this prevents stale county evidence. */
+      window.KDAEvidenceHub?.render?.(code);
+      window.KDAOpportunityFinder?.render?.(code);
       persistCounty(code);
       stampCounty(code);
       scheduleFrame();
@@ -287,6 +351,7 @@
       ensureCountyPickerHardening();
       ensurePrintControls();
       toneFiscalSignals();
+      restoreTabFromRoute();
       syncActiveNav();
       syncBackTop();
     }finally{
@@ -307,13 +372,18 @@
     if(typeof requestAnimationFrame==='function')requestAnimationFrame(enhance);
     else setTimeout(enhance,0);
   }
-  function routeSchedule(){connectObserver();scheduleInitial();setTimeout(ensureCountyPickerHardening,60);}
+  function routeSchedule(){
+    connectObserver();
+    scheduleInitial();
+    setTimeout(()=>{ensureCountyPickerHardening();restoreTabFromRoute();},70);
+  }
 
   function boot(){
     routeSchedule();
     if(!listenersInstalled){
       listenersInstalled=true;
       window.addEventListener('hashchange',routeSchedule);
+      window.addEventListener('resize',scheduleFrame,{passive:true});
       window.addEventListener('scroll',()=>{syncActiveNav();syncBackTop();},{passive:true});
       window.addEventListener('kda:route',routeSchedule);
       window.addEventListener('afterprint',restoreAfterPrint);
