@@ -1,0 +1,55 @@
+{
+  "schema_version": "kda.p23.form34b-sample-page-layout.v1",
+  "contract_id": "P23-IEBC-2022-FORM34B-SAMPLE-PAGE-LAYOUT-2026-09-04",
+  "as_of": "2026-09-04",
+  "purpose": "Record the source-image page roles of the governed Changamwe Form 34B sample so constituency totals are extracted from the final TOTAL row rather than inferred from a partial polling-station page.",
+  "source_contract": "data/p23/form34b-ocr-feasibility-contract.json",
+  "extraction_contract": "data/p23/form34b-extraction-contract.json",
+  "sample": {
+    "constituency_code": 1,
+    "constituency_name": "Changamwe",
+    "geo_code": "KEN-C001-CON001",
+    "form_id": 277629,
+    "source_pdf_sha256": "4955d4e8ebc67b5ef267e84ba0f3c96f92289149f67528996531c1ce2351a311",
+    "page_count": 3
+  },
+  "page_roles": [
+    {
+      "page_number": 1,
+      "role": "polling_station_table_start",
+      "contains_final_total_row": false,
+      "treatment": "Polling-station rows are source context and reconciliation evidence only. Any page-level sum is a partial subtotal and must not be treated as a constituency result."
+    },
+    {
+      "page_number": 2,
+      "role": "polling_station_table_continuation_and_final_total",
+      "contains_final_total_row": true,
+      "treatment": "The final TOTAL row is the preferred direct source location for registered voters, total valid votes and rejected ballots for the governed sample. Candidate extraction must remain machine_candidate until each field is independently source-image verified."
+    },
+    {
+      "page_number": 3,
+      "role": "agents_returning_officer_and_handover",
+      "contains_final_total_row": false,
+      "treatment": "Administrative/signature evidence only; do not search this page for constituency turnout integers."
+    }
+  ],
+  "extraction_route": {
+    "preferred": "direct_final_total_row",
+    "target_page_for_sample": 2,
+    "target_fields": [
+      "registered_voters",
+      "total_valid_votes",
+      "rejected_ballots"
+    ],
+    "polling_station_aggregation": "reconciliation_only",
+    "reason": "The official source image exposes a final TOTAL row containing the governed target fields. Direct source-row extraction is less error-prone than summing OCR transcriptions from partial table pages."
+  },
+  "governance": {
+    "values_recorded_in_this_contract": false,
+    "source_verified_values": 0,
+    "promotion_authorized": false,
+    "no_inheritance": true,
+    "no_page_subtotal_promotion": true,
+    "next_gate": "Create a deterministic page-2 TOTAL-row machine-candidate extractor and reconcile its registered-voter candidate to the existing governed constituency denominator. Independently source-image verify all three fields before any sample row can become verified."
+  }
+}
