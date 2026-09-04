@@ -14,6 +14,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/probe-form34b-rejected-cell-candidates.py
+      - scripts/p23/render-form34b-page-contexts.py
       - scripts/p23/assess-form34b-field-labels.py
       - scripts/p23/assess-form34b-column-layout.py
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -35,6 +36,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/probe-form34b-rejected-cell-candidates.py
+      - scripts/p23/render-form34b-page-contexts.py
       - scripts/p23/assess-form34b-field-labels.py
       - scripts/p23/assess-form34b-column-layout.py
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -108,6 +110,17 @@ jobs:
         run: bash scripts/p23/probe-iebc-form34b-download.sh
       - name: Run governed sample-only OCR feasibility gate
         run: bash scripts/p23/probe-iebc-form34b-ocr.sh
+      - name: Render all governed Form 34B page contexts
+        run: python3 scripts/p23/render-form34b-page-contexts.py --manifest /tmp/p23-form34b-page-contexts.json --output-dir /tmp/p23-form34b-page-contexts
+      - name: Upload multi-page source context
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-page-contexts
+          path: |
+            /tmp/p23-form34b-page-contexts.json
+            /tmp/p23-form34b-page-contexts/*.png
+          if-no-files-found: error
+          retention-days: 2
       - name: Build rejected-ballot cell machine candidates
         run: python3 scripts/p23/probe-form34b-rejected-cell-candidates.py --output /tmp/p23-form34b-rejected-cell-candidates.json --context /tmp/iebc-form34b-rejected-context-page1.png
       - name: Upload rejected-ballot candidate evidence
