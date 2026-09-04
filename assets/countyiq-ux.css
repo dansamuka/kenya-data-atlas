@@ -1,68 +1,94 @@
-/* CountyIQ UX pass — scanability, hierarchy and progressive disclosure. */
-.countyiq-route{scroll-behavior:smooth}
-.countyiq-route .ciq-controls{border-radius:14px;box-shadow:0 8px 24px rgba(22,43,35,.045)}
-.countyiq-route .ciq-metrics{border-radius:14px;overflow:hidden}
-.countyiq-route .ciq-card{border-radius:14px;box-shadow:0 8px 24px rgba(22,43,35,.035)}
-
-/* The section navigator is deliberately out of document flow. CountyIQ loads
- * route assets lazily, so an in-flow late insertion would create measurable CLS. */
-.ciq-jump-nav-wrap{position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:24;width:min(1440px,calc(100vw - 2rem));pointer-events:none}
-.ciq-jump-nav{display:flex;align-items:center;justify-content:center;gap:.28rem;width:max-content;max-width:100%;margin:0 auto;padding:.3rem .38rem;overflow-x:auto;scrollbar-width:none;pointer-events:auto;background:color-mix(in srgb,var(--paper,#fbfbf8) 94%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line,#dfe4df);border-radius:999px;box-shadow:0 8px 22px rgba(22,43,35,.08)}
-.ciq-jump-nav::-webkit-scrollbar{display:none}
-.ciq-jump-nav a{flex:0 0 auto;padding:.4rem .64rem;border-radius:999px;text-decoration:none;font-size:.69rem;font-weight:750;color:var(--muted,#65736c);border:1px solid transparent;transition:background .16s ease,color .16s ease,border-color .16s ease}
-.ciq-jump-nav a:hover,.ciq-jump-nav a:focus-visible{color:var(--green2,#174c3b);background:#fff;border-color:var(--line,#dfe4df);outline:none}
-.ciq-jump-nav a[aria-current="true"]{background:var(--green2,#174c3b);color:#fff}
-.ciq-ux-anchor{scroll-margin-top:132px}
-
-.ciq-history-disclosure{margin-top:.9rem;border:1px solid var(--line,#dfe4df);border-radius:11px;background:#fff;overflow:hidden}
-.ciq-history-disclosure>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem .95rem;font-size:.75rem;font-weight:800;color:var(--green2,#174c3b);background:var(--paper,#f8f7f1)}
-.ciq-history-disclosure>summary::-webkit-details-marker{display:none}
-.ciq-history-disclosure>summary::after{content:'+';font-family:Georgia,serif;font-size:1.2rem;font-weight:400}
-.ciq-history-disclosure[open]>summary::after{content:'−'}
-.ciq-history-disclosure .ciq-fiscal-table-wrap{margin-top:0;padding:.35rem .7rem .7rem}
-
-.countyiq-route .ciq-lower{padding-bottom:2rem}
-.countyiq-route .ciq-social-grid{border-radius:12px;overflow:hidden}
-.countyiq-route .ciq-p05-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem}
-.countyiq-route .ciq-p05-group{border-radius:12px;padding:.9rem}
-.countyiq-route .ciq-p05-group>header{margin-bottom:.55rem;padding-bottom:.5rem}
-.countyiq-route .ciq-p05-metric{padding:.44rem 0}
-.countyiq-route .ciq-gap-list ul,.countyiq-route .ciq-recognition-list{font-size:.74rem;line-height:1.42}
-
-.countyiq-route .evidence-hub-tools{margin:.7rem 0;grid-template-columns:minmax(0,1fr) minmax(190px,240px)}
-.countyiq-route .evidence-summary{gap:.45rem;margin:.6rem 0 .8rem}
-.countyiq-route .evidence-summary>div{padding:.58rem .7rem;border-radius:9px}
-.countyiq-route .evidence-summary strong{font-size:1rem}
-.countyiq-route .evidence-hub-list{gap:.65rem}
-.countyiq-route .evidence-item{padding:.85rem;border-radius:12px}
-
-.ciq-disclosure-actions{display:flex;justify-content:center;margin:.85rem 0 0}
-.ciq-disclosure-button{appearance:none;border:1px solid rgba(18,60,50,.18);background:#fff;color:#123c32;border-radius:999px;padding:.58rem .9rem;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}
-.ciq-disclosure-button:hover,.ciq-disclosure-button:focus-visible{background:#eef4f0;outline:2px solid transparent;box-shadow:0 0 0 3px rgba(18,60,50,.12)}
-[hidden].ciq-progressive-item{display:none!important}
-
-.countyiq-route .opportunity-tools{margin-bottom:.7rem}
-.countyiq-route .opportunity-summary{gap:.5rem;margin-bottom:.75rem}
-.countyiq-route .opportunity-summary>div{padding:.62rem .72rem;border-radius:9px}
-.countyiq-route .opportunity-summary strong{font-size:1.12rem}
-.countyiq-route .opportunity-list{gap:.75rem}
-.countyiq-route .opportunity-card{gap:.58rem;padding:.9rem;border-radius:13px;box-shadow:none}
-.countyiq-route .opportunity-rationale{padding:.58rem .65rem;font-size:.78rem}
-.countyiq-route .opportunity-details{gap:.42rem}
-.countyiq-route .opportunity-details>div{grid-template-columns:104px 1fr;gap:.5rem}
-.countyiq-route .opportunity-details dd{font-size:.75rem;line-height:1.36}
-.countyiq-route .opportunity-card-foot{padding-top:.55rem}
-
-.ciq-ux-backtop{position:fixed;right:1.15rem;bottom:1.15rem;z-index:25;border:1px solid rgba(18,60,50,.18);background:#fff;color:#123c32;border-radius:999px;padding:.58rem .78rem;font-size:.72rem;font-weight:800;box-shadow:0 10px 26px rgba(18,60,50,.12);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.18s ease}
-.ciq-ux-backtop.visible{opacity:1;pointer-events:auto;transform:none}
-
-@media(max-width:1050px){
-  .countyiq-route .ciq-p05-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+/* CountyIQ premium UX — editorial polish, interaction, hierarchy and print/PDF. */
+.countyiq-route{
+  --ciq-serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --ciq-sans:"DM Sans",Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --ciq-forest:#123c32;--ciq-green:#1d6c56;--ciq-mint:#e8f2ec;--ciq-ivory:#fbfaf6;
+  --ciq-gold:#b48635;--ciq-terracotta:#b85f45;--ciq-plum:#76567f;--ciq-blue:#55758b;
+  --ciq-shadow:0 16px 42px rgba(18,60,50,.075);
+  font-family:var(--ciq-sans);scroll-behavior:smooth;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(circle at 14% 2%,rgba(31,122,92,.10),transparent 28rem),radial-gradient(circle at 88% 8%,rgba(180,134,53,.08),transparent 24rem),linear-gradient(180deg,#f2f6f2 0,#fbfaf6 28rem,#fbfaf6 100%);
 }
-@media(max-width:760px){
-  .ciq-jump-nav-wrap{top:62px;width:calc(100vw - 1rem)}
-  .ciq-jump-nav{justify-content:flex-start;margin-left:0;margin-right:0;border-radius:14px}
-  .countyiq-route .ciq-p05-grid{grid-template-columns:1fr}
-  .countyiq-route .evidence-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .ciq-ux-backtop{right:.75rem;bottom:.75rem}
+.countyiq-route h1,.countyiq-route h2,.countyiq-route h3{font-family:var(--ciq-serif);font-feature-settings:"kern" 1,"liga" 1}
+
+/* Centred editorial hero + selector */
+.countyiq-route .ciq-hero{display:grid;grid-template-columns:1fr;justify-items:center;align-items:center;text-align:center;gap:1.45rem;padding-top:clamp(4.5rem,7vw,7.25rem);padding-bottom:3.35rem;position:relative}
+.countyiq-route .ciq-hero>div:first-child{width:min(980px,100%);margin-inline:auto}
+.countyiq-route .ciq-hero .eyebrow{color:var(--ciq-green);letter-spacing:.16em;font-weight:800}
+.countyiq-route .ciq-hero h1{font-family:var(--ciq-serif);font-weight:500;font-size:clamp(3.35rem,6.1vw,6.15rem);letter-spacing:-.052em;line-height:.92;margin:.55rem auto 0;max-width:980px;text-wrap:balance}
+.countyiq-route .ciq-hero h1 em{color:var(--ciq-green)}
+.countyiq-route .ciq-intro{max-width:740px;margin:1.15rem auto 0;color:#5a6962;font-size:clamp(.94rem,1.2vw,1.08rem);line-height:1.65;text-wrap:balance}
+.countyiq-route .ciq-controls{width:min(760px,100%);margin-inline:auto;text-align:left;background:rgba(255,255,255,.90);backdrop-filter:blur(16px);border:1px solid rgba(18,60,50,.13);border-radius:18px;box-shadow:var(--ciq-shadow);padding:1rem 1.05rem .9rem;position:relative}
+.countyiq-route .ciq-controls::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;border-radius:18px 0 0 18px;background:linear-gradient(180deg,var(--ciq-green),var(--ciq-gold))}
+.countyiq-route .ciq-controls label{position:relative;display:flex;flex-direction:column;gap:.45rem;font:800 .64rem/1 var(--ciq-sans);letter-spacing:.11em;text-transform:uppercase;color:#66756e}
+.countyiq-route .ciq-controls select{appearance:none;width:100%;min-height:48px;border:1px solid #d8dfda;border-radius:11px;background:linear-gradient(180deg,#fff,#fcfcfa);padding:.78rem 3.35rem .78rem .9rem;color:#14231d;font:700 .88rem/1.2 var(--ciq-sans);transition:border-color .18s ease,box-shadow .18s ease}
+.countyiq-route .ciq-controls select:hover{border-color:rgba(29,108,86,.42)}
+.countyiq-route .ciq-controls select:focus{outline:0;border-color:var(--ciq-green);box-shadow:0 0 0 4px rgba(29,108,86,.12)}
+.countyiq-route .ciq-controls .kda-select-search-trigger{position:absolute!important;right:.42rem!important;top:1.5rem!important;width:36px!important;height:36px!important;min-height:36px!important;margin:0!important;padding:0!important;border:1px solid rgba(18,60,50,.12)!important;border-radius:9px!important;background:var(--ciq-ivory)!important;color:var(--ciq-forest)!important;display:grid!important;place-items:center!important;box-shadow:none!important}
+.countyiq-route .ciq-mode{display:flex;align-items:center;gap:.48rem;margin:.72rem 0 0;color:#69766f;font-size:.66rem;line-height:1.35}
+.countyiq-route .ciq-mode i{width:7px;height:7px;border-radius:50%;background:#3f8060;box-shadow:0 0 0 4px rgba(63,128,96,.10)}
+.ciq-hero-actions{display:flex;justify-content:flex-end;margin-top:.8rem;padding-top:.72rem;border-top:1px solid #e5e9e6}
+.ciq-print-button{appearance:none;border:0;border-radius:999px;background:var(--ciq-forest);color:#fff;padding:.64rem .95rem;font:800 .73rem/1 var(--ciq-sans);cursor:pointer;display:inline-flex;gap:.4rem;align-items:center;transition:.18s ease}
+.ciq-print-button:hover,.ciq-print-button:focus-visible{background:#0d493b;transform:translateY(-1px);box-shadow:0 8px 18px rgba(18,60,50,.18);outline:0}
+
+/* Aligned sticky local navigation */
+.ciq-jump-nav-wrap{position:fixed;top:74px;left:50%;transform:translateX(-50%);z-index:24;width:min(1180px,calc(100vw - 2rem));display:flex;justify-content:center;pointer-events:none}
+.ciq-jump-nav{display:grid;grid-auto-flow:column;grid-auto-columns:max-content;align-items:center;justify-content:center;gap:.22rem;max-width:100%;padding:.34rem .42rem;overflow-x:auto;scrollbar-width:none;pointer-events:auto;background:rgba(251,250,246,.94);backdrop-filter:blur(18px);border:1px solid rgba(18,60,50,.12);border-radius:999px;box-shadow:0 10px 28px rgba(18,60,50,.09)}
+.ciq-jump-nav::-webkit-scrollbar{display:none}.ciq-jump-nav a{padding:.46rem .75rem;border-radius:999px;text-decoration:none;font:750 .69rem/1 var(--ciq-sans);color:#65736c;border:1px solid transparent;transition:.18s ease}
+.ciq-jump-nav a:hover,.ciq-jump-nav a:focus-visible{color:var(--ciq-forest);background:#fff;border-color:rgba(18,60,50,.12);outline:0;transform:translateY(-1px)}
+.ciq-jump-nav a[aria-current="true"]{background:var(--ciq-forest);color:#fff;box-shadow:0 5px 14px rgba(18,60,50,.16)}
+.ciq-jump-nav a[data-ciq-tab="ciq-economy"][aria-current="true"]{background:var(--ciq-green)}
+.ciq-jump-nav a[data-ciq-tab="ciq-public-finance"][aria-current="true"]{background:#84652d}
+.ciq-jump-nav a[data-ciq-tab="ciq-outcomes"][aria-current="true"]{background:#9d523f}
+.ciq-jump-nav a[data-ciq-tab="ciq-development"][aria-current="true"]{background:#674d70}
+.ciq-jump-nav a[data-ciq-tab="ciq-evidence"][aria-current="true"]{background:#49687d}
+.ciq-ux-anchor{scroll-margin-top:148px}
+
+/* Overview + metrics */
+.countyiq-route .ciq-principle{display:flex;justify-content:space-between;gap:1.5rem;align-items:center;margin:0 0 1.25rem;padding:.9rem 1rem;border:1px solid rgba(18,60,50,.10);border-radius:13px;background:linear-gradient(90deg,rgba(232,242,236,.75),rgba(255,255,255,.85));color:#62716a;font-size:.75rem;box-shadow:0 5px 18px rgba(18,60,50,.035)}
+.countyiq-route .ciq-principle strong{color:var(--ciq-forest)}
+.countyiq-route .ciq-metrics{border:1px solid rgba(18,60,50,.12);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(18,60,50,.045)}
+.countyiq-route .ciq-metric{border-color:#e4e9e5;transition:.2s ease;isolation:isolate}
+.countyiq-route .ciq-metric::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--ciq-green)}
+.countyiq-route .ciq-metric:nth-child(2)::before{background:var(--ciq-gold)}.countyiq-route .ciq-metric:nth-child(3)::before{background:var(--ciq-terracotta)}.countyiq-route .ciq-metric:nth-child(4)::before{background:var(--ciq-blue)}
+.countyiq-route .ciq-metric:hover{z-index:2;box-shadow:0 14px 30px rgba(18,60,50,.08);transform:translateY(-2px)}
+.countyiq-route .ciq-metric .label{font:600 .71rem/1.35 var(--ciq-sans);color:#68756f}.countyiq-route .ciq-metric strong{font-family:var(--ciq-serif);font-size:clamp(1.65rem,2.2vw,2.15rem);letter-spacing:-.025em}.countyiq-route .ciq-metric .context{color:var(--ciq-green)}
+
+/* Section cards + colour system */
+.countyiq-route .ciq-card{border:1px solid rgba(18,60,50,.12);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 10px 30px rgba(18,60,50,.045);transition:.2s ease}
+.countyiq-route .ciq-card:hover{border-color:rgba(18,60,50,.18);box-shadow:var(--ciq-shadow)}
+.countyiq-route .ciq-grid>.ciq-card:first-child{border-top:3px solid var(--ciq-green)}.countyiq-route .ciq-grid>.ciq-card:nth-child(2){border-top:3px solid var(--ciq-blue)}
+.countyiq-route .ciq-fiscal-card{border-top:3px solid var(--ciq-gold)!important}.countyiq-route .ciq-social-card{border-top:3px solid var(--ciq-terracotta)!important}.countyiq-route .ciq-p05-card{border-top:3px solid var(--ciq-plum)!important}.countyiq-route .ciq-evidence-hub-card{border-top:3px solid var(--ciq-blue)!important}.countyiq-route .opportunity-finder-card{border-top:3px solid var(--ciq-green)!important}
+.countyiq-route .ciq-card-head h2{font-family:var(--ciq-serif)!important;font-weight:500!important;letter-spacing:-.025em!important}.countyiq-route .ciq-card-head small{font-family:var(--ciq-sans);letter-spacing:.12em}.countyiq-route .ciq-card-head p{line-height:1.5}
+.countyiq-route .ciq-area{fill:rgba(29,108,86,.11)}.countyiq-route .ciq-line{stroke:var(--ciq-green);stroke-width:3.3}.countyiq-route .ciq-dot{stroke:var(--ciq-green)}
+.countyiq-route .ciq-track{height:8px;border-radius:999px;background:#edf1ee}.countyiq-route .ciq-track i{border-radius:999px;background:linear-gradient(90deg,var(--ciq-green),#2a8068);transform-origin:left;animation:ciq-grow .55s cubic-bezier(.2,.8,.2,1) both}@keyframes ciq-grow{from{transform:scaleX(.06);opacity:.35}to{transform:scaleX(1);opacity:1}}
+
+/* Fiscal, development, evidence and opportunities */
+.ciq-history-disclosure{margin-top:.9rem;border:1px solid rgba(18,60,50,.12);border-radius:12px;background:#fff;overflow:hidden}.ciq-history-disclosure>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;padding:.86rem 1rem;font:800 .75rem/1.2 var(--ciq-sans);color:var(--ciq-forest);background:linear-gradient(90deg,#f7efdf,#fbfaf6)}.ciq-history-disclosure>summary::-webkit-details-marker{display:none}.ciq-history-disclosure>summary::after{content:'+';font-family:var(--ciq-serif);font-size:1.25rem}.ciq-history-disclosure[open]>summary::after{content:'−'}.ciq-history-disclosure .ciq-fiscal-table-wrap{margin-top:0;padding:.35rem .7rem .7rem}
+.countyiq-route .ciq-positive{color:var(--ciq-green)!important}.countyiq-route .ciq-negative{color:var(--ciq-terracotta)!important}
+.countyiq-route .ciq-social-grid{border-radius:12px;overflow:hidden}.countyiq-route .ciq-social-metric{position:relative;transition:.18s ease}.countyiq-route .ciq-social-metric::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--ciq-terracotta);opacity:.72}.countyiq-route .ciq-social-metric:hover{background:#fffaf8}
+.countyiq-route .ciq-p05-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.78rem}.countyiq-route .ciq-p05-group{border-radius:13px;padding:.92rem;background:#fff;transition:.18s ease}.countyiq-route .ciq-p05-group:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(18,60,50,.06)}
+.countyiq-route .ciq-p05-group:nth-child(3n+1){border-top:2px solid var(--ciq-plum)}.countyiq-route .ciq-p05-group:nth-child(3n+2){border-top:2px solid var(--ciq-green)}.countyiq-route .ciq-p05-group:nth-child(3n){border-top:2px solid var(--ciq-gold)}
+.countyiq-route .evidence-hub-tools{margin:.75rem 0}.countyiq-route .evidence-summary,.countyiq-route .opportunity-summary{gap:.5rem}.countyiq-route .evidence-summary>div{border-radius:10px;background:#eaf0f4}.countyiq-route .opportunity-summary>div{border-radius:10px;background:var(--ciq-mint)}
+.countyiq-route .evidence-item,.countyiq-route .opportunity-card{border-radius:13px;transition:.18s ease}.countyiq-route .evidence-item:hover,.countyiq-route .opportunity-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(18,60,50,.06)}.countyiq-route .opportunity-rationale{border-radius:9px;background:linear-gradient(90deg,var(--ciq-mint),#f8faf8)}
+.ciq-disclosure-actions{display:flex;justify-content:center;margin:.9rem 0 0}.ciq-disclosure-button{appearance:none;border:1px solid rgba(18,60,50,.18);background:#fff;color:var(--ciq-forest);border-radius:999px;padding:.6rem .92rem;font:800 .74rem/1 var(--ciq-sans);cursor:pointer}.ciq-disclosure-button:hover,.ciq-disclosure-button:focus-visible{background:var(--ciq-mint);outline:0;box-shadow:0 0 0 3px rgba(18,60,50,.10)}[hidden].ciq-progressive-item{display:none!important}
+.ciq-ux-backtop{position:fixed;right:1.15rem;bottom:1.15rem;z-index:25;border:1px solid rgba(18,60,50,.16);background:rgba(255,255,255,.94);backdrop-filter:blur(12px);color:var(--ciq-forest);border-radius:999px;padding:.6rem .8rem;font:800 .72rem/1 var(--ciq-sans);box-shadow:0 10px 26px rgba(18,60,50,.12);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.18s ease}.ciq-ux-backtop.visible{opacity:1;pointer-events:auto;transform:none}
+
+@media(max-width:1050px){.countyiq-route .ciq-p05-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.countyiq-route .ciq-hero{padding-top:5.25rem;text-align:left;justify-items:stretch}.countyiq-route .ciq-hero h1,.countyiq-route .ciq-intro{margin-left:0;text-align:left}.countyiq-route .ciq-controls{width:100%}.ciq-jump-nav-wrap{top:62px;width:calc(100vw - 1rem);justify-content:flex-start}.ciq-jump-nav{justify-content:start;border-radius:14px;width:100%}.countyiq-route .ciq-principle{align-items:flex-start;flex-direction:column}.countyiq-route .ciq-principle span:last-child{text-align:left}.countyiq-route .ciq-p05-grid{grid-template-columns:1fr}.countyiq-route .ciq-card-head{flex-direction:column}.countyiq-route .ciq-card-head p{text-align:left}.ciq-ux-backtop{right:.75rem;bottom:.75rem}}
+@media(max-width:520px){.countyiq-route .ciq-hero h1{font-size:3.25rem}.ciq-hero-actions{justify-content:stretch}.ciq-print-button{width:100%;justify-content:center}}
+@media(prefers-reduced-motion:reduce){.countyiq-route,.countyiq-route *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Browser print / Save as PDF */
+@page{size:A4 portrait;margin:11mm 10mm 14mm}
+@media print{
+  html,body{background:#fff!important;color:#13211c!important}.site-header,footer,.ciq-jump-nav-wrap,.ciq-controls,.ciq-ux-backtop,.ciq-disclosure-actions,.kda-select-search-dialog,.kda-chart-tooltip,.toast{display:none!important}
+  main{display:block!important;margin:0!important;padding:0!important}main>[data-view]:not(#countyiq-view){display:none!important}
+  #countyiq-view{display:block!important;min-height:0!important;background:#fff!important;padding:0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  #countyiq-view::before{content:"Kenya Data Atlas  ·  CountyIQ";display:block;border-bottom:2px solid #123c32;padding:0 0 4mm;margin:0 0 5mm;font:700 10pt/1 "DM Sans",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#123c32}
+  #countyiq-view::after{content:"Kenya Data Atlas  ·  " attr(data-print-county) "  ·  generated " attr(data-print-date);display:block;border-top:1px solid #ccd6d0;margin-top:6mm;padding-top:3mm;font:500 7.5pt/1.3 "DM Sans",Arial,sans-serif;color:#65736c}
+  #countyiq-view .section{width:100%!important;max-width:none!important;margin:0!important;padding-left:0!important;padding-right:0!important}#countyiq-view .ciq-hero{display:block!important;text-align:left!important;padding:0 0 5mm!important}#countyiq-view .ciq-hero h1{font-size:32pt!important;text-align:left!important;margin:0!important}#countyiq-view .ciq-intro{text-align:left!important;max-width:none!important;font-size:9pt!important}
+  #countyiq-view .ciq-principle{margin:0 0 4mm!important;padding:3mm!important;background:#f1f6f2!important;box-shadow:none!important;break-inside:avoid}#countyiq-view .ciq-metrics{grid-template-columns:repeat(4,1fr)!important;min-height:0!important;border-radius:0!important;box-shadow:none!important;break-inside:avoid}#countyiq-view .ciq-metric{min-height:0!important;padding:4mm 3mm!important;box-shadow:none!important;transform:none!important}
+  #countyiq-view .ciq-grid,#countyiq-view .ciq-lower{display:block!important;margin-top:4mm!important;padding-bottom:0!important}#countyiq-view .ciq-card,#countyiq-view .kda-place-facts{display:block!important;margin:0 0 5mm!important;padding:4mm!important;border:1px solid #cfd8d2!important;border-radius:0!important;background:#fff!important;box-shadow:none!important;transform:none!important;break-inside:avoid-page}#countyiq-view .ciq-fiscal-card{break-inside:auto!important}
+  #countyiq-view svg{max-height:72mm!important;width:100%!important}#countyiq-view .ciq-p05-grid{grid-template-columns:repeat(2,1fr)!important}#countyiq-view .ciq-social-grid{grid-template-columns:repeat(5,1fr)!important}#countyiq-view .evidence-hub-list,#countyiq-view .opportunity-list{display:grid!important;grid-template-columns:1fr 1fr!important;gap:3mm!important}#countyiq-view .evidence-item,#countyiq-view .opportunity-card{break-inside:avoid!important;transform:none!important;box-shadow:none!important}
+  #countyiq-view [hidden].ciq-progressive-item{display:block!important}#countyiq-view .ciq-history-disclosure{display:block!important;border:0!important}#countyiq-view .ciq-history-disclosure>summary{display:none!important}#countyiq-view .ciq-history-disclosure .ciq-fiscal-table-wrap{display:block!important;padding:0!important}#countyiq-view .ciq-fiscal-table{min-width:0!important;font-size:6.5pt!important}#countyiq-view a{color:#123c32!important;text-decoration:none!important}#countyiq-view *{animation:none!important;transition:none!important}
 }
