@@ -17,4 +17,55 @@
   body[data-view="compare"] #compare-place-strip,
   body[data-view="compare"] .compare-place-card,
   body[data-view="compare"] .kda-select-search-trigger{scroll-margin-top:88px}
+
+  /* CountyIQ owns a wrapped local section navigator on narrow screens. The v2
+   * tab enhancer appends a position counter beside every tab rail; when that
+   * counter participates in the fixed wrapper's flex layout it shifts the
+   * visible rail off centre. Keep the counter off this fully-visible wrapped
+   * rail and constrain CountyIQ visual overflow so wide SVG labels cannot turn
+   * the document itself into a horizontal scroller. */
+  body[data-view="countyiq"] #countyiq-view{
+    width:100%;
+    max-width:100vw;
+    overflow-x:hidden;
+    overflow-x:clip;
+  }
+  body[data-view="countyiq"] #countyiq-view .section{
+    box-sizing:border-box;
+    margin-inline:auto!important;
+  }
+  body[data-view="countyiq"] .ciq-jump-nav-wrap{
+    display:block!important;
+    left:50%!important;
+    right:auto!important;
+    width:calc(100vw - .75rem)!important;
+    max-width:560px!important;
+    transform:translateX(-50%)!important;
+  }
+  body[data-view="countyiq"] .ciq-jump-nav{
+    box-sizing:border-box;
+    display:flex!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin-inline:auto!important;
+    flex-wrap:wrap!important;
+    justify-content:center!important;
+    align-items:center!important;
+    overflow:visible!important;
+    white-space:normal!important;
+    scroll-snap-type:none!important;
+  }
+  body[data-view="countyiq"] .ciq-jump-nav-wrap>.v2-tab-position{display:none!important}
+  body[data-view="countyiq"] #countyiq-view .ciq-card,
+  body[data-view="countyiq"] #countyiq-view .ciq-fiscal-card,
+  body[data-view="countyiq"] #countyiq-view .ciq-fiscal-chart,
+  body[data-view="countyiq"] #countyiq-view .ciq-trend{
+    min-width:0!important;
+    max-width:100%!important;
+  }
+  body[data-view="countyiq"] #countyiq-view .ciq-card svg{
+    display:block;
+    max-width:100%!important;
+  }
 }
