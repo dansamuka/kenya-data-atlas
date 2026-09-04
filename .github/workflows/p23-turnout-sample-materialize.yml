@@ -38,12 +38,15 @@ jobs:
           const p = JSON.parse(fs.readFileSync('package.json','utf8'));
           const cat = 'node scripts/p23/build-constituency-turnout.mjs catalogue';
           const ind = 'node scripts/p23/build-constituency-turnout.mjs indicators';
+          const lifecycle = 'node scripts/p23/activate-turnout-indicator.mjs';
           const val = 'node scripts/p23/validate-form34b-changamwe-source-verification.mjs';
           if (!p.scripts['catalogue:build'].includes(cat)) p.scripts['catalogue:build'] += ` && ${cat}`;
           if (!p.scripts['indicators:build'].includes(ind)) {
             const marker = 'node scripts/indicators/apply-worldbank-registry-metadata.mjs';
             if (!p.scripts['indicators:build'].includes(marker)) throw new Error('canonical indicator build marker missing');
-            p.scripts['indicators:build'] = p.scripts['indicators:build'].replace(marker, `${ind} && ${marker}`);
+            p.scripts['indicators:build'] = p.scripts['indicators:build'].replace(marker, `${ind} && ${lifecycle} && ${marker}`);
+          } else if (!p.scripts['indicators:build'].includes(lifecycle)) {
+            p.scripts['indicators:build'] = p.scripts['indicators:build'].replace(ind, `${ind} && ${lifecycle}`);
           }
           if (!p.scripts['p23:validate'].includes(val)) p.scripts['p23:validate'] += ` && ${val}`;
           fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
@@ -57,6 +60,7 @@ jobs:
           const summary = JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
           const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
           const observations = JSON.parse(fs.readFileSync('data/indicators/registry/observations.json','utf8'));
+          const indicators = JSON.parse(fs.readFileSync('data/indicators/registry/indicators.json','utf8'));
           const datasets = JSON.parse(fs.readFileSync('data/catalogue/registry/datasets.json','utf8'));
           const releases = JSON.parse(fs.readFileSync('data/catalogue/registry/releases.json','utf8'));
           if (summary.total_slots !== 20115) throw new Error(`denominator drift: ${summary.total_slots}`);
@@ -64,6 +68,8 @@ jobs:
           if (summary.unresolved_slots !== 9020) throw new Error(`expected 9020 unresolved slots, got ${summary.unresolved_slots}`);
           if (summary.unknown_missing !== 0) throw new Error(`unknown_missing=${summary.unknown_missing}`);
           if (summary.by_completion_phase?.P23 !== 289) throw new Error(`expected P23 remaining 289, got ${summary.by_completion_phase?.P23}`);
+          const indicator = indicators.find(row => row.indicator_code === 'IND-TURNOUT-HISTORY');
+          if (!indicator || indicator.lifecycle_status !== 'active' || indicator.active !== true) throw new Error('turnout indicator lifecycle did not activate');
           const s = series.find(row => row.series_code === 'KDA-TURNOUT-CON-001-2022-PRES');
           if (!s) throw new Error('Changamwe turnout series missing');
           const own = observations.filter(o => o.series_id === s.series_id);
@@ -74,7 +80,7 @@ jobs:
           if (o.geographic_method !== 'direct' || o.source_class !== 'official' || o.badge !== 'A') throw new Error('turnout provenance class changed');
           if (!datasets.some(d => d.dataset_code === 'DS-IEBC-FORM34B-TURNOUT-2022-P23')) throw new Error('turnout dataset missing');
           if (!releases.some(r => r.release_code === 'REL-IEBC-FORM34B-TURNOUT-2022-P23')) throw new Error('turnout release missing');
-          console.log('P23 source-verified turnout materialization passed: 1 observation; 11095 resolved; P23 remaining 289; denominator 20115; unknown 0.');
+          console.log('P23 source-verified turnout materialization passed: 1 observation; lifecycle active; 11095 resolved; P23 remaining 289; denominator 20115; unknown 0.');
           NODE
       - name: Run full validation
         run: npm test
