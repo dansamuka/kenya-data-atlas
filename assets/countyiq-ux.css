@@ -52,6 +52,7 @@
 .countyiq-route .ciq-metric:nth-child(2)::before{background:var(--ciq-gold)}.countyiq-route .ciq-metric:nth-child(3)::before{background:var(--ciq-terracotta)}.countyiq-route .ciq-metric:nth-child(4)::before{background:var(--ciq-blue)}
 .countyiq-route .ciq-metric:hover{z-index:2;box-shadow:0 14px 30px rgba(18,60,50,.08);transform:translateY(-2px)}
 .countyiq-route .ciq-metric .label{font:600 .71rem/1.35 var(--ciq-sans);color:#68756f}.countyiq-route .ciq-metric strong{font-family:var(--ciq-serif);font-size:clamp(1.65rem,2.2vw,2.15rem);letter-spacing:-.025em}.countyiq-route .ciq-metric .context{color:var(--ciq-green)}
+.countyiq-route #ciq-place-facts .kda-place-facts{margin-top:1rem;margin-bottom:1.25rem}
 
 /* Section cards + colour system */
 .countyiq-route .ciq-card{border:1px solid rgba(18,60,50,.12);border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 10px 30px rgba(18,60,50,.045);transition:.2s ease}
@@ -74,8 +75,41 @@
 .ciq-ux-backtop{position:fixed;right:1.15rem;bottom:1.15rem;z-index:25;border:1px solid rgba(18,60,50,.16);background:rgba(255,255,255,.94);backdrop-filter:blur(12px);color:var(--ciq-forest);border-radius:999px;padding:.6rem .8rem;font:800 .72rem/1 var(--ciq-sans);box-shadow:0 10px 26px rgba(18,60,50,.12);cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.18s ease}.ciq-ux-backtop.visible{opacity:1;pointer-events:auto;transform:none}
 
 @media(max-width:1050px){.countyiq-route .ciq-p05-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.countyiq-route .ciq-hero{padding-top:5.25rem;text-align:left;justify-items:stretch}.countyiq-route .ciq-hero h1,.countyiq-route .ciq-intro{margin-left:0;text-align:left}.countyiq-route .ciq-controls{width:100%}.ciq-jump-nav-wrap{top:62px;width:calc(100vw - 1rem);justify-content:flex-start}.ciq-jump-nav{justify-content:start;border-radius:14px;width:100%}.countyiq-route .ciq-principle{align-items:flex-start;flex-direction:column}.countyiq-route .ciq-principle span:last-child{text-align:left}.countyiq-route .ciq-p05-grid{grid-template-columns:1fr}.countyiq-route .ciq-card-head{flex-direction:column}.countyiq-route .ciq-card-head p{text-align:left}.ciq-ux-backtop{right:.75rem;bottom:.75rem}}
-@media(max-width:520px){.countyiq-route .ciq-hero h1{font-size:3.25rem}.ciq-hero-actions{justify-content:stretch}.ciq-print-button{width:100%;justify-content:center}}
+@media(max-width:760px){
+  .countyiq-route .section{width:100%!important;max-width:100%!important;margin-inline:auto!important;padding-left:1rem!important;padding-right:1rem!important}
+  .countyiq-route .ciq-hero{padding-top:8.1rem;padding-bottom:2.25rem;text-align:center;justify-items:center;gap:1.15rem}
+  .countyiq-route .ciq-hero>div:first-child{width:min(620px,100%);margin-inline:auto}
+  .countyiq-route .ciq-hero h1,.countyiq-route .ciq-intro{margin-left:auto;margin-right:auto;text-align:center}
+  .countyiq-route .ciq-intro{max-width:34rem}
+  .countyiq-route .ciq-controls{width:min(560px,100%);margin-inline:auto}
+  .ciq-jump-nav-wrap{top:60px;left:50%;transform:translateX(-50%);width:calc(100vw - .75rem);justify-content:center}
+  .ciq-jump-nav{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;width:100%;max-width:560px;overflow:visible;gap:.18rem .12rem;padding:.34rem;border-radius:16px}
+  .ciq-jump-nav a{flex:0 0 auto;padding:.4rem .58rem;font-size:.64rem;text-align:center}
+  .ciq-ux-anchor{scroll-margin-top:152px}
+  .countyiq-route .ciq-principle{align-items:center;flex-direction:column;text-align:center;gap:.55rem}
+  .countyiq-route .ciq-principle span:last-child{text-align:center}
+  .countyiq-route .ciq-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;min-height:0!important}
+  .countyiq-route .ciq-metric{min-height:190px}
+  .countyiq-route .ciq-p05-grid{grid-template-columns:1fr}
+  .countyiq-route .ciq-card-head{flex-direction:column}
+  .countyiq-route .ciq-card-head p{text-align:left}
+  .countyiq-route .kda-place-facts-head{text-align:center}.countyiq-route .kda-place-facts-head p{margin-left:auto;margin-right:auto}
+  .ciq-ux-backtop{right:.75rem;bottom:.75rem}
+}
+@media(max-width:520px){
+  .countyiq-route .section{padding-left:.75rem!important;padding-right:.75rem!important}
+  .countyiq-route .ciq-hero{padding-top:8.6rem}
+  .countyiq-route .ciq-hero h1{font-size:clamp(2.7rem,14vw,3.25rem)}
+  .countyiq-route .ciq-metrics{grid-template-columns:1fr!important}
+  .countyiq-route .ciq-metric{min-height:0;padding:1.05rem 1rem}
+  .countyiq-route .kda-place-facts-grid{grid-template-columns:1fr 1fr}
+  .ciq-hero-actions{justify-content:stretch}.ciq-print-button{width:100%;justify-content:center}
+}
+@media(max-width:380px){
+  .ciq-jump-nav a{padding:.36rem .46rem;font-size:.6rem}
+  .countyiq-route .ciq-hero{padding-top:9rem}
+  .countyiq-route .kda-place-facts-grid{grid-template-columns:1fr}
+}
 @media(prefers-reduced-motion:reduce){.countyiq-route,.countyiq-route *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 /* Browser print / Save as PDF */
