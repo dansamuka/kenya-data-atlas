@@ -1,0 +1,91 @@
+name: P23 source-verified turnout materialization
+
+on:
+  push:
+    branches:
+      - p23-form34b-changamwe-verified-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          npm ci
+          pip install shapely
+      - name: Validate committed source-image review
+        run: node scripts/p23/validate-form34b-changamwe-source-verification.mjs
+      - name: Wire verified turnout builder into canonical rebuild
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p = JSON.parse(fs.readFileSync('package.json','utf8'));
+          const cat = 'node scripts/p23/build-constituency-turnout.mjs catalogue';
+          const ind = 'node scripts/p23/build-constituency-turnout.mjs indicators';
+          const val = 'node scripts/p23/validate-form34b-changamwe-source-verification.mjs';
+          if (!p.scripts['catalogue:build'].includes(cat)) p.scripts['catalogue:build'] += ` && ${cat}`;
+          if (!p.scripts['indicators:build'].includes(ind)) {
+            const marker = 'node scripts/indicators/apply-worldbank-registry-metadata.mjs';
+            if (!p.scripts['indicators:build'].includes(marker)) throw new Error('canonical indicator build marker missing');
+            p.scripts['indicators:build'] = p.scripts['indicators:build'].replace(marker, `${ind} && ${marker}`);
+          }
+          if (!p.scripts['p23:validate'].includes(val)) p.scripts['p23:validate'] += ` && ${val}`;
+          fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
+          NODE
+      - name: Rebuild published data
+        run: npm run build:data
+      - name: Assert source-verified turnout promotion
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const summary = JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
+          const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
+          const observations = JSON.parse(fs.readFileSync('data/indicators/registry/observations.json','utf8'));
+          const datasets = JSON.parse(fs.readFileSync('data/catalogue/registry/datasets.json','utf8'));
+          const releases = JSON.parse(fs.readFileSync('data/catalogue/registry/releases.json','utf8'));
+          if (summary.total_slots !== 20115) throw new Error(`denominator drift: ${summary.total_slots}`);
+          if (summary.resolved_slots !== 11095) throw new Error(`expected 11095 resolved slots, got ${summary.resolved_slots}`);
+          if (summary.unresolved_slots !== 9020) throw new Error(`expected 9020 unresolved slots, got ${summary.unresolved_slots}`);
+          if (summary.unknown_missing !== 0) throw new Error(`unknown_missing=${summary.unknown_missing}`);
+          if (summary.by_completion_phase?.P23 !== 289) throw new Error(`expected P23 remaining 289, got ${summary.by_completion_phase?.P23}`);
+          const s = series.find(row => row.series_code === 'KDA-TURNOUT-CON-001-2022-PRES');
+          if (!s) throw new Error('Changamwe turnout series missing');
+          const own = observations.filter(o => o.series_id === s.series_id);
+          if (own.length !== 1) throw new Error(`expected one Changamwe turnout observation, got ${own.length}`);
+          const o = own[0];
+          const expected = 100 * (43594 + 435) / 93561;
+          if (Math.abs(Number(o.value) - expected) > 1e-12) throw new Error(`turnout value mismatch: ${o.value}`);
+          if (o.geographic_method !== 'direct' || o.source_class !== 'official' || o.badge !== 'A') throw new Error('turnout provenance class changed');
+          if (!datasets.some(d => d.dataset_code === 'DS-IEBC-FORM34B-TURNOUT-2022-P23')) throw new Error('turnout dataset missing');
+          if (!releases.some(r => r.release_code === 'REL-IEBC-FORM34B-TURNOUT-2022-P23')) throw new Error('turnout release missing');
+          console.log('P23 source-verified turnout materialization passed: 1 observation; 11095 resolved; P23 remaining 289; denominator 20115; unknown 0.');
+          NODE
+      - name: Run full validation
+        run: npm test
+      - name: Run independent geography audit
+        run: npm run geography:audit
+      - name: Commit validated materialization and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/p23-turnout-sample-materialize.yml
+          git add package.json data assets index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "feat(p23): promote source-verified Changamwe turnout"
+          git push origin HEAD:p23-form34b-changamwe-verified-20260904
