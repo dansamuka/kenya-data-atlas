@@ -894,5 +894,21 @@
     "version_label": "P23X ward materialisation",
     "release_notes": "First Schedule supplies all 1,450 domestic CAW values. 1,440 are safely mapped to canonical ward geography; ten Mandera East/Lafey rows remain explicit spatial holds.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "57f22ce9-c5b4-5514-8c50-cfb5de18ad46",
+    "release_code": "REL-IEBC-FORM34B-TURNOUT-2022-P23",
+    "dataset_id": "45caddc4-8af6-584d-873b-93ce443321bf",
+    "title": "IEBC 2022 Presidential Form 34B — source-verified constituency turnout",
+    "reference_period_start": "2022-08-09",
+    "reference_period_end": "2022-08-09",
+    "published_at": "",
+    "discovered_at": "2026-09-04T07:24:00.000Z",
+    "ingested_at": "2026-09-04T07:24:00.000Z",
+    "release_url": "https://forms.iebc.or.ke",
+    "release_status": "published",
+    "version_label": "P23 source-verified Form 34B rollout",
+    "release_notes": "Canonical observations are created only for constituencies with a committed source-verification evidence record satisfying data/p23/form34b-extraction-contract.json.",
+    "supersedes_release_id": ""
   }
 ]
