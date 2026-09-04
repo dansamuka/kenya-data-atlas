@@ -15,6 +15,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/probe-form34b-rejected-cell-candidates.py
+      - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/render-form34b-page-contexts.py
       - scripts/p23/validate-form34b-sample-page-layout.mjs
       - scripts/p23/assess-form34b-field-labels.py
@@ -39,6 +40,7 @@ on:
       - scripts/p23/probe-iebc-form34b-download-all.sh
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/probe-form34b-rejected-cell-candidates.py
+      - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/render-form34b-page-contexts.py
       - scripts/p23/validate-form34b-sample-page-layout.mjs
       - scripts/p23/assess-form34b-field-labels.py
@@ -123,6 +125,18 @@ jobs:
           path: |
             /tmp/p23-form34b-page-contexts.json
             /tmp/p23-form34b-page-contexts/*.png
+          if-no-files-found: error
+          retention-days: 2
+      - name: Build final TOTAL-row machine candidates
+        run: python3 scripts/p23/probe-form34b-total-row-candidates.py --output /tmp/p23-form34b-total-row-candidates.json --context /tmp/iebc-form34b-total-row-page2.png
+      - name: Upload TOTAL-row candidate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-total-row-candidates
+          path: |
+            /tmp/p23-form34b-total-row-candidates.json
+            /tmp/iebc-form34b-total-row-page2.png
           if-no-files-found: error
           retention-days: 2
       - name: Build rejected-ballot cell machine candidates
