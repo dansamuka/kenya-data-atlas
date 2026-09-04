@@ -16,8 +16,10 @@ on:
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/probe-form34b-rejected-cell-candidates.py
       - scripts/p23/probe-form34b-total-row-candidates.py
+      - scripts/p23/probe-form34b-bulk-total-row-candidates.py
       - scripts/p23/render-form34b-page-contexts.py
       - scripts/p23/validate-form34b-sample-page-layout.mjs
+      - scripts/p23/validate-form34b-bulk-total-row-candidates.mjs
       - scripts/p23/assess-form34b-field-labels.py
       - scripts/p23/assess-form34b-column-layout.py
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -41,8 +43,10 @@ on:
       - scripts/p23/probe-iebc-form34b-ocr.sh
       - scripts/p23/probe-form34b-rejected-cell-candidates.py
       - scripts/p23/probe-form34b-total-row-candidates.py
+      - scripts/p23/probe-form34b-bulk-total-row-candidates.py
       - scripts/p23/render-form34b-page-contexts.py
       - scripts/p23/validate-form34b-sample-page-layout.mjs
+      - scripts/p23/validate-form34b-bulk-total-row-candidates.mjs
       - scripts/p23/assess-form34b-field-labels.py
       - scripts/p23/assess-form34b-column-layout.py
       - scripts/p23/discover-iebc-form34b-manifest.py
@@ -102,6 +106,34 @@ jobs:
           path: /tmp/iebc-2022-form34b-source-manifest.json
           if-no-files-found: error
           retention-days: 7
+
+  bulk-total-row-smoke:
+    needs: source-manifest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download governed Form 34B source manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-source-manifest
+          path: /tmp/p23-form34b-source-manifest
+      - name: Install deterministic PDF and OCR inspection tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr
+      - name: Build 10-form final TOTAL-row machine-candidate smoke batch
+        run: python3 scripts/p23/probe-form34b-bulk-total-row-candidates.py --manifest /tmp/p23-form34b-source-manifest/iebc-2022-form34b-source-manifest.json --limit 10 --output /tmp/p23-form34b-bulk-total-row-candidates.json --context-dir /tmp/p23-form34b-bulk-total-row-contexts
+      - name: Validate smoke artifact promotion boundary
+        run: node scripts/p23/validate-form34b-bulk-total-row-candidates.mjs /tmp/p23-form34b-bulk-total-row-candidates.json
+      - name: Upload multi-form TOTAL-row candidate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-bulk-total-row-smoke
+          path: |
+            /tmp/p23-form34b-bulk-total-row-candidates.json
+            /tmp/p23-form34b-bulk-total-row-contexts/*.png
+          if-no-files-found: error
+          retention-days: 3
 
   sample-pdf:
     runs-on: ubuntu-24.04
