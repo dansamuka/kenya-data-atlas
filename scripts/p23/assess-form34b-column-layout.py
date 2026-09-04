@@ -17,10 +17,6 @@ center_x = HELPER["center_x"]
 NUMERIC_TOKEN = re.compile(r"^[0-9][0-9,.\s]*$")
 PROFILE_OFFSETS = (-350, -280, -210, -140, -70, 0, 70, 140, 210, 280, 350)
 PROFILE_HALF_WIDTH = 30.0
-RELOCATION_MIN_TOKENS = 20
-RELOCATION_MIN_ROW_BANDS = 12
-RELOCATION_MIN_CONF = 50.0
-RELOCATION_MIN_SOURCES = 2
 
 
 def as_int(value, default=0):
@@ -197,10 +193,11 @@ def main():
         )
     )
 
-    # Rejected Ballots is the only unresolved lane in the governed sample. Map a
-    # fixed-width horizontal density profile around its verified header center.
-    # This diagnostic cannot relocate the column or make it feasible: it only
-    # shows whether existing numeric OCR clusters are horizontally displaced.
+    # Keep the old horizontal density profile as a non-value diagnostic only.
+    # Source-image review demonstrated that a dense offset can belong to an
+    # adjacent column, so density alone must never select a relocation target.
+    # Grid-anchored cell geometry from probe-form34b-rejected-cell-candidates.py
+    # is now authoritative for candidate extraction.
     profile = []
     for offset in PROFILE_OFFSETS:
         probe_center = rejected_center + offset
@@ -224,53 +221,11 @@ def main():
         )
         + " values_emitted=0 relocation_authorized=false"
     )
-
-    # Select a non-value relocation *candidate* only when one offset has strong,
-    # multi-source numeric geometry and clearly dominates every alternative.
-    # This does not authorize extraction or promotion; it creates a deterministic
-    # geometry candidate for the next separately governed verification tranche.
-    eligible = [
-        (offset, lane)
-        for offset, lane in profile
-        if offset != 0
-        and abs(offset) <= abs(adjacent_spacing)
-        and lane["numeric_tokens"] >= RELOCATION_MIN_TOKENS
-        and lane["row_bands"] >= RELOCATION_MIN_ROW_BANDS
-        and lane["mean_conf"] >= RELOCATION_MIN_CONF
-        and lane["sources"] >= RELOCATION_MIN_SOURCES
-    ]
-    eligible.sort(
-        key=lambda item: (
-            item[1]["row_bands"],
-            item[1]["numeric_tokens"],
-            item[1]["mean_conf"],
-            -abs(item[0]),
-        ),
-        reverse=True,
+    print(
+        "P23_FORM34B_REJECTED_RELOCATION_CANDIDATE selected=false "
+        "reason=density_only_superseded_by_source_grid values_emitted=0 "
+        "relocation_authorized=false"
     )
-    candidate = eligible[0] if eligible else None
-    runner_up = eligible[1] if len(eligible) > 1 else None
-    dominant = bool(candidate) and (
-        runner_up is None
-        or (
-            candidate[1]["row_bands"] >= runner_up[1]["row_bands"] * 2
-            and candidate[1]["numeric_tokens"] >= runner_up[1]["numeric_tokens"] * 2
-        )
-    )
-
-    if candidate and dominant:
-        offset, lane = candidate
-        print(
-            "P23_FORM34B_REJECTED_RELOCATION_CANDIDATE "
-            f"selected=true offset={offset:+d} tokens={lane['numeric_tokens']} "
-            f"row_bands={lane['row_bands']} mean_conf={lane['mean_conf']:.2f} "
-            f"sources={lane['sources']} values_emitted=0 relocation_authorized=false"
-        )
-    else:
-        print(
-            "P23_FORM34B_REJECTED_RELOCATION_CANDIDATE selected=false "
-            "values_emitted=0 relocation_authorized=false"
-        )
 
     print(
         f"P23_FORM34B_COLUMN_LAYOUT_FEASIBLE ordered_triplet=true "
