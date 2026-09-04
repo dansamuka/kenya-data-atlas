@@ -3,7 +3,7 @@ import argparse
 import csv
 import hashlib
 import json
-import os
+import math
 import re
 import runpy
 import subprocess
@@ -13,13 +13,14 @@ from pathlib import Path
 ROOT = Path.cwd()
 HELPER_PATH = ROOT / "scripts/p23/assess-form34b-field-labels.py"
 OCR_CONTRACT_PATH = ROOT / "data/p23/form34b-ocr-feasibility-contract.json"
-THRESHOLDS = (90, 110, 130, 150)
+THRESHOLDS = (90, 110, 130, 150, 170, 190)
 DARK_CUTOFF = 140
 HORIZONTAL_DARK_FRACTION = 0.55
-VERTICAL_DARK_FRACTION = 0.25
+VERTICAL_DARK_FRACTION = 0.20
 GRID_GAP_MIN_300 = 25
 GRID_GAP_MAX_300 = 70
 MIN_GRID_LINES = 10
+MIN_STRONG_COVERAGE = 0.90
 MAX_DIGITS = 3
 
 
@@ -38,65 +39,64 @@ def sha256_file(path):
 def read_pgm(path):
     with open(path, "rb") as handle:
         if handle.readline().strip() != b"P5":
-            raise ValueError("Expected P5 PGM")
+            fail("Expected P5 PGM")
         line = handle.readline()
         while line.startswith(b"#"):
             line = handle.readline()
         width, height = map(int, line.split())
-        maxval = int(handle.readline().strip())
-        if maxval != 255:
-            raise ValueError(f"Unsupported PGM maxval={maxval}")
+        if int(handle.readline().strip()) != 255:
+            fail("Unsupported PGM max value")
         data = bytearray(handle.read(width * height))
     if len(data) != width * height:
-        raise ValueError(f"PGM raster size mismatch expected={width*height} got={len(data)}")
+        fail("PGM raster size mismatch")
     return width, height, data
 
 
 def write_pgm(path, width, height, data):
     if len(data) != width * height:
-        raise ValueError("PGM output raster size mismatch")
+        fail("PGM output raster size mismatch")
     with open(path, "wb") as handle:
         handle.write(f"P5\n{width} {height}\n255\n".encode("ascii"))
         handle.write(data)
 
 
-def idx(width, x, y):
+def pixel_index(width, x, y):
     return y * width + x
 
 
-def group_contiguous(values):
-    groups = []
+def groups(values):
+    out = []
     for value in values:
-        if not groups or value > groups[-1][-1] + 1:
-            groups.append([])
-        groups[-1].append(value)
-    return groups
+        if not out or value > out[-1][-1] + 1:
+            out.append([])
+        out[-1].append(value)
+    return out
 
 
-def longest_stable_grid_run(groups):
-    if len(groups) < 2:
+def stable_horizontal_run(line_groups):
+    if len(line_groups) < 2:
         return []
-    centers = [(group[0] + group[-1]) / 2.0 for group in groups]
-    best_start = best_end = 0
+    centers = [(group[0] + group[-1]) / 2 for group in line_groups]
+    best = (0, 0)
     start = 0
-    for i in range(1, len(groups)):
-        gap = centers[i] - centers[i - 1]
+    for index in range(1, len(line_groups)):
+        gap = centers[index] - centers[index - 1]
         if GRID_GAP_MIN_300 <= gap <= GRID_GAP_MAX_300:
             continue
-        if i - start > best_end - best_start:
-            best_start, best_end = start, i
-        start = i
-    if len(groups) - start > best_end - best_start:
-        best_start, best_end = start, len(groups)
-    return groups[best_start:best_end]
+        if index - start > best[1] - best[0]:
+            best = (start, index)
+        start = index
+    if len(line_groups) - start > best[1] - best[0]:
+        best = (start, len(line_groups))
+    return line_groups[best[0]:best[1]]
 
 
-def locate_header_geometry(primary_tsv, label_tsv):
-    if not HELPER_PATH.exists():
-        fail(f"Missing geometry helper: {HELPER_PATH}")
+def header_geometry(primary_tsv, label_tsv):
     helper = runpy.run_path(str(HELPER_PATH))
     ordered = helper["locate_ordered_targets"](
-        helper["build_segments"](helper["read_words"]([str(primary_tsv), str(label_tsv)]))
+        helper["build_segments"](
+            helper["read_words"]([str(primary_tsv), str(label_tsv)])
+        )
     )
     if not ordered:
         fail("Ordered Form 34B header triplet unavailable")
@@ -106,9 +106,7 @@ def locate_header_geometry(primary_tsv, label_tsv):
     valid_center = float(center_x(findings["total_valid_votes"]))
     spacing = rejected_center - valid_center
     if spacing <= 0:
-        fail(f"Invalid header spacing: {spacing}")
-    header_top = min(f["bbox"][1] for f in findings.values())
-    header_bottom = max(f["bbox"][3] for f in findings.values())
+        fail("Invalid Form 34B target-header spacing")
 
     page_width = page_height = 0
     with open(primary_tsv, encoding="utf-8", errors="replace", newline="") as handle:
@@ -122,41 +120,55 @@ def locate_header_geometry(primary_tsv, label_tsv):
                 pass
     if not page_width or not page_height:
         fail("Primary OCR page geometry unavailable")
+
     return {
         "page": int(ordered["page"]),
         "rejected_center_250": rejected_center,
         "valid_center_250": valid_center,
         "spacing_250": spacing,
-        "header_top_250": float(header_top),
-        "header_bottom_250": float(header_bottom),
+        "header_top_250": float(min(f["bbox"][1] for f in findings.values())),
+        "header_bottom_250": float(max(f["bbox"][3] for f in findings.values())),
         "page_width_250": page_width,
         "page_height_250": page_height,
     }
 
 
-def render_page(pdf, prefix, dpi=300):
+def render_page(pdf, prefix):
     subprocess.run(
-        ["pdftoppm", "-f", "1", "-singlefile", "-gray", "-r", str(dpi), str(pdf), str(prefix)],
-        check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        ["pdftoppm", "-f", "1", "-singlefile", "-gray", "-r", "300", str(pdf), str(prefix)],
+        check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
-    pgm = Path(f"{prefix}.pgm")
-    if not pgm.exists():
-        fail("Failed to render Form 34B page 1 PGM")
-    return pgm
+    path = Path(f"{prefix}.pgm")
+    if not path.exists():
+        fail("Failed to render Form 34B page 1")
+    return path
 
 
-def dark_fraction_row(data, width, y, x0, x1, cutoff=DARK_CUTOFF):
-    span = max(1, x1 - x0)
-    count = sum(1 for x in range(x0, x1) if data[idx(width, x, y)] < cutoff)
-    return count / span
+def dark_row_fraction(data, width, y, x0, x1):
+    return sum(data[pixel_index(width, x, y)] < DARK_CUTOFF for x in range(x0, x1)) / max(1, x1 - x0)
 
 
-def dark_fraction_col(data, width, x, y0, y1, cutoff=DARK_CUTOFF):
-    span = max(1, y1 - y0)
-    count = sum(1 for y in range(y0, y1) if data[idx(width, x, y)] < cutoff)
-    return count / span
+def dark_col_fraction(data, width, x, y0, y1):
+    return sum(data[pixel_index(width, x, y)] < DARK_CUTOFF for y in range(y0, y1)) / max(1, y1 - y0)
+
+
+def grid_group_strength(data, width, group, y0, y1):
+    return max(dark_col_fraction(data, width, x, y0, y1) for x in group)
+
+
+def choose_vertical_rule(options, center, spacing, side):
+    plausible = []
+    for center_x, group, strength in options:
+        distance = abs(center_x - center)
+        if 0.35 * spacing <= distance <= 0.85 * spacing:
+            plausible.append((center_x, group, strength))
+    pool = plausible or options
+    if not pool:
+        fail(f"Rejected-ballot {side} vertical rule unresolved")
+    # Right-aligned digits form a repeated dark column and can look like a rule.
+    # Select the strongest continuous grid-line group inside the header-anchored
+    # search window, rather than the group nearest the header centre.
+    return max(pool, key=lambda item: (item[2], len(item[1])))
 
 
 def detect_grid(width, height, data, geometry):
@@ -171,42 +183,45 @@ def detect_grid(width, height, data, geometry):
 
     candidate_rows = [
         y for y in range(y_start, y_stop)
-        if dark_fraction_row(data, width, y, probe_x0, probe_x1) >= HORIZONTAL_DARK_FRACTION
+        if dark_row_fraction(data, width, y, probe_x0, probe_x1) >= HORIZONTAL_DARK_FRACTION
     ]
-    horizontal_groups = group_contiguous(candidate_rows)
-    stable = longest_stable_grid_run(horizontal_groups)
-    if len(stable) < MIN_GRID_LINES:
-        fail(f"Rejected-ballot table grid unresolved: horizontal_lines={len(stable)}")
-    body_y0 = stable[0][0]
-    body_y1 = stable[-1][-1] + 1
+    horizontal = stable_horizontal_run(groups(candidate_rows))
+    if len(horizontal) < MIN_GRID_LINES:
+        fail(f"Rejected-ballot table grid unresolved: horizontal_lines={len(horizontal)}")
+    body_y0 = horizontal[0][0]
+    body_y1 = horizontal[-1][-1] + 1
 
     search_x0 = max(0, int(round(center - spacing * 1.20)))
     search_x1 = min(width, int(round(center + spacing * 1.20)))
     candidate_cols = [
         x for x in range(search_x0, search_x1)
-        if dark_fraction_col(data, width, x, body_y0, body_y1) >= VERTICAL_DARK_FRACTION
+        if dark_col_fraction(data, width, x, body_y0, body_y1) >= VERTICAL_DARK_FRACTION
     ]
-    vertical_groups = group_contiguous(candidate_cols)
-    vertical_centers = [sum(group) / len(group) for group in vertical_groups]
-    left_options = [(c, g) for c, g in zip(vertical_centers, vertical_groups) if c < center]
-    right_options = [(c, g) for c, g in zip(vertical_centers, vertical_groups) if c > center]
-    if not left_options or not right_options:
-        fail("Rejected-ballot vertical cell boundaries unresolved")
-    left_center, _ = max(left_options, key=lambda item: item[0])
-    right_center, _ = min(right_options, key=lambda item: item[0])
-    if right_center - left_center < spacing * 0.50:
-        fail("Rejected-ballot detected cell width is implausibly narrow")
+    vertical = groups(candidate_cols)
+    scored = [
+        (sum(group) / len(group), group, grid_group_strength(data, width, group, body_y0, body_y1))
+        for group in vertical
+    ]
+    left_options = [item for item in scored if item[0] < center]
+    right_options = [item for item in scored if item[0] > center]
+    left_center, _, left_strength = choose_vertical_rule(left_options, center, spacing, "left")
+    right_center, _, right_strength = choose_vertical_rule(right_options, center, spacing, "right")
+    cell_width = right_center - left_center
+    if not 0.75 * spacing <= cell_width <= 1.35 * spacing:
+        fail(f"Rejected-ballot detected cell width is implausible: width={cell_width:.1f} spacing={spacing:.1f}")
 
     return {
-        "horizontal_groups": stable,
+        "horizontal_groups": horizontal,
         "left_grid_x": int(round(left_center)),
         "right_grid_x": int(round(right_center)),
+        "left_rule_strength": left_strength,
+        "right_rule_strength": right_strength,
         "body_y0": body_y0,
         "body_y1": body_y1,
     }
 
 
-def build_threshold_images(width, data, grid, workdir):
+def threshold_images(width, data, grid, workdir):
     left = grid["left_grid_x"]
     right = grid["right_grid_x"]
     cell_width = right - left
@@ -214,28 +229,30 @@ def build_threshold_images(width, data, grid, workdir):
     digit_x1 = max(digit_x0 + 1, right - 2)
     y0 = grid["horizontal_groups"][0][0]
     y1 = grid["horizontal_groups"][-1][-1] + 1
-    crop_w = digit_x1 - digit_x0
-    crop_h = y1 - y0
+    crop_width = digit_x1 - digit_x0
+    crop_height = y1 - y0
 
-    raw = bytearray(crop_w * crop_h)
-    for cy in range(crop_h):
-        sy = y0 + cy
-        start = idx(width, digit_x0, sy)
-        raw[cy * crop_w:(cy + 1) * crop_w] = data[start:start + crop_w]
+    raw = bytearray(crop_width * crop_height)
+    for crop_y in range(crop_height):
+        source_y = y0 + crop_y
+        start = pixel_index(width, digit_x0, source_y)
+        raw[crop_y * crop_width:(crop_y + 1) * crop_width] = data[start:start + crop_width]
 
+    # Remove only source-image horizontal table rules. No glyph correction,
+    # synthesis, value inference or relocation is permitted here.
     for group in grid["horizontal_groups"]:
-        for sy in range(max(y0, group[0] - 1), min(y1, group[-1] + 2)):
-            cy = sy - y0
-            raw[cy * crop_w:(cy + 1) * crop_w] = b"\xff" * crop_w
+        for source_y in range(max(y0, group[0] - 1), min(y1, group[-1] + 2)):
+            crop_y = source_y - y0
+            raw[crop_y * crop_width:(crop_y + 1) * crop_width] = b"\xff" * crop_width
 
-    output = {}
+    paths = {}
     for threshold in THRESHOLDS:
-        bw = bytearray(0 if value < threshold else 255 for value in raw)
+        binary = bytearray(0 if value < threshold else 255 for value in raw)
         path = workdir / f"rejected-cells-threshold-{threshold}.pgm"
-        write_pgm(path, crop_w, crop_h, bw)
-        output[threshold] = path
+        write_pgm(path, crop_width, crop_height, binary)
+        paths[threshold] = path
     return {
-        "paths": output,
+        "paths": paths,
         "digit_x0": digit_x0,
         "digit_x1": digit_x1,
         "crop_y0": y0,
@@ -243,25 +260,20 @@ def build_threshold_images(width, data, grid, workdir):
     }
 
 
-def run_tesseract(path):
+def tesseract_rows(path):
     proc = subprocess.run(
-        [
-            "tesseract", str(path), "stdout", "--psm", "6",
-            "-c", "tessedit_char_whitelist=0123456789", "tsv",
-        ],
-        check=True,
-        capture_output=True,
-        text=True,
+        ["tesseract", str(path), "stdout", "--psm", "6", "-c", "tessedit_char_whitelist=0123456789", "tsv"],
+        check=True, capture_output=True, text=True,
     )
     return list(csv.DictReader(proc.stdout.splitlines(), delimiter="\t"))
 
 
 def row_intervals(grid, crop_y0):
-    groups = grid["horizontal_groups"]
     intervals = []
-    for i in range(len(groups) - 1):
-        top = groups[i][-1] + 2 - crop_y0
-        bottom = groups[i + 1][0] - 1 - crop_y0
+    lines = grid["horizontal_groups"]
+    for index in range(len(lines) - 1):
+        top = lines[index][-1] + 2 - crop_y0
+        bottom = lines[index + 1][0] - 1 - crop_y0
         if bottom > top:
             intervals.append((top, bottom))
     return intervals
@@ -274,67 +286,62 @@ def assign_candidates(tsv_rows, intervals):
         if not re.fullmatch(rf"\d{{1,{MAX_DIGITS}}}", raw):
             continue
         try:
-            conf = float(row.get("conf", "-1"))
+            confidence = float(row.get("conf", "-1"))
             top = int(row.get("top") or 0)
             height = int(row.get("height") or 0)
             left = int(row.get("left") or 0)
         except ValueError:
             continue
-        if conf < 0:
+        if confidence < 0:
             continue
-        cy = top + height / 2.0
-        for index_, (cell_top, cell_bottom) in enumerate(intervals):
-            if cell_top <= cy <= cell_bottom:
-                by_row[index_].append((left, raw, conf))
+        center_y = top + height / 2
+        for row_index, (cell_top, cell_bottom) in enumerate(intervals):
+            if cell_top <= center_y <= cell_bottom:
+                by_row[row_index].append((left, raw, confidence))
                 break
 
     resolved = {}
-    for index_, tokens in by_row.items():
-        tokens = sorted(tokens, key=lambda item: item[0])
+    for row_index, tokens in by_row.items():
+        tokens = sorted(tokens, key=lambda token: token[0])
         text = "".join(token[1] for token in tokens)
         if not re.fullmatch(rf"\d{{1,{MAX_DIGITS}}}", text):
             continue
         confidence = sum(token[2] for token in tokens) / len(tokens)
-        resolved[index_] = (text, confidence)
+        resolved[row_index] = (text, confidence)
     return resolved
 
 
-def decide_row(candidates):
+def decide(candidates):
     if not candidates:
         return None, None, "no_candidate"
     counts = Counter(value for _, value, _ in candidates)
     value, count = counts.most_common(1)[0]
     if count >= 2:
-        confs = [conf for _, candidate, conf in candidates if candidate == value]
-        return int(value), sum(confs) / len(confs), "threshold_consensus"
+        confidences = [confidence for _, candidate, confidence in candidates if candidate == value]
+        return int(value), sum(confidences) / len(confidences), "threshold_consensus"
 
     ranked = sorted(candidates, key=lambda item: item[2], reverse=True)
-    top = ranked[0]
-    other = ranked[1:]
-    if top[2] >= 80 and all(item[2] < 50 for item in other):
-        return int(top[1]), top[2], "high_confidence_dominance"
+    best = ranked[0]
+    if best[2] >= 80 and all(item[2] < 50 for item in ranked[1:]):
+        return int(best[1]), best[2], "high_confidence_dominance"
     return None, None, "weak_or_conflicting"
 
 
-def render_context_png(pdf, geometry, grid, output_path):
+def render_context(pdf, geometry, grid, output_path):
     scale = 300 / 250
     spacing = geometry["spacing_250"] * scale
     x = max(0, int(round(grid["left_grid_x"] - spacing * 0.70)))
     right = int(round(grid["right_grid_x"] + spacing * 1.10))
     y = max(0, int(round(geometry["header_top_250"] * scale - 80)))
     bottom = grid["body_y1"]
-    w = max(1, right - x)
-    h = max(1, bottom - y)
     prefix = output_path.with_suffix("")
     subprocess.run(
         [
             "pdftoppm", "-f", "1", "-singlefile", "-png", "-r", "300",
-            "-x", str(x), "-y", str(y), "-W", str(w), "-H", str(h),
-            str(pdf), str(prefix),
+            "-x", str(x), "-y", str(y), "-W", str(max(1, right - x)),
+            "-H", str(max(1, bottom - y)), str(pdf), str(prefix),
         ],
-        check=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     rendered = Path(f"{prefix}.png")
     if rendered != output_path and rendered.exists():
@@ -357,7 +364,7 @@ def main():
     label = Path(args.label_tsv)
     output = Path(args.output)
     context = Path(args.context)
-    for required in (pdf, primary, label, OCR_CONTRACT_PATH):
+    for required in (pdf, primary, label, OCR_CONTRACT_PATH, HELPER_PATH):
         if not required.exists():
             fail(f"Missing required input: {required}")
 
@@ -365,23 +372,24 @@ def main():
         ocr_contract = json.load(handle)
     sample = ocr_contract.get("sample") or ocr_contract.get("sample_form") or {}
 
-    geometry = locate_header_geometry(primary, label)
+    geometry = header_geometry(primary, label)
     if geometry["page"] != 1:
         fail(f"Governed sample target headers moved off page 1: page={geometry['page']}")
 
     workdir = Path("/tmp/p23-rejected-cell-probe")
     workdir.mkdir(parents=True, exist_ok=True)
-    page_pgm = render_page(pdf, workdir / "form34b-page1", dpi=300)
+    page_pgm = render_page(pdf, workdir / "form34b-page1")
     width, height, data = read_pgm(page_pgm)
     grid = detect_grid(width, height, data, geometry)
-    threshold_images = build_threshold_images(width, data, grid, workdir)
-    intervals = row_intervals(grid, threshold_images["crop_y0"])
-    if len(intervals) < 1:
+    images = threshold_images(width, data, grid, workdir)
+    intervals = row_intervals(grid, images["crop_y0"])
+    if not intervals:
         fail("No rejected-ballot table row intervals detected")
 
-    per_threshold = {}
-    for threshold, path in threshold_images["paths"].items():
-        per_threshold[threshold] = assign_candidates(run_tesseract(path), intervals)
+    per_threshold = {
+        threshold: assign_candidates(tesseract_rows(path), intervals)
+        for threshold, path in images["paths"].items()
+    }
 
     rows = []
     strong_count = 0
@@ -391,29 +399,26 @@ def main():
             if row_index in per_threshold[threshold]:
                 value, confidence = per_threshold[threshold][row_index]
                 candidates.append((threshold, value, confidence))
-        selected, confidence, decision = decide_row(candidates)
+        selected, confidence, decision = decide(candidates)
         strong = selected is not None
         strong_count += int(strong)
-        rows.append(
-            {
-                "row_index": row_index,
-                "machine_transcription": selected,
-                "machine_confidence": round(confidence, 2) if confidence is not None else None,
-                "candidate_state": "strong_machine_candidate" if strong else ("weak_machine_candidate" if candidates else "unreadable"),
-                "decision": decision,
-                "threshold_candidates": [
-                    {"threshold": threshold, "value": int(value), "confidence": round(conf, 2)}
-                    for threshold, value, conf in candidates
-                ],
-            }
-        )
+        rows.append({
+            "row_index": row_index,
+            "machine_transcription": selected,
+            "machine_confidence": round(confidence, 2) if confidence is not None else None,
+            "candidate_state": "strong_machine_candidate" if strong else ("weak_machine_candidate" if candidates else "unreadable"),
+            "decision": decision,
+            "threshold_candidates": [
+                {"threshold": threshold, "value": int(value), "confidence": round(candidate_confidence, 2)}
+                for threshold, value, candidate_confidence in candidates
+            ],
+        })
 
     unresolved = [row["row_index"] for row in rows if row["machine_transcription"] is None]
-    aggregate = None
-    if not unresolved:
-        aggregate = sum(int(row["machine_transcription"]) for row in rows)
+    coverage = strong_count / len(rows)
+    aggregate = None if unresolved else sum(int(row["machine_transcription"]) for row in rows)
 
-    render_context_png(pdf, geometry, grid, context)
+    render_context(pdf, geometry, grid, context)
     output.parent.mkdir(parents=True, exist_ok=True)
     document = {
         "schema_version": "kda.p23.form34b.rejected-cell-candidates.v1",
@@ -431,14 +436,17 @@ def main():
             "detected_rows": len(intervals),
             "left_grid_x_300": grid["left_grid_x"],
             "right_grid_x_300": grid["right_grid_x"],
-            "digit_crop_x0_300": threshold_images["digit_x0"],
-            "digit_crop_x1_300": threshold_images["digit_x1"],
+            "left_rule_strength": round(grid["left_rule_strength"], 4),
+            "right_rule_strength": round(grid["right_rule_strength"], 4),
+            "digit_crop_x0_300": images["digit_x0"],
+            "digit_crop_x1_300": images["digit_x1"],
         },
         "summary": {
             "rows": len(rows),
             "strong_machine_candidates": strong_count,
             "weak_or_unreadable_rows": len(rows) - strong_count,
-            "candidate_coverage_pct": round(100 * strong_count / len(rows), 2),
+            "candidate_coverage_pct": round(100 * coverage, 2),
+            "minimum_sample_coverage_pct": round(100 * MIN_STRONG_COVERAGE, 2),
             "aggregate_rejected_ballots_machine_candidate": aggregate,
             "promotion_authorized": False,
             "source_verified_values": 0,
@@ -456,10 +464,13 @@ def main():
     print(
         "P23_FORM34B_REJECTED_CELL_CANDIDATES "
         f"rows={len(rows)} strong={strong_count} unresolved={len(unresolved)} "
-        f"coverage_pct={document['summary']['candidate_coverage_pct']:.2f} "
+        f"coverage_pct={100 * coverage:.2f} minimum_pct={100 * MIN_STRONG_COVERAGE:.2f} "
         f"aggregate_candidate={'set' if aggregate is not None else 'null'} "
         "source_verified=0 promotion_authorized=false values_logged=0"
     )
+    required = math.ceil(len(rows) * MIN_STRONG_COVERAGE)
+    if strong_count < required:
+        fail(f"Rejected-ballot machine-candidate coverage below governed sample gate: strong={strong_count} required={required}")
 
 
 if __name__ == "__main__":
