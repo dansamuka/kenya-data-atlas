@@ -37,12 +37,12 @@
 .kda-small-area-facts{margin-top:.8rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--muted)}
 .kda-small-area-facts strong{color:inherit}
 
-/* P16: the source-backed CountyIQ place-facts panel is hydrated asynchronously.
- * Reserve its desktop geometry before the host node is inserted, then transfer
- * that reservation to the host itself. This keeps the analytical grid fixed
- * while the canonical place-facts JSON resolves. */
-#ciq-metrics:not(:has(+ #ciq-place-facts)){margin-bottom:360px}
-#ciq-place-facts{display:flow-root;min-height:360px}
+/* Reserve space only until the asynchronous place-facts host exists anywhere
+ * after the CountyIQ metric strip. A general-sibling check is intentional:
+ * provenance/vintage UI may be inserted between the metrics and place facts. */
+#ciq-metrics:not(:has(~ #ciq-place-facts)){margin-bottom:360px}
+#ciq-place-facts{display:flow-root;min-height:0}
+#ciq-place-facts:empty{min-height:360px}
 
 .ciq-fiscal-table-wrap{overflow:auto;max-width:100%;border:1px solid var(--line);border-radius:.75rem;margin-top:1rem}
 .ciq-fiscal-table{min-width:880px;width:100%;border-collapse:collapse}
@@ -56,6 +56,6 @@
   .kda-place-facts-head{display:block}.kda-place-facts-head p{margin-top:.35rem}
   .kda-place-facts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kda-place-fact{padding:.68rem}.kda-place-fact strong{font-size:1.05rem}
-  #ciq-metrics:not(:has(+ #ciq-place-facts)){margin-bottom:720px}
-  #ciq-place-facts{min-height:720px}
+  #ciq-metrics:not(:has(~ #ciq-place-facts)){margin-bottom:560px}
+  #ciq-place-facts:empty{min-height:560px}
 }
