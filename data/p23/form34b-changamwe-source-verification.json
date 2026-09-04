@@ -1,0 +1,85 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-CHANGAMWE-SOURCE-VERIFIED-2026-09-04",
+  "as_of": "2026-09-04",
+  "purpose": "Record an independent visual source-image review of the governed Changamwe Form 34B final TOTAL row, separate from the machine-candidate OCR gate.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "ocr": "data/p23/form34b-ocr-feasibility-contract.json",
+    "page_layout": "data/p23/form34b-sample-page-layout-contract.json"
+  },
+  "sample": {
+    "constituency_code": 1,
+    "constituency_name": "Changamwe",
+    "geo_code": "KEN-C001-CON001",
+    "form_id": 277629,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277629",
+    "source_pdf_sha256": "4955d4e8ebc67b5ef267e84ba0f3c96f92289149f67528996531c1ce2351a311",
+    "page_number": 2,
+    "render_dpi": 250,
+    "machine_page_image_sha256": "d4fa387e6ff08f0e1c7fa7cc7be9bef1b6a440434565638e5c84a2e3213050bc",
+    "review_context_image_sha256": "431f96a6462d2197cfc410a1483faf9261be934ec2a87f42859653cdbb2391b6",
+    "total_row_geometry_250": {
+      "y0": 3095,
+      "y1": 3126,
+      "registered_voters_x0": 1324,
+      "registered_voters_x1": 1480,
+      "total_valid_votes_x0": 2356,
+      "total_valid_votes_x1": 2512,
+      "rejected_ballots_x0": 2512,
+      "rejected_ballots_x1": 2666
+    }
+  },
+  "review": {
+    "reviewed_at": "2026-09-04T07:24:00+03:00",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI ChatGPT",
+    "independence_note": "The visual reading was performed from the CI-rendered official source crop after the deterministic OCR candidate artifact had been generated. The source-image reading, not OCR confidence or arithmetic fitting, determines verified_value.",
+    "source_image_legibility": "clear",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "machine_transcription": 93561,
+      "machine_confidence": 64.6,
+      "verified_value": 93561,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "machine_transcription": 43594,
+      "machine_confidence": 34.54,
+      "verified_value": 43594,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "machine_transcription": 435,
+      "machine_confidence": 57.65,
+      "verified_value": 435,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [24237, 19098, 73, 186],
+    "candidate_vote_sum": 43594,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 93561,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 44029,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 47.059137888650184,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_authorized_by_this_file": false,
+  "note": "This file establishes the source-verified sample row under the extraction contract. Canonical promotion remains a separate deterministic build step and must preserve the 20,115-slot denominator."
+}
