@@ -41,5 +41,18 @@ const covered=ledger.rows.filter(r=>r.level==='constituency'&&codes.has(r.indica
 assert(covered.length===580,`expected 580 governed rendered slots, got ${covered.length}`);
 assert(summary.total_slots===20115,'governed denominator changed');
 assert(summary.unknown_missing===0,`unknown_missing=${summary.unknown_missing}`);
-assert(Number(summary.by_completion_phase?.P23)===290,`expected turnout-only P23 remainder of 290, got ${summary.by_completion_phase?.P23}`);
-console.log(`P23_EVIDENCE_GAP_CLOSURES_OK constituencies=290 rendered_slots=580 p23_remaining=290 unknown=0 contract=${contract.contract_id}`);
+
+// P23 is now exclusively the constituency turnout family. Do not hard-code 290:
+// each independently promoted turnout row must reduce the live P23 remainder by
+// exactly one while leaving every unresolved turnout slot explicitly in P23.
+const turnoutRows=ledger.rows.filter(r=>r.level==='constituency'&&r.indicator_code==='IND-TURNOUT-HISTORY');
+assert(turnoutRows.length===290,`expected 290 constituency turnout slots, got ${turnoutRows.length}`);
+const resolvedTurnout=turnoutRows.filter(r=>r.resolved===true);
+const unresolvedTurnout=turnoutRows.filter(r=>r.resolved!==true);
+assert(resolvedTurnout.length+unresolvedTurnout.length===290,'turnout slot partition changed');
+assert(resolvedTurnout.every(r=>r.completion_phase==='complete'&&r.series_code&&r.observation_id&&Number.isFinite(Number(r.value))&&Number(r.value)>=0&&Number(r.value)<=100),'resolved turnout slots must be canonical numeric observations in [0,100]');
+assert(unresolvedTurnout.every(r=>r.completion_phase==='P23'&&!r.series_code&&!r.observation_id),'unresolved turnout slots must remain value-free P23 work');
+const liveP23=ledger.rows.filter(r=>r.completion_phase==='P23');
+assert(liveP23.length===unresolvedTurnout.length&&liveP23.every(r=>r.level==='constituency'&&r.indicator_code==='IND-TURNOUT-HISTORY'),'P23 must contain only unresolved constituency turnout slots');
+assert(Number(summary.by_completion_phase?.P23)===unresolvedTurnout.length,`expected turnout-only P23 remainder of ${unresolvedTurnout.length}, got ${summary.by_completion_phase?.P23}`);
+console.log(`P23_EVIDENCE_GAP_CLOSURES_OK constituencies=290 rendered_slots=580 turnout_resolved=${resolvedTurnout.length} p23_remaining=${unresolvedTurnout.length} unknown=0 contract=${contract.contract_id}`);
