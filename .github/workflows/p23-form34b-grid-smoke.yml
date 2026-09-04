@@ -1,0 +1,59 @@
+name: P23 Form 34B grid smoke
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-form34b-grid-smoke.yml
+      - scripts/p23/probe-form34b-grid-smoke.py
+      - scripts/p23/validate-form34b-grid-smoke.mjs
+      - scripts/p23/probe-form34b-total-row-candidates.py
+      - scripts/p23/discover-iebc-form34b-manifest.py
+      - scripts/p23/validate-iebc-form34b-source-manifest.mjs
+      - data/p23/form34b-source-index-contract.json
+      - data/p23/form34b-extraction-contract.json
+      - data/indicators/registry/series.json
+      - data/indicators/registry/observations.json
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-form34b-grid-smoke.yml
+      - scripts/p23/probe-form34b-grid-smoke.py
+      - scripts/p23/validate-form34b-grid-smoke.mjs
+      - scripts/p23/probe-form34b-total-row-candidates.py
+      - scripts/p23/discover-iebc-form34b-manifest.py
+      - scripts/p23/validate-iebc-form34b-source-manifest.mjs
+      - data/p23/form34b-source-index-contract.json
+      - data/p23/form34b-extraction-contract.json
+      - data/indicators/registry/series.json
+      - data/indicators/registry/observations.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ten-form-grid-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate P23 source and extraction governance
+        run: node scripts/p23/validate-form34b-extraction-contract.mjs
+      - name: Install deterministic PDF and OCR tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr
+      - name: Discover official IEBC Form 34B source manifest
+        run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Validate source-reference manifest boundary
+        run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Run governed 10-form source-grid smoke
+        run: python3 scripts/p23/probe-form34b-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 10 --output /tmp/p23-form34b-grid-smoke.json
+      - name: Validate no-promotion boundary and Changamwe anchor
+        run: node scripts/p23/validate-form34b-grid-smoke.mjs /tmp/p23-form34b-grid-smoke.json
+      - name: Upload diagnostic artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-grid-smoke
+          path: /tmp/p23-form34b-grid-smoke.json
+          if-no-files-found: error
+          retention-days: 3
