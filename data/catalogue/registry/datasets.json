@@ -1007,5 +1007,20 @@
     "publication_status": "published",
     "methodology_url": "data/sprint2/README.md",
     "known_limitations": "Ten official Mandera East/Lafey CAW rows remain in higher-level statistical totals but are withheld from canonical ward geometry because the current external boundary layer conflicts with the operative IEBC configuration. 54 published rows require an explicit source-to-canonical ward crosswalk and are badged B."
+  },
+  {
+    "dataset_id": "45caddc4-8af6-584d-873b-93ce443321bf",
+    "dataset_code": "DS-IEBC-FORM34B-TURNOUT-2022-P23",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "2022 Presidential Election — Constituency Turnout from Form 34B",
+    "description": "Source-verified constituency presidential turnout derived only from official IEBC Form 34B final TOTAL rows. Coverage expands only as individual constituency source-image reviews satisfy the P23 extraction contract.",
+    "topic": "Elections",
+    "geographic_coverage": [
+      "constituency"
+    ],
+    "frequency": "electoral_cycle",
+    "publication_status": "published",
+    "methodology_url": "data/p23/form34b-extraction-contract.json",
+    "known_limitations": "Only independently source-image-verified Form 34B rows are materialized. OCR-only candidates, partial pages, inherited county values and unresolved forms remain excluded."
   }
 ]
