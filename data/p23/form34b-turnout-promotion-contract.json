@@ -1,0 +1,48 @@
+{
+  "schema_version": "kda.p23.form34b-turnout-promotion.v1",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-04",
+  "as_of": "2026-09-04",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "target_level": "constituency",
+  "target_geography_count": 290,
+  "boundary_version": "2012-01",
+  "source_authority": "Independent Electoral and Boundaries Commission (IEBC)",
+  "source_form": "Form 34B",
+  "election": "2022 General Election — Presidential",
+  "reference_date": "2022-08-09",
+  "extraction_contract": "data/p23/form34b-extraction-contract.json",
+  "builder": "scripts/p23/build-constituency-turnout.mjs",
+  "verified_evidence_pattern": "data/p23/form34b-*-source-verification.json",
+  "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
+  "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
+  "current_tranche": {
+    "verified_constituencies": 1,
+    "verified_geo_codes": ["KEN-C001-CON001"],
+    "verified_constituency_codes": [1],
+    "expected_p23_remaining_after_materialization": 289,
+    "expected_resolved_slots_after_materialization": 11095,
+    "governed_total_slots": 20115
+  },
+  "publication": {
+    "geographic_method": "direct",
+    "source_class": "official",
+    "badge": "A",
+    "statistical_status": "final",
+    "comparability_group": "IEBC-PRESIDENTIAL-TURNOUT-2022-FORM34B"
+  },
+  "invariants": [
+    "The governed completeness denominator remains 20,115.",
+    "No county, ward, media, citizen-tally or candidate-party value is inherited or substituted.",
+    "OCR consensus is never sufficient for promotion without a separate source-image verification record.",
+    "Registered voters must reconcile exactly to the existing governed P23 constituency voter denominator.",
+    "Total valid votes plus rejected ballots must not exceed registered voters.",
+    "Turnout must be derived only from the three verified source integers and remain in [0,100].",
+    "An unresolved or unreadable constituency remains in the 290-row audit and creates no canonical series or observation.",
+    "Adding further verified evidence files may only reduce existing P23 turnout slots; it may not create new governed slots."
+  ],
+  "scale_plan": {
+    "next_step": "Apply the proven final-TOTAL-row candidate and source-image review route to the remaining 289 official Form 34B sources, retaining per-form page/row geometry and source-file digests.",
+    "batch_rule": "Promotion may proceed incrementally only for independently source-verified rows; unresolved forms remain pending rather than being force-corrected.",
+    "phase_complete_when": "All 290 constituency turnout slots are source-backed verified observations or have an independently approved governed evidence closure under the P23 extraction contract."
+  }
+}
