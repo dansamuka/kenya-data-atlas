@@ -1,3 +1,4 @@
+# One-time execution trigger; remove after v1.0.0 publication.
 name: P17 v1.0 release finisher
 
 on:
