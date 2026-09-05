@@ -6,11 +6,12 @@ if (!path) throw new Error('Usage: validate-form34b-grid-smoke.mjs <artifact.jso
 const doc = JSON.parse(fs.readFileSync(path, 'utf8'));
 const assert = (ok, msg) => { if (!ok) throw new Error(`P23 Form 34B grid smoke validation: ${msg}`); };
 
+const EXPECTED_DIAGNOSTIC_ROWS = 25;
 assert(doc.schema_version === 'kda.p23.form34b.grid-smoke.v1', 'schema version');
-assert(doc.rows_processed === 10, `expected 10 rows, got ${doc.rows_processed}`);
+assert(doc.rows_processed === EXPECTED_DIAGNOSTIC_ROWS, `expected ${EXPECTED_DIAGNOSTIC_ROWS} rows, got ${doc.rows_processed}`);
 assert(doc.source_verified_values === 0, 'source_verified_values must remain zero');
 assert(doc.promotion_authorized === false, 'promotion must remain blocked');
-assert(Array.isArray(doc.rows) && doc.rows.length === 10, 'rows must contain exactly 10 records');
+assert(Array.isArray(doc.rows) && doc.rows.length === EXPECTED_DIAGNOSTIC_ROWS, `rows must contain exactly ${EXPECTED_DIAGNOSTIC_ROWS} records`);
 
 for (const row of doc.rows) {
   assert(Number.isInteger(row.constituency_code) && row.constituency_code >= 1 && row.constituency_code <= 290, 'invalid constituency code');
@@ -31,5 +32,5 @@ assert(changamwe.turnout_range_ok === true, 'Changamwe turnout range must remain
 assert(changamwe.verification_state === 'strong_machine_candidate', 'Changamwe must remain a strong machine candidate');
 
 const promoted = doc.rows.filter((row) => row.source_verified_values !== 0 || row.promotion_authorized !== false);
-assert(promoted.length === 0, 'no smoke row may become promotable');
+assert(promoted.length === 0, 'no diagnostic row may become promotable');
 console.log(`P23_FORM34B_GRID_SMOKE_VALID rows=${doc.rows.length} strong_machine_candidates=${doc.strong_machine_candidates} source_verified_values=0 promotion_authorized=false`);
