@@ -32,9 +32,9 @@ permissions:
   contents: read
 
 jobs:
-  ten-form-grid-smoke:
+  twenty-five-form-grid-smoke:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - name: Validate P23 source and extraction governance
@@ -45,8 +45,8 @@ jobs:
         run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
         run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
-      - name: Run governed 10-form source-grid smoke
-        run: python3 scripts/p23/probe-form34b-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 10 --output /tmp/p23-form34b-grid-smoke.json
+      - name: Run governed 25-form source-grid diagnostic
+        run: python3 scripts/p23/probe-form34b-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-grid-smoke.json
       - name: Validate no-promotion boundary and Changamwe anchor
         run: node scripts/p23/validate-form34b-grid-smoke.mjs /tmp/p23-form34b-grid-smoke.json
       - name: Upload diagnostic artifact
