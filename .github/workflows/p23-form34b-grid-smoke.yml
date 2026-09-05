@@ -35,6 +35,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: p23-form34b-grid-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   twenty-five-form-adaptive-grid-smoke:
     runs-on: ubuntu-24.04
