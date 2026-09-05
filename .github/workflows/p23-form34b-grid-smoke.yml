@@ -42,13 +42,13 @@ concurrency:
 jobs:
   twenty-five-form-adaptive-grid-smoke:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Validate P23 source and extraction governance
         run: node scripts/p23/validate-form34b-extraction-contract.mjs
-      - name: Install deterministic PDF and OCR tools
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr
+      - name: Install deterministic PDF, OCR and vector tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr python3-numpy
       - name: Materialize verified IEBC Form 34B locator manifest
         run: python3 scripts/p23/materialize-form34b-source-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
