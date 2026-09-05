@@ -6,8 +6,10 @@ on:
       - .github/workflows/p23-form34b-grid-smoke.yml
       - scripts/p23/probe-form34b-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
+      - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
+      - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - data/p23/form34b-source-index-contract.json
@@ -21,8 +23,10 @@ on:
       - .github/workflows/p23-form34b-grid-smoke.yml
       - scripts/p23/probe-form34b-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
+      - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
+      - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - data/p23/form34b-source-index-contract.json
@@ -40,9 +44,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  twenty-five-form-adaptive-grid-smoke:
+  twenty-five-form-source-review-diagnostics:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - name: Validate P23 source and extraction governance
@@ -55,13 +59,20 @@ jobs:
         run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
       - name: Run governed 25-form adaptive source-grid diagnostic
         run: python3 scripts/p23/probe-form34b-adaptive-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-grid-smoke.json
-      - name: Validate no-promotion boundary and Changamwe anchor
+      - name: Validate adaptive no-promotion boundary and Changamwe anchor
         run: node scripts/p23/validate-form34b-grid-smoke.mjs /tmp/p23-form34b-grid-smoke.json
-      - name: Upload diagnostic artifact
+      - name: Run exact-denominator source-review locator diagnostic
+        run: python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-denominator-anchor-smoke.json --context-dir /tmp/p23-form34b-denominator-contexts
+      - name: Validate denominator-locator no-promotion boundary
+        run: node scripts/p23/validate-form34b-denominator-anchor-smoke.mjs /tmp/p23-form34b-denominator-anchor-smoke.json
+      - name: Upload diagnostic artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p23-form34b-grid-smoke
-          path: /tmp/p23-form34b-grid-smoke.json
+          name: p23-form34b-source-review-diagnostics
+          path: |
+            /tmp/p23-form34b-grid-smoke.json
+            /tmp/p23-form34b-denominator-anchor-smoke.json
+            /tmp/p23-form34b-denominator-contexts/
           if-no-files-found: error
           retention-days: 3
