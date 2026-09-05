@@ -5,12 +5,14 @@ on:
     paths:
       - .github/workflows/p23-form34b-grid-smoke.yml
       - scripts/p23/probe-form34b-grid-smoke.py
+      - scripts/p23/probe-form34b-adaptive-grid-smoke.py
+      - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
-      - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - data/p23/form34b-source-index-contract.json
       - data/p23/form34b-extraction-contract.json
+      - data/p23/constituency-turnout-readiness-contract.json
       - data/indicators/registry/series.json
       - data/indicators/registry/observations.json
   push:
@@ -18,12 +20,14 @@ on:
     paths:
       - .github/workflows/p23-form34b-grid-smoke.yml
       - scripts/p23/probe-form34b-grid-smoke.py
+      - scripts/p23/probe-form34b-adaptive-grid-smoke.py
+      - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
-      - scripts/p23/discover-iebc-form34b-manifest.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - data/p23/form34b-source-index-contract.json
       - data/p23/form34b-extraction-contract.json
+      - data/p23/constituency-turnout-readiness-contract.json
       - data/indicators/registry/series.json
       - data/indicators/registry/observations.json
   workflow_dispatch:
@@ -31,22 +35,26 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: p23-form34b-grid-smoke-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  twenty-five-form-grid-smoke:
+  twenty-five-form-adaptive-grid-smoke:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Validate P23 source and extraction governance
         run: node scripts/p23/validate-form34b-extraction-contract.mjs
-      - name: Install deterministic PDF and OCR tools
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr
-      - name: Discover official IEBC Form 34B source manifest
-        run: python3 scripts/p23/discover-iebc-form34b-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Install deterministic PDF, OCR and vector tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr python3-numpy
+      - name: Materialize verified IEBC Form 34B locator manifest
+        run: python3 scripts/p23/materialize-form34b-source-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
         run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
-      - name: Run governed 25-form source-grid diagnostic
-        run: python3 scripts/p23/probe-form34b-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-grid-smoke.json
+      - name: Run governed 25-form adaptive source-grid diagnostic
+        run: python3 scripts/p23/probe-form34b-adaptive-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-grid-smoke.json
       - name: Validate no-promotion boundary and Changamwe anchor
         run: node scripts/p23/validate-form34b-grid-smoke.mjs /tmp/p23-form34b-grid-smoke.json
       - name: Upload diagnostic artifact
