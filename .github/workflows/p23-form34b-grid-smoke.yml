@@ -61,8 +61,8 @@ jobs:
         run: python3 scripts/p23/probe-form34b-adaptive-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-grid-smoke.json
       - name: Validate adaptive no-promotion boundary and Changamwe anchor
         run: node scripts/p23/validate-form34b-grid-smoke.mjs /tmp/p23-form34b-grid-smoke.json
-      - name: Run exact-denominator source-review locator diagnostic
-        run: python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-denominator-anchor-smoke.json --context-dir /tmp/p23-form34b-denominator-contexts
+      - name: Run exact-denominator source-review locator diagnostic for rows 26-50
+        run: python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --offset 25 --limit 25 --output /tmp/p23-form34b-denominator-anchor-smoke.json --context-dir /tmp/p23-form34b-denominator-contexts
       - name: Validate denominator-locator no-promotion boundary
         run: node scripts/p23/validate-form34b-denominator-anchor-smoke.mjs /tmp/p23-form34b-denominator-anchor-smoke.json
       - name: Upload diagnostic artifacts

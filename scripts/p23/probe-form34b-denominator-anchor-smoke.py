@@ -192,10 +192,13 @@ def main():
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--output", default="/tmp/p23-form34b-denominator-anchor-smoke.json")
     parser.add_argument("--context-dir", default="/tmp/p23-form34b-denominator-contexts")
+    parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--limit", type=int, default=25)
     args = parser.parse_args()
     if not 1 <= args.limit <= 25:
         fail("Anchor smoke limit must be between 1 and 25")
+    if args.offset < 0 or args.offset >= 290 or args.offset + args.limit > 290:
+        fail("Anchor smoke offset/limit must remain within the governed 290-row manifest")
 
     manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
     rows = manifest.get("rows") or []
@@ -211,7 +214,7 @@ def main():
     context_dir.mkdir(parents=True, exist_ok=True)
     results = []
 
-    for source in rows[:args.limit]:
+    for source in rows[args.offset:args.offset + args.limit]:
         code = int(source.get("constituency_code") or 0)
         urls = source.get("download_urls") or []
         if code not in denominators or len(urls) != 1:
@@ -273,6 +276,7 @@ def main():
     document = {
         "schema_version": "kda.p23.form34b.denominator-anchor-smoke.v1",
         "purpose": "Locate exact canonical registered-voter denominator readings in official Form 34B scans without requiring full table-grid recovery. This is a review-locator diagnostic only and extracts no turnout numerator values.",
+        "batch_offset": args.offset,
         "rows_processed": len(results),
         "unique_exact_denominator_anchors": sum(row["anchor_state"] == "unique_exact_denominator_anchor" for row in results),
         "ambiguous_exact_denominator_anchors": sum(row["anchor_state"] == "ambiguous_exact_denominator_anchors" for row in results),
@@ -283,7 +287,7 @@ def main():
     Path(args.output).write_text(json.dumps(document, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         "P23_FORM34B_DENOMINATOR_ANCHOR_SMOKE "
-        f"rows={len(results)} unique={document['unique_exact_denominator_anchors']} "
+        f"offset={args.offset} rows={len(results)} unique={document['unique_exact_denominator_anchors']} "
         f"ambiguous={document['ambiguous_exact_denominator_anchors']} "
         "source_verified_values=0 promotion_authorized=false turnout_values_extracted=0"
     )
