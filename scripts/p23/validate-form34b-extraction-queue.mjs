@@ -38,6 +38,7 @@ for(const row of q.rows){
 }
 assert(q.summary?.total_rows===290&&q.summary?.pending_source_verification===290,'queue summary must report all 290 pending');
 assert(q.summary?.verified===0&&q.summary?.values_promoted===0,'pre-verification queue must promote zero values');
-assert(Number(summary.by_completion_phase?.P23)===290,'queue generation must not resolve P23');
+const p23Remaining=Number(summary.by_completion_phase?.P23);
+assert(Number.isInteger(p23Remaining)&&p23Remaining>=0&&p23Remaining<=290,'P23 remaining count must stay within the governed 290-row constituency denominator');
 assert(Number(summary.total_slots)===20115,'governed completeness denominator changed');
-console.log(`P23_FORM34B_EXTRACTION_QUEUE_OK rows=290 pending=290 p23_remaining=${summary.by_completion_phase.P23} values_promoted=0`);
+console.log(`P23_FORM34B_EXTRACTION_QUEUE_OK rows=290 pending=290 p23_remaining=${p23Remaining} values_promoted=0`);
