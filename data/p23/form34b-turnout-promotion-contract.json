@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-04",
-  "as_of": "2026-09-04",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-06-T2",
+  "as_of": "2026-09-06",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
   "target_geography_count": 290,
@@ -16,19 +16,32 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 1,
-    "verified_geo_codes": ["KEN-C001-CON001"],
-    "verified_constituency_codes": [1],
-    "expected_p23_remaining_after_materialization": 289,
-    "expected_resolved_slots_after_materialization": 11095,
+    "verified_constituencies": 3,
+    "verified_geo_codes": ["KEN-C001-CON001", "KEN-C026-CON139", "KEN-C036-CON198"],
+    "verified_constituency_codes": [1, 139, 198],
+    "newly_authorized_constituency_codes": [139, 198],
+    "expected_p23_remaining_after_materialization": 287,
+    "expected_resolved_slots_after_materialization": 11097,
     "governed_total_slots": 20115,
-    "materialization_state": "validated_current_main",
+    "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
       "canonical_rebuild",
       "exact_completeness_delta",
       "full_validation_suite",
       "independent_geography_audit"
     ]
+  },
+  "canonical_rebuild_sync": {
+    "state": "validated",
+    "commit": "f25995511e845cc8afaefeac53d2ce21fb45d96c",
+    "validated_on": "2026-09-06",
+    "checks": [
+      "npm_run_build_data",
+      "exact_p23_delta",
+      "full_validation_suite",
+      "independent_geography_audit"
+    ],
+    "note": "The canonical full-build output was synchronized after deterministic rebuild drift was detected. This audit metadata does not authorize any additional geography or value promotion."
   },
   "publication": {
     "geographic_method": "direct",
@@ -45,11 +58,12 @@
     "Total valid votes plus rejected ballots must not exceed registered voters.",
     "Turnout must be derived only from the three verified source integers and remain in [0,100].",
     "An unresolved or unreadable constituency remains in the 290-row audit and creates no canonical series or observation.",
-    "Adding further verified evidence files may only reduce existing P23 turnout slots; it may not create new governed slots."
+    "Adding further verified evidence files may only reduce existing P23 turnout slots; it may not create new governed slots.",
+    "Arithmetic-mismatch rows remain promotion-blocked even when their component integers are source-verified."
   ],
   "scale_plan": {
-    "next_step": "Apply the proven final-TOTAL-row candidate and source-image review route to the remaining 289 official Form 34B sources, retaining per-form page/row geometry and source-file digests.",
-    "batch_rule": "Promotion may proceed incrementally only for independently source-verified rows; unresolved forms remain pending rather than being force-corrected.",
+    "next_step": "Continue independent Form 34B source-image review across the remaining 287 unresolved constituency turnout slots; preserve Budalangi as an arithmetic-mismatch hold until its turnout semantics are independently resolved.",
+    "batch_rule": "Promotion may proceed incrementally only for independently source-verified rows; unresolved or conflicting forms remain pending rather than being force-corrected.",
     "phase_complete_when": "All 290 constituency turnout slots are source-backed verified observations or have an independently approved governed evidence closure under the P23 extraction contract."
   }
 }

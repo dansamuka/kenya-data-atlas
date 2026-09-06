@@ -61462,6 +61462,30 @@
       }
     },
     {
+      "series_id": "54ee3d59-b774-5e98-85c1-4a4de656f86b",
+      "series_code": "KDA-TURNOUT-CON-139-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2f97cf3e-fd9e-5353-8722-119df0e13714",
+      "series_code": "KDA-TURNOUT-CON-198-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "a01f5087-0925-5d95-a3f3-4f9362bb107c",
       "series_code": "KDA-USDKES-KEN",
       "indicator_code": "IND-USD-KES",

@@ -73,9 +73,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical Class C rural-road total is published by KNBS on a county basis. No official current-290 constituency allocation is published in that source, and the Atlas has no approved authoritative Class C road-line spatial derivation that can reproduce the county accounting total without introducing boundary or network-classification error.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -88,9 +88,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The governed Class C road-length source publishes county totals, not ward totals. Without an approved authoritative Class C road-line dataset and deterministic boundary intersection/reconciliation pipeline, county kilometres cannot be inherited, divided, or estimated for wards.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -103,9 +103,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical 2023/24 Kenya Housing Survey computer-use measure is a KNBS county-domain survey percentage. No compatible official constituency-domain estimate is present in the governed registry, and parent survey percentages cannot be inherited or naively reweighted.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -118,9 +118,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical 2023/24 Kenya Housing Survey computer-use measure is not published in the Atlas as a valid ward-domain estimate. Copying or allocating the county percentage to wards would create false precision and is prohibited.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -913,9 +913,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical 2023/24 Kenya Housing Survey internet-use measure is a KNBS county-domain survey percentage. No compatible official current-290 constituency-domain estimate is published or materialised in the governed registry, so the county percentage cannot be inherited, allocated, or treated as a constituency estimate.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -928,9 +928,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical 2023/24 Kenya Housing Survey internet-use measure is not a governed ward-domain statistic. Publishing or downscaling the county percentage without a valid ward-domain design and compatible weighting would create unsupported local precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1033,9 +1033,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical main-grid electricity measure is the KNBS 2023/24 Kenya Housing Survey county household percentage. A constituency value requires an official child-domain estimate with a compatible household denominator and weighting; the county percentage cannot be allocated downward.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1048,9 +1048,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The governed main-grid electricity series is a county survey percentage, not a ward-domain statistic. No compatible official ward estimate is materialised, so the county value cannot be inherited, equally split, population-weighted, or otherwise manufactured for wards.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
