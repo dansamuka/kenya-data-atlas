@@ -1,0 +1,44 @@
+name: P23 Form 34B source verification
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-form34b-source-verification.yml
+      - scripts/p23/validate-form34b-source-verifications.mjs
+      - data/p23/form34b-*-source-verification.json
+      - data/p23/form34b-extraction-contract.json
+      - data/p23/constituency-turnout-readiness-contract.json
+      - data/geography/registry/geographies.json
+      - data/indicators/registry/series.json
+      - data/indicators/registry/observations.json
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-form34b-source-verification.yml
+      - scripts/p23/validate-form34b-source-verifications.mjs
+      - data/p23/form34b-*-source-verification.json
+      - data/p23/form34b-extraction-contract.json
+      - data/p23/constituency-turnout-readiness-contract.json
+      - data/geography/registry/geographies.json
+      - data/indicators/registry/series.json
+      - data/indicators/registry/observations.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p23-form34b-source-verification-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-source-verification-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Validate Form 34B source-verification evidence
+        run: node scripts/p23/validate-form34b-source-verifications.mjs
