@@ -31,6 +31,14 @@ const canonicalRegistered = code => {
   assert(o && Number.isInteger(o.value) && o.value > 0, `registered-voter observation missing for constituency ${code}`);
   return o.value;
 };
+const canonicalTurnout = code => {
+  const seriesCode = `KDA-TURNOUT-CON-${String(code).padStart(3, '0')}-2022-PRES`;
+  const s = seriesByCode.get(seriesCode);
+  if (!s) return null;
+  const o = observationById.get(s.latest_observation_id);
+  assert(o && typeof o.value === 'number' && Number.isFinite(o.value), `turnout observation missing for constituency ${code}`);
+  return { series: s, observation: o };
+};
 
 const p23Dir = path.join(root, 'data/p23');
 const names = fs.readdirSync(p23Dir).filter(name => /^form34b-.+-source-verification\.json$/.test(name)).sort();
@@ -38,6 +46,8 @@ assert(names.length > 0, 'no committed Form 34B source-verification evidence');
 
 const seenCodes = new Set();
 let verifiedRows = 0;
+let materializedRows = 0;
+let pendingPromotionRows = 0;
 let blockedRows = 0;
 for (const name of names) {
   const evidence = JSON.parse(fs.readFileSync(path.join(p23Dir, name), 'utf8'));
@@ -94,17 +104,32 @@ for (const name of names) {
   assert(ballotsCast <= values.registered_voters, `${name}: ballots cast exceed registered voters`);
   const turnout = 100 * ballotsCast / values.registered_voters;
   assert(turnout >= 0 && turnout <= 100, `${name}: governed turnout formula outside range`);
+  const materialized = canonicalTurnout(code);
 
   if (evidence.verification_state === 'verified') {
     verifiedRows += 1;
-    assert(evidence.promotion_eligible === true, `${name}: verified row must be marked promotion eligible`);
     assert(evidence.row_reconciliation?.ballots_cast === ballotsCast, `${name}: stored ballots_cast changed`);
     assert(evidence.row_reconciliation?.ballots_cast_lte_registered_voters === true, `${name}: ballots-cast bound flag false`);
     assert(Math.abs(Number(evidence.row_reconciliation?.turnout_pct) - turnout) < 1e-12, `${name}: stored turnout is not exact governed derivation`);
     assert(evidence.row_reconciliation?.turnout_range_valid === true, `${name}: turnout range flag false`);
+
+    if (evidence.promotion_eligible === true) {
+      materializedRows += 1;
+      assert(materialized, `${name}: promotion-eligible verified row must already have a canonical turnout observation`);
+      assert(Math.abs(Number(materialized.observation.value) - turnout) < 1e-12, `${name}: canonical turnout diverges from verified source integers`);
+      assert(materialized.observation.source_url === sample.source_url, `${name}: canonical turnout source URL diverges from verified evidence`);
+      assert(String(materialized.observation.source_page) === String(sample.page_number), `${name}: canonical turnout source page diverges from verified evidence`);
+      assert(materialized.observation.source_class === 'official' && materialized.observation.geographic_method === 'direct', `${name}: canonical turnout provenance classification changed`);
+    } else {
+      pendingPromotionRows += 1;
+      assert(evidence.promotion_eligible === false, `${name}: promotion eligibility must be explicit`);
+      assert(evidence.promotion_state === 'pending_explicit_materialization', `${name}: verified non-promoted row must declare pending_explicit_materialization`);
+      assert(!materialized, `${name}: pending-promotion row already has a canonical turnout series`);
+    }
   } else if (evidence.verification_state === 'arithmetic_mismatch') {
     blockedRows += 1;
     assert(evidence.promotion_eligible === false, `${name}: arithmetic mismatch must not be promotion eligible`);
+    assert(!materialized, `${name}: arithmetic mismatch must not have a canonical turnout series`);
     assert(evidence.row_reconciliation?.arithmetic_conflict === true, `${name}: arithmetic conflict flag missing`);
     assert(evidence.row_reconciliation?.promotion_blocked === true, `${name}: arithmetic mismatch must explicitly block promotion`);
     assert(Number(evidence.row_reconciliation?.contract_ballots_cast_candidate) === ballotsCast, `${name}: governed candidate ballots-cast calculation changed`);
@@ -123,4 +148,4 @@ for (const name of names) {
 }
 
 assert(verifiedRows >= 1, 'at least one verified source row required');
-console.log(`P23_FORM34B_SOURCE_VERIFICATIONS_OK evidence=${names.length} verified=${verifiedRows} blocked=${blockedRows} denominator=20115 promotion_self_authorized=0 values_logged=0`);
+console.log(`P23_FORM34B_SOURCE_VERIFICATIONS_OK evidence=${names.length} verified=${verifiedRows} materialized=${materializedRows} pending_promotion=${pendingPromotionRows} blocked=${blockedRows} denominator=20115 promotion_self_authorized=0 values_logged=0`);
