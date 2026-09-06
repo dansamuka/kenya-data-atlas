@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-BUDALANGI-SOURCE-REVIEW-2026-09-06",
+  "as_of": "2026-09-06",
+  "purpose": "Record an independent visual source-image review of the official Budalangi Form 34B final TOTAL row and preserve an internal source arithmetic/semantics conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 231,
+    "constituency_name": "Budalangi",
+    "geo_code": "KEN-C040-CON231",
+    "form_id": 277859,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277859",
+    "source_pdf_sha256": "43e906f49b3c21951007bf4a7669e6fbc460914601eaa9f2aa061d9c6faf4bef",
+    "page_number": 2,
+    "render_dpi": 250,
+    "machine_page_image_sha256": "9b7041eb35f23e0df572b63dd35e484da26d74eefeced13452815dd09a5398c3",
+    "review_context_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
+    "total_row_context_crop_250": {
+      "x0": 151,
+      "y0": 2338,
+      "x1": 2190,
+      "y1": 2565
+    }
+  },
+  "review": {
+    "reviewed_at": "2026-09-06T19:38:00+03:00",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI ChatGPT",
+    "independence_note": "The visual reading was performed from the CI-rendered official full page and TOTAL-row crop after deterministic machine candidates had been generated. The three TOTAL-row integers are visually legible, but the same official page contains a voter-turnout box that conflicts with the governed turnout derivation, so the row remains unresolved.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "total_row_label_visually_confirmed": true,
+    "source_turnout_box_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
+      "machine_transcription": 46032,
+      "machine_confidence": 33.5,
+      "verified_value": 46032,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
+      "machine_transcription": 31744,
+      "machine_confidence": 64.3,
+      "verified_value": 31744,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
+      "machine_transcription": 297,
+      "machine_confidence": 81.2,
+      "verified_value": 297,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [20180, 11361, 46, 157],
+    "candidate_vote_sum": 31744,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 46032,
+    "registered_voters_reconciles": true,
+    "contract_ballots_cast_candidate": 32041,
+    "contract_formula_candidate_pct": 69.60592631213069,
+    "source_reported_turnout_box": {
+      "registered_voters": 46032,
+      "voters_turned_out": 31744,
+      "turnout_pct_printed": 68.96072298
+    },
+    "source_reported_turnout_reconciles_to_printed_voters_turned_out": true,
+    "source_reported_turnout_matches_contract_formula": false,
+    "arithmetic_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_authorized_by_this_file": false,
+  "note": "The three TOTAL-row integers are source-verified, but the same official Form 34B page reports voter turnout as 31,744 / 46,032 = 68.96072298%, whereas the governed KDA turnout formula would use valid votes plus rejected ballots. This conflict is preserved unresolved and no turnout observation may be promoted from this evidence."
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-KIMININI-SOURCE-VERIFIED-2026-09-06",
+  "as_of": "2026-09-06",
+  "purpose": "Record an independent visual source-image review of the official Kiminini Form 34B final TOTAL row, separate from machine-candidate extraction.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 139,
+    "constituency_name": "Kiminini",
+    "geo_code": "KEN-C026-CON139",
+    "form_id": 277767,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277767",
+    "source_pdf_sha256": "3d7eed32a3a7337b99507a814679a97ada081ed32fd8b1260745fd2dd9891e95",
+    "page_number": 2,
+    "render_dpi": 250,
+    "machine_page_image_sha256": "1a23a7cdcd6646e2ab87c2b8db37310a6f67348ab8ec1fcbb5d4d4f9e8e2469b",
+    "review_context_image_sha256": "12ab7d8828f157ca1b78af8163f8553ef036174bbdb8b3aad145dd7ef49e2824",
+    "total_row_context_crop_250": {
+      "x0": 190,
+      "y0": 3277,
+      "x1": 2727,
+      "y1": 3487
+    }
+  },
+  "review": {
+    "reviewed_at": "2026-09-06T19:38:00+03:00",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI ChatGPT",
+    "independence_note": "The visual reading was performed from the CI-rendered official full page and TOTAL-row crop after deterministic machine candidates had been generated. The source-image reading, not OCR confidence or arithmetic fitting, determines verified_value.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "12ab7d8828f157ca1b78af8163f8553ef036174bbdb8b3aad145dd7ef49e2824",
+      "machine_transcription": 93240,
+      "machine_confidence": 38.74,
+      "verified_value": 93240,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "12ab7d8828f157ca1b78af8163f8553ef036174bbdb8b3aad145dd7ef49e2824",
+      "machine_transcription": 56164,
+      "machine_confidence": 71.47,
+      "verified_value": 56164,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "12ab7d8828f157ca1b78af8163f8553ef036174bbdb8b3aad145dd7ef49e2824",
+      "machine_transcription": 713,
+      "machine_confidence": 94.44,
+      "verified_value": 713,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [34863, 20924, 113, 264],
+    "candidate_vote_sum": 56164,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 93240,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 56877,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 61.0006435006435,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": false,
+  "promotion_state": "pending_explicit_materialization",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs."
+}
