@@ -8,11 +8,13 @@ on:
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-batch.py
       - scripts/p23/aggregate-form34b-adaptive-grid-batches.py
+      - scripts/p23/render-form34b-verification-contexts.py
       - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
       - scripts/p23/validate-form34b-adaptive-grid-batch.mjs
       - scripts/p23/validate-form34b-candidate-audit.mjs
+      - scripts/p23/validate-form34b-verification-contexts.mjs
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
@@ -29,11 +31,13 @@ on:
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-batch.py
       - scripts/p23/aggregate-form34b-adaptive-grid-batches.py
+      - scripts/p23/render-form34b-verification-contexts.py
       - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
       - scripts/p23/validate-form34b-adaptive-grid-batch.mjs
       - scripts/p23/validate-form34b-candidate-audit.mjs
+      - scripts/p23/validate-form34b-verification-contexts.mjs
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
@@ -171,5 +175,35 @@ jobs:
           path: |
             /tmp/p23-form34b-candidate-audit.json
             /tmp/p23-form34b-source-verification-queue.json
+          if-no-files-found: error
+          retention-days: 7
+
+  render-source-verification-contexts:
+    name: Render pending source-verification contexts
+    needs: aggregate-candidate-audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate P23 source and extraction governance
+        run: node scripts/p23/validate-form34b-extraction-contract.mjs
+      - name: Install deterministic PDF, OCR and vector tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr python3-numpy
+      - name: Download candidate audit and source-verification queue
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-candidate-audit-and-verification-queue
+          path: /tmp/p23-form34b-audit
+      - name: Render official review contexts and reproduce candidate readings
+        run: python3 scripts/p23/render-form34b-verification-contexts.py --queue /tmp/p23-form34b-audit/p23-form34b-source-verification-queue.json --output-dir /tmp/p23-form34b-verification-contexts --manifest /tmp/p23-form34b-verification-contexts.json
+      - name: Validate context no-promotion and review boundary
+        run: node scripts/p23/validate-form34b-verification-contexts.mjs /tmp/p23-form34b-verification-contexts.json /tmp/p23-form34b-audit/p23-form34b-source-verification-queue.json /tmp/p23-form34b-verification-contexts
+      - name: Upload source-image review packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-source-verification-contexts
+          path: |
+            /tmp/p23-form34b-verification-contexts.json
+            /tmp/p23-form34b-verification-contexts/*.png
           if-no-files-found: error
           retention-days: 7
