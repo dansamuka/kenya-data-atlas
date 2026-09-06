@@ -44,7 +44,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  twenty-five-form-source-review-diagnostics:
+  governed-source-review-baseline:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -61,18 +61,64 @@ jobs:
         run: python3 scripts/p23/probe-form34b-adaptive-grid-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --limit 25 --output /tmp/p23-form34b-grid-smoke.json
       - name: Validate adaptive no-promotion boundary and Changamwe anchor
         run: node scripts/p23/validate-form34b-grid-smoke.mjs /tmp/p23-form34b-grid-smoke.json
-      - name: Run exact-denominator source-review locator diagnostic for rows 126-150
-        run: python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --offset 125 --limit 25 --output /tmp/p23-form34b-denominator-anchor-smoke.json --context-dir /tmp/p23-form34b-denominator-contexts
-      - name: Validate denominator-locator no-promotion boundary
-        run: node scripts/p23/validate-form34b-denominator-anchor-smoke.mjs /tmp/p23-form34b-denominator-anchor-smoke.json
-      - name: Upload diagnostic artifacts
+      - name: Upload baseline diagnostic artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p23-form34b-source-review-diagnostics
+          name: p23-form34b-source-review-baseline
+          path: /tmp/p23-form34b-grid-smoke.json
+          if-no-files-found: error
+          retention-days: 3
+
+  denominator-anchor-source-review:
+    name: Denominator anchors ${{ matrix.range }}
+    needs: governed-source-review-baseline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        include:
+          - range: rows-151-175
+            offset: 150
+            limit: 25
+          - range: rows-176-200
+            offset: 175
+            limit: 25
+          - range: rows-201-225
+            offset: 200
+            limit: 25
+          - range: rows-226-250
+            offset: 225
+            limit: 25
+          - range: rows-251-275
+            offset: 250
+            limit: 25
+          - range: rows-276-290
+            offset: 275
+            limit: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate P23 source and extraction governance
+        run: node scripts/p23/validate-form34b-extraction-contract.mjs
+      - name: Install deterministic PDF, OCR and vector tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr python3-numpy
+      - name: Materialize verified IEBC Form 34B locator manifest
+        run: python3 scripts/p23/materialize-form34b-source-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Validate source-reference manifest boundary
+        run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Run exact-denominator source-review locator diagnostic for ${{ matrix.range }}
+        run: python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --offset ${{ matrix.offset }} --limit ${{ matrix.limit }} --output /tmp/p23-form34b-denominator-anchor-${{ matrix.range }}.json --context-dir /tmp/p23-form34b-denominator-contexts-${{ matrix.range }}
+      - name: Validate denominator-locator no-promotion boundary
+        run: node scripts/p23/validate-form34b-denominator-anchor-smoke.mjs /tmp/p23-form34b-denominator-anchor-${{ matrix.range }}.json
+      - name: Upload shard diagnostic artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-denominator-${{ matrix.range }}
           path: |
-            /tmp/p23-form34b-grid-smoke.json
-            /tmp/p23-form34b-denominator-anchor-smoke.json
-            /tmp/p23-form34b-denominator-contexts/
+            /tmp/p23-form34b-denominator-anchor-${{ matrix.range }}.json
+            /tmp/p23-form34b-denominator-contexts-${{ matrix.range }}/
           if-no-files-found: error
           retention-days: 3
