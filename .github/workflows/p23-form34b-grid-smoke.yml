@@ -6,9 +6,11 @@ on:
       - .github/workflows/p23-form34b-grid-smoke.yml
       - scripts/p23/probe-form34b-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
+      - scripts/p23/probe-form34b-adaptive-grid-batch.py
       - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
+      - scripts/p23/validate-form34b-adaptive-grid-batch.mjs
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
@@ -23,9 +25,11 @@ on:
       - .github/workflows/p23-form34b-grid-smoke.yml
       - scripts/p23/probe-form34b-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
+      - scripts/p23/probe-form34b-adaptive-grid-batch.py
       - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
+      - scripts/p23/validate-form34b-adaptive-grid-batch.mjs
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
@@ -70,16 +74,34 @@ jobs:
           if-no-files-found: error
           retention-days: 3
 
-  denominator-anchor-source-review:
-    name: Denominator anchors ${{ matrix.range }}
+  adaptive-total-row-candidate-review:
+    name: Candidate extraction ${{ matrix.range }}
     needs: governed-source-review-baseline
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       max-parallel: 6
       matrix:
         include:
+          - range: rows-001-025
+            offset: 0
+            limit: 25
+          - range: rows-026-050
+            offset: 25
+            limit: 25
+          - range: rows-051-075
+            offset: 50
+            limit: 25
+          - range: rows-076-100
+            offset: 75
+            limit: 25
+          - range: rows-101-125
+            offset: 100
+            limit: 25
+          - range: rows-126-150
+            offset: 125
+            limit: 25
           - range: rows-151-175
             offset: 150
             limit: 25
@@ -108,17 +130,15 @@ jobs:
         run: python3 scripts/p23/materialize-form34b-source-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
       - name: Validate source-reference manifest boundary
         run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
-      - name: Run exact-denominator source-review locator diagnostic for ${{ matrix.range }}
-        run: python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --offset ${{ matrix.offset }} --limit ${{ matrix.limit }} --output /tmp/p23-form34b-denominator-anchor-${{ matrix.range }}.json --context-dir /tmp/p23-form34b-denominator-contexts-${{ matrix.range }}
-      - name: Validate denominator-locator no-promotion boundary
-        run: node scripts/p23/validate-form34b-denominator-anchor-smoke.mjs /tmp/p23-form34b-denominator-anchor-${{ matrix.range }}.json
-      - name: Upload shard diagnostic artifacts
+      - name: Run governed adaptive machine-candidate extraction for ${{ matrix.range }}
+        run: python3 scripts/p23/probe-form34b-adaptive-grid-batch.py --manifest /tmp/iebc-2022-form34b-source-manifest.json --offset ${{ matrix.offset }} --limit ${{ matrix.limit }} --output /tmp/p23-form34b-adaptive-grid-${{ matrix.range }}.json
+      - name: Validate machine-candidate no-promotion boundary
+        run: node scripts/p23/validate-form34b-adaptive-grid-batch.mjs /tmp/p23-form34b-adaptive-grid-${{ matrix.range }}.json
+      - name: Upload candidate diagnostic artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: p23-form34b-denominator-${{ matrix.range }}
-          path: |
-            /tmp/p23-form34b-denominator-anchor-${{ matrix.range }}.json
-            /tmp/p23-form34b-denominator-contexts-${{ matrix.range }}/
+          name: p23-form34b-candidates-${{ matrix.range }}
+          path: /tmp/p23-form34b-adaptive-grid-${{ matrix.range }}.json
           if-no-files-found: error
           retention-days: 3
