@@ -57,8 +57,8 @@
         },
         "csv": {
           "path": "data/indicators/registry/indicators.csv",
-          "bytes": 66229,
-          "sha256": "e019ebe8e3f79e390ddb8ecc4f16e23d1dbd448c64e590c52c587ba31c91fb0d"
+          "bytes": 66139,
+          "sha256": "4b1c533ab2fcb725eda59fc8bb912ee514ad488646ef8274a1db249701a23f88"
         },
         "ndjson": {
           "path": "data/distribution/ndjson/indicators.ndjson",
