@@ -41,6 +41,7 @@
   "field_evidence": {
     "registered_voters": {
       "page_number": 2,
+      "source_image_sha256": "431f96a6462d2197cfc410a1483faf9261be934ec2a87f42859653cdbb2391b6",
       "machine_transcription": 93561,
       "machine_confidence": 64.6,
       "verified_value": 93561,
@@ -49,6 +50,7 @@
     },
     "total_valid_votes": {
       "page_number": 2,
+      "source_image_sha256": "431f96a6462d2197cfc410a1483faf9261be934ec2a87f42859653cdbb2391b6",
       "machine_transcription": 43594,
       "machine_confidence": 34.54,
       "verified_value": 43594,
@@ -57,6 +59,7 @@
     },
     "rejected_ballots": {
       "page_number": 2,
+      "source_image_sha256": "431f96a6462d2197cfc410a1483faf9261be934ec2a87f42859653cdbb2391b6",
       "machine_transcription": 435,
       "machine_confidence": 57.65,
       "verified_value": 435,
