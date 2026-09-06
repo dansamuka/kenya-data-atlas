@@ -1,0 +1,79 @@
+name: P23 Form 34B materialize Kiminini and Konoin
+
+on:
+  push:
+    branches: [watchdog/p23-form34b-materialize-kiminini-konoin]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out materialization branch
+        uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-form34b-materialize-kiminini-konoin
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Materialize source-verified constituency turnout
+        run: |
+          node scripts/p23/build-constituency-turnout.mjs catalogue
+          node scripts/p23/build-constituency-turnout.mjs indicators
+          node scripts/p23/activate-turnout-indicator.mjs
+          node scripts/indicators/build-cross-level-eligibility.mjs
+          node scripts/prep05/build-place-facts.mjs
+          npm run countyiq:build
+          npm run distribution:build
+          node scripts/completeness/build-slot-ledger.mjs
+          node scripts/completeness/build-local-indicator-cascade.mjs
+          node scripts/p17/build-release-manifest.mjs
+
+      - name: Assert exact governed delta
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const s = JSON.parse(fs.readFileSync('data/completeness/summary.json', 'utf8'));
+          const assert = (ok, msg) => { if (!ok) throw new Error(msg); };
+          assert(s.total_slots === 20115, `denominator changed: ${s.total_slots}`);
+          assert(s.resolved_slots === 11097, `resolved_slots=${s.resolved_slots}`);
+          assert(s.unresolved_slots === 9018, `unresolved_slots=${s.unresolved_slots}`);
+          assert(Number(s.by_completion_phase?.P23) === 287, `P23=${s.by_completion_phase?.P23}`);
+          assert(s.unknown_missing === 0, `unknown_missing=${s.unknown_missing}`);
+          console.log('P23_FORM34B_TRANCHE2_DELTA_OK resolved=11097 unresolved=9018 p23=287 denominator=20115 unknown=0');
+          NODE
+
+      - name: Validate source-verification and canonical materialization
+        run: |
+          node scripts/p23/validate-form34b-source-verifications.mjs
+          node scripts/p23/validate-constituency-evidence-gap-closures.mjs
+          node scripts/indicators/validate-registry.mjs
+          node scripts/completeness/validate-slot-ledger.mjs
+          node scripts/completeness/validate-local-indicator-cascade.mjs
+          npm test
+          python3 scripts/geography/audit-geometry.py .
+
+      - name: Commit deterministic materialization and remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/p23-form34b-materialize-kiminini-konoin.yml
+          git add data/catalogue/registry data/indicators/registry data/place-facts data/completeness data/countyiq data/results data/distribution data/release data/policy data/geography
+          if git diff --cached --quiet; then
+            echo 'No deterministic materialization changes found.'
+            exit 1
+          fi
+          git commit -m 'feat(p23): materialize Kiminini and Konoin verified turnout'
+          git push origin HEAD:watchdog/p23-form34b-materialize-kiminini-konoin
