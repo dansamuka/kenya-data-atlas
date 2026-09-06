@@ -8,12 +8,25 @@ const queue = JSON.parse(fs.readFileSync(queuePath, 'utf8'));
 const fail = (message) => { throw new Error(`P23 Form 34B candidate audit validation: ${message}`); };
 const fields = ['registered_voters', 'total_valid_votes', 'rejected_ballots'];
 const allowed = new Set(['strong_machine_candidate', 'machine_candidate_needs_review', 'unresolved']);
+const sourceReviewedStates = new Set(['verified', 'arithmetic_mismatch']);
 
+// A committed arithmetic_mismatch row has already received independent source-image
+// verification of the three target fields. It must remain blocked from promotion, but it
+// must not be sent back through source verification as though it had never been reviewed.
 const committedVerified = new Map();
 for (const name of fs.readdirSync('data/p23').filter(name => /^form34b-.+-source-verification\.json$/.test(name)).sort()) {
   const evidence = JSON.parse(fs.readFileSync(`data/p23/${name}`, 'utf8'));
-  if (evidence.verification_state !== 'verified' || evidence.promotion_eligible !== true) continue;
+  const state = evidence.verification_state;
+  if (!sourceReviewedStates.has(state)) continue;
   if (evidence.schema_version !== 'kda.p23.form34b-source-verification.v1') fail(`${name}: unexpected committed verification schema`);
+  if (state === 'arithmetic_mismatch') {
+    if (evidence.promotion_eligible !== false) fail(`${name}: arithmetic mismatch must remain promotion-ineligible`);
+    if (evidence.row_reconciliation?.arithmetic_conflict !== true || evidence.row_reconciliation?.promotion_blocked !== true) {
+      fail(`${name}: arithmetic mismatch must preserve explicit conflict and promotion block`);
+    }
+  } else if (typeof evidence.promotion_eligible !== 'boolean') {
+    fail(`${name}: verified row must declare promotion eligibility explicitly`);
+  }
   const code = evidence.sample?.constituency_code;
   if (!Number.isInteger(code) || code < 1 || code > 290) fail(`${name}: invalid committed constituency code`);
   if (committedVerified.has(code)) fail(`duplicate committed source verification for constituency ${code}`);
@@ -88,12 +101,12 @@ if (queue.schema_version !== 'kda.p23.form34b.source-verification-queue.v1') fai
 if (queue.source_audit_schema !== aggregate.schema_version) fail('queue audit linkage');
 if (queue.source_verified_values !== 0 || queue.promotion_authorized !== false) fail('queue promotion boundary changed');
 if (!Array.isArray(queue.rows) || queue.queue_rows !== queue.rows.length) fail('queue rows mismatch');
-if (queue.queue_rows !== pendingStrongCodes.length) fail('queue must contain exactly strong candidates not already source-verified');
+if (queue.queue_rows !== pendingStrongCodes.length) fail('queue must contain exactly strong candidates not already independently source-reviewed');
 if (JSON.stringify(queue.excluded_already_source_verified_codes) !== JSON.stringify(alreadyVerifiedStrongCodes)) fail('queue exclusion list mismatch');
 const queueCodes = queue.rows.map(row => row.constituency_code);
 if (JSON.stringify(queueCodes) !== JSON.stringify(pendingStrongCodes)) fail('queue codes do not exactly match pending strong candidates');
 for (const row of queue.rows) {
-  if (committedVerified.has(row.constituency_code)) fail(`queue row ${row.constituency_code} is already source-verified`);
+  if (committedVerified.has(row.constituency_code)) fail(`queue row ${row.constituency_code} is already independently source-reviewed`);
   if (row.verification_state !== 'pending_source_verification') fail(`queue row ${row.constituency_code} state`);
   if (row.source_verified_values !== 0 || row.promotion_authorized !== false) fail(`queue row ${row.constituency_code} promotion boundary changed`);
   if (typeof row.source_url !== 'string' || !row.source_url.startsWith('https://forms.iebc.or.ke/')) fail(`queue row ${row.constituency_code} source URL`);
