@@ -7,10 +7,12 @@ on:
       - scripts/p23/probe-form34b-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-batch.py
+      - scripts/p23/aggregate-form34b-adaptive-grid-batches.py
       - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
       - scripts/p23/validate-form34b-adaptive-grid-batch.mjs
+      - scripts/p23/validate-form34b-candidate-audit.mjs
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
@@ -26,10 +28,12 @@ on:
       - scripts/p23/probe-form34b-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-smoke.py
       - scripts/p23/probe-form34b-adaptive-grid-batch.py
+      - scripts/p23/aggregate-form34b-adaptive-grid-batches.py
       - scripts/p23/probe-form34b-denominator-anchor-smoke.py
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-form34b-grid-smoke.mjs
       - scripts/p23/validate-form34b-adaptive-grid-batch.mjs
+      - scripts/p23/validate-form34b-candidate-audit.mjs
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/probe-form34b-total-row-candidates.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
@@ -142,3 +146,30 @@ jobs:
           path: /tmp/p23-form34b-adaptive-grid-${{ matrix.range }}.json
           if-no-files-found: error
           retention-days: 3
+
+  aggregate-candidate-audit:
+    name: Aggregate 290-row candidate audit
+    needs: adaptive-total-row-candidate-review
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all candidate shard artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p23-form34b-candidates-*
+          path: /tmp/p23-form34b-candidate-shards
+          merge-multiple: true
+      - name: Build 290-row candidate audit and source-verification queue
+        run: python3 scripts/p23/aggregate-form34b-adaptive-grid-batches.py --input-dir /tmp/p23-form34b-candidate-shards --aggregate-output /tmp/p23-form34b-candidate-audit.json --queue-output /tmp/p23-form34b-source-verification-queue.json
+      - name: Validate aggregate no-promotion and queue boundary
+        run: node scripts/p23/validate-form34b-candidate-audit.mjs /tmp/p23-form34b-candidate-audit.json /tmp/p23-form34b-source-verification-queue.json
+      - name: Upload candidate audit and source-verification queue
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-candidate-audit-and-verification-queue
+          path: |
+            /tmp/p23-form34b-candidate-audit.json
+            /tmp/p23-form34b-source-verification-queue.json
+          if-no-files-found: error
+          retention-days: 7
