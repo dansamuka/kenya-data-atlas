@@ -78,7 +78,8 @@
     "turnout_range_valid": true
   },
   "verification_state": "verified",
-  "promotion_eligible": true,
+  "promotion_eligible": false,
+  "promotion_state": "pending_explicit_materialization",
   "promotion_authorized_by_this_file": false,
-  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is a separate deterministic build step."
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs."
 }
