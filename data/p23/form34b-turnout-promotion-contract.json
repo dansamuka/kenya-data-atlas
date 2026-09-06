@@ -31,6 +31,18 @@
       "independent_geography_audit"
     ]
   },
+  "canonical_rebuild_sync": {
+    "state": "validated",
+    "commit": "f25995511e845cc8afaefeac53d2ce21fb45d96c",
+    "validated_on": "2026-09-06",
+    "checks": [
+      "npm_run_build_data",
+      "exact_p23_delta",
+      "full_validation_suite",
+      "independent_geography_audit"
+    ],
+    "note": "The canonical full-build output was synchronized after deterministic rebuild drift was detected. This audit metadata does not authorize any additional geography or value promotion."
+  },
   "publication": {
     "geographic_method": "direct",
     "source_class": "official",
