@@ -1,0 +1,127 @@
+name: P23 source-verify recovery tranche 03
+
+on:
+  push:
+    branches:
+      - watchdog/p23-source-verify-recovery-tranche-03
+    paths:
+      - .github/workflows/p23-source-verify-recovery-tranche-03.yml
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: p23-source-verify-recovery-tranche-03
+  cancel-in-progress: false
+
+jobs:
+  commit-source-verification-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-source-verify-recovery-tranche-03
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Download governed recovery queue
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-source-row-recovery-audit-and-review-queue
+          path: /tmp/p23-recovery-aggregate
+          github-token: ${{ github.token }}
+          run-id: 34074207770
+      - name: Download governed source-image crops
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p23-form34b-source-row-recovery-rows-*
+          path: /tmp/p23-recovery-shards
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          run-id: 34074207770
+      - name: Write eleven independently reviewed recovery evidence records
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          reviewed_at='2026-09-07T17:40:00+03:00'
+          rows={
+            199:dict(slug='lugari',name='Lugari',geo='KEN-C037-CON199',form=277827,pdf='1e92abaccb94e46cea21ed0773b2c6947aebe30a3061973a57830e1134f9ae5a',page=2,sha='e3e3a998d6f0b1c77b2503f2aebaeb375f258b647e6f2fec967ee9439f1a9d2d',crop={'x0':103,'y0':2674,'x1':1921,'y1':2893},reg=86908,c=[36606,15025,133,295],valid=52059,rej=540),
+            213:dict(slug='hamisi',name='Hamisi',geo='KEN-C038-CON213',form=277841,pdf='30154eacae06eabc99588e588fe750bb458370e7ea8d2112f88c8a9b478997ee',page=2,sha='d0a6a1a58fc35ab09173e23b3575591db780838ff7ac78cee32eff4aa99fd6e1',crop={'x0':146,'y0':3382,'x1':2717,'y1':3628},reg=80384,c=[31133,14589,86,282],valid=46090,rej=524),
+            217:dict(slug='sirisia',name='Sirisia',geo='KEN-C039-CON217',form=277845,pdf='eaf42e5530de617567e9e60396ff9b0b049d61b4eda7d1bad75f4811ef25d201',page=3,sha='1204c502c69e9e3546ac4f9b5ef556b379701a73a5b1d0e20bcef8d0b001cb83',crop={'x0':146,'y0':2508,'x1':2719,'y1':2738},reg=48717,c=[11992,17392,123,168],valid=29675,rej=398),
+            225:dict(slug='teso-north',name='Teso North',geo='KEN-C040-CON225',form=277853,pdf='77d51832cdf4e45c71639d8a2e3cccb86cfbfd693bdac089dde4732fdf71f9cd',page=2,sha='bcebd897a6fff11897faa3f274e7289208dda77defe7492ccb2b0446b5af5505',crop={'x0':146,'y0':3188,'x1':2718,'y1':3410},reg=59795,c=[32176,6760,85,181],valid=39202,rej=911),
+            230:dict(slug='funyula',name='Funyula',geo='KEN-C040-CON230',form=277858,pdf='be098f8a55e61683c34dda2bdc5e57747d35c548d41a5c6ac996f5620903470b',page=2,sha='2a67093a68abfc9a33f9d3bd70ed8565fc354d6b1574a2062610d47edaba2496',crop={'x0':146,'y0':1549,'x1':2719,'y1':1763},reg=54031,c=[29826,7163,83,239],valid=37311,rej=301),
+            242:dict(slug='nyando',name='Nyando',geo='KEN-C042-CON242',form=277870,pdf='3e2e92d67f5699b72c6c044adc809dc6a6c5d8306e2f85c5e9e78a7159896598',page=2,sha='7d5c34c17160f0a6ff99245c4b3c4686a6ce04dcbb84b75e24b8b9576b20c5b7',crop={'x0':146,'y0':3471,'x1':2718,'y1':3695},reg=80757,c=[59994,397,25,65],valid=60481,rej=403),
+            246:dict(slug='kabondo-kasipul',name='Kabondo Kasipul',geo='KEN-C043-CON246',form=277874,pdf='217d510e2aaacf475bf8e339cd62c7096a7bfdc13aa4ff92c1b8cf124ab3b763',page=2,sha='0c7e1c76755d838707bf9b421c7282b46affd067d4d02d4b3ceba9b7662c9fbe',crop={'x0':146,'y0':2290,'x1':2718,'y1':2512},reg=59910,c=[42088,260,16,66],valid=42430,rej=157),
+            259:dict(slug='kuria-west',name='Kuria West',geo='KEN-C044-CON259',form=277887,pdf='d4eae776d74999b8319bae79bce4a6e130fa85a7b3a628659234f75389eae41c',page=2,sha='68dfa35ea481c116df4fe4e62da61933e7258ce8c3e790a65a2f60128c5c2862',crop={'x0':146,'y0':1902,'x1':2717,'y1':2151},reg=62244,c=[11970,28933,108,186],valid=41197,rej=359),
+            274:dict(slug='westlands',name='Westlands',geo='KEN-C047-CON274',form=277902,pdf='1cb0937ee9025ea01009426bffc634df9c1b564c98f5043a55150a545ea751a2',page=3,sha='7a0728a93a905aab8f58dceec279e390f70a25b8751693082354556ac2782ae8',crop={'x0':146,'y0':2962,'x1':2718,'y1':3197},reg=160739,c=[55088,28232,332,498],valid=84150,rej=1099),
+            278:dict(slug='kibra',name='Kibra',geo='KEN-C047-CON278',form=277906,pdf='7e1238c4f6d8cb37cb7d55e8399dd7868569da138326891c5c3e7ef5e84e9d14',page=3,sha='4198319fdb46e254d9bf04d99470771f02d9e1a90ee0a5470396738ef3593e0c',crop={'x0':146,'y0':1402,'x1':2718,'y1':1627},reg=128282,c=[55230,19321,232,291],valid=75074,rej=404),
+            286:dict(slug='embakasi-west',name='Embakasi West',geo='KEN-C047-CON286',form=277914,pdf='6f0cb81982f9769078cce11385b3aed37f04bc2ebaf4a5a7e271196b88ceb3a2',page=3,sha='77a6c49b21e13bfb78a23252f477346649dfbd268298b3387abf06cd3ae14458',crop={'x0':146,'y0':1785,'x1':2718,'y1':2009},reg=141878,c=[45039,34736,290,422],valid=80487,rej=466),
+          }
+
+          queue_doc=json.loads(Path('/tmp/p23-recovery-aggregate/p23-form34b-source-row-recovery-queue.json').read_text())
+          assert queue_doc['schema_version']=='kda.p23.form34b.source-row-recovery-queue.v1'
+          assert queue_doc['source_verified_values']==0
+          assert queue_doc['promotion_authorized'] is False
+          queue={int(q['constituency_code']):q for q in queue_doc['queue']}
+
+          for code,r in rows.items():
+              q=queue[code]
+              assert q['constituency_name']==r['name']
+              assert q['geo_code']==r['geo']
+              assert q['form_download_id']==r['form']
+              assert q['source_pdf_sha256']==r['pdf']
+              assert q['canonical_registered_voters']==r['reg']
+              assert q['denominator_anchor']['page_number']==r['page']
+              assert q['review_context_sha256']==r['sha']
+              assert q['review_context_crop_250']==r['crop']
+              assert q['source_verified_values']==0
+              assert q['promotion_authorized'] is False
+              matches=list(Path('/tmp/p23-recovery-shards').rglob(f'con-{code:03d}-denominator-anchor.png'))
+              assert len(matches)==1,(code,matches)
+              assert hashlib.sha256(matches[0].read_bytes()).hexdigest()==r['sha']
+              assert sum(r['c'])==r['valid']
+              ballots=r['valid']+r['rej']
+              assert ballots<=r['reg']
+              turnout=100*ballots/r['reg']
+              assert 0<=turnout<=100
+              field=lambda v:{'page_number':r['page'],'source_image_sha256':r['sha'],'machine_transcription':None,'machine_verification_state':'not_extracted_by_recovery_locator','machine_decision':'visual_source_transcription_required','visual_transcription_required':True,'verified_value':v,'verification_method':'direct_visual_read_of_official_form34b_total_row','verification_state':'source_verified'}
+              doc={'schema_version':'kda.p23.form34b-source-verification.v1','verification_id':f"P23-IEBC-2022-FORM34B-{r['slug'].upper().replace('-','_')}-SOURCE-VERIFIED-2026-09-07",'as_of':'2026-09-07','purpose':f"Record an independent visual source-image review of the official {r['name']} Form 34B final TOTAL row located by the governed exact-denominator recovery pipeline.",'contracts':{'extraction':'data/p23/form34b-extraction-contract.json','turnout_readiness':'data/p23/constituency-turnout-readiness-contract.json'},'sample':{'constituency_code':code,'constituency_name':r['name'],'geo_code':r['geo'],'form_id':r['form'],'source_url':f"https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id={r['form']}",'source_pdf_sha256':r['pdf'],'page_number':r['page'],'render_dpi':250,'review_context_image_sha256':r['sha'],'total_row_context_crop_250':r['crop']},'source_row_recovery_context':{'schema_version':'kda.p23.form34b.source-row-recovery-context.v1','workflow_run_id':34074207770,'workflow_head_sha':'57e219a06ea2a5de9e45b5ca5e375939def8a161','aggregate_artifact_id':10002426654,'aggregate_artifact_sha256':'06a75dfab82943c0e088eb56fa0c161f35cbc2958427d93c61d07f93305b5572','review_queue_schema_version':'kda.p23.form34b.source-row-recovery-queue.v1','review_context_sha256':r['sha'],'anchor_state':'unique_exact_denominator_anchor','denominator_anchor_is_locator_only':True,'canonical_registered_voters':r['reg'],'source_verified_values_at_recovery':0,'promotion_authorized_at_recovery':False},'review':{'reviewed_at':reviewed_at,'reviewer_class':'independent_visual_source_image_review','reviewed_by':'OpenAI ChatGPT','independence_note':'The visual reading was performed directly from the governed 250-DPI official Form 34B TOTAL-row context after the exact canonical registered-voter denominator had been used only to locate the row. No turnout numerator value was extracted or promoted by the recovery workflow; the visual source read determines every verified_value.','source_image_legibility':'clear','form_identity_visually_confirmed':False,'form_identity_confirmation_method':'governed_official_source_url_form_id_pdf_sha256_and_recovery_artifact_linkage','total_row_label_visually_confirmed':True},'field_evidence':{'registered_voters':field(r['reg']),'total_valid_votes':field(r['valid']),'rejected_ballots':field(r['rej'])},'same_row_valid_vote_reconciliation':{'method':'Independent visual read of the four presidential candidate total cells on the same final TOTAL row.','candidate_vote_totals_in_source_column_order':r['c'],'candidate_vote_sum':sum(r['c']),'reconciles_total_valid_votes':True},'row_reconciliation':{'governed_registered_voters':r['reg'],'registered_voters_reconciles':True,'ballots_cast':ballots,'ballots_cast_lte_registered_voters':True,'turnout_pct':turnout,'turnout_range_valid':True},'verification_state':'verified','promotion_eligible':False,'promotion_state':'pending_explicit_materialization','promotion_authorized_by_this_file':False,'note':'This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs.'}
+              out=Path(f"data/p23/form34b-{r['slug']}-source-verification.json")
+              assert not out.exists()
+              out.write_text(json.dumps(doc,indent=2,ensure_ascii=False)+'\n')
+          PY
+      - name: Validate source-verification boundary
+        run: node scripts/p23/validate-form34b-source-verifications.mjs
+      - name: Assert non-promotion
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const codes=[199,213,217,225,230,242,246,259,274,278,286];
+          const series=JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
+          for(const code of codes){
+            const target=`KDA-TURNOUT-CON-${String(code).padStart(3,'0')}-2022-PRES`;
+            if(series.some(row=>row.series_code===target)) throw new Error(`${target} self-promoted`);
+          }
+          console.log('P23_RECOVERY_SOURCE_VERIFICATION_TRANCHE_03_OK verified=11 promoted=0 denominator_locator_only=true');
+          NODE
+      - name: Assert evidence-only diff
+        run: |
+          changed="$(git diff --name-only)"
+          test "$(printf '%s\n' "$changed" | sed '/^$/d' | wc -l)" -eq 11
+          test -z "$(printf '%s\n' "$changed" | grep -Ev '^data/p23/form34b-.+-source-verification\.json$')"
+      - name: Remove one-shot workflow
+        run: rm .github/workflows/p23-source-verify-recovery-tranche-03.yml
+      - name: Commit evidence
+        run: |
+          git config user.name 'kda-p23-source-reviewer'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'P23: source-verify eleven more denominator-recovery Form 34B rows'
+          git push origin HEAD:watchdog/p23-source-verify-recovery-tranche-03
