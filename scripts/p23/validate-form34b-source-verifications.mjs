@@ -6,6 +6,7 @@ const root = process.cwd();
 const readJson = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 const assert = (ok, msg) => { if (!ok) throw new Error(`P23 Form 34B source verification: ${msg}`); };
 const sha = value => typeof value === 'string' && /^[0-9a-f]{64}$/.test(value);
+const commitSha = value => typeof value === 'string' && /^[0-9a-f]{40}$/.test(value);
 const fields = ['registered_voters', 'total_valid_votes', 'rejected_ballots'];
 
 const extraction = readJson('data/p23/form34b-extraction-contract.json');
@@ -49,6 +50,7 @@ let verifiedRows = 0;
 let materializedRows = 0;
 let pendingPromotionRows = 0;
 let blockedRows = 0;
+let visualOnlyFields = 0;
 for (const name of names) {
   const evidence = JSON.parse(fs.readFileSync(path.join(p23Dir, name), 'utf8'));
   const sample = evidence.sample || {};
@@ -74,6 +76,7 @@ for (const name of names) {
   assert(evidence.promotion_authorized_by_this_file === false, `${name}: evidence file must never self-promote`);
 
   const values = {};
+  let rowHasVisualOnlyField = false;
   for (const field of fields) {
     const row = evidence.field_evidence?.[field];
     assert(row, `${name}: ${field} evidence missing`);
@@ -82,10 +85,36 @@ for (const name of names) {
     assert(Number(row.page_number) === Number(sample.page_number), `${name}: ${field} page mismatch`);
     assert(sha(row.source_image_sha256), `${name}: ${field} source-image digest missing`);
     assert(row.source_image_sha256 === sample.review_context_image_sha256, `${name}: ${field} does not link to governed review crop`);
-    assert(Number.isInteger(row.machine_transcription) && row.machine_transcription >= 0, `${name}: ${field} machine candidate missing`);
     assert(Number.isInteger(row.verified_value) && row.verified_value >= 0, `${name}: ${field} verified value missing`);
-    assert(row.machine_transcription === row.verified_value, `${name}: ${field} machine/visual disagreement must remain unresolved under this tranche`);
+
+    if (Number.isInteger(row.machine_transcription)) {
+      assert(row.machine_transcription >= 0, `${name}: ${field} machine candidate invalid`);
+      if (row.machine_verification_state !== undefined) {
+        assert(row.machine_verification_state === 'machine_candidate', `${name}: ${field} machine-readable field state changed`);
+      }
+      if (row.machine_decision !== undefined) {
+        assert(row.machine_decision === 'threshold_consensus', `${name}: ${field} machine-readable decision changed`);
+      }
+      assert(row.machine_transcription === row.verified_value, `${name}: ${field} machine/visual disagreement must remain unresolved under this tranche`);
+    } else {
+      assert(row.machine_transcription === null, `${name}: ${field} missing machine transcription must be explicit null`);
+      assert(row.machine_verification_state === 'source_unreadable', `${name}: ${field} visual-only transcription lacks source_unreadable machine state`);
+      assert(row.machine_decision === 'no_threshold_consensus', `${name}: ${field} visual-only transcription lacks no-threshold-consensus decision`);
+      assert(row.visual_transcription_required === true, `${name}: ${field} visual-only transcription requirement missing`);
+      rowHasVisualOnlyField = true;
+      visualOnlyFields += 1;
+    }
     values[field] = row.verified_value;
+  }
+
+  if (rowHasVisualOnlyField) {
+    const context = evidence.machine_review_context || {};
+    assert(context.schema_version === 'kda.p23.form34b.machine-review-contexts.v1', `${name}: governed machine-review context schema missing`);
+    assert(Number.isInteger(context.workflow_run_id) && context.workflow_run_id > 0, `${name}: machine-review workflow run id missing`);
+    assert(commitSha(context.workflow_head_sha), `${name}: machine-review workflow head sha invalid`);
+    assert(sha(context.manifest_sha256), `${name}: machine-review manifest digest missing`);
+    assert(sha(context.review_context_sha256), `${name}: machine-review crop digest missing`);
+    assert(context.review_context_sha256 === sample.review_context_image_sha256, `${name}: governed machine-review crop does not match reviewed source image`);
   }
 
   const canonical = canonicalRegistered(code);
@@ -148,4 +177,4 @@ for (const name of names) {
 }
 
 assert(verifiedRows >= 1, 'at least one verified source row required');
-console.log(`P23_FORM34B_SOURCE_VERIFICATIONS_OK evidence=${names.length} verified=${verifiedRows} materialized=${materializedRows} pending_promotion=${pendingPromotionRows} blocked=${blockedRows} denominator=20115 promotion_self_authorized=0 values_logged=0`);
+console.log(`P23_FORM34B_SOURCE_VERIFICATIONS_OK evidence=${names.length} verified=${verifiedRows} materialized=${materializedRows} pending_promotion=${pendingPromotionRows} blocked=${blockedRows} visual_only_fields=${visualOnlyFields} denominator=20115 promotion_self_authorized=0 values_logged=0`);
