@@ -1,0 +1,236 @@
+name: P23 source-verify recovery tranche 01
+
+on:
+  push:
+    branches:
+      - watchdog/p23-source-verify-recovery-tranche-01
+    paths:
+      - .github/workflows/p23-source-verify-recovery-tranche-01.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p23-source-verify-recovery-tranche-01
+  cancel-in-progress: false
+
+jobs:
+  commit-source-verification-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out evidence branch
+        uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-source-verify-recovery-tranche-01
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Extend validator only for governed recovery-locator visual reviews
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/p23/validate-form34b-source-verifications.mjs')
+          text = path.read_text(encoding='utf-8')
+          old_fields = """    } else {
+                assert(row.machine_transcription === null, `${name}: ${field} missing machine transcription must be explicit null`);
+                assert(row.machine_verification_state === 'source_unreadable', `${name}: ${field} visual-only transcription lacks source_unreadable machine state`);
+                assert(row.machine_decision === 'no_threshold_consensus', `${name}: ${field} visual-only transcription lacks no-threshold-consensus decision`);
+                assert(row.visual_transcription_required === true, `${name}: ${field} visual-only transcription requirement missing`);
+                rowHasVisualOnlyField = true;
+                visualOnlyFields += 1;
+              }
+          """
+          new_fields = """    } else {
+                assert(row.machine_transcription === null, `${name}: ${field} missing machine transcription must be explicit null`);
+                if (evidence.source_row_recovery_context) {
+                  assert(row.machine_verification_state === 'not_extracted_by_recovery_locator', `${name}: ${field} recovery-locator machine state changed`);
+                  assert(row.machine_decision === 'visual_source_transcription_required', `${name}: ${field} recovery-locator decision changed`);
+                } else {
+                  assert(row.machine_verification_state === 'source_unreadable', `${name}: ${field} visual-only transcription lacks source_unreadable machine state`);
+                  assert(row.machine_decision === 'no_threshold_consensus', `${name}: ${field} visual-only transcription lacks no-threshold-consensus decision`);
+                }
+                assert(row.visual_transcription_required === true, `${name}: ${field} visual-only transcription requirement missing`);
+                rowHasVisualOnlyField = true;
+                visualOnlyFields += 1;
+              }
+          """
+          if old_fields not in text:
+              raise SystemExit('Expected visual-only field validator block not found exactly')
+          text = text.replace(old_fields, new_fields, 1)
+
+          old_context = """  if (rowHasVisualOnlyField) {
+                const context = evidence.machine_review_context || {};
+                assert(context.schema_version === 'kda.p23.form34b.machine-review-contexts.v1', `${name}: governed machine-review context schema missing`);
+                assert(Number.isInteger(context.workflow_run_id) && context.workflow_run_id > 0, `${name}: machine-review workflow run id missing`);
+                assert(commitSha(context.workflow_head_sha), `${name}: machine-review workflow head sha invalid`);
+                assert(sha(context.manifest_sha256), `${name}: machine-review manifest digest missing`);
+                assert(sha(context.review_context_sha256), `${name}: machine-review crop digest missing`);
+                assert(context.review_context_sha256 === sample.review_context_image_sha256, `${name}: governed machine-review crop does not match reviewed source image`);
+              }
+          """
+          new_context = """  if (rowHasVisualOnlyField) {
+                const recovery = evidence.source_row_recovery_context;
+                if (recovery) {
+                  assert(recovery.schema_version === 'kda.p23.form34b.source-row-recovery-context.v1', `${name}: governed source-row recovery context schema missing`);
+                  assert(Number.isInteger(recovery.workflow_run_id) && recovery.workflow_run_id > 0, `${name}: source-row recovery workflow run id missing`);
+                  assert(commitSha(recovery.workflow_head_sha), `${name}: source-row recovery workflow head sha invalid`);
+                  assert(Number.isInteger(recovery.aggregate_artifact_id) && recovery.aggregate_artifact_id > 0, `${name}: source-row recovery aggregate artifact id missing`);
+                  assert(sha(recovery.aggregate_artifact_sha256), `${name}: source-row recovery aggregate artifact digest missing`);
+                  assert(sha(recovery.review_context_sha256), `${name}: source-row recovery crop digest missing`);
+                  assert(recovery.review_context_sha256 === sample.review_context_image_sha256, `${name}: source-row recovery crop does not match reviewed source image`);
+                  assert(recovery.anchor_state === 'unique_exact_denominator_anchor', `${name}: recovery context is not a unique exact denominator anchor`);
+                  assert(recovery.denominator_anchor_is_locator_only === true, `${name}: recovery denominator anchor must remain locator-only`);
+                  assert(Number(recovery.canonical_registered_voters) === canonicalRegistered(code), `${name}: recovery denominator does not match canonical registered voters`);
+                  assert(recovery.source_verified_values_at_recovery === 0, `${name}: recovery artifact unexpectedly contained source-verified values`);
+                  assert(recovery.promotion_authorized_at_recovery === false, `${name}: recovery artifact unexpectedly authorized promotion`);
+                } else {
+                  const context = evidence.machine_review_context || {};
+                  assert(context.schema_version === 'kda.p23.form34b.machine-review-contexts.v1', `${name}: governed machine-review context schema missing`);
+                  assert(Number.isInteger(context.workflow_run_id) && context.workflow_run_id > 0, `${name}: machine-review workflow run id missing`);
+                  assert(commitSha(context.workflow_head_sha), `${name}: machine-review workflow head sha invalid`);
+                  assert(sha(context.manifest_sha256), `${name}: machine-review manifest digest missing`);
+                  assert(sha(context.review_context_sha256), `${name}: machine-review crop digest missing`);
+                  assert(context.review_context_sha256 === sample.review_context_image_sha256, `${name}: governed machine-review crop does not match reviewed source image`);
+                }
+              }
+          """
+          if old_context not in text:
+              raise SystemExit('Expected visual-only context validator block not found exactly')
+          path.write_text(text.replace(old_context, new_context, 1), encoding='utf-8')
+          PY
+      - name: Write seven independently reviewed recovery evidence records
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          reviewed_at = '2026-09-07T06:59:34+03:00'
+          rows = {
+            20: dict(slug='bura', name='Bura', geo='KEN-C004-CON020', form=277648, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277648', pdfsha='fe0cec07c5d8a05f3b4aa70a7246cd24313b3ffa35edd727c71da4139b1ef9ea', page=2, crop_sha='25174cbdc196d603d5f44b530c2acd303c98cc2aa425c82a08059ae6426599ec', crop={'x0':146,'y0':1102,'x1':2718,'y1':1346}, reg=45678, cands=[17446,12087,46,104], valid=29683, rej=218),
+            28: dict(slug='balambala', name='Balambala', geo='KEN-C007-CON028', form=277656, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277656', pdfsha='e2cd31baa593f20c41dd8df8b199a9404b2610397f8e211963b3fe6ee71d0581', page=1, crop_sha='7ef05feb7e151d1d9dba8d75ba8d6bf7f1dfab49efca095881967bcbe369c77f', crop={'x0':145,'y0':2890,'x1':2704,'y1':3107}, reg=26085, cands=[5714,7854,12,73], valid=13653, rej=76),
+            38: dict(slug='wajir-south', name='Wajir South', geo='KEN-C008-CON038', form=277666, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277666', pdfsha='a94f0102f29fbf36423581cf3635c093f0456a58ddaa5b3e6ec38ec69fbd84c9', page=2, crop_sha='e0f8c6f92c15db65c634195dda54265dc626095ec28eab754112108ab7e1ffda', crop={'x0':146,'y0':3311,'x1':2718,'y1':3553}, reg=58077, cands=[19847,14762,43,162], valid=34814, rej=321),
+            71: dict(slug='kitui-rural', name='Kitui Rural', geo='KEN-C015-CON071', form=277699, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277699', pdfsha='078bfc651593037139444ccab46d9bb4040186835735a30fecf78dafb4852e68', page=2, crop_sha='368d1d8f9e32ea97747005db59e066fda3b30404d8468c52a61c664301428e95', crop={'x0':146,'y0':3152,'x1':2718,'y1':3396}, reg=55000, cands=[24668,7845,117,190], valid=32820, rej=334),
+            73: dict(slug='kitui-east', name='Kitui East', geo='KEN-C015-CON073', form=277701, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277701', pdfsha='7593331c1dfef610d35228637f5fd11e7a6a3beef871f2a0dff7724c48caa76c', page=3, crop_sha='0f005bf1e9e4a6346d0ab2dd79f0972aa64fe2afb7e1772a9da028c78debdfbd', crop={'x0':146,'y0':1285,'x1':2718,'y1':1510}, reg=65377, cands=[28523,13534,202,378], valid=42637, rej=322),
+            74: dict(slug='kitui-south', name='Kitui South', geo='KEN-C015-CON074', form=277702, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277702', pdfsha='237dc7b9e773935b68409cf7a9cdf1bdff06cccdd2fa1f6886319f5409afa411', page=3, crop_sha='989d4c34a6183486d72ecb5a1bb4533b72793175774b297fa1fbd5b878ec2d62', crop={'x0':146,'y0':2912,'x1':2718,'y1':3134}, reg=75372, cands=[34267,11746,186,526], valid=46725, rej=352),
+            95: dict(slug='kieni', name='Kieni', geo='KEN-C019-CON095', form=277723, source='https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277723', pdfsha='3ad8f92dd6e91745a657a5176e441ff7f3faf133270038c6a739b6ecfe13afe8', page=3, crop_sha='a9af54fb0a052d446db284c46851ee06309768f5c6d80f2078c2d76d3fe12af5', crop={'x0':146,'y0':2583,'x1':2719,'y1':2812}, reg=114573, cands=[11894,62507,199,261], valid=74861, rej=573),
+          }
+
+          for code, r in rows.items():
+              assert sum(r['cands']) == r['valid'], (code, r['cands'], r['valid'])
+              ballots = r['valid'] + r['rej']
+              assert ballots <= r['reg']
+              turnout = 100 * ballots / r['reg']
+              field = lambda value: {
+                  'page_number': r['page'],
+                  'source_image_sha256': r['crop_sha'],
+                  'machine_transcription': None,
+                  'machine_verification_state': 'not_extracted_by_recovery_locator',
+                  'machine_decision': 'visual_source_transcription_required',
+                  'visual_transcription_required': True,
+                  'verified_value': value,
+                  'verification_method': 'direct_visual_read_of_official_form34b_total_row',
+                  'verification_state': 'source_verified',
+              }
+              doc = {
+                  'schema_version': 'kda.p23.form34b-source-verification.v1',
+                  'verification_id': f"P23-IEBC-2022-FORM34B-{r['slug'].upper().replace('-', '_')}-SOURCE-VERIFIED-2026-09-07",
+                  'as_of': '2026-09-07',
+                  'purpose': f"Record an independent visual source-image review of the official {r['name']} Form 34B final TOTAL row located by the governed exact-denominator recovery pipeline.",
+                  'contracts': {
+                      'extraction': 'data/p23/form34b-extraction-contract.json',
+                      'turnout_readiness': 'data/p23/constituency-turnout-readiness-contract.json',
+                  },
+                  'sample': {
+                      'constituency_code': code,
+                      'constituency_name': r['name'],
+                      'geo_code': r['geo'],
+                      'form_id': r['form'],
+                      'source_url': r['source'],
+                      'source_pdf_sha256': r['pdfsha'],
+                      'page_number': r['page'],
+                      'render_dpi': 250,
+                      'review_context_image_sha256': r['crop_sha'],
+                      'total_row_context_crop_250': r['crop'],
+                  },
+                  'source_row_recovery_context': {
+                      'schema_version': 'kda.p23.form34b.source-row-recovery-context.v1',
+                      'workflow_run_id': 34074207770,
+                      'workflow_head_sha': '57e219a06ea2a5de9e45b5ca5e375939def8a161',
+                      'aggregate_artifact_id': 10002426654,
+                      'aggregate_artifact_sha256': '06a75dfab82943c0e088eb56fa0c161f35cbc2958427d93c61d07f93305b5572',
+                      'review_queue_schema_version': 'kda.p23.form34b.source-row-recovery-queue.v1',
+                      'review_context_sha256': r['crop_sha'],
+                      'anchor_state': 'unique_exact_denominator_anchor',
+                      'denominator_anchor_is_locator_only': True,
+                      'canonical_registered_voters': r['reg'],
+                      'source_verified_values_at_recovery': 0,
+                      'promotion_authorized_at_recovery': False,
+                  },
+                  'review': {
+                      'reviewed_at': reviewed_at,
+                      'reviewer_class': 'independent_visual_source_image_review',
+                      'reviewed_by': 'OpenAI ChatGPT',
+                      'independence_note': 'The visual reading was performed directly from the governed 250-DPI official Form 34B TOTAL-row context after the exact canonical registered-voter denominator had been used only to locate the row. No turnout numerator value was extracted or promoted by the recovery workflow; the visual source read determines every verified_value.',
+                      'source_image_legibility': 'clear',
+                      'form_identity_visually_confirmed': False,
+                      'form_identity_confirmation_method': 'governed_official_source_url_form_id_pdf_sha256_and_recovery_artifact_linkage',
+                      'total_row_label_visually_confirmed': True,
+                  },
+                  'field_evidence': {
+                      'registered_voters': field(r['reg']),
+                      'total_valid_votes': field(r['valid']),
+                      'rejected_ballots': field(r['rej']),
+                  },
+                  'same_row_valid_vote_reconciliation': {
+                      'method': 'Independent visual read of the four presidential candidate total cells on the same final TOTAL row.',
+                      'candidate_vote_totals_in_source_column_order': r['cands'],
+                      'candidate_vote_sum': sum(r['cands']),
+                      'reconciles_total_valid_votes': True,
+                  },
+                  'row_reconciliation': {
+                      'governed_registered_voters': r['reg'],
+                      'registered_voters_reconciles': True,
+                      'ballots_cast': ballots,
+                      'ballots_cast_lte_registered_voters': True,
+                      'turnout_pct': turnout,
+                      'turnout_range_valid': 0 <= turnout <= 100,
+                  },
+                  'verification_state': 'verified',
+                  'promotion_eligible': False,
+                  'promotion_state': 'pending_explicit_materialization',
+                  'promotion_authorized_by_this_file': False,
+                  'note': 'This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs.',
+              }
+              out = Path(f"data/p23/form34b-{r['slug']}-source-verification.json")
+              if out.exists():
+                  raise SystemExit(f'Refusing to overwrite existing evidence: {out}')
+              out.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+      - name: Validate source-verification boundary
+        run: node scripts/p23/validate-form34b-source-verifications.mjs
+      - name: Assert recovery tranche remains non-promoting
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const codes = [20, 28, 38, 71, 73, 74, 95];
+          const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
+          for (const code of codes) {
+            const scode = `KDA-TURNOUT-CON-${String(code).padStart(3,'0')}-2022-PRES`;
+            if (series.some(s => s.series_code === scode)) throw new Error(`${scode}: recovery evidence self-promoted`);
+          }
+          console.log('P23_RECOVERY_SOURCE_VERIFICATION_TRANCHE_01_OK verified=7 promoted=0 denominator_locator_only=true');
+          NODE
+      - name: Remove one-shot evidence workflow
+        run: rm .github/workflows/p23-source-verify-recovery-tranche-01.yml
+      - name: Commit source-verification evidence
+        run: |
+          git config user.name 'kda-p23-source-reviewer'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'P23: source-verify seven denominator-recovery Form 34B rows'
+          git push origin HEAD:watchdog/p23-source-verify-recovery-tranche-01
