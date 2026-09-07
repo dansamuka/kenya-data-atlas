@@ -128,6 +128,8 @@ jobs:
           NODE
       - name: Run full Atlas validation suite
         run: npm test
+      - name: Install independent geography audit dependency
+        run: python3 -m pip install --disable-pip-version-check shapely
       - name: Run independent geography audit
         run: python3 scripts/geography/audit-geometry.py .
       - name: Remove one-shot materialization workflow
