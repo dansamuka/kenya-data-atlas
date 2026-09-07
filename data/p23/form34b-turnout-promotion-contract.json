@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-06-T2",
-  "as_of": "2026-09-06",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-07-T3",
+  "as_of": "2026-09-07",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
   "target_geography_count": 290,
@@ -16,12 +16,27 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 3,
-    "verified_geo_codes": ["KEN-C001-CON001", "KEN-C026-CON139", "KEN-C036-CON198"],
-    "verified_constituency_codes": [1, 139, 198],
-    "newly_authorized_constituency_codes": [139, 198],
-    "expected_p23_remaining_after_materialization": 287,
-    "expected_resolved_slots_after_materialization": 11097,
+    "verified_constituencies": 5,
+    "verified_geo_codes": [
+      "KEN-C001-CON001",
+      "KEN-C001-CON005",
+      "KEN-C026-CON139",
+      "KEN-C035-CON192",
+      "KEN-C036-CON198"
+    ],
+    "verified_constituency_codes": [
+      1,
+      5,
+      139,
+      192,
+      198
+    ],
+    "newly_authorized_constituency_codes": [
+      5,
+      192
+    ],
+    "expected_p23_remaining_after_materialization": 285,
+    "expected_resolved_slots_after_materialization": 11099,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -62,8 +77,8 @@
     "Arithmetic-mismatch rows remain promotion-blocked even when their component integers are source-verified."
   ],
   "scale_plan": {
-    "next_step": "Continue independent Form 34B source-image review across the remaining 287 unresolved constituency turnout slots; preserve Budalangi as an arithmetic-mismatch hold until its turnout semantics are independently resolved.",
-    "batch_rule": "Promotion may proceed incrementally only for independently source-verified rows; unresolved or conflicting forms remain pending rather than being force-corrected.",
+    "next_step": "Continue independent visual source-image review from the governed 40-row denominator-recovery queue; preserve Budalangi as an arithmetic-mismatch hold.",
+    "batch_rule": "Source review may proceed in parallel, but canonical promotion remains a single deterministic reducer over independently source-verified rows.",
     "phase_complete_when": "All 290 constituency turnout slots are source-backed verified observations or have an independently approved governed evidence closure under the P23 extraction contract."
   }
 }
