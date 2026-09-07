@@ -113,9 +113,11 @@ jobs:
           NODE
       - name: Assert evidence-only diff
         run: |
-          changed="$(git diff --name-only)"
+          changed="$(git status --porcelain --untracked-files=all | cut -c4-)"
           test "$(printf '%s\n' "$changed" | sed '/^$/d' | wc -l)" -eq 11
-          test -z "$(printf '%s\n' "$changed" | grep -Ev '^data/p23/form34b-.+-source-verification\.json$')"
+          if printf '%s\n' "$changed" | grep -Ev '^data/p23/form34b-.+-source-verification\.json$'; then
+            exit 1
+          fi
       - name: Remove one-shot workflow
         run: rm .github/workflows/p23-source-verify-recovery-tranche-03.yml
       - name: Commit evidence
