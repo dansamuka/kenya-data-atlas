@@ -1,0 +1,68 @@
+name: P23 source-verify recovery tranche 02
+
+on:
+  push:
+    branches:
+      - watchdog/p23-source-verify-recovery-tranche-02
+    paths:
+      - .github/workflows/p23-source-verify-recovery-tranche-02.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p23-source-verify-recovery-tranche-02
+  cancel-in-progress: false
+
+jobs:
+  commit-source-verification-evidence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-source-verify-recovery-tranche-02
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Write eight independently reviewed recovery evidence records
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          reviewed_at='2026-09-07T07:13:00+03:00'
+          rows={
+            104:dict(slug='kangema',name='Kangema',geo='KEN-C021-CON104',form=277732,pdf='54a39ed02cf61fd2a29ea222541b5c848da6f0dc75b744c02a9cfc70c7294676',page=2,sha='bab8eb57c40d6c1095cb45ea541b19f461d5dfdbfeb12e6488e729652e83101b',crop={'x0':146,'y0':1856,'x1':2719,'y1':2083},reg=52002,c=[5456,29242,137,130],valid=34965,rej=266),
+            126:dict(slug='loima',name='Loima',geo='KEN-C023-CON126',form=277754,pdf='70c7567e85ddcfb5b9c21b5405c246b9a22cb63786b08407019d5a0573794874',page=2,sha='655ff35f95c52a55e4ebfd6dc33111923bf9508aafba1afb958ce1e9f938b00a',crop={'x0':146,'y0':2676,'x1':2718,'y1':2910},reg=36515,c=[13042,8025,36,57],valid=21160,rej=74),
+            141:dict(slug='soy',name='Soy',geo='KEN-C027-CON141',form=277769,pdf='cd3e3e7f4bb2e20a7378dd0a52b5cbb1ee35a2485ce6c1c040a54fb9651f3bca',page=3,sha='544e1acd0459ab194bcac04e37808e461c4243e522ca1f33afd2238f50b9c442',crop={'x0':146,'y0':802,'x1':2717,'y1':1021},reg=92702,c=[10824,55903,49,107],valid=66883,rej=342),
+            172:dict(slug='subukia',name='Subukia',geo='KEN-C032-CON172',form=277800,pdf='ede5278a50e3b6a038e3844e227f1c2cbb72d8a6cb4dcd6e14d2ed5fca282ec8',page=2,sha='37d966f8f578e45955c5e7b10c54a78a7430a444652b5f08d7d8832a3087f56d',crop={'x0':146,'y0':2706,'x1':2717,'y1':2936},reg=55599,c=[8301,29772,101,149],valid=38323,rej=343),
+            176:dict(slug='nakuru-town-east',name='Nakuru Town East',geo='KEN-C032-CON176',form=277804,pdf='9b4a52adec7cf0bf9e3c97ba3718a6bcef23ddffa20d4b78b08e2c3c40b6a0ac',page=3,sha='0ba028b839c637ddd9c4ba3f458d7ddf9e26c2bd963beab0033bf7596db17538',crop={'x0':103,'y0':1138,'x1':1922,'y1':1373},reg=125551,c=[34223,40942,296,382],valid=75843,rej=533),
+            182:dict(slug='narok-west',name='Narok West',geo='KEN-C033-CON182',form=277810,pdf='6ac7ca78bf7c54a062fcd941cd5f6e1f47402001ef5e38aaa431bca32d5678e3',page=2,sha='83b354658ede40ddd0f274eda56a24869bf49352f17d7f7b8ebb0facd9979a7b',crop={'x0':146,'y0':2406,'x1':2717,'y1':2627},reg=66596,c=[28494,25033,22,54],valid=53603,rej=270),
+            183:dict(slug='kajiado-north',name='Kajiado North',geo='KEN-C034-CON183',form=277811,pdf='105ce5850ea0bdf46c02524c13afa4f0fadb989f4c3ef7d694d5118d24ff08cd',page=3,sha='8797b10ad169f6bb48a83b76410d00cf6d93cdfbf90469669e5c43089aa417d1',crop={'x0':146,'y0':1871,'x1':2718,'y1':2097},reg=134880,c=[35868,41723,396,365],valid=78352,rej=582),
+            195:dict(slug='chepalungu',name='Chepalungu',geo='KEN-C036-CON195',form=277823,pdf='8e36a72544bcea6cd06272f71e28959a9805b84cfb85e92296b9f03839d25e43',page=3,sha='5fe8ca5ca426f9404b80fd7c4599aa6fec208d437c24517845fbeb316198b407',crop={'x0':146,'y0':1303,'x1':2718,'y1':1524},reg=80140,c=[5009,58827,54,142],valid=64032,rej=507),
+          }
+          for code,r in rows.items():
+              assert sum(r['c'])==r['valid']
+              ballots=r['valid']+r['rej']; assert ballots<=r['reg']; turnout=100*ballots/r['reg']; assert 0<=turnout<=100
+              field=lambda v:{'page_number':r['page'],'source_image_sha256':r['sha'],'machine_transcription':None,'machine_verification_state':'not_extracted_by_recovery_locator','machine_decision':'visual_source_transcription_required','visual_transcription_required':True,'verified_value':v,'verification_method':'direct_visual_read_of_official_form34b_total_row','verification_state':'source_verified'}
+              doc={'schema_version':'kda.p23.form34b-source-verification.v1','verification_id':f"P23-IEBC-2022-FORM34B-{r['slug'].upper().replace('-','_')}-SOURCE-VERIFIED-2026-09-07",'as_of':'2026-09-07','purpose':f"Record an independent visual source-image review of the official {r['name']} Form 34B final TOTAL row located by the governed exact-denominator recovery pipeline.",'contracts':{'extraction':'data/p23/form34b-extraction-contract.json','turnout_readiness':'data/p23/constituency-turnout-readiness-contract.json'},'sample':{'constituency_code':code,'constituency_name':r['name'],'geo_code':r['geo'],'form_id':r['form'],'source_url':f"https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id={r['form']}",'source_pdf_sha256':r['pdf'],'page_number':r['page'],'render_dpi':250,'review_context_image_sha256':r['sha'],'total_row_context_crop_250':r['crop']},'source_row_recovery_context':{'schema_version':'kda.p23.form34b.source-row-recovery-context.v1','workflow_run_id':34074207770,'workflow_head_sha':'57e219a06ea2a5de9e45b5ca5e375939def8a161','aggregate_artifact_id':10002426654,'aggregate_artifact_sha256':'06a75dfab82943c0e088eb56fa0c161f35cbc2958427d93c61d07f93305b5572','review_queue_schema_version':'kda.p23.form34b.source-row-recovery-queue.v1','review_context_sha256':r['sha'],'anchor_state':'unique_exact_denominator_anchor','denominator_anchor_is_locator_only':True,'canonical_registered_voters':r['reg'],'source_verified_values_at_recovery':0,'promotion_authorized_at_recovery':False},'review':{'reviewed_at':reviewed_at,'reviewer_class':'independent_visual_source_image_review','reviewed_by':'OpenAI ChatGPT','independence_note':'The visual reading was performed directly from the governed 250-DPI official Form 34B TOTAL-row context after the exact canonical registered-voter denominator had been used only to locate the row. No turnout numerator value was extracted or promoted by the recovery workflow; the visual source read determines every verified_value.','source_image_legibility':'clear','form_identity_visually_confirmed':False,'form_identity_confirmation_method':'governed_official_source_url_form_id_pdf_sha256_and_recovery_artifact_linkage','total_row_label_visually_confirmed':True},'field_evidence':{'registered_voters':field(r['reg']),'total_valid_votes':field(r['valid']),'rejected_ballots':field(r['rej'])},'same_row_valid_vote_reconciliation':{'method':'Independent visual read of the four presidential candidate total cells on the same final TOTAL row.','candidate_vote_totals_in_source_column_order':r['c'],'candidate_vote_sum':sum(r['c']),'reconciles_total_valid_votes':True},'row_reconciliation':{'governed_registered_voters':r['reg'],'registered_voters_reconciles':True,'ballots_cast':ballots,'ballots_cast_lte_registered_voters':True,'turnout_pct':turnout,'turnout_range_valid':True},'verification_state':'verified','promotion_eligible':False,'promotion_state':'pending_explicit_materialization','promotion_authorized_by_this_file':False,'note':'This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs.'}
+              out=Path(f"data/p23/form34b-{r['slug']}-source-verification.json"); assert not out.exists(); out.write_text(json.dumps(doc,indent=2,ensure_ascii=False)+'\n')
+          PY
+      - name: Validate source-verification boundary
+        run: node scripts/p23/validate-form34b-source-verifications.mjs
+      - name: Assert non-promotion
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs'; const codes=[104,126,141,172,176,182,183,195]; const s=JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8')); for(const c of codes){const x=`KDA-TURNOUT-CON-${String(c).padStart(3,'0')}-2022-PRES`; if(s.some(r=>r.series_code===x))throw new Error(`${x} self-promoted`);} console.log('P23_RECOVERY_SOURCE_VERIFICATION_TRANCHE_02_OK verified=8 promoted=0 denominator_locator_only=true');
+          NODE
+      - name: Remove one-shot workflow
+        run: rm .github/workflows/p23-source-verify-recovery-tranche-02.yml
+      - name: Commit evidence
+        run: |
+          git config user.name 'kda-p23-source-reviewer'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'P23: source-verify eight more denominator-recovery Form 34B rows'
+          git push origin HEAD:watchdog/p23-source-verify-recovery-tranche-02
