@@ -97,24 +97,45 @@ for (const name of names) {
       }
       assert(row.machine_transcription === row.verified_value, `${name}: ${field} machine/visual disagreement must remain unresolved under this tranche`);
     } else {
-      assert(row.machine_transcription === null, `${name}: ${field} missing machine transcription must be explicit null`);
+    assert(row.machine_transcription === null, `${name}: ${field} missing machine transcription must be explicit null`);
+    if (evidence.source_row_recovery_context) {
+      assert(row.machine_verification_state === 'not_extracted_by_recovery_locator', `${name}: ${field} recovery-locator machine state changed`);
+      assert(row.machine_decision === 'visual_source_transcription_required', `${name}: ${field} recovery-locator decision changed`);
+    } else {
       assert(row.machine_verification_state === 'source_unreadable', `${name}: ${field} visual-only transcription lacks source_unreadable machine state`);
       assert(row.machine_decision === 'no_threshold_consensus', `${name}: ${field} visual-only transcription lacks no-threshold-consensus decision`);
-      assert(row.visual_transcription_required === true, `${name}: ${field} visual-only transcription requirement missing`);
-      rowHasVisualOnlyField = true;
-      visualOnlyFields += 1;
     }
+    assert(row.visual_transcription_required === true, `${name}: ${field} visual-only transcription requirement missing`);
+    rowHasVisualOnlyField = true;
+    visualOnlyFields += 1;
+  }
     values[field] = row.verified_value;
   }
 
   if (rowHasVisualOnlyField) {
-    const context = evidence.machine_review_context || {};
-    assert(context.schema_version === 'kda.p23.form34b.machine-review-contexts.v1', `${name}: governed machine-review context schema missing`);
-    assert(Number.isInteger(context.workflow_run_id) && context.workflow_run_id > 0, `${name}: machine-review workflow run id missing`);
-    assert(commitSha(context.workflow_head_sha), `${name}: machine-review workflow head sha invalid`);
-    assert(sha(context.manifest_sha256), `${name}: machine-review manifest digest missing`);
-    assert(sha(context.review_context_sha256), `${name}: machine-review crop digest missing`);
-    assert(context.review_context_sha256 === sample.review_context_image_sha256, `${name}: governed machine-review crop does not match reviewed source image`);
+    const recovery = evidence.source_row_recovery_context;
+    if (recovery) {
+      assert(recovery.schema_version === 'kda.p23.form34b.source-row-recovery-context.v1', `${name}: governed source-row recovery context schema missing`);
+      assert(Number.isInteger(recovery.workflow_run_id) && recovery.workflow_run_id > 0, `${name}: source-row recovery workflow run id missing`);
+      assert(commitSha(recovery.workflow_head_sha), `${name}: source-row recovery workflow head sha invalid`);
+      assert(Number.isInteger(recovery.aggregate_artifact_id) && recovery.aggregate_artifact_id > 0, `${name}: source-row recovery aggregate artifact id missing`);
+      assert(sha(recovery.aggregate_artifact_sha256), `${name}: source-row recovery aggregate artifact digest missing`);
+      assert(sha(recovery.review_context_sha256), `${name}: source-row recovery crop digest missing`);
+      assert(recovery.review_context_sha256 === sample.review_context_image_sha256, `${name}: source-row recovery crop does not match reviewed source image`);
+      assert(recovery.anchor_state === 'unique_exact_denominator_anchor', `${name}: recovery context is not a unique exact denominator anchor`);
+      assert(recovery.denominator_anchor_is_locator_only === true, `${name}: recovery denominator anchor must remain locator-only`);
+      assert(Number(recovery.canonical_registered_voters) === canonicalRegistered(code), `${name}: recovery denominator does not match canonical registered voters`);
+      assert(recovery.source_verified_values_at_recovery === 0, `${name}: recovery artifact unexpectedly contained source-verified values`);
+      assert(recovery.promotion_authorized_at_recovery === false, `${name}: recovery artifact unexpectedly authorized promotion`);
+    } else {
+      const context = evidence.machine_review_context || {};
+      assert(context.schema_version === 'kda.p23.form34b.machine-review-contexts.v1', `${name}: governed machine-review context schema missing`);
+      assert(Number.isInteger(context.workflow_run_id) && context.workflow_run_id > 0, `${name}: machine-review workflow run id missing`);
+      assert(commitSha(context.workflow_head_sha), `${name}: machine-review workflow head sha invalid`);
+      assert(sha(context.manifest_sha256), `${name}: machine-review manifest digest missing`);
+      assert(sha(context.review_context_sha256), `${name}: machine-review crop digest missing`);
+      assert(context.review_context_sha256 === sample.review_context_image_sha256, `${name}: governed machine-review crop does not match reviewed source image`);
+    }
   }
 
   const canonical = canonicalRegistered(code);
