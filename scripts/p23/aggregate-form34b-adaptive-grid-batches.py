@@ -3,9 +3,9 @@
 
 This script is deliberately non-promotional. It combines already-validated adaptive-grid
 batch artifacts, verifies exact 1..290 coverage, and emits a source-verification queue for
-strong machine candidates that are not already covered by committed source-verification
-evidence. Machine readings remain candidates only; no verified value, turnout observation,
-or canonical registry data is created here.
+strong machine candidates that are not already covered by committed independent source
+review evidence. Machine readings remain candidates only; no verified value, turnout
+observation, or canonical registry data is created here.
 """
 
 import argparse
@@ -21,6 +21,7 @@ ALLOWED_STATES = {
 }
 TARGET_FIELDS = ("registered_voters", "total_valid_votes", "rejected_ballots")
 VERIFICATION_GLOB = "form34b-*-source-verification.json"
+SOURCE_REVIEWED_STATES = {"verified", "arithmetic_mismatch"}
 
 
 def fail(message):
@@ -33,13 +34,29 @@ def require_no_promotion(obj, label):
 
 
 def load_committed_verified_rows():
+    """Load rows whose target fields already received independent source-image review.
+
+    A row-level arithmetic mismatch is deliberately included here: its three source fields
+    are already source_verified, so repeating source verification cannot resolve the conflict.
+    Inclusion in this map never makes the row promotion eligible.
+    """
     verified = {}
     for path in sorted(Path("data/p23").glob(VERIFICATION_GLOB)):
         evidence = json.loads(path.read_text(encoding="utf-8"))
-        if evidence.get("verification_state") != "verified" or evidence.get("promotion_eligible") is not True:
+        state = evidence.get("verification_state")
+        if state not in SOURCE_REVIEWED_STATES:
             continue
         if evidence.get("schema_version") != "kda.p23.form34b-source-verification.v1":
             fail(f"Unexpected committed source-verification schema in {path}")
+        if state == "arithmetic_mismatch":
+            if evidence.get("promotion_eligible") is not False:
+                fail(f"Arithmetic-mismatch verification {path.name} must remain promotion-ineligible")
+            reconciliation = evidence.get("row_reconciliation") or {}
+            if reconciliation.get("arithmetic_conflict") is not True or reconciliation.get("promotion_blocked") is not True:
+                fail(f"Arithmetic-mismatch verification {path.name} must explicitly preserve its promotion block")
+        elif not isinstance(evidence.get("promotion_eligible"), bool):
+            fail(f"Verified source-review row {path.name} must declare promotion eligibility explicitly")
+
         sample = evidence.get("sample") or {}
         code = sample.get("constituency_code")
         if not isinstance(code, int) or not 1 <= code <= 290:
@@ -64,6 +81,8 @@ def load_committed_verified_rows():
             "source_url": source_url,
             "source_pdf_sha256": digest,
             "field_evidence": field_evidence,
+            "verification_state": state,
+            "promotion_eligible": evidence.get("promotion_eligible"),
         }
     return verified
 
@@ -163,7 +182,7 @@ def main():
     committed_codes = sorted(committed_verified)
     aggregate = {
         "schema_version": "kda.p23.form34b.candidate-audit.v1",
-        "purpose": "Complete 290-row audit of governed Form 34B machine-candidate extraction. Machine readings remain non-promotable pending independent source-image verification.",
+        "purpose": "Complete 290-row audit of governed Form 34B machine-candidate extraction. Machine readings remain non-promotable pending independent source-image verification; already source-reviewed arithmetic conflicts remain blocked and are not redundantly re-queued.",
         "expected_rows": 290,
         "rows_processed": len(rows),
         "summary": {
@@ -205,7 +224,7 @@ def main():
 
     queue = {
         "schema_version": "kda.p23.form34b.source-verification-queue.v1",
-        "purpose": "Source-image verification queue for strong Form 34B machine candidates not already covered by committed verified evidence. Inclusion in this queue does not verify or promote any candidate value.",
+        "purpose": "Source-image verification queue for strong Form 34B machine candidates not already covered by committed independent source review. Inclusion in this queue does not verify or promote any candidate value.",
         "source_audit_schema": aggregate["schema_version"],
         "excluded_already_source_verified_codes": already_verified_strong,
         "queue_rows": len(queue_rows),
