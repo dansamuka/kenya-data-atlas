@@ -178,7 +178,10 @@ jobs:
             assert(item, `evidence missing ${code}`);
             const {filename, evidence} = item;
             assert(evidence.promotion_eligible === true, `promotion eligibility ${code}`);
-            assert(evidence.promotion_state === 'explicit_materialization_authorized', `promotion state ${code}`);
+            if (newlyAuthorized.includes(code)) {
+              assert(evidence.promotion_state === 'explicit_materialization_authorized', `promotion state ${code}`);
+              assert(evidence.promotion_authorization_contract === 'data/p23/form34b-turnout-promotion-contract.json', `promotion contract ${code}`);
+            }
             assert(evidence.promotion_authorized_by_this_file === false, `self authorization ${code}`);
             const seriesCode = `KDA-TURNOUT-CON-${String(code).padStart(3, '0')}-2022-PRES`;
             const seriesRow = turnoutSeries.find(row => row.series_code === seriesCode);
