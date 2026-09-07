@@ -1,0 +1,122 @@
+name: P23 materialize Likoni and Belgut current main
+
+on:
+  push:
+    branches:
+      - watchdog/p23-materialize-likoni-belgut-current-main
+    paths:
+      - .github/workflows/p23-materialize-likoni-belgut-current-main.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p23-materialize-likoni-belgut-current-main
+  cancel-in-progress: false
+
+jobs:
+  atomic-materialization:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out current-main materialization branch
+        uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-materialize-likoni-belgut-current-main
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Authorize only Likoni and Belgut
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          targets = {
+            5: ('data/p23/form34b-likoni-source-verification.json', (94764, 37643, 539)),
+            192: ('data/p23/form34b-belgut-source-verification.json', (75175, 57877, 295)),
+          }
+          for code, (name, expected) in targets.items():
+              p = Path(name)
+              d = json.loads(p.read_text())
+              assert d['verification_state'] == 'verified'
+              assert d['promotion_eligible'] is False
+              assert d['promotion_state'] == 'pending_explicit_materialization'
+              f = d['field_evidence']
+              values = tuple(f[k]['verified_value'] for k in ('registered_voters','total_valid_votes','rejected_ballots'))
+              assert values == expected, (code, values)
+              assert all(f[k]['verification_state'] == 'source_verified' for k in ('registered_voters','total_valid_votes','rejected_ballots'))
+              d['promotion_eligible'] = True
+              d['promotion_state'] = 'explicit_materialization_authorized'
+              d['promotion_authorization_contract'] = 'data/p23/form34b-turnout-promotion-contract.json'
+              d['promotion_authorized_by_this_file'] = False
+              d['note'] = 'This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.'
+              p.write_text(json.dumps(d, indent=2, ensure_ascii=False)+'\n')
+          p = Path('data/p23/form34b-turnout-promotion-contract.json')
+          c = json.loads(p.read_text())
+          assert c['schema_version'] == 'kda.p23.form34b-turnout-promotion.v1'
+          assert c['current_tranche']['verified_constituency_codes'] == [1,139,198]
+          assert c['current_tranche']['expected_p23_remaining_after_materialization'] == 287
+          assert c['current_tranche']['governed_total_slots'] == 20115
+          c['contract_id'] = 'P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-07-T3'
+          c['as_of'] = '2026-09-07'
+          c['current_tranche'] = {
+            'verified_constituencies': 5,
+            'verified_geo_codes': ['KEN-C001-CON001','KEN-C001-CON005','KEN-C026-CON139','KEN-C035-CON192','KEN-C036-CON198'],
+            'verified_constituency_codes': [1,5,139,192,198],
+            'newly_authorized_constituency_codes': [5,192],
+            'expected_p23_remaining_after_materialization': 285,
+            'expected_resolved_slots_after_materialization': 11099,
+            'governed_total_slots': 20115,
+            'materialization_state': 'explicit_materialization_authorized',
+            'materialization_checks': ['canonical_rebuild','exact_completeness_delta','full_validation_suite','independent_geography_audit'],
+          }
+          c['scale_plan']['next_step'] = 'Continue independent visual source-image review from the governed 40-row denominator-recovery queue; preserve Budalangi as an arithmetic-mismatch hold.'
+          c['scale_plan']['batch_rule'] = 'Source review may proceed in parallel, but canonical promotion remains a single deterministic reducer over independently source-verified rows.'
+          p.write_text(json.dumps(c, indent=2, ensure_ascii=False)+'\n')
+          PY
+      - name: Rebuild canonical data
+        run: npm run build:data
+      - name: Validate source verification
+        run: node scripts/p23/validate-form34b-source-verifications.mjs
+      - name: Assert exact P23 delta
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const summary = JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
+          const series = JSON.parse(fs.readFileSync('data/indicators/registry/series.json','utf8'));
+          const observations = JSON.parse(fs.readFileSync('data/indicators/registry/observations.json','utf8'));
+          const assert=(x,m)=>{if(!x)throw new Error(m)};
+          assert(summary.total_slots===20115,'denominator changed');
+          assert(summary.resolved_slots===11099,`resolved ${summary.resolved_slots}`);
+          assert(summary.unresolved_slots===9016,`unresolved ${summary.unresolved_slots}`);
+          assert(summary.by_completion_phase?.P23===285,`P23 ${summary.by_completion_phase?.P23}`);
+          assert(summary.unknown_missing===0,'unknown missing changed');
+          const expected=new Set([1,5,139,192,198].map(c=>`KDA-TURNOUT-CON-${String(c).padStart(3,'0')}-2022-PRES`));
+          const rows=series.filter(s=>expected.has(s.series_code));
+          assert(rows.length===5,`turnout series ${rows.length}`);
+          const obs=new Map(observations.map(o=>[o.observation_id,o]));
+          for(const s of rows){const o=obs.get(s.latest_observation_id);assert(o,'observation missing');assert(o.source_class==='official'&&o.geographic_method==='direct','provenance changed');assert(String(o.source_url||'').startsWith('https://forms.iebc.or.ke/'),'non-IEBC source');}
+          console.log('P23_LIKONI_BELGUT_CURRENT_MAIN_DELTA_OK verified=5 newly_materialized=2 p23_remaining=285 resolved=11099 denominator=20115');
+          NODE
+      - name: Run full Atlas validation suite
+        run: npm test
+      - name: Install independent geometry audit dependency
+        run: python3 -m pip install --disable-pip-version-check shapely
+      - name: Run independent geography audit
+        run: python3 scripts/geography/audit-geometry.py .
+      - name: Remove one-shot workflow
+        run: rm .github/workflows/p23-materialize-likoni-belgut-current-main.yml
+      - name: Commit atomic current-main materialization
+        run: |
+          git config user.name 'kda-p23-materializer'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          test -n "$(git status --porcelain)"
+          git commit -m 'P23: materialize source-verified Likoni and Belgut turnout'
+          git push origin HEAD:watchdog/p23-materialize-likoni-belgut-current-main
