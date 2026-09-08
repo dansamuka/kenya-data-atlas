@@ -1,0 +1,36 @@
+{
+  "schema_version": "kda.p24.ward-census-closure.v1",
+  "contract_id": "P24-KPHC-WARD-CLOSURE-2026-09-08",
+  "as_of": "2026-09-08",
+  "level": "ward",
+  "boundary_version": "2012-01",
+  "expected_wards": 1450,
+  "authority": {
+    "agency": "Kenya National Bureau of Statistics (KNBS)",
+    "census_reports_landing_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "census_results_landing_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+    "volume_i_url": "https://www.knbs.or.ke/?wpdmpro=2019-kenya-population-and-housing-census-volume-i-population-by-county-and-sub-county",
+    "volume_ii_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Volume-2-Distribution-of-Population-by-Administrative-Units.pdf",
+    "volume_iii_url": "https://www.knbs.or.ke/?wpdmpro=2019-kenya-population-and-housing-census-volume-iii-distribution-of-population-by-age-sex-and-administrative-units",
+    "volume_iv_url": "https://www.knbs.or.ke/?wpdmpro=2019-kenya-population-and-housing-census-volume-iv-distribution-of-population-by-socio-economic-characteristics"
+  },
+  "publication_finding": "The four 2019 KPHC general report volumes were directly retrieved and inspected. Volume I tabulates population by county and sub-county only. Volume II's own table of contents (Table 2.2 county; Table 2.3 sub-county; Table 2.4 sub-location; Table 2.5 urban centres) confirms its finest published administrative tier is the sub-location, not the county assembly ward. Volume III repeats county/sub-county/administrative-unit tables broken out by age and sex. Volume IV covers socio-economic characteristics, not a ward geography table. None of the four volumes publishes a table for Kenya's 1,450 IEBC-delimited county assembly wards, which are an electoral geography distinct from KNBS's county/sub-county/division/location/sub-location administrative hierarchy. A ward-level population product was intended to accompany the IEBC electoral boundary delimitation that would have used 2019 census counts, but that delimitation was never completed or gazetted (IEBC has publicly stated no boundary delimitation will occur before 2027), so no official crosswalk from KNBS administrative units (or any finer census tabulation unit) to the current 2012-01 ward boundaries has been published. This is the same underlying publication gap already documented for the current 290 constituencies in data/p23/constituency-census-closure-contract.json, and it is more acute at ward level: sub-locations (the finest unit KNBS does publish) do not correspond one-to-one with electoral wards, so aggregating or name-matching sub-locations into wards without an authoritative official crosswalk would fabricate a value the source does not itself publish.",
+  "rules": [
+    "Do not inherit or split a county, constituency or sub-county population value into wards.",
+    "Do not aggregate KNBS sub-locations (or any other administrative unit) into wards without an authoritative 2019-administrative-unit-to-2012-01-ward crosswalk; none is currently published.",
+    "Do not treat informally sourced third-party 'ward population' figures (for example outdated commercial constituency-info sites reflected in some Wikipedia ward articles) as an official KNBS observation.",
+    "Do not remap the never-completed IEBC 2019/2020 ward boundary-review population work to the current 1,450 wards.",
+    "Refresh this closure if KNBS publishes a direct current-1,450-ward population table, or an authoritative administrative-unit-to-ward crosswalk that would let the Atlas deterministically and reproducibly aggregate published sub-location counts to wards."
+  ],
+  "decisions": [
+    {
+      "indicator_code": "IND-POPULATION",
+      "status": "official_unavailable",
+      "period_label": "2019 KPHC · current 1,450-ward boundary",
+      "source": "KNBS — 2019 Kenya Population and Housing Census Reports (Volumes I–IV)",
+      "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
+      "reason": "KNBS's 2019 KPHC report series (Volumes I–IV) does not publish population as a direct table for the current 1,450 IEBC county assembly wards; its finest published administrative tier is the sub-location, which is a different, non-coterminous geography from the electoral ward. The IEBC boundary-delimitation exercise that would have produced an official ward population table was never completed or gazetted. No authoritative crosswalk exists to aggregate published sub-location (or any coarser KNBS unit) counts into the 1,450 current wards, so no genuine ward-level published figure can be attached without fabricating one.",
+      "refresh_trigger": "KNBS publishes a direct current-1,450-ward population table, or IEBC/KNBS jointly publish an authoritative administrative-unit-to-ward crosswalk supporting deterministic aggregation from a published table."
+    }
+  ]
+}
