@@ -61750,6 +61750,18 @@
       }
     },
     {
+      "series_id": "ae56afa9-b9c6-5b8e-8dd3-5d3ce6bc5650",
+      "series_code": "KDA-TURNOUT-CON-240-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "3b0fcb5f-de35-5642-8b56-8f735d5e8c9c",
       "series_code": "KDA-TURNOUT-CON-242-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",

@@ -85,7 +85,12 @@
   },
   "same_row_valid_vote_reconciliation": {
     "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
-    "candidate_vote_totals_in_source_column_order": [79955, 4458, 60, 210],
+    "candidate_vote_totals_in_source_column_order": [
+      79955,
+      4458,
+      60,
+      210
+    ],
     "candidate_vote_sum": 84683,
     "reconciles_total_valid_votes": true
   },
@@ -98,8 +103,9 @@
     "turnout_range_valid": true
   },
   "verification_state": "verified",
-  "promotion_eligible": false,
-  "promotion_state": "pending_explicit_materialization",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
   "promotion_authorized_by_this_file": false,
-  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs."
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
 }
