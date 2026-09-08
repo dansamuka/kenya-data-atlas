@@ -8,6 +8,8 @@ on:
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/aggregate-form34b-denominator-anchor-recovery.py
       - scripts/p23/validate-form34b-source-row-recovery.mjs
+      - scripts/p23/render-form34b-pending-review-contexts.py
+      - scripts/p23/validate-form34b-pending-review-contexts.mjs
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-extraction-contract.mjs
@@ -25,6 +27,8 @@ on:
       - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
       - scripts/p23/aggregate-form34b-denominator-anchor-recovery.py
       - scripts/p23/validate-form34b-source-row-recovery.mjs
+      - scripts/p23/render-form34b-pending-review-contexts.py
+      - scripts/p23/validate-form34b-pending-review-contexts.mjs
       - scripts/p23/materialize-form34b-source-manifest.py
       - scripts/p23/validate-iebc-form34b-source-manifest.mjs
       - scripts/p23/validate-form34b-extraction-contract.mjs
@@ -168,5 +172,41 @@ jobs:
             /tmp/p23-form34b-source-row-recovery-audit.json
             /tmp/p23-form34b-source-row-recovery-queue.json
             /tmp/p23-form34b-source-row-recovery/*.png
+          if-no-files-found: error
+          retention-days: 7
+
+  render-pending-source-review-contexts:
+    name: Render wider pending source-review contexts
+    needs: aggregate-source-row-recovery
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils python3-numpy
+      - name: Download governed current recovery queue
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-source-row-recovery-audit-and-review-queue
+          path: /tmp/p23-form34b-current-recovery
+      - name: Render full-page and wider contexts for the exact pending queue
+        run: >-
+          python3 scripts/p23/render-form34b-pending-review-contexts.py
+          --queue /tmp/p23-form34b-current-recovery/p23-form34b-source-row-recovery-queue.json
+          --output /tmp/p23-form34b-pending-review-contexts.json
+          --context-dir /tmp/p23-form34b-pending-review-contexts
+      - name: Validate review-only rendering boundary and exact image digests
+        run: >-
+          node scripts/p23/validate-form34b-pending-review-contexts.mjs
+          /tmp/p23-form34b-pending-review-contexts.json
+          /tmp/p23-form34b-current-recovery/p23-form34b-source-row-recovery-queue.json
+          /tmp/p23-form34b-pending-review-contexts
+      - name: Upload wider governed source-review packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-pending-source-review-contexts
+          path: |
+            /tmp/p23-form34b-pending-review-contexts.json
+            /tmp/p23-form34b-pending-review-contexts/*.png
           if-no-files-found: error
           retention-days: 7
