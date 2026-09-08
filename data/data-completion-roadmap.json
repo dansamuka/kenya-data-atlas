@@ -256,7 +256,21 @@
       "depends_on": [
         "P18",
         "P23"
-      ]
+      ],
+      "progress": {
+        "ward_turnout_history_closure": {
+          "indicator_code": "IND-TURNOUT-HISTORY",
+          "governed_slots": 1450,
+          "resolved_total": 1450,
+          "direct_current_observations": 0,
+          "evidence_constrained_current_unavailable": 1450,
+          "remaining_slots_this_family": 0,
+          "completion_as_of": "2026-09-08",
+          "completion_note": "All 1,450 ward IND-TURNOUT-HISTORY slots are closed as governed official_unavailable. No ready-made official ward-level turnout aggregate exists; producing real values would require a dedicated Form 34A (re-summed to ward) or Form 36B ward-tally source-verification pipeline of the same class as the P23 Form34B effort, at up to five times the geographic unit count. No constituency value is copied down and no proxy/estimate is used. Each closure carries a refresh trigger for later official supersession."
+        },
+        "remaining_slots_other_ward_families": 11600,
+        "next_family": "Remaining P24 ward families (MCA identity, service/facility aggregation, land-area derivation, ward-fund treatment) are unresolved by this closure and require separate, dedicated tranches."
+      }
     },
     {
       "id": "P25",
