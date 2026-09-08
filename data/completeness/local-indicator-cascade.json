@@ -1288,9 +1288,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS 2019 KPHC Volumes I-IV do not publish population for the current 1,450 IEBC county assembly wards; their finest tabulated administrative tier is the sub-location, a different, non-coterminous geography. The IEBC boundary-delimitation exercise that would have produced an official ward population table was never completed or gazetted, so no authoritative crosswalk exists to aggregate published sub-location counts into wards. See data/p24/ward-census-closure-contract.json.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
