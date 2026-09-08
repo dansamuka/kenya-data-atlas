@@ -1,0 +1,99 @@
+name: Watchdog P23 materialize Kisumu Central
+
+on:
+  push:
+    branches: [watchdog/p23-materialize-kisumu-central]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: watchdog-p23-materialize-kisumu-central
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: watchdog/p23-materialize-kisumu-central
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Authorize only Kisumu Central source-verified row
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const vf = 'data/p23/form34b-kisumu-central-source-verification.json';
+          const v = JSON.parse(fs.readFileSync(vf, 'utf8'));
+          if (v.sample.constituency_code !== 240 || v.sample.geo_code !== 'KEN-C042-CON240') throw new Error('unexpected Kisumu Central identity');
+          if (v.verification_state !== 'verified') throw new Error('row is not source verified');
+          for (const k of ['registered_voters','total_valid_votes','rejected_ballots']) {
+            if (v.field_evidence?.[k]?.verification_state !== 'source_verified') throw new Error(`${k} not source verified`);
+          }
+          if (v.row_reconciliation?.registered_voters_reconciles !== true || v.row_reconciliation?.ballots_cast_lte_registered_voters !== true || v.row_reconciliation?.turnout_range_valid !== true) throw new Error('row reconciliation failed');
+          if (v.same_row_valid_vote_reconciliation?.reconciles_total_valid_votes !== true) throw new Error('candidate arithmetic failed');
+          v.promotion_eligible = true;
+          v.promotion_state = 'explicit_materialization_authorized';
+          v.promotion_authorized_by_this_file = false;
+          v.note = 'This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.';
+          v.promotion_authorization_contract = 'data/p23/form34b-turnout-promotion-contract.json';
+          fs.writeFileSync(vf, JSON.stringify(v, null, 2) + '\n');
+
+          const pf = 'data/p23/form34b-turnout-promotion-contract.json';
+          const p = JSON.parse(fs.readFileSync(pf, 'utf8'));
+          const t = p.current_tranche;
+          const code = 240;
+          const geo = 'KEN-C042-CON240';
+          if (t.verified_constituency_codes.includes(code) || t.verified_geo_codes.includes(geo)) throw new Error('Kisumu Central already authorized');
+          t.verified_constituency_codes.push(code);
+          t.verified_constituency_codes.sort((a,b)=>a-b);
+          t.verified_geo_codes.push(geo);
+          t.verified_geo_codes.sort();
+          t.verified_constituencies = t.verified_constituency_codes.length;
+          t.newly_authorized_constituency_codes = [240];
+          t.expected_p23_remaining_after_materialization = 258;
+          t.expected_resolved_slots_after_materialization = 14026;
+          t.governed_total_slots = 20115;
+          t.materialization_state = 'explicit_materialization_authorized';
+          p.contract_id = 'P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-08-T5';
+          p.as_of = '2026-09-08';
+          fs.writeFileSync(pf, JSON.stringify(p, null, 2) + '\n');
+          NODE
+      - name: Deterministic rebuild
+        run: npm run build:data
+      - name: Validate source-verification boundary
+        run: node scripts/p23/validate-form34b-source-verifications.mjs
+      - name: Validate P23 and completeness
+        run: |
+          npm run p23:validate
+          npm run completeness:validate
+          npm run indicators:validate
+          npm run catalogue:validate
+          node scripts/project/validate-data-completion-execution.mjs
+      - name: Validate P16 static gate
+        run: npm run p16:static
+      - name: Assert exact delta
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const s = JSON.parse(fs.readFileSync('data/completeness/summary.json','utf8'));
+          if (s.total_slots !== 20115) throw new Error(`denominator drift ${s.total_slots}`);
+          if (s.resolved_slots !== 14026) throw new Error(`resolved ${s.resolved_slots} != 14026`);
+          if (s.by_completion_phase?.P23 !== 258) throw new Error(`P23 remaining ${s.by_completion_phase?.P23} != 258`);
+          if (s.unknown_missing !== 0) throw new Error(`unknown_missing ${s.unknown_missing}`);
+          NODE
+      - name: Commit deterministic materialization
+        run: |
+          rm .github/workflows/watchdog-p23-materialize-kisumu-central.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'P23: materialize source-verified Kisumu Central turnout'
+          git push origin HEAD:watchdog/p23-materialize-kisumu-central
