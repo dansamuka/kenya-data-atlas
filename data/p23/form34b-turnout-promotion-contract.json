@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-08-T5",
-  "as_of": "2026-09-08",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T6",
+  "as_of": "2026-09-09",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
   "target_geography_count": 290,
@@ -16,18 +16,22 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 32,
+    "verified_constituencies": 38,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON005",
+      "KEN-C002-CON010",
       "KEN-C004-CON020",
       "KEN-C007-CON028",
       "KEN-C008-CON038",
+      "KEN-C014-CON066",
       "KEN-C015-CON071",
       "KEN-C015-CON073",
       "KEN-C015-CON074",
+      "KEN-C016-CON080",
       "KEN-C019-CON095",
       "KEN-C021-CON104",
+      "KEN-C022-CON119",
       "KEN-C023-CON126",
       "KEN-C026-CON139",
       "KEN-C027-CON141",
@@ -46,6 +50,8 @@
       "KEN-C042-CON240",
       "KEN-C042-CON242",
       "KEN-C043-CON246",
+      "KEN-C043-CON248",
+      "KEN-C043-CON250",
       "KEN-C044-CON259",
       "KEN-C047-CON274",
       "KEN-C047-CON278",
@@ -54,14 +60,18 @@
     "verified_constituency_codes": [
       1,
       5,
+      10,
       20,
       28,
       38,
+      66,
       71,
       73,
       74,
+      80,
       95,
       104,
+      119,
       126,
       139,
       141,
@@ -80,16 +90,23 @@
       240,
       242,
       246,
+      248,
+      250,
       259,
       274,
       278,
       286
     ],
     "newly_authorized_constituency_codes": [
-      240
+      10,
+      66,
+      80,
+      119,
+      248,
+      250
     ],
-    "expected_p23_remaining_after_materialization": 258,
-    "expected_resolved_slots_after_materialization": 14026,
+    "expected_p23_remaining_after_materialization": 252,
+    "expected_resolved_slots_after_materialization": 14032,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -130,7 +147,7 @@
     "Arithmetic-mismatch rows remain promotion-blocked even when their component integers are source-verified."
   ],
   "scale_plan": {
-    "next_step": "Obtain wider governed source-page renders for the 14 held unique-anchor rows; preserve clipped, summary-only, incomplete and arithmetic-mismatch rows without inference.",
+    "next_step": "Continue independent official Form 34B source review or governed closure for the remaining P23 turnout rows; preserve all arithmetic conflicts, incomplete rows and ambiguous TOTAL labels without inference.",
     "batch_rule": "Source review may proceed in parallel, but canonical promotion remains a single deterministic reducer over independently source-verified rows.",
     "phase_complete_when": "All 290 constituency turnout slots are source-backed verified observations or have an independently approved governed evidence closure under the P23 extraction contract."
   }

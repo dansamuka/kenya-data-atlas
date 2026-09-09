@@ -17,7 +17,12 @@
     "page_number": 3,
     "render_dpi": 250,
     "review_context_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463",
-    "total_row_context_crop_250": {"x0": 0, "y0": 2659, "x1": 2923, "y1": 3322}
+    "total_row_context_crop_250": {
+      "x0": 0,
+      "y0": 2659,
+      "x1": 2923,
+      "y1": 3322
+    }
   },
   "source_row_recovery_context": {
     "schema_version": "kda.p23.form34b.source-row-recovery-context.v1",
@@ -46,15 +51,63 @@
     "total_row_label_visually_confirmed": true
   },
   "field_evidence": {
-    "registered_voters": {"page_number": 3, "source_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463", "machine_transcription": null, "machine_verification_state": "not_extracted_by_recovery_locator", "machine_decision": "visual_source_transcription_required", "visual_transcription_required": true, "verified_value": 98123, "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_verified"},
-    "total_valid_votes": {"page_number": 3, "source_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463", "machine_transcription": null, "machine_verification_state": "not_extracted_by_recovery_locator", "machine_decision": "visual_source_transcription_required", "visual_transcription_required": true, "verified_value": 53985, "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_verified"},
-    "rejected_ballots": {"page_number": 3, "source_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463", "machine_transcription": null, "machine_verification_state": "not_extracted_by_recovery_locator", "machine_decision": "visual_source_transcription_required", "visual_transcription_required": true, "verified_value": 345, "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_verified"}
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 98123,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 53985,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "01b05686d261060ce773f858508f687af3b927a4141758671126bd10e55ee463",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 345,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
   },
-  "same_row_valid_vote_reconciliation": {"method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.", "candidate_vote_totals_in_source_column_order": [36159, 17398, 145, 283], "candidate_vote_sum": 53985, "reconciles_total_valid_votes": true},
-  "row_reconciliation": {"governed_registered_voters": 98123, "registered_voters_reconciles": true, "ballots_cast": 54330, "ballots_cast_lte_registered_voters": true, "turnout_pct": 55.36928141210522, "turnout_range_valid": true},
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      36159,
+      17398,
+      145,
+      283
+    ],
+    "candidate_vote_sum": 53985,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 98123,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 54330,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 55.36928141210522,
+    "turnout_range_valid": true
+  },
   "verification_state": "verified",
-  "promotion_eligible": false,
-  "promotion_state": "pending_explicit_materialization",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
   "promotion_authorized_by_this_file": false,
-  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization remains blocked until a separate explicit promotion tranche authorizes and commits deterministic build outputs."
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
 }
