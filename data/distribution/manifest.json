@@ -7,8 +7,8 @@
   "counts": {
     "units": 21,
     "indicators": 103,
-    "series": 6683,
-    "observations": 10466,
+    "series": 6685,
+    "observations": 10468,
     "geographies": 1788,
     "counties": 47,
     "datasets": 68,
@@ -70,46 +70,46 @@
     {
       "id": "series",
       "description": "Concrete geography-specific statistical series",
-      "record_count": 6683,
+      "record_count": 6685,
       "schema": "data/distribution/schemas/series.schema.json",
       "formats": {
         "json": {
           "path": "data/indicators/registry/series.json",
-          "bytes": 8003458,
-          "sha256": "4f14d3dd534a35ddc057e365e16a572be63506be3d5ee17d9735b237549a052a"
+          "bytes": 8005876,
+          "sha256": "774f059f2d96da6aebb704476c31d12ddb9cc82e97cb78872cb7b2c76b5341e0"
         },
         "csv": {
           "path": "data/indicators/registry/series.csv",
-          "bytes": 3969674,
-          "sha256": "75a8b81f2ceb0ffe8f6e2d08807407476284c93a5006b34f790fe9a3934c14f3"
+          "bytes": 3970880,
+          "sha256": "3a634ededdbe211cb35e25525a48e910940ee0f6b464be30bf78f52a07b5b1f1"
         },
         "ndjson": {
           "path": "data/distribution/ndjson/series.ndjson",
-          "bytes": 6883483,
-          "sha256": "cdf273ebef2bffb0aeee8775553c8effef6589674feffb4b39ba92a052b65f4f"
+          "bytes": 6885565,
+          "sha256": "837ab45ab1e5d890ff004f0bb86bb1cb13ee1840a64f5e5441bdeeba0269f970"
         }
       }
     },
     {
       "id": "observations",
       "description": "Published observations with provenance and uncertainty fields",
-      "record_count": 10466,
+      "record_count": 10468,
       "schema": "data/distribution/schemas/observation.schema.json",
       "formats": {
         "json": {
           "path": "data/indicators/registry/observations.json",
-          "bytes": 14873917,
-          "sha256": "9d10c47089bcc727998338be8cf83645a1afc4d18d235d27898ceaec10faa532"
+          "bytes": 14876808,
+          "sha256": "847aaeda8f042829f4f27df51adbb35f82962b3fd0080fedb0407b7e49ad8b77"
         },
         "csv": {
           "path": "data/indicators/registry/observations.csv",
-          "bytes": 7483682,
-          "sha256": "d12aca7311c480afb90552b058b8dfb42a7a77460ed4a341ce92075b2c7c75d9"
+          "bytes": 7485163,
+          "sha256": "adbdc057c216251c39f98a0dfb4714a38f170eaa53cdb716714db588d53cf8fd"
         },
         "ndjson": {
           "path": "data/distribution/ndjson/observations.ndjson",
-          "bytes": 12797884,
-          "sha256": "ba3ce28d3bd0e6edf30bd956dcd2c9256f16ba78d7909564bf4b3f4c0fdba390"
+          "bytes": 12800379,
+          "sha256": "c1119a184493946848c5056dad1b832dfadc628605e71b085d8a999110d4eac6"
         }
       }
     },
@@ -303,7 +303,7 @@
       "index": {
         "path": "data/distribution/subsets/indicators/index.json",
         "bytes": 24321,
-        "sha256": "2561dd1852479bd4bc504567a52e98df1fabe0952d7322a2e984e736d576de22"
+        "sha256": "4615ec6b32450a2b237e27dad45e21e611a021ee459fc42c90d2c33af12f9e34"
       },
       "path_pattern": "data/distribution/subsets/indicators/{indicator_code}.json"
     }
