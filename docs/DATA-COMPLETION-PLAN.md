@@ -314,7 +314,7 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 
 ## P25 — National Pulse and non-profile surface closure
 
-**Status: planned.**
+**Status: session work complete; phase closure held for P24.**
 
 **Goal:** Close the final national placeholder and audit all public surfaces for unexplained missing states.
 
@@ -326,12 +326,20 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 - Evidence Hub state matrix;
 - Opportunity Finder explicit no-match state.
 
-**Ledger queue:** **1** national slot.
+**Ledger queue:** **0** (was 1 national slot).
+
+**Mobile-money resolution:** `IND-MOBILE-MONEY-VOLUME` at `KEN` is promoted as `published_direct` from the Central Bank of Kenya's National Payments System Mobile Payments statistics — the published Total Agent Cash in Cash Out (Value KSh billions) column for June and July 2026, converted verbatim to KES millions. CBK does not publish one reconciled national total covering every mobile-money rail (P2P transfers, paybill, till/merchant payments outside agent cash-in/cash-out are excluded), so the indicator description, taxonomy note and every observation explicitly scope the series as CBK's headline agent-CICO metric rather than a broader manufactured total.
+
+**Site-wide null-state audit:** Compare, Rankings & Insights, the Evidence Hub and the county-profile card renderer (`assets/place-profile.js`) were already correctly built — none of them silently defaults an absent value to zero, and each attaches an explicit reason next to a dash. Two genuine gaps were found and fixed:
+- CountyIQ's top-line metric cards and county-benchmark rows (`assets/countyiq-view.js`) fell back to a generic period/source label (and, for the badge, a fake "A provenance" mark) instead of an explicit "not published" reason when a headline metric had no canonical observation for a county. Fixed to render `missing`-styled cards/rows with an explicit "Not published for this county" reason and no badge.
+- The Opportunity Finder (`assets/opportunity-finder.js`) rendered the identical "temporarily unavailable, try again later" message whether the verified-programme registry genuinely contained zero current programmes or the fetch/parse of that registry had actually failed. Fixed to render two distinct, differently styled states: a governed empty-registry message ("No verified current programmes are published... This is not a loading error.") and a separate data-fetch-error message ("...This is a data-fetch problem, not an empty result...").
 
 **Acceptance**
-- final national slot is resolved or governed closed;
-- absence is never treated as zero;
-- public routes contain no unexplained data dash.
+- final national slot is resolved or governed closed — done (`published_direct`, badge A, CBK source);
+- absence is never treated as zero — audited across Compare and Rankings, already correct;
+- public routes contain no unexplained data dash — audited across all five named surfaces plus the general profile-card renderer; two real gaps fixed (CountyIQ, Opportunity Finder), the rest already correct.
+
+**Phase-closure note:** this phase's own `depends_on` still lists P24, which remains unclosed with a nonzero live queue, and the plan's formal closure order keeps `P24 → P25 → P26` sequential. Mirroring the P23A accelerator pattern, this session resolves and validates every P25-specific deliverable without prematurely marking the phase `complete` ahead of its documented dependency; `data/data-completion-roadmap.json`'s P25 entry carries a `progress` block recording exactly this, and its `status` should flip to `complete` once P24 closes.
 
 ---
 

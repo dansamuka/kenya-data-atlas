@@ -31,8 +31,8 @@
   function pctOf(value,values){const a=values.filter(Number.isFinite);if(!Number.isFinite(value)||!a.length)return 0;const min=Math.min(...a),max=Math.max(...a);return max===min?50:Math.max(5,Math.min(100,((value-min)/(max-min))*100));}
   function metric(county,code){return county?.metrics?.[code]||null;}
   function latestValue(county,code){return n(metric(county,code)?.latest?.value);}
-  function sourceText(m){const o=m?.latest,p=o?.provenance||{};return [o?.period_label,p.agency_name,p.badge?`${p.badge} provenance`:null].filter(Boolean).join(' · ')||'Canonical Atlas observation';}
-  function badgeOf(m,fallback='A'){return m?.latest?.provenance?.badge||fallback;}
+  function sourceText(m){const o=m?.latest;if(!o)return'No canonical observation is attached to this county for this indicator.';const p=o.provenance||{};return [o.period_label,p.agency_name,p.badge?`${p.badge} provenance`:null].filter(Boolean).join(' · ')||'Canonical Atlas observation';}
+  function badgeOf(m,fallback='A'){return m?.latest?(m.latest.provenance?.badge||fallback):null;}
   function rankingAllowed(m){return m?.eligibility?.ranking_allowed!==false;}
 
   function martRows(mart){
@@ -48,8 +48,12 @@
   function fallbackRows(){return FALLBACK.map(r=>({...r,gcpHistory:r.gcp.map((value,i)=>({year:String(2020+i),value,observation:null}))}));}
   function latestGcp(row){return row?.gcpHistory?.at(-1)?.value??null;}
   function metricCard(label,value,context,m,badgeFallback='A'){
-    const badge=badgeOf(m,badgeFallback);
-    return`<article class="ciq-metric"><span class="badge ${esc(badge.toLowerCase())}">${esc(badge)}</span><span class="label">${esc(label)}</span><strong>${esc(value)}</strong><span class="context">${esc(context)}</span><small>${esc(sourceText(m))}</small></article>`;
+    // A missing observation must never be dressed up as a real one: no fake
+    // "A provenance" badge, no borrowed period-label context text — the dash
+    // gets its own explicit, accessible reason instead (spec: null metrics
+    // must expose a reason, not a bare blank).
+    const hasObs=Boolean(m?.latest),badge=badgeOf(m,badgeFallback);
+    return`<article class="ciq-metric${hasObs?'':' missing'}"><span class="badge ${badge?esc(badge.toLowerCase()):'missing'}">${badge?esc(badge):'N/A'}</span><span class="label">${esc(label)}</span><strong>${esc(value)}</strong><span class="context">${esc(hasObs?context:'Not published for this county')}</span><small>${esc(sourceText(m))}</small></article>`;
   }
   function fallbackMetricCard(label,value,context,source,badge='A'){
     return`<article class="ciq-metric"><span class="badge ${badge.toLowerCase()}">${badge}</span><span class="label">${esc(label)}</span><strong>${esc(value)}</strong><span class="context">${esc(context)}</span><small>${esc(source)}</small></article>`;
@@ -63,8 +67,9 @@
     return`<div class="ciq-trend"><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(row.name)} Gross County Product history"><path class="ciq-gridline" d="M${left} ${top}H${w-right}M${left} ${(top+h-bottom)/2}H${w-right}M${left} ${h-bottom}H${w-right}"/><path class="ciq-area" d="${area}"/><path class="ciq-line" d="${line}"/>${pts.map(p=>`<circle class="ciq-dot" cx="${p.x}" cy="${p.y}" r="5"><title>${esc(p.year)}: KES ${formatInt(p.value)} million</title></circle>`).join('')}</svg><div class="ciq-years">${pts.map(p=>`<span>${esc(p.year)}</span>`).join('')}</div></div>`;
   }
   function benchmark(label,value,values,formatter,allowed=true){
-    const med=median(values),width=pctOf(value,values),rank=allowed?rankOf(value,values):null;
-    return`<div class="ciq-benchmark"><div class="ciq-benchmark-top"><span>${esc(label)}</span><strong>${esc(formatter(value))}</strong></div><div class="ciq-track" aria-hidden="true"><i style="width:${width.toFixed(1)}%"></i></div><small>${rank?`#${rank} of ${values.filter(Number.isFinite).length} · `:''}county median ${esc(formatter(med))}${allowed?'':' · ranking withheld'}</small></div>`;
+    const med=median(values),width=pctOf(value,values),rank=allowed?rankOf(value,values):null,hasValue=Number.isFinite(Number(value));
+    const detail=hasValue?`${rank?`#${rank} of ${values.filter(Number.isFinite).length} · `:''}county median ${esc(formatter(med))}${allowed?'':' · ranking withheld'}`:'Not published for this county';
+    return`<div class="ciq-benchmark${hasValue?'':' missing'}"><div class="ciq-benchmark-top"><span>${esc(label)}</span><strong>${esc(formatter(value))}</strong></div><div class="ciq-track" aria-hidden="true"><i style="width:${width.toFixed(1)}%"></i></div><small>${detail}</small></div>`;
   }
 
   function signed(value,suffix){const x=Number(value);if(!Number.isFinite(x))return '—';return `${x>0?'+':''}${x.toLocaleString('en-KE',{maximumFractionDigits:1})}${suffix}`;}
