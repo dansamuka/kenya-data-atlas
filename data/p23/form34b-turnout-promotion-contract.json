@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T7",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T8",
   "as_of": "2026-09-09",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
@@ -16,7 +16,7 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 46,
+    "verified_constituencies": 49,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON002",
@@ -29,7 +29,10 @@
       "KEN-C003-CON013",
       "KEN-C003-CON014",
       "KEN-C003-CON015",
+      "KEN-C003-CON016",
+      "KEN-C004-CON018",
       "KEN-C004-CON020",
+      "KEN-C005-CON021",
       "KEN-C007-CON028",
       "KEN-C008-CON038",
       "KEN-C014-CON066",
@@ -77,7 +80,10 @@
       13,
       14,
       15,
+      16,
+      18,
       20,
+      21,
       28,
       38,
       66,
@@ -114,17 +120,12 @@
       286
     ],
     "newly_authorized_constituency_codes": [
-      2,
-      4,
-      7,
-      8,
-      12,
-      13,
-      14,
-      15
+      16,
+      18,
+      21
     ],
-    "expected_p23_remaining_after_materialization": 244,
-    "expected_resolved_slots_after_materialization": 14040,
+    "expected_p23_remaining_after_materialization": 241,
+    "expected_resolved_slots_after_materialization": 14043,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -133,7 +134,7 @@
       "full_validation_suite",
       "independent_geography_audit"
     ],
-    "materialization_note": "This tranche (Jomvu, Nyali, Msambweni, Lungalunga, Kilifi South, Kaloleni, Rabai, Ganze — all six Kilifi-area constituencies plus Jomvu and Nyali in Mombasa) was independently re-verified against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs during this session's review. Seven of the eight rows reconciled exactly against the official TOTAL row on first re-check. The Ganze evidence file as originally drafted misidentified page 3 (the agent/handover signature page) as the TOTAL-row page and recorded vote totals that were internally self-consistent but did not match the actual official page 2 TOTAL row; it was corrected in place from a fresh independent re-render and re-read of the same sha256-verified PDF before this tranche was materialized. No other row in this tranche required correction."
+    "materialization_note": "This tranche adds Malindi (016), Garsen (018) and Lamu East (021), independently source-verified in the p23-turnout-tranche-a session against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs (form_id = constituency_code + 277628). Each of the three rows was read directly from a clearly legible, unshaded-scan TOTAL row, cross-checked with an independent high-DPI (500 DPI) crop of the same row, and reconciles exactly to the existing governed 2022 registered-voter denominator. Several other constituencies queued in this tranche (Kisauni/003, Mvita/006, Matuga/009, Magarini/017, Galole/019, Lamu West/022) were reviewed but withheld from promotion this round: Kisauni's TOTAL row is a genuinely illegible low-quality scan (confirmed down to the embedded 1-bit raster layer, not a rendering artifact); Kilifi North's (011) official portal PDF download contains only the page-4 signature sheet with no polling-station or TOTAL-row pages at all; and Mvita, Matuga, Magarini, Galole and Lamu West each printed a TOTAL-row registered-voters figure that is legible and internally self-consistent but numerically exceeds the existing governed 2022 constituency voter denominator by exactly the registered-voter count of one or more special/prison polling stations in that constituency (e.g. Mvita: 119,008 printed vs 118,974 governed, a 34-voter gap matching Kingorani Prison (B); Matuga: 83,078 vs 83,015, a 63-voter gap matching Kwale Main Prison + Kwale Women; Galole: 39,979 vs 39,965, a 14-voter gap matching Hola Prison; Magarini and Lamu West show the same pattern against Malindi Prison/Malindi Women and Hindi Prison respectively). This is left as an unresolved, documented discrepancy rather than forced through: the extraction contract's invariant that registered voters must reconcile exactly to the governed denominator blocks promotion for all of these pending a separate governance decision on whether the canonical P23 voter-registration denominator should include special/prison polling stations."
   },
   "canonical_rebuild_sync": {
     "state": "validated",
