@@ -910,5 +910,21 @@
     "version_label": "P23 source-verified Form 34B rollout",
     "release_notes": "Canonical observations are created only for constituencies with a committed source-verification evidence record satisfying data/p23/form34b-extraction-contract.json.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "b215130c-0337-50c5-a586-f785e1a8c5a7",
+    "release_code": "REL-CBK-MOBILE-MONEY-CICO-2026-P25",
+    "dataset_id": "baa1cdd3-0f99-5e20-a5b2-992700e83f1e",
+    "title": "CBK Mobile Payments statistics — through July 2026",
+    "reference_period_start": "2026-06-01",
+    "reference_period_end": "2026-07-31",
+    "published_at": "2026-08-31",
+    "discovered_at": "2026-09-09T00:00:00.000Z",
+    "ingested_at": "2026-09-09T00:00:00.000Z",
+    "release_url": "https://www.centralbank.go.ke/national-payments-system/mobile-payments/",
+    "release_status": "published",
+    "version_label": "P25 national Pulse closure",
+    "release_notes": "CBK National Payments System — Mobile Payments statistics; Mobile Payments (Year, Month, Active Agents, Total Registered Mobile Money Accounts (Millions), Total Agent Cash in Cash Out (Volume Million), Total Agent Cash in Cash Out (Value KSh billions)). The Atlas promotes only the published Total Agent Cash in Cash Out (Value KSh billions) column, converted to KES millions, and does not present it as covering every mobile-money transaction type.",
+    "supersedes_release_id": ""
   }
 ]

@@ -809,13 +809,13 @@
     {
       "code": "IND-MOBILE-MONEY-VOLUME",
       "name": "Mobile money transaction volume",
-      "description": "National mobile-money transaction volume for the Kenya Pulse.",
+      "description": "National monthly value of mobile money agent cash-in/cash-out (CICO) transactions, published directly by the Central Bank of Kenya.",
       "unit_code": "kes_million",
-      "status": "planned",
+      "status": "active",
       "tab": "economy",
       "levels": [],
-      "source": "Central Bank of Kenya / Communications Authority",
-      "note": "National-only Pulse slot; no county breakdown identified."
+      "source": "Central Bank of Kenya — National Payments System, Mobile Payments statistics",
+      "note": "Country-only Pulse slot; CBK's published agent cash-in/cash-out (CICO) value, its headline national mobile-money metric, not a reconciled total across every mobile-money rail. No county breakdown is published."
     },
     {
       "code": "IND-INPATIENT-SERVICE-AVAILABILITY",

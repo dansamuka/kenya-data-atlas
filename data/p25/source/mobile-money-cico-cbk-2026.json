@@ -1,0 +1,39 @@
+{
+  "schema_version": "kda.p25.mobile-money-volume.v1",
+  "indicator_code": "IND-MOBILE-MONEY-VOLUME",
+  "title": "Mobile money agent cash-in/cash-out value, national monthly",
+  "publisher": "Central Bank of Kenya",
+  "publication": "CBK National Payments System — Mobile Payments statistics",
+  "source_table": "Mobile Payments (Year, Month, Active Agents, Total Registered Mobile Money Accounts (Millions), Total Agent Cash in Cash Out (Volume Million), Total Agent Cash in Cash Out (Value KSh billions))",
+  "source_url": "https://www.centralbank.go.ke/national-payments-system/mobile-payments/",
+  "landing_page_url": "https://www.centralbank.go.ke/national-payments-system/",
+  "unit": "kes_million",
+  "definition": "CBK's National Payments System statistics publish one live, continuously-updated monthly national table for mobile money: agent cash-in/cash-out (CICO) activity, with active-agent counts, registered-account counts, CICO transaction volume (millions of transactions) and CICO transaction value (Ksh billions). This is the only comparable governed national monthly mobile-money series CBK publishes as one table; it does not publish a single reconciled national total covering every mobile-money rail (person-to-person transfers, paybill/till merchant payments, bank-to-mobile-wallet transfers, bill payments) as one comparable monthly aggregate distinct from CICO.",
+  "scope_note": "The Atlas promotes CBK's published Total Agent Cash in Cash Out (Value KSh billions) column as the national IND-MOBILE-MONEY-VOLUME series, converted to KES millions. This measures the value of cash deposited into and withdrawn from mobile money wallets through the agent network. It is CBK's own headline mobile-money activity metric, but it is not a full economy-wide total of every mobile-money transaction type (P2P transfers, paybill, till/merchant payments not routed through agent CICO are excluded). The Atlas does not relabel this as 'total mobile money transactions' and does not sum it with unrelated CBK payment-system tables to manufacture a broader total.",
+  "access_note": "Live statistics table (no static PDF/report), continuously updated by CBK; access_method web_download via CBK-STATISTICS source. Figures below were verified against the published table's last-six-rows view during this P25 session.",
+  "accessed_at": "2026-09-09",
+  "months": [
+    {
+      "period_start": "2026-06-01",
+      "period_end": "2026-06-30",
+      "period_label": "June 2026",
+      "value_ksh_billion": 682.46,
+      "value_kes_million": 682460,
+      "cico_volume_million_transactions": 212.45,
+      "active_agents": 572104,
+      "registered_accounts_million": 94.2,
+      "published_at": "2026-07-31"
+    },
+    {
+      "period_start": "2026-07-01",
+      "period_end": "2026-07-31",
+      "period_label": "July 2026",
+      "value_ksh_billion": 728.7,
+      "value_kes_million": 728700,
+      "cico_volume_million_transactions": 221.07,
+      "active_agents": 575400,
+      "registered_accounts_million": 94.35,
+      "published_at": "2026-08-31"
+    }
+  ]
+}

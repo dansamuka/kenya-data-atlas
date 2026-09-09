@@ -2328,7 +2328,7 @@
     {
       "indicator_id": "2b06830e-010c-5e49-9385-806f40105fa5",
       "name": "Mobile money transaction volume",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "active",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-MOBILE-MONEY-VOLUME",
       "domain": "economic",
@@ -2340,11 +2340,11 @@
         "eligible": true
       },
       "ranking": {
-        "allowed": true,
+        "allowed": false,
         "mode": "directional",
         "higher_is_better": true,
         "requires_sampling_uncertainty": false,
-        "static_reason_not_allowed": null
+        "static_reason_not_allowed": "Indicator taxonomy disallows ranking."
       },
       "uncertainty": {
         "required_for_ranking": false
@@ -2358,7 +2358,7 @@
         "parent_value_inheritance_allowed": false,
         "rule": "A parent geography value must never be copied into a child geography. Lower-level publication requires a real observation or an explicitly documented derived series for that geography."
       },
-      "publication_status": "planned"
+      "publication_status": "published"
     },
     {
       "indicator_id": "a181ac44-f24a-58c2-9434-6742d19c8b44",
@@ -60277,6 +60277,18 @@
       "series_id": "c04112a0-9ff7-54d3-b2f3-fbee4fb21f5e",
       "series_code": "KDA-P23-NGCDF-ALLOC-290",
       "indicator_code": "IND-NG-CDF-ALLOCATION",
+      "unit_code": "kes_million",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": false,
+        "rule_basis": "raw count/currency/other total — same-level only"
+      }
+    },
+    {
+      "series_id": "3de8b51c-fe55-5347-903d-9bf5fafcd7d8",
+      "series_code": "KDA-P25-MOBILE-MONEY-VOLUME-KEN",
+      "indicator_code": "IND-MOBILE-MONEY-VOLUME",
       "unit_code": "kes_million",
       "transformation": "level",
       "aggregation": null,

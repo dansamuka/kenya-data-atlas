@@ -458,8 +458,8 @@
     "indicator_code": "IND-MOBILE-MONEY-VOLUME",
     "name": "Mobile money transaction volume",
     "path": "data/distribution/subsets/indicators/IND-MOBILE-MONEY-VOLUME.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 1,
+    "observation_count": 2
   },
   {
     "indicator_code": "IND-MP-IDENTITY",
