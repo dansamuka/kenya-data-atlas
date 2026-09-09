@@ -29,7 +29,7 @@ assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'re
 assert(summary.unknown_missing===0,'every slot must be classified; unknown_missing must be zero');
 
 const resolvedEvidence=new Set(['published_direct','published_derived','published_modelled','external_verified']);
-const closureStatuses=new Set(['official_unavailable','retired_replaced']);
+const closureStatuses=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
 const allowed=new Set([...resolvedEvidence,...closureStatuses,'active_missing','sourced_uningested','planned_unresolved']);
 for(const row of ledger.rows){
   assert(allowed.has(row.status),`${row.slot_key} has unsupported status ${row.status}`);
@@ -53,7 +53,7 @@ for(const row of ledger.rows){
 
 const configured=[];
 for(const state of evidenceStates.states||[])for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configured.push({...state,geo_code:geoCode});
-const authorizedExplicit=new Set(['official_unavailable','retired_replaced']);
+const authorizedExplicit=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
 for(const state of configured){
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
   const matches=ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code);
@@ -95,6 +95,21 @@ assert(p23EvidenceGapUnavailable.every(s=>String(s.refresh_trigger||'').length>0
 assert(p24CensusUnavailable.every(s=>s.as_of==='2026-09-08'&&s.evidence_constraint==='official_publication_not_available_at_current_1450_ward_boundary'),'P24 ward census unavailable states must retain boundary-publication evidence constraint');
 assert(p24CensusUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward census unavailable states must retain refresh triggers');
 
+const notApplicable=configured.filter(s=>s.status==='not_applicable');
+const p24WardFundNotApplicable=notApplicable.filter(s=>s.level==='ward'&&s.indicator_code==='IND-WARD-FUND-ALLOCATION');
+assert(p24WardFundNotApplicable.length===1450,`P24 ward-fund allocation closure must contribute exactly 1,450 governed not_applicable states, got ${p24WardFundNotApplicable.length}`);
+assert(notApplicable.length===1450,`not_applicable evidence inventory must currently equal the P24 ward-fund closure (1,450), got ${notApplicable.length}`);
+assert(p24WardFundNotApplicable.every(s=>s.as_of&&s.evidence_constraint==='no_uniform_official_national_ward_fund_programme'),'P24 ward-fund not_applicable states must retain snapshot date and evidence-constraint marker');
+assert(p24WardFundNotApplicable.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward-fund not_applicable states must retain refresh triggers');
+
+const boundaryUnresolved=configured.filter(s=>s.status==='boundary_unresolved');
+const p24WardVoterBoundaryUnresolved=boundaryUnresolved.filter(s=>s.level==='ward'&&s.indicator_code==='IND-REGISTERED-VOTERS');
+assert(p24WardVoterBoundaryUnresolved.length===10,`P24 Mandera East/Lafey ward voter closure must contribute exactly 10 governed boundary_unresolved states, got ${p24WardVoterBoundaryUnresolved.length}`);
+assert(boundaryUnresolved.length===10,`boundary_unresolved evidence inventory must currently equal the P24 Mandera East/Lafey ward voter closure (10), got ${boundaryUnresolved.length}`);
+assert(p24WardVoterBoundaryUnresolved.every(s=>s.geo_code.startsWith('KEN-C009-CON043')||s.geo_code.startsWith('KEN-C009-CON044')),'P24 ward voter boundary hold must remain scoped to Mandera East/Lafey');
+assert(p24WardVoterBoundaryUnresolved.every(s=>s.as_of&&s.evidence_constraint==='ward_boundary_spatial_hold_unresolved'),'P24 ward voter boundary_unresolved states must retain snapshot date and evidence-constraint marker');
+assert(p24WardVoterBoundaryUnresolved.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward voter boundary_unresolved states must retain refresh triggers');
+
 // The canonical generated indicator registry is authoritative. The UI taxonomy may
 // enrich missing metadata, but it must never downgrade an already-active indicator
 // back to sourced/planned and thereby create a false empty card.
@@ -105,4 +120,5 @@ console.log(`P18_COMPLETENESS_VALIDATE_OK slots=${summary.total_slots} resolved=
 console.log(`P18_NO_UNKNOWN_BLANKS_OK unknown=${summary.unknown_missing}`);
 console.log(`P18_GOVERNED_CLOSURE_STATES_OK configured=${configured.length} unavailable=${officialUnavailable.length} retired_replaced=${configured.filter(s=>s.status==='retired_replaced').length}`);
 console.log(`P18_P22_P23_P24_UNAVAILABLE_RECONCILIATION_OK legacy=${legacyUnavailable.length} p22=${p22Unavailable.length} p23_census=${p23CensusUnavailable.length} p23_evidence_gaps=${p23EvidenceGapUnavailable.length} p24_ward_census=${p24CensusUnavailable.length} total=${officialUnavailable.length}`);
+console.log(`P18_P24_CLOSURE_RECONCILIATION_OK not_applicable=${notApplicable.length} boundary_unresolved=${boundaryUnresolved.length}`);
 console.log('P18_CANONICAL_LIFECYCLE_AUTHORITY_OK');

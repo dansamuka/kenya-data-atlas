@@ -52,18 +52,18 @@
       "formats": {
         "json": {
           "path": "data/indicators/registry/indicators.json",
-          "bytes": 125056,
-          "sha256": "9b777d152b6e0fdda06763c42a68c5ef74ab3af7e02becb050f6c9e4836986a5"
+          "bytes": 125576,
+          "sha256": "6fdcaeb1cce98a22c6a6cd0af36745efe8195c1a0d7bc845d6d47d6b079c908d"
         },
         "csv": {
           "path": "data/indicators/registry/indicators.csv",
-          "bytes": 66139,
-          "sha256": "4b1c533ab2fcb725eda59fc8bb912ee514ad488646ef8274a1db249701a23f88"
+          "bytes": 66659,
+          "sha256": "c0b90d92fce91aebe0b1c0d3a17e91229d69ad13c8485ee91cf6c12e9f9d629e"
         },
         "ndjson": {
           "path": "data/distribution/ndjson/indicators.ndjson",
-          "bytes": 108549,
-          "sha256": "1ca8033e7e1787bb91334d2dba085ed6da1a36415e06f553f3affefb65847379"
+          "bytes": 109069,
+          "sha256": "55a0bf6c69fec3eac47c8fcb33434a4ac7fe1da0725168202c52561eafb79698"
         }
       }
     },
@@ -283,7 +283,7 @@
         "json": {
           "path": "data/policy/indicator-policy.json",
           "bytes": 2735187,
-          "sha256": "f80667ee4e692a21e540e83b62d0e930f8bc7bc9304bbb566e411139bf64f9e1"
+          "sha256": "f415ac4630077497afcfb543de86d5b2a4dd62107929a4235e679db0f785d209"
         }
       }
     }
