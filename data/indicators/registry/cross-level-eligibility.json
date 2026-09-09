@@ -105414,6 +105414,38 @@
       "rule_basis": "unit.dimension=ratio"
     },
     {
+      "series_code": "KDA-TURNOUT-CON-032-2022-PRES",
+      "series_id": "919e721e-bff3-5993-8163-54b5eb09e7a7",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "indicator_id": "980e4da9-bca5-5897-84cb-9fa79c84c2ed",
+      "name": "Turnout, prior general elections",
+      "geography_id": "d39f303b-7165-5619-82b0-5b5aa998f870",
+      "geography_code": "KEN-C007-CON032",
+      "geography_level": "constituency",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "transformation": "level",
+      "aggregation": "",
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
+      "series_code": "KDA-TURNOUT-CON-033-2022-PRES",
+      "series_id": "5c8b8288-de7a-5731-88a0-b9e87abebbe8",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "indicator_id": "980e4da9-bca5-5897-84cb-9fa79c84c2ed",
+      "name": "Turnout, prior general elections",
+      "geography_id": "fa923aa0-5a27-544b-9d4a-8c64a2adfcc0",
+      "geography_code": "KEN-C008-CON033",
+      "geography_level": "constituency",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "transformation": "level",
+      "aggregation": "",
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
       "series_code": "KDA-TURNOUT-CON-038-2022-PRES",
       "series_id": "ac76e8e3-4322-569b-8efb-e8cf280d75cc",
       "indicator_code": "IND-TURNOUT-HISTORY",
