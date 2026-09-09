@@ -76,17 +76,18 @@
     "reconciles_total_valid_votes": true
   },
   "row_reconciliation": {
-    "governed_registered_voters": 88721,
-    "registered_voters_reconciles": true,
-    "ballots_cast": 67183,
-    "ballots_cast_lte_registered_voters": true,
-    "turnout_pct": 75.72389851331702,
-    "turnout_range_valid": true
+    "form_printed_registered_voters": 88721,
+    "governed_p23_registered_voters": 88665,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-179-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 56,
+    "denominator_conflict": true,
+    "promotion_blocked": true
   },
-  "verification_state": "verified",
-  "promotion_eligible": true,
-  "promotion_state": "explicit_materialization_authorized",
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
   "promotion_authorized_by_this_file": false,
-  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "note": "Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 66,854 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (88,721) does not exactly match the separately governed P23 registered-voter denominator for this constituency (88,665, sourced from the pre-election IEBC First Schedule gazette rather than the polling-day Form 34B). This was caught on a post-hoc cross-check against the canonical IND-REGISTERED-VOTERS series after this row had briefly been materialized in an earlier commit on this branch; that materialization has been reverted in a following corrective commit. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled.",
   "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
 }
