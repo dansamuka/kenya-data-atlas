@@ -1,0 +1,209 @@
+name: P23 Form 34B text-anchor recovery
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-form34b-text-anchor-recovery.yml
+      - scripts/p23/probe-form34b-text-anchor-recovery.py
+      - scripts/p23/validate-form34b-text-anchor-recovery.mjs
+      - scripts/p23/aggregate-form34b-text-anchor-recovery.py
+      - scripts/p23/validate-form34b-text-anchor-queue.mjs
+      - scripts/p23/probe-form34b-denominator-anchor-smoke.py
+      - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
+      - scripts/p23/materialize-form34b-source-manifest.py
+      - scripts/p23/validate-iebc-form34b-source-manifest.mjs
+      - scripts/p23/validate-form34b-extraction-contract.mjs
+      - data/p23/form34b-source-index-contract.json
+      - data/p23/form34b-extraction-contract.json
+      - data/p23/constituency-turnout-readiness-contract.json
+      - data/p23/form34b-*-source-verification.json
+      - data/indicators/registry/series.json
+      - data/indicators/registry/observations.json
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-form34b-text-anchor-recovery.yml
+      - scripts/p23/probe-form34b-text-anchor-recovery.py
+      - scripts/p23/validate-form34b-text-anchor-recovery.mjs
+      - scripts/p23/aggregate-form34b-text-anchor-recovery.py
+      - scripts/p23/validate-form34b-text-anchor-queue.mjs
+      - scripts/p23/probe-form34b-denominator-anchor-smoke.py
+      - scripts/p23/validate-form34b-denominator-anchor-smoke.mjs
+      - scripts/p23/materialize-form34b-source-manifest.py
+      - scripts/p23/validate-iebc-form34b-source-manifest.mjs
+      - scripts/p23/validate-form34b-extraction-contract.mjs
+      - data/p23/form34b-source-index-contract.json
+      - data/p23/form34b-extraction-contract.json
+      - data/p23/constituency-turnout-readiness-contract.json
+      - data/p23/form34b-*-source-verification.json
+      - data/indicators/registry/series.json
+      - data/indicators/registry/observations.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p23-form34b-text-anchor-recovery-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governed-recovery-baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate P23 source and extraction governance
+        run: node scripts/p23/validate-form34b-extraction-contract.mjs
+      - name: Materialize verified IEBC Form 34B locator manifest
+        run: python3 scripts/p23/materialize-form34b-source-manifest.py --output /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Validate source-reference manifest boundary
+        run: node scripts/p23/validate-iebc-form34b-source-manifest.mjs /tmp/iebc-2022-form34b-source-manifest.json
+      - name: Upload governed source manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-source-manifest
+          path: /tmp/iebc-2022-form34b-source-manifest.json
+          if-no-files-found: error
+          retention-days: 3
+
+  denominator-anchor-baseline:
+    name: Denominator baseline ${{ matrix.range }}
+    needs: governed-recovery-baseline
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        include:
+          - { range: rows-001-025, offset: 0, limit: 25 }
+          - { range: rows-026-050, offset: 25, limit: 25 }
+          - { range: rows-051-075, offset: 50, limit: 25 }
+          - { range: rows-076-100, offset: 75, limit: 25 }
+          - { range: rows-101-125, offset: 100, limit: 25 }
+          - { range: rows-126-150, offset: 125, limit: 25 }
+          - { range: rows-151-175, offset: 150, limit: 25 }
+          - { range: rows-176-200, offset: 175, limit: 25 }
+          - { range: rows-201-225, offset: 200, limit: 25 }
+          - { range: rows-226-250, offset: 225, limit: 25 }
+          - { range: rows-251-275, offset: 250, limit: 25 }
+          - { range: rows-276-290, offset: 275, limit: 15 }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF and OCR tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr python3-numpy
+      - name: Download governed source manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-source-manifest
+          path: /tmp/p23-form34b-text-anchor-source-manifest
+      - name: Reproduce governed denominator state for ${{ matrix.range }}
+        run: >-
+          python3 scripts/p23/probe-form34b-denominator-anchor-smoke.py
+          --manifest /tmp/p23-form34b-text-anchor-source-manifest/iebc-2022-form34b-source-manifest.json
+          --offset ${{ matrix.offset }}
+          --limit ${{ matrix.limit }}
+          --output /tmp/p23-form34b-denominator-${{ matrix.range }}.json
+          --context-dir /tmp/p23-form34b-denominator-${{ matrix.range }}-contexts
+      - name: Validate unchanged denominator-locator boundary
+        run: node scripts/p23/validate-form34b-denominator-anchor-smoke.mjs /tmp/p23-form34b-denominator-${{ matrix.range }}.json
+      - name: Upload denominator baseline shard
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-denominator-${{ matrix.range }}
+          path: /tmp/p23-form34b-denominator-${{ matrix.range }}.json
+          if-no-files-found: error
+          retention-days: 3
+
+  text-anchor-recovery:
+    name: Text-anchor recovery ${{ matrix.range }}
+    needs: [governed-recovery-baseline, denominator-anchor-baseline]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        include:
+          - { range: rows-001-025, offset: 0, limit: 25 }
+          - { range: rows-026-050, offset: 25, limit: 25 }
+          - { range: rows-051-075, offset: 50, limit: 25 }
+          - { range: rows-076-100, offset: 75, limit: 25 }
+          - { range: rows-101-125, offset: 100, limit: 25 }
+          - { range: rows-126-150, offset: 125, limit: 25 }
+          - { range: rows-151-175, offset: 150, limit: 25 }
+          - { range: rows-176-200, offset: 175, limit: 25 }
+          - { range: rows-201-225, offset: 200, limit: 25 }
+          - { range: rows-226-250, offset: 225, limit: 25 }
+          - { range: rows-251-275, offset: 250, limit: 25 }
+          - { range: rows-276-290, offset: 275, limit: 15 }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF and OCR tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr python3-numpy
+      - name: Download governed source manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-source-manifest
+          path: /tmp/p23-form34b-text-anchor-source-manifest
+      - name: Download corresponding denominator baseline
+        uses: actions/download-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-denominator-${{ matrix.range }}
+          path: /tmp/p23-form34b-text-anchor-denominator
+      - name: Run label-only second recovery lane for ${{ matrix.range }}
+        run: >-
+          python3 scripts/p23/probe-form34b-text-anchor-recovery.py
+          --manifest /tmp/p23-form34b-text-anchor-source-manifest/iebc-2022-form34b-source-manifest.json
+          --denominator-audit /tmp/p23-form34b-text-anchor-denominator/p23-form34b-denominator-${{ matrix.range }}.json
+          --offset ${{ matrix.offset }}
+          --limit ${{ matrix.limit }}
+          --output /tmp/p23-form34b-text-anchor-${{ matrix.range }}.json
+      - name: Validate label-only no-promotion boundary
+        run: >-
+          node scripts/p23/validate-form34b-text-anchor-recovery.mjs
+          /tmp/p23-form34b-text-anchor-${{ matrix.range }}.json
+          /tmp/p23-form34b-text-anchor-denominator/p23-form34b-denominator-${{ matrix.range }}.json
+      - name: Upload text-anchor recovery shard
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-recovery-${{ matrix.range }}
+          path: /tmp/p23-form34b-text-anchor-${{ matrix.range }}.json
+          if-no-files-found: error
+          retention-days: 7
+
+  aggregate-text-anchor-recovery:
+    name: Aggregate text-anchor recovery
+    needs: text-anchor-recovery
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all text-anchor recovery shards
+        uses: actions/download-artifact@v4
+        with:
+          pattern: p23-form34b-text-anchor-recovery-rows-*
+          path: /tmp/p23-form34b-text-anchor-recovery
+          merge-multiple: true
+      - name: Aggregate governed text-anchor audit and review queue
+        run: >-
+          python3 scripts/p23/aggregate-form34b-text-anchor-recovery.py
+          --input-dir /tmp/p23-form34b-text-anchor-recovery
+          --audit-output /tmp/p23-form34b-text-anchor-recovery-audit.json
+          --queue-output /tmp/p23-form34b-text-anchor-review-queue.json
+      - name: Validate aggregate review-only boundary
+        run: >-
+          node scripts/p23/validate-form34b-text-anchor-queue.mjs
+          /tmp/p23-form34b-text-anchor-recovery-audit.json
+          /tmp/p23-form34b-text-anchor-review-queue.json
+      - name: Upload governed text-anchor recovery packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-form34b-text-anchor-recovery-audit-and-review-queue
+          path: |
+            /tmp/p23-form34b-text-anchor-recovery-audit.json
+            /tmp/p23-form34b-text-anchor-review-queue.json
+          if-no-files-found: error
+          retention-days: 7
