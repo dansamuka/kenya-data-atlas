@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T6",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T7",
   "as_of": "2026-09-09",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
@@ -16,11 +16,19 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 38,
+    "verified_constituencies": 46,
     "verified_geo_codes": [
       "KEN-C001-CON001",
+      "KEN-C001-CON002",
+      "KEN-C001-CON004",
       "KEN-C001-CON005",
+      "KEN-C002-CON007",
+      "KEN-C002-CON008",
       "KEN-C002-CON010",
+      "KEN-C003-CON012",
+      "KEN-C003-CON013",
+      "KEN-C003-CON014",
+      "KEN-C003-CON015",
       "KEN-C004-CON020",
       "KEN-C007-CON028",
       "KEN-C008-CON038",
@@ -59,8 +67,16 @@
     ],
     "verified_constituency_codes": [
       1,
+      2,
+      4,
       5,
+      7,
+      8,
       10,
+      12,
+      13,
+      14,
+      15,
       20,
       28,
       38,
@@ -98,15 +114,17 @@
       286
     ],
     "newly_authorized_constituency_codes": [
-      10,
-      66,
-      80,
-      119,
-      248,
-      250
+      2,
+      4,
+      7,
+      8,
+      12,
+      13,
+      14,
+      15
     ],
-    "expected_p23_remaining_after_materialization": 252,
-    "expected_resolved_slots_after_materialization": 14032,
+    "expected_p23_remaining_after_materialization": 244,
+    "expected_resolved_slots_after_materialization": 14040,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -114,7 +132,8 @@
       "exact_completeness_delta",
       "full_validation_suite",
       "independent_geography_audit"
-    ]
+    ],
+    "materialization_note": "This tranche (Jomvu, Nyali, Msambweni, Lungalunga, Kilifi South, Kaloleni, Rabai, Ganze — all six Kilifi-area constituencies plus Jomvu and Nyali in Mombasa) was independently re-verified against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs during this session's review. Seven of the eight rows reconciled exactly against the official TOTAL row on first re-check. The Ganze evidence file as originally drafted misidentified page 3 (the agent/handover signature page) as the TOTAL-row page and recorded vote totals that were internally self-consistent but did not match the actual official page 2 TOTAL row; it was corrected in place from a fresh independent re-render and re-read of the same sha256-verified PDF before this tranche was materialized. No other row in this tranche required correction."
   },
   "canonical_rebuild_sync": {
     "state": "validated",
