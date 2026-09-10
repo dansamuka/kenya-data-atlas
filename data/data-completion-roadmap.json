@@ -281,7 +281,7 @@
     {
       "id": "P25",
       "title": "National Pulse and non-profile surface closure",
-      "status": "planned",
+      "status": "in_progress",
       "session_goal": "Close the final national placeholder and ensure every public non-profile surface uses explicit evidence states rather than unexplained blanks.",
       "outputs": [
         "national mobile-money series activation or governed replacement",
@@ -302,7 +302,31 @@
       "depends_on": [
         "P22",
         "P24"
-      ]
+      ],
+      "progress": {
+        "session_note": "P25 implementation resolves the final national slot with the Central Bank of Kenya National Payments System Mobile Payments table using the published agent cash-in/cash-out transaction-volume column, converted exactly from millions of transactions to transaction count. Monetary CICO value is retained only as source context and is not relabelled as volume. Compare, Rankings, CountyIQ, Evidence Hub, Opportunity Finder and place-profile null states were audited; CountyIQ and Opportunity Finder required targeted fixes while the other audited surfaces were already explicit about missing/empty states.",
+        "mobile_money_slot_resolved": true,
+        "semantic_definition": "CBK agent CICO transaction count; not monetary value and not a reconciled total across every mobile-money rail",
+        "ui_surfaces_audited": [
+          "compare",
+          "rankings",
+          "countyiq",
+          "evidence-hub",
+          "opportunity-finder",
+          "place-profile"
+        ],
+        "ui_surfaces_fixed": [
+          "countyiq",
+          "opportunity-finder"
+        ],
+        "ui_surfaces_already_correct": [
+          "compare",
+          "rankings",
+          "evidence-hub",
+          "place-profile"
+        ],
+        "phase_closure_note": "P24 has reached zero on the canonical completeness ledger. P25 is marked in_progress here until the corrected mobile-money build and full Atlas validation commit successfully; the final P25 reducer may then close the phase."
+      }
     },
     {
       "id": "P26",
