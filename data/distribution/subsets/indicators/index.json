@@ -668,8 +668,8 @@
     "indicator_code": "IND-TURNOUT-HISTORY",
     "name": "Turnout, prior general elections",
     "path": "data/distribution/subsets/indicators/IND-TURNOUT-HISTORY.json",
-    "series_count": 69,
-    "observation_count": 69
+    "series_count": 73,
+    "observation_count": 73
   },
   {
     "indicator_code": "IND-UNEMPLOYMENT-MODELLED",
