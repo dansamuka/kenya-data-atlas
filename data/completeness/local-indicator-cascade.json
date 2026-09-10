@@ -373,9 +373,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's 2019 KPHC Analytical Report on Disability, Table 2.13, published directly for all 47 counties only. The Washington Group Short Set disability estimate is not tabulated below county in that report, and no current-290-constituency table or administrative-unit crosswalk exists, so the county figure cannot be inherited or recomputed for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -388,9 +388,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS's 2019 KPHC Analytical Report on Disability, Table 2.13 is a county-only table. Since the source does not reach even the current 290 constituencies (see the constituency-level closure for this indicator), it self-evidently does not reach the finer 1,450-ward geography, and no ward-domain disability estimate or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -403,9 +403,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "IND-ELECTRICITY-ACCESS is a governed P20 profile-slot alias of the already-published KNBS 2023/24 Kenya Housing Survey Table 5.11 main-grid-electricity observation (identical source table, series and value basis as IND-MAIN-GRID-ELECTRICITY, which is already closed governed_unavailable at constituency level). The underlying KHS is a county-domain household survey; no compatible constituency-domain estimate is published, so this alias inherits the identical closure rather than being independently re-derived or copied downward.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -418,9 +418,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "As the P20 alias of IND-MAIN-GRID-ELECTRICITY (identical KHS Table 5.11 source, already closed governed_unavailable at ward level), this indicator carries the same ward-domain publication gap: the 2023/24 Kenya Housing Survey is not designed as a ward-domain estimate and no compatible ward table or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -463,9 +463,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "EPRA's monthly maximum retail petroleum price order gazettes prices only for a limited set of representative marketing towns (the Atlas already uses one representative town per county, e.g. Kitale for Trans Nzoia, explicitly flagged in the observation notes as 'not a county average'). EPRA does not gazette a price for each of the 290 constituencies, and most constituencies contain no gazetted pricing town at all, so assigning the county's representative-town price to every constituency in it (or to any other constituency) would fabricate constituency-level precision the regulator itself does not publish.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -478,9 +478,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The same EPRA representative-town pricing gap that prevents constituency-level publication applies a fortiori at ward level: EPRA gazettes far fewer pricing towns than the 1,450 current wards, so no defensible ward assignment exists without fabricating precision the regulator does not publish.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -523,9 +523,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical Atlas indicator is the dated August-September 2023 Ministry of Health Health Facility Census assessment count (data/p20/source/health-facility-density-2023.json), reviewed for child-domain feasibility in data/p23x/health-facility-child-domain-review.json. The live KMHFR registry exposes constituency-labelled facility records but is a current/live system, not the fixed 2023 census-assessment universe, and substituting a live registry count for the dated census count would misstate the indicator. No official dated facility-level 2023 census extract or child-domain tabulation has yet been located, so no defensible constituency value can be produced without first resolving the open source-semantics reconciliation (14,883 vs 12,384 facilities) recorded in that review.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -538,9 +538,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "As at constituency level, the canonical 2023 Health Facility Census assessment count has no dated facility-level extract or official ward tabulation available, and a live KMHFR registry count cannot be substituted for the fixed dated census universe without misstating the indicator, per data/p23x/health-facility-child-domain-review.json.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -583,9 +583,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "data/p23x/health-facility-child-domain-review.json identifies the live Ministry of Health KMHFR registry (which exposes constituency and ward fields) as a genuine 'direct_official_aggregation_candidate' for an independently versioned current facility-stock series, distinct from the 2023 census-assessed count. That materialization has not yet been performed: it requires a reproducible dated registry snapshot plus verified operational-status, duplicate and geography-reconciliation controls before publication, none of which has been built or run in this session. Publishing an unaudited scrape now would risk exactly the kind of unverified duplicate/closed-facility inclusion the review's prohibited-methods list rules out, so this indicator remains governed_unavailable pending that pipeline rather than being force-promoted.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -598,9 +598,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "As at constituency level, KMHFR is a genuine ward-level aggregation candidate per data/p23x/health-facility-child-domain-review.json, but no reproducible dated snapshot with verified status/duplicate/geography controls has been built or run in this session, so no ward value can be defensibly published yet.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -673,9 +673,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS 2019 KPHC Volume IV, Table 2.36, published directly for all 47 counties only. No current-290-constituency table or administrative-unit-to-constituency crosswalk is published for household car ownership, so the county percentage cannot be inherited or recomputed.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -688,9 +688,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS 2019 KPHC Volume IV, Table 2.36 is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either, and no ward-domain table or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -703,9 +703,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS 2019 KPHC Volume IV, Table 2.36, published directly for all 47 counties only. No current-290-constituency table or administrative-unit-to-constituency crosswalk is published for household motorcycle ownership, so the county percentage cannot be inherited or recomputed.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -718,9 +718,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS 2019 KPHC Volume IV, Table 2.36 is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either, and no ward-domain table or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -733,9 +733,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS's 2019 KPHC publication does not publish average household size as a direct current-290-constituency table; county/sub-county values are not inherited, and no authoritative 2019 administrative-unit-to-2012-01-constituency crosswalk exists. See data/p23/constituency-census-closure-contract.json, which already closes this indicator at constituency level; this entry brings that closure into the P23X cascade ledger.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -748,9 +748,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The 2019 KPHC series does not publish average household size below the sub-location, which is not coterminous with the current 1,450 IEBC county assembly wards, and no ward-delimitation population/household product was ever gazetted (the same publication and crosswalk gap already closed for IND-POPULATION in data/p24/ward-census-closure-contract.json applies identically to household size, a table drawn from the same KPHC administrative-unit hierarchy).",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -763,9 +763,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS/ICF KDHS 2022 Table 2.21.3C, a household-survey percentage published directly for all 47 counties. KDHS 2022's sample design supports county-domain estimates only; no official current-constituency-domain estimate with compatible weighting is published, so the county percentage cannot be inherited or naively reweighted, consistent with the other KDHS-sourced closures already in this ledger.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -778,9 +778,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KDHS 2022's sample design is not a ward-domain survey; since it does not support even a current-constituency-domain estimate for this measure (see the constituency-level closure), it self-evidently cannot support a ward estimate, and copying or downscaling the county percentage would create unsupported local precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -793,9 +793,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is derived transparently for all 47 counties from KNBS 2019 KPHC Volume IV Table 2.13 plus the KPHC Atlas H.4 durability definition, and is explicitly documented as 'county only; no lower-level inheritance'. No current-290-constituency wall-material table or crosswalk is published, so the county-level derivation cannot be repeated or inherited for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -808,9 +808,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS 2019 KPHC Volume IV Table 2.13 is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either, and no ward-domain table or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -823,9 +823,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's 2021 Kenya Time Use Survey, Table 3.6b, a household-survey percentage published at county domain. The Time Use Survey's sample design supports county-level estimates only; no current-constituency-domain estimate with compatible weighting is published, so the county percentage cannot be inherited or recomputed for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -838,9 +838,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The 2021 Kenya Time Use Survey's sample design is not a ward-domain survey; since it does not support even a current-constituency-domain estimate for this measure (see the constituency-level closure), it self-evidently cannot support a ward estimate, and copying or downscaling the county percentage would create unsupported local precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -883,9 +883,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Ministry of Health SARA Table 18, a facility-sample survey (not a facility census) published with county-level facility denominators. SARA's sampled-facility design is not built to support valid current-290-constituency estimates; the per-county facility sample sizes are too small to disaggregate to constituency without manufacturing unsupported precision, so the county percentage cannot be inherited or recomputed for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -898,9 +898,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "SARA's sampled-facility design does not support even a current-constituency-domain estimate for this measure (see the constituency-level closure); it self-evidently cannot support a ward-domain estimate, and downscaling the county percentage would create unsupported local precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -943,9 +943,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's 2019 KPHC Analytical Report on Labour Force, Table 3.19, published directly for all 47 counties only. No current-290-constituency labour-force-participation table or administrative-unit crosswalk is published, so the county rate cannot be inherited or recomputed for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -958,9 +958,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KPHC Analytical Report on Labour Force, Table 3.19 is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either, and no ward-domain table or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1063,9 +1063,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's National Agriculture Production Report 2024, Annex 1 — 'Area and Production of Maize by County, 2019-2023' — a table explicitly published by county only. No current-290-constituency maize-area table is published and no official sub-county agricultural production breakdown exists in this source, so the county figure cannot be inherited or disaggregated for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1078,9 +1078,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Annex 1 of the National Agriculture Production Report 2024 is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1093,9 +1093,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's National Agriculture Production Report 2024, Annex 1 — 'Area and Production of Maize by County, 2019-2023' — a table explicitly published by county only. No current-290-constituency maize-production table is published and no official sub-county agricultural production breakdown exists in this source, so the county figure cannot be inherited or disaggregated for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1108,9 +1108,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Annex 1 of the National Agriculture Production Report 2024 is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1123,9 +1123,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "IND-MAIZE-YIELD is an Atlas-derived ratio of IND-MAIZE-PRODUCTION and IND-MAIZE-AREA for the same official county row in National Agriculture Production Report 2024 Annex 1. Since neither input is published or derivable at constituency level (see their constituency-level closures above), the ratio cannot be computed for constituencies without a matched constituency numerator and denominator, which the source does not provide.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1138,9 +1138,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "As at constituency level, this Atlas-derived ratio has no matched ward-level numerator and denominator available from National Agriculture Production Report 2024 Annex 1, which is county-only.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1243,9 +1243,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The Atlas's governed source for this indicator is Table 4a of KNBS's 2013 Statistical Abstract, which publishes 2009 census population by county only (the 47 county values reconcile exactly to the published national total). A separate 2009-census constituency table exists in different, superseded KNBS volumes, but it reflects the pre-2012 210-constituency configuration; the 2012 boundary-delimitation exercise redrew constituencies rather than simply subdividing them, and no authoritative crosswalk from the 210-constituency 2009 configuration to the current 290 constituencies is published. Neither the governed county source nor the superseded constituency table can be used to populate the current 290-constituency geography without fabricating a correspondence the source does not establish.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1258,9 +1258,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The governed county source for this indicator (2013 Statistical Abstract Table 4a) does not reach constituency level (see the constituency-level closure for this indicator), and county assembly wards did not exist as a delimited geography at the time of the 2009 census, so no ward-domain 2009 population figure or crosswalk can exist.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1273,9 +1273,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "KNBS's 2019 KPHC publication does not publish population as a direct current-290-constituency table; its finest tabulated administrative tier is the sub-location/sub-county, a different, non-coterminous geography, and the legacy KNBS constituency table predates the current 2012-01 configuration with no authoritative crosswalk. See data/p23/constituency-census-closure-contract.json, which already closes this indicator at constituency level; this entry brings that closure into the P23X cascade ledger.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1303,9 +1303,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's Kenya Poverty Report 2022, based on the Kenya Continuous Household Survey (KCHS). The KCHS sample design supports exactly 50 estimation domains — national, urban, rural and the 47 counties — and does not include constituency as an estimation domain; the report's Table 4.4 / Annex Table E.2 publishes county estimates with standard errors only. Producing a constituency figure would require either an unsupported small-area model outside this design or copying the county rate downward, both of which the cascade contract prohibits.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1318,9 +1318,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The KCHS sample design's 50 estimation domains (national, urban, rural, 47 counties) do not include constituency or ward; since the survey does not support even a constituency-domain estimate (see the constituency-level closure), it self-evidently cannot support a ward-domain estimate.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1333,9 +1333,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Appendix 4.5 of the Report of the Presidential Working Party on Education Reform (2023), titled 'Current Teacher Establishment in Public Primary Schools, 2023 Showing Shortages by County' — a county-only table (47 rows). TSC's underlying establishment database is recorded at institution level, but no current-290-constituency teacher-establishment table has been published by this or any other primary official source located, so the county figure cannot be inherited or disaggregated for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1348,9 +1348,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Appendix 4.5 of the 2023 Presidential Working Party report is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1363,9 +1363,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Appendix 4.5 of the Report of the Presidential Working Party on Education Reform (2023), a county-only table (47 rows) of public primary school counts. No current-290-constituency public-primary-school count has been published by this or any other primary official source located, so the county figure cannot be inherited or disaggregated for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1378,9 +1378,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Appendix 4.5 of the 2023 Presidential Working Party report is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1393,9 +1393,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Appendix 4.6 of the Report of the Presidential Working Party on Education Reform (2023), a county-only table (47 rows) of public secondary school counts. No current-290-constituency public-secondary-school count has been published by this or any other primary official source located, so the county figure cannot be inherited or disaggregated for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1408,9 +1408,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Appendix 4.6 of the 2023 Presidential Working Party report is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1453,9 +1453,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Table 20.5 of KNBS's 2025 Economic Survey, a KIHBS-derived county-level rent-to-expenditure percentage. No current-290-constituency rent-burden table is published, and the survey's household sample is not designed to support valid constituency-domain estimates, so the county figure cannot be inherited or recomputed for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1468,9 +1468,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Table 20.5 of the 2025 Economic Survey is a county-only table whose underlying household sample does not support even constituency-domain estimates (see the constituency-level closure); it self-evidently cannot support a ward-domain estimate.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1483,9 +1483,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Appendix 2.2 of KNBS's 2019 KPHC Analytical Report on Education and Training, published directly for all 47 counties only. No current-290-constituency school-attendance table or administrative-unit crosswalk is published, so the county percentage cannot be inherited or recomputed for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1498,9 +1498,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Appendix 2.2 of the KPHC Analytical Report on Education and Training is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either, and no ward-domain table or crosswalk exists.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1513,9 +1513,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is Appendix 4.6 of the Report of the Presidential Working Party on Education Reform (2023), titled 'Public Secondary School Teacher Establishment, TSC 2023' — a county-only table (47 rows). No current-290-constituency teacher-establishment table has been published by this or any other primary official source located, so the county figure cannot be inherited or disaggregated for constituencies.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1528,9 +1528,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Appendix 4.6 of the 2023 Presidential Working Party report is a county-only table; since it does not reach the current 290 constituencies (see the constituency-level closure for this indicator), it does not reach the finer 1,450-ward geography either.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1603,9 +1603,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The canonical value is KNBS's 2023/24 Kenya Housing Survey, Table 5.14, a household-survey percentage of the improved-drinking-water-source subtotal published for all 47 counties, with the source explicitly noting county values are 'never inherited to constituencies or wards'. The KHS sample design supports county-domain estimates only, so no constituency figure can be produced without fabricating precision.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -1618,9 +1618,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "The 2023/24 Kenya Housing Survey's sample design is not a ward-domain survey; since it does not support even a constituency-domain estimate for this measure (see the constituency-level closure), it self-evidently cannot support a ward estimate.",
+      "audit_status": "decided",
       "inherited_records": 0
     }
   ]
