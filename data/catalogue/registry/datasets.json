@@ -1037,5 +1037,20 @@
     "publication_status": "published",
     "methodology_url": "docs/LOCAL-INDICATOR-CASCADE-CONTRACT.md",
     "known_limitations": "Ten Mandera East/Lafey wards are withheld: the Gazette schedule for that constituency pair does not reconcile one-to-one with the canonical 2012-vintage ward roster (same conflict already held for IND-REGISTERED-VOTERS). Seven further wards had their 9 August 2022 poll postponed and carry no declared winner in this notice. Point-in-time roster; subsequent by-elections or vacancies are not reflected unless separately ingested."
+  },
+  {
+    "dataset_id": "baa1cdd3-0f99-5e20-a5b2-992700e83f1e",
+    "dataset_code": "DS-CBK-MOBILE-MONEY-CICO-2026-P25",
+    "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",
+    "title": "CBK National Payments System — Mobile money agent cash-in/cash-out (CICO), national monthly",
+    "description": "National monthly value of mobile money agent cash-in/cash-out (CICO) transactions, published directly by the Central Bank of Kenya on its Mobile Payments statistics table.",
+    "topic": "Financial inclusion / payments",
+    "geographic_coverage": [
+      "country"
+    ],
+    "frequency": "monthly",
+    "publication_status": "published",
+    "methodology_url": "https://www.centralbank.go.ke/national-payments-system/mobile-payments/",
+    "known_limitations": "This series is CBK's published agent cash-in/cash-out (CICO) transaction value only. It is CBK's own headline national mobile-money activity metric, but it is not a reconciled economy-wide total across every mobile-money rail (person-to-person transfers, paybill, till/merchant payments not routed through agent CICO are excluded). The Atlas does not relabel it as \"total mobile money transactions\" and does not combine it with unrelated CBK payment-system tables to manufacture a broader total. The source is a live, continuously-updated statistics table rather than a static report; figures are captured and dated at ingestion time."
   }
 ]

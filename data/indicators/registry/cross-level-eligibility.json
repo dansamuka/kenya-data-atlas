@@ -83542,6 +83542,22 @@
       "rule_basis": "raw count/currency/other total — same-level only"
     },
     {
+      "series_code": "KDA-P25-MOBILE-MONEY-VOLUME-KEN",
+      "series_id": "3de8b51c-fe55-5347-903d-9bf5fafcd7d8",
+      "indicator_code": "IND-MOBILE-MONEY-VOLUME",
+      "indicator_id": "2b06830e-010c-5e49-9385-806f40105fa5",
+      "name": "Mobile money transaction volume",
+      "geography_id": "ecf8c770-9d71-5fcf-91e7-39713e391479",
+      "geography_code": "KEN",
+      "geography_level": "country",
+      "unit_code": "kes_million",
+      "unit_dimension": "currency",
+      "transformation": "level",
+      "aggregation": "",
+      "cross_level_eligible": false,
+      "rule_basis": "raw count/currency/other total — same-level only"
+    },
+    {
       "series_code": "KDA-P20-KDHS-CONTRACEPTIVE-KEN-C001",
       "series_id": "fa2088c8-8df2-55b8-b41f-5fe3327dbff1",
       "indicator_code": "IND-CONTRACEPTIVE-USE",
@@ -130130,6 +130146,18 @@
       "unit_dimension": "category",
       "available_levels": [
         "constituency"
+      ],
+      "cross_level_eligible": false,
+      "rule_basis": "one or more published series are same-level only; consult series rows for the operative decision"
+    },
+    {
+      "indicator_code": "IND-MOBILE-MONEY-VOLUME",
+      "indicator_id": "2b06830e-010c-5e49-9385-806f40105fa5",
+      "name": "Mobile money transaction volume",
+      "unit_code": "kes_million",
+      "unit_dimension": "currency",
+      "available_levels": [
+        "country"
       ],
       "cross_level_eligible": false,
       "rule_basis": "one or more published series are same-level only; consult series rows for the operative decision"
