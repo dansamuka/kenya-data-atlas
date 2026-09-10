@@ -29,7 +29,7 @@ assert(summary.resolved_slots+summary.unresolved_slots===summary.total_slots,'re
 assert(summary.unknown_missing===0,'every slot must be classified; unknown_missing must be zero');
 
 const resolvedEvidence=new Set(['published_direct','published_derived','published_modelled','external_verified']);
-const closureStatuses=new Set(['official_unavailable','retired_replaced']);
+const closureStatuses=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
 const allowed=new Set([...resolvedEvidence,...closureStatuses,'active_missing','sourced_uningested','planned_unresolved']);
 for(const row of ledger.rows){
   assert(allowed.has(row.status),`${row.slot_key} has unsupported status ${row.status}`);
@@ -53,7 +53,7 @@ for(const row of ledger.rows){
 
 const configured=[];
 for(const state of evidenceStates.states||[])for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configured.push({...state,geo_code:geoCode});
-const authorizedExplicit=new Set(['official_unavailable','retired_replaced']);
+const authorizedExplicit=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
 for(const state of configured){
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
   const matches=ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code);
@@ -75,17 +75,23 @@ const p22Codes=new Set(['IND-DROUGHT-EARLY-WARNING','IND-FOOD-SECURITY-PHASE','I
 const p23CensusCodes=new Set(['IND-POPULATION','IND-HOUSEHOLD-SIZE']);
 const p23EvidenceGapCodes=new Set(['IND-NG-CDF-UTILIZATION','IND-HEALTH-FACILITY-DENSITY']);
 const p24CensusCodes=new Set(['IND-POPULATION']);
+const p24WardEvidenceGapCodes=new Set(['IND-HEALTH-FACILITY-DENSITY']);
+const p24WardTurnoutCodes=new Set(['IND-TURNOUT-HISTORY']);
 const p22Unavailable=officialUnavailable.filter(s=>p22Codes.has(s.indicator_code));
 const p23CensusUnavailable=officialUnavailable.filter(s=>s.level==='constituency'&&p23CensusCodes.has(s.indicator_code));
 const p23EvidenceGapUnavailable=officialUnavailable.filter(s=>s.level==='constituency'&&p23EvidenceGapCodes.has(s.indicator_code));
 const p24CensusUnavailable=officialUnavailable.filter(s=>s.level==='ward'&&p24CensusCodes.has(s.indicator_code));
-const legacyUnavailable=officialUnavailable.filter(s=>!p22Codes.has(s.indicator_code)&&!(s.level==='constituency'&&(p23CensusCodes.has(s.indicator_code)||p23EvidenceGapCodes.has(s.indicator_code)))&&!(s.level==='ward'&&p24CensusCodes.has(s.indicator_code)));
+const p24WardEvidenceGapUnavailable=officialUnavailable.filter(s=>s.level==='ward'&&p24WardEvidenceGapCodes.has(s.indicator_code));
+const p24WardTurnoutUnavailable=officialUnavailable.filter(s=>s.level==='ward'&&p24WardTurnoutCodes.has(s.indicator_code));
+const legacyUnavailable=officialUnavailable.filter(s=>!p22Codes.has(s.indicator_code)&&!(s.level==='constituency'&&(p23CensusCodes.has(s.indicator_code)||p23EvidenceGapCodes.has(s.indicator_code)))&&!(s.level==='ward'&&(p24CensusCodes.has(s.indicator_code)||p24WardEvidenceGapCodes.has(s.indicator_code)||p24WardTurnoutCodes.has(s.indicator_code))));
 assert(legacyUnavailable.length===48,`pre-P22/P23 official-unavailable inventory must remain 48 states, got ${legacyUnavailable.length}`);
 assert(p22Unavailable.length===66,`P22 terminal snapshot must contribute exactly 66 governed official-unavailable states, got ${p22Unavailable.length}`);
 assert(p23CensusUnavailable.length===580,`P23 census publication closure must contribute exactly 580 geography/indicator evidence states, got ${p23CensusUnavailable.length}`);
 assert(p23EvidenceGapUnavailable.length===580,`P23 utilisation/density closure must contribute exactly 580 geography/indicator evidence states, got ${p23EvidenceGapUnavailable.length}`);
 assert(p24CensusUnavailable.length===1450,`P24 ward census publication closure must contribute exactly 1,450 geography/indicator evidence states, got ${p24CensusUnavailable.length}`);
-assert(officialUnavailable.length===2724,`official-unavailable evidence inventory must reconcile 48 legacy + 66 P22 + 580 P23 census + 580 P23 evidence gaps + 1450 P24 ward census = 2724, got ${officialUnavailable.length}`);
+assert(p24WardEvidenceGapUnavailable.length===1450,`P24 ward density closure must contribute exactly 1,450 geography/indicator evidence states, got ${p24WardEvidenceGapUnavailable.length}`);
+assert(p24WardTurnoutUnavailable.length===1450,`P24 ward turnout closure must contribute exactly 1,450 governed official-unavailable states, got ${p24WardTurnoutUnavailable.length}`);
+assert(officialUnavailable.length===5624,`official-unavailable evidence inventory must reconcile 48 legacy + 66 P22 + 580 P23 census + 580 P23 evidence gaps + 1450 P24 ward census + 1450 P24 ward evidence gaps + 1450 P24 ward turnout = 5624, got ${officialUnavailable.length}`);
 assert(p22Unavailable.every(s=>s.as_of==='2026-09-01'&&s.evidence_constraint==='current_observation_unavailable_under_p22_contract'), 'P22 unavailable states must retain snapshot date and evidence-constraint marker');
 assert(p22Unavailable.every(s=>String(s.refresh_trigger||'').length>0),'P22 unavailable states must retain refresh triggers');
 assert(p23CensusUnavailable.every(s=>s.as_of==='2026-09-02'&&s.evidence_constraint==='official_publication_not_available_at_current_290_constituency_boundary'),'P23 census unavailable states must retain boundary-publication evidence constraint');
@@ -94,6 +100,25 @@ assert(p23EvidenceGapUnavailable.every(s=>s.as_of==='2026-09-02'&&String(s.evide
 assert(p23EvidenceGapUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P23 utilisation/density states must retain refresh triggers');
 assert(p24CensusUnavailable.every(s=>s.as_of==='2026-09-08'&&s.evidence_constraint==='official_publication_not_available_at_current_1450_ward_boundary'),'P24 ward census unavailable states must retain boundary-publication evidence constraint');
 assert(p24CensusUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward census unavailable states must retain refresh triggers');
+assert(p24WardEvidenceGapUnavailable.every(s=>s.as_of==='2026-09-08'&&String(s.evidence_constraint||'').length>0),'P24 ward density states must retain snapshot date and evidence constraint');
+assert(p24WardEvidenceGapUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward density states must retain refresh triggers');
+assert(p24WardTurnoutUnavailable.every(s=>s.as_of==='2026-09-08'&&String(s.evidence_constraint||'').length>0),'P24 ward turnout states must retain snapshot date and evidence constraint');
+assert(p24WardTurnoutUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward turnout states must retain refresh triggers');
+
+const notApplicable=configured.filter(s=>s.status==='not_applicable');
+const p24WardFundNotApplicable=notApplicable.filter(s=>s.level==='ward'&&s.indicator_code==='IND-WARD-FUND-ALLOCATION');
+assert(p24WardFundNotApplicable.length===1450,`P24 ward-fund allocation closure must contribute exactly 1,450 governed not_applicable states, got ${p24WardFundNotApplicable.length}`);
+assert(notApplicable.length===1450,`not_applicable evidence inventory must currently equal the P24 ward-fund closure (1,450), got ${notApplicable.length}`);
+assert(p24WardFundNotApplicable.every(s=>s.as_of&&s.evidence_constraint==='no_uniform_official_national_ward_fund_programme'),'P24 ward-fund not_applicable states must retain snapshot date and evidence-constraint marker');
+assert(p24WardFundNotApplicable.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward-fund not_applicable states must retain refresh triggers');
+
+const boundaryUnresolved=configured.filter(s=>s.status==='boundary_unresolved');
+const p24WardVoterBoundaryUnresolved=boundaryUnresolved.filter(s=>s.level==='ward'&&s.indicator_code==='IND-REGISTERED-VOTERS');
+assert(p24WardVoterBoundaryUnresolved.length===10,`P24 Mandera East/Lafey ward voter closure must contribute exactly 10 governed boundary_unresolved states, got ${p24WardVoterBoundaryUnresolved.length}`);
+assert(boundaryUnresolved.length===10,`boundary_unresolved evidence inventory must currently equal the P24 Mandera East/Lafey ward voter closure (10), got ${boundaryUnresolved.length}`);
+assert(p24WardVoterBoundaryUnresolved.every(s=>s.geo_code.startsWith('KEN-C009-CON043')||s.geo_code.startsWith('KEN-C009-CON044')),'P24 ward voter boundary hold must remain scoped to Mandera East/Lafey');
+assert(p24WardVoterBoundaryUnresolved.every(s=>s.as_of&&s.evidence_constraint==='ward_boundary_spatial_hold_unresolved'),'P24 ward voter boundary_unresolved states must retain snapshot date and evidence-constraint marker');
+assert(p24WardVoterBoundaryUnresolved.every(s=>String(s.refresh_trigger||'').length>0),'P24 ward voter boundary_unresolved states must retain refresh triggers');
 
 // The canonical generated indicator registry is authoritative. The UI taxonomy may
 // enrich missing metadata, but it must never downgrade an already-active indicator
@@ -104,5 +129,6 @@ assert(!profile.includes("i.lifecycle_status=d.status||i.lifecycle_status||'acti
 console.log(`P18_COMPLETENESS_VALIDATE_OK slots=${summary.total_slots} resolved=${summary.resolved_slots} unresolved=${summary.unresolved_slots}`);
 console.log(`P18_NO_UNKNOWN_BLANKS_OK unknown=${summary.unknown_missing}`);
 console.log(`P18_GOVERNED_CLOSURE_STATES_OK configured=${configured.length} unavailable=${officialUnavailable.length} retired_replaced=${configured.filter(s=>s.status==='retired_replaced').length}`);
-console.log(`P18_P22_P23_P24_UNAVAILABLE_RECONCILIATION_OK legacy=${legacyUnavailable.length} p22=${p22Unavailable.length} p23_census=${p23CensusUnavailable.length} p23_evidence_gaps=${p23EvidenceGapUnavailable.length} p24_ward_census=${p24CensusUnavailable.length} total=${officialUnavailable.length}`);
+console.log(`P18_P22_P23_P24_UNAVAILABLE_RECONCILIATION_OK legacy=${legacyUnavailable.length} p22=${p22Unavailable.length} p23_census=${p23CensusUnavailable.length} p23_evidence_gaps=${p23EvidenceGapUnavailable.length} p24_ward_census=${p24CensusUnavailable.length} p24_ward_evidence_gaps=${p24WardEvidenceGapUnavailable.length} p24_ward_turnout=${p24WardTurnoutUnavailable.length} total=${officialUnavailable.length}`);
+console.log(`P18_P24_CLOSURE_RECONCILIATION_OK not_applicable=${notApplicable.length} boundary_unresolved=${boundaryUnresolved.length}`);
 console.log('P18_CANONICAL_LIFECYCLE_AUTHORITY_OK');

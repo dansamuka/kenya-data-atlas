@@ -289,7 +289,7 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 
 ## P24 — Ward layer completion
 
-**Status: planned.**
+**Status: in progress.**
 
 **Goal:** Resolve the remaining ward-level surface through national crosswalks, representation/election data and controlled spatial aggregation.
 
@@ -301,7 +301,9 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 - conditional ward-fund treatment;
 - preservation of known boundary holds.
 
-**Queue:** **13,050** remaining slot instances.
+**Queue:** **13,050** remaining slot instances at the historical P24 baseline.
+
+**Remaining queue after the ward-census, ward-fund-allocation and ward-voters-boundary-hold closures:** **4,350**, entirely within three still-unresolved 1,450-ward families (MCA identity, ward election-turnout history, ward health-facility density).
 
 **Acceptance**
 - all 1,450 statistical wards remain represented;
@@ -309,6 +311,8 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 - boundary mismatches are explicit;
 - non-uniform ward-fund programmes are marked not applicable rather than fabricated;
 - Mandera East/Lafey spatial constraints remain transparent until genuinely resolved.
+
+**P24 tranche — ward-fund allocation closure and the Mandera East/Lafey ward-voter boundary hold:** research confirmed Kenya has no uniform official national ward-level development-fund programme comparable to NG-CDF. The National Government Constituencies Development Fund Act, 2015 (as amended in 2022/2023) allocates and administers the Fund per constituency — one national formula, one committee, per constituency — with no ward-level allocation. Several counties run their own county-specific "Ward Development Fund" or "Ward Fund" programme under separate County Assembly Appropriation/Revenue Allocation Acts (for example Nairobi City County, Kiambu County and Kakamega County), but these differ in amount, formula, fiscal year and legal basis, and are not present in all 47 counties; several are themselves the subject of Controller of Budget/legality disputes over MCA involvement in project management. A national County Wards (Equitable Development) Bill that would create one uniform ward fund remains before the Senate (Bill No. 20 of 2024) and is not enacted. Because no single official, uniform, nationally comparable programme exists, all 1,450 `IND-WARD-FUND-ALLOCATION` ward slots are closed `not_applicable` under `data/p24/ward-fund-allocation-closure-contract.json` rather than divided from a constituency/county total or approximated from a subset of counties. Separately, the ten already-documented Mandera East/Lafey `IND-REGISTERED-VOTERS` ward slots (30 rendered rows across the overview/people/representation tabs) are formally closed `boundary_unresolved` under `data/p24/ward-voters-boundary-hold-contract.json`, citing the same spatial hold preserved through P23A/P23X ward-voter materialisation: the ten official IEBC CAW rows remain correctly included in the Mandera East/Lafey constituency totals but are not force-matched, interpolated or split across ward polygons that cannot yet be safely and uniquely crosswalked. This tranche resolves **1,480** P24 rows. Combined with the separately merged ward-census publication-gap closure (`data/p24/ward-census-closure-contract.json`, 1,450 rows), **4,350** P24 rows now remain, all concentrated in three still-unresolved 1,450-ward families: MCA identity, ward election-turnout history, and ward health-facility density.
 
 ---
 
@@ -382,3 +386,6 @@ The next implementation instructions are:
 
 
 **P22 terminal snapshot — evidence-constrained completion:** as of **1 September 2026**, all **66** governed ASAL resilience slots are resolved through explicit evidence states rather than fabricated current values. The 22 whole-county eligibility set remains fixed and Nyeri/Kieni remains partial/excluded. NDMA June 2026 county drought bulletins are stale under the two-month freshness tolerance; the officially listed 2026 Long Rains Assessment is not promoted until its exact county classification payload and validity intervals are deterministically resolved; and KMD August 2026 products do not directly publish the exact governed 22-county numeric rainfall/temperature anomaly series. P22 therefore closes with **0 current numeric/categorical promotions and 66 evidence-constrained official-unavailable states**, each carrying a refresh trigger. **P22 queue: 0. P22 complete.**
+
+
+**P24 ward-turnout-history closure — governed_unavailable:** as of **8 September 2026**, all **1,450** ward `IND-TURNOUT-HISTORY` slots are closed as governed `official_unavailable` rather than forced. Research confirmed no official body (IEBC or otherwise) publishes a single already-aggregated, citable ward-level turnout table; the IEBC Result Forms Portal exposes only individual scanned per-polling-station/per-ward form images (Form 34A, Form 36B), the published registered-voters-per-ward table carries no votes-cast figures, the 2022 Post-Election Evaluation Report is national-level narrative only, and third-party sites re-publish the same raw IEBC form images rather than an independent official aggregate. Constituency-level turnout is already resolved via the source-verified Form 34B pipeline in P23; replicating that same verification-grade extraction at ward granularity (1,450 units, roughly five times the constituency count, against Form 34A or Form 36B source documents) is a distinct, dedicated future programme of comparable-or-greater scope and is not attempted in this session. No constituency turnout value is copied down to any ward, and no registered-voter-share or other proxy estimate is used. Each closure carries an explicit refresh trigger. See `data/p24/ward-turnout-history-unavailable-contract.json` for the full research log and reasoning. **Remaining P24 queue after this closure: 11600 slot instances across other ward families.**

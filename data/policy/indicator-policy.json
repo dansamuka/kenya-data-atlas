@@ -3553,7 +3553,7 @@
     {
       "indicator_id": "2b654f2f-26dc-5b52-864d-5d7eeee14965",
       "name": "Ward-level development fund allocation",
-      "lifecycle_status": "planned",
+      "lifecycle_status": "sourced",
       "policy_version": "P12-policy-v1",
       "indicator_code": "IND-WARD-FUND-ALLOCATION",
       "domain": "governance",
