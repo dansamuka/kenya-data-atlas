@@ -1024,6 +1024,21 @@
     "known_limitations": "Only independently source-image-verified Form 34B rows are materialized. OCR-only candidates, partial pages, inherited county values and unresolved forms remain excluded."
   },
   {
+    "dataset_id": "5832d4a9-fdca-57a7-b405-aac476d2e9d9",
+    "dataset_code": "DS-IEBC-GAZETTE-WARD-MCA-2022-P24",
+    "source_id": "41674c61-8d5e-5122-8e0d-ee116dd9b0c3",
+    "title": "2022 County Assembly Ward Representative (MCA) declared results — Gazette Notice No. 9956",
+    "description": "IEBC declaration of persons elected as Members of the various County Assemblies (Ward Representatives) in the 9 August 2022 general election, published as Gazette Notice No. 9956 in Kenya Gazette Special Issue Vol. CXXIV No. 170 (24 August 2022). Covers all 1,450 County Assembly Wards nationally with surname, other names, party/independent name and abbreviation, and votes garnered.",
+    "topic": "Representation",
+    "geographic_coverage": [
+      "ward"
+    ],
+    "frequency": "electoral_cycle",
+    "publication_status": "published",
+    "methodology_url": "docs/LOCAL-INDICATOR-CASCADE-CONTRACT.md",
+    "known_limitations": "Ten Mandera East/Lafey wards are withheld: the Gazette schedule for that constituency pair does not reconcile one-to-one with the canonical 2012-vintage ward roster (same conflict already held for IND-REGISTERED-VOTERS). Seven further wards had their 9 August 2022 poll postponed and carry no declared winner in this notice. Point-in-time roster; subsequent by-elections or vacancies are not reflected unless separately ingested."
+  },
+  {
     "dataset_id": "baa1cdd3-0f99-5e20-a5b2-992700e83f1e",
     "dataset_code": "DS-CBK-MOBILE-MONEY-CICO-2026-P25",
     "source_id": "eb1e26c3-fb0b-56f4-97bd-fa31204b710a",

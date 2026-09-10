@@ -912,6 +912,22 @@
     "supersedes_release_id": ""
   },
   {
+    "release_id": "74798a06-6c26-584a-a6c9-df3b8c0fbae1",
+    "release_code": "REL-IEBC-GAZETTE-9956-WARD-MCA-2022-P24",
+    "dataset_id": "5832d4a9-fdca-57a7-b405-aac476d2e9d9",
+    "title": "Gazette Notice No. 9956 — Declaration of Persons Elected as Members of the County Assemblies",
+    "reference_period_start": "2022-08-09",
+    "reference_period_end": "2022-08-22",
+    "published_at": "2022-08-24",
+    "discovered_at": "2026-09-09T00:00:00.000Z",
+    "ingested_at": "2026-09-09T00:00:00.000Z",
+    "release_url": "https://www.iebc.or.ke/uploads/resources/t5KQ6O4YGp.pdf",
+    "release_status": "published",
+    "version_label": "P24 ward MCA identity",
+    "release_notes": "Official IEBC declaration, Vol. CXXIV--No. 170, 2022-08-24. 1,433/1,450 wards resolved as direct official identity; 10 held for a known Mandera East/Lafey ward-roster conflict; 7 held because the ward poll was postponed with no winner declared in this notice.",
+    "supersedes_release_id": ""
+  },
+  {
     "release_id": "b215130c-0337-50c5-a586-f785e1a8c5a7",
     "release_code": "REL-CBK-MOBILE-MONEY-CICO-2026-P25",
     "dataset_id": "baa1cdd3-0f99-5e20-a5b2-992700e83f1e",

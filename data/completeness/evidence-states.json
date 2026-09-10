@@ -3366,6 +3366,51 @@
       "refresh_trigger": "KNBS publishes a direct current-1,450-ward population table, or IEBC/KNBS jointly publish an authoritative administrative-unit-to-ward crosswalk supporting deterministic aggregation from a published table."
     },
     {
+      "level": "ward",
+      "indicator_code": "IND-MCA-IDENTITY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C009-CON043-W0211",
+        "KEN-C009-CON043-W0212",
+        "KEN-C009-CON043-W0213",
+        "KEN-C009-CON043-W0214",
+        "KEN-C009-CON043-W0215",
+        "KEN-C009-CON044-W0216",
+        "KEN-C009-CON044-W0217",
+        "KEN-C009-CON044-W0218",
+        "KEN-C009-CON044-W0219",
+        "KEN-C009-CON044-W0220"
+      ],
+      "period_label": "IEBC Gazette Notice No. 9956, declared 22 Aug 2022",
+      "source": "IEBC Gazette Notice No. 9956 (Kenya Gazette Special Issue Vol. CXXIV No. 170, 24 Aug 2022) — Declaration of Persons Elected as Members of the County Assemblies",
+      "source_url": "https://www.iebc.or.ke/uploads/resources/t5KQ6O4YGp.pdf",
+      "reason": "Mandera East / Lafey ward-roster conflict: the Gazette Notice No. 9956 CAW schedule for this pair of constituencies does not reconcile one-to-one with the Atlas's canonical 2012-vintage ward list (a ward the Gazette calls 'Libehia' and one it calls 'Sala' have no clean counterpart in the canonical roster, while the canonical ward 'Bulla Mpya' has no counterpart in the Gazette roster). This is the same known Mandera East/Lafey boundary-configuration conflict already held for IND-REGISTERED-VOTERS (scripts/p23/build-ward-voters.mjs); identity is withheld rather than guessed at a position match.",
+      "as_of": "2026-09-09",
+      "evidence_constraint": "ward_roster_boundary_conflict_no_defensible_crosswalk",
+      "refresh_trigger": "IEBC publishes a corrected/reconciled County Assembly Ward roster for Mandera East and Lafey constituencies that maps one-to-one onto the Atlas canonical 2012-vintage ward list, or a subsequent gazette notice resolves the naming conflict."
+    },
+    {
+      "level": "ward",
+      "indicator_code": "IND-MCA-IDENTITY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C012-CON056-W0279",
+        "KEN-C015-CON068-W0336",
+        "KEN-C033-CON178-W0888",
+        "KEN-C037-CON204-W1021",
+        "KEN-C041-CON235-W1174",
+        "KEN-C047-CON282-W1407",
+        "KEN-C047-CON285-W1424"
+      ],
+      "period_label": "IEBC Gazette Notice No. 9956, declared 22 Aug 2022",
+      "source": "IEBC Gazette Notice No. 9956 (Kenya Gazette Special Issue Vol. CXXIV No. 170, 24 Aug 2022) — Declaration of Persons Elected as Members of the County Assemblies",
+      "source_url": "https://www.iebc.or.ke/uploads/resources/t5KQ6O4YGp.pdf",
+      "reason": "Gazette Notice No. 9956 records no elected member for this ward: the poll was postponed (per the companion Gazette Notices Nos. 9952-9954 in the same Special Issue, which list constituencies/wards where the 9 August 2022 election was rerun on 29 August 2022). No subsequent comprehensive declaration for these wards was located in this pass.",
+      "as_of": "2026-09-09",
+      "evidence_constraint": "election_postponed_no_declared_winner_in_notice",
+      "refresh_trigger": "IEBC gazettes a declaration of the winner for the postponed 9 August 2022 (rerun 29 August 2022, or subsequent) poll in these wards."
+    },
+    {
       "contract_id": "P24-WARD-FUND-ALLOCATION-CLOSURE-2026-09-08",
       "level": "ward",
       "geo_codes": [
