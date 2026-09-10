@@ -553,9 +553,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Closed under data/p23/constituency-evidence-gap-closure-contract.json: KMHFR can support constituency facility counts, but no authoritative current-290-constituency population denominator aligned to the facility reference period is publicly available, so a facilities-per-10,000-residents rate cannot be derived. No county population is inherited downward.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
@@ -568,9 +568,9 @@
       "canonical_latest_observations": 0,
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
-      "disposition": null,
-      "disposition_reason": "",
-      "audit_status": "review_required",
+      "disposition": "governed_unavailable",
+      "disposition_reason": "Closed under data/p24/ward-health-facility-density-closure-contract.json after a genuine spatial_derivation attempt: KMHFR (the designated source) was unreachable from the build environment on repeated attempts; the only official KMHFR-derived extract obtainable (HDX 2017 snapshot) has no coordinates and predates the 2023 census anchor; the only current geocoded alternatives found (healthsites.io, HOTOSM) are OpenStreetMap-derived, not official, and self-disclose incomplete coverage. The ward population denominator is also not yet in the canonical registry. No county or constituency value is inherited downward.",
+      "audit_status": "decided",
       "inherited_records": 0
     },
     {
