@@ -23,7 +23,7 @@ export const DIRECTION_RULES = {
   'IND-CPI-INFLATION': { higher_is_better: false, basis: 'Higher inflation erodes purchasing power.' },
   'IND-FUEL-PETROL': { higher_is_better: false, basis: 'Higher pump price is a cost burden.' },
   'IND-BUSINESS-LICENSES': { higher_is_better: true, basis: 'More licensed business activity is a standard local-economy signal.' },
-  'IND-MOBILE-MONEY-VOLUME': { higher_is_better: true, basis: 'Higher formal financial-service usage is a standard inclusion proxy.' },
+  'IND-MOBILE-MONEY-VOLUME': { higher_is_better: null, basis: 'Transaction activity volume is descriptive; more transactions are not inherently a better welfare or inclusion outcome.' },
   'IND-RENT-BURDEN': { higher_is_better: false, basis: 'Higher rent-to-expenditure share is a standard affordability-stress measure.' },
   'IND-LABOUR-FORCE-PARTICIPATION': { higher_is_better: true, basis: 'Standard labour-market convention.' },
   'IND-FOREST-AREA': { higher_is_better: true, basis: 'Standard environmental-resource convention.' },
