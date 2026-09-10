@@ -1,0 +1,198 @@
+name: P25 mobile money semantic repair
+
+on:
+  push:
+    branches:
+      - watchdog/p25-mobile-money-semantic-fix
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: watchdog/p25-mobile-money-semantic-fix
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch reviewed P25 source branch
+        run: git fetch --no-tags origin p25-national-pulse-and-null-state-closure:refs/remotes/origin/p25-national-pulse-and-null-state-closure
+
+      - name: Carry forward only reviewed source/UI changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git checkout origin/p25-national-pulse-and-null-state-closure -- \
+            assets/countyiq-view.css \
+            assets/countyiq-view.js \
+            assets/opportunity-finder.css \
+            assets/opportunity-finder.js \
+            scripts/p25/validate-null-state-audit.mjs \
+            data/p25/source/mobile-money-cico-cbk-2026.json
+
+      - name: Normalize source semantics to transaction volume
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs=require('fs');
+          const p='data/p25/source/mobile-money-cico-cbk-2026.json';
+          const s=JSON.parse(fs.readFileSync(p,'utf8'));
+          s.title='Mobile money agent cash-in/cash-out transaction volume, national monthly';
+          s.unit='count';
+          s.definition="CBK's National Payments System Mobile Payments table publishes monthly agent cash-in/cash-out (CICO) transaction volume in millions of transactions alongside transaction value, active agents and registered accounts. IND-MOBILE-MONEY-VOLUME uses the published CICO transaction-count column only; it does not treat monetary value as transaction volume and does not manufacture a total across P2P, paybill, till or other rails outside agent CICO.";
+          s.scope_note="The Atlas promotes CBK's published Total Agent Cash in Cash Out (Volume Million) column as IND-MOBILE-MONEY-VOLUME, converted exactly from millions of transactions to transaction count. The KSh value column remains source context only and is never used as the canonical volume value. This is agent CICO activity, not a reconciled total across every mobile-money transaction rail.";
+          s.access_note='Live CBK statistics table; the frozen source snapshot records period, CICO volume, CICO value, active agents and registered accounts as verified on 2026-09-09.';
+          for(const m of s.months||[]){
+            if(!Number.isFinite(Number(m.cico_volume_million_transactions))||Number(m.cico_volume_million_transactions)<=0) throw new Error(`invalid CICO volume for ${m.period_label}`);
+            m.cico_transaction_count=Math.round(Number(m.cico_volume_million_transactions)*1_000_000);
+          }
+          fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
+          NODE
+
+      - name: Write corrected P25 deterministic builder
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p scripts/p25
+          cat > scripts/p25/build-mobile-money-volume.mjs <<'EOF'
+          import { createHash } from 'node:crypto';
+          import { readFile, writeFile } from 'node:fs/promises';
+          import path from 'node:path';
+          import { fileURLToPath } from 'node:url';
+
+          const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+          const mode=process.argv[2];
+          if(!['catalogue','indicators'].includes(mode)){console.error('Usage: node scripts/p25/build-mobile-money-volume.mjs <catalogue|indicators>');process.exit(2);}
+          const SOURCE_FILE='data/p25/source/mobile-money-cico-cbk-2026.json';
+          const DATASET_CODE='DS-CBK-MOBILE-MONEY-CICO-2026-P25';
+          const RELEASE_CODE='REL-CBK-MOBILE-MONEY-CICO-2026-P25';
+          const INDICATOR_CODE='IND-MOBILE-MONEY-VOLUME';
+          const PREFIX='KDA-P25-MOBILE-MONEY-VOLUME-';
+          const INGESTED_AT='2026-09-10T00:00:00.000Z';
+          const readJson=async p=>JSON.parse(await readFile(path.join(root,p),'utf8'));
+          const csvCell=v=>`"${String(Array.isArray(v)?v.join('|'):v??'').replaceAll('"','""')}"`;
+          const csv=rows=>{const fields=[...new Set(rows.flatMap(r=>Object.keys(r)))];return [fields.join(','),...rows.map(r=>fields.map(f=>csvCell(r[f])).join(','))].join('\n')+'\n';};
+          const uuid=name=>{const h=createHash('sha1').update(`kenya-data-atlas:p25-mobile-money-volume:${name}`).digest();h[6]=(h[6]&15)|80;h[8]=(h[8]&63)|128;const x=h.subarray(0,16).toString('hex');return `${x.slice(0,8)}-${x.slice(8,12)}-${x.slice(12,16)}-${x.slice(16,20)}-${x.slice(20)}`;};
+
+          function validate(source){
+            const months=source.months||[];
+            if(!months.length) throw new Error('P25 mobile money: source has no months');
+            for(const m of months){
+              if(!m.period_start||!m.period_end||!m.period_label) throw new Error(`P25 mobile money: incomplete period ${m.period_label||''}`);
+              const vol=Number(m.cico_volume_million_transactions), count=Number(m.cico_transaction_count);
+              if(!Number.isFinite(vol)||vol<=0||!Number.isInteger(count)||count<=0) throw new Error(`P25 mobile money: invalid transaction volume ${m.period_label}`);
+              if(Math.round(vol*1_000_000)!==count) throw new Error(`P25 mobile money: transaction-count conversion mismatch ${m.period_label}`);
+            }
+            if(source.unit!=='count'||source.publisher!=='Central Bank of Kenya'||!String(source.source_url||'').startsWith('https://www.centralbank.go.ke/')) throw new Error('P25 mobile money: source metadata incomplete');
+            return {months};
+          }
+
+          async function buildCatalogue(){
+            const dir='data/catalogue/registry';
+            const [datasets,releases,sources,source]=await Promise.all([readJson(`${dir}/datasets.json`),readJson(`${dir}/releases.json`),readJson(`${dir}/sources.json`),readJson(SOURCE_FILE)]);
+            const {months}=validate(source); const src=sources.find(s=>s.source_code==='CBK-STATISTICS'); if(!src) throw new Error('CBK-STATISTICS source missing');
+            const latest=months.at(-1);
+            const datasetFields={source_id:src.source_id,title:'CBK National Payments System — mobile money agent CICO transaction volume, national monthly',description:'National monthly count of mobile-money agent cash-in/cash-out (CICO) transactions, published directly by the Central Bank of Kenya. The KSh transaction-value column is retained only as source context.',topic:'Financial inclusion / payments',geographic_coverage:['country'],frequency:'monthly',publication_status:'published',methodology_url:source.source_url,known_limitations:"Agent CICO transaction count only; this is not a reconciled total across every mobile-money rail. P2P, paybill, till/merchant and other non-agent-CICO activity are outside this series."};
+            let dataset=datasets.find(d=>d.dataset_code===DATASET_CODE); if(!dataset){dataset={dataset_id:uuid(`dataset:${DATASET_CODE}`),dataset_code:DATASET_CODE,...datasetFields};datasets.push(dataset);}else Object.assign(dataset,datasetFields);
+            const releaseFields={release_code:RELEASE_CODE,dataset_id:dataset.dataset_id,title:`CBK Mobile Payments statistics — through ${latest.period_label}`,reference_period_start:months[0].period_start,reference_period_end:latest.period_end,published_at:latest.published_at||latest.period_end,discovered_at:INGESTED_AT,ingested_at:INGESTED_AT,release_url:source.source_url,release_status:'published',version_label:'P25 national Pulse closure',release_notes:`${source.publication}; canonical IND-MOBILE-MONEY-VOLUME uses Total Agent Cash in Cash Out (Volume Million), converted to transaction count. Monetary value is context only.`,supersedes_release_id:''};
+            let release=releases.find(r=>r.release_code===RELEASE_CODE);if(!release){release={release_id:uuid(`release:${RELEASE_CODE}`),...releaseFields};releases.push(release);}else Object.assign(release,releaseFields);
+            await Promise.all([writeFile(path.join(root,`${dir}/datasets.json`),JSON.stringify(datasets,null,2)+'\n'),writeFile(path.join(root,`${dir}/datasets.csv`),csv(datasets)),writeFile(path.join(root,`${dir}/releases.json`),JSON.stringify(releases,null,2)+'\n'),writeFile(path.join(root,`${dir}/releases.csv`),csv(releases))]);
+            console.log(`P25_MOBILE_MONEY_CATALOGUE_OK dataset=1 release=1 months=${months.length} latest=${latest.period_label}`);
+          }
+
+          async function buildIndicators(){
+            const dir='data/indicators/registry';
+            let [source,units,indicators,series,observations,geographies,datasets,releases,sources]=await Promise.all([readJson(SOURCE_FILE),readJson(`${dir}/units.json`),readJson(`${dir}/indicators.json`),readJson(`${dir}/series.json`),readJson(`${dir}/observations.json`),readJson('data/geography/registry/geographies.json'),readJson('data/catalogue/registry/datasets.json'),readJson('data/catalogue/registry/releases.json'),readJson('data/catalogue/registry/sources.json')]);
+            const {months}=validate(source);const country=geographies.find(g=>g.level==='country'&&g.geo_code==='KEN');const indicator=indicators.find(i=>i.indicator_code===INDICATOR_CODE);const unit=units.find(u=>u.code==='count');const dataset=datasets.find(d=>d.dataset_code===DATASET_CODE);const release=releases.find(r=>r.release_code===RELEASE_CODE);const catSource=dataset?sources.find(s=>s.source_id===dataset.source_id):null;
+            if(!country||!indicator||!unit||!dataset||!release||!catSource) throw new Error('P25 mobile money: required registry record missing');
+            const oldIds=new Set(series.filter(s=>String(s.series_code||'').startsWith(PREFIX)||(s.indicator_id===indicator.indicator_id&&s.geography_id===country.geography_id)).map(s=>s.series_id));series=series.filter(s=>!oldIds.has(s.series_id));observations=observations.filter(o=>!oldIds.has(o.series_id));
+            Object.assign(indicator,{description:'National monthly number of mobile-money agent cash-in/cash-out (CICO) transactions published directly by the Central Bank of Kenya. Values are transaction counts converted exactly from CBK’s published millions-of-transactions column; monetary CICO value is not used as volume.',unit_id:unit.unit_id,methodology_url:source.source_url,minimum_geo_level:'country',active:true,lifecycle_status:'active',comparable:true,ranking_allowed:false,requires_sampling_uncertainty:false,higher_is_better:null,expected_source:'Central Bank of Kenya — National Payments System, Mobile Payments statistics',expected_source_url:source.source_url,expected_availability_note:'Country-only Pulse slot. This is CBK agent CICO transaction count, not monetary transaction value and not a reconciled total across every mobile-money rail. No county breakdown is published by CBK for this series.'});
+            const sid=uuid(`series:${INDICATOR_CODE}:${country.geo_code}`);
+            const rows=months.map(m=>({m,oid:uuid(`observation:${INDICATOR_CODE}:${country.geo_code}:${m.period_start}`)}));const latest=rows.at(-1);
+            series.push({series_id:sid,series_code:'KDA-P25-MOBILE-MONEY-VOLUME-KEN',indicator_id:indicator.indicator_id,geography_id:country.geography_id,geography_taxonomy:country.geography_system||'electoral',boundary_version:'',frequency:'monthly',period_type:'month',unit_id:unit.unit_id,price_basis:'',base_period:'',currency:'',seasonal_adjustment:'none',transformation:'level',geographic_method:'direct',comparability_group:'P25-CBK-MOBILE-MONEY-CICO-VOLUME-NATIONAL',dataset_id:dataset.dataset_id,agency_id:catSource.agency_id,methodology_url:source.source_url,start_period:months[0].period_label,end_period:latest.m.period_label,latest_observation_id:latest.oid,observation_count:rows.length,last_updated_at:INGESTED_AT,next_expected_release:'',status:'active',superseded_by_series_id:''});
+            for(const {m,oid} of rows) observations.push({observation_id:oid,series_id:sid,geography_id:country.geography_id,boundary_version:'',period_start:m.period_start,period_end:m.period_end,period_type:'month',period_label:m.period_label,value:Number(m.cico_transaction_count),geographic_method:'direct',statistical_status:'final',source_class:'official',badge:'A',source_release_id:release.release_id,source_dataset_id:dataset.dataset_id,source_table:source.source_table,source_sheet:'',source_page:'',source_row_label:m.period_label,source_url:source.source_url,published_at:m.published_at||m.period_end,ingested_at:INGESTED_AT,vintage_id:uuid(`vintage:${sid}:${m.period_start}:1`),supersedes_observation_id:'',lower_bound:null,upper_bound:null,confidence_level:null,standard_error:null,sample_size:null,suppression_reason:'',crosswalk_id:'',notes:`CBK published ${m.cico_volume_million_transactions} million agent CICO transactions for ${m.period_label}; canonical value is the exact converted count ${m.cico_transaction_count}. Context only: CICO monetary value was KSh ${m.value_ksh_billion} billion, with ${m.active_agents.toLocaleString('en-US')} active agents and ${m.registered_accounts_million} million registered accounts. Monetary value is not used as transaction volume.`});
+            await Promise.all([writeFile(path.join(root,`${dir}/indicators.json`),JSON.stringify(indicators,null,2)+'\n'),writeFile(path.join(root,`${dir}/indicators.csv`),csv(indicators)),writeFile(path.join(root,`${dir}/series.json`),JSON.stringify(series,null,2)+'\n'),writeFile(path.join(root,`${dir}/series.csv`),csv(series)),writeFile(path.join(root,`${dir}/observations.json`),JSON.stringify(observations,null,2)+'\n'),writeFile(path.join(root,`${dir}/observations.csv`),csv(observations))]);
+            console.log(`P25_MOBILE_MONEY_INDICATORS_OK country=KEN months=${rows.length} latest=${latest.m.period_label} transactions=${latest.m.cico_transaction_count} one_series=true`);
+          }
+          if(mode==='catalogue') await buildCatalogue(); else await buildIndicators();
+          EOF
+
+      - name: Write semantic validator and wire P25 into build/test
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > scripts/p25/validate-mobile-money-volume.mjs <<'EOF'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const root=process.cwd(),json=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8')),assert=(ok,msg)=>{if(!ok)throw new Error(`P25 mobile money validation: ${msg}`);};
+          const CODE='IND-MOBILE-MONEY-VOLUME',PREFIX='KDA-P25-MOBILE-MONEY-VOLUME-';
+          const source=json('data/p25/source/mobile-money-cico-cbk-2026.json'),taxonomy=json('data/indicators/seed/placeholder-taxonomy.json'),indicators=json('data/indicators/registry/indicators.json'),series=json('data/indicators/registry/series.json'),obs=json('data/indicators/registry/observations.json'),geos=json('data/geography/registry/geographies.json'),datasets=json('data/catalogue/registry/datasets.json'),releases=json('data/catalogue/registry/releases.json'),ledger=json('data/completeness/slot-ledger.json').rows,summary=json('data/completeness/summary.json');
+          const months=source.months||[];assert(months.length>=1,'no source months');assert(source.unit==='count','source unit must be count');
+          for(const m of months){assert(Number.isFinite(Number(m.cico_volume_million_transactions))&&Number(m.cico_volume_million_transactions)>0,`invalid source volume ${m.period_label}`);assert(Number(m.cico_transaction_count)===Math.round(Number(m.cico_volume_million_transactions)*1_000_000),`count conversion mismatch ${m.period_label}`);}
+          assert(source.publisher==='Central Bank of Kenya','publisher must be CBK');assert(/volume million/i.test(source.source_table||''),'source table must expose volume column');assert(/value.*context|monetary value.*not/i.test(source.scope_note||''),'source must separate volume from value');
+          assert((taxonomy.national_pulse_slots||[]).includes(CODE),'must remain national_pulse');const td=(taxonomy.indicators||[]).find(i=>i.code===CODE);assert(td?.status==='active','taxonomy status must be active');
+          const ind=indicators.find(i=>i.indicator_code===CODE);assert(ind&&ind.active===true&&ind.lifecycle_status==='active','indicator must be active');assert(ind.minimum_geo_level==='country','must be country-only');assert(ind.higher_is_better===null,'volume must be non-directional');assert(/number|count|transactions/i.test(ind.description||''),'description must define transaction count');assert(!/value of mobile money/i.test(ind.description||''),'description must not define monetary value as volume');
+          const country=geos.find(g=>g.level==='country'&&g.geo_code==='KEN');assert(country,'KEN geography missing');const own=series.filter(s=>String(s.series_code||'').startsWith(PREFIX)||(s.indicator_id===ind.indicator_id&&s.geography_id===country.geography_id));assert(own.length===1,`expected one series, found ${own.length}`);const s=own[0],ownObs=obs.filter(o=>o.series_id===s.series_id).sort((a,b)=>a.period_start.localeCompare(b.period_start));assert(ownObs.length===months.length,`expected ${months.length} observations, found ${ownObs.length}`);assert(s.observation_count===ownObs.length,'observation_count mismatch');assert(ownObs.some(o=>o.observation_id===s.latest_observation_id),'latest observation pointer invalid');
+          for(const m of months){const o=ownObs.find(x=>x.period_start===m.period_start);assert(o,`observation missing ${m.period_label}`);assert(Number(o.value)===Number(m.cico_transaction_count),`${m.period_label}: canonical value must equal transaction count`);assert(Number(o.value)!==Number(m.value_kes_million),`${m.period_label}: monetary KES value leaked into volume`);assert(o.source_class==='official'&&o.badge==='A'&&o.geographic_method==='direct',`${m.period_label}: provenance invalid`);}
+          assert(datasets.some(d=>d.dataset_code==='DS-CBK-MOBILE-MONEY-CICO-2026-P25'),'dataset missing');assert(releases.some(r=>r.release_code==='REL-CBK-MOBILE-MONEY-CICO-2026-P25'),'release missing');const row=ledger.find(r=>r.indicator_code===CODE&&r.geo_code==='KEN');assert(row?.resolved===true&&row.status==='published_direct'&&row.completion_phase==='complete','P25 ledger row not complete');assert((summary.by_completion_phase?.P25||0)===0,'P25 remainder not zero');assert((summary.by_completion_phase?.P24||0)===0,'P24 regressed');assert(summary.unknown_missing===0,'unknown missing regressed');
+          console.log(`P25_MOBILE_MONEY_VALIDATE_OK months=${months.length} latest_transactions=${months.at(-1).cico_transaction_count} one_series=true p25=0`);
+          EOF
+
+          node <<'NODE'
+          const fs=require('fs');
+          const p=JSON.parse(fs.readFileSync('package.json','utf8'));
+          const append=(key,anchor,extra)=>{if(!p.scripts[key].includes(extra)){if(!p.scripts[key].includes(anchor))throw new Error(`${key} anchor missing`);p.scripts[key]=p.scripts[key].replace(anchor,`${anchor} && ${extra}`);}};
+          append('catalogue:build','node scripts/p24/build-ward-mca-identity.mjs catalogue','node scripts/p25/build-mobile-money-volume.mjs catalogue');
+          append('indicators:build','node scripts/p24/build-ward-mca-identity.mjs indicators','node scripts/p25/build-mobile-money-volume.mjs indicators');
+          p.scripts['p25:validate']='node scripts/p25/validate-mobile-money-volume.mjs && node scripts/p25/validate-null-state-audit.mjs';
+          if(!p.scripts.test.includes('npm run p25:validate')) p.scripts.test=p.scripts.test.replace('npm run p24:validate && npm run p17:validate','npm run p24:validate && npm run p25:validate && npm run p17:validate');
+          fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\n');
+
+          const tax=JSON.parse(fs.readFileSync('data/indicators/seed/placeholder-taxonomy.json','utf8'));
+          const d=(tax.indicators||[]).find(i=>i.code==='IND-MOBILE-MONEY-VOLUME');if(!d)throw new Error('taxonomy definition missing');d.status='active';d.note='National monthly CBK agent cash-in/cash-out transaction volume. Canonical values are transaction counts converted exactly from CBK’s published Volume Million column; monetary CICO value is retained only as context. Country-only, non-directional and not rankable.';
+          fs.writeFileSync('data/indicators/seed/placeholder-taxonomy.json',JSON.stringify(tax,null,2)+'\n');
+
+          const vp='scripts/indicators/validate-native-api.mjs';let v=fs.readFileSync(vp,'utf8');v=v.replace("assert(indicatorByCode.get('IND-MOBILE-MONEY-VOLUME')?.lifecycle_status === 'planned', 'native API missing planned national mobile-money slot');","assert(indicatorByCode.get('IND-MOBILE-MONEY-VOLUME')?.lifecycle_status === 'active', 'native API missing active national mobile-money slot');");fs.writeFileSync(vp,v);
+          NODE
+
+      - name: Build and validate corrected P25 from the stacked clean head
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:data
+          npm run p25:validate
+          npm run completeness:validate
+          node <<'NODE'
+          const s=require('./data/completeness/summary.json');
+          if(s.total_slots!==20115)throw new Error(`governed denominator ${s.total_slots}`);
+          if((s.by_completion_phase?.P24||0)!==0)throw new Error(`P24=${s.by_completion_phase?.P24}`);
+          if((s.by_completion_phase?.P25||0)!==0)throw new Error(`P25=${s.by_completion_phase?.P25}`);
+          if(s.unknown_missing!==0)throw new Error(`unknown=${s.unknown_missing}`);
+          console.log(`P25_LEDGER_OK resolved=${s.resolved_slots} unresolved=${s.unresolved_slots} pct=${s.resolved_pct} p23=${s.by_completion_phase?.P23||0} p25=0`);
+          NODE
+          npm test
+
+      - name: Commit deterministic P25 repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/p25-mobile-money-semantic-fix.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --quiet && { echo 'No P25 delta'; exit 1; }
+          git commit -m 'P25: publish CBK mobile-money transaction volume with correct semantics'
+          git push origin HEAD:watchdog/p25-mobile-money-semantic-fix
