@@ -52,8 +52,8 @@
       "formats": {
         "json": {
           "path": "data/indicators/registry/indicators.json",
-          "bytes": 126622,
-          "sha256": "c93fa79ec4c5da8d892ebbdb92f5f571647a59b7f60d5d388fecd5c624323119"
+          "bytes": 126628,
+          "sha256": "c1e88b71ab52b88fe306be2bfc94d82a72d5d57a72bbdbef748c64ab164a8b22"
         },
         "csv": {
           "path": "data/indicators/registry/indicators.csv",
@@ -62,8 +62,8 @@
         },
         "ndjson": {
           "path": "data/distribution/ndjson/indicators.ndjson",
-          "bytes": 110115,
-          "sha256": "7d6850fea82d5b6b9c264f6a83d77aef7811aceb467df16f783070ce74dc7184"
+          "bytes": 110121,
+          "sha256": "b14f39af3c63aed2025a8cbe97b3e17cd79a6e7a9ad7652588ce062a54fa80da"
         }
       }
     },
