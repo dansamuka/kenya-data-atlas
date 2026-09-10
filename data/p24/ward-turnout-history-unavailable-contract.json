@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.p24.ward-turnout-unavailable-contract.v1",
+  "phase": "P24",
+  "contract_id": "P24-WARD-TURNOUT-HISTORY-UNAVAILABLE-2026-09-08",
+  "as_of": "2026-09-08",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "ward",
+  "governed_slot_count": 1450,
+  "status": "official_unavailable",
+  "period_label": "2022 general election",
+  "source": "IEBC",
+  "source_url": "https://forms.iebc.or.ke/",
+  "evidence_constraint": "ward_level_turnout_aggregate_not_officially_published_requires_form34a_or_form36b_extraction_programme",
+  "refresh_trigger": "Re-open this closure if IEBC (or another primary official statistical authority) publishes a single already-aggregated, citable ward-level turnout table (analogous to the Gazette Notice No. 7290 First Schedule already used for IND-REGISTERED-VOTERS), or if a dedicated ward-level extraction programme is undertaken that mirrors the P23 Form34B source-verification pipeline (per-document image review, field-level verification, promotion-eligibility gating) applied to either Form 34A polling-station presidential results re-summed to ward boundaries, or Form 36B ward-level MCA tally sheets, and produces source-verified per-ward registered-voter, valid-vote and rejected-ballot triples.",
+  "reason": "Voter turnout in prior general elections (IND-TURNOUT-HISTORY) is only defensible when computed from a registered-voter denominator and a valid-plus-rejected-vote numerator for the same geography and election. No official body publishes a single already-aggregated, citable ward-level turnout table. The IEBC Result Forms Portal (forms.iebc.or.ke) exposes only individual scanned per-polling-station and per-tallying-centre result form images, not a pre-aggregated ward statistic. IEBC's published registered-voters-per-ward table (rov_per_caw.pdf) supplies only the electorate denominator, not votes cast. IEBC's 2022 Post-Election Evaluation Report is a national narrative/summary document with no ward-by-ward turnout table. Third-party sites that present ward-level figures (e.g. KenyaTally, TransTally) re-publish the same underlying IEBC portal form images rather than an independent official aggregate, and are not a primary statistical authority under this Atlas's source-priority rules. The two forms that could in principle support ward turnout are: (a) Form 34A, the polling-station presidential result, which would need to be re-summed to ward boundaries across roughly 46,000 polling stations nationwide -- a substantially larger extraction task than the Form 34B constituency pipeline already built in P23; and (b) Form 36B, the ward-level MCA tally sheet, which is the direct ward analogue of Form 34B but exists only as 1,450 individual scanned per-ward documents with no established, source-verified extraction pipeline in this repository. Building and running that pipeline is a dedicated future programme of the same class as the multi-week P23 Form34B effort, at up to five times the geographic unit count, and is out of scope for a single session. The Atlas does not copy constituency-level turnout down to wards (explicitly prohibited by the Local Indicator Cascade Contract), does not estimate ward turnout from registered-voter shares or any other proxy, and does not promote unverified OCR candidates. All 1,450 statistical ward slots for IND-TURNOUT-HISTORY are therefore closed as governed official_unavailable rather than filled with a fabricated, inherited or unverified number.",
+  "research_log": [
+    {
+      "checked": "IEBC Result Forms Portal",
+      "url": "https://forms.iebc.or.ke/",
+      "finding": "Serves individual scanned result-form images (Form A/B/C series) tracked by submission-completion percentage per contest; no pre-aggregated ward turnout dataset or table is exposed."
+    },
+    {
+      "checked": "IEBC registered voters per county assembly ward (2022)",
+      "url": "https://www.iebc.or.ke/docs/rov_per_caw.pdf",
+      "finding": "Publishes the ward electorate denominator only; contains no votes-cast or turnout figures."
+    },
+    {
+      "checked": "IEBC Post-Election Evaluation Report, 9 August 2022",
+      "url": "https://www.iebc.or.ke/uploads/resources/pabjKTV6Xa.pdf",
+      "finding": "National-level narrative evaluation reporting a 64.77% national turnout figure; contains no ward-level (or full constituency-level) turnout table."
+    },
+    {
+      "checked": "Third-party election data platforms (KenyaTally, TransTally, and similar)",
+      "url": "https://kenyatally.com/elections",
+      "finding": "Present county/constituency/ward-level browsing of IEBC results, but are downstream re-publications of the same raw IEBC portal form images rather than an independent primary official aggregate; not usable as the primary evidence source under the cascade contract's source-priority rules."
+    }
+  ],
+  "form_landscape": {
+    "form_34a": "Polling-station presidential result. Ward turnout could in principle be derived by re-summing Form 34A polling-station registered-voter, valid-vote and rejected-ballot counts to ward boundaries, but this requires OCR/extraction across roughly 46,000 polling-station documents nationwide -- a substantially larger task than the Form 34B pipeline already built for constituencies.",
+    "form_34b": "Constituency-level presidential result (returning-officer tally). Already the basis of the P23 source-verified constituency turnout series (DS-IEBC-FORM34B-TURNOUT-2022-P23); does not itself provide ward-level rows.",
+    "form_36a": "Polling-station MCA (county assembly member) result; ward-level analogue task to Form 34A at the same order of extraction effort.",
+    "form_36b": "Ward-level MCA tally sheet (the direct ward analogue of Form 34B). Exists only as 1,450 individual scanned per-ward result documents; no established, source-verified extraction pipeline exists in this repository for this form."
+  },
+  "conclusion": "No genuinely tractable, already-aggregated, citable official source for ward-level turnout was found. Materializing real ward turnout values would require building and running a dedicated Form 34A (re-summed to ward) or Form 36B ward-tally source-verification pipeline of the same class as the multi-week P23 Form34B effort, at up to five times the geographic unit count. That programme is not attempted in this session; the honest and correct outcome is a governed_unavailable closure with an explicit refresh trigger."
+}
