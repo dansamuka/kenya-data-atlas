@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T10",
-  "as_of": "2026-09-09",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-10-T11",
+  "as_of": "2026-09-10",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
   "target_geography_count": 290,
@@ -16,7 +16,7 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 54,
+    "verified_constituencies": 59,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON002",
@@ -39,7 +39,12 @@
       "KEN-C007-CON030",
       "KEN-C007-CON032",
       "KEN-C008-CON033",
+      "KEN-C008-CON037",
       "KEN-C008-CON038",
+      "KEN-C009-CON039",
+      "KEN-C009-CON040",
+      "KEN-C009-CON041",
+      "KEN-C009-CON042",
       "KEN-C014-CON066",
       "KEN-C015-CON071",
       "KEN-C015-CON073",
@@ -95,7 +100,12 @@
       30,
       32,
       33,
+      37,
       38,
+      39,
+      40,
+      41,
+      42,
       66,
       71,
       73,
@@ -130,17 +140,14 @@
       286
     ],
     "newly_authorized_constituency_codes": [
-      16,
-      18,
-      21,
-      25,
-      29,
-      30,
-      32,
-      33
+      37,
+      39,
+      40,
+      41,
+      42
     ],
-    "expected_p23_remaining_after_materialization": 236,
-    "expected_resolved_slots_after_materialization": 14048,
+    "expected_p23_remaining_after_materialization": 231,
+    "expected_resolved_slots_after_materialization": 14053,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -149,7 +156,7 @@
       "full_validation_suite",
       "independent_geography_audit"
     ],
-    "materialization_note": "This tranche adds Malindi (016), Garsen (018), Lamu East (021), Mwatate (025), Lagdera (029), Dadaab (030), Ijara (032) and Wajir North (033), independently source-verified in the p23-turnout-tranche-a session against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs (form_id = constituency_code + 277628). Each row was read directly from a clearly legible, unshaded-scan TOTAL row, cross-checked with an independent high-DPI or upscaled crop of the same row, and reconciles exactly to the existing governed 2022 registered-voter denominator. Several other constituencies queued in this tranche were reviewed but withheld from promotion: Kisauni/003's TOTAL row is a genuinely illegible low-quality scan (confirmed down to the embedded 1-bit raster layer, not a rendering artifact); Kilifi North's (011) official portal PDF download contains only the page-4 signature sheet with no polling-station or TOTAL-row pages at all; Mvita/006, Matuga/009, Magarini/017, Galole/019, Lamu West/022, Taveta/023, Wundanyi/024, Voi/026 and Garissa Township/027 each printed a TOTAL-row registered-voters figure that is legible and internally self-consistent but numerically exceeds the existing governed 2022 constituency voter denominator by exactly the registered-voter count of one or more special/prison polling stations in that constituency (e.g. Mvita: 119,008 printed vs 118,974 governed, a 34-voter gap matching Kingorani Prison (B); Galole: 39,979 vs 39,965, a 14-voter gap matching Hola Prison; Voi: 61,606 vs 61,377, a 229-voter gap matching Voi Remand Prison + Manyani); and Fafi/031's TOTAL row, read from a skewed CamScanner phone-photo source PDF, is internally inconsistent on its own terms -- the four candidate cells (5,403 + 8,377 + 18 + 49 = 13,847), independently corroborated by the form's own \"Aggregate Results / Valid Votes in Words\" table, do not reconcile to the same row's printed Total Valid Votes cell (13,662), a 185-vote gap that is a genuine printed-form arithmetic error rather than a legibility or transcription issue. All of these are left as unresolved, documented discrepancies rather than forced through: the extraction contract's invariants that registered voters must reconcile exactly to the governed denominator and that the four candidate cells must reconcile to Total Valid Votes block promotion for all of them pending separate governance decisions (including, for the prison-station pattern, whether the canonical P23 voter-registration denominator should include special/prison polling stations)."
+    "materialization_note": "This tranche adds Eldas (037), Mandera West (039), Banissa (040), Mandera North (041), Mandera South (042), independently source-verified in the p23-turnout-tranche-a session against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs (form_id = constituency_code + 277628, with the portal session first reset from its default 2022-2027 by-election context to the 2022 general election via index.php?r=common/set-election&id=5). Each row was read directly from a clearly legible TOTAL row, cross-checked with an independent high-DPI crop of the same row, and reconciles exactly to the existing governed 2022 registered-voter denominator and to the four-candidate valid-vote breakdown on the same row. This session also confirmed and documents a fix for the sourcing blocker reported at the end of the prior session on this branch: forms.iebc.or.ke defaults new sessions to its \"2022-2027 By-Elections\" context, which returned HTTP 500 for every general-election form_id; issuing a one-time GET to index.php?r=common/set-election&id=5 resets the session to the 2022 general election and restores correct, byte-stable Form 34B downloads (spot-checked by re-downloading the already-verified Wajir North PDF, which reproduced the exact same sha256 already on record)."
   },
   "canonical_rebuild_sync": {
     "state": "validated",
