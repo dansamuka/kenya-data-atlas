@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-EMURUA-DIKIRR-SOURCE-VERIFIED-2026-09-10",
+  "as_of": "2026-09-10",
+  "purpose": "Record an independent visual source-image review of the official Emurua Dikirr Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 178,
+    "constituency_name": "Emurua Dikirr",
+    "geo_code": "KEN-C033-CON178",
+    "form_id": 277806,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277806",
+    "source_pdf_sha256": "553028cd7b7890fd851dd65fc4ea0fde61aab9ebcec11c0b537277c1c8d898aa",
+    "page_number": 2,
+    "render_dpi": 150,
+    "review_context_image_sha256": "8ea201c8c645df46f603db227525ba07be90629b5f9eb36c069e6d2d06ad27d6",
+    "review_context_note": "Full official-page raster rendered at 150 DPI directly from a freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved). This particular official upload is a CamScanner phone-photo scan (visible page curvature, binder-hole shadows and a CamScanner footer logo), not a flatbed scan, but the printed table is fully legible; page 1 carries the header confirming EMURUA DIKIRR / code 178 / NAROK / code 033 in standard column order (Odinga, Ruto, Waihiga, Wajackoyah), and page 2 carries the final TOTAL row. The PDF has no embedded text layer beyond a couple of stray characters (confirmed by direct extraction attempt), so all values were read visually from the rendered page image and independently cross-confirmed with a separate 500 DPI crop of the TOTAL row. The printed registered-voters total reconciles exactly to the existing governed 2022 denominator."
+  },
+  "review": {
+    "reviewed_at": "2026-09-10T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image, then independently cross-confirmed with a separately rendered high-DPI crop of the same row (auto-located by green-shading pixel detection, scripts/p23/find_total_row.py). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_178_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "8ea201c8c645df46f603db227525ba07be90629b5f9eb36c069e6d2d06ad27d6",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 44040,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "8ea201c8c645df46f603db227525ba07be90629b5f9eb36c069e6d2d06ad27d6",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 35753,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "8ea201c8c645df46f603db227525ba07be90629b5f9eb36c069e6d2d06ad27d6",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 138,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      501,
+      35186,
+      30,
+      36
+    ],
+    "candidate_vote_sum": 35753,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 44040,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 35891,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 81.49636693914623,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
