@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T6",
-  "as_of": "2026-09-09",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-10-CONSOLIDATED",
+  "as_of": "2026-09-10",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
   "target_geography_count": 290,
@@ -16,11 +16,12 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 38,
+    "verified_constituencies": 39,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON005",
       "KEN-C002-CON010",
+      "KEN-C003-CON015",
       "KEN-C004-CON020",
       "KEN-C007-CON028",
       "KEN-C008-CON038",
@@ -61,6 +62,7 @@
       1,
       5,
       10,
+      15,
       20,
       28,
       38,
@@ -98,15 +100,10 @@
       286
     ],
     "newly_authorized_constituency_codes": [
-      10,
-      66,
-      80,
-      119,
-      248,
-      250
+      15
     ],
-    "expected_p23_remaining_after_materialization": 252,
-    "expected_resolved_slots_after_materialization": 14032,
+    "expected_p23_remaining_after_materialization": 251,
+    "expected_resolved_slots_after_materialization": 19863,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -114,7 +111,8 @@
       "exact_completeness_delta",
       "full_validation_suite",
       "independent_geography_audit"
-    ]
+    ],
+    "materialization_note": "Consolidated from completed P23 turnout tranche branches onto current main. Imported 1 unique governed source-verification records after structural provenance screening. Existing canonical evidence won all duplicates. Molo (166) remains excluded pending independent resolution of the 220-versus-720 rejected-ballot discrepancy, and Kajiado East (185) remains excluded because a blank rejected-ballot cell is not treated as a directly source-verified zero. No stale generated registry from a tranche branch was imported."
   },
   "canonical_rebuild_sync": {
     "state": "validated",

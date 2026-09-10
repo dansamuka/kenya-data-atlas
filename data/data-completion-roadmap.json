@@ -127,7 +127,7 @@
     {
       "id": "P21",
       "title": "Resolve hard county slots and retire weak placeholders",
-      "status": "in_progress",
+      "status": "complete",
       "session_goal": "Close the county indicators that require source discovery, spatial derivation, categorical treatment, or a deliberate replace/retire decision because no defensible 47-county comparable source exists.",
       "outputs": [
         "social-protection beneficiary resolution",
