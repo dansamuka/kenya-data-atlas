@@ -1,0 +1,95 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-MUMIAS-EAST-SOURCE-VERIFIED-2026-09-10",
+  "as_of": "2026-09-10",
+  "purpose": "Record an independent visual source-image review of the official Mumias East Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 205,
+    "constituency_name": "Mumias East",
+    "geo_code": "KEN-C037-CON205",
+    "form_id": 277833,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277833",
+    "source_pdf_sha256": "1ea897778af00fed01eef01422f678fc78012a57421afbea9ff31224ea89141b",
+    "page_number": 1,
+    "render_dpi": 250,
+    "review_context_image_sha256": "a8c71510af27a408c26bdc87edfddf2cb876b5c0159ec73f6bd65d35fcda6160",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved). The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake; a direct id-only request returned a generic HTTP 500 error page instead of the document, consistent with the portal now defaulting to serving 2022-2027 by-election forms."
+  },
+  "review": {
+    "reviewed_at": "2026-09-10T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image (re-cropped and re-read at higher magnification to rule out a misread before this row was recorded as a mismatch). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (MUMIAS EAST, code 205) was read from the page header/footer marker and cross-checked against the governed geography registry before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_205_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 1,
+      "source_image_sha256": "a8c71510af27a408c26bdc87edfddf2cb876b5c0159ec73f6bd65d35fcda6160",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 50568,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 1,
+      "source_image_sha256": "a8c71510af27a408c26bdc87edfddf2cb876b5c0159ec73f6bd65d35fcda6160",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 30628,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 1,
+      "source_image_sha256": "a8c71510af27a408c26bdc87edfddf2cb876b5c0159ec73f6bd65d35fcda6160",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 376,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      19482,
+      10844,
+      65,
+      236
+    ],
+    "candidate_vote_sum": 30627,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 50568,
+    "governed_p23_registered_voters": 50568,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-205-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": true,
+    "registered_voters_delta": 0,
+    "denominator_conflict": false,
+    "candidate_sum_reconciles_total_valid_votes": false,
+    "candidate_sum_delta": -1,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters (50,568) matches the governed P23 denominator exactly. However, the four candidate cells on the TOTAL row sum to 30,627 (19,482 + 10,844 + 65 + 236) while the row's own printed Total Valid Votes is 30,628 (delta 1). Re-read at 500 DPI with a tight crop on the TOTAL row to rule out a misread; all five figures are unambiguous on the source image. Per form34b-extraction-contract.json (prohibited_methods bars silently correcting digits to force reconciliation), this row is recorded as verification_state=arithmetic_mismatch and not promoted.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
