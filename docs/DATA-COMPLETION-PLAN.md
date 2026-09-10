@@ -289,7 +289,7 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 
 ## P24 — Ward layer completion
 
-**Status: planned.**
+**Status: in progress.**
 
 **Goal:** Resolve the remaining ward-level surface through national crosswalks, representation/election data and controlled spatial aggregation.
 
@@ -301,7 +301,9 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 - conditional ward-fund treatment;
 - preservation of known boundary holds.
 
-**Queue:** **13,050** remaining slot instances.
+**Queue:** **13,050** remaining slot instances at the historical P24 baseline.
+
+**Remaining queue after the ward-census, ward-fund-allocation and ward-voters-boundary-hold closures:** **4,350**, entirely within three still-unresolved 1,450-ward families (MCA identity, ward election-turnout history, ward health-facility density).
 
 **Acceptance**
 - all 1,450 statistical wards remain represented;
@@ -309,6 +311,8 @@ The ward layer, remaining public-surface closure and permanent 100% gate keep th
 - boundary mismatches are explicit;
 - non-uniform ward-fund programmes are marked not applicable rather than fabricated;
 - Mandera East/Lafey spatial constraints remain transparent until genuinely resolved.
+
+**P24 tranche — ward-fund allocation closure and the Mandera East/Lafey ward-voter boundary hold:** research confirmed Kenya has no uniform official national ward-level development-fund programme comparable to NG-CDF. The National Government Constituencies Development Fund Act, 2015 (as amended in 2022/2023) allocates and administers the Fund per constituency — one national formula, one committee, per constituency — with no ward-level allocation. Several counties run their own county-specific "Ward Development Fund" or "Ward Fund" programme under separate County Assembly Appropriation/Revenue Allocation Acts (for example Nairobi City County, Kiambu County and Kakamega County), but these differ in amount, formula, fiscal year and legal basis, and are not present in all 47 counties; several are themselves the subject of Controller of Budget/legality disputes over MCA involvement in project management. A national County Wards (Equitable Development) Bill that would create one uniform ward fund remains before the Senate (Bill No. 20 of 2024) and is not enacted. Because no single official, uniform, nationally comparable programme exists, all 1,450 `IND-WARD-FUND-ALLOCATION` ward slots are closed `not_applicable` under `data/p24/ward-fund-allocation-closure-contract.json` rather than divided from a constituency/county total or approximated from a subset of counties. Separately, the ten already-documented Mandera East/Lafey `IND-REGISTERED-VOTERS` ward slots (30 rendered rows across the overview/people/representation tabs) are formally closed `boundary_unresolved` under `data/p24/ward-voters-boundary-hold-contract.json`, citing the same spatial hold preserved through P23A/P23X ward-voter materialisation: the ten official IEBC CAW rows remain correctly included in the Mandera East/Lafey constituency totals but are not force-matched, interpolated or split across ward polygons that cannot yet be safely and uniquely crosswalked. This tranche resolves **1,480** P24 rows. Combined with the separately merged ward-census publication-gap closure (`data/p24/ward-census-closure-contract.json`, 1,450 rows), **4,350** P24 rows now remain, all concentrated in three still-unresolved 1,450-ward families: MCA identity, ward election-turnout history, and ward health-facility density.
 
 ---
 

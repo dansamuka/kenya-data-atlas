@@ -1,0 +1,111 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-KISUMU_CENTRAL-SOURCE-VERIFIED-2026-09-08",
+  "as_of": "2026-09-08",
+  "purpose": "Record an independent visual source-image review of the official Kisumu Central Form 34B final TOTAL row using the governed wider/full-page pending-review packet.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 240,
+    "constituency_name": "Kisumu Central",
+    "geo_code": "KEN-C042-CON240",
+    "form_id": 277868,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277868",
+    "source_pdf_sha256": "0ecc7eba14cbf9aa0f80dcfcf323a5c6b57212e3cb09d505b9e6a96ba05d9d35",
+    "page_number": 4,
+    "render_dpi": 250,
+    "review_context_image_sha256": "cb3250deebf8efdd855c41c63cec583e59f3b61547cd388e61a79905c5ed23da",
+    "total_row_context_crop_250": {
+      "x0": 100,
+      "y0": 550,
+      "x1": 2800,
+      "y1": 900
+    }
+  },
+  "source_row_recovery_context": {
+    "schema_version": "kda.p23.form34b.source-row-recovery-context.v1",
+    "workflow_run_id": 34216123077,
+    "workflow_head_sha": "2c8e8402be4df85f52e62ad3f02d25f3559ca271",
+    "aggregate_artifact_id": 10053775320,
+    "aggregate_artifact_sha256": "471cfdcd3f51eea4d64df8f51341ed12857b90a9a35ed4fb0081f29ec797f6a9",
+    "review_queue_schema_version": "kda.p23.form34b.source-row-recovery-queue.v1",
+    "review_context_sha256": "cb3250deebf8efdd855c41c63cec583e59f3b61547cd388e61a79905c5ed23da",
+    "anchor_state": "unique_exact_denominator_anchor",
+    "denominator_anchor_is_locator_only": true,
+    "canonical_registered_voters": 130149,
+    "source_verified_values_at_recovery": 0,
+    "promotion_authorized_at_recovery": false
+  },
+  "review": {
+    "reviewed_at": "2026-09-08T15:20:00+03:00",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI ChatGPT",
+    "independence_note": "The visual reading was performed directly from the governed 250-DPI official Form 34B full-page source image after the exact canonical registered-voter denominator had been used only to locate the page. No turnout numerator value was extracted or promoted by the recovery workflow; the visual source read determines every verified_value.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_240_marker_plus_governed_official_source_url_form_id_pdf_sha256_and_recovery_artifact_linkage",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 4,
+      "source_image_sha256": "cb3250deebf8efdd855c41c63cec583e59f3b61547cd388e61a79905c5ed23da",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 130149,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 4,
+      "source_image_sha256": "cb3250deebf8efdd855c41c63cec583e59f3b61547cd388e61a79905c5ed23da",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 84683,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 4,
+      "source_image_sha256": "cb3250deebf8efdd855c41c63cec583e59f3b61547cd388e61a79905c5ed23da",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 516,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      79955,
+      4458,
+      60,
+      210
+    ],
+    "candidate_vote_sum": 84683,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 130149,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 85199,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 65.46266202583193,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
