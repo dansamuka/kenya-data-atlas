@@ -2,12 +2,12 @@
   "schema_version": "kda.completeness.summary.v1",
   "definition": "A slot is resolved only when the canonical registry supplies a published/direct, transparently derived, modelled, or verified external observation, or a governed evidence state explicitly closes the slot as officially unavailable, not applicable, boundary unresolved, or retired/replaced. No parent, regional or missing value is inherited or manufactured.",
   "total_slots": 20115,
-  "resolved_slots": 16962,
-  "unresolved_slots": 3153,
-  "resolved_pct": 84.33,
+  "resolved_slots": 18412,
+  "unresolved_slots": 1703,
+  "resolved_pct": 91.53,
   "unique_indicator_slots": 49,
   "unknown_missing": 0,
-  "active_missing": 1702,
+  "active_missing": 252,
   "by_level": {
     "constituency": 3480,
     "country": 1,
@@ -15,11 +15,11 @@
     "ward": 14500
   },
   "by_status": {
-    "active_missing": 1702,
+    "active_missing": 252,
     "boundary_unresolved": 30,
     "external_verified": 90,
     "not_applicable": 1450,
-    "official_unavailable": 5914,
+    "official_unavailable": 7364,
     "planned_unresolved": 1451,
     "published_derived": 3156,
     "published_direct": 5946,
@@ -27,8 +27,8 @@
   },
   "by_completion_phase": {
     "P23": 252,
-    "P24": 2900,
+    "P24": 1450,
     "P25": 1,
-    "complete": 16962
+    "complete": 18412
   }
 }
