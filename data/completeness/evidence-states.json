@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.completeness.evidence-states.v1",
-  "definition": "Explicit resolved states for governed public slots where primary official evidence establishes that the requested observation is unavailable, or where a governed phase decision retires/replaces a weak placeholder. P22 time-sensitive closures may also resolve a snapshot when the exact current county observation is unavailable under explicit freshness, geography or measure-definition contracts. These states never manufacture a zero, proxy, regional inheritance or synthetic observation.",
+  "definition": "Explicit resolved states for governed public slots where primary official evidence establishes that the requested observation is unavailable, where a governed phase decision retires/replaces a weak placeholder, where research establishes that no uniform officially comparable programme exists for the indicator concept (not applicable), or where an authoritative child geometry cannot yet be safely and uniquely matched to source data (boundary unresolved). P22 time-sensitive closures may also resolve a snapshot when the exact current county observation is unavailable under explicit freshness, geography or measure-definition contracts. These states never manufacture a zero, proxy, regional inheritance or synthetic observation.",
   "states": [
     {
       "level": "county",
