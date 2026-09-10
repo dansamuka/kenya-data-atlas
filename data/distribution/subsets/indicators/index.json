@@ -451,8 +451,8 @@
     "indicator_code": "IND-MCA-IDENTITY",
     "name": "Member of County Assembly (name, party)",
     "path": "data/distribution/subsets/indicators/IND-MCA-IDENTITY.json",
-    "series_count": 0,
-    "observation_count": 0
+    "series_count": 1433,
+    "observation_count": 1433
   },
   {
     "indicator_code": "IND-MOBILE-MONEY-VOLUME",
