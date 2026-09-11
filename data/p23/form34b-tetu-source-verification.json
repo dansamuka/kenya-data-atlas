@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-TETU-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Tetu Form 34B final TOTALS row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 94,
+    "constituency_name": "Tetu",
+    "geo_code": "KEN-C019-CON094",
+    "form_id": 277722,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277722",
+    "source_pdf_sha256": "855eadb151bc1b87bd0917a7a090105fcd9307f62d3236303fd19c596ea6bd3d",
+    "page_number": 2,
+    "render_dpi": 600,
+    "review_context_image_sha256": "b5fac8cb93e15392c0bd8b62fe086903f912d2a507e29a324353157618b88159",
+    "review_context_note": "This form's second page prints upside-down (rotated 180 degrees) relative to page 1; rendered at 600 DPI and rotated 180 degrees for legible digit-level confirmation of the TOTALS row. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTALS row integers were read directly from the rendered (rotation-corrected) page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (TETU, code 094) was read from the visible 'CON 094' banner marker and the page-1 'Constituency: TETU / Code: 094' header block before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_094_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "b5fac8cb93e15392c0bd8b62fe086903f912d2a507e29a324353157618b88159",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 54986,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "b5fac8cb93e15392c0bd8b62fe086903f912d2a507e29a324353157618b88159",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 38069,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "b5fac8cb93e15392c0bd8b62fe086903f912d2a507e29a324353157618b88159",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 231,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTALS row.",
+    "candidate_vote_totals_in_source_column_order": [
+      5970,
+      31781,
+      130,
+      172
+    ],
+    "candidate_vote_sum": 38053,
+    "reconciles_total_valid_votes": false,
+    "reconciliation_delta": 16
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 54986,
+    "registered_voters_reconciles": true,
+    "candidate_sum_reconciles_total_valid_votes": false,
+    "arithmetic_mismatch": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "The printed Registered Voters figure (54,986) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-094-2022) exactly, and Rejected Ballots (231) is individually clear. However, the row's own four candidate cells (5,970 + 31,781 + 130 + 172 = 38,053) do not sum to the printed Total Valid Votes (38,069), a 16-vote discrepancy. Every digit was independently re-read at 600 DPI on the rotation-corrected page with identical results, so this is judged a genuine printed-form arithmetic error rather than a legibility or transcription issue, matching the Kipkelion West / Bomet Central precedent recorded in the governed promotion contract. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
