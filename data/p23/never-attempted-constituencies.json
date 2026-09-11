@@ -1,0 +1,446 @@
+{
+  "schema_version": "kda.p23.never-attempted-constituencies.v1",
+  "as_of": "2026-09-11",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "purpose": "Constituencies whose P23 IND-TURNOUT-HISTORY slot remains unresolved (completion_phase=P23, status=active_missing) in data/completeness/slot-ledger.csv after cross-referencing every documented finding recoverable from the merged P23 Form 34B turnout-tranche pull requests (#133, #135-#140) and the governed closures in data/p23/constituency-turnout-unavailable-contract.json. No merged PR, evidence file, or source-verification artifact in this repository mentions attempting extraction for any constituency listed here. Provided so a follow-up extraction effort can pick these up directly without re-deriving the list.",
+  "count": 109,
+  "constituencies": [
+    {
+      "geo_code": "KEN-C001-CON003",
+      "name": "Kisauni"
+    },
+    {
+      "geo_code": "KEN-C001-CON006",
+      "name": "Mvita"
+    },
+    {
+      "geo_code": "KEN-C002-CON009",
+      "name": "Matuga"
+    },
+    {
+      "geo_code": "KEN-C003-CON011",
+      "name": "Kilifi North"
+    },
+    {
+      "geo_code": "KEN-C003-CON017",
+      "name": "Magarini"
+    },
+    {
+      "geo_code": "KEN-C004-CON019",
+      "name": "Galole"
+    },
+    {
+      "geo_code": "KEN-C005-CON022",
+      "name": "Lamu West"
+    },
+    {
+      "geo_code": "KEN-C006-CON023",
+      "name": "Taveta"
+    },
+    {
+      "geo_code": "KEN-C006-CON024",
+      "name": "Wundanyi"
+    },
+    {
+      "geo_code": "KEN-C006-CON026",
+      "name": "Voi"
+    },
+    {
+      "geo_code": "KEN-C007-CON027",
+      "name": "Garissa Township"
+    },
+    {
+      "geo_code": "KEN-C007-CON031",
+      "name": "Fafi"
+    },
+    {
+      "geo_code": "KEN-C008-CON034",
+      "name": "Wajir East"
+    },
+    {
+      "geo_code": "KEN-C008-CON035",
+      "name": "Tarbaj"
+    },
+    {
+      "geo_code": "KEN-C008-CON036",
+      "name": "Wajir West"
+    },
+    {
+      "geo_code": "KEN-C009-CON043",
+      "name": "Mandera East"
+    },
+    {
+      "geo_code": "KEN-C009-CON044",
+      "name": "Lafey"
+    },
+    {
+      "geo_code": "KEN-C010-CON045",
+      "name": "Moyale"
+    },
+    {
+      "geo_code": "KEN-C010-CON046",
+      "name": "North Horr"
+    },
+    {
+      "geo_code": "KEN-C010-CON047",
+      "name": "Saku"
+    },
+    {
+      "geo_code": "KEN-C010-CON048",
+      "name": "Laisamis"
+    },
+    {
+      "geo_code": "KEN-C011-CON049",
+      "name": "Isiolo North"
+    },
+    {
+      "geo_code": "KEN-C011-CON050",
+      "name": "Isiolo South"
+    },
+    {
+      "geo_code": "KEN-C012-CON051",
+      "name": "Igembe South"
+    },
+    {
+      "geo_code": "KEN-C012-CON052",
+      "name": "Igembe Central"
+    },
+    {
+      "geo_code": "KEN-C012-CON053",
+      "name": "Igembe North"
+    },
+    {
+      "geo_code": "KEN-C012-CON054",
+      "name": "Tigania West"
+    },
+    {
+      "geo_code": "KEN-C012-CON055",
+      "name": "Tigania East"
+    },
+    {
+      "geo_code": "KEN-C012-CON056",
+      "name": "North Imenti"
+    },
+    {
+      "geo_code": "KEN-C012-CON057",
+      "name": "Buuri"
+    },
+    {
+      "geo_code": "KEN-C012-CON058",
+      "name": "Central Imenti"
+    },
+    {
+      "geo_code": "KEN-C012-CON059",
+      "name": "South Imenti"
+    },
+    {
+      "geo_code": "KEN-C013-CON060",
+      "name": "Maara"
+    },
+    {
+      "geo_code": "KEN-C013-CON061",
+      "name": "Chuka/Igambang'om"
+    },
+    {
+      "geo_code": "KEN-C013-CON062",
+      "name": "Tharaka"
+    },
+    {
+      "geo_code": "KEN-C014-CON063",
+      "name": "Manyatta"
+    },
+    {
+      "geo_code": "KEN-C014-CON064",
+      "name": "Runyenjes"
+    },
+    {
+      "geo_code": "KEN-C014-CON065",
+      "name": "Mbeere South"
+    },
+    {
+      "geo_code": "KEN-C015-CON067",
+      "name": "Mwingi North"
+    },
+    {
+      "geo_code": "KEN-C015-CON068",
+      "name": "Mwingi West"
+    },
+    {
+      "geo_code": "KEN-C015-CON069",
+      "name": "Mwingi Central"
+    },
+    {
+      "geo_code": "KEN-C015-CON070",
+      "name": "Kitui West"
+    },
+    {
+      "geo_code": "KEN-C015-CON072",
+      "name": "Kitui Central"
+    },
+    {
+      "geo_code": "KEN-C016-CON075",
+      "name": "Masinga"
+    },
+    {
+      "geo_code": "KEN-C016-CON076",
+      "name": "Yatta"
+    },
+    {
+      "geo_code": "KEN-C016-CON077",
+      "name": "Kangundo"
+    },
+    {
+      "geo_code": "KEN-C016-CON078",
+      "name": "Matungulu"
+    },
+    {
+      "geo_code": "KEN-C016-CON079",
+      "name": "Kathiani"
+    },
+    {
+      "geo_code": "KEN-C016-CON081",
+      "name": "Machakos Town"
+    },
+    {
+      "geo_code": "KEN-C016-CON082",
+      "name": "Mwala"
+    },
+    {
+      "geo_code": "KEN-C017-CON083",
+      "name": "Mbooni"
+    },
+    {
+      "geo_code": "KEN-C017-CON084",
+      "name": "Kilome"
+    },
+    {
+      "geo_code": "KEN-C017-CON085",
+      "name": "Kaiti"
+    },
+    {
+      "geo_code": "KEN-C017-CON086",
+      "name": "Makueni"
+    },
+    {
+      "geo_code": "KEN-C017-CON087",
+      "name": "Kibwezi West"
+    },
+    {
+      "geo_code": "KEN-C017-CON088",
+      "name": "Kibwezi East"
+    },
+    {
+      "geo_code": "KEN-C018-CON089",
+      "name": "Kinangop"
+    },
+    {
+      "geo_code": "KEN-C018-CON090",
+      "name": "Kipipiri"
+    },
+    {
+      "geo_code": "KEN-C018-CON091",
+      "name": "Ol Kalou"
+    },
+    {
+      "geo_code": "KEN-C018-CON092",
+      "name": "Ol Jorok"
+    },
+    {
+      "geo_code": "KEN-C018-CON093",
+      "name": "Ndaragwa"
+    },
+    {
+      "geo_code": "KEN-C019-CON094",
+      "name": "Tetu"
+    },
+    {
+      "geo_code": "KEN-C019-CON096",
+      "name": "Mathira"
+    },
+    {
+      "geo_code": "KEN-C019-CON097",
+      "name": "Othaya"
+    },
+    {
+      "geo_code": "KEN-C019-CON098",
+      "name": "Mukurweini"
+    },
+    {
+      "geo_code": "KEN-C019-CON099",
+      "name": "Nyeri Town"
+    },
+    {
+      "geo_code": "KEN-C020-CON100",
+      "name": "Mwea"
+    },
+    {
+      "geo_code": "KEN-C020-CON101",
+      "name": "Gichugu"
+    },
+    {
+      "geo_code": "KEN-C020-CON102",
+      "name": "Ndia"
+    },
+    {
+      "geo_code": "KEN-C020-CON103",
+      "name": "Kirinyaga Central"
+    },
+    {
+      "geo_code": "KEN-C021-CON105",
+      "name": "Mathioya"
+    },
+    {
+      "geo_code": "KEN-C021-CON106",
+      "name": "Kiharu"
+    },
+    {
+      "geo_code": "KEN-C021-CON107",
+      "name": "Kigumo"
+    },
+    {
+      "geo_code": "KEN-C021-CON108",
+      "name": "Maragwa"
+    },
+    {
+      "geo_code": "KEN-C021-CON109",
+      "name": "Kandara"
+    },
+    {
+      "geo_code": "KEN-C021-CON110",
+      "name": "Gatanga"
+    },
+    {
+      "geo_code": "KEN-C022-CON111",
+      "name": "Gatundu South"
+    },
+    {
+      "geo_code": "KEN-C022-CON112",
+      "name": "Gatundu North"
+    },
+    {
+      "geo_code": "KEN-C022-CON113",
+      "name": "Juja"
+    },
+    {
+      "geo_code": "KEN-C022-CON114",
+      "name": "Thika Town"
+    },
+    {
+      "geo_code": "KEN-C022-CON115",
+      "name": "Ruiru"
+    },
+    {
+      "geo_code": "KEN-C022-CON116",
+      "name": "Githunguri"
+    },
+    {
+      "geo_code": "KEN-C022-CON117",
+      "name": "Kiambu"
+    },
+    {
+      "geo_code": "KEN-C022-CON118",
+      "name": "Kiambaa"
+    },
+    {
+      "geo_code": "KEN-C022-CON120",
+      "name": "Kikuyu"
+    },
+    {
+      "geo_code": "KEN-C022-CON121",
+      "name": "Limuru"
+    },
+    {
+      "geo_code": "KEN-C022-CON122",
+      "name": "Lari"
+    },
+    {
+      "geo_code": "KEN-C023-CON123",
+      "name": "Turkana North"
+    },
+    {
+      "geo_code": "KEN-C023-CON124",
+      "name": "Turkana West"
+    },
+    {
+      "geo_code": "KEN-C023-CON125",
+      "name": "Turkana Central"
+    },
+    {
+      "geo_code": "KEN-C023-CON127",
+      "name": "Turkana South"
+    },
+    {
+      "geo_code": "KEN-C023-CON128",
+      "name": "Turkana East"
+    },
+    {
+      "geo_code": "KEN-C024-CON129",
+      "name": "Kapenguria"
+    },
+    {
+      "geo_code": "KEN-C024-CON130",
+      "name": "Sigor"
+    },
+    {
+      "geo_code": "KEN-C024-CON131",
+      "name": "Kacheliba"
+    },
+    {
+      "geo_code": "KEN-C024-CON132",
+      "name": "Pokot South"
+    },
+    {
+      "geo_code": "KEN-C025-CON133",
+      "name": "Samburu West"
+    },
+    {
+      "geo_code": "KEN-C025-CON134",
+      "name": "Samburu North"
+    },
+    {
+      "geo_code": "KEN-C025-CON135",
+      "name": "Samburu East"
+    },
+    {
+      "geo_code": "KEN-C026-CON136",
+      "name": "Kwanza"
+    },
+    {
+      "geo_code": "KEN-C026-CON137",
+      "name": "Endebess"
+    },
+    {
+      "geo_code": "KEN-C026-CON138",
+      "name": "Saboti"
+    },
+    {
+      "geo_code": "KEN-C026-CON140",
+      "name": "Cherangany"
+    },
+    {
+      "geo_code": "KEN-C027-CON142",
+      "name": "Turbo"
+    },
+    {
+      "geo_code": "KEN-C027-CON143",
+      "name": "Moiben"
+    },
+    {
+      "geo_code": "KEN-C027-CON144",
+      "name": "Ainabkoi"
+    },
+    {
+      "geo_code": "KEN-C027-CON145",
+      "name": "Kapseret"
+    },
+    {
+      "geo_code": "KEN-C027-CON146",
+      "name": "Kesses"
+    },
+    {
+      "geo_code": "KEN-C037-CON209",
+      "name": "Shinyalu"
+    }
+  ]
+}
