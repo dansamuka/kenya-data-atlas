@@ -11,7 +11,7 @@
     "topic": "Social",
     "subtopic": "Inequality",
     "unit_id": "04b90096-6bfb-521e-957b-e8b0f4cf1988",
-    "higher_is_better": false,
+    "higher_is_better": null,
     "preferred_frequency": "annual",
     "minimum_geo_level": "country",
     "minimum_denominator": null,

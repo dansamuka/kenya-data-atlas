@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T8",
-  "as_of": "2026-09-09",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-11-CONSOLIDATED",
+  "as_of": "2026-09-11",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
   "target_geography_count": 290,
@@ -16,7 +16,7 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 53,
+    "verified_constituencies": 133,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON002",
@@ -29,9 +29,22 @@
       "KEN-C003-CON013",
       "KEN-C003-CON014",
       "KEN-C003-CON015",
+      "KEN-C003-CON016",
+      "KEN-C004-CON018",
       "KEN-C004-CON020",
+      "KEN-C005-CON021",
+      "KEN-C006-CON025",
       "KEN-C007-CON028",
+      "KEN-C007-CON029",
+      "KEN-C007-CON030",
+      "KEN-C007-CON032",
+      "KEN-C008-CON033",
+      "KEN-C008-CON037",
       "KEN-C008-CON038",
+      "KEN-C009-CON039",
+      "KEN-C009-CON040",
+      "KEN-C009-CON041",
+      "KEN-C009-CON042",
       "KEN-C014-CON066",
       "KEN-C015-CON071",
       "KEN-C015-CON073",
@@ -70,7 +83,34 @@
       "KEN-C044-CON259",
       "KEN-C047-CON274",
       "KEN-C047-CON278",
-      "KEN-C047-CON286"
+      "KEN-C047-CON286",
+      "KEN-C028-CON147",
+      "KEN-C028-CON148",
+      "KEN-C028-CON150",
+      "KEN-C029-CON151",
+      "KEN-C029-CON152",
+      "KEN-C029-CON153",
+      "KEN-C029-CON154",
+      "KEN-C029-CON156",
+      "KEN-C030-CON157",
+      "KEN-C030-CON158",
+      "KEN-C030-CON160",
+      "KEN-C030-CON161",
+      "KEN-C031-CON165",
+      "KEN-C032-CON166",
+      "KEN-C032-CON167",
+      "KEN-C032-CON169",
+      "KEN-C032-CON170",
+      "KEN-C032-CON171",
+      "KEN-C032-CON173",
+      "KEN-C032-CON174",
+      "KEN-C033-CON178",
+      "KEN-C033-CON180",
+      "KEN-C034-CON186",
+      "KEN-C035-CON188",
+      "KEN-C035-CON191",
+      "KEN-C035-CON193",
+      "KEN-C037-CON201"
     ],
     "verified_constituency_codes": [
       1,
@@ -84,9 +124,22 @@
       13,
       14,
       15,
+      16,
+      18,
       20,
+      21,
+      25,
       28,
+      29,
+      30,
+      32,
+      33,
+      37,
       38,
+      39,
+      40,
+      41,
+      42,
       66,
       71,
       73,
@@ -125,19 +178,64 @@
       259,
       274,
       278,
-      286
-    ],
-    "newly_authorized_constituency_codes": [
+      286,
+      147,
       148,
       150,
       151,
       152,
       153,
       154,
-      156
+      156,
+      157,
+      158,
+      160,
+      161,
+      165,
+      166,
+      167,
+      169,
+      170,
+      171,
+      173,
+      174,
+      178,
+      180,
+      186,
+      188,
+      191,
+      193,
+      201
     ],
-    "expected_p23_remaining_after_materialization": 237,
-    "expected_resolved_slots_after_materialization": 14047,
+    "newly_authorized_constituency_codes": [
+      16,
+      18,
+      21,
+      25,
+      29,
+      30,
+      32,
+      33,
+      37,
+      39,
+      40,
+      41,
+      42,
+      147,
+      148,
+      150,
+      151,
+      152,
+      153,
+      154,
+      156,
+      188,
+      191,
+      193,
+      201
+    ],
+    "expected_p23_remaining_after_materialization": 157,
+    "expected_resolved_slots_after_materialization": 19958,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -146,7 +244,149 @@
       "full_validation_suite",
       "independent_geography_audit"
     ],
-    "materialization_note": "This tranche (Marakwet West, Keiyo South, Tinderet, Aldai, Nandi Hills, Chesumei and Mosop) was independently source-verified against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs during this session (tranche B, working the higher-numbered half of the remaining P23 constituency-code queue in parallel with a separate tranche-A agent). Each row's registered-voters denominator, four candidate totals, total valid votes and rejected ballots were read directly from a 250 DPI render of the page containing the printed TOTAL row and cross-checked arithmetically. Mosop (code 156) uses a differently-ordered candidate-column layout (Mwaure, Wajackoyah, Odinga, Ruto) than the other forms in this tranche and its grid total-row line is visually split across two baselines by page skew; its four candidate figures were independently corroborated against the form's separate spelled-out 'Valid Votes in Words' aggregate-results table before being recorded. Two adjacent constituencies in this same tranche (Keiyo North, code 149, and Emgwen, code 155) were reviewed and found to have a genuine denominator conflict — their Form 34B TOTAL-row registered-voters figures (49,267 and 67,045 respectively, each re-confirmed by tight-crop re-reads) do not reconcile to the existing governed P23 constituency voter denominator (49,247 and 66,940) — and were deliberately left unresolved rather than promoted or forced."
+    "materialization_note": "Consolidated across five parallel P23 turnout tranches (a, c-v2, d, e, f; PRs #136-140), merged sequentially into main. Tranche A's unique contribution (no duplication found on any sibling tranche): Malindi (016), Garsen (018), Lamu East (021), Mwatate (025), Lagdera (029), Dadaab (030), Ijara (032), Wajir North (033), Eldas (037), Mandera West (039), Banissa (040), Mandera North (041), Mandera South (042), Marakwet East (147), plus Kipkelion East (188), Bureti (191), Sigowet/Soin (193) and Malava (201) which were cross-validated identically against tranche D/C/E respectively before this branch's copy was dropped in favor of the already-merged sibling. Tranche A additionally audited its full 50-constituency queue against tranches C/D/E/F and found 36 of 50 were independently re-derived elsewhere: 35 agreed exactly (including the per-candidate breakdown) and were resolved by keeping the already-merged sibling's file and dropping tranche A's redundant copy; one (Molo, 166) disagreed on rejected_ballots (220 on tranche A vs 720 on tranche F) — both read from the same source PDF, whose page 2 prints upside-down, a plausible source of a single-digit misread. Tranche F's independently-arrived-at value of 720 was kept as the resolution (matches the version already merged via PR #139); tranche A's 220 was dropped. Six constituencies reviewed in the tranche-A session were withheld rather than forced through, spanning three distinct reasons: (a) the established prison/special-polling-station denominator-gap pattern -- Sotik (194, 17-voter gap matching Sotik Prison) and Bomet East (196, 21-voter gap matching Bomet Prison); (b) a newly observed genuine arithmetic mismatch on the source form itself, where the four candidate cells do not sum to the printed Total Valid Votes even though every individual digit is clearly legible -- Kipkelion West (189, candidate cells sum to 41,907 against a printed Total Valid Votes of 41,807, a 100-vote gap) and Bomet Central (197, candidate cells sum to 57,670 against a printed Total Valid Votes of 57,565, a 105-vote gap coincidentally equal to the fourth candidate's own count), both left unresolved per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified (matching the Fafi precedent from an earlier tranche); (c) a registered-voters denominator gap (Ainamoi, 190, printed 85,246 vs governed 85,024, a 222-voter gap only partially explained by two identified special stations -- Kericho Main 46 + Kericho Annex 13 = 59 -- leaving 163 voters unaccounted for) and a severely internally inconsistent source document (Likuyani, 200, whose official upload prints a literal spreadsheet '#REF!' error in its own aggregate-results box, has candidate cells summing 584 short of the printed Total Valid Votes, and shows two different registered-voter totals -- 72,449 at the top of the form vs a 71,778 polling-station-level county total -- within the same document). All six are left unresolved rather than forced through or explained away with an assumption not evidenced on the source. Tranche B (merged earlier via PR #135's lineage) separately contributed Marakwet West, Keiyo South, Tinderet, Aldai, Nandi Hills, Chesumei and Mosop, and flagged its own denominator conflict on two adjacent constituencies (Keiyo North 149, Emgwen 155) that overlaps with tranche A's independent finding of the same two rows -- both sessions agree these remain unresolved.",
+    "reviewed_but_withheld": [
+      {
+        "geo_code": "KEN-C028-CON149",
+        "constituency_code": 149,
+        "constituency_name": "Keiyo North",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 49,267; governed 2022 constituency denominator = 49,247; 20-voter gap exactly matches TAMBACH PRISON - 01 (polling station code 049292145106501) on the same TOTAL row. Four candidate cells (1,266 + 37,337 + 30 + 32 = 38,665) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C029-CON155",
+        "constituency_code": 155,
+        "constituency_name": "Emgwen",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 67,045; governed 2022 constituency denominator = 66,940; 105-voter gap exactly matches KAPSABET PRISON - 01 (polling station code 049292145106601) on the same TOTAL row. Four candidate cells (7,602 + 41,086 + 57 + 85 = 48,830) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C030-CON159",
+        "constituency_code": 159,
+        "constituency_name": "Baringo Central",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 45,949; governed 2022 constituency denominator = 45,920; 29-voter gap exactly matches KABARNET PRISON - 01 (polling station code 049292145106701) on the same TOTAL row. Four candidate cells (1,656 + 33,162 + 26 + 62 = 34,906) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C030-CON162",
+        "constituency_code": 162,
+        "constituency_name": "Eldama Ravine",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 64,099; governed 2022 constituency denominator = 64,074; 25-voter gap exactly matches ELDAMA RAVINE PRISON - 01 (polling station code 049292145106801) on the same TOTAL row. Four candidate cells (5,122 + 42,118 + 72 + 114 = 47,426) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C031-CON163",
+        "constituency_code": 163,
+        "constituency_name": "Laikipia West",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 118,986; governed 2022 constituency denominator = 118,865; 121-voter gap exactly matches the sum of three special stations on the same TOTAL row: RUMURUTI - 01 (049292145106901, 36), T/FALL PRISON - 01 (049292145107001, 76) and T/FALL WOMEN - 01 (049292145107101, 9). Four candidate cells (20,943 + 57,192 + 222 + 258 = 78,615) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison/special-station pattern."
+      },
+      {
+        "geo_code": "KEN-C031-CON164",
+        "constituency_code": 164,
+        "constituency_name": "Laikipia East",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 96,535; governed 2022 constituency denominator = 96,395; 140-voter gap exactly matches NANYUKI PRISON (polling station code 049292145107201) on the same TOTAL row. Four candidate cells (13,335 + 48,793 + 168 + 262 = 62,558) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C032-CON168",
+        "constituency_code": 168,
+        "constituency_name": "Naivasha",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 157,606; governed 2022 constituency denominator = 157,128; 478-voter gap exactly matches the sum of three special stations on the same TOTAL row: NAIVASHA MAIN - 01 (049292145107301, 390), NAIVASHA MEDIUM - 01 (049292145107401, 75) and NAIVASHA WOMEN - 01 (049292145107501, 13). Four candidate cells (36,487 + 61,915 + 293 + 429 = 99,124) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison/special-station pattern."
+      },
+      {
+        "geo_code": "KEN-C032-CON175",
+        "constituency_code": 175,
+        "constituency_name": "Nakuru Town West",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 112,308; governed 2022 constituency denominator = 112,127; 181-voter gap exactly matches the sum of two special stations on the same TOTAL row: NAKURU MAIN - 01 (049292145107601, 171) and NAKURU WOMEN - 01 (049292145107701, 10). Four candidate cells (36,824 + 32,982 + 119 + 211 = 70,136) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison/special-station pattern."
+      },
+      {
+        "geo_code": "KEN-C033-CON177",
+        "constituency_code": 177,
+        "constituency_name": "Kilgoris",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 76,895; governed 2022 constituency denominator = 76,883; 12-voter gap exactly matches KILGORIS PRISON - 01 (polling station code 049292145111801) on the same TOTAL row. Four candidate cells (26,370 + 30,604 + 66 + 104 = 57,144) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C033-CON179",
+        "constituency_code": 179,
+        "constituency_name": "Narok North",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 88,721; governed 2022 constituency denominator = 88,665; 56-voter gap exactly matches NAROK PRISON - 01 (polling station code 049292145107801) on the same TOTAL row. Four candidate cells (51,722 + 14,940 + 55 + 137 = 66,854) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C033-CON181",
+        "constituency_code": 181,
+        "constituency_name": "Narok South",
+        "reason": "rejected_ballots_not_evidenced_on_source",
+        "detail": "The official scan crops off the entire Rejected Ballots table column at the page's right margin on every table page of this form (confirmed on both the mid-table pages and the final TOTAL-row page); the header row itself is truncated mid-word before reaching a Rejected Ballots label. Registered voters (76,065) matches the governed denominator exactly, and the four candidate cells (27,287 + 30,456 + 26 + 54 = 57,823) reconcile exactly to Total Valid Votes (57,823, also confirmed against the form's own Aggregate Results table). Only rejected_ballots is unsourced; per the extraction contract all three target fields must be source_verified before promotion, so this row is left unresolved rather than assuming a value (e.g. zero) not actually printed on the source."
+      },
+      {
+        "geo_code": "KEN-C034-CON184",
+        "constituency_code": 184,
+        "constituency_name": "Kajiado Central",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 65,866; governed 2022 constituency denominator = 65,823; 43-voter gap exactly matches KAJIADO PRISON - 01 (polling station code 049292145107901) on the same TOTAL row. Four candidate cells (28,468 + 22,585 + 50 + 107 = 51,210) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C034-CON185",
+        "constituency_code": 185,
+        "constituency_name": "Kajiado East",
+        "reason": "rejected_ballots_not_evidenced_on_source",
+        "detail": "The printed TOTAL row (116,336 registered / 40,743 + 28,463 + 122 + 235 = 69,563 total valid, confirmed against the form's own Aggregate Results and Voter Turnout summary tables) leaves the Rejected Ballots cell completely blank -- confirmed at 500 DPI as an empty ruled box, not a faint or illegible digit -- while the same row's other five cells are filled in and every field reconciles. Registered voters matches the governed denominator exactly. Only rejected_ballots is unsourced; per the extraction contract all three target fields must be source_verified before promotion, so this row is left unresolved rather than assuming a value not actually printed on the source."
+      },
+      {
+        "geo_code": "KEN-C034-CON187",
+        "constituency_code": 187,
+        "constituency_name": "Kajiado South",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 71,064; governed 2022 constituency denominator = 71,061; 3-voter gap exactly matches LOITOKITOK GK PRISON - 01 (polling station code 049292145111901) on the same TOTAL row. Four candidate cells (23,614 + 27,333 + 147 + 114 = 51,208) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C035-CON189",
+        "constituency_code": 189,
+        "constituency_name": "Kipkelion West",
+        "reason": "arithmetic_mismatch",
+        "detail": "Printed Form 34B TOTAL row: registered voters 52,960 (matches the governed denominator exactly), four candidate cells 1,771 + 40,056 + 29 + 51 = 41,907, but the printed Total Valid Votes reads 41,807 -- a 100-vote discrepancy. Every digit was independently read twice (full-page render and the form's own printed row) with identical results both times, so this is judged a genuine printed-form arithmetic error rather than a legibility or transcription issue, matching the Fafi precedent from an earlier tranche. The extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified applies; left unresolved rather than forced through by substituting the candidate-sum figure for the printed total."
+      },
+      {
+        "geo_code": "KEN-C035-CON190",
+        "constituency_code": 190,
+        "constituency_name": "Ainamoi",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_partially_explained",
+        "detail": "Printed Form 34B TOTAL registered voters = 85,246; governed 2022 constituency denominator = 85,024; 222-voter gap. Two special stations were identified on the same TOTAL row -- KERICHO MAIN (049292145108201, 46) and KERICHO ANNEX (049292145108401, 13) -- summing to only 59 of the 222-voter gap, leaving 163 voters unaccounted for despite reviewing every page of the form for additional special-station codes. Four candidate cells (5,722 + 57,059 + 49 + 95 = 62,925) reconcile exactly to Total Valid Votes, so the row is internally consistent on the numerator side; only the registered-voters reconciliation to the governed denominator fails, and unlike every other prison-station case this session it is not fully explained. Left unresolved as a genuine, only-partially-investigated denominator gap rather than assumed to be the same pattern."
+      },
+      {
+        "geo_code": "KEN-C036-CON194",
+        "constituency_code": 194,
+        "constituency_name": "Sotik",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 86,698; governed 2022 constituency denominator = 86,681; 17-voter gap exactly matches SOTIK PRISON - 01 (polling station code 049292145108501) on the same TOTAL row. Four candidate cells (2,417 + 66,866 + 51 + 109 = 69,443) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C036-CON196",
+        "constituency_code": 196,
+        "constituency_name": "Bomet East",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL registered voters = 63,661; governed 2022 constituency denominator = 63,640; 21-voter gap exactly matches BOMET PRISON - 01 (polling station code 049292145108601) on the same TOTAL row. Four candidate cells (1,769 + 47,987 + 38 + 107 = 49,901) reconcile exactly to Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed denominator fails, per the documented prison-station pattern."
+      },
+      {
+        "geo_code": "KEN-C036-CON197",
+        "constituency_code": 197,
+        "constituency_name": "Bomet Central",
+        "reason": "arithmetic_mismatch",
+        "detail": "Printed Form 34B TOTAL row: registered voters 71,409, four candidate cells 2,024 + 55,486 + 55 + 105 = 57,670, but the printed Total Valid Votes reads 57,565 -- a 105-vote discrepancy, coincidentally equal to the fourth candidate's (Wajackoyah) own printed cell value, suggesting the constituency tallying centre's summation omitted that column when computing the printed total. Independently re-read twice at high DPI with identical results. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C037-CON200",
+        "constituency_code": 200,
+        "constituency_name": "Likuyani",
+        "reason": "source_document_internally_inconsistent",
+        "detail": "This constituency's official Form 34B upload uses an unusual template (candidate/valid/rejected columns before a rightmost Registered Voters column, rather than the usual leading Registered Voters column) and shows clear evidence of an underlying spreadsheet error carried into the printed document: the constituency-level Aggregate Results table's fifth results row prints the literal text '#REF!' in both the candidate-name and valid-votes-in-figures cells -- a raw Excel formula-reference error, not a transcription or scanning artifact. The polling-station-level 'County Total' row (32,618 + 9,301 + 108 + 177 = 42,204 candidate-cell sum) does not reconcile to its own printed Total Valid Votes (41,620), a 584-vote gap, and separately prints a registered-voters figure of 71,778, which itself does not match the 72,449 registered-voters figure printed in the form's own per-constituency header block on page 1 (also the governed 2022 denominator) -- two different registered-voter totals appear on the same official document. Given multiple independent internal inconsistencies on the source document itself, this row is left unresolved rather than selecting one of the conflicting totals to force through."
+      }
+    ]
   },
   "canonical_rebuild_sync": {
     "state": "validated",
