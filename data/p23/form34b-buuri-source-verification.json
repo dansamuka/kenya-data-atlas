@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-BUURI-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Buuri Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 57,
+    "constituency_name": "Buuri",
+    "geo_code": "KEN-C012-CON057",
+    "form_id": 277685,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277685",
+    "source_pdf_sha256": "76cff6d3e7ee45d2aef7a9dae9b066fa37bb1cc30e4edf248a08fd0162dd6215",
+    "page_number": 3,
+    "render_dpi": 400,
+    "review_context_image_sha256": "3124e24e5dedc7d4ef009c7ff8348cea80b83b043163c32e9d8a5dcc4c610422",
+    "review_context_note": "This form's column order places Rejected Ballots before Total Valid Votes (the reverse of the more common layout), confirmed from the page's own column headers before reading the row. Rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF at 400 DPI. The page also carries a separate printed 'Voter Turn Out' summary box independently confirming the same Registered Voters and (Total Valid Votes + Rejected Ballots) figures. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image (a clean digital scan). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (BUURI, code 057, county MERU code 012) was read from the page header ('Name of Constituency: BUURI Code: 057', 'Name of County: MERU Code: 012') before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_page3_form34b_presidential_header_name_of_constituency_buuri_code_057_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "3124e24e5dedc7d4ef009c7ff8348cea80b83b043163c32e9d8a5dcc4c610422",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 82341,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "3124e24e5dedc7d4ef009c7ff8348cea80b83b043163c32e9d8a5dcc4c610422",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 53832,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "3124e24e5dedc7d4ef009c7ff8348cea80b83b043163c32e9d8a5dcc4c610422",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 479,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row, cross-checked against the page's separate printed 'Voter Turn Out' summary box.",
+    "candidate_vote_totals_in_source_column_order": [
+      7107,
+      46441,
+      78,
+      206
+    ],
+    "candidate_vote_sum": 53832,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 82341,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 54311,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 65.95863543070888,
+    "turnout_range_valid": true,
+    "voter_turnout_box_cross_check": "Page's own printed 'Voter Turn Out' box states 82,341 registered / 54,311 turned out / 65.96%, matching the TOTAL row exactly (53,832 + 479 = 54,311)."
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. The printed Registered Voters figure (82,341) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-057-2022) exactly, the four candidate cells sum exactly to the printed Total Valid Votes, and both figures are independently confirmed by the page's own printed Voter Turn Out summary box. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
