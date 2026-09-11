@@ -420,6 +420,27 @@
         "constituency_name": "North Imenti",
         "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
         "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 96,623; governed 2022 constituency denominator = 96,241; a 382-voter gap. This gap is exactly matched by summing two special polling stations on the same TOTAL roll-up: MERU MAIN - 01 (station code 049292145102601, 360 registered voters) plus MERU WOMEN - 01 (station code 049292145102701, 22 registered voters) = 382. Four candidate cells (9,680 + 51,696 + 101 + 242 = 61,719) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented special-station pattern (cf. Magarini, Wundanyi, Wajir East, Igembe Central). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C015-CON069",
+        "constituency_code": 69,
+        "constituency_name": "Mwingi Central",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 74,283; governed 2022 constituency denominator = 74,231; a 52-voter gap. This gap is exactly matched by a single special polling station on the same TOTAL roll-up: MWINGI PRISON - 01 (station code 049292145103401, 52 registered voters). Four candidate cells (33,082 + 10,749 + 262 + 430 = 44,523) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented prison/special-station pattern (cf. Magarini, Wundanyi, Wajir East, Igembe Central, North Imenti). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C016-CON076",
+        "constituency_code": 76,
+        "constituency_name": "Yatta",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 4 of 4, an 18-subpage bundle): registered voters 82,446; governed 2022 constituency denominator = 82,397; a 49-voter gap. This gap is exactly matched by a single special polling station on the same TOTAL roll-up: YATTA PRISON (B) - 01 (station code 049292145103801, 49 registered voters). Four candidate cells (38,225 + 10,391 + 121 + 325 = 49,062) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented prison/special-station pattern (cf. Magarini, Wundanyi, Wajir East, Igembe Central, North Imenti, Mwingi Central). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C016-CON081",
+        "constituency_code": 81,
+        "constituency_name": "Machakos Town",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 117,444; governed 2022 constituency denominator = 117,367; a 77-voter gap. This gap is exactly matched by summing two special polling stations on the same TOTAL roll-up: MACHAKOS MAIN - 01 (station code 049292145103901, 67 registered voters) plus MACHAKOS WOMEN - 01 (station code 049292145104001, 10 registered voters) = 77. Four candidate cells (50,114 + 19,677 + 196 + 540 = 70,527) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented special-station pattern (cf. Magarini, Wundanyi, Wajir East, Igembe Central, North Imenti, Mwingi Central, Yatta). Left unresolved rather than forced through."
       }
     ]
   },
