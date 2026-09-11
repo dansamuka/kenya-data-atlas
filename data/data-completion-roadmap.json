@@ -256,7 +256,27 @@
       "depends_on": [
         "P18",
         "P23"
-      ]
+      ],
+      "progress": {
+        "as_of": "2026-09-08",
+        "ward_fund_allocation_not_applicable_slots": 1450,
+        "ward_voters_boundary_unresolved_slots": 30,
+        "resolved_this_tranche": 1480,
+        "remaining_p24_slots": 1450,
+        "note": "Research confirmed Kenya has no uniform official national ward-level development-fund programme comparable to NG-CDF: the National Government Constituencies Development Fund Act, 2015 (as amended) allocates and administers the Fund per constituency, not per ward; county-run 'Ward Development Fund' programmes (e.g. Nairobi City County, Kiambu County, Kakamega County) exist under separate County Assembly Acts with different amounts and rules and are not present in all 47 counties; and the County Wards (Equitable Development) Bill that would create one national ward fund remains unenacted. All 1,450 IND-WARD-FUND-ALLOCATION ward slots are therefore closed not_applicable under data/p24/ward-fund-allocation-closure-contract.json rather than divided from a parent total. Separately, the ten already-documented Mandera East/Lafey ward-voter slots (30 rendered rows across the overview/people/representation tabs) are formally closed boundary_unresolved under data/p24/ward-voters-boundary-hold-contract.json, citing the same spatial hold preserved since P23A/P23X. Combined with the separately merged ward-census publication-gap closure (data/p24/ward-census-closure-contract.json, 1,450 slots), the ward health-facility-density closure (data/p24/ward-health-facility-density-closure-contract.json, 1,450 slots) and the ward turnout-history closure below (1,450 slots), only one still-unresolved 1,450-ward family remains: IND-MCA-IDENTITY.",
+        "ward_turnout_history_closure": {
+          "indicator_code": "IND-TURNOUT-HISTORY",
+          "governed_slots": 1450,
+          "resolved_total": 1450,
+          "direct_current_observations": 0,
+          "evidence_constrained_current_unavailable": 1450,
+          "remaining_slots_this_family": 0,
+          "completion_as_of": "2026-09-08",
+          "completion_note": "All 1,450 ward IND-TURNOUT-HISTORY slots are closed as governed official_unavailable. No ready-made official ward-level turnout aggregate exists; producing real values would require a dedicated Form 34A (re-summed to ward) or Form 36B ward-tally source-verification pipeline of the same class as the P23 Form34B effort, at up to five times the geographic unit count. No constituency value is copied down and no proxy/estimate is used. Each closure carries a refresh trigger for later official supersession."
+        },
+        "remaining_slots_other_ward_families": 11600,
+        "next_family": "Remaining P24 ward families (MCA identity, service/facility aggregation, land-area derivation, ward-fund treatment) are unresolved by this closure and require separate, dedicated tranches."
+      }
     },
     {
       "id": "P25",
@@ -282,7 +302,30 @@
       "depends_on": [
         "P22",
         "P24"
-      ]
+      ],
+      "progress": {
+        "session_note": "All six P25-specific acceptance items are independently satisfied: (1) the sole remaining P25 ledger slot, IND-MOBILE-MONEY-VOLUME/KEN, is resolved as published_direct from Central Bank of Kenya National Payments System Mobile Payments statistics (agent cash-in/cash-out value, June-July 2026); (2) Compare and Rankings & Insights were audited and already render an explicit no-data state rather than defaulting an absent value to zero; (3) CountyIQ's top-line metric cards and benchmark rows were found to fall back to a generic period/source label instead of an explicit reason when a metric observation is absent, and were fixed to show 'Not published for this county'; (4) the Evidence Hub already distinguishes verified_document/verified_source_page/verified_source_collection/not_published/not_found/inaccessible with distinct labels and help text; (5) the Opportunity Finder was found to render an identical 'temporarily unavailable, try again later' message for a genuine zero-programmes registry and for an actual fetch/parse failure, and was fixed to render two distinct, differently-styled states; (6) the profile-card null-state convention (assets/place-profile.js) already attaches an explicit reason to every missing active-indicator card.",
+        "mobile_money_slot_resolved": true,
+        "ui_surfaces_audited": [
+          "compare",
+          "rankings",
+          "countyiq",
+          "evidence-hub",
+          "opportunity-finder",
+          "place-profile"
+        ],
+        "ui_surfaces_fixed": [
+          "countyiq",
+          "opportunity-finder"
+        ],
+        "ui_surfaces_already_correct": [
+          "compare",
+          "rankings",
+          "evidence-hub",
+          "place-profile"
+        ],
+        "phase_closure_note": "The P25 phase itself is intentionally left un-closed here: its declared depends_on includes P24, which remains 'planned' with a nonzero live queue, and the plan's own formal closure order keeps P24 -> P25 -> P26 sequential. This mirrors the P23A pattern -- P25's own governed work is completed and validated now without prematurely marking the phase complete ahead of its documented dependency. Whoever completes P24 should flip this phase's status to complete."
+      }
     },
     {
       "id": "P26",
