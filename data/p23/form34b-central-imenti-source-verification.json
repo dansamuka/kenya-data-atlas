@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-CENTRAL-IMENTI-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Central Imenti Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 58,
+    "constituency_name": "Central Imenti",
+    "geo_code": "KEN-C012-CON058",
+    "form_id": 277686,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277686",
+    "source_pdf_sha256": "117771ed6f00e980937eba8c67012d172320f9c73ecc986eb33ba55c35d6267a",
+    "page_number": 2,
+    "render_dpi": 150,
+    "review_context_image_sha256": "ae1ae0174b45c765d1c5c024a87b4b7178b23f1511604953312d5c6076a4175e",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the TOTAL row for digit-level confirmation. This constituency's Form 34B is a 3-page document (page 2 of 3 ends in the TOTAL row, highlighted in green in the source, followed by the returning-officer signature/stamp block). The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (CENTRAL IMENTI, code 058, county MERU code 012) was read from the page header and cross-checked against the visible 'CON 058' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_058_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "ae1ae0174b45c765d1c5c024a87b4b7178b23f1511604953312d5c6076a4175e",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 76495,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "ae1ae0174b45c765d1c5c024a87b4b7178b23f1511604953312d5c6076a4175e",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 53475,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "ae1ae0174b45c765d1c5c024a87b4b7178b23f1511604953312d5c6076a4175e",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 359,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      6001,
+      47078,
+      119,
+      277
+    ],
+    "candidate_vote_sum": 53475,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 76495,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 53834,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 70.37584155827179,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
