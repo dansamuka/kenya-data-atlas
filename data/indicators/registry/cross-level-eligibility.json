@@ -128502,6 +128502,22 @@
       "rule_basis": "unit.dimension=ratio"
     },
     {
+      "series_code": "KDA-TURNOUT-CON-068-2022-PRES",
+      "series_id": "7ad12793-f7a8-5326-80c0-ae06f5ba76f2",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "indicator_id": "980e4da9-bca5-5897-84cb-9fa79c84c2ed",
+      "name": "Turnout, prior general elections",
+      "geography_id": "074b6e16-ae88-5f98-b65a-da4f204f79e1",
+      "geography_code": "KEN-C015-CON068",
+      "geography_level": "constituency",
+      "unit_code": "percent",
+      "unit_dimension": "ratio",
+      "transformation": "level",
+      "aggregation": "",
+      "cross_level_eligible": true,
+      "rule_basis": "unit.dimension=ratio"
+    },
+    {
       "series_code": "KDA-TURNOUT-CON-071-2022-PRES",
       "series_id": "c1f84cbf-62ef-55d8-8e6d-fd2c0be60fb6",
       "indicator_code": "IND-TURNOUT-HISTORY",
