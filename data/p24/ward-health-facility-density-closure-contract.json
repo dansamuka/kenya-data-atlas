@@ -1,0 +1,68 @@
+{
+  "schema_version": "kda.p24.ward-health-facility-density-closure.v1",
+  "contract_id": "P24-WARD-HEALTH-FACILITY-DENSITY-2026-09-08",
+  "as_of": "2026-09-08",
+  "level": "ward",
+  "boundary_version": "2012-01",
+  "expected_wards": 1450,
+  "attempted_method": "spatial_derivation",
+  "attempted_method_description": "Point-in-polygon count of geocoded, operational health facilities from an official national facility registry against the Atlas's own canonical 1,450-ward polygon layer (data/geography/geometry/wards.geojson), divided by a ward population denominator to produce facilities per 10,000 residents, matching the reproducible-derivation pattern already used for IND-HEALTH-FACILITY-DENSITY at county level (scripts/p20/build-health-facility-density.mjs).",
+  "sources_attempted": [
+    {
+      "source": "Ministry of Health — Kenya Master Health Facility Registry (KMHFR) public portal",
+      "url": "https://kmhfr.health.go.ke/public/facilities",
+      "access_method": "Direct HTTPS request (curl) and browser-fetch tool, repeated attempts on 2026-09-08",
+      "result": "Unreachable. DNS resolves (kmhfr.health.go.ke -> 41.89.93.173) but every TCP connection attempt over HTTPS and HTTP timed out or was refused (connect ECONNREFUSED / 15s timeout, no HTTP status returned). The Ministry's own health.go.ke apex domain was reachable (HTTP 200) from the same environment at the same time, so this is a targeted failure of the kmhfr subdomain and its documented API host (api.kmhfr.health.go.ke), not a general network outage."
+    },
+    {
+      "source": "KMHFR GIS API (documented at mfl-api-docs.readthedocs.io) — /api/gis/coordinates/ and /api/facilities/facilities/ endpoints",
+      "url": "https://api.kmhfr.health.go.ke/api/facilities/facilities/",
+      "access_method": "Direct HTTPS request (curl), repeated attempts on 2026-09-08",
+      "result": "Unreachable, same connection failure as the public portal."
+    },
+    {
+      "source": "Humanitarian Data Exchange — \"Kenya - Health facilities in Kenya\" (CC BY, described by HDX as extracted from the Ministry of Health/KMHFR portal)",
+      "url": "https://data.humdata.org/dataset/kenya-health-facilities-in-kenya",
+      "access_method": "HDX CKAN API (package_show) to locate the resource, then direct download of kenya-health-facilities-2017_08_02.xlsx (948,284 bytes) and column inspection",
+      "result": "Downloaded and inspected successfully (8,932 facility rows, columns: Code, Name, Registration_number, Keph level, Facility type, Owner, Regulatory body, Beds, Cots, County, Constituency, Sub county, Ward, Operation status, ...). Rejected as the spatial-derivation input: the file has no latitude/longitude column at all, only free-text County/Constituency/Ward name fields, so it cannot support a point-in-polygon join against the canonical ward geometry. It is also a 2017 snapshot (8,932 facilities), six years before and materially smaller than the 2023 Kenya Health Facility Census total (14,883 facilities assessed) that anchors the existing county-level derivation of this same indicator, so even a name-based match would not reconcile to the published county totals."
+    },
+    {
+      "source": "healthsites.io \"Kenya Healthsites\" export, mirrored on HDX",
+      "url": "https://data.humdata.org/dataset/kenya-healthsites",
+      "access_method": "HDX CKAN API (package_show) then direct CSV download",
+      "result": "Downloaded and inspected successfully; last updated 2026-08-28 (current). Rejected: columns (osm_id, osm_type, changeset_id, changeset_version, changeset_timestamp) show this is an OpenStreetMap-derived layer republished by healthsites.io, not a Ministry of Health registry extract. Per docs/governance/data-quality-framework.md, a Class C (spatially derived) observation requires a documented OFFICIAL input; volunteer OpenStreetMap contributions do not qualify."
+    },
+    {
+      "source": "Humanitarian OpenStreetMap Team — \"Health Facilities of Kenya\" (hotosm_ken_health_facilities) export",
+      "url": "https://data.humdata.org/dataset/hotosm_ken_health_facilities",
+      "access_method": "HDX CKAN API (package_show) metadata inspection",
+      "result": "Current (updated 2026-09-06) and geocoded, but explicitly self-described by the publisher as OpenStreetMap volunteer-mapped data with uneven coverage (\"Coverage reflects where volunteer mappers have been active. Urban areas are usually well represented, remote areas may be sparse.\"). Same rejection rationale as the healthsites.io export: not an official government source."
+    },
+    {
+      "source": "Kenya Open Data Portal",
+      "url": "https://opendata.go.ke",
+      "access_method": "Direct HTTPS request (curl)",
+      "result": "Unreachable from the build environment (DNS resolves; TCP connection timed out), so a further official-source search on this portal could not be completed."
+    }
+  ],
+  "decisions": [
+    {
+      "indicator_code": "IND-HEALTH-FACILITY-DENSITY",
+      "status": "official_unavailable",
+      "period_label": "2023 health-facility census definition · current 1,450-ward boundary",
+      "source": "Ministry of Health — Kenya Master Health Facility Registry (KMHFR)",
+      "source_url": "https://kmhfr.health.go.ke/public/facilities",
+      "reason": "The Atlas attempted to resolve this indicator at ward level via spatial_derivation: a point-in-polygon count of geocoded, operational KMHFR facilities against the Atlas's own canonical 1,450-ward polygon layer (data/geography/geometry/wards.geojson), divided by a ward population denominator. Both the public KMHFR facility portal and its documented GIS/API host were unreachable from the build environment on repeated attempts on 2026-09-08 (DNS resolved; every TCP connection over HTTP and HTTPS timed out or was refused), while the Ministry's own health.go.ke apex domain was reachable at the same time, showing this is a targeted access failure rather than a general outage. A systematic search for a genuine alternative official geocoded facility list found none that qualifies: the only official KMHFR-derived extract available for download (HDX \"Kenya - Health facilities in Kenya\", 2017) has no latitude/longitude field at all and is a 2017 snapshot of 8,932 facilities that predates and does not reconcile to the 2023 Kenya Health Facility Census total (14,883 facilities) already anchoring this indicator at county level; the only current, geocoded facility datasets found (healthsites.io's \"Kenya Healthsites\" export and the Humanitarian OpenStreetMap Team's \"Health Facilities of Kenya\" export) are both built from OpenStreetMap volunteer mapping rather than an official government registry and both self-disclose incomplete, geographically uneven coverage, so neither can support a Class C spatially-derived observation under the Atlas data-quality framework, which requires a documented official input for that class. Independently, the ward population denominator required for a facilities-per-10,000-residents rate does not yet exist in the canonical registry (IND-POPULATION currently resolves only to country and county level). A facility count is not relabelled as a population density, and no county or constituency value is inherited downward to any ward.",
+      "evidence_constraint": "kmhfr_source_unreachable_and_no_defensible_official_geocoded_alternative_with_ward_population_denominator_also_unavailable",
+      "refresh_trigger": "Replace this closure when KMHFR (or another authoritative Ministry of Health facility registry) becomes reachable with geocoordinates, or another genuine official geocoded national facility list is published, AND an official ward-level (or higher-resolution, deterministically aggregable) population denominator compatible with the facility reference period is available — enabling a real point-in-polygon spatial_derivation against data/geography/geometry/wards.geojson."
+    }
+  ],
+  "rules": [
+    "Do not treat a health-facility count as a per-population density.",
+    "Do not inherit county or constituency population, facility counts, or density values to any ward.",
+    "Do not substitute OpenStreetMap-derived or other non-official geocoded facility data for an official input to satisfy Class C spatial derivation.",
+    "Do not match facilities to wards by free-text name alone in place of point-in-polygon geometry; Kenya's ward names are not unique nationally and a name match without a coordinate or authoritative exact crosswalk risks misattribution across counties.",
+    "Every closure must preserve a primary official source, reason and refresh trigger.",
+    "This closure records a genuine, diligence-backed evidence gap (source and denominator both actually attempted and found unavailable), not an unfinished scraper or integration task."
+  ]
+}

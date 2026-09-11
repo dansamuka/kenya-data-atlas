@@ -44,7 +44,7 @@ for (const i of indicators) {
 }
 assert(indicatorByCode.get('IND-POP-2009')?.lifecycle_status === 'active', 'native API missing active IND-POP-2009 profile slot');
 assert(indicatorByCode.get('IND-HEALTH-FACILITY-COUNT')?.lifecycle_status === 'active', 'native API missing active P04 health-facility indicator');
-assert(indicatorByCode.get('IND-MOBILE-MONEY-VOLUME')?.lifecycle_status === 'planned', 'native API missing planned national mobile-money slot');
+assert(indicatorByCode.get('IND-MOBILE-MONEY-VOLUME')?.lifecycle_status === 'active', 'native API missing active national mobile-money slot (P25 promoted this from CBK agent cash-in/cash-out statistics)');
 
 const requiredDatasets = [
   'DS-KNBS-CENSUS-2009-COUNTY-S1',
