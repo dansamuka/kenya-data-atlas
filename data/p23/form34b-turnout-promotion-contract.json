@@ -1,6 +1,6 @@
 {
   "schema_version": "kda.p23.form34b-turnout-promotion.v1",
-  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T7",
+  "contract_id": "P23-IEBC-2022-FORM34B-TURNOUT-PROMOTION-2026-09-09-T8",
   "as_of": "2026-09-09",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "target_level": "constituency",
@@ -16,7 +16,7 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 46,
+    "verified_constituencies": 53,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON002",
@@ -43,6 +43,13 @@
       "KEN-C023-CON126",
       "KEN-C026-CON139",
       "KEN-C027-CON141",
+      "KEN-C028-CON148",
+      "KEN-C028-CON150",
+      "KEN-C029-CON151",
+      "KEN-C029-CON152",
+      "KEN-C029-CON153",
+      "KEN-C029-CON154",
+      "KEN-C029-CON156",
       "KEN-C032-CON172",
       "KEN-C032-CON176",
       "KEN-C033-CON182",
@@ -91,6 +98,13 @@
       126,
       139,
       141,
+      148,
+      150,
+      151,
+      152,
+      153,
+      154,
+      156,
       172,
       176,
       182,
@@ -114,17 +128,16 @@
       286
     ],
     "newly_authorized_constituency_codes": [
-      2,
-      4,
-      7,
-      8,
-      12,
-      13,
-      14,
-      15
+      148,
+      150,
+      151,
+      152,
+      153,
+      154,
+      156
     ],
-    "expected_p23_remaining_after_materialization": 244,
-    "expected_resolved_slots_after_materialization": 14040,
+    "expected_p23_remaining_after_materialization": 237,
+    "expected_resolved_slots_after_materialization": 14047,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
@@ -133,7 +146,7 @@
       "full_validation_suite",
       "independent_geography_audit"
     ],
-    "materialization_note": "This tranche (Jomvu, Nyali, Msambweni, Lungalunga, Kilifi South, Kaloleni, Rabai, Ganze — all six Kilifi-area constituencies plus Jomvu and Nyali in Mombasa) was independently re-verified against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs during this session's review. Seven of the eight rows reconciled exactly against the official TOTAL row on first re-check. The Ganze evidence file as originally drafted misidentified page 3 (the agent/handover signature page) as the TOTAL-row page and recorded vote totals that were internally self-consistent but did not match the actual official page 2 TOTAL row; it was corrected in place from a fresh independent re-render and re-read of the same sha256-verified PDF before this tranche was materialized. No other row in this tranche required correction."
+    "materialization_note": "This tranche (Marakwet West, Keiyo South, Tinderet, Aldai, Nandi Hills, Chesumei and Mosop) was independently source-verified against freshly downloaded, sha256-confirmed official IEBC Form 34B PDFs during this session (tranche B, working the higher-numbered half of the remaining P23 constituency-code queue in parallel with a separate tranche-A agent). Each row's registered-voters denominator, four candidate totals, total valid votes and rejected ballots were read directly from a 250 DPI render of the page containing the printed TOTAL row and cross-checked arithmetically. Mosop (code 156) uses a differently-ordered candidate-column layout (Mwaure, Wajackoyah, Odinga, Ruto) than the other forms in this tranche and its grid total-row line is visually split across two baselines by page skew; its four candidate figures were independently corroborated against the form's separate spelled-out 'Valid Votes in Words' aggregate-results table before being recorded. Two adjacent constituencies in this same tranche (Keiyo North, code 149, and Emgwen, code 155) were reviewed and found to have a genuine denominator conflict — their Form 34B TOTAL-row registered-voters figures (49,267 and 67,045 respectively, each re-confirmed by tight-crop re-reads) do not reconcile to the existing governed P23 constituency voter denominator (49,247 and 66,940) — and were deliberately left unresolved rather than promoted or forced."
   },
   "canonical_rebuild_sync": {
     "state": "validated",
