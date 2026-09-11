@@ -282,8 +282,8 @@
       "formats": {
         "json": {
           "path": "data/policy/indicator-policy.json",
-          "bytes": 3300471,
-          "sha256": "162d8262d8a55b388022e7e8213a14ed17a1712311e84c4aa8a23d5b722b2fab"
+          "bytes": 3305735,
+          "sha256": "7ff40c8d5daf0ced8017385cc008c699308b9a2136622b8f65fb24b610030d30"
         }
       }
     }
