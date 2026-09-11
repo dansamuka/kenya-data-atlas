@@ -712,13 +712,14 @@
       "name": "Ward-level development fund allocation",
       "description": "Ward-level development fund allocation where separately and officially reported.",
       "unit_code": "kes_million",
-      "status": "planned",
+      "status": "sourced",
       "tab": "representation",
       "levels": [
         "ward"
       ],
-      "source": "County-specific publications",
-      "note": "Never divide county budgets mechanically by ward count."
+      "source": "NG-CDF Act, 2015 (as amended); non-uniform county Ward Development Fund legislation; County Wards (Equitable Development) Bill, 2024 (not enacted)",
+      "note": "No uniform official national ward-fund programme exists (NG-CDF is constituency-level; county Ward Development Funds are ad hoc and non-uniform; the County Wards (Equitable Development) Bill is not enacted). Closed not_applicable under data/p24/ward-fund-allocation-closure-contract.json rather than divided from a county/constituency total.",
+      "source_url": "https://new.kenyalaw.org/akn/ke/act/2015/30/eng@2023-12-29"
     },
     {
       "code": "IND-TURNOUT-HISTORY",
@@ -809,13 +810,13 @@
     {
       "code": "IND-MOBILE-MONEY-VOLUME",
       "name": "Mobile money transaction volume",
-      "description": "National mobile-money transaction volume for the Kenya Pulse.",
+      "description": "National monthly value of mobile money agent cash-in/cash-out (CICO) transactions, published directly by the Central Bank of Kenya.",
       "unit_code": "kes_million",
-      "status": "planned",
+      "status": "active",
       "tab": "economy",
       "levels": [],
-      "source": "Central Bank of Kenya / Communications Authority",
-      "note": "National-only Pulse slot; no county breakdown identified."
+      "source": "Central Bank of Kenya — National Payments System, Mobile Payments statistics",
+      "note": "Country-only Pulse slot; CBK's published agent cash-in/cash-out (CICO) value, its headline national mobile-money metric, not a reconciled total across every mobile-money rail. No county breakdown is published."
     },
     {
       "code": "IND-INPATIENT-SERVICE-AVAILABILITY",

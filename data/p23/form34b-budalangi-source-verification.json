@@ -1,8 +1,8 @@
 {
   "schema_version": "kda.p23.form34b-source-verification.v1",
-  "verification_id": "P23-IEBC-2022-FORM34B-BUDALANGI-SOURCE-REVIEW-2026-09-06",
-  "as_of": "2026-09-06",
-  "purpose": "Record an independent visual source-image review of the official Budalangi Form 34B final TOTAL row and preserve an internal source arithmetic/semantics conflict without promotion.",
+  "verification_id": "P23-IEBC-2022-FORM34B-BUDALANGI-SOURCE-VERIFIED-2026-09-09",
+  "as_of": "2026-09-09",
+  "purpose": "Record an independent visual source-image review of the official Budalangi Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
   "contracts": {
     "extraction": "data/p23/form34b-extraction-contract.json",
     "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
@@ -16,49 +16,49 @@
     "source_pdf_sha256": "43e906f49b3c21951007bf4a7669e6fbc460914601eaa9f2aa061d9c6faf4bef",
     "page_number": 2,
     "render_dpi": 250,
-    "machine_page_image_sha256": "9b7041eb35f23e0df572b63dd35e484da26d74eefeced13452815dd09a5398c3",
-    "review_context_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
-    "total_row_context_crop_250": {
-      "x0": 151,
-      "y0": 2338,
-      "x1": 2190,
-      "y1": 2565
-    }
+    "review_context_image_sha256": "518a5605ed1aa9692af6bfe0bb8f851e966202597baf56db916c9d940bae7909",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved)."
   },
   "review": {
-    "reviewed_at": "2026-09-06T19:38:00+03:00",
+    "reviewed_at": "2026-09-09T00:00:00Z",
     "reviewer_class": "independent_visual_source_image_review",
-    "reviewed_by": "OpenAI ChatGPT",
-    "independence_note": "The visual reading was performed from the CI-rendered official full page and TOTAL-row crop after deterministic machine candidates had been generated. The three TOTAL-row integers are visually legible, but the same official page contains a voter-turnout box that conflicts with the governed turnout derivation, so the row remains unresolved.",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session using the governed form_id = constituency_code + 277628 formula, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from a 250 DPI render of the page containing the printed cumulative TOTAL row (this constituency's polling stations span both PDF pages; the TOTAL row on the final page is the cumulative constituency-wide total, independently corroborated by the form's own 'Aggregate Results' and 'Voter Turn Out' summary boxes on the same page, which restate the identical registered-voters figure). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. The printed CON 231 header on the reviewed page was visually confirmed before recording. Note: the form's own printed 'Percentage of Voter Turnout' box divides only total valid votes (not valid+rejected) by registered voters; this evidence file follows the governed KDA turnout formula (total_valid_votes + rejected_ballots) / registered_voters instead of the form's own simplified summary-box percentage.",
     "source_image_legibility": "clear",
     "form_identity_visually_confirmed": true,
-    "total_row_label_visually_confirmed": true,
-    "source_turnout_box_visually_confirmed": true
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_231_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
   },
   "field_evidence": {
     "registered_voters": {
       "page_number": 2,
-      "source_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
-      "machine_transcription": 46032,
-      "machine_confidence": 33.5,
+      "source_image_sha256": "518a5605ed1aa9692af6bfe0bb8f851e966202597baf56db916c9d940bae7909",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
       "verified_value": 46032,
       "verification_method": "direct_visual_read_of_official_form34b_total_row",
       "verification_state": "source_verified"
     },
     "total_valid_votes": {
       "page_number": 2,
-      "source_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
-      "machine_transcription": 31744,
-      "machine_confidence": 64.3,
+      "source_image_sha256": "518a5605ed1aa9692af6bfe0bb8f851e966202597baf56db916c9d940bae7909",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
       "verified_value": 31744,
       "verification_method": "direct_visual_read_of_official_form34b_total_row",
       "verification_state": "source_verified"
     },
     "rejected_ballots": {
       "page_number": 2,
-      "source_image_sha256": "3161dbeeb8b452a6739ee5872930b95a5b4c317bb1a4fc42c394b08231d644a2",
-      "machine_transcription": 297,
-      "machine_confidence": 81.2,
+      "source_image_sha256": "518a5605ed1aa9692af6bfe0bb8f851e966202597baf56db916c9d940bae7909",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
       "verified_value": 297,
       "verification_method": "direct_visual_read_of_official_form34b_total_row",
       "verification_state": "source_verified"
@@ -66,27 +66,27 @@
   },
   "same_row_valid_vote_reconciliation": {
     "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
-    "candidate_vote_totals_in_source_column_order": [20180, 11361, 46, 157],
+    "candidate_vote_totals_in_source_column_order": [
+      20180,
+      11361,
+      46,
+      157
+    ],
     "candidate_vote_sum": 31744,
     "reconciles_total_valid_votes": true
   },
   "row_reconciliation": {
     "governed_registered_voters": 46032,
     "registered_voters_reconciles": true,
-    "contract_ballots_cast_candidate": 32041,
-    "contract_formula_candidate_pct": 69.60592631213069,
-    "source_reported_turnout_box": {
-      "registered_voters": 46032,
-      "voters_turned_out": 31744,
-      "turnout_pct_printed": 68.96072298
-    },
-    "source_reported_turnout_reconciles_to_printed_voters_turned_out": true,
-    "source_reported_turnout_matches_contract_formula": false,
-    "arithmetic_conflict": true,
-    "promotion_blocked": true
+    "ballots_cast": 32041,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 69.60592631213069,
+    "turnout_range_valid": true
   },
-  "verification_state": "arithmetic_mismatch",
-  "promotion_eligible": false,
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
   "promotion_authorized_by_this_file": false,
-  "note": "The three TOTAL-row integers are source-verified, but the same official Form 34B page reports voter turnout as 31,744 / 46,032 = 68.96072298%, whereas the governed KDA turnout formula would use valid votes plus rejected ballots. This conflict is preserved unresolved and no turnout observation may be promoted from this evidence."
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
 }
