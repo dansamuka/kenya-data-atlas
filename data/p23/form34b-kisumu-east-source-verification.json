@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-KISUMU-EAST-SOURCE-VERIFIED-2026-09-10",
+  "as_of": "2026-09-10",
+  "purpose": "Record an independent visual source-image review of the official Kisumu East Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 238,
+    "constituency_name": "Kisumu East",
+    "geo_code": "KEN-C042-CON238",
+    "form_id": 277866,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277866",
+    "source_pdf_sha256": "d173f198a82743a24a50a6b20ebbea9dba1525ae4acf8c0586207220666642cd",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "42e33e10e8c029ae4a2f8911e13f42ec84eeafce6d0a743b16912b8447940b7e",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (PyMuPDF render of the same source file; no third-party crop pipeline or CI artifact involved)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-10T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (content-disposition filename F34B-042-238-0000-000-00.PDF, matching county 042 / constituency 238), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. The live forms.iebc.or.ke portal now defaults to serving 2022-2027 by-election data and returns HTTP 500 for 2022 general-election form ids unless the session's election context is first switched to 'r=common/set-election&id=5' (2022 General Elections); once switched, this same form id serves the identical, correctly identified 2022 general-election Form 34B. No special/national voting-station rows (e.g. prison or diaspora facility codes) are present in this constituency's polling-station list, so the printed TOTAL reconciles exactly to the canonical ward-derived registered-voter denominator with no adjustment required.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_CON_238_header_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "42e33e10e8c029ae4a2f8911e13f42ec84eeafce6d0a743b16912b8447940b7e",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 93177,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "42e33e10e8c029ae4a2f8911e13f42ec84eeafce6d0a743b16912b8447940b7e",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 64941,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "42e33e10e8c029ae4a2f8911e13f42ec84eeafce6d0a743b16912b8447940b7e",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 337,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      63454,
+      1324,
+      50,
+      113
+    ],
+    "candidate_vote_sum": 64941,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 93177,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 65278,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 70.05806153879176,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
