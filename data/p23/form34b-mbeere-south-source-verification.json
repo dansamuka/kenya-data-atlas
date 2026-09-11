@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-MBEERE-SOUTH-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Mbeere South Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 65,
+    "constituency_name": "Mbeere South",
+    "geo_code": "KEN-C014-CON065",
+    "form_id": 277693,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277693",
+    "source_pdf_sha256": "bdbec97ef21db4a71f1cbe967ac96cf582665130335c27359adc128c906cc4a2",
+    "page_number": 3,
+    "render_dpi": 250,
+    "review_context_image_sha256": "ebb84ab92522a4927721551b56906c83581e2d46d68cd218446122266083ef59",
+    "review_context_note": "Automated green-band TOTAL row locator cleanly isolated the row; rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF at 250 DPI. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (MBEERE SOUTH, code 065) was read from the visible 'CON 065' banner marker printed on the TOTAL-row page before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_065_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "ebb84ab92522a4927721551b56906c83581e2d46d68cd218446122266083ef59",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 77264,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "ebb84ab92522a4927721551b56906c83581e2d46d68cd218446122266083ef59",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 50793,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "ebb84ab92522a4927721551b56906c83581e2d46d68cd218446122266083ef59",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 459,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      13978,
+      36317,
+      141,
+      357
+    ],
+    "candidate_vote_sum": 50793,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 77264,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 51252,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 66.33360944294886,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. The printed Registered Voters figure (77,264) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-065-2022) exactly, and the four candidate cells sum exactly to the printed Total Valid Votes. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
