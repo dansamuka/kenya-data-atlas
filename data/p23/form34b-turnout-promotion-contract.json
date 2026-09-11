@@ -385,6 +385,34 @@
         "constituency_name": "Likuyani",
         "reason": "source_document_internally_inconsistent",
         "detail": "This constituency's official Form 34B upload uses an unusual template (candidate/valid/rejected columns before a rightmost Registered Voters column, rather than the usual leading Registered Voters column) and shows clear evidence of an underlying spreadsheet error carried into the printed document: the constituency-level Aggregate Results table's fifth results row prints the literal text '#REF!' in both the candidate-name and valid-votes-in-figures cells -- a raw Excel formula-reference error, not a transcription or scanning artifact. The polling-station-level 'County Total' row (32,618 + 9,301 + 108 + 177 = 42,204 candidate-cell sum) does not reconcile to its own printed Total Valid Votes (41,620), a 584-vote gap, and separately prints a registered-voters figure of 71,778, which itself does not match the 72,449 registered-voters figure printed in the form's own per-constituency header block on page 1 (also the governed 2022 denominator) -- two different registered-voter totals appear on the same official document. Given multiple independent internal inconsistencies on the source document itself, this row is left unresolved rather than selecting one of the conflicting totals to force through."
+      },
+      {
+        "geo_code": "KEN-C003-CON017",
+        "constituency_code": 17,
+        "constituency_name": "Magarini",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 80,295; governed 2022 constituency denominator = 80,128; a 167-voter gap. This gap is exactly matched by summing two special polling stations listed on the same page's TOTAL roll-up: MALINDI PRISON (B) - 01 (station code 049292145101001, 154 registered voters) plus MALINDI WOMEN - 01 (station code 049292145101101, 13 registered voters) = 167. Four candidate cells (30,568 + 11,049 + 220 + 403 = 42,240) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented prison/special-station pattern (cf. Bomet East, Sotik, Laikipia West). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C006-CON024",
+        "constituency_code": 24,
+        "constituency_name": "Wundanyi",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 1 of 2): registered voters 35,047; governed 2022 constituency denominator = 35,008; a 39-voter gap. This gap is exactly matched by a single special polling station on the same TOTAL roll-up: WUNDANYI - 01 (station code 049292145101501, 39 registered voters), whose code prefix (049292...) marks it as a special station outside the ordinary 006024... polling-station numbering used by every other row on the form. Four candidate cells (16,847 + 4,309 + 75 + 238 = 21,469) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented special-station pattern (cf. Magarini, Bomet East, Sotik). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C008-CON034",
+        "constituency_code": 34,
+        "constituency_name": "Wajir East",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 2 of 3): registered voters 35,803; governed 2022 constituency denominator = 35,794; a 9-voter gap. This gap is exactly matched by a single special polling station on the same TOTAL roll-up: WAJIR - 01 (station code 049292145102001, 9 registered voters), whose code prefix (049292...) marks it as a special station outside the ordinary 008034... polling-station numbering used by every other row on the form. Four candidate cells (13,712 + 8,152 + 36 + 120 = 22,020) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented special-station pattern (cf. Magarini, Wundanyi, Bomet East, Sotik). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C012-CON052",
+        "constituency_code": 52,
+        "constituency_name": "Igembe Central",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 93,471; governed 2022 constituency denominator = 93,434; a 37-voter gap. This gap is exactly matched by a single special polling station on the same TOTAL roll-up: KANGETA PRISON - 01 (station code 049292145102501, 37 registered voters), whose code prefix (049292...) marks it as a special station outside the ordinary 012052... polling-station numbering used by every other row on the form. Four candidate cells (13,343 + 45,495 + 165 + 294 = 59,297) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented prison/special-station pattern (cf. Magarini, Wundanyi, Wajir East, Bomet East, Sotik). Left unresolved rather than forced through."
       }
     ]
   },
