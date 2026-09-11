@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-EMBAKASI-EAST-SOURCE-VERIFIED-2026-09-10",
+  "as_of": "2026-09-10",
+  "purpose": "Record an independent visual source-image review of the official Embakasi East Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 285,
+    "constituency_name": "Embakasi East",
+    "geo_code": "KEN-C047-CON285",
+    "form_id": 277913,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277913",
+    "source_pdf_sha256": "7b580b97a1049e1a0d12e1fc0aadec00dafecdfbd62142ef927042637a82d111",
+    "page_number": 3,
+    "render_dpi": 250,
+    "review_context_image_sha256": "b7e62e4537fc8e0db3988a732c29eec9483af373b72906ff46af6aa5df7ba490",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved). The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake; a direct id-only request returned a generic HTTP 500 error page instead of the document, consistent with the portal now defaulting to serving 2022-2027 by-election forms."
+  },
+  "review": {
+    "reviewed_at": "2026-09-10T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (EMBAKASI EAST, code 285) was read from the page header/footer marker and cross-checked against the governed geography registry before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_285_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "b7e62e4537fc8e0db3988a732c29eec9483af373b72906ff46af6aa5df7ba490",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 154599,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "b7e62e4537fc8e0db3988a732c29eec9483af373b72906ff46af6aa5df7ba490",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 85687,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "b7e62e4537fc8e0db3988a732c29eec9483af373b72906ff46af6aa5df7ba490",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 513,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      54043,
+      30976,
+      277,
+      391
+    ],
+    "candidate_vote_sum": 85687,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 154599,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 86200,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 55.75715237485365,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

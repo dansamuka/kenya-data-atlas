@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-GILGIL-SOURCE-VERIFIED-2026-09-09",
+  "as_of": "2026-09-09",
+  "purpose": "Record an independent visual source-image review of the official Gilgil Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 169,
+    "constituency_name": "Gilgil",
+    "geo_code": "KEN-C032-CON169",
+    "form_id": 277797,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277797",
+    "source_pdf_sha256": "725640a291a2ecd9dd0d60851c03336227eb8fb999fedeeb1fa7c33ce06ac809",
+    "page_number": 3,
+    "render_dpi": 250,
+    "review_context_image_sha256": "1845b0f5a974bf2b4e44b56d0ae2b2a5e991b8009bd4d0b7a1669ded1dbf1f85",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-09T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (GILGIL, code 169, county NAKURU code 032) was read from the page 1 header block and cross-checked against the visible 'CON 169' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_169_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "1845b0f5a974bf2b4e44b56d0ae2b2a5e991b8009bd4d0b7a1669ded1dbf1f85",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 95654,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "1845b0f5a974bf2b4e44b56d0ae2b2a5e991b8009bd4d0b7a1669ded1dbf1f85",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 60743,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "1845b0f5a974bf2b4e44b56d0ae2b2a5e991b8009bd4d0b7a1669ded1dbf1f85",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 609,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      20997,
+      39225,
+      246,
+      275
+    ],
+    "candidate_vote_sum": 60743,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 95654,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 61352,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 64.13950279131035,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
