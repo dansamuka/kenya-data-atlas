@@ -47,9 +47,16 @@ assert(turnoutRows.length===290,`expected 290 constituency turnout slots, got ${
 const resolvedTurnout=turnoutRows.filter(r=>r.resolved===true);
 const unresolvedTurnout=turnoutRows.filter(r=>r.resolved!==true);
 assert(resolvedTurnout.length+unresolvedTurnout.length===290,'turnout slot partition changed');
-assert(resolvedTurnout.every(r=>r.completion_phase==='complete'&&r.series_code&&r.observation_id&&Number.isFinite(Number(r.value))&&Number(r.value)>=0&&Number(r.value)<=100),'resolved turnout slots must be canonical numeric observations in [0,100]');
+// Resolved turnout slots split into two governed shapes: source-verified canonical
+// numeric observations promoted through the Form 34B pipeline, and governed
+// official_unavailable closures (data/p23/constituency-turnout-unavailable-contract.json)
+// for constituencies with a documented, non-fabrication reason they cannot be promoted.
+const resolvedTurnoutPromoted=resolvedTurnout.filter(r=>r.status!=='official_unavailable');
+const resolvedTurnoutUnavailable=resolvedTurnout.filter(r=>r.status==='official_unavailable');
+assert(resolvedTurnoutPromoted.every(r=>r.completion_phase==='complete'&&r.series_code&&r.observation_id&&Number.isFinite(Number(r.value))&&Number(r.value)>=0&&Number(r.value)<=100),'promoted resolved turnout slots must be canonical numeric observations in [0,100]');
+assert(resolvedTurnoutUnavailable.every(r=>r.completion_phase==='complete'&&!r.series_code&&!r.observation_id&&(r.value===''||r.value===null||r.value===undefined)&&r.reason&&r.period_label&&r.source&&r.source_url),'governed official_unavailable turnout closures must not fabricate a series/observation/value and must retain full provenance');
 assert(unresolvedTurnout.every(r=>r.completion_phase==='P23'&&!r.series_code&&!r.observation_id),'unresolved turnout slots must remain value-free P23 work');
 const liveP23=ledger.rows.filter(r=>r.completion_phase==='P23');
 assert(liveP23.length===unresolvedTurnout.length&&liveP23.every(r=>r.level==='constituency'&&r.indicator_code==='IND-TURNOUT-HISTORY'),'P23 must contain only unresolved constituency turnout slots');
 assert(Number(summary.by_completion_phase?.P23)===unresolvedTurnout.length,`expected turnout-only P23 remainder of ${unresolvedTurnout.length}, got ${summary.by_completion_phase?.P23}`);
-console.log(`P23_EVIDENCE_GAP_CLOSURES_OK constituencies=290 rendered_slots=580 turnout_resolved=${resolvedTurnout.length} p23_remaining=${unresolvedTurnout.length} unknown=0 contract=${contract.contract_id}`);
+console.log(`P23_EVIDENCE_GAP_CLOSURES_OK constituencies=290 rendered_slots=580 turnout_resolved=${resolvedTurnout.length} turnout_promoted=${resolvedTurnoutPromoted.length} turnout_governed_unavailable=${resolvedTurnoutUnavailable.length} p23_remaining=${unresolvedTurnout.length} unknown=0 contract=${contract.contract_id}`);

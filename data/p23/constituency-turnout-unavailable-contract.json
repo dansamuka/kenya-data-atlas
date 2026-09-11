@@ -1,0 +1,494 @@
+{
+  "schema_version": "kda.p23.constituency-turnout-unavailable.v1",
+  "contract_id": "P23-CONSTITUENCY-TURNOUT-UNAVAILABLE-2026-09-11",
+  "as_of": "2026-09-11",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "period_label": "2022 general election",
+  "source": "IEBC",
+  "source_url": "https://forms.iebc.or.ke/",
+  "purpose": "Formalize, as governed official_unavailable evidence-state closures, the per-constituency Form 34B turnout blockers that six parallel P23 source-verification tranches (PRs #135-#140) independently documented but left recorded only in their merged pull-request descriptions rather than as persisted repository data. Each decision below reflects a genuine, already-documented source-document defect (a registered-voters denominator conflict, an internal candidate-arithmetic inconsistency, a structural scan defect, or an IEBC portal access failure) rather than a fabricated, estimated, or forced value. No decision in this contract computes or promotes a turnout observation; each closes the corresponding P23 slot-ledger row as officially unavailable pending a specific, named refresh trigger.",
+  "decision_count": 48,
+  "decisions": [
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C031-CON164",
+      "geo_code": "KEN-C031-CON164",
+      "constituency_name": "Laikipia East",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 137,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137): the printed Form 34B TOTAL-row registered-voters figure for Laikipia East is 96,535, exceeding the governed canonical P23 constituency registered-voters denominator (96,395) by exactly 140 -- a gap that exactly matches the Nanyuki Prison polling station's own registered-voter count. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at a special-facility polling station that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Promoting a locally-computed turnout value against the canonical denominator would additionally require this constituency's total-valid-votes and rejected-ballots figures broken out consistently with that adjustment; those figures were not preserved in the session record that produced this finding and were not independently re-derived (by fresh PDF download and re-read) in this closure pass, so no computation is attempted here.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C034-CON184",
+      "geo_code": "KEN-C034-CON184",
+      "constituency_name": "Kajiado Central",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 137,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137): the printed Form 34B TOTAL-row registered-voters figure for Kajiado Central is 65,866, exceeding the governed canonical P23 constituency registered-voters denominator (65,823) by exactly 43 -- a gap that exactly matches the Kajiado Prison polling station's own registered-voter count. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at a special-facility polling station that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Promoting a locally-computed turnout value against the canonical denominator would additionally require this constituency's total-valid-votes and rejected-ballots figures broken out consistently with that adjustment; those figures were not preserved in the session record that produced this finding and were not independently re-derived (by fresh PDF download and re-read) in this closure pass, so no computation is attempted here.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C034-CON187",
+      "geo_code": "KEN-C034-CON187",
+      "constituency_name": "Kajiado South",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): the printed Form 34B TOTAL-row registered-voters figure for Kajiado South is 71,064, exceeding the governed canonical P23 constituency registered-voters denominator (71,061) by exactly 3 -- a gap that exactly matches the Loitokitok GK Prison polling station's own registered-voter count. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at a special-facility polling station that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Promoting a locally-computed turnout value against the canonical denominator would additionally require this constituency's total-valid-votes and rejected-ballots figures broken out consistently with that adjustment; those figures were not preserved in the session record that produced this finding and were not independently re-derived (by fresh PDF download and re-read) in this closure pass, so no computation is attempted here.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C038-CON211",
+      "geo_code": "KEN-C038-CON211",
+      "constituency_name": "Vihiga",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): the printed Form 34B TOTAL-row registered-voters figure for Vihiga is 52,309, exceeding the governed canonical P23 constituency registered-voters denominator (52,289) by exactly 20 -- a gap that exactly matches the Vihiga Prison polling station's own registered-voter count. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at a special-facility polling station that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Promoting a locally-computed turnout value against the canonical denominator would additionally require this constituency's total-valid-votes and rejected-ballots figures broken out consistently with that adjustment; those figures were not preserved in the session record that produced this finding and were not independently re-derived (by fresh PDF download and re-read) in this closure pass, so no computation is attempted here.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C047-CON279",
+      "geo_code": "KEN-C047-CON279",
+      "constituency_name": "Roysambu",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): the printed Form 34B TOTAL-row registered-voters figure for Roysambu is 154,711, exceeding the governed canonical P23 constituency registered-voters denominator (153,772) by exactly 939 -- a gap that exactly matches the two Kamiti Prison polling stations, combined's own registered-voter count. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at a special-facility polling station that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Promoting a locally-computed turnout value against the canonical denominator would additionally require this constituency's total-valid-votes and rejected-ballots figures broken out consistently with that adjustment; those figures were not preserved in the session record that produced this finding and were not independently re-derived (by fresh PDF download and re-read) in this closure pass, so no computation is attempted here.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C047-CON277",
+      "geo_code": "KEN-C047-CON277",
+      "constituency_name": "Langata",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 139,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): the printed Form 34B TOTAL-row registered-voters figure for Langata is 145,870, exceeding the governed canonical P23 constituency registered-voters denominator (145,649) by exactly 221 -- a gap that exactly matches the Nairobi West Prison and Langata Women's Prison polling stations, combined's own registered-voter count. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at a special-facility polling station that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Promoting a locally-computed turnout value against the canonical denominator would additionally require this constituency's total-valid-votes and rejected-ballots figures broken out consistently with that adjustment; those figures were not preserved in the session record that produced this finding and were not independently re-derived (by fresh PDF download and re-read) in this closure pass, so no computation is attempted here.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C028-CON149",
+      "geo_code": "KEN-C028-CON149",
+      "constituency_name": "Keiyo North",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): the printed Form 34B TOTAL-row registered-voters figure for Keiyo North is 49,267, against a governed canonical P23 constituency registered-voters denominator of 49,247 (a delta of 20). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C031-CON163",
+      "geo_code": "KEN-C031-CON163",
+      "constituency_name": "Laikipia West",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): the printed Form 34B TOTAL-row registered-voters figure for Laikipia West is 118,986, against a governed canonical P23 constituency registered-voters denominator of 118,865 (a delta of 121). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C033-CON177",
+      "geo_code": "KEN-C033-CON177",
+      "constituency_name": "Kilgoris",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): the printed Form 34B TOTAL-row registered-voters figure for Kilgoris is 76,895, against a governed canonical P23 constituency registered-voters denominator of 76,883 (a delta of 12). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C044-CON255",
+      "geo_code": "KEN-C044-CON255",
+      "constituency_name": "Suna East",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): the printed Form 34B TOTAL-row registered-voters figure for Suna East is 54,495, against a governed canonical P23 constituency registered-voters denominator of 54,465 (a delta of 30). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C029-CON155",
+      "geo_code": "KEN-C029-CON155",
+      "constituency_name": "Emgwen",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 135,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #135 (https://github.com/dansamuka/kenya-data-atlas/pull/135), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Emgwen. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C032-CON168",
+      "geo_code": "KEN-C032-CON168",
+      "constituency_name": "Naivasha",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 137,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Naivasha. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C038-CON212",
+      "geo_code": "KEN-C038-CON212",
+      "constituency_name": "Sabatia",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 137,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Sabatia. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C043-CON247",
+      "geo_code": "KEN-C043-CON247",
+      "constituency_name": "Karachuonyo",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 137,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Karachuonyo. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C044-CON253",
+      "geo_code": "KEN-C044-CON253",
+      "constituency_name": "Rongo",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 137,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Rongo. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C030-CON162",
+      "geo_code": "KEN-C030-CON162",
+      "constituency_name": "Eldama Ravine",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Eldama Ravine. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C032-CON175",
+      "geo_code": "KEN-C032-CON175",
+      "constituency_name": "Nakuru Town West",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Nakuru Town West. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C035-CON190",
+      "geo_code": "KEN-C035-CON190",
+      "constituency_name": "Ainamoi",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Ainamoi. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C036-CON196",
+      "geo_code": "KEN-C036-CON196",
+      "constituency_name": "Bomet East",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Bomet East. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C037-CON202",
+      "geo_code": "KEN-C037-CON202",
+      "constituency_name": "Lurambi",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Lurambi. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C041-CON234",
+      "geo_code": "KEN-C041-CON234",
+      "constituency_name": "Alego Usonga",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 139,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Alego Usonga. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C042-CON239",
+      "geo_code": "KEN-C042-CON239",
+      "constituency_name": "Kisumu West",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 138,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Kisumu West. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C043-CON245",
+      "geo_code": "KEN-C043-CON245",
+      "constituency_name": "Kasipul",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 138,
+      "reason": "Flagged during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138), as a registered-voters denominator conflict between the printed Form 34B TOTAL row and the governed canonical P23 constituency registered-voters denominator for Kasipul. The specific printed/canonical figures were not preserved in the merged pull request's description (the finding was reported only as a carried-over item from an earlier commit on the same branch) and were not independently re-derived by fresh source re-download in this closure pass. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), registered_voters mismatches carry mismatch_treatment=unresolved and may not be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C035-CON189",
+      "geo_code": "KEN-C035-CON189",
+      "constituency_name": "Kipkelion West",
+      "category": "arithmetic_mismatch",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): for Kipkelion West, candidate columns sum to 41,907 vs printed Total Valid Votes 41,807 (delta 100). This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C036-CON194",
+      "geo_code": "KEN-C036-CON194",
+      "constituency_name": "Sotik",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): the printed Form 34B TOTAL-row registered-voters figure for Sotik is 86,698, against a governed canonical P23 constituency registered-voters denominator of 86,681 (a delta of 17). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C037-CON205",
+      "geo_code": "KEN-C037-CON205",
+      "constituency_name": "Mumias East",
+      "category": "arithmetic_mismatch",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): for Mumias East, candidate columns sum to 30,627 vs printed Total Valid Votes 30,628 (delta 1). This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C038-CON214",
+      "geo_code": "KEN-C038-CON214",
+      "constituency_name": "Luanda",
+      "category": "denominator_and_arithmetic_mismatch",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): for Luanda, the printed Form 34B TOTAL-row registered voters (56,307) differs from the governed canonical P23 constituency denominator (56,310) by 3, AND candidate columns sum to 34,687 vs printed Total Valid Votes 34,220 (delta 467, re-confirmed at 600 DPI). Two independent, compounding reconciliation failures on the same source document. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), both registered_voters and total_valid_votes carry mismatch_treatment=unresolved; neither may be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_registered_voters_and_candidate_arithmetic_both_fail_to_reconcile",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C040-CON228",
+      "geo_code": "KEN-C040-CON228",
+      "constituency_name": "Matayos",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): the printed Form 34B TOTAL-row registered-voters figure for Matayos is 67,770, against a governed canonical P23 constituency registered-voters denominator of 67,708 (a delta of 62). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C042-CON243",
+      "geo_code": "KEN-C042-CON243",
+      "constituency_name": "Muhoroni",
+      "category": "denominator_and_arithmetic_mismatch",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): for Muhoroni, the printed Form 34B TOTAL-row registered voters (79,859) differs from the governed canonical P23 constituency denominator (79,765) by 94, AND candidate columns sum to 58,851 vs printed 58,852 (delta 1). Two independent, compounding reconciliation failures on the same source document. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), both registered_voters and total_valid_votes carry mismatch_treatment=unresolved; neither may be silently corrected or force-reconciled.",
+      "evidence_constraint": "form34b_registered_voters_and_candidate_arithmetic_both_fail_to_reconcile",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C043-CON249",
+      "geo_code": "KEN-C043-CON249",
+      "constituency_name": "Homa Bay Town",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): the printed Form 34B TOTAL-row registered-voters figure for Homa Bay Town is 58,375, against a governed canonical P23 constituency registered-voters denominator of 58,335 (a delta of 40). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C045-CON267",
+      "geo_code": "KEN-C045-CON267",
+      "constituency_name": "Nyaribari Chache",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): the printed Form 34B TOTAL-row registered-voters figure for Nyaribari Chache is 88,654, against a governed canonical P23 constituency registered-voters denominator of 88,553 (a delta of 101). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C030-CON159",
+      "geo_code": "KEN-C030-CON159",
+      "constituency_name": "Baringo Central",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): the printed Form 34B TOTAL-row registered-voters figure for Baringo Central is 45,949, against a governed canonical P23 constituency registered-voters denominator of 45,920 (a delta of 29). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C033-CON179",
+      "geo_code": "KEN-C033-CON179",
+      "constituency_name": "Narok North",
+      "category": "denominator_conflict_unattributed",
+      "source_pr": 140,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #140 (https://github.com/dansamuka/kenya-data-atlas/pull/140): the printed Form 34B TOTAL-row registered-voters figure for Narok North is 88,721, against a governed canonical P23 constituency registered-voters denominator of 88,665 (a delta of 56). No specific special-facility polling station was identified in the session record as the source of this gap. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled. This constituency's total-valid-votes and rejected-ballots figures were not preserved in the session record and were not independently re-derived in this closure pass.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C037-CON200",
+      "geo_code": "KEN-C037-CON200",
+      "constituency_name": "Likuyani",
+      "category": "arithmetic_mismatch",
+      "source_pr": 137,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137): for Likuyani, county-total recap row candidate columns sum to 42,204 vs printed Total Valid Votes 41,620 (delta 584); scanned aggregate-results table also carries a baked-in #REF! spreadsheet-formula artifact. This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C045-CON266",
+      "geo_code": "KEN-C045-CON266",
+      "constituency_name": "Nyaribari Masaba",
+      "category": "arithmetic_mismatch",
+      "source_pr": 137,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137): for Nyaribari Masaba, same-row candidate-vote sum 42,643 vs printed Total Valid Votes 42,664 (delta 21). This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C047-CON275",
+      "geo_code": "KEN-C047-CON275",
+      "constituency_name": "Dagoretti North",
+      "category": "arithmetic_mismatch",
+      "source_pr": 137,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137): for Dagoretti North, same-row candidate-vote sum 83,210 vs printed Total Valid Votes 83,506 (delta 296); form's own Voter Turn Out summary box ballots-cast figure (84,304) also inconsistent with valid+rejected (84,397). This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C036-CON197",
+      "geo_code": "KEN-C036-CON197",
+      "constituency_name": "Bomet Central",
+      "category": "arithmetic_mismatch",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): for Bomet Central, registered voters match governed denominator exactly, but four candidate totals on the printed TOTAL row fall short of the printed total valid votes by 105. This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C039-CON216",
+      "geo_code": "KEN-C039-CON216",
+      "constituency_name": "Mt.elgon",
+      "category": "arithmetic_mismatch",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): for Mt.elgon, registered voters match governed denominator exactly, but four candidate totals fall short of the printed total valid votes by 2. This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C045-CON261",
+      "geo_code": "KEN-C045-CON261",
+      "constituency_name": "Bonchari",
+      "category": "arithmetic_mismatch",
+      "source_pr": 138,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): for Bonchari, registered voters match governed denominator exactly, but four candidate totals fall short of the printed total valid votes by 523. This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C039-CON220",
+      "geo_code": "KEN-C039-CON220",
+      "constituency_name": "Kanduyi",
+      "category": "arithmetic_mismatch",
+      "source_pr": 139,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): for Kanduyi, candidate-sum discrepancy against the printed total valid votes, flagged by a prior session on this branch and not re-litigated; exact delta not preserved in the PR record. This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C037-CON210",
+      "geo_code": "KEN-C037-CON210",
+      "constituency_name": "Ikolomani",
+      "category": "arithmetic_mismatch",
+      "source_pr": 139,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): for Ikolomani, candidate-sum discrepancy against the printed total valid votes, flagged by a prior session on this branch and not re-litigated; exact delta not preserved in the PR record. This is a genuine internal arithmetic inconsistency in the official printed source document, not a transcription error -- every individual digit is legible, but the form's own totals do not reconcile with each other. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), total_valid_votes carries mismatch_treatment=unresolved and an arithmetic-mismatch row must not be silently corrected, force-reconciled, or promoted.",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C033-CON181",
+      "geo_code": "KEN-C033-CON181",
+      "constituency_name": "Narok South",
+      "category": "structural_scan_defect",
+      "source_pr": 138,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): for Narok South, registered voters match the governed denominator exactly, but this form's printed results table has no Rejected Ballots column at all (the table ends at Total Valid Votes) -- rejected_ballots cannot be source-verified from this document. This is a structural defect of the scanned source document itself (a missing required field, or two disagreeing official tallies on the same form), not a legibility or transcription problem. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), every required numeric field must be individually source-verified from the document, and the extraction contract does not permit deriving a missing total by manually summing polling-station rows or by picking between two disagreeing official totals.",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals)."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C044-CON256",
+      "geo_code": "KEN-C044-CON256",
+      "constituency_name": "Suna West",
+      "category": "structural_scan_defect",
+      "source_pr": 138,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): for Suna West, registered voters do not reconcile to the governed denominator, and separately the printed TOTAL row's Rejected Ballots cell is blank even though the column exists with real per-station values on every row above it; the extraction contract does not permit deriving a total by manually summing station rows. This is a structural defect of the scanned source document itself (a missing required field, or two disagreeing official tallies on the same form), not a legibility or transcription problem. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), every required numeric field must be individually source-verified from the document, and the extraction contract does not permit deriving a missing total by manually summing polling-station rows or by picking between two disagreeing official totals.",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals)."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C039-CON218",
+      "geo_code": "KEN-C039-CON218",
+      "constituency_name": "Kabuchai",
+      "category": "structural_scan_defect",
+      "source_pr": 137,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #137 (https://github.com/dansamuka/kenya-data-atlas/pull/137): for Kabuchai, registered voters match the governed denominator exactly, but the polling-station TOTAL row's own candidate columns (10,680 / 32,221 / 193 / 385) disagree with the form's separate Aggregate Results / Voter Turnout summary section (10,798 / 32,216 / 192 / 271) -- two different official tallies on the same form disagree by up to 118 votes on one candidate. This is a structural defect of the scanned source document itself (a missing required field, or two disagreeing official tallies on the same form), not a legibility or transcription problem. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), every required numeric field must be individually source-verified from the document, and the extraction contract does not permit deriving a missing total by manually summing polling-station rows or by picking between two disagreeing official totals.",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals)."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C043-CON252",
+      "geo_code": "KEN-C043-CON252",
+      "constituency_name": "Suba",
+      "category": "structural_scan_defect",
+      "source_pr": 138,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #138 (https://github.com/dansamuka/kenya-data-atlas/pull/138): for Suba, an out-of-sequence page-numbering mismatch in the scanned document, flagged by a prior session on this branch and not re-litigated. This is a structural defect of the scanned source document itself (a missing required field, or two disagreeing official tallies on the same form), not a legibility or transcription problem. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), every required numeric field must be individually source-verified from the document, and the extraction contract does not permit deriving a missing total by manually summing polling-station rows or by picking between two disagreeing official totals.",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals)."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C047-CON289",
+      "geo_code": "KEN-C047-CON289",
+      "constituency_name": "Starehe",
+      "category": "access_problem",
+      "source_pr": 135,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #135 (https://github.com/dansamuka/kenya-data-atlas/pull/135): for Starehe, the IEBC portal's form id 277917 (constituency_code 289 + 277628, per the governed formula), still labeled STAREHE on the portal's own index page, consistently returns a different constituency's PDF (visibly headed CON 029, i.e. Lagdera) across repeated retries including a later session's retry with the election-context-reset workaround. This is a source-access failure at the IEBC Result Forms Portal (forms.iebc.or.ke), confirmed reproducible across repeated independent retries in more than one session, not a data-quality problem with an available document. No alternate official capture of a complete, correctly identified Form 34B for this constituency was located and independently confirmed.",
+      "evidence_constraint": "iebc_portal_did_not_serve_a_complete_or_correctly_identified_form34b_document",
+      "refresh_trigger": "Revisit once the IEBC Result Forms Portal serves the correct, complete PDF for this constituency's form id, or an alternate confirmed official capture (a corrected portal upload, or an archival capture with the full page range) becomes available."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C044-CON260",
+      "geo_code": "KEN-C044-CON260",
+      "constituency_name": "Kuria East",
+      "category": "access_problem",
+      "source_pr": 139,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): for Kuria East, the official PDF served for this form id is incomplete relative to its own printed page numbering (prints 01/06 and 02/06 but the download stops there with no TOTAL page at all); confirmed reproducible on independent re-fetch (byte-identical, still truncated). This is a source-access failure at the IEBC Result Forms Portal (forms.iebc.or.ke), confirmed reproducible across repeated independent retries in more than one session, not a data-quality problem with an available document. No alternate official capture of a complete, correctly identified Form 34B for this constituency was located and independently confirmed.",
+      "evidence_constraint": "iebc_portal_did_not_serve_a_complete_or_correctly_identified_form34b_document",
+      "refresh_trigger": "Revisit once the IEBC Result Forms Portal serves the correct, complete PDF for this constituency's form id, or an alternate confirmed official capture (a corrected portal upload, or an archival capture with the full page range) becomes available."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C045-CON264",
+      "geo_code": "KEN-C045-CON264",
+      "constituency_name": "Bobasi",
+      "category": "access_problem",
+      "source_pr": 139,
+      "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): for Bobasi, the official PDF served for this form id prints page numbers up to 18/18 but the download contains only two non-adjacent data pages and no TOTAL page. This is a source-access failure at the IEBC Result Forms Portal (forms.iebc.or.ke), confirmed reproducible across repeated independent retries in more than one session, not a data-quality problem with an available document. No alternate official capture of a complete, correctly identified Form 34B for this constituency was located and independently confirmed.",
+      "evidence_constraint": "iebc_portal_did_not_serve_a_complete_or_correctly_identified_form34b_document",
+      "refresh_trigger": "Revisit once the IEBC Result Forms Portal serves the correct, complete PDF for this constituency's form id, or an alternate confirmed official capture (a corrected portal upload, or an archival capture with the full page range) becomes available."
+    }
+  ]
+}
