@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p23.form34b-source-verification.v1",
-  "verification_id": "P23-IEBC-2022-FORM34B-KEIYO-SOUTH-SOURCE-VERIFIED-2026-09-10",
-  "as_of": "2026-09-10",
+  "verification_id": "P23-IEBC-2022-FORM34B-KEIYO_SOUTH-SOURCE-VERIFIED-2026-09-09",
+  "as_of": "2026-09-09",
   "purpose": "Record an independent visual source-image review of the official Keiyo South Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
   "contracts": {
     "extraction": "data/p23/form34b-extraction-contract.json",
@@ -15,15 +15,15 @@
     "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277778",
     "source_pdf_sha256": "d27ce31e889bfb7479565d6897788afaadb757ad84e3fd517cb2f49f92ec072a",
     "page_number": 2,
-    "render_dpi": 200,
-    "review_context_image_sha256": "cf66713ae61767ae0b8a884984ed4b0f0431abc1fb05bdf7806ac99b981060fb",
-    "review_context_note": "Full official-page raster rendered at 200 DPI directly from a freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved). This is a 3-page form; page 2 carries the FORM 34B header confirming CON 150 and the final shaded green TOTAL row. The PDF has no embedded text layer (confirmed by direct extraction attempt); the whole form is a scanned raster. The 200 DPI full-page read of the compressed TOTAL row was initially ambiguous between 48,132 and 49,132 for Total Valid Votes, so an independent 300 DPI crop of just the TOTAL row was rendered and read to disambiguate; the crop confirms 48,132, which reconciles exactly to the four candidate cells on the same row. The printed registered-voters total (62,397) reconciles exactly to the existing governed 2022 denominator, with no prison/special-station polling station present in this constituency's roll."
+    "render_dpi": 250,
+    "review_context_image_sha256": "a9df81bb593775e2629cd6686b4f280a94c8b96d855ecb4680a556882245a617",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved)."
   },
   "review": {
-    "reviewed_at": "2026-09-10T00:00:00Z",
+    "reviewed_at": "2026-09-09T00:00:00Z",
     "reviewer_class": "independent_visual_source_image_review",
     "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
-    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image, then independently disambiguated with a 300 DPI crop of the same row. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
     "source_image_legibility": "clear",
     "form_identity_visually_confirmed": true,
     "form_identity_confirmation_method": "visible_FORM_34B_header_CON_150_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
@@ -32,7 +32,7 @@
   "field_evidence": {
     "registered_voters": {
       "page_number": 2,
-      "source_image_sha256": "733682836c1f9b86ac8f387fbf2b2a3b8c7589d48005eb9fd65b63aaa59469b0",
+      "source_image_sha256": "a9df81bb593775e2629cd6686b4f280a94c8b96d855ecb4680a556882245a617",
       "machine_transcription": null,
       "machine_verification_state": "source_unreadable",
       "machine_decision": "no_threshold_consensus",
@@ -43,7 +43,7 @@
     },
     "total_valid_votes": {
       "page_number": 2,
-      "source_image_sha256": "733682836c1f9b86ac8f387fbf2b2a3b8c7589d48005eb9fd65b63aaa59469b0",
+      "source_image_sha256": "a9df81bb593775e2629cd6686b4f280a94c8b96d855ecb4680a556882245a617",
       "machine_transcription": null,
       "machine_verification_state": "source_unreadable",
       "machine_decision": "no_threshold_consensus",
@@ -54,7 +54,7 @@
     },
     "rejected_ballots": {
       "page_number": 2,
-      "source_image_sha256": "733682836c1f9b86ac8f387fbf2b2a3b8c7589d48005eb9fd65b63aaa59469b0",
+      "source_image_sha256": "a9df81bb593775e2629cd6686b4f280a94c8b96d855ecb4680a556882245a617",
       "machine_transcription": null,
       "machine_verification_state": "source_unreadable",
       "machine_decision": "no_threshold_consensus",

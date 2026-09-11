@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-KIPKELION-WEST-SOURCE-REVIEW-2026-09-09",
+  "as_of": "2026-09-09",
+  "purpose": "Record an independent visual source-image review of the official Kipkelion West Form 34B final TOTAL row and preserve an internal source arithmetic conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 189,
+    "constituency_name": "Kipkelion West",
+    "geo_code": "KEN-C035-CON189",
+    "form_id": 277817,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277817",
+    "source_pdf_sha256": "513753930cc660510c7fafa18afba4d9306309a6d2d689a006a0b4e1ea8edce0",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "c871e5f13632400793461d8890846a3516ff4013a77095f837f6e8b6b9b3a8a4",
+    "review_context_note": "Rendered at both 250 DPI and 400 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF; every TOTAL-row digit is unambiguous and identical at both resolutions. The portal only served this PDF after a home-page + set-election session handshake; a direct id-only request returned a generic HTTP 500 error page instead of the document."
+  },
+  "review": {
+    "reviewed_at": "2026-09-09T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image at 250 DPI and re-checked at 400 DPI. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (KIPKELION WEST, code 189, county KERICHO code 035) was read from the page header and cross-checked against the visible 'CON 189' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_189_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "c871e5f13632400793461d8890846a3516ff4013a77095f837f6e8b6b9b3a8a4",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 52960,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "c871e5f13632400793461d8890846a3516ff4013a77095f837f6e8b6b9b3a8a4",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 41807,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "c871e5f13632400793461d8890846a3516ff4013a77095f837f6e8b6b9b3a8a4",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 207,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row, re-checked at 400 DPI after an arithmetic conflict was detected at 250 DPI.",
+    "candidate_vote_totals_in_source_column_order": [
+      1771,
+      40056,
+      29,
+      51
+    ],
+    "candidate_vote_sum": 41907,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 52960,
+    "registered_voters_reconciles": true,
+    "printed_total_valid_votes": 41807,
+    "candidate_vote_sum": 41907,
+    "candidate_sum_minus_printed_total_valid": 100,
+    "arithmetic_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters, total valid votes and rejected ballots are each individually clear and unambiguous on the printed TOTAL row (confirmed at both 250 DPI and 400 DPI), but the four candidate-vote cells on that same row sum to 41,907, exactly 100 more than the row's own printed Total Valid Votes figure of 41,807. This is a genuine internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity. Per the extraction contract's prohibition on silently correcting digits to force reconciliation, this conflict is preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

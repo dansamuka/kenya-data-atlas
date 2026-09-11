@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-BUTULA-SOURCE-VERIFIED-2026-09-09",
+  "as_of": "2026-09-09",
+  "purpose": "Record an independent visual source-image review of the official Butula Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 229,
+    "constituency_name": "Butula",
+    "geo_code": "KEN-C040-CON229",
+    "form_id": 277857,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277857",
+    "source_pdf_sha256": "a535e02ed30f024986557d2593d7cab5f1fff6f27b4cc6e3fdcd6019e26562bb",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "19a3614553e092696fc83b843fa59ef7802ad4f6b0921fa8480d229a9c5a8616",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (PyMuPDF render of the same source file; no third-party crop pipeline or CI artifact involved)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-09T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (content-disposition filename F34B-040-229-0000-000-00.PDF, matching county 040 / constituency 229), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. No special/national voting-station rows (e.g. prison or diaspora facility codes) are present in this constituency's polling-station list, so the printed TOTAL reconciles exactly to the canonical ward-derived registered-voter denominator with no adjustment required.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_CON_229_header_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "19a3614553e092696fc83b843fa59ef7802ad4f6b0921fa8480d229a9c5a8616",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 67377,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "19a3614553e092696fc83b843fa59ef7802ad4f6b0921fa8480d229a9c5a8616",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 44167,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "19a3614553e092696fc83b843fa59ef7802ad4f6b0921fa8480d229a9c5a8616",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 244,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      40161,
+      3663,
+      65,
+      278
+    ],
+    "candidate_vote_sum": 44167,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 67377,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 44411,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 65.91418436558469,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

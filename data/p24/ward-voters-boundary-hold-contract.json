@@ -1,0 +1,20 @@
+{
+  "schema_version": "kda.p24.ward-voters-boundary-hold.v1",
+  "contract_id": "P24-WARD-VOTERS-BOUNDARY-HOLD-2026-09-08",
+  "as_of": "2026-09-08",
+  "level": "ward",
+  "boundary_version": "2012-01",
+  "county_code": 9,
+  "county_geo_code": "KEN-C009",
+  "held_constituency_codes": [43, 44],
+  "held_constituency_names": ["Mandera East", "Lafey"],
+  "expected_held_wards": 10,
+  "indicator_code": "IND-REGISTERED-VOTERS",
+  "status": "boundary_unresolved",
+  "period_label": "2022 registered voters · ward boundary hold as at 8 September 2026",
+  "source": "IEBC Gazette Notice No. 7290 — Registered Voters per County Assembly Ward (First Schedule); Kenya Data Atlas P23X ward-voter materialisation (scripts/p23/build-ward-voters.mjs, data/sprint2/README.md)",
+  "source_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf",
+  "evidence_constraint": "ward_boundary_spatial_hold_unresolved",
+  "refresh_trigger": "Replace this closure once the ten Mandera East/Lafey County Assembly Ward source rows can be deterministically and uniquely crosswalked to canonical 2012-01 ward geometry (by official code or an audited name match) without residual ambiguity, or once an authoritative reconciled boundary layer for this county is adopted; then materialise the governed observation for each ward using the same audited method already applied to the other 1,440 wards in scripts/p23/build-ward-voters.mjs.",
+  "reason": "The Kenya Data Atlas already materialises registered-voter counts for 1,440 of the 1,450 statistical wards directly from IEBC Gazette Notice No. 7290 (scripts/p23/build-ward-voters.mjs). Ten official source rows across two constituencies remain withheld from canonical ward geometry: Mandera East (constituency 43 — Arabia, Bulla Mpya, Khalalio, Neboi, Township) and Lafey (constituency 44 — Libehia, Fino, Lafey, Warankara, Alungo Gof). The current externally sourced ward boundary layer for this pair of constituencies conflicts with the operative IEBC configuration, so a safe deterministic one-to-one crosswalk between the ten official CAW source rows and the ten canonical ward polygons cannot be established without risking a false attribution of a specific voter count to the wrong ward. This is the same documented Mandera East/Lafey spatial hold referenced throughout the Atlas (CHANGELOG.md; docs/DATA-COMPLETION-PLAN.md, Track B and the P24 acceptance criteria) and deliberately preserved through the P23A/P23X constituency and ward voter materialisation: the ten source rows remain correctly included in the Mandera East and Lafey constituency-level totals as an exact aggregation of all official First Schedule child-ward rows, but are not force-matched, interpolated, or evenly split across the five ward polygons in either constituency at the ward level. The ward-level completeness ledger slot for these ten wards is therefore closed as boundary unresolved — a genuine geometry/crosswalk constraint distinct from data non-publication — rather than left as an unexplained blank or filled with a fabricated or force-matched value."
+}

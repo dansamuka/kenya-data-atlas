@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-BORABU-SOURCE-VERIFIED-2026-09-10",
+  "as_of": "2026-09-10",
+  "purpose": "Record an independent visual source-image review of the official Borabu Form 34B final TOTAL row, read directly from the official IEBC portal PDF after resetting the portal session to the 2022 general election context.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 273,
+    "constituency_name": "Borabu",
+    "geo_code": "KEN-C046-CON273",
+    "form_id": 277901,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277901",
+    "source_pdf_sha256": "71b2debf365afe33ccb99aae61ee4072c32e968fdec272cd729c2a9d8fb5daf5",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "8afcb1dedd9584908094da563b5a37a01e7b9d6d636f466ebdf6b215fb18bdcc",
+    "review_context_note": "Full official-page raster rendered at 250 DPI directly from a freshly downloaded, sha256-verified official IEBC Form 34B PDF. The portal session was first reset to the 2022 general-election context via index.php?r=common/set-election&id=5 before download (the session otherwise defaults to a 2022-2027 by-elections context). The source image sha256 above is of the page exactly as returned by the renderer."
+  },
+  "review": {
+    "reviewed_at": "2026-09-10T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session using the governed form_id = constituency_code + 277628 formula (after resetting the portal session to the 2022 general election), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from a 250 DPI render of the page containing the printed TOTAL row. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. The printed CON 273 header on the reviewed page was visually confirmed before recording. One individual polling-station row on this page (Riamanoti Primary School - 01) prints a registered-voters figure with its four candidate cells rendered too faint to transcribe; this does not affect the printed TOTAL row, which is a distinct, independently legible printed cell and was read directly rather than recomputed from the individual rows.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_273_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "8afcb1dedd9584908094da563b5a37a01e7b9d6d636f466ebdf6b215fb18bdcc",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 64065,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "8afcb1dedd9584908094da563b5a37a01e7b9d6d636f466ebdf6b215fb18bdcc",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 39229,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "8afcb1dedd9584908094da563b5a37a01e7b9d6d636f466ebdf6b215fb18bdcc",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 375,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      24307,
+      14626,
+      60,
+      236
+    ],
+    "candidate_vote_sum": 39229,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 64065,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 39604,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 61.81846562085382,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-SOTIK-SOURCE-REVIEW-2026-09-09",
+  "as_of": "2026-09-09",
+  "purpose": "Record an independent visual source-image review of the official Sotik Form 34B final TOTAL row and preserve an internal source denominator conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 194,
+    "constituency_name": "Sotik",
+    "geo_code": "KEN-C036-CON194",
+    "form_id": 277822,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277822",
+    "source_pdf_sha256": "6f5a4b289e2c90e8443fa98cc8b066c78336427ea637cd7b3da7c5e78c5c7e32",
+    "page_number": 3,
+    "render_dpi": 250,
+    "review_context_image_sha256": "197810843c5e5d93f3e4e405c029a3d1054752b7c0c9d2c2379abb33e7e2cd70",
+    "review_context_note": "Rendered at both 250 DPI and 400 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF; the Registered Voters TOTAL-row digits (86,698) are unambiguous and identical at both resolutions. The portal only served this PDF after a home-page + set-election session handshake; a direct id-only request returned a generic HTTP 500 error page instead of the document."
+  },
+  "review": {
+    "reviewed_at": "2026-09-09T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image at 250 DPI and re-checked at 400 DPI. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (SOTIK, code 194, county BOMET code 036) was read from the page header and cross-checked against the visible 'CON 194' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_194_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "197810843c5e5d93f3e4e405c029a3d1054752b7c0c9d2c2379abb33e7e2cd70",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 86698,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "197810843c5e5d93f3e4e405c029a3d1054752b7c0c9d2c2379abb33e7e2cd70",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 69443,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "197810843c5e5d93f3e4e405c029a3d1054752b7c0c9d2c2379abb33e7e2cd70",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 276,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      2417,
+      66866,
+      51,
+      109
+    ],
+    "candidate_vote_sum": 69443,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 86698,
+    "governed_p23_registered_voters": 86681,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-194-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 17,
+    "denominator_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 69,443 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (86,698) does not exactly match the separately governed P23 registered-voter denominator for this constituency (86,681, sourced from the pre-election IEBC First Schedule gazette rather than the polling-day Form 34B). Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
