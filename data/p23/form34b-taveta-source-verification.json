@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-TAVETA-SOURCE-REVIEW-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Taveta Form 34B final TOTAL row and preserve an internal source denominator conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 23,
+    "constituency_name": "Taveta",
+    "geo_code": "KEN-C006-CON023",
+    "form_id": 277651,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277651",
+    "source_pdf_sha256": "b0a46e0bed4274ef5f651cc7e50dfc0d671b61780fb160d3e0a58326751a5267",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "b1244c54ca3e295f7bb2d49702b8829fb5529ad8a767fed34a186bbe62cff6d1",
+    "review_context_note": "Rendered at both 250 DPI (full page 2 of 3) and 400 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF; the TOTAL row digits are unambiguous and identical at both resolutions. The portal only served this PDF after a home-page + set-election session handshake, and the download reference (form_id 277651) was independently cross-checked against the live portal manifest discovery (scripts/p23/discover-iebc-form34b-manifest.py), which returned the identical single download id for Taveta (portal_row_id ... KILIFI/TAVETA confirmed by name)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5, and cross-checked against the independent portal manifest discovery in scripts/p23/discover-iebc-form34b-manifest.py), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_23_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "b1244c54ca3e295f7bb2d49702b8829fb5529ad8a767fed34a186bbe62cff6d1",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 41062,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "b1244c54ca3e295f7bb2d49702b8829fb5529ad8a767fed34a186bbe62cff6d1",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 27937,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "b1244c54ca3e295f7bb2d49702b8829fb5529ad8a767fed34a186bbe62cff6d1",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 155,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      21069,
+      6690,
+      42,
+      136
+    ],
+    "candidate_vote_sum": 27937,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 41062,
+    "governed_p23_registered_voters": 41031,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-023-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 31,
+    "denominator_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 27937 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (41062) does not exactly match the separately governed P23 registered-voter denominator for this constituency (41031). The 31-voter gap (41,062 minus 41,031) exactly equals the registered-voter count printed on this same TOTAL row's source page for the 'TAVETA PRISON - 01' polling station (31 registered voters, polling-station code 049292145101401), which sits in a national-facility ward code outside the ordinary Taveta constituency ward series that the governed First Schedule denominator sums from. This is the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations (e.g. Laikipia East / Nanyuki Prison), not a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
