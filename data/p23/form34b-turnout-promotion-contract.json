@@ -16,7 +16,7 @@
   "promotion_rule": "Only evidence files whose row verification_state is verified, promotion_eligible is true, and all three target fields are source_verified may create a canonical turnout observation.",
   "turnout_formula": "100 * (total_valid_votes + rejected_ballots) / registered_voters",
   "current_tranche": {
-    "verified_constituencies": 119,
+    "verified_constituencies": 133,
     "verified_geo_codes": [
       "KEN-C001-CON001",
       "KEN-C001-CON002",
@@ -234,8 +234,8 @@
       193,
       201
     ],
-    "expected_p23_remaining_after_materialization": 171,
-    "expected_resolved_slots_after_materialization": 19944,
+    "expected_p23_remaining_after_materialization": 157,
+    "expected_resolved_slots_after_materialization": 19958,
     "governed_total_slots": 20115,
     "materialization_state": "explicit_materialization_authorized",
     "materialization_checks": [
