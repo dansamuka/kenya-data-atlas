@@ -413,6 +413,13 @@
         "constituency_name": "Igembe Central",
         "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
         "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 93,471; governed 2022 constituency denominator = 93,434; a 37-voter gap. This gap is exactly matched by a single special polling station on the same TOTAL roll-up: KANGETA PRISON - 01 (station code 049292145102501, 37 registered voters), whose code prefix (049292...) marks it as a special station outside the ordinary 012052... polling-station numbering used by every other row on the form. Four candidate cells (13,343 + 45,495 + 165 + 294 = 59,297) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented prison/special-station pattern (cf. Magarini, Wundanyi, Wajir East, Bomet East, Sotik). Left unresolved rather than forced through."
+      },
+      {
+        "geo_code": "KEN-C012-CON056",
+        "constituency_code": 56,
+        "constituency_name": "North Imenti",
+        "reason": "printed_registered_voters_exceeds_governed_denominator_by_special_polling_station",
+        "detail": "Printed Form 34B TOTAL row (page 3 of 4): registered voters 96,623; governed 2022 constituency denominator = 96,241; a 382-voter gap. This gap is exactly matched by summing two special polling stations on the same TOTAL roll-up: MERU MAIN - 01 (station code 049292145102601, 360 registered voters) plus MERU WOMEN - 01 (station code 049292145102701, 22 registered voters) = 382. Four candidate cells (9,680 + 51,696 + 101 + 242 = 61,719) reconcile exactly to the printed Total Valid Votes, so the row is internally consistent; only the registered-voters reconciliation to the governed civilian-roll denominator fails, matching the documented special-station pattern (cf. Magarini, Wundanyi, Wajir East, Igembe Central). Left unresolved rather than forced through."
       }
     ]
   },
