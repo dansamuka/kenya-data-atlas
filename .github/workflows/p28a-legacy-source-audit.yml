@@ -29,14 +29,17 @@ on:
       - 'data/audit/legacy-*'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   legacy-source-audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 1
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -45,6 +48,27 @@ jobs:
         run: node scripts/p28/build-legacy-source-audit.mjs
       - name: Validate P28A audit coverage and tiers
         run: node scripts/p28/validate-legacy-source-audit.mjs
+      - name: Enforce zero drift once baseline is versioned
+        run: |
+          if git ls-files --error-unmatch data/audit/legacy-source-tier-summary.json >/dev/null 2>&1; then
+            git diff --exit-code -- data/audit/legacy-*
+          else
+            echo 'P28A baseline outputs are not versioned yet; bootstrap commit is permitted on this run.'
+          fi
+      - name: Bootstrap generated audit outputs onto this PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git add data/audit/legacy-*
+          if git diff --cached --quiet; then
+            echo 'P28A generated outputs already match the committed baseline.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'P28A: materialize deterministic legacy audit outputs'
+          git push origin HEAD:${{ github.head_ref }}
+          node scripts/p28/build-legacy-source-audit.mjs
+          git diff --exit-code -- data/audit/legacy-*
       - name: Show P28A summary
         run: cat data/audit/legacy-source-tier-summary.json
       - name: Upload P28A generated audit evidence
