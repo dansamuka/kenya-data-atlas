@@ -1,0 +1,167 @@
+{
+  "schema_version": "kda.local-54-completion-roadmap.v1",
+  "project": "Kenya Data Atlas",
+  "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
+  "status": "planned",
+  "created_on": "2026-09-12",
+  "relationship_to_prior_programmes": {
+    "p00_p17": "Historical implementation/release ledger remains unchanged.",
+    "p18_p26": "Existing governed data-completion programme remains the authority for its historical denominator and closure semantics.",
+    "successor_rule": "P27–P35 is a successor programme and must not rewrite P18–P26 completion counts or phase semantics."
+  },
+  "objective": "Ensure the same governed 54-indicator framework is explicitly represented for every constituency and ward, add county-level elected-representative data, permit rigorously labelled credible secondary evidence, and publish the most probable value when credible sources conflict while preserving the conflict record.",
+  "target_surface": {
+    "indicator_count": 54,
+    "counties": 47,
+    "constituencies": 290,
+    "wards": 1450,
+    "county_indicator_audit_cells": 2538,
+    "constituency_indicator_cells": 15660,
+    "ward_indicator_cells": 78300,
+    "local_child_indicator_cells": 93960,
+    "rule": "Every cell must have an explicit governed disposition. Numeric completeness is reported separately from disposition completeness."
+  },
+  "non_negotiable_rules": [
+    "Never copy a county value to a constituency or ward merely to fill a gap.",
+    "Never copy a constituency value to a ward merely to fill a gap.",
+    "Never use arbitrary equal splits or parent-rate downscaling.",
+    "Never treat repeated copies of one upstream source as independent corroboration.",
+    "Never average conflicting values solely to make them reconcile.",
+    "Never label secondary evidence as official.",
+    "Do not close a value as unavailable only because an official website or API is temporarily inaccessible or dynamically rendered.",
+    "Retain source, period, unit, geography/boundary vintage, retrieval/verification date, methodology and uncertainty metadata where applicable.",
+    "All generated ledgers and registries must rebuild deterministically from governed inputs and source/evidence snapshots where rights permit.",
+    "All 54 indicators remain visible in the UI at applicable geography levels even when the governed disposition is unavailable or not applicable."
+  ],
+  "source_policy": {
+    "selection_order": [
+      "S0_direct_primary_official",
+      "S1_derived_from_primary_official",
+      "S2_secondary_verified_to_identifiable_primary",
+      "S3_secondary_corroborated_independent",
+      "S4_probable_value_conflicting_sources",
+      "S5_transparent_modelled_or_spatial_estimate",
+      "S6_governed_unavailable",
+      "S7_not_applicable"
+    ],
+    "labels": {
+      "S0_direct_primary_official": "Official",
+      "S1_derived_from_primary_official": "Derived from official data",
+      "S2_secondary_verified_to_identifiable_primary": "Secondary — verified",
+      "S3_secondary_corroborated_independent": "Secondary — corroborated",
+      "S4_probable_value_conflicting_sources": "Probable value — sources conflict",
+      "S5_transparent_modelled_or_spatial_estimate": "Estimated / modelled",
+      "S6_governed_unavailable": "Data unavailable",
+      "S7_not_applicable": "Not applicable"
+    },
+    "secondary_fallback_trigger": [
+      "primary source is unavailable, non-responsive, temporarily inaccessible or not machine-capturable after documented attempts",
+      "primary source is highly dynamic and a stable value can be independently verified from credible secondary evidence",
+      "primary source does not publish the required geography/period but credible secondary evidence documents the value and definition",
+      "multiple credible independent secondary sources materially agree and their evidence lineage can be distinguished"
+    ]
+  },
+  "conflict_policy": {
+    "principle": "Preserve every defensible candidate observation, select one preferred observation only when a most-probable value can be justified, and disclose the conflict.",
+    "default_scoring_dimensions": {
+      "source_authority": 0.30,
+      "exact_geography_match": 0.25,
+      "period_and_freshness_match": 0.20,
+      "methodological_fit": 0.15,
+      "independent_corroboration": 0.10
+    },
+    "rules": [
+      "Weights are methodology defaults and may be overridden only by an indicator-specific documented rule.",
+      "A newer value does not automatically outrank an older value if they refer to different observation periods or definitions.",
+      "Exact ward or constituency geography outranks an unmatched proxy geography.",
+      "Source copies with the same evidence lineage count once for corroboration.",
+      "Close-scoring, definition-incompatible or materially divergent candidates require manual review.",
+      "A public S4 preferred value must carry conflict=true, confidence, competing-value count and a human-readable selection note."
+    ]
+  },
+  "phases": [
+    {
+      "id": "P27",
+      "title": "Freeze the 54-indicator local contract",
+      "status": "planned",
+      "goal": "Reconcile the existing governed local indicator surface with the requested exact set of 54 and make applicability, definitions and permitted acquisition/derivation methods explicit.",
+      "outputs": ["data/policy/local-54-indicator-contract.json", "data/completeness/local-54-indicator-manifest.json", "54-indicator applicability matrix", "49-to-54 migration map"],
+      "acceptance": ["exactly 54 indicator IDs are frozen", "all 54 define unit/definition/period/applicability", "all 54 define permitted and prohibited derivations", "all 54 define freshness and uncertainty/ranking constraints where relevant", "historical P18–P26 counts are not rewritten"],
+      "depends_on": ["P26"]
+    },
+    {
+      "id": "P28",
+      "title": "Secondary-source and provenance governance",
+      "status": "planned",
+      "goal": "Make credible secondary evidence a governed fallback rather than an informal exception while preserving official-source priority and transparent labelling.",
+      "outputs": ["data/policy/source-tier-policy.json", "data/policy/conflict-resolution-policy.json", "evidence-lineage schema", "confidence/public-label vocabulary"],
+      "acceptance": ["S0–S7 tiers validate machine-readably", "secondary evidence cannot publish without label and fallback reason", "corroboration requires independent evidence lineages", "official-source inaccessibility can trigger fallback but cannot itself create a value", "preferred observations retain candidate/source lineage"],
+      "depends_on": ["P27"]
+    },
+    {
+      "id": "P29",
+      "title": "Build the complete 54 × local-geography denominator",
+      "status": "planned",
+      "goal": "Compile the deterministic successor ledger for all constituencies and wards and audit county coverage against the same 54-indicator framework.",
+      "outputs": ["data/completeness/local-54-slot-ledger.json", "data/completeness/local-54-slot-ledger.csv", "data/completeness/local-54-summary.json", "47×54 county audit", "290×54 constituency ledger", "1450×54 ward ledger"],
+      "acceptance": ["15,660 constituency cells compile", "78,300 ward cells compile", "93,960 child-level cells compile", "2,538 county audit cells compile", "unknown/unclassified cells equal zero", "disposition and numeric completeness are reported separately"],
+      "depends_on": ["P27", "P28"]
+    },
+    {
+      "id": "P30",
+      "title": "County representation layer",
+      "status": "planned",
+      "goal": "Add a governed county-level elected-representative record and an extensible representation schema consistent with MP and MCA records.",
+      "outputs": ["data/representation/representatives.json", "data/representation/representatives.csv", "47-county Woman Representative roster", "extensible governor/senator roles", "representation freshness validator"],
+      "acceptance": ["47/47 counties have an explicit current Woman Representative disposition", "role/person/party where verifiable/term/status/source tier/verification date are retained", "MP and MCA can use the same schema without conflating roles", "vacancy/by-election/disputed states do not silently carry stale officeholders"],
+      "depends_on": ["P28"]
+    },
+    {
+      "id": "P31",
+      "title": "Complete all 54 indicators across 290 constituencies",
+      "status": "planned",
+      "goal": "Resolve the constituency surface through reusable indicator-wide national pipelines and governed fallback, not manual constituency files.",
+      "outputs": ["indicator-wide constituency acquisition pipelines", "secondary/corroborated fallback where permitted", "constituency candidate observations", "constituency 54-indicator validator"],
+      "acceptance": ["15,660/15,660 constituency cells have governed dispositions", "every defensibly obtainable constituency value is materialised", "no county-to-constituency inheritance", "secondary/probable values carry labels and provenance", "boundary/period incompatibilities stay explicit", "deterministic rebuild and validation pass"],
+      "depends_on": ["P29", "P30"]
+    },
+    {
+      "id": "P32",
+      "title": "Complete all 54 indicators across 1,450 wards",
+      "status": "planned",
+      "goal": "Resolve the ward surface using direct local evidence, exact aggregation, permitted geospatial derivation and governed secondary/modelled fallbacks.",
+      "outputs": ["indicator-wide ward acquisition pipelines", "ward geospatial/administrative crosswalks", "ward candidate observations", "ward 54-indicator validator"],
+      "acceptance": ["78,300/78,300 ward cells have governed dispositions", "every defensibly obtainable ward value is materialised", "no parent-to-ward inheritance", "boundary mismatches are never force-matched", "additive measures reconcile where meaningful", "secondary/probable values carry labels and provenance", "deterministic rebuild and validation pass"],
+      "depends_on": ["P31"]
+    },
+    {
+      "id": "P33",
+      "title": "Candidate-value conflict resolution and probable-value publication",
+      "status": "planned",
+      "goal": "Operationalise a candidate-observation ledger and deterministic/manual-review process for conflicting credible values.",
+      "outputs": ["data/evidence/candidate-observations.json", "data/evidence/conflict-decisions.json", "conflict scoring/selection builder", "manual-review queue", "public conflict-note fields"],
+      "acceptance": ["zero preferred S4 values lack competing-source records", "zero conflicts are resolved by unlabelled averaging", "duplicate lineages do not inflate corroboration", "every probable value has confidence and rationale", "material close calls remain in review until adjudicated"],
+      "depends_on": ["P28", "P31", "P32"]
+    },
+    {
+      "id": "P34",
+      "title": "Expose all 54 indicators and representation in the public product",
+      "status": "planned",
+      "goal": "Make the full 54-indicator skeleton visible for each county, constituency and ward with provenance, freshness, confidence and conflict semantics.",
+      "outputs": ["54-indicator Explore/profile rendering contract", "source-tier badges and provenance drawer", "conflict-note UI", "county representative display", "automated UI coverage tests"],
+      "acceptance": ["every constituency and ward renders the governed 54-indicator framework", "unavailable/not-applicable indicators remain visible", "source tier/period/confidence/conflict are inspectable", "county representative is visible", "secondary evidence is visually distinct from official evidence", "browser/accessibility/release gates remain green"],
+      "depends_on": ["P30", "P31", "P32", "P33"]
+    },
+    {
+      "id": "P35",
+      "title": "Permanent local-completeness, freshness and supersession gate",
+      "status": "planned",
+      "goal": "Convert the 54-indicator local surface into a release-blocking, continuously refreshable contract.",
+      "outputs": ["local-54 release validator", "source freshness/recheck queue", "primary-source supersession workflow", "conflict re-evaluation workflow", "local-54 completion dashboard"],
+      "acceptance": ["54/54 indicators remain governed", "290×54 constituency dispositions remain complete", "1450×54 ward dispositions remain complete", "47/47 county representative dispositions remain current", "unknown local cells = 0", "unlabelled secondary observations = 0", "unexplained conflicts = 0", "prohibited parent-child inheritance = 0", "dynamic observations carry as_of/verified_at and recheck rules", "secondary observations are queued for primary confirmation/supersession", "full build/validation/geography/release gates pass"],
+      "depends_on": ["P34"]
+    }
+  ],
+  "formal_closure_order": "P27 → P28 → P29 → P30/P31 → P32 → P33 → P34 → P35",
+  "parallelism_note": "P30 may run in parallel with early P31 acquisition after P28/P29 contracts are stable. Candidate ingestion for P33 may start during P31/P32, but P33 cannot close until both local levels are complete. Parallel execution cannot waive acceptance gates."
+}
