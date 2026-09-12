@@ -1,5 +1,5 @@
 {
-  "schema_version": "kda.local-54-completion-roadmap.v1",
+  "schema_version": "kda.local-54-completion-roadmap.v2",
   "project": "Kenya Data Atlas",
   "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
   "status": "planned",
@@ -9,7 +9,7 @@
     "p18_p26": "Existing governed data-completion programme remains the authority for its historical denominator and closure semantics.",
     "successor_rule": "P27–P35 is a successor programme and must not rewrite P18–P26 completion counts or phase semantics."
   },
-  "objective": "Ensure the same governed 54-indicator framework is explicitly represented for every constituency and ward, add county-level elected-representative data, permit rigorously labelled credible secondary evidence, and publish the most probable value when credible sources conflict while preserving the conflict record.",
+  "objective": "Ensure the same governed 54-indicator framework is explicitly represented for every constituency and ward, add county-level elected-representative data, audit existing KDA observations and closures under the new source rules, permit rigorously labelled credible secondary evidence, and publish the most probable value when credible sources conflict while preserving the conflict record.",
   "target_surface": {
     "indicator_count": 54,
     "counties": 47,
@@ -21,6 +21,17 @@
     "local_child_indicator_cells": 93960,
     "rule": "Every cell must have an explicit governed disposition. Numeric completeness is reported separately from disposition completeness."
   },
+  "publication_presumption": {
+    "principle": "Err toward representation with truthful labels rather than omission whenever a defensible value exists.",
+    "rule": "A value supported by defensible evidence should normally be represented at the lowest truthful source tier and confidence level instead of being omitted merely because it is secondary, dynamic, imperfectly accessible, or in conflict with another source.",
+    "omission_last_resort": [
+      "no defensible evidence exists after governed search",
+      "available evidence is definitionally incompatible with the indicator",
+      "geography or boundary mapping is unresolved and cannot be transparently modelled",
+      "publication would violate rights, privacy, safety or applicable source restrictions",
+      "uncertainty is so material that publishing a preferred value would be misleading even with labels"
+    ]
+  },
   "non_negotiable_rules": [
     "Never copy a county value to a constituency or ward merely to fill a gap.",
     "Never copy a constituency value to a ward merely to fill a gap.",
@@ -29,6 +40,7 @@
     "Never average conflicting values solely to make them reconcile.",
     "Never label secondary evidence as official.",
     "Do not close a value as unavailable only because an official website or API is temporarily inaccessible or dynamically rendered.",
+    "Prefer labelled representation to omission whenever a defensible value exists.",
     "Retain source, period, unit, geography/boundary vintage, retrieval/verification date, methodology and uncertainty metadata where applicable.",
     "All generated ledgers and registries must rebuild deterministically from governed inputs and source/evidence snapshots where rights permit.",
     "All 54 indicators remain visible in the UI at applicable geography levels even when the governed disposition is unavailable or not applicable."
@@ -61,6 +73,33 @@
       "multiple credible independent secondary sources materially agree and their evidence lineage can be distinguished"
     ]
   },
+  "legacy_audit_policy": {
+    "mandatory_subphase": "P28A",
+    "scope": "Audit data already present in KDA, not only newly acquired P27–P35 data.",
+    "includes": [
+      "canonical indicator observations and series",
+      "county/constituency/ward profile values",
+      "P18–P26 published_direct, published_derived and external_verified values",
+      "official_unavailable and other omission/closure states",
+      "CountyIQ/results values that originate from canonical data",
+      "source/catalogue provenance metadata exposed to the public product"
+    ],
+    "tests": [
+      "reclassify each current observation to S0–S7 where possible",
+      "identify secondary-derived values currently labelled or implied as official/unspecified",
+      "identify existing unavailable/omitted cells that can now be represented from credible secondary/corroborated evidence",
+      "identify conflicting existing values whose alternatives were not retained",
+      "identify duplicate evidence lineages incorrectly treated as corroboration",
+      "preserve historical values while correcting provenance metadata and preferred-value status"
+    ],
+    "acceptance": [
+      "100% of in-scope current preferred observations receive a source-tier audit disposition",
+      "100% of in-scope unavailable/omitted states are reviewed for representable secondary evidence",
+      "zero known current secondary observations remain unlabelled",
+      "all newly representable legacy omissions are promoted or carry an explicit reason for remaining unavailable",
+      "historical source/value lineage remains auditable after reclassification"
+    ]
+  },
   "conflict_policy": {
     "principle": "Preserve every defensible candidate observation, select one preferred observation only when a most-probable value can be justified, and disclose the conflict.",
     "default_scoring_dimensions": {
@@ -91,11 +130,19 @@
     },
     {
       "id": "P28",
-      "title": "Secondary-source and provenance governance",
+      "title": "Secondary-source, provenance and legacy-data audit governance",
       "status": "planned",
-      "goal": "Make credible secondary evidence a governed fallback rather than an informal exception while preserving official-source priority and transparent labelling.",
-      "outputs": ["data/policy/source-tier-policy.json", "data/policy/conflict-resolution-policy.json", "evidence-lineage schema", "confidence/public-label vocabulary"],
-      "acceptance": ["S0–S7 tiers validate machine-readably", "secondary evidence cannot publish without label and fallback reason", "corroboration requires independent evidence lineages", "official-source inaccessibility can trigger fallback but cannot itself create a value", "preferred observations retain candidate/source lineage"],
+      "goal": "Make credible secondary evidence a governed fallback rather than an informal exception, then apply the same rule retrospectively to data and omission states already in KDA.",
+      "outputs": ["data/policy/source-tier-policy.json", "data/policy/conflict-resolution-policy.json", "data/legacy-secondary-source-audit-contract.json", "data/audit/legacy-source-tier-audit.json", "data/audit/legacy-representation-opportunities.json", "evidence-lineage schema", "confidence/public-label vocabulary"],
+      "subphases": [
+        {
+          "id": "P28A",
+          "title": "Audit existing KDA data and omissions under S0–S7",
+          "goal": "Reclassify current preferred observations and re-open legacy unavailable/omitted cases where credible labelled evidence can support representation.",
+          "rule": "Prefer labelled representation to omission whenever defensible."
+        }
+      ],
+      "acceptance": ["S0–S7 tiers validate machine-readably", "secondary evidence cannot publish without label and fallback reason", "corroboration requires independent evidence lineages", "official-source inaccessibility can trigger fallback but cannot itself create a value", "preferred observations retain candidate/source lineage", "P28A audits 100% of in-scope existing preferred observations", "P28A reviews 100% of in-scope unavailable/omitted states for secondary representation", "zero known current secondary observations remain unlabelled"],
       "depends_on": ["P27"]
     },
     {
@@ -149,7 +196,7 @@
       "status": "planned",
       "goal": "Make the full 54-indicator skeleton visible for each county, constituency and ward with provenance, freshness, confidence and conflict semantics.",
       "outputs": ["54-indicator Explore/profile rendering contract", "source-tier badges and provenance drawer", "conflict-note UI", "county representative display", "automated UI coverage tests"],
-      "acceptance": ["every constituency and ward renders the governed 54-indicator framework", "unavailable/not-applicable indicators remain visible", "source tier/period/confidence/conflict are inspectable", "county representative is visible", "secondary evidence is visually distinct from official evidence", "browser/accessibility/release gates remain green"],
+      "acceptance": ["every constituency and ward renders the governed 54-indicator framework", "unavailable/not-applicable indicators remain visible", "source tier/period/confidence/conflict are inspectable", "county representative is visible", "secondary evidence is visually distinct from official evidence", "defensible secondary/modelled/probable values are not omitted merely because they are non-primary", "browser/accessibility/release gates remain green"],
       "depends_on": ["P30", "P31", "P32", "P33"]
     },
     {
@@ -157,11 +204,11 @@
       "title": "Permanent local-completeness, freshness and supersession gate",
       "status": "planned",
       "goal": "Convert the 54-indicator local surface into a release-blocking, continuously refreshable contract.",
-      "outputs": ["local-54 release validator", "source freshness/recheck queue", "primary-source supersession workflow", "conflict re-evaluation workflow", "local-54 completion dashboard"],
-      "acceptance": ["54/54 indicators remain governed", "290×54 constituency dispositions remain complete", "1450×54 ward dispositions remain complete", "47/47 county representative dispositions remain current", "unknown local cells = 0", "unlabelled secondary observations = 0", "unexplained conflicts = 0", "prohibited parent-child inheritance = 0", "dynamic observations carry as_of/verified_at and recheck rules", "secondary observations are queued for primary confirmation/supersession", "full build/validation/geography/release gates pass"],
+      "outputs": ["local-54 release validator", "source freshness/recheck queue", "primary-source supersession workflow", "conflict re-evaluation workflow", "legacy provenance re-audit check", "local-54 completion dashboard"],
+      "acceptance": ["54/54 indicators remain governed", "290×54 constituency dispositions remain complete", "1450×54 ward dispositions remain complete", "47/47 county representative dispositions remain current", "unknown local cells = 0", "unlabelled secondary observations = 0 across new and legacy data", "unexplained conflicts = 0", "prohibited parent-child inheritance = 0", "dynamic observations carry as_of/verified_at and recheck rules", "secondary observations are queued for primary confirmation/supersession", "legacy unavailable states are periodically re-audited for new representable evidence", "full build/validation/geography/release gates pass"],
       "depends_on": ["P34"]
     }
   ],
-  "formal_closure_order": "P27 → P28 → P29 → P30/P31 → P32 → P33 → P34 → P35",
+  "formal_closure_order": "P27 → P28/P28A → P29 → P30/P31 → P32 → P33 → P34 → P35",
   "parallelism_note": "P30 may run in parallel with early P31 acquisition after P28/P29 contracts are stable. Candidate ingestion for P33 may start during P31/P32, but P33 cannot close until both local levels are complete. Parallel execution cannot waive acceptance gates."
 }
