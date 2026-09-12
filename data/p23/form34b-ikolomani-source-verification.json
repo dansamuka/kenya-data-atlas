@@ -1,0 +1,95 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-IKOLOMANI-SOURCE-REVIEW-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Ikolomani Form 34B final TOTAL row and preserve an internal source arithmetic conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 210,
+    "constituency_name": "Ikolomani",
+    "geo_code": "KEN-C037-CON210",
+    "form_id": 277838,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277838",
+    "source_pdf_sha256": "6d6e3e6ac07cad6e6e75dfedbe9f08fb9dc97bef7099585c8dbfe9756aa2ae02",
+    "page_number": 2,
+    "render_dpi": 150,
+    "review_context_image_sha256": "1f77090b4285fe2317ca4854cfd2751386e7dd699dc296e9a19385a7f802e714",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then rotated 180 degrees (the portal-served scan for this constituency's second page is upside down) and re-cropped/upscaled around the TOTAL row, Aggregate Results and Voter Turn Out boxes for digit-level confirmation. This constituency's downloaded Form 34B is a 2-page document; page 1 is sheet 'FORM34B11' and page 2 is sheet 'FORM34B12', ending in the TOTAL row and the closing declaration/signature blocks. The page header banner reads 'CON 210 12/12'. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row and Aggregate Results integers were read directly from the rendered page image (after 180-degree rotation to correct the scan's orientation). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (IKOLOMANI, code 210, county KAKAMEGA code 037) was read from the 'Name of Constituency: IKOLOMANI Code:210' declaration header on page 1 and cross-checked against the visible 'CON 210' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_210_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "1f77090b4285fe2317ca4854cfd2751386e7dd699dc296e9a19385a7f802e714",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 56299,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "1f77090b4285fe2317ca4854cfd2751386e7dd699dc296e9a19385a7f802e714",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "arithmetic_mismatch",
+      "note": "The TOTAL row's own printed Total Valid Votes cell reads 33,199, but the four candidate cells on that same row (24,278 + 8,868 + 53 + 192) sum to 33,391 -- exactly 192 more, matching the WAJACKOYAH GEORGE column's own value, which is strong internal evidence that the printed Total Valid Votes running total omitted that candidate's column when it was tallied. This is a genuine internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity. The form's own 'Voter Turn Out' box also states 'Total number of voters who turned out' as 33,199 (equal to the same, apparently under-totaled, Total Valid Votes figure), so the box does not independently corroborate either candidate about which figure is correct."
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "1f77090b4285fe2317ca4854cfd2751386e7dd699dc296e9a19385a7f802e714",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 265,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [24278, 8868, 53, 192],
+    "candidate_vote_sum": 33391,
+    "printed_total_valid_votes": 33199,
+    "candidate_sum_minus_printed_total_valid": 192,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 56299,
+    "registered_voters_reconciles": true,
+    "printed_total_valid_votes": 33199,
+    "candidate_vote_sum": 33391,
+    "candidate_sum_minus_printed_total_valid": 192,
+    "arithmetic_conflict": true,
+    "source_reported_turnout_box": {
+      "registered_voters": 56299,
+      "voters_turned_out": 33199,
+      "turnout_pct_printed": 58.96908
+    },
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters and rejected ballots are each individually clear and unambiguous on the printed TOTAL row, and registered voters reconciles exactly to the governed P23 denominator (56,299). However, the four candidate-vote cells on that same row sum to 33,391, exactly 192 more than the row's own printed Total Valid Votes figure of 33,199 -- and 192 is precisely the WAJACKOYAH GEORGE LUCHIRI column's own value, suggesting that candidate's votes were left out of the running Total Valid Votes tally on the source form. This is a genuine internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity. Per the extraction contract's prohibition on silently correcting digits to force reconciliation, this conflict is preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

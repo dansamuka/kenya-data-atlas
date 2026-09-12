@@ -1,0 +1,102 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-LIKUYANI-SOURCE-REVIEW-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Likuyani Form 34B constituency total row; the source document itself carries multiple internal data-quality conflicts (a registered-voters mismatch, an arithmetic gap, and several blank per-station cells feeding the totals), so no field is promoted from this evidence.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 200,
+    "constituency_name": "Likuyani",
+    "geo_code": "KEN-C037-CON200",
+    "form_id": 277828,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277828",
+    "source_pdf_sha256": "327b32bcaf31e7a0bcff1a0141c7e1035fc13e1970fa045d20ef0697994a66e0",
+    "page_number": 3,
+    "render_dpi": 150,
+    "review_context_image_sha256": "5bd7cf9ca6a57adcff5f6e6b11568c0a11a7a5a42de4623381cbb64a211e10a1",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the 'County Total' row and Aggregate Results box for digit-level confirmation. This constituency's downloaded Form 34B is a 3-page spreadsheet-style export titled 'COLLATION OF PRESIDENTIAL RESULTS' with an unusual column order (candidates, Total Valid Votes, Rejected Ballots, then Registered Voters last) rather than the standard declaration template used elsewhere in this Atlas; its own Aggregate Results box contains a visible '#REF!' spreadsheet formula error, and several individual polling-station rows across all three pages have blank Rejected Ballots or Total Valid Votes cells (e.g. Lumino-302, Kilimani-702, Siyenga-902, Mbururu-3402/3403, Patrice-4102). The page header banner reads 'CON 200 09/12'. A second reviewed image (sha256 1da512563ed130c9a18f72a5b6b98046715ad4e672b6ea4118e5692c0d62ff82, from page 1 of this same PDF) covers the document's unlabeled first row, which states Registered Voters = 72,449 with no polling-station code/name and every other cell blank. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the 'County Total' row and Aggregate Results integers were read directly from the rendered page images. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (LIKUYANI, code 200, county KAKAMEGA code 037) was read from the 'Name of Constituency: LIKUYANI Code:200' declaration header on page 1 and cross-checked against the visible 'CON 200' banner marker printed on the total-row page itself before this row was accepted.",
+    "source_image_legibility": "clear_but_source_document_has_multiple_internal_data_quality_conflicts",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_200_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "5bd7cf9ca6a57adcff5f6e6b11568c0a11a7a5a42de4623381cbb64a211e10a1",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "denominator_mismatch",
+      "note": "Two different registered-voters figures appear on this document. The polling-station table's own summed 'County Total' row (page 3) states Registered Voters = 71,778, which is 671 short of the governed P23 constituency denominator (72,449) -- coincidentally the same size as the first real polling station's own registered-voter count (671), though no explicit special-facility or omitted-row explanation is visible in this download. Separately, an unlabeled row at the very top of page 1 (before any polling-station rows, source_image_sha256 1da512563ed130c9a18f72a5b6b98046715ad4e672b6ea4118e5692c0d62ff82) states Registered Voters = 72,449 with no polling-station code or candidate figures attached -- this exactly matches the governed denominator, but is not itself a sum of the printed table and cannot be treated as this row's verified value under the extraction contract's requirement that the value come from the constituency's own computed total row."
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "5bd7cf9ca6a57adcff5f6e6b11568c0a11a7a5a42de4623381cbb64a211e10a1",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "arithmetic_mismatch",
+      "note": "The 'County Total' row's own printed Total Valid Votes cell reads 41,620, but the four candidate cells on that same row (32,618 + 9,301 + 108 + 177) sum to 42,204 -- a gap of 584. This is a substantially larger and differently-shaped conflict than the single-candidate-column gaps seen elsewhere in this Atlas, and is consistent with this document's broader data-quality problems: several individual polling-station rows feeding this total have blank or visibly garbled Total Valid Votes cells (e.g. Mbururu-3403 prints '2' in that column where the row's own candidate figures of 241+68=309 make '2' implausible), and the document's own Aggregate Results box separately contains a '#REF!' spreadsheet-formula error on an unrelated row, indicating this export was not fully reliable even before reaching the presidential-turnout fields of interest."
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "5bd7cf9ca6a57adcff5f6e6b11568c0a11a7a5a42de4623381cbb64a211e10a1",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_row_quality_concern",
+      "note": "The 'County Total' row's own printed Rejected Ballots cell reads 398, and is not directly contradicted by a second stated figure elsewhere on the document (unlike Registered Voters and Total Valid Votes above). However, at least five individual polling-station rows feeding this total have a visibly blank Rejected Ballots cell (Lumino-302, Kilimani-702, Siyenga-902, Mbururu-3402, Patrice-4102), so the printed 398 total cannot be trusted as complete -- it is not recorded as a verified value given the same document-wide reliability concern documented for the other two fields."
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the 'County Total' row.",
+    "candidate_vote_totals_in_source_column_order": [32618, 9301, 108, 177],
+    "candidate_vote_sum": 42204,
+    "printed_total_valid_votes": 41620,
+    "candidate_sum_minus_printed_total_valid": 584,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "form_county_total_registered_voters": 71778,
+    "form_unlabeled_header_row_registered_voters": 72449,
+    "governed_p23_registered_voters": 72449,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-200-2022 (data/indicators/registry/observations.json), exact sum of official IEBC child ward rows",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta_vs_county_total_row": 671,
+    "denominator_conflict": true,
+    "arithmetic_conflict": true,
+    "source_document_quality_concerns": [
+      "unlabeled_header_row_registered_voters_disagrees_with_summed_county_total_row_by_671",
+      "candidate_cell_sum_disagrees_with_printed_total_valid_votes_by_584",
+      "aggregate_results_box_contains_a_visible_hash_REF_bang_spreadsheet_formula_error",
+      "at_least_five_individual_polling_station_rows_have_blank_rejected_ballots_cells",
+      "at_least_one_individual_polling_station_row_(mbururu_3403)_has_an_implausible_total_valid_votes_cell"
+    ],
+    "promotion_blocked": true
+  },
+  "verification_state": "unresolved_multiple_conflicts",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_source_document_quality_review",
+  "promotion_authorized_by_this_file": false,
+  "note": "This constituency's downloaded Form 34B is an unusually low-fidelity spreadsheet-style export (a 'COLLATION OF PRESIDENTIAL RESULTS' template rather than the standard declaration form) that carries multiple, independently-observed internal conflicts: two disagreeing registered-voters figures on the same document (a summed 'County Total' row of 71,778 versus an unlabeled header-row figure of 72,449 that happens to match the governed denominator but is not itself a sum of the table), a 584-vote gap between the candidate-cell sum and the printed Total Valid Votes total, a visible '#REF!' formula error in the document's own Aggregate Results box, and several individual polling-station rows with blank or implausible cells feeding those same totals. Per the extraction contract's exact-reconciliation requirement and its prohibition on inferring or silently correcting values to force reconciliation, none of the three governed fields is recorded as verified from this evidence, and no turnout observation may be promoted. A re-attempt against a cleaner official rendering of this constituency's Form 34B (if one exists) could resolve this.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
