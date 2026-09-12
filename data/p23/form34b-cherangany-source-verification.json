@@ -1,0 +1,103 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-CHERANGANY-SOURCE-REVIEW-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Cherangany Form 34B final TOTAL row and preserve two internal source conflicts (a denominator gap and a candidate-sum arithmetic gap) without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 140,
+    "constituency_name": "Cherangany",
+    "geo_code": "KEN-C026-CON140",
+    "form_id": 277768,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277768",
+    "source_pdf_sha256": "439f99fdfbb24ee17d29e85071c39268924b2ab91470c0efdd882dae092902df",
+    "page_number": 3,
+    "render_dpi": 150,
+    "review_context_image_sha256": "740ab28eab6a7a766c62b0bf52d7763b0da74ee07d1df2398c500afdd5e91c6d",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the TOTAL row and 'Voter Turn Out' declaration box for digit-level confirmation. This constituency's downloaded Form 34B is a 3-page document; page 1 begins the polling-station listing at its first station and page 3 ends in the TOTAL row (highlighted in green) plus the Aggregate Results and Voter Turn Out declaration boxes and the Constituency Returning Officer's signature block, so this download is a complete, self-contained declaration (not a partial sheet subset). The page header banner reads 'CON 140 06/12'. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row and Voter Turn Out box integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (CHERANGANY, code 140) was read from the 'Constituency: CHERANGANY Code: 140' declaration header on page 1 and cross-checked against the visible 'CON 140' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_140_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "740ab28eab6a7a766c62b0bf52d7763b0da74ee07d1df2398c500afdd5e91c6d",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "denominator_mismatch",
+      "note": "The polling-station table's own printed TOTAL row shows Registered Voters = 91,668 (also handwritten into the 'Voter Turn Out' box, correcting an officer mis-entry visible crossed out above it), which is 162 less than the governed P23 constituency denominator (91,830). No non-ward or special-facility polling station accounting for this delta is visible on the printed pages available in this download, so the gap is preserved unresolved rather than assumed."
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "740ab28eab6a7a766c62b0bf52d7763b0da74ee07d1df2398c500afdd5e91c6d",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "arithmetic_mismatch",
+      "note": "The TOTAL row's own printed Total Valid Votes cell reads 62,718, but the four candidate cells on that same row (27,278 + 34,981 + 89 + 162) sum to only 62,510 -- a genuine internal arithmetic gap of 208 on the official source form itself, not a transcription ambiguity. Neither figure is recorded as the verified value while this internal conflict stands."
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "740ab28eab6a7a766c62b0bf52d7763b0da74ee07d1df2398c500afdd5e91c6d",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 422,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified",
+      "note": "Rejected Ballots (422) is clearly legible and is not itself implicated in either the registered-voters denominator gap or the candidate-sum arithmetic gap, but this row still creates no canonical turnout observation because the other two fields remain unresolved."
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [27278, 34981, 89, 162],
+    "candidate_vote_sum": 62510,
+    "printed_total_valid_votes": 62718,
+    "candidate_sum_minus_printed_total_valid": -208,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 91668,
+    "governed_p23_registered_voters": 91830,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-140-2022 (data/indicators/registry/observations.json), exact sum of official IEBC child ward rows",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 162,
+    "denominator_conflict": true,
+    "printed_total_valid_votes": 62718,
+    "candidate_vote_sum": 62510,
+    "candidate_sum_minus_printed_total_valid": -208,
+    "arithmetic_conflict": true,
+    "source_reported_turnout_box": {
+      "registered_voters": 91668,
+      "voters_turned_out": 63140,
+      "turnout_pct_printed": 68.2
+    },
+    "source_reported_turnout_reconciles_to_printed_voters_turned_out": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "unresolved_multiple_conflicts",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_and_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "This constituency's TOTAL row carries two independent, simultaneous internal conflicts. First, the row's own printed Registered Voters (91,668, which matches the form's own 'Voter Turn Out' declaration box exactly) is 162 short of the separately governed P23 registered-voters denominator (91,830); no special-facility or non-ward polling station is visible in this download to explain the gap, so it is preserved unresolved rather than assumed to be a Kiambu/Mwea/Kandara-style prison-station gap. Second, the row's own printed Total Valid Votes (62,718) does not equal the sum of its own four candidate cells (62,510, short by 208) -- ballots cast using the printed Total Valid Votes figure (63,140) does reconcile exactly to the form's own declared 'Total Number of Voters who turned out to vote' (63,140), so the internal inconsistency is specifically between the candidate cells and the Total Valid Votes cell, not the turnout box. Per the extraction contract's exact-reconciliation requirement and its prohibition on silently correcting digits or inferring values to force reconciliation, both conflicts are preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
