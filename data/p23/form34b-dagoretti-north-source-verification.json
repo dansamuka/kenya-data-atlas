@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-DAGORETTI-NORTH-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Dagoretti North Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 275,
+    "constituency_name": "Dagoretti North",
+    "geo_code": "KEN-C047-CON275",
+    "form_id": 277903,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277903",
+    "source_pdf_sha256": "a65aafdd7146c1f95773e1aee662f05d01afb42b3dfbe2310210fe3a6f073d87",
+    "page_number": 3,
+    "render_dpi": 500,
+    "review_context_image_sha256": "2206178ce71ada411603ee1c29ed96e4c17211179eb537e07932aa343804c80b",
+    "review_context_note": "Rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF, cropped around the TOTAL row and the same page's own Voter Turnout summary block for digit-level confirmation at 500 DPI. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (DAGORETTI NORTH, code 275) was read from the visible 'CON 275' banner marker printed on the page before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_275_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "2206178ce71ada411603ee1c29ed96e4c17211179eb537e07932aa343804c80b",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 157659,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "2206178ce71ada411603ee1c29ed96e4c17211179eb537e07932aa343804c80b",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 83506,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "2206178ce71ada411603ee1c29ed96e4c17211179eb537e07932aa343804c80b",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 891,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row, cross-checked against the same page's own Voter Turnout summary block.",
+    "candidate_vote_totals_in_source_column_order": [
+      56560,
+      25744,
+      468,
+      438
+    ],
+    "candidate_vote_sum": 83210,
+    "reconciles_total_valid_votes": false,
+    "reconciliation_delta": 296
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 157659,
+    "registered_voters_reconciles": true,
+    "candidate_sum_reconciles_total_valid_votes": false,
+    "arithmetic_mismatch": true,
+    "additional_internal_inconsistency": "The form's own printed Voter Turnout summary block states 'Total number of voters who turned out to vote: 84,304', which itself does not equal Total Valid Votes + Rejected Ballots as printed on the TOTAL row (83,506 + 891 = 84,397, a further 93-vote gap). Registered voters (157,659) is consistent across both the TOTAL row and the summary block, and matches the governed denominator exactly.",
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "The printed Registered Voters figure (157,659) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-275-2022) exactly. However, this form shows two compounding internal arithmetic inconsistencies rather than one: (1) the four candidate cells on the TOTAL row (56,560 + 25,744 + 468 + 438 = 83,210) do not sum to the row's own printed Total Valid Votes (83,506), a 296-vote gap; and (2) the same page's separate Voter Turnout summary block prints 'Total number of voters who turned out to vote: 84,304', which itself does not equal Total Valid Votes + Rejected Ballots as printed on the TOTAL row (83,506 + 891 = 84,397, a further 93-vote gap), even though both figures derive from the same page. All digits were independently re-read at 500 DPI with identical results. No cause is asserted for either gap since none is evidenced on the source. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is preserved unresolved.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
