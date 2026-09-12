@@ -1,0 +1,77 @@
+{
+  "schema_version": "kda.local-54-source-governance.v1",
+  "status": "mandatory",
+  "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
+  "legacy_contract": "data/local-indicator-cascade-contract.json",
+  "legacy_contract_rule": "The P18–P26 cascade contract remains unchanged. This file governs the successor P27–P35 source, representation and conflict rules without mutating historical generated outputs.",
+  "publication_presumption": "Prefer representation with truthful source-tier, confidence, method, period and conflict labels rather than omission whenever a defensible value exists. Governed unavailable is a last-resort evidence state, not a preferred conservative default.",
+  "target_levels": ["county_audit", "constituency", "ward"],
+  "source_tiers": [
+    {"id":"S0_direct_primary_official","label":"Official"},
+    {"id":"S1_derived_from_primary_official","label":"Derived from official data"},
+    {"id":"S2_secondary_verified_to_identifiable_primary","label":"Secondary — verified"},
+    {"id":"S3_secondary_corroborated_independent","label":"Secondary — corroborated"},
+    {"id":"S4_probable_value_conflicting_sources","label":"Probable value — sources conflict"},
+    {"id":"S5_transparent_modelled_or_spatial_estimate","label":"Estimated / modelled"},
+    {"id":"S6_governed_unavailable","label":"Data unavailable"},
+    {"id":"S7_not_applicable","label":"Not applicable"}
+  ],
+  "secondary_source_rules": [
+    "Secondary evidence is a fallback, not a substitute for an accessible matching primary source.",
+    "A primary source that is unavailable, non-responsive, temporarily inaccessible, dynamically rendered or does not publish the required geography/period may trigger secondary-source review after the access/search attempt is recorded.",
+    "S2 requires a credible secondary source and an identifiable primary evidence lineage where possible.",
+    "S3 requires at least two credible independent evidence lineages that materially agree; repeated copies of one upstream source count once.",
+    "Every secondary preferred observation must retain an explicit public label, fallback reason, evidence lineage, verification date and confidence.",
+    "If defensible secondary evidence supports a value at the correct geography/period/definition, prefer publishing it with its truthful label over retaining an unavailable/omitted state.",
+    "Secondary observations must be rechecked for primary-source confirmation or supersession when a suitable primary source becomes available."
+  ],
+  "legacy_audit_rules": [
+    "P28A applies the S0–S7 classification retrospectively to in-scope observations already present in KDA.",
+    "P28A must review existing unavailable/omitted states for credible S2/S3/S4/S5 representation opportunities rather than grandfathering prior omissions.",
+    "Known current secondary observations may not remain unlabelled after remediation.",
+    "Historical source/value lineage must remain auditable even when current provenance labels or preferred values are corrected.",
+    "P35 must periodically re-audit unavailable states and secondary observations for promotion, primary confirmation or supersession."
+  ],
+  "conflict_rules": [
+    "Preserve all defensible competing observations before selecting a preferred value.",
+    "Do not average conflicting values merely to create a compromise.",
+    "Default selection considers source authority, exact geography match, period/freshness match, methodological fit and independent corroboration.",
+    "A newer observation does not automatically outrank an older observation if period or definition differs.",
+    "Exact geography outranks an unmatched proxy geography.",
+    "Close-scoring, definition-incompatible or materially divergent candidates require manual review.",
+    "A published probable-conflicting value must carry conflict=true, confidence, competing-value count and selection rationale."
+  ],
+  "prohibited": [
+    "county_to_constituency_value_inheritance",
+    "county_to_ward_value_inheritance",
+    "constituency_to_ward_value_inheritance",
+    "arbitrary_equal_split",
+    "unverified_subcounty_constituency_equivalence",
+    "parent_rate_downscaling",
+    "incompatible_geography_numerator_denominator",
+    "closing_source_acquisition_as_unavailable_only_because_automation_is_blocked",
+    "omitting_defensible_value_only_because_source_is_secondary",
+    "unlabelled_secondary_observation",
+    "duplicate_lineage_corroboration",
+    "conflict_resolution_by_unlabelled_averaging"
+  ],
+  "successor_acceptance": {
+    "indicator_contract_count": 54,
+    "county_audit_cells": 2538,
+    "constituency_cells": 15660,
+    "ward_cells": 78300,
+    "child_level_cells": 93960,
+    "legacy_preferred_observations_audited_pct": 100,
+    "legacy_unavailable_states_reviewed_pct": 100,
+    "constituency_disposition_pct": 100,
+    "ward_disposition_pct": 100,
+    "county_representative_disposition_pct": 100,
+    "unlabelled_secondary_count": 0,
+    "unexplained_conflict_count": 0,
+    "prohibited_parent_child_inheritance_count": 0,
+    "unknown_local_cells": 0,
+    "require_numeric_coverage_reported_separately": true,
+    "require_primary_source_supersession_queue_for_secondary": true,
+    "require_recurring_legacy_unavailable_reaudit": true
+  }
+}

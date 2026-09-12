@@ -1,0 +1,44 @@
+name: P27 local 54 governance
+
+on:
+  pull_request:
+    paths:
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/local-54-migration-map.json'
+      - 'data/policy/local-54-indicator-contract.json'
+      - 'data/local-54-source-governance-contract.json'
+      - 'data/local-54-completion-roadmap.json'
+      - 'data/local-54-completion-execution.json'
+      - 'data/legacy-secondary-source-audit-contract.json'
+      - 'data/local-indicator-cascade-contract.json'
+      - 'data/completeness/local-indicator-cascade.json'
+      - 'data/indicators/registry/indicators.json'
+      - 'scripts/p27/**'
+      - '.github/workflows/p27-local-54-governance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/local-54-migration-map.json'
+      - 'data/policy/local-54-indicator-contract.json'
+      - 'data/local-54-source-governance-contract.json'
+      - 'data/local-indicator-cascade-contract.json'
+      - 'data/completeness/local-indicator-cascade.json'
+      - 'data/indicators/registry/indicators.json'
+      - 'scripts/p27/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-local-54-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate P27 local 54 governance
+        run: node scripts/p27/validate-local-54-governance.mjs
