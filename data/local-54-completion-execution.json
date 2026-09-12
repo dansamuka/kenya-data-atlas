@@ -1,0 +1,123 @@
+{
+  "schema_version": "kda.local-54-completion-execution.v1",
+  "project": "Kenya Data Atlas",
+  "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
+  "status": "planned",
+  "authority": "Scheduling/execution overlay only. data/local-54-completion-roadmap.json controls phase meaning and acceptance.",
+  "work_rules": [
+    "Use indicator-wide pipelines before geography-by-geography manual work.",
+    "Use one governed source/evidence family per tranche where practical.",
+    "Every tranche must update the candidate/provenance layer before preferred observations.",
+    "Do not weaken anti-inheritance, boundary-vintage, uncertainty or release gates for throughput.",
+    "Secondary evidence may be used only under the source-tier policy and must retain fallback reason plus lineage.",
+    "Conflicting evidence must be preserved; preferred-value publication must follow the conflict policy.",
+    "Generated outputs must be deterministic and validation-ready before merge."
+  ],
+  "execution_tracks": [
+    {
+      "id": "T1",
+      "name": "Contract and denominator",
+      "phases": ["P27", "P28", "P29"],
+      "mode": "serial",
+      "exit": "Exact 54-indicator contract, source policy and 93,960-cell child ledger exist."
+    },
+    {
+      "id": "T2",
+      "name": "Representation",
+      "phases": ["P30"],
+      "mode": "parallel_after_P28",
+      "exit": "47/47 county Woman Representative dispositions and extensible representative schema exist."
+    },
+    {
+      "id": "T3",
+      "name": "Constituency completion",
+      "phases": ["P31"],
+      "mode": "parallel_indicator_families_after_P29",
+      "batching": "Prefer indicator-wide national tranches. Manual exceptions only after pipeline/crosswalk failure is recorded.",
+      "exit": "15,660/15,660 constituency cells governed."
+    },
+    {
+      "id": "T4",
+      "name": "Ward completion",
+      "phases": ["P32"],
+      "mode": "parallel_indicator_families_after_P31_contract_stability",
+      "batching": "Prefer direct ward records, exact aggregation and approved geospatial pipelines before secondary/modelled fallback.",
+      "exit": "78,300/78,300 ward cells governed."
+    },
+    {
+      "id": "T5",
+      "name": "Conflict adjudication",
+      "phases": ["P33"],
+      "mode": "continuous_ingest_then_final_gate",
+      "exit": "No preferred conflicting value lacks candidates, rationale or confidence."
+    },
+    {
+      "id": "T6",
+      "name": "Public product and permanent gate",
+      "phases": ["P34", "P35"],
+      "mode": "serial",
+      "exit": "All 54 visible everywhere applicable; release-blocking local completeness/freshness gate is active."
+    }
+  ],
+  "recommended_tranche_order": [
+    "P27.1 inventory current local indicators and reconcile 49→54 target",
+    "P27.2 freeze definitions/applicability/derivation rules",
+    "P28.1 implement S0–S7 source tiers and labels",
+    "P28.2 implement evidence-lineage and conflict schemas",
+    "P29.1 generate county audit + constituency ledger",
+    "P29.2 generate ward ledger + summary",
+    "P30.1 ingest/verify 47 county Woman Representatives",
+    "P31.x complete constituencies by indicator family, highest-authority/easiest first",
+    "P32.x complete wards by indicator family, direct/exact/spatial before fallback",
+    "P33.x adjudicate conflicts continuously and clear final manual-review queue",
+    "P34.1 render 54-indicator skeleton and provenance UI",
+    "P34.2 render representation and conflict states; run browser/accessibility tests",
+    "P35.1 wire release validator and refresh/supersession queues",
+    "P35.2 final deterministic rebuild and release audit"
+  ],
+  "per_tranche_checklist": [
+    "Confirm target indicator IDs and geography scope.",
+    "Record primary-source search/access attempts.",
+    "Acquire and snapshot primary evidence where possible.",
+    "If fallback is needed, classify secondary evidence tier and evidence lineage.",
+    "Normalize period, unit, boundary vintage and indicator definition.",
+    "Write all defensible candidate observations before preferred selection.",
+    "Apply conflict policy where candidates disagree.",
+    "Materialise preferred observations or governed closure state.",
+    "Reconcile additive measures where meaningful.",
+    "Regenerate completeness outputs.",
+    "Run focused validator, full Atlas validation and release/browser gates when public runtime changes.",
+    "Update roadmap progress only after deterministic outputs are committed."
+  ],
+  "merge_strategy": {
+    "preferred": "Small auditable PRs by contract/source family/indicator family; allow consolidated PRs only when generated outputs are deterministic and reviewable.",
+    "required_pr_fields": [
+      "phase/tranche",
+      "source families",
+      "geographies affected",
+      "indicator IDs",
+      "source-tier distribution",
+      "conflicts introduced/resolved",
+      "numeric vs governed-closure counts",
+      "validation commands/results",
+      "known limitations/refresh triggers"
+    ]
+  },
+  "metrics": [
+    "indicator_contract_count",
+    "county_audit_disposition_pct",
+    "constituency_disposition_pct",
+    "constituency_numeric_pct",
+    "ward_disposition_pct",
+    "ward_numeric_pct",
+    "source_tier_counts",
+    "secondary_observation_count",
+    "unlabelled_secondary_count",
+    "conflict_count",
+    "unexplained_conflict_count",
+    "manual_review_count",
+    "prohibited_parent_child_inheritance_count",
+    "representative_coverage_pct",
+    "stale_dynamic_observation_count"
+  ]
+}
