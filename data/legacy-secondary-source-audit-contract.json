@@ -1,0 +1,80 @@
+{
+  "schema_version": "kda.legacy-secondary-source-audit.v1",
+  "phase": "P28A",
+  "status": "mandatory",
+  "purpose": "Apply the P27–P35 source-tier and representation rules retrospectively to data already present in Kenya Data Atlas, including existing omission and closure states.",
+  "publication_presumption": "Prefer representation with truthful source-tier, confidence, period, method and conflict labels whenever a defensible value exists. Omission is the last resort.",
+  "audit_scope": [
+    "data/indicators/registry/observations.json and corresponding series/dataset provenance",
+    "county, constituency and ward values surfaced by place profiles",
+    "P18–P26 preferred observations and governed closure states",
+    "external_verified, published_direct and published_derived observations",
+    "official_unavailable, governed_unavailable, boundary_unresolved and retired/replaced states where the underlying indicator remains active/relevant",
+    "CountyIQ/results values whose source lineage comes from canonical observations",
+    "public source labels, source links and catalogue metadata"
+  ],
+  "required_audit_fields": [
+    "record_or_slot_id",
+    "indicator_id",
+    "geography_id",
+    "current_value_or_state",
+    "current_source_label",
+    "audited_source_tier",
+    "evidence_lineage_id",
+    "primary_source_identified",
+    "primary_source_access_state",
+    "secondary_sources_checked",
+    "conflict_state",
+    "confidence",
+    "representation_opportunity",
+    "recommended_action",
+    "audit_note",
+    "audited_at"
+  ],
+  "required_tests": [
+    "Classify every in-scope current preferred observation to S0–S7 where possible.",
+    "Detect observations sourced through secondary evidence but currently labelled or implied as official or unspecified.",
+    "Re-open in-scope unavailable/omitted states and search for credible S2/S3/S4/S5 representation opportunities.",
+    "Detect conflicts where only one preferred value is retained and reconstruct competing candidates where defensible evidence exists.",
+    "Detect repeated copies of one upstream source and collapse them to one evidence lineage for corroboration purposes.",
+    "Check that secondary/modelled/probable values are not omitted solely because they are non-primary.",
+    "Preserve historical values and prior decisions while correcting provenance classification and current preferred-state treatment."
+  ],
+  "recommended_actions": [
+    "keep_as_is",
+    "relabel_source_tier",
+    "add_evidence_lineage",
+    "add_conflict_note",
+    "promote_secondary_verified",
+    "promote_secondary_corroborated",
+    "promote_probable_conflicting_value",
+    "promote_transparent_estimate",
+    "retain_unavailable_with_reason",
+    "retain_not_applicable",
+    "manual_review"
+  ],
+  "representation_opportunity_rule": "If credible evidence can support the indicator at the correct geography/period/definition, prefer publishing it at the lowest truthful source tier rather than retaining an unavailable/omitted state.",
+  "do_not_promote_when": [
+    "definition is materially incompatible",
+    "geography cannot be reconciled or transparently modelled",
+    "evidence lineage is circular or not independently verifiable",
+    "uncertainty or conflict is too material for a preferred value even with disclosure",
+    "publication would breach rights, privacy, safety or source restrictions"
+  ],
+  "outputs": [
+    "data/audit/legacy-source-tier-audit.json",
+    "data/audit/legacy-source-tier-audit.csv",
+    "data/audit/legacy-representation-opportunities.json",
+    "data/audit/legacy-conflicts.json",
+    "data/audit/legacy-source-tier-summary.json"
+  ],
+  "acceptance": [
+    "100% of in-scope current preferred observations receive an audit disposition.",
+    "100% of in-scope unavailable/omitted states are reviewed for credible labelled representation.",
+    "Zero known current secondary observations remain unlabelled after remediation.",
+    "Every newly representable legacy omission is either promoted or has an explicit documented reason for remaining unavailable.",
+    "Every identified legacy conflict retains candidate evidence and a conflict disposition.",
+    "Historical lineage remains auditable; the audit does not rewrite prior release history.",
+    "Audit outputs rebuild deterministically."
+  ]
+}
