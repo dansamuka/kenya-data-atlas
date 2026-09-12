@@ -1,0 +1,90 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-MTELGON-SOURCE-REVIEW-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Mt. Elgon Form 34B final TOTAL row and preserve an internal source arithmetic conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 216,
+    "constituency_name": "Mt. Elgon",
+    "geo_code": "KEN-C039-CON216",
+    "form_id": 277844,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277844",
+    "source_pdf_sha256": "a2cce3a9fea645e1d1c0f371c45caa87f261e16ea958346175f7e7fc6203d023",
+    "page_number": 2,
+    "render_dpi": 150,
+    "review_context_image_sha256": "6ea957e8ef80e69e84af6bcd1401e3bcd501ff305be72c067126dd383e9d4f16",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the TOTAL row for digit-level confirmation. This constituency's downloaded Form 34B is a 3-page document (page 2 of 3 ends in the TOTAL row). The page header banner reads 'CON 216 02/12'. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (MT. ELGON, code 216) was read from the polling-station-code prefixes ('039216...') and the visible 'MT.ELGON COUNCIL HALL' polling station name in the table, cross-checked against the 'CON 216' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_216_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "6ea957e8ef80e69e84af6bcd1401e3bcd501ff305be72c067126dd383e9d4f16",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 76159,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "6ea957e8ef80e69e84af6bcd1401e3bcd501ff305be72c067126dd383e9d4f16",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "arithmetic_mismatch",
+      "note": "The TOTAL row's own printed Total Valid Votes cell reads 54,601, but the four candidate cells on that same row (5,650 + 48,656 + 148 + 149) sum to 54,603 -- a small but genuine gap of 2. This is an internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity (both readings were independently zoom-confirmed against the printed row)."
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "6ea957e8ef80e69e84af6bcd1401e3bcd501ff305be72c067126dd383e9d4f16",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 550,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [5650, 48656, 148, 149],
+    "candidate_vote_sum": 54603,
+    "printed_total_valid_votes": 54601,
+    "candidate_sum_minus_printed_total_valid": 2,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 76159,
+    "registered_voters_reconciles": true,
+    "printed_total_valid_votes": 54601,
+    "candidate_vote_sum": 54603,
+    "candidate_sum_minus_printed_total_valid": 2,
+    "arithmetic_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters and rejected ballots are each individually clear and unambiguous on the printed TOTAL row, and registered voters reconciles exactly to the governed P23 denominator (76,159). However, the four candidate-vote cells on that same row sum to 54,603, exactly 2 more than the row's own printed Total Valid Votes figure of 54,601. This is a genuine, small internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity. Per the extraction contract's prohibition on silently correcting digits to force reconciliation, this conflict is preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

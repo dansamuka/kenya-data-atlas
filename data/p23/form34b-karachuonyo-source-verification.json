@@ -1,0 +1,90 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-KARACHUONYO-SOURCE-REVIEW-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Karachuonyo Form 34B final TOTAL row and preserve an internal source arithmetic conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 247,
+    "constituency_name": "Karachuonyo",
+    "geo_code": "KEN-C043-CON247",
+    "form_id": 277875,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277875",
+    "source_pdf_sha256": "4f4faf745213601fadd533aa4252119bc35992d59cf7df6953b001c2598b82d9",
+    "page_number": 3,
+    "render_dpi": 150,
+    "review_context_image_sha256": "b15a60fc0de0377639d492bb1599d20e98a7eff53304583391718d5d777ac676",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the TOTAL row for digit-level confirmation. This constituency's downloaded Form 34B is a 3-page document; page 2 is sheet 'FORM34B15' and page 3 is sheet 'FORM34B16', ending in the TOTAL row. Despite the '15/18' and '16/18' sheet markers (which would ordinarily suggest a much larger, partially-served multi-sheet form), the TOTAL row's own Registered Voters figure reconciles exactly to the governed P23 constituency denominator, indicating this TOTAL row is in fact the complete constituency total rather than a partial subtotal (the same pattern observed for Kacheliba in this tranche). The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (KARACHUONYO, code 247) was read from the polling-station-code prefixes ('043247...') and cross-checked against the visible 'CON 247' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_247_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "b15a60fc0de0377639d492bb1599d20e98a7eff53304583391718d5d777ac676",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 94181,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "b15a60fc0de0377639d492bb1599d20e98a7eff53304583391718d5d777ac676",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "arithmetic_mismatch",
+      "note": "The TOTAL row's own printed Total Valid Votes cell reads 68,746, but the four candidate cells on that same row (68,340 + 648 + 7 + 88) sum to 69,083 -- a gap of 337. This is a genuine internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity (the row was independently zoom-confirmed digit by digit)."
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "b15a60fc0de0377639d492bb1599d20e98a7eff53304583391718d5d777ac676",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 275,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [68340, 648, 7, 88],
+    "candidate_vote_sum": 69083,
+    "printed_total_valid_votes": 68746,
+    "candidate_sum_minus_printed_total_valid": 337,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 94181,
+    "registered_voters_reconciles": true,
+    "printed_total_valid_votes": 68746,
+    "candidate_vote_sum": 69083,
+    "candidate_sum_minus_printed_total_valid": 337,
+    "arithmetic_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters and rejected ballots are each individually clear and unambiguous on the printed TOTAL row, and registered voters reconciles exactly to the governed P23 denominator (94,181). However, the four candidate-vote cells on that same row sum to 69,083, exactly 337 more than the row's own printed Total Valid Votes figure of 68,746. This is a genuine internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity. Per the extraction contract's prohibition on silently correcting digits to force reconciliation, this conflict is preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

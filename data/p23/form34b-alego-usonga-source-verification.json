@@ -1,0 +1,94 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-ALEGO-USONGA-SOURCE-VERIFIED-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Alego Usonga Form 34B final TOTAL row and preserve a genuine special-facility denominator gap without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 234,
+    "constituency_name": "Alego Usonga",
+    "geo_code": "KEN-C041-CON234",
+    "form_id": 277862,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277862",
+    "source_pdf_sha256": "160e848946970933f339d7384b6e42d6cb9e51d9633fcacb0598e3b234aa0fcb",
+    "page_number": 4,
+    "render_dpi": 150,
+    "review_context_image_sha256": "8c19c9f308dd16029de9f81f57b4374fc8c10cb514bf4308bf55307f6fae8ee5",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the TOTAL row for digit-level confirmation. This constituency's downloaded Form 34B is a 5-page document (page 4 of 5 ends in the TOTAL row, highlighted in green; page 5 is the closing agent-signature/handover page). The page header banner reads 'CON 234 05/18'. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (ALEGO USONGA, code 234) was read from the polling-station-code prefixes ('041234...') and cross-checked against the visible 'CON 234' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_234_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 4,
+      "source_image_sha256": "8c19c9f308dd16029de9f81f57b4374fc8c10cb514bf4308bf55307f6fae8ee5",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "denominator_mismatch",
+      "note": "The printed TOTAL row's Registered Voters figure is 122,009, which is 7 more than the governed P23 constituency denominator (122,002). The row immediately above TOTAL is '049292145109501 SIAYA PRISON (B) - 01' with Registered Voters = 7 -- exactly the observed delta -- and its non-ward polling-station code prefix ('049292...') matches the recurring special-facility (prison) numbering pattern already documented elsewhere in this Atlas (e.g. Kiambu's '049292145105401 KIAMBU PRISON'). This is treated as the same genuine national-facility denominator gap, not a transcription error."
+    },
+    "total_valid_votes": {
+      "page_number": 4,
+      "source_image_sha256": "8c19c9f308dd16029de9f81f57b4374fc8c10cb514bf4308bf55307f6fae8ee5",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 86372,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 4,
+      "source_image_sha256": "8c19c9f308dd16029de9f81f57b4374fc8c10cb514bf4308bf55307f6fae8ee5",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 316,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [85301, 865, 40, 166],
+    "candidate_vote_sum": 86372,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 122009,
+    "governed_p23_registered_voters": 122002,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-234-2022 (data/indicators/registry/observations.json), exact sum of official IEBC child ward rows",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 7,
+    "denominator_conflict": true,
+    "special_facility_station": {
+      "polling_station_code": "049292145109501",
+      "polling_station_name": "SIAYA PRISON (B) - 01",
+      "registered_voters": 7
+    },
+    "promotion_blocked": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 86,372 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (122,009) does not exactly match the separately governed P23 registered-voter denominator for this constituency (122,002). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145109501 SIAYA PRISON (B) - 01', registered 7 -- exactly the observed delta), which is outside the ordinary ward-boundary polling-station set used to derive the governed ward-summed registered-voters denominator. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Kiambu, Kapseret, Naivasha, Baringo Central, Matuga, Lamu West, Garissa Township, Kitui Central, Mwea) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters, this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
