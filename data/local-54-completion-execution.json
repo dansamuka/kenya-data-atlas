@@ -1,5 +1,5 @@
 {
-  "schema_version": "kda.local-54-completion-execution.v1",
+  "schema_version": "kda.local-54-completion-execution.v2",
   "project": "Kenya Data Atlas",
   "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
   "status": "planned",
@@ -11,15 +11,17 @@
     "Do not weaken anti-inheritance, boundary-vintage, uncertainty or release gates for throughput.",
     "Secondary evidence may be used only under the source-tier policy and must retain fallback reason plus lineage.",
     "Conflicting evidence must be preserved; preferred-value publication must follow the conflict policy.",
+    "Prefer truthful labelled representation to omission whenever a defensible value exists.",
+    "Apply the same source-tier and representation rules retrospectively to existing KDA data through P28A.",
     "Generated outputs must be deterministic and validation-ready before merge."
   ],
   "execution_tracks": [
     {
       "id": "T1",
-      "name": "Contract and denominator",
-      "phases": ["P27", "P28", "P29"],
-      "mode": "serial",
-      "exit": "Exact 54-indicator contract, source policy and 93,960-cell child ledger exist."
+      "name": "Contract, provenance, legacy audit and denominator",
+      "phases": ["P27", "P28", "P28A", "P29"],
+      "mode": "serial_with_audit_parallelism_inside_P28A",
+      "exit": "Exact 54-indicator contract, source policy, completed legacy provenance/omission audit and 93,960-cell child ledger exist."
     },
     {
       "id": "T2",
@@ -33,7 +35,7 @@
       "name": "Constituency completion",
       "phases": ["P31"],
       "mode": "parallel_indicator_families_after_P29",
-      "batching": "Prefer indicator-wide national tranches. Manual exceptions only after pipeline/crosswalk failure is recorded.",
+      "batching": "Prefer indicator-wide national tranches. Manual exceptions only after pipeline/crosswalk failure is recorded. Use labelled secondary/probable/modelled values rather than omission where defensible.",
       "exit": "15,660/15,660 constituency cells governed."
     },
     {
@@ -41,7 +43,7 @@
       "name": "Ward completion",
       "phases": ["P32"],
       "mode": "parallel_indicator_families_after_P31_contract_stability",
-      "batching": "Prefer direct ward records, exact aggregation and approved geospatial pipelines before secondary/modelled fallback.",
+      "batching": "Prefer direct ward records, exact aggregation and approved geospatial pipelines before secondary/modelled fallback. Use labelled fallback rather than omission where defensible.",
       "exit": "78,300/78,300 ward cells governed."
     },
     {
@@ -56,7 +58,7 @@
       "name": "Public product and permanent gate",
       "phases": ["P34", "P35"],
       "mode": "serial",
-      "exit": "All 54 visible everywhere applicable; release-blocking local completeness/freshness gate is active."
+      "exit": "All 54 visible everywhere applicable; release-blocking local completeness/freshness gate and recurring legacy provenance re-audit are active."
     }
   ],
   "recommended_tranche_order": [
@@ -64,6 +66,10 @@
     "P27.2 freeze definitions/applicability/derivation rules",
     "P28.1 implement S0–S7 source tiers and labels",
     "P28.2 implement evidence-lineage and conflict schemas",
+    "P28A.1 inventory all in-scope existing preferred observations and source metadata",
+    "P28A.2 classify existing observations to S0–S7 and remediate unlabelled secondary provenance",
+    "P28A.3 re-open existing unavailable/omitted states and search for credible labelled representation opportunities",
+    "P28A.4 reconstruct and adjudicate material legacy conflicts; publish audit summary",
     "P29.1 generate county audit + constituency ledger",
     "P29.2 generate ward ledger + summary",
     "P30.1 ingest/verify 47 county Woman Representatives",
@@ -73,8 +79,23 @@
     "P34.1 render 54-indicator skeleton and provenance UI",
     "P34.2 render representation and conflict states; run browser/accessibility tests",
     "P35.1 wire release validator and refresh/supersession queues",
-    "P35.2 final deterministic rebuild and release audit"
+    "P35.2 wire recurring legacy unavailable/secondary re-audit",
+    "P35.3 final deterministic rebuild and release audit"
   ],
+  "legacy_audit_execution": {
+    "authority": "data/legacy-secondary-source-audit-contract.json",
+    "scope_rule": "Audit existing KDA observations and omission/closure states before relying on the new source policy only for new data.",
+    "batching": [
+      "canonical observations/series/datasets",
+      "county/profile observations and closures",
+      "constituency observations and closures",
+      "ward observations and closures",
+      "CountyIQ/results provenance mappings",
+      "public source labels and links"
+    ],
+    "priority": "First fix mislabelled/unknown provenance, then promote clearly representable legacy omissions, then adjudicate legacy conflicts.",
+    "completion_rule": "P28 cannot close until P28A acceptance is satisfied."
+  },
   "per_tranche_checklist": [
     "Confirm target indicator IDs and geography scope.",
     "Record primary-source search/access attempts.",
@@ -83,6 +104,7 @@
     "Normalize period, unit, boundary vintage and indicator definition.",
     "Write all defensible candidate observations before preferred selection.",
     "Apply conflict policy where candidates disagree.",
+    "Prefer a labelled defensible value over an unavailable state when publication would not be misleading.",
     "Materialise preferred observations or governed closure state.",
     "Reconcile additive measures where meaningful.",
     "Regenerate completeness outputs.",
@@ -97,6 +119,7 @@
       "geographies affected",
       "indicator IDs",
       "source-tier distribution",
+      "legacy observations audited/promoted/relabelled where applicable",
       "conflicts introduced/resolved",
       "numeric vs governed-closure counts",
       "validation commands/results",
@@ -105,6 +128,11 @@
   },
   "metrics": [
     "indicator_contract_count",
+    "legacy_preferred_observations_audited_pct",
+    "legacy_unavailable_states_reviewed_pct",
+    "legacy_secondary_relabel_count",
+    "legacy_omissions_promoted_count",
+    "legacy_conflicts_identified_count",
     "county_audit_disposition_pct",
     "constituency_disposition_pct",
     "constituency_numeric_pct",
