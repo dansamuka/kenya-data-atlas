@@ -2,8 +2,56 @@
   "schema_version": "kda.local-54-completion-execution.v2",
   "project": "Kenya Data Atlas",
   "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
-  "status": "planned",
+  "status": "executing",
   "authority": "Scheduling/execution overlay only. data/local-54-completion-roadmap.json controls phase meaning and acceptance.",
+  "progress": {
+    "as_of": "2026-09-12",
+    "P27": {
+      "status": "complete",
+      "note": "The exact live 54-indicator local contract, applicability rules, S0–S7 source governance and dedicated validator are merged on main via PR #146. The historical 49-slot figure remains a P18 baseline only and is not treated as the current local-indicator scope."
+    },
+    "P28": {
+      "status": "governance_foundation_complete_execution_open",
+      "note": "Source tiers, evidence-lineage requirements and conflict rules are frozen. Retrospective remediation remains governed by P28A before P28 can close."
+    },
+    "P28A": {
+      "status": "executing_manual_remediation_required",
+      "baseline_pr": 148,
+      "mechanical_inventory_complete": true,
+      "mechanical_tiering_complete": true,
+      "preferred_observations_in_scope": 6007,
+      "preferred_observations_with_disposition": 6007,
+      "preferred_observation_disposition_pct": 100,
+      "closure_cells_in_scope": 3781,
+      "closure_cells_with_disposition": 3781,
+      "closure_cell_disposition_pct": 100,
+      "closure_slot_keys_covered": 5541,
+      "secondary_preferred_observation_count": 45,
+      "modelled_or_spatial_preferred_observation_count": 1787,
+      "machine_detected_conflict_group_count": 0,
+      "governed_unavailable_reopen_queue_count": 3781,
+      "manual_review_count": 3826,
+      "legacy_external_slots_without_canonical_observation": 0,
+      "p28a_complete": false,
+      "next_priorities": [
+        "Remediate the 45 current secondary preferred observations with explicit S2/S3 labels, identifiable primary lineage/fallback reason and independence checks for any claimed corroboration.",
+        "Re-open all 3,781 S6 closure cells under the successor fallback hierarchy; source-access or automation failure alone is not sufficient for final unavailability.",
+        "Retain the 1,787 S5 modelled/spatial preferred observations with explicit estimated/modelled presentation; they are not part of the 3,826 manual-review queue unless other evidence raises a specific issue.",
+        "Reconstruct material historical conflict candidates from evidence history and source records; zero machine-detected canonical conflicts does not prove that no historical conflict existed."
+      ],
+      "evidence_outputs": [
+        "data/audit/legacy-source-tier-audit.json",
+        "data/audit/legacy-source-tier-audit.csv",
+        "data/audit/legacy-representation-opportunities.json",
+        "data/audit/legacy-conflicts.json",
+        "data/audit/legacy-source-tier-summary.json"
+      ]
+    },
+    "P29": {
+      "status": "blocked_on_P28A_successor_disposition_rules",
+      "note": "The full 93,960-cell child denominator remains the target; P29 must consume the P27/P28/P28A successor governance rather than simply clone the historical P18 ledger."
+    }
+  },
   "work_rules": [
     "Use indicator-wide pipelines before geography-by-geography manual work.",
     "Use one governed source/evidence family per tranche where practical.",
