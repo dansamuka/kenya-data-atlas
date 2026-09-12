@@ -4,6 +4,7 @@ Status: **planned successor programme**
 
 Machine-readable phase authority: [`data/local-54-completion-roadmap.json`](../data/local-54-completion-roadmap.json)  
 Machine-readable execution overlay: [`data/local-54-completion-execution.json`](../data/local-54-completion-execution.json)  
+Legacy provenance audit contract: [`data/legacy-secondary-source-audit-contract.json`](../data/legacy-secondary-source-audit-contract.json)  
 Existing local cascade contract: [`data/local-indicator-cascade-contract.json`](../data/local-indicator-cascade-contract.json)
 
 ## Purpose
@@ -17,9 +18,18 @@ P27–P35 is the governed successor to the P18–P26 completion programme. It do
 - a **47 × 54 = 2,538** county audit surface to keep the hierarchy aligned;
 - a governed county-level elected-representative layer;
 - credible secondary evidence permitted as a labelled fallback where primary evidence is inaccessible, dynamic, non-responsive or does not publish the required local value;
+- a mandatory retrospective audit so the same source rules are applied to data already present in KDA;
 - conflicting credible values retained and adjudicated transparently rather than hidden.
 
 The programme distinguishes **disposition completeness** from **numeric completeness**. Every cell must be resolved, but a resolved cell may legitimately be `Data unavailable` or `Not applicable` where no defensible value exists. The programme must never manufacture a number merely to improve numeric coverage.
+
+### Publication presumption: label rather than omit
+
+Where a defensible value exists, KDA should normally **represent it at the lowest truthful evidence tier rather than omit it**. A value does not need to be primary/official to be useful, provided its status, method, confidence, period and limitations are explicit.
+
+Omission is the last resort and should be used only where evidence is not defensible, the geography/definition cannot be reconciled, uncertainty would make a preferred value misleading even with disclosure, or publication would violate rights/privacy/safety/source restrictions.
+
+This principle applies both to new P27–P35 data and to values or gaps already in the Atlas.
 
 ## Source hierarchy
 
@@ -74,9 +84,9 @@ A published S4 record must contain `conflict=true`, confidence, number of compet
 
 ---
 
-## P28 — Secondary-source and provenance governance
+## P28 — Secondary-source, provenance and legacy-data audit governance
 
-**Goal:** Make secondary evidence and conflict handling first-class governed provenance states.
+**Goal:** Make secondary evidence and conflict handling first-class governed provenance states and apply those rules retrospectively to the current Atlas.
 
 **Work:**
 
@@ -84,9 +94,23 @@ A published S4 record must contain `conflict=true`, confidence, number of compet
 - add fields for primary-source access attempts, fallback reason, original source where identifiable, evidence lineage, confidence and verification date;
 - define credible-secondary eligibility criteria;
 - distinguish source authority from evidence independence;
-- add the candidate-observation and conflict-decision schemas before large-scale local ingestion begins.
+- add the candidate-observation and conflict-decision schemas before large-scale local ingestion begins;
+- run mandatory subphase **P28A** across existing KDA observations and omission states.
 
-**Gate:** secondary evidence cannot enter the preferred-observation layer without an explicit source tier, fallback reason and evidence lineage.
+### P28A — Audit existing KDA data under the new secondary-source rule
+
+The new provenance policy is not prospective only. P28A audits the data already in KDA, including canonical observations/series, county/constituency/ward profile values, P18–P26 observations and closure states, public source labels, and CountyIQ/results mappings that depend on canonical data.
+
+For every in-scope current preferred observation, P28A assigns or verifies an S0–S7 tier and evidence lineage. It specifically looks for:
+
+- secondary evidence currently labelled or implied as official/unspecified;
+- existing `official_unavailable` / `governed_unavailable` / omitted values where credible S2/S3/S4/S5 evidence can now support representation;
+- legacy conflicts where only one value was retained and competing credible evidence should be preserved;
+- duplicate web copies of the same upstream source incorrectly treated as independent corroboration.
+
+The audit should **re-open omissions rather than grandfather them**. Where a defensible secondary, probable or modelled value exists, the default action is to publish it with the truthful label and confidence rather than keep the slot empty.
+
+**P28/P28A gate:** S0–S7 validates machine-readably; 100% of in-scope preferred observations are audited; 100% of in-scope unavailable/omitted states are checked for representable secondary evidence; zero known current secondary observations remain unlabelled; newly representable legacy gaps are promoted or retain an explicit reason for remaining unavailable.
 
 ---
 
@@ -125,9 +149,9 @@ Each record should support: geography ID, role, person name, party where verifia
 
 Implementation is **indicator-wide**, not 290-file manual research. For each indicator, use the hierarchy:
 
-`official exact local value → exact official child aggregation → official administrative/geocoded records → credible verified secondary → corroborated secondary → approved spatial/modelled derivation → governed unavailable/not applicable`.
+`official exact local value → exact official child aggregation → official administrative/geocoded records → credible verified secondary → corroborated secondary → probable conflicting value → approved spatial/modelled derivation → governed unavailable/not applicable`.
 
-Every defensibly obtainable value must be materialised. Boundary and period mismatches remain explicit. County values are never inherited downward.
+Every defensibly obtainable value must be materialised. Boundary and period mismatches remain explicit. County values are never inherited downward. Secondary/modelled/probable values should be represented with labels rather than omitted merely because they are non-primary.
 
 **Gate:** 15,660/15,660 cells have governed dispositions and constituency numeric coverage is reported separately.
 
@@ -139,7 +163,7 @@ Every defensibly obtainable value must be materialised. Boundary and period mism
 
 Ward completion may use direct ward records, exact aggregation, polling-station aggregation, administrative records with ward codes, geocoded facilities/services, authoritative geometry overlays, approved census/local crosswalks and transparent spatial/modelled methods where the indicator contract allows them.
 
-The existing anti-inheritance rules remain absolute: no county or constituency value can simply be copied to wards; no arbitrary equal split; no parent-rate downscaling; no force-matching through boundary ambiguity.
+The existing anti-inheritance rules remain absolute: no county or constituency value can simply be copied to wards; no arbitrary equal split; no parent-rate downscaling; no force-matching through boundary ambiguity. Within those constraints, KDA should prefer clearly labelled representation over omission whenever defensible.
 
 **Gate:** 78,300/78,300 cells have governed dispositions; additive measures reconcile Ward → Constituency → County where mathematically meaningful.
 
@@ -163,13 +187,13 @@ Every indicator row/card should expose or make inspectable: value/state, unit, p
 
 Source badges must distinguish at minimum: Official; Derived from official data; Secondary — verified; Secondary — corroborated; Probable value — sources conflict; Estimated/modelled; Data unavailable; Not applicable.
 
-County pages also display the county representative record.
+County pages also display the county representative record. The UI must not hide a defensible secondary/modelled/probable value simply because it is not primary evidence.
 
 **Gate:** automated UI tests confirm the complete governed 54-indicator skeleton; secondary evidence cannot be visually mistaken for official evidence; accessibility/browser/release gates pass.
 
 ---
 
-## P35 — Permanent completeness, freshness and supersession gate
+## P35 — Permanent completeness, freshness, supersession and re-audit gate
 
 **Goal:** Prevent the local surface from degrading after the one-time completion push.
 
@@ -180,12 +204,13 @@ The release gate must enforce:
 - 1,450 × 54 ward dispositions;
 - 47/47 county representative dispositions;
 - zero unknown local cells;
-- zero unlabelled secondary values;
+- zero unlabelled secondary values across both new and legacy data;
 - zero unexplained conflicts;
 - zero prohibited parent→child inheritance;
 - freshness metadata for dynamic observations;
 - recheck triggers for unavailable values;
-- automatic queueing of secondary observations for primary-source confirmation/supersession when primary evidence becomes available again.
+- automatic queueing of secondary observations for primary-source confirmation/supersession when primary evidence becomes available again;
+- periodic re-audit of legacy unavailable states so a gap is promoted when credible evidence later becomes available.
 
 **Gate:** deterministic rebuild plus all focused, geography, browser/accessibility and release validations pass.
 
@@ -195,10 +220,10 @@ The release gate must enforce:
 
 `data/local-54-completion-execution.json` is the scheduling authority. The preferred execution order is:
 
-`P27 contract → P28 provenance/conflict rules → P29 denominator → P30 representation + P31 constituency pipelines → P32 ward pipelines → P33 final conflict adjudication → P34 UI → P35 permanent gate`.
+`P27 contract → P28 source/conflict rules → P28A legacy provenance + omission audit → P29 denominator → P30 representation + P31 constituency pipelines → P32 ward pipelines → P33 final conflict adjudication → P34 UI → P35 permanent gate`.
 
 P30 may run in parallel with early P31 work once P28/P29 are stable. Candidate collection and conflict logging should happen continuously during P31/P32, but P33 remains the formal conflict-clearance gate after both local levels are populated.
 
-Each tranche must record target indicator/geographies, primary-source attempts, source-tier distribution, evidence lineage, conflicts introduced/resolved, numeric vs closure counts, validation results, known limitations and refresh triggers.
+Each tranche must record target indicator/geographies, primary-source attempts, source-tier distribution, evidence lineage, conflicts introduced/resolved, numeric vs closure counts, legacy observations relabelled/promoted where applicable, validation results, known limitations and refresh triggers.
 
-The programme objective is not merely to maximise numbers. It is to make the Atlas able to state, truthfully, that **every one of Kenya's 290 constituencies and 1,450 wards has been assessed against the same 54-indicator framework, every missing value is explained, every secondary value is labelled, and every material conflict is disclosed.**
+The programme objective is not merely to maximise numbers. It is to make the Atlas able to state, truthfully, that **every one of Kenya's 290 constituencies and 1,450 wards has been assessed against the same 54-indicator framework, every missing value is explained, every secondary value is labelled, every material conflict is disclosed, and legacy gaps are repeatedly challenged rather than permanently grandfathered.**
