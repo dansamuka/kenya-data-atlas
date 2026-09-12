@@ -1,0 +1,71 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-OTHAYA-SOURCE-REVIEW-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Othaya Form 34B and preserve a genuine missing-column source gap without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 97,
+    "constituency_name": "Othaya",
+    "geo_code": "KEN-C019-CON097",
+    "form_id": 277725,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277725",
+    "source_pdf_sha256": "b629af6f4d4d275191c62e5df9116bb1f1afe4472aa7dc39feff82c79881edc2",
+    "page_number": 2,
+    "render_dpi": 150,
+    "review_context_image_sha256": "4669414c4dc50f7324aded82df683fc2c4843d1a1fb7ce15e3e13f4482f01f3d",
+    "review_context_note": "The official IEBC Form 34B PDF (4 pages, scanned upside-down; rotated 180 degrees for reading) was freshly downloaded and its sha256 confirmed. Its polling-station table (pages 1-2) prints only these columns: Polling Station Code, Polling Station Name, Odinga Raila, Ruto William Samoei, Waihiga David Mwaure, Wajackoyah George Luchiri, Total Valid Votes, Rejected Ballots -- confirmed at 300 DPI on the page-1 header band that no Registered Voters column exists anywhere in the printed table. Page 2 ends with a row labelled 'CONSTITUENCY SUB TOTAL': 7,249 | 36,606 | 145 | 205 | 44,205 | 315 (Odinga, Ruto, Waihiga, Wajackoyah, Total Valid Votes, Rejected Ballots respectively). Page 3 is the blank Handing Over/Taking Over signature block and page 4 is blank; neither contains a registered-voters figure or turnout box of any kind."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and every page was rendered and read directly (150 DPI for full-page layout, 300 DPI to confirm the header band's column list). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_097_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": null, "source_image_sha256": null, "machine_transcription": null,
+      "machine_verification_state": "source_unreadable", "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true, "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_unreadable"
+    },
+    "total_valid_votes": {
+      "page_number": 2, "source_image_sha256": "4669414c4dc50f7324aded82df683fc2c4843d1a1fb7ce15e3e13f4482f01f3d", "machine_transcription": null,
+      "machine_verification_state": "source_unreadable", "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true, "verified_value": 44205,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2, "source_image_sha256": "4669414c4dc50f7324aded82df683fc2c4843d1a1fb7ce15e3e13f4482f01f3d", "machine_transcription": null,
+      "machine_verification_state": "source_unreadable", "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true, "verified_value": 315,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the CONSTITUENCY SUB TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [7249, 36606, 145, 205],
+    "candidate_vote_sum": 44205,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 61879,
+    "registered_voters_reconciles": false,
+    "registered_voters_column_present_on_source": false,
+    "total_valid_votes_and_rejected_ballots_and_candidates_internally_consistent": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "partial_unresolved",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_registered_voters_column_absent",
+  "promotion_authorized_by_this_file": false,
+  "note": "The official portal PDF for Othaya prints a polling-station results table with no Registered Voters column at all (confirmed at 300 DPI on the page-1 header band: Polling Station Code, Polling Station Name, Odinga Raila, Ruto William Samoei, Waihiga David Mwaure, Wajackoyah George Luchiri, Total Valid Votes, Rejected Ballots only). The four candidate cells on the final CONSTITUENCY SUB TOTAL row sum exactly to the row's own printed Total Valid Votes (7,249+36,606+145+205=44,205), so total_valid_votes, rejected_ballots and the candidate reconciliation are each independently source-verified. However, registered_voters -- required to reconcile against the governed P23 denominator (61,879) and to derive turnout -- is not printed anywhere in this scan (the two remaining pages are a blank handing-over block and a blank page). Recorded as verification_state=partial_unresolved; no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
