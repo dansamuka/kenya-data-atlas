@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-GATANGA-SOURCE-VERIFIED-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Gatanga Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 110,
+    "constituency_name": "Gatanga",
+    "geo_code": "KEN-C021-CON110",
+    "form_id": 277738,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277738",
+    "source_pdf_sha256": "26ff72c904c797b53cdfad0b8d936add6603d8fe4817ddf86812ae8824c8c719",
+    "page_number": 4,
+    "render_dpi": 300,
+    "review_context_image_sha256": "4d64b518eb1e8eb75cf12def86a3b9a456447cef89cf33aa07518545d0b6ea74",
+    "review_context_note": "This constituency's official upload is a 4-page condensed scan (each PDF page holds multiple original tally sheets; the printed page header on the final page reads 'CON 110 05/18'), so the ordinary green-shading TOTAL-row auto-locator does not apply. The TOTAL row was located manually on the final page (page 4 of 4), immediately above the 'Agents or Candidates' block and the Constituency Returning Officer's signature, and re-read at 300 DPI. The row digits are unambiguous.",
+    "condensed_scan_layout": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image at 120 DPI (full-page layout) and again at 300 DPI (close crop) with identical results both times. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_110_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 4,
+      "source_image_sha256": "4d64b518eb1e8eb75cf12def86a3b9a456447cef89cf33aa07518545d0b6ea74",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 101296,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 4,
+      "source_image_sha256": "4d64b518eb1e8eb75cf12def86a3b9a456447cef89cf33aa07518545d0b6ea74",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 69155,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 4,
+      "source_image_sha256": "4d64b518eb1e8eb75cf12def86a3b9a456447cef89cf33aa07518545d0b6ea74",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 496,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      15117,
+      53443,
+      272,
+      323
+    ],
+    "candidate_vote_sum": 69155,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 101296,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 69651,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 68.75987205812667,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
