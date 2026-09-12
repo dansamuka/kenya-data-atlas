@@ -1,0 +1,60 @@
+name: P28A legacy source audit
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/p28/**'
+      - 'data/legacy-secondary-source-audit-contract.json'
+      - 'data/local-54-source-governance-contract.json'
+      - 'data/policy/local-54-indicator-contract.json'
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/slot-ledger.json'
+      - 'data/indicators/registry/**'
+      - 'data/catalogue/registry/**'
+      - 'data/geography/registry/geographies.json'
+      - 'data/audit/legacy-*'
+      - '.github/workflows/p28a-legacy-source-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/p28/**'
+      - 'data/legacy-secondary-source-audit-contract.json'
+      - 'data/local-54-source-governance-contract.json'
+      - 'data/policy/local-54-indicator-contract.json'
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/slot-ledger.json'
+      - 'data/indicators/registry/**'
+      - 'data/catalogue/registry/**'
+      - 'data/geography/registry/geographies.json'
+      - 'data/audit/legacy-*'
+
+permissions:
+  contents: read
+
+jobs:
+  legacy-source-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build deterministic P28A audit outputs
+        run: node scripts/p28/build-legacy-source-audit.mjs
+      - name: Validate P28A audit coverage and tiers
+        run: node scripts/p28/validate-legacy-source-audit.mjs
+      - name: Show P28A summary
+        run: cat data/audit/legacy-source-tier-summary.json
+      - name: Upload P28A generated audit evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p28a-legacy-source-audit
+          path: |
+            data/audit/legacy-source-tier-audit.json
+            data/audit/legacy-source-tier-audit.csv
+            data/audit/legacy-representation-opportunities.json
+            data/audit/legacy-conflicts.json
+            data/audit/legacy-source-tier-summary.json
+          if-no-files-found: error
