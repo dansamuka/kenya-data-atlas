@@ -1,0 +1,46 @@
+{
+  "schema_version": "kda.local-54-migration-map.v1",
+  "phase": "P27.1",
+  "status": "frozen_count_reconciliation",
+  "as_of": "2026-09-12",
+  "from": {
+    "programme": "P18 historical completeness baseline",
+    "unique_indicator_slots": 49,
+    "authority": "data/data-completion-roadmap.json historical baseline",
+    "semantics": "Historical governed-slot baseline count; not the current active county-cascade indicator set."
+  },
+  "to": {
+    "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
+    "active_county_cascade_indicators": 54,
+    "authority": "data/completeness/local-indicator-cascade.json",
+    "manifest": "data/completeness/local-54-indicator-manifest.json",
+    "semantics": "Exact current active county indicator set that must receive county audit plus constituency and ward dispositions under the successor programme."
+  },
+  "reconciliation_rule": "Do not infer that the transition is a simple historical 49 plus five named indicators. The 49 and 54 counts describe different programme snapshots and scope semantics. The exact P27 target is derived from the current active county cascade and frozen as 54 indicators. Historical membership changes must be attributed only from repository lineage evidence.",
+  "count_delta": 5,
+  "count_delta_interpretation": "Descriptive arithmetic only; not an assertion that exactly five discrete indicators were simply appended to an unchanged 49-indicator set.",
+  "lineage_audit_required": true,
+  "lineage_audit_questions": [
+    "Which historical P18 indicator slots were later retired/replaced?",
+    "Which successor indicators were promoted during P19–P25?",
+    "Which aliases or semantically related indicators entered the active county cascade after the P18 baseline?",
+    "Which current indicators represent replacement concepts rather than net-new concepts?"
+  ],
+  "known_semantic_relationships_to_review": [
+    {
+      "indicators": ["IND-ELECTRICITY-ACCESS", "IND-MAIN-GRID-ELECTRICITY"],
+      "note": "Both currently represent the KHS main-grid electricity concept in the active cascade; P27.2 must determine whether the public 54 framework intentionally retains both as distinct slots/aliases or consolidates presentation without rewriting historical lineage."
+    },
+    {
+      "indicators": ["IND-HEALTH-FACILITY-COUNT", "IND-HEALTH-FACILITY-STOCK"],
+      "note": "These are intentionally distinct concepts: dated 2023 census-assessed facilities versus current facility stock. They must not be collapsed merely because their labels are similar."
+    }
+  ],
+  "invariants": [
+    "P18–P26 historical counts remain unchanged.",
+    "P27 target indicator count remains exactly 54 unless a separately approved scope-change process explicitly amends the successor contract.",
+    "No historical membership change is invented from count arithmetic alone.",
+    "Current active cascade membership is the authoritative P27.1 inventory source."
+  ],
+  "next_step": "P27.2 performs indicator-by-indicator semantic, definition, unit, period, applicability and derivation-policy binding for all 54 frozen IDs and completes the lineage audit where repository evidence can identify historical transitions."
+}
