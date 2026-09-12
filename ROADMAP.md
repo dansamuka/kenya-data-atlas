@@ -119,8 +119,9 @@ Authorities:
 
 - [`data/local-54-completion-roadmap.json`](data/local-54-completion-roadmap.json) — machine-readable P27–P35 phase/scope/acceptance authority.
 - [`data/local-54-completion-execution.json`](data/local-54-completion-execution.json) — scheduling, tranche and parallel-execution overlay.
+- [`data/legacy-secondary-source-audit-contract.json`](data/legacy-secondary-source-audit-contract.json) — mandatory P28A audit of data and omission states already in KDA.
 - [`docs/LOCAL-54-COMPLETION-PLAN.md`](docs/LOCAL-54-COMPLETION-PLAN.md) — detailed human/session handoff.
-- [`data/local-indicator-cascade-contract.json`](data/local-indicator-cascade-contract.json) — mandatory anti-inheritance, source-tier and conflict rules spanning the legacy and successor programmes.
+- [`data/local-indicator-cascade-contract.json`](data/local-indicator-cascade-contract.json) — mandatory anti-inheritance, source-tier, representation-first and conflict rules spanning the legacy and successor programmes.
 
 The successor target surface is:
 
@@ -132,13 +133,17 @@ The successor target surface is:
 
 Every cell must have an explicit governed disposition. Numeric completeness is reported separately from disposition completeness: a defensibly unavailable or not-applicable cell may be complete as governance, but it is never represented as a numeric observation.
 
+The successor publication presumption is also explicit: **err toward truthful labelled representation rather than omission whenever a defensible value exists.** Secondary, probable and modelled values may be published when their method, confidence and provenance are transparent. `Data unavailable` is a last-resort evidence state, not the default merely because a primary source is blocked, dynamic or absent.
+
 ### P27 — Freeze the exact 54-indicator contract
 
 Reconcile the current local governed indicator surface to exactly 54 IDs, with definitions, units, period policy, geography applicability, permitted derivations, prohibited derivations, freshness rules and uncertainty/ranking constraints. The current 49-slot completion baseline remains historical and is mapped rather than rewritten.
 
-### P28 — Secondary-source and provenance governance
+### P28 — Secondary-source, provenance and legacy-data audit governance
 
 Formalise source tiers from direct official evidence through derived official, verified/corroborated secondary evidence, probable values under conflict, transparent modelled estimates, governed unavailable and not-applicable states. Secondary values must always be labelled and retain fallback reason, evidence lineage, verification date and confidence. A blocked or dynamic official source may trigger fallback research but does not itself justify inventing a value.
+
+**P28A is a mandatory retrospective audit inside P28.** It applies the same S0–S7 rules to data already in KDA: existing preferred observations are source-tier audited; existing unavailable/omitted states are re-opened to check whether credible secondary/corroborated/probable/modelled evidence can now support representation; legacy conflicts are reconstructed where material; and secondary evidence that is currently unlabelled must be remediated. P28 cannot close until the audit is complete.
 
 ### P29 — Build the complete 54 × local-geography denominator
 
@@ -150,11 +155,11 @@ Add a governed elected-representative schema. The county-level representative di
 
 ### P31 — 54 indicators × 290 constituencies
 
-Resolve **15,660/15,660** constituency cells through indicator-wide national pipelines. Prefer exact official local evidence, then exact aggregation/administrative records, governed secondary fallback and approved modelling where the indicator contract permits it. County-value inheritance remains prohibited.
+Resolve **15,660/15,660** constituency cells through indicator-wide national pipelines. Prefer exact official local evidence, then exact aggregation/administrative records, governed secondary fallback, probable-value treatment under conflict and approved modelling where the indicator contract permits it. County-value inheritance remains prohibited. A defensible non-primary value should be labelled and represented rather than omitted solely because it is non-primary.
 
 ### P32 — 54 indicators × 1,450 wards
 
-Resolve **78,300/78,300** ward cells using direct ward evidence, exact aggregation, governed crosswalks/geospatial derivation and permitted fallback. Parent→ward inheritance, arbitrary splitting and force-matching through boundary ambiguity remain prohibited.
+Resolve **78,300/78,300** ward cells using direct ward evidence, exact aggregation, governed crosswalks/geospatial derivation and permitted fallback. Parent→ward inheritance, arbitrary splitting and force-matching through boundary ambiguity remain prohibited. Within those constraints, prefer labelled representation over omission where defensible.
 
 ### P33 — Conflicting-value adjudication
 
@@ -162,16 +167,16 @@ Preserve all defensible candidate observations. Where credible sources conflict,
 
 ### P34 — Public 54-indicator and representation surface
 
-Every county/constituency/ward profile uses the same governed 54-indicator skeleton. Unavailable/not-applicable indicators remain visible. Populated observations expose or make inspectable their source tier, period, freshness/verification date, confidence and conflict state. County profiles also expose the representative record.
+Every county/constituency/ward profile uses the same governed 54-indicator skeleton. Unavailable/not-applicable indicators remain visible. Populated observations expose or make inspectable their source tier, period, freshness/verification date, confidence and conflict state. County profiles also expose the representative record. The UI must not suppress defensible secondary/modelled/probable values merely because they are not official-primary observations.
 
-### P35 — Permanent completeness, freshness and supersession gate
+### P35 — Permanent completeness, freshness, supersession and re-audit gate
 
-Release-block on: 54/54 indicator contract; complete 290×54 and 1,450×54 dispositions; 47/47 county representative dispositions; zero unknown local cells; zero unlabelled secondary observations; zero unexplained conflicts; zero prohibited parent→child inheritance; freshness/recheck rules for dynamic/unavailable data; and a primary-source confirmation/supersession queue for secondary observations.
+Release-block on: 54/54 indicator contract; complete 290×54 and 1,450×54 dispositions; 47/47 county representative dispositions; zero unknown local cells; zero unlabelled secondary observations across new and legacy data; zero unexplained conflicts; zero prohibited parent→child inheritance; freshness/recheck rules for dynamic/unavailable data; a primary-source confirmation/supersession queue for secondary observations; and recurring re-audit of legacy unavailable states so newly defensible evidence is promoted rather than left permanently omitted.
 
 ### P27–P35 execution order
 
-`P27 → P28 → P29 → P30/P31 → P32 → P33 → P34 → P35`
+`P27 → P28/P28A → P29 → P30/P31 → P32 → P33 → P34 → P35`
 
 P30 may run alongside early P31 work once the P28/P29 contracts are stable. Candidate evidence and conflict logging should happen continuously during P31/P32, but P33 remains the formal conflict-clearance gate. No scheduling optimisation can waive the roadmap acceptance criteria.
 
-The successor product objective is explicit: **every constituency and ward is assessed against the same 54-indicator framework; every missing value is explained; every secondary value is labelled; and every material conflict is disclosed.**
+The successor product objective is explicit: **every constituency and ward is assessed against the same 54-indicator framework; every missing value is explained; every secondary value is labelled; every material conflict is disclosed; and legacy gaps are repeatedly challenged rather than permanently grandfathered.**
