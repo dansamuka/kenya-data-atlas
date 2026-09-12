@@ -1,10 +1,12 @@
 {
-  "schema_version": "kda.local-indicator-cascade.v2",
+  "schema_version": "kda.local-indicator-cascade.v3",
   "status": "mandatory",
   "scope_rule": "P18–P26 retains its historical county→constituency→ward convergence semantics. The P27–P35 successor programme requires an exact governed 54-indicator framework for every constituency and ward, plus a 47-county audit against the same framework.",
   "denominator_policy": "The historical 20115-slot P18–P26 baseline remains auditable and must not be rewritten. P27–P35 creates a successor denominator of 15660 constituency cells and 78300 ward cells, 93960 child-level cells in total, plus a 2538-cell county audit surface.",
   "successor_authority": "data/local-54-completion-roadmap.json",
   "execution_authority": "data/local-54-completion-execution.json",
+  "legacy_audit_authority": "data/legacy-secondary-source-audit-contract.json",
+  "publication_presumption": "Prefer representation with truthful source-tier, confidence, method, period and conflict labels rather than omission whenever a defensible value exists. Governed unavailable is a last-resort evidence state, not a preferred conservative default.",
   "levels": ["county_audit", "constituency", "ward"],
   "allowed_dispositions": [
     "direct_official",
@@ -35,7 +37,15 @@
     "S2 requires a credible secondary source and an identifiable primary evidence lineage where possible.",
     "S3 requires at least two credible independent evidence lineages that materially agree; repeated copies of one upstream source count once.",
     "Every secondary preferred observation must retain an explicit public label, fallback reason, evidence lineage, verification date and confidence.",
+    "If defensible secondary evidence supports a value at the correct geography/period/definition, prefer publishing it with its truthful label over retaining an unavailable/omitted state.",
     "Secondary observations must be rechecked for primary-source confirmation or supersession when a suitable primary source becomes available."
+  ],
+  "legacy_audit_rules": [
+    "P28A applies the S0–S7 classification retrospectively to in-scope observations already present in KDA.",
+    "P28A must review existing unavailable/omitted states for credible S2/S3/S4/S5 representation opportunities rather than grandfathering prior omissions.",
+    "Known current secondary observations may not remain unlabelled after remediation.",
+    "Historical source/value lineage must remain auditable even when current provenance labels or preferred values are corrected.",
+    "P35 must periodically re-audit unavailable states and secondary observations for promotion, primary confirmation or supersession."
   ],
   "conflict_rules": [
     "Preserve all defensible competing observations before selecting a preferred value.",
@@ -55,12 +65,16 @@
     "parent_rate_downscaling",
     "incompatible_geography_numerator_denominator",
     "closing_source_acquisition_as_unavailable_only_because_automation_is_blocked",
+    "omitting_defensible_value_only_because_source_is_secondary",
     "unlabelled_secondary_observation",
     "duplicate_lineage_corroboration",
     "conflict_resolution_by_unlabelled_averaging"
   ],
   "required_metrics": [
     "indicator_contract_count",
+    "legacy_preferred_observations_audited_pct",
+    "legacy_unavailable_states_reviewed_pct",
+    "legacy_omissions_promoted_count",
     "county_audit_disposition_count",
     "county_audit_disposition_pct",
     "constituency_disposition_count",
@@ -107,6 +121,8 @@
     "constituency_cells": 15660,
     "ward_cells": 78300,
     "child_level_cells": 93960,
+    "legacy_preferred_observations_audited_pct": 100,
+    "legacy_unavailable_states_reviewed_pct": 100,
     "constituency_disposition_pct": 100,
     "ward_disposition_pct": 100,
     "county_representative_disposition_pct": 100,
@@ -115,6 +131,7 @@
     "prohibited_parent_child_inheritance_count": 0,
     "unknown_local_cells": 0,
     "require_numeric_coverage_reported_separately": true,
-    "require_primary_source_supersession_queue_for_secondary": true
+    "require_primary_source_supersession_queue_for_secondary": true,
+    "require_recurring_legacy_unavailable_reaudit": true
   }
 }
