@@ -1,0 +1,146 @@
+{
+  "schema_version": "kda.local-54-indicator-contract.v1",
+  "phase": "P27.2",
+  "status": "active_contract",
+  "as_of": "2026-09-12",
+  "manifest": "data/completeness/local-54-indicator-manifest.json",
+  "canonical_registry": "data/indicators/registry/indicators.json",
+  "source_governance": "data/local-54-source-governance-contract.json",
+  "legacy_cascade": "data/completeness/local-indicator-cascade.json",
+  "contract_rule": "The 54 indicator IDs are frozen by the manifest. Canonical indicator definitions, unit_id, frequency, methodology URL, ranking policy, uncertainty requirement and lifecycle are bound by indicator_code from the canonical registry rather than duplicated here. This contract adds successor local applicability and permitted-method rules.",
+  "canonical_field_bindings": {
+    "definition": "description",
+    "unit": "unit_id",
+    "reference_period_policy": "preferred_frequency",
+    "methodology": "methodology_url",
+    "ranking_allowed": "ranking_allowed",
+    "requires_sampling_uncertainty": "requires_sampling_uncertainty",
+    "lifecycle": "lifecycle_status",
+    "canonical_levels": "applies_to_levels"
+  },
+  "global_local_rules": {
+    "county_audit": "required for all 54",
+    "constituency_disposition": "required for all 54",
+    "ward_disposition": "required for all 54",
+    "numeric_value": "publish whenever defensible under the assigned treatment class and source-governance hierarchy; otherwise retain explicit governed state",
+    "representation_presumption": "label rather than omit when a defensible value exists",
+    "legacy_unavailable_not_final": "Existing P18–P26 unavailable states are evidence for P28A review, not automatic successor closures."
+  },
+  "treatment_classes": {
+    "economic_accounts_small_area": {
+      "allowed": ["direct_official", "official_administrative_or_geocoded_records", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["local economic definition must match the canonical accounting concept", "model must be transparent, validated and clearly labelled", "no population/land/equal-share parent allocation presented as observed output"]
+    },
+    "institutional_county_only": {
+      "allowed": ["direct_official", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "not_applicable"],
+      "conditions": ["county value may be represented at county audit", "constituency and ward default to not_applicable unless a distinct local institutional measure with a different indicator definition is created", "never spatially allocate county-government accounts"]
+    },
+    "survey_small_area": {
+      "allowed": ["direct_official", "matched_local_calculation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["respect survey design/domain and sampling uncertainty", "small-area estimates require approved transparent method and uncertainty/confidence", "never copy parent survey rates downward"]
+    },
+    "census_or_household_crosswalk": {
+      "allowed": ["direct_official", "exact_aggregation", "matched_local_calculation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["use exact electoral geography or defensible documented crosswalk", "rates require compatible numerator and denominator", "boundary mismatch must be disclosed"]
+    },
+    "administrative_point_aggregate": {
+      "allowed": ["direct_official", "exact_aggregation", "official_administrative_or_geocoded_records", "spatial_derivation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["deduplicate records and retain operational/status filters", "retain snapshot/as_of date", "geocoded aggregation must disclose source coverage and unmatched records"]
+    },
+    "network_spatial": {
+      "allowed": ["direct_official", "official_administrative_or_geocoded_records", "spatial_derivation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["network classification must match indicator definition", "geometry intersection must be reproducible", "reconcile additive totals where meaningful"]
+    },
+    "agriculture_local": {
+      "allowed": ["direct_official", "exact_aggregation", "official_administrative_or_geocoded_records", "spatial_derivation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["crop/season/unit definition must match", "yield must use compatible local area and production inputs", "remote-sensing/modelled values must be labelled and validated"]
+    },
+    "electoral_direct": {
+      "allowed": ["direct_official", "exact_aggregation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "governed_unavailable"],
+      "conditions": ["election/register vintage explicit", "exact ward-to-constituency aggregation allowed", "boundary holds remain explicit"]
+    },
+    "geometry_derived": {
+      "allowed": ["direct_official", "spatial_derivation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "governed_unavailable"],
+      "conditions": ["authoritative boundary vintage explicit", "derived values labelled as derived rather than direct", "known geometry holds remain unresolved until reconciled"]
+    },
+    "dynamic_location_price": {
+      "allowed": ["direct_official", "official_administrative_or_geocoded_records", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["location coverage and effective dates explicit", "representative-town value cannot be silently described as a geography average", "interpolation/modelled coverage must be visibly estimated"]
+    },
+    "education_admin_aggregate": {
+      "allowed": ["direct_official", "exact_aggregation", "official_administrative_or_geocoded_records", "spatial_derivation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["institution records must be deduplicated and period-aligned", "teacher/school definitions remain stable", "spatial allocation based on geocoded institutions must disclose coverage"]
+    },
+    "facility_service_rate": {
+      "allowed": ["direct_official", "matched_local_calculation", "official_administrative_or_geocoded_records", "spatial_derivation", "secondary_verified", "secondary_corroborated", "probable_conflicting_value", "modelled_estimate", "governed_unavailable"],
+      "conditions": ["facility universe and denominator must match period/definition", "dated census-assessment measures cannot be silently replaced by live-registry stock", "modelled or secondary substitutes must be labelled"]
+    }
+  },
+  "indicators": [
+    {"indicator_id":"IND-AGRICULTURE-GCP-SHARE","treatment_class":"economic_accounts_small_area"},
+    {"indicator_id":"IND-AGRICULTURE-GVA","treatment_class":"economic_accounts_small_area"},
+    {"indicator_id":"IND-CLASS-C-RURAL-ROAD-LENGTH","treatment_class":"network_spatial"},
+    {"indicator_id":"IND-COMPUTER-USE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-CONTRACEPTIVE-USE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-COUNTY-AUDIT-OPINION","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-COUNTY-BUDGET-ABSORPTION","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-COUNTY-BUDGET-TOTAL","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-COUNTY-DEVELOPMENT-ABSORPTION","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-COUNTY-EXPENDITURE-TOTAL","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-COUNTY-OSR","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-COUNTY-PENDING-BILLS","treatment_class":"institutional_county_only","constituency_default":"not_applicable","ward_default":"not_applicable"},
+    {"indicator_id":"IND-DISABILITY-PREVALENCE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-ELECTRICITY-ACCESS","treatment_class":"survey_small_area","semantic_relationship":{"type":"alias_review","related_indicator":"IND-MAIN-GRID-ELECTRICITY"}},
+    {"indicator_id":"IND-FGM-CHILD-MARRIAGE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-FUEL-PETROL","treatment_class":"dynamic_location_price"},
+    {"indicator_id":"IND-GCP-CURRENT","treatment_class":"economic_accounts_small_area"},
+    {"indicator_id":"IND-HEALTH-FACILITY-COUNT","treatment_class":"administrative_point_aggregate","semantic_constraint":"fixed 2023 Health Facility Census assessed universe"},
+    {"indicator_id":"IND-HEALTH-FACILITY-DENSITY","treatment_class":"facility_service_rate"},
+    {"indicator_id":"IND-HEALTH-FACILITY-STOCK","treatment_class":"administrative_point_aggregate","semantic_constraint":"current/live facility stock concept; do not substitute for dated 2023 census-assessed count"},
+    {"indicator_id":"IND-HIV-PREVALENCE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-HOME-BIRTH-RATE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-HOUSEHOLD-CAR-OWNERSHIP","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-HOUSEHOLD-SIZE","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-HOUSING-MATERIAL","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-HOUSING-OWNER-OCCUPIED","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-IMMUNIZATION-RATE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-INPATIENT-SERVICE-AVAILABILITY","treatment_class":"facility_service_rate"},
+    {"indicator_id":"IND-INTERNET-USE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-LABOUR-FORCE-PARTICIPATION","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-LAND-AREA","treatment_class":"geometry_derived"},
+    {"indicator_id":"IND-LITERACY-RATE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-MAIN-GRID-ELECTRICITY","treatment_class":"survey_small_area","semantic_relationship":{"type":"alias_review","related_indicator":"IND-ELECTRICITY-ACCESS"}},
+    {"indicator_id":"IND-MAIZE-AREA","treatment_class":"agriculture_local"},
+    {"indicator_id":"IND-MAIZE-PRODUCTION","treatment_class":"agriculture_local"},
+    {"indicator_id":"IND-MAIZE-YIELD","treatment_class":"agriculture_local"},
+    {"indicator_id":"IND-MANUFACTURING-GCP-SHARE","treatment_class":"economic_accounts_small_area"},
+    {"indicator_id":"IND-MANUFACTURING-GVA","treatment_class":"economic_accounts_small_area"},
+    {"indicator_id":"IND-MATERNAL-HEALTH","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-POP-2009","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-POPULATION","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-POVERTY-RATE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-PRIMARY-CLASSROOM-TEACHERS","treatment_class":"education_admin_aggregate"},
+    {"indicator_id":"IND-PUBLIC-PRIMARY-SCHOOLS","treatment_class":"education_admin_aggregate"},
+    {"indicator_id":"IND-PUBLIC-SECONDARY-SCHOOLS","treatment_class":"education_admin_aggregate"},
+    {"indicator_id":"IND-REGISTERED-VOTERS","treatment_class":"electoral_direct"},
+    {"indicator_id":"IND-RENT-BURDEN","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-SCHOOL-ATTENDANCE-RATE","treatment_class":"census_or_household_crosswalk"},
+    {"indicator_id":"IND-SECONDARY-TEACHERS","treatment_class":"education_admin_aggregate"},
+    {"indicator_id":"IND-STUNTING-RATE","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-TEENAGE-PREGNANCY","treatment_class":"survey_small_area"},
+    {"indicator_id":"IND-WATER-ACCESS","treatment_class":"survey_small_area"}
+  ],
+  "acceptance": {
+    "indicator_count": 54,
+    "all_indicator_ids_must_exist_in_manifest": true,
+    "all_indicator_ids_must_exist_in_canonical_registry": true,
+    "all_indicator_ids_must_have_treatment_class": true,
+    "all_treatment_classes_must_resolve": true,
+    "all_definitions_units_periods_bound_to_canonical_registry": true,
+    "secondary_source_rule_applies_to_existing_and_new_data": true,
+    "legacy_unavailable_states_require_P28A_reaudit": true,
+    "parent_child_inheritance_prohibited": true
+  }
+}
