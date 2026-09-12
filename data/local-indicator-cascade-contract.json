@@ -1,25 +1,50 @@
 {
-  "schema_version": "kda.local-indicator-cascade.v1",
+  "schema_version": "kda.local-indicator-cascade.v2",
   "status": "mandatory",
-  "scope_rule": "Every active county-level indicator must have an explicit constituency and ward disposition before P26 completion.",
-  "denominator_policy": "The historical 20115-slot baseline is not a scope ceiling. Add governed child slots when the cascade audit identifies additional local representation requirements.",
-  "levels": ["constituency", "ward"],
+  "scope_rule": "P18–P26 retains its historical county→constituency→ward convergence semantics. The P27–P35 successor programme requires an exact governed 54-indicator framework for every constituency and ward, plus a 47-county audit against the same framework.",
+  "denominator_policy": "The historical 20115-slot P18–P26 baseline remains auditable and must not be rewritten. P27–P35 creates a successor denominator of 15660 constituency cells and 78300 ward cells, 93960 child-level cells in total, plus a 2538-cell county audit surface.",
+  "successor_authority": "data/local-54-completion-roadmap.json",
+  "execution_authority": "data/local-54-completion-execution.json",
+  "levels": ["county_audit", "constituency", "ward"],
   "allowed_dispositions": [
     "direct_official",
     "exact_aggregation",
+    "official_administrative_or_geocoded_records",
     "spatial_derivation",
     "matched_local_calculation",
+    "secondary_verified",
+    "secondary_corroborated",
+    "probable_conflicting_value",
     "modelled_estimate",
     "governed_unavailable",
     "not_applicable"
   ],
   "source_priority": [
-    "primary_official_local",
-    "exact_official_child_aggregation",
-    "official_administrative_or_geocoded_records",
-    "authoritative_geometry_derivation",
-    "approved_transparent_model",
-    "governed_closure"
+    "S0_direct_primary_official",
+    "S1_derived_from_primary_official",
+    "S2_secondary_verified_to_identifiable_primary",
+    "S3_secondary_corroborated_independent",
+    "S4_probable_value_conflicting_sources",
+    "S5_transparent_modelled_or_spatial_estimate",
+    "S6_governed_unavailable",
+    "S7_not_applicable"
+  ],
+  "secondary_source_rules": [
+    "Secondary evidence is a fallback, not a substitute for an accessible matching primary source.",
+    "A primary source that is unavailable, non-responsive, temporarily inaccessible, dynamically rendered or does not publish the required geography/period may trigger secondary-source review after the access/search attempt is recorded.",
+    "S2 requires a credible secondary source and an identifiable primary evidence lineage where possible.",
+    "S3 requires at least two credible independent evidence lineages that materially agree; repeated copies of one upstream source count once.",
+    "Every secondary preferred observation must retain an explicit public label, fallback reason, evidence lineage, verification date and confidence.",
+    "Secondary observations must be rechecked for primary-source confirmation or supersession when a suitable primary source becomes available."
+  ],
+  "conflict_rules": [
+    "Preserve all defensible competing observations before selecting a preferred value.",
+    "Do not average conflicting values merely to create a compromise.",
+    "Default selection considers source authority, exact geography match, period/freshness match, methodological fit and independent corroboration.",
+    "A newer observation does not automatically outrank an older observation if period or definition differs.",
+    "Exact geography outranks an unmatched proxy geography.",
+    "Close-scoring, definition-incompatible or materially divergent candidates require manual review.",
+    "A published probable-conflicting value must carry conflict=true, confidence, competing-value count and selection rationale."
   ],
   "prohibited": [
     "county_to_constituency_value_inheritance",
@@ -29,18 +54,32 @@
     "unverified_subcounty_constituency_equivalence",
     "parent_rate_downscaling",
     "incompatible_geography_numerator_denominator",
-    "closing_source_acquisition_as_unavailable_only_because_automation_is_blocked"
+    "closing_source_acquisition_as_unavailable_only_because_automation_is_blocked",
+    "unlabelled_secondary_observation",
+    "duplicate_lineage_corroboration",
+    "conflict_resolution_by_unlabelled_averaging"
   ],
   "required_metrics": [
-    "active_county_indicators",
+    "indicator_contract_count",
+    "county_audit_disposition_count",
+    "county_audit_disposition_pct",
     "constituency_disposition_count",
     "constituency_disposition_pct",
     "constituency_numeric_indicator_count",
+    "constituency_numeric_pct",
     "ward_disposition_count",
     "ward_disposition_pct",
     "ward_numeric_indicator_count",
-    "disposition_counts_by_method",
-    "prohibited_parent_child_inheritance_count"
+    "ward_numeric_pct",
+    "source_tier_counts",
+    "secondary_observation_count",
+    "unlabelled_secondary_count",
+    "conflict_count",
+    "unexplained_conflict_count",
+    "manual_review_count",
+    "prohibited_parent_child_inheritance_count",
+    "representative_coverage_pct",
+    "stale_dynamic_observation_count"
   ],
   "p23x_acceptance": {
     "constituency_disposition_pct": 100,
@@ -61,5 +100,21 @@
     "prohibited_parent_child_inheritance_count": 0,
     "unknown_missing": 0,
     "resolved_slots_must_equal_current_governed_denominator": true
+  },
+  "p27_p35_successor_acceptance": {
+    "indicator_contract_count": 54,
+    "county_audit_cells": 2538,
+    "constituency_cells": 15660,
+    "ward_cells": 78300,
+    "child_level_cells": 93960,
+    "constituency_disposition_pct": 100,
+    "ward_disposition_pct": 100,
+    "county_representative_disposition_pct": 100,
+    "unlabelled_secondary_count": 0,
+    "unexplained_conflict_count": 0,
+    "prohibited_parent_child_inheritance_count": 0,
+    "unknown_local_cells": 0,
+    "require_numeric_coverage_reported_separately": true,
+    "require_primary_source_supersession_queue_for_secondary": true
   }
 }
