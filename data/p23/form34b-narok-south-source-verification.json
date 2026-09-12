@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-NAROK-SOUTH-SOURCE-VERIFIED-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Narok South Form 34B final TOTAL row; the source document's own collation-sheet layout has no Rejected Ballots column, so that field cannot be sourced and this row creates no canonical turnout observation.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 181,
+    "constituency_name": "Narok South",
+    "geo_code": "KEN-C033-CON181",
+    "form_id": 277809,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277809",
+    "source_pdf_sha256": "f198b19c4a7884ea52d10925b2c1f84c2a0c0fda687053d5e30f9f6c7e30aa07",
+    "page_number": 4,
+    "render_dpi": 150,
+    "review_context_image_sha256": "14cb8fe1735e765dfe4d3e125e577de6145405787c9033f12169db161fffde61",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then re-cropped and upscaled around the TOTAL row, the Aggregate Results box and the Voter Turn Out declaration box for digit-level confirmation. This constituency's downloaded Form 34B is a 4-page document titled 'COLLATION OF PRESIDENTIAL ... ELECTION RESULTS AT THE CONSTITUENCY TALLYING CENTRE'; unlike the standard Form 34B declaration template used elsewhere in this Atlas, its polling-station table has only six data columns (Registered Voters, the four candidates, and Total Valid Votes) with no Rejected Ballots column anywhere on the form, confirmed on the page-1 header row as well as the page-4 TOTAL row. The page header banner reads 'CON 181 09/12'. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row and Voter Turn Out box integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (NAROK SOUTH, code 181, county NAROK code 033) was read from the 'Constituency: NAROK SOUTH Code: 181' declaration header on page 1 and cross-checked against the visible 'CON 181' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear_but_source_form_lacks_rejected_ballots_column",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_181_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 4,
+      "source_image_sha256": "14cb8fe1735e765dfe4d3e125e577de6145405787c9033f12169db161fffde61",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 76065,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 4,
+      "source_image_sha256": "14cb8fe1735e765dfe4d3e125e577de6145405787c9033f12169db161fffde61",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 57823,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 4,
+      "source_image_sha256": "14cb8fe1735e765dfe4d3e125e577de6145405787c9033f12169db161fffde61",
+      "machine_transcription": null,
+      "machine_verification_state": "not_applicable_field_absent_from_source_form",
+      "machine_decision": "visual_source_transcription_impossible",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "field_absent_from_source_form",
+      "note": "This constituency's collation sheet has no Rejected Ballots column at all: the page-1 table header runs Polling Station Code / Polling Station Name / Registered Voters / four named candidates / Total Valid Votes, with nothing after Total Valid Votes, and the page-4 TOTAL row and the Aggregate Results / Voter Turn Out boxes likewise state only Registered Voters (76,065), Total Number of Voters who turned out to vote (57,823, equal to the printed Total Valid Votes total) and a 76.02% turnout percentage -- no separate rejected-ballots figure appears anywhere on the four served pages. Because the field is genuinely not printed on this document (not merely illegible), it cannot be independently visually sourced, and it is not assumed to be zero."
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [27287, 30456, 26, 54],
+    "candidate_vote_sum": 57823,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 76065,
+    "registered_voters_reconciles": true,
+    "printed_total_valid_votes": 57823,
+    "source_reported_turnout_box": {
+      "registered_voters": 76065,
+      "voters_turned_out": 57823,
+      "turnout_pct_printed": 76.02
+    },
+    "rejected_ballots_available": false,
+    "promotion_blocked": true
+  },
+  "verification_state": "partial_unresolved",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_source_field_absent",
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered Voters (76,065) reconciles exactly to the governed P23 constituency denominator, and the four candidate cells sum exactly to the printed Total Valid Votes figure (57,823), which itself equals the form's own declared 'Total Number of Voters who turned out to vote'. However, this constituency's Form 34B collation sheet -- confirmed across all four served pages -- has no Rejected Ballots column at all, so that field cannot be independently visually sourced from this document. Per the extraction contract's prohibition on inferring or assuming values (including assuming zero) for a field that is not actually present on the source, this row remains unresolved for Rejected Ballots and creates no canonical turnout observation. A re-attempt against a different official rendering of this constituency's Form 34B (if one with the standard column set exists) could resolve this.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
