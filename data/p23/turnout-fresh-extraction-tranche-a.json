@@ -1,0 +1,46 @@
+{
+  "schema_version": "kda.p23.turnout-fresh-extraction-tranche.v1",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_triage": "data/p23/turnout-followup-triage.json",
+  "purpose": "Execute the first governed batch of genuinely untouched constituency turnout follow-up work without creating or implying source-verification or promotion evidence.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "source_discovery_only": true,
+    "required_render_dpi_for_any_future_source_verification": 250,
+    "future_source_verification_must_use_fresh_download_and_hashes": true,
+    "canonical_turnout_values_must_not_be_written_by_this_tranche": true
+  },
+  "tranche": {
+    "id": "fresh-a",
+    "count": 8,
+    "selection_rule": "First eight rows of turnout-followup-triage.json genuinely_untouched.constituencies in canonical queue order.",
+    "rows": [
+      {"geo_code": "KEN-C001-CON003", "name": "Kisauni", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C009-CON044", "name": "Lafey", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C010-CON048", "name": "Laisamis", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C012-CON052", "name": "Igembe Central", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C012-CON056", "name": "North Imenti", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C013-CON060", "name": "Maara", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C014-CON064", "name": "Runyenjes", "state": "pending_official_source_discovery"},
+      {"geo_code": "KEN-C015-CON069", "name": "Mwingi Central", "state": "pending_official_source_discovery"}
+    ]
+  },
+  "allowed_next_states": [
+    "official_source_located_unreviewed",
+    "official_source_not_located"
+  ],
+  "forbidden_until_fresh_source_review": [
+    "source_verified",
+    "promotion_eligible",
+    "explicit_materialization_authorized"
+  ],
+  "notes": [
+    "A source URL or form identifier may be added only after it is confirmed to resolve to an official IEBC source for the named constituency.",
+    "Locating a source does not verify any turnout numerator, denominator, ballot or candidate-vote value.",
+    "Any future visual review must use an exactly 250-DPI review context and satisfy the existing machine-review-context, reconciliation and promotion-contract gates."
+  ]
+}
