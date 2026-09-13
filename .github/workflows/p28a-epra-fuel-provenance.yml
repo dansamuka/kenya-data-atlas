@@ -30,6 +30,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: p28a-materialize-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   epra-fuel-provenance:
     runs-on: ubuntu-latest
