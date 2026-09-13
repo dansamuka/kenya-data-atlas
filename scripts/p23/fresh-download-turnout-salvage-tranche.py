@@ -29,9 +29,16 @@ def main():
 
     tranche = load_json(args.tranche)
     source_index = load_json(args.source_index)
-    rows = tranche.get("tranche", {}).get("rows", [])
-    if tranche.get("tranche", {}).get("id") != "salvage-a" or len(rows) != 8:
-        raise SystemExit("expected governed salvage-a with exactly 8 rows")
+    tranche_meta = tranche.get("tranche", {})
+    tranche_id = tranche_meta.get("id")
+    rows = tranche_meta.get("rows", [])
+    declared_count = tranche_meta.get("count")
+    if not isinstance(tranche_id, str) or not re.fullmatch(r"salvage-[a-k]", tranche_id):
+        raise SystemExit(f"expected governed salvage tranche a-k; saw {tranche_id!r}")
+    if not isinstance(rows, list) or not rows or declared_count != len(rows):
+        raise SystemExit(f"governed {tranche_id} row/count contract is invalid")
+    if len(rows) > 8:
+        raise SystemExit(f"governed {tranche_id} exceeds maximum tranche size of 8 rows")
 
     relation = source_index.get("source_index_relation", {})
     offset = relation.get("form_id_offset")
@@ -105,8 +112,8 @@ def main():
     manifest = {
         "schema_version": "kda.p23.turnout-salvage-fresh-download.v1",
         "as_of": "2026-09-13",
-        "purpose": "Attempt fresh official IEBC downloads for salvage-a using only the governed source-index locator relation. This artifact contains no turnout values and grants no verification or promotion authority.",
-        "tranche": "salvage-a",
+        "purpose": f"Attempt fresh official IEBC downloads for {tranche_id} using only the governed source-index locator relation. This artifact contains no turnout values and grants no verification or promotion authority.",
+        "tranche": tranche_id,
         "source_index_contract": args.source_index,
         "session_bootstrap": session_bootstrap,
         "governance": {
@@ -133,7 +140,7 @@ def main():
 
     pathlib.Path(args.output).write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     downloaded = sum(1 for row in results if row.get("state") == "fresh_official_source_downloaded_unreviewed")
-    print(f"P23_SALVAGE_FRESH_DOWNLOAD_A rows={len(results)} downloaded_pdf={downloaded} no_promotion=true")
+    print(f"P23_SALVAGE_FRESH_DOWNLOAD tranche={tranche_id} rows={len(results)} downloaded_pdf={downloaded} no_promotion=true")
 
 
 if __name__ == "__main__":
