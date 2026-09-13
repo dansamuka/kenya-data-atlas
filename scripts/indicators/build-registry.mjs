@@ -42,7 +42,7 @@ const csv = (rows, fields) => [fields.join(','), ...rows.map(row => fields.map(f
 // the badge table in the product spec (§28.1): any method + external source = E.
 function deriveBadge(geographic_method, source_class) {
   if (source_class === 'external') return 'E';
-  return { direct: 'A', aggregated: 'B', interpolated: 'C', modelled: 'D' }[geographic_method] ?? null;
+  return { direct: 'A', aggregated: 'B', interpolated: 'C', proxy: 'C', modelled: 'D' }[geographic_method] ?? null;
 }
 
 // ---------------------------------------------------------------- load inputs
@@ -249,7 +249,7 @@ await writeFile(path.join(outputDir, 'series.json'), JSON.stringify(seriesRows, 
 await writeFile(path.join(outputDir, 'series.csv'), csv(seriesRows, ['series_id', 'series_code', 'indicator_id', 'geography_id', 'geography_taxonomy', 'boundary_version', 'frequency', 'period_type', 'unit_id', 'price_basis', 'base_period', 'currency', 'seasonal_adjustment', 'transformation', 'geographic_method', 'comparability_group', 'dataset_id', 'agency_id', 'start_period', 'end_period', 'latest_observation_id', 'observation_count', 'status']));
 await writeFile(path.join(outputDir, 'observations.json'), JSON.stringify(observations, null, 2) + '\n');
 await writeFile(path.join(outputDir, 'observations.csv'), csv(observations, ['observation_id', 'series_id', 'geography_id', 'period_start', 'period_end', 'period_type', 'period_label', 'value', 'geographic_method', 'statistical_status', 'source_class', 'badge', 'source_release_id', 'source_dataset_id', 'source_url', 'published_at', 'notes']));
-await writeFile(path.join(outputDir, 'held-for-review.json'), JSON.stringify({ generated_at: new Date().toISOString(), note: 'Series/observations whose dataset publication_status is not approved/published are held here and excluded from the published registry (statistical-publication-policy.md §11-12).', held: heldForReview }, null, 2) + '\n');
+await writeFile(path.join(outputDir, 'held-for-review.json'), JSON.stringify({ generated_at: areaComputed.generated_at, note: 'Series/observations whose dataset publication_status is not approved/published are held here and excluded from the published registry (statistical-publication-policy.md §11-12).', held: heldForReview }, null, 2) + '\n');
 
 console.log(JSON.stringify({
   units: units.length, indicators: indicators.length, series: seriesRows.length, observations: observations.length,
