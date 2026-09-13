@@ -1,0 +1,69 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-MAGARINI-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C003-CON017",
+  "constituency_code": 17,
+  "constituency_name": "Magarini",
+  "purpose": "Record a fresh independent visual review of the official IEBC Magarini Form 34B TOTAL row from the governed exactly-250-DPI salvage-A review artifact and preserve the exact registered-voter denominator conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-a.json"
+  },
+  "fresh_source": {
+    "form_id": 277645,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277645",
+    "source_pdf_sha256": "4eacf3ac1ae7dcd03ad11daac1e7b841e71f555df14a369c8cb9dac5a85c70ba",
+    "page_number": 3,
+    "render_dpi": 250,
+    "full_page_image_sha256": "6cb26cb7fc6957bf1e2d33ffd460f9ae94ab1ea0eaf5cd9e596c2f0335fd9edc",
+    "review_context_image_sha256": "6cb26cb7fc6957bf1e2d33ffd460f9ae94ab1ea0eaf5cd9e596c2f0335fd9edc",
+    "workflow_run_id": 34747991023,
+    "workflow_head_sha": "59ec9a4f1f0f2ce5d40f5cd08c8a0cf507649ef6",
+    "artifact_id": 10315105932,
+    "artifact_sha256": "1bb43299d51f30587480efd6cb83d59f3c38f0d3b94483de9482a40b3ec21d5c",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T10:22:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "The TOTAL-row integers and the two special-facility rows were read directly from the fresh exactly-250-DPI page-3 image in workflow artifact 10315105932. No value, source hash, image hash, verification state, promotion state, or denominator was copied from closed PRs #143-#145. The governed registered-voter denominator was independently recomputed from the six pinned Magarini ward rows in the exact voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh page image visibly shows FORM 34 B and CON 017 02/12",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 3, "source_image_sha256": "6cb26cb7fc6957bf1e2d33ffd460f9ae94ab1ea0eaf5cd9e596c2f0335fd9edc", "verified_value": 80295, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 3, "source_image_sha256": "6cb26cb7fc6957bf1e2d33ffd460f9ae94ab1ea0eaf5cd9e596c2f0335fd9edc", "verified_value": 42240, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "rejected_ballots": {"page_number": 3, "source_image_sha256": "6cb26cb7fc6957bf1e2d33ffd460f9ae94ab1ea0eaf5cd9e596c2f0335fd9edc", "verified_value": 382, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [30568, 11049, 220, 403],
+    "candidate_vote_sum": 42240,
+    "reconciles_total_valid_votes": true
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the pinned Magarini ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [9026, 17099, 17685, 16263, 10466, 9589],
+    "governed_registered_voters": 80128,
+    "form_printed_registered_voters": 80295,
+    "registered_voters_delta": 167,
+    "registered_voters_reconciles": false,
+    "special_facility_rows": [
+      {"polling_station_code": "049292145101001", "polling_station_name": "MALINDI PRISON (B) - 01", "registered_voters": 154},
+      {"polling_station_code": "049292145101101", "polling_station_name": "MALINDI WOMEN - 01", "registered_voters": 13}
+    ],
+    "special_facility_registered_voters_sum": 167,
+    "special_facility_exactly_explains_delta": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "The fresh official Form 34B is internally consistent for candidate votes and Total Valid Votes, but its printed Registered Voters total is 167 above the governed constituency denominator. The fresh image visibly contains MALINDI PRISON (B) - 01 with 154 registered voters and MALINDI WOMEN - 01 with 13 registered voters, exactly explaining the 167-voter gap. Under the extraction contract, exact denominator reconciliation remains a hard precondition; therefore this row is preserved as a source-reviewed denominator mismatch and no turnout observation may be promoted from it by this file."
+}
