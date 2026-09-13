@@ -1,0 +1,65 @@
+name: P23 salvage review context
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-salvage-review-context.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/validate-turnout-salvage-fresh-download.mjs
+      - scripts/p23/render-turnout-salvage-review-context.py
+      - scripts/p23/validate-turnout-salvage-review-context.mjs
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-salvage-review-context.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/validate-turnout-salvage-fresh-download.mjs
+      - scripts/p23/render-turnout-salvage-review-context.py
+      - scripts/p23/validate-turnout-salvage-review-context.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  salvage-a-review-context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF renderer
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Fresh-download official IEBC Form 34B sources for salvage A
+        run: >-
+          python3 scripts/p23/fresh-download-turnout-salvage-tranche.py
+          --tranche data/p23/turnout-salvage-tranche-a.json
+          --source-index data/p23/form34b-source-index-contract.json
+          --output /tmp/p23-turnout-salvage-a-fresh-download.json
+          --download-dir /tmp/p23-turnout-salvage-a-pdfs
+      - name: Revalidate fresh-download no-inheritance contract
+        run: node scripts/p23/validate-turnout-salvage-fresh-download.mjs /tmp/p23-turnout-salvage-a-fresh-download.json
+      - name: Render every fresh official source page at exactly 250 DPI
+        run: >-
+          python3 scripts/p23/render-turnout-salvage-review-context.py
+          --fresh-manifest /tmp/p23-turnout-salvage-a-fresh-download.json
+          --pdf-dir /tmp/p23-turnout-salvage-a-pdfs
+          --output /tmp/p23-turnout-salvage-a-review-context.json
+          --render-dir /tmp/p23-turnout-salvage-a-review-pages
+      - name: Validate review-context no-review and no-promotion contract
+        run: node scripts/p23/validate-turnout-salvage-review-context.mjs /tmp/p23-turnout-salvage-a-review-context.json
+      - name: Upload fresh 250-DPI review-context artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-turnout-salvage-a-review-context
+          path: |
+            /tmp/p23-turnout-salvage-a-fresh-download.json
+            /tmp/p23-turnout-salvage-a-review-context.json
+            /tmp/p23-turnout-salvage-a-pdfs/*.pdf
+            /tmp/p23-turnout-salvage-a-review-pages/*.png
+          if-no-files-found: warn
+          retention-days: 2
