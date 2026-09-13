@@ -39,7 +39,7 @@
       {
         "geo_code": "KEN-C003-CON011",
         "name": "Kilifi North",
-        "state": "locator_recovered_pending_fresh_review",
+        "state": "fresh_source_reviewed_nonpromotable",
         "prior_locator": {"pull_requests": [144], "files": ["data/p23/form34b-kilifi-north-source-verification.json"], "prior_disposition": "official_pdf_missing_results_pages"}
       },
       {
