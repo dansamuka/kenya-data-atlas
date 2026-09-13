@@ -1,0 +1,54 @@
+{
+  "schema_version": "kda.p23.turnout-salvage-tranche.v1",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_queue": "data/p23/never-attempted-constituencies.json",
+  "source_triage": "data/p23/turnout-followup-triage.json",
+  "purpose": "Recover official-source locators for the second governed batch of prior non-promotable P23 turnout attempts without inheriting any prior verification, hashes, values, or promotion state.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "locator_recovery_only": true,
+    "prior_pr_evidence_is_noncanonical": true,
+    "prior_pr_values_must_not_be_copied": true,
+    "prior_pr_hashes_must_not_be_copied": true,
+    "fresh_official_download_required_before_review": true,
+    "fresh_hashes_required_before_review": true,
+    "required_render_dpi_for_any_new_source_verification": 250,
+    "canonical_turnout_values_must_not_be_written_by_this_tranche": true
+  },
+  "tranche": {
+    "id": "salvage-b",
+    "count": 8,
+    "selection_rule": "Rows 9-16 of the canonical 85-row salvage queue, derived as never-attempted-constituencies.json minus turnout-followup-triage.json genuinely_untouched.constituencies, preserving source-queue order.",
+    "rows": [
+      {"geo_code":"KEN-C006-CON026","name":"Voi","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-voi-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C007-CON027","name":"Garissa Township","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143,145],"files":["data/p23/form34b-garissa-township-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C007-CON031","name":"Fafi","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143,144],"files":["data/p23/form34b-fafi-source-verification.json"],"prior_disposition":"arithmetic_mismatch"}},
+      {"geo_code":"KEN-C008-CON034","name":"Wajir East","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-wajir-east-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C008-CON035","name":"Tarbaj","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-tarbaj-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C008-CON036","name":"Wajir West","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143,145],"files":["data/p23/form34b-wajir-west-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C009-CON043","name":"Mandera East","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[144],"files":["data/p23/form34b-mandera-east-source-verification.json"],"prior_disposition":"prior_source_review_noncanonical"}},
+      {"geo_code":"KEN-C010-CON045","name":"Moyale","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-moyale-source-verification.json"],"prior_disposition":"source_unreadable"}}
+    ]
+  },
+  "allowed_next_states": [
+    "fresh_official_source_located_unreviewed",
+    "fresh_official_source_not_located",
+    "fresh_source_reviewed_nonpromotable",
+    "fresh_source_verification_candidate"
+  ],
+  "forbidden_until_fresh_source_review": [
+    "source_verified",
+    "promotion_eligible",
+    "explicit_materialization_authorized"
+  ],
+  "notes": [
+    "Closed PRs #143-#145 are locator history only and are not canonical evidence.",
+    "A prior source URL or form id may be used to find the official source candidate, but the source must be downloaded again and hashed again before any new review.",
+    "No prior review-context image hash may be copied or relabelled as a fresh 250-DPI review.",
+    "Any new source-verification artifact must independently satisfy the existing machine-review-context, row-reconciliation, denominator, arithmetic, and promotion-contract gates."
+  ]
+}
