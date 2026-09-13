@@ -37,3 +37,5 @@ jobs:
         run: node scripts/p23/validate-constituency-voter-readiness.mjs
       - name: Validate P23 fresh turnout extraction tranches
         run: node scripts/p23/validate-turnout-fresh-extraction-tranche.mjs
+      - name: Validate P23 turnout salvage tranches
+        run: node scripts/p23/validate-turnout-salvage-tranche.mjs
