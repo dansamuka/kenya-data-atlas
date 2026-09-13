@@ -1,0 +1,78 @@
+name: P23 Mvita fresh review context
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-mvita-fresh-review-context.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/build-mvita-fresh-review-context.py
+      - scripts/p23/validate-mvita-fresh-review-context.mjs
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-mvita-fresh-review-context.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/build-mvita-fresh-review-context.py
+      - scripts/p23/validate-mvita-fresh-review-context.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mvita-fresh-review-context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF/image tooling
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils python3-pil
+      - name: Fresh-download governed salvage-A sources
+        run: >-
+          python3 scripts/p23/fresh-download-turnout-salvage-tranche.py
+          --tranche data/p23/turnout-salvage-tranche-a.json
+          --source-index data/p23/form34b-source-index-contract.json
+          --output /tmp/p23-turnout-salvage-a-fresh-download.json
+          --download-dir /tmp/p23-turnout-salvage-a-pdfs
+      - name: Render Mvita source page at exactly 250 DPI
+        run: >-
+          pdftoppm -f 3 -singlefile -r 250 -png
+          /tmp/p23-turnout-salvage-a-pdfs/KEN-C001-CON006-form34b.pdf
+          /tmp/mvita-form34b-page3-250dpi
+      - name: Build governed review context without extracting values
+        env:
+          RUN_ID: ${{ github.run_id }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: >-
+          python3 scripts/p23/build-mvita-fresh-review-context.py
+          --download-manifest /tmp/p23-turnout-salvage-a-fresh-download.json
+          --pdf /tmp/p23-turnout-salvage-a-pdfs/KEN-C001-CON006-form34b.pdf
+          --page-png /tmp/mvita-form34b-page3-250dpi.png
+          --crop-png /tmp/mvita-form34b-total-context-250dpi.png
+          --output /tmp/mvita-fresh-review-context.json
+          --workflow-run-id "$RUN_ID"
+          --workflow-head-sha "$HEAD_SHA"
+      - name: Validate 250-DPI no-value no-promotion context
+        run: >-
+          node scripts/p23/validate-mvita-fresh-review-context.mjs
+          /tmp/mvita-fresh-review-context.json
+          /tmp/mvita-form34b-page3-250dpi.png
+          /tmp/mvita-form34b-total-context-250dpi.png
+      - name: Record manifest digest
+        run: sha256sum /tmp/mvita-fresh-review-context.json | tee /tmp/mvita-fresh-review-context.sha256
+      - name: Upload fresh Mvita review evidence locator
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-mvita-fresh-review-context
+          path: |
+            /tmp/mvita-fresh-review-context.json
+            /tmp/mvita-fresh-review-context.sha256
+            /tmp/mvita-form34b-page3-250dpi.png
+            /tmp/mvita-form34b-total-context-250dpi.png
+            /tmp/p23-turnout-salvage-a-pdfs/KEN-C001-CON006-form34b.pdf
+          if-no-files-found: error
+          retention-days: 2
