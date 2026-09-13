@@ -62,6 +62,19 @@
       "source_verification_granted": false,
       "promotion_authorized_by_this_record": false,
       "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C004-CON019",
+      "name": "Galole",
+      "state": "fresh_source_reviewed_nonpromotable",
+      "reason": "denominator_mismatch",
+      "source_review_file": "data/p23/form34b-galole-fresh-source-review.json",
+      "fresh_source_provenance": {"workflow_run_id":34747991023,"workflow_head_sha":"59ec9a4f1f0f2ce5d40f5cd08c8a0cf507649ef6","artifact_id":10315105932,"artifact_sha256":"1bb43299d51f30587480efd6cb83d59f3c38f0d3b94483de9482a40b3ec21d5c","source_pdf_sha256":"275afe53f387b9784f69981038ec551a6b4426438f3aadc7deaa9610a5551458"},
+      "review_context": {"render_dpi":250,"review_context_image_sha256":"1d3c416cc5f184b29d9856c47681775e1ae416b8da7de239ee80078743207e26","width_px":2923,"height_px":4134,"served_pdf_page_count":3,"reviewed_pdf_page_number":2,"visible_form_page_label":"CON 019"},
+      "review": {"reviewer_class":"independent_visual_source_image_review","reviewed_by":"OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent","source_image_legibility":"clear","form_type_visually_confirmed":true,"constituency_identity_visually_confirmed":true,"result_table_present":true,"total_row_present":true,"finding":"The fresh exactly-250-DPI Galole Form 34B TOTAL row reconciles internally for candidate votes and total valid votes, but its printed registered-voter denominator is 14 above the independently governed ward-summed denominator. The same fresh source page contains HOLA PRISON - 01 with 14 registered voters, exactly explaining the delta, so the separately validated Galole review remains a denominator mismatch with promotion blocked."},
+      "source_verification_granted": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
     }
   ]
 }
