@@ -1,0 +1,22 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-MANDERA-EAST-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C009-CON043",
+  "constituency_code": 43,
+  "constituency_name": "Mandera East",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Mandera East Form 34B from the governed salvage-B exactly-250-DPI artifact and preserve the unresolved registered-voter denominator mismatch without promotion.",
+  "contracts": {"extraction":"data/p23/form34b-extraction-contract.json","turnout_readiness":"data/p23/constituency-turnout-readiness-contract.json","salvage_locator":"data/p23/turnout-salvage-tranche-b.json"},
+  "fresh_source": {"form_id":277671,"source_url":"https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277671","source_pdf_sha256":"bb933b157f4f6372522fa3fd090a3b0da606aa746d687add498478b0384de824","page_number":2,"render_dpi":250,"full_page_image_sha256":"44c066e59dbe1076f4e13e150e9b7fd7d7d1e2d211a067a401d3974d65aba29c","review_context_image_sha256":"44c066e59dbe1076f4e13e150e9b7fd7d7d1e2d211a067a401d3974d65aba29c","workflow_run_id":34756901800,"workflow_head_sha":"c43819c9ad2ac5de12cc8fcc17cd85020080cf4e","artifact_id":10317568226,"artifact_sha256":"f821b096dd7b781ede18f0fe73082d7bf10f415ffb1808253df240dcee26804e","fresh_download_state":"fresh_official_source_rendered_250dpi_unreviewed"},
+  "review": {"reviewed_at":"2026-09-13T17:25:00Z","reviewer_class":"independent_visual_source_image_review","reviewed_by":"OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent","independence_note":"The TOTAL-row integers were read directly from the fresh exactly-250-DPI page-2 image in workflow artifact 10317568226. No value, source hash, image hash, verification state, promotion state or denominator was copied from closed PRs #143-#145. The governed registered-voter denominator was independently recomputed from the four pinned Mandera East ward rows in the source pinned by scripts/p23/build-constituency-voters.mjs.","source_image_legibility":"clear","form_identity_visually_confirmed":true,"form_identity_confirmation_method":"fresh Form 34B page 1 visibly identifies MANDERA EAST, code 043; reviewed constituency TOTAL row appears on page 2 of 3","total_row_label_visually_confirmed":true},
+  "field_evidence": {"registered_voters":{"page_number":2,"source_image_sha256":"44c066e59dbe1076f4e13e150e9b7fd7d7d1e2d211a067a401d3974d65aba29c","verified_value":48223,"verification_method":"direct_visual_read_of_fresh_250dpi_official_form34b_total_row","verification_state":"source_verified"},"total_valid_votes":{"page_number":2,"source_image_sha256":"44c066e59dbe1076f4e13e150e9b7fd7d7d1e2d211a067a401d3974d65aba29c","verified_value":25801,"verification_method":"direct_visual_read_of_fresh_250dpi_official_form34b_total_row","verification_state":"source_verified"},"rejected_ballots":{"page_number":2,"source_image_sha256":"44c066e59dbe1076f4e13e150e9b7fd7d7d1e2d211a067a401d3974d65aba29c","verified_value":296,"verification_method":"direct_visual_read_of_fresh_250dpi_official_form34b_total_row","verification_state":"source_verified"}},
+  "same_row_valid_vote_reconciliation": {"candidate_vote_totals_in_source_column_order":[18304,7315,41,141],"candidate_vote_sum":25801,"reconciles_total_valid_votes":true},
+  "governed_denominator_reconciliation": {"derivation":"Exact sum of the four pinned Mandera East ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.","ward_registered_voters":[4187,14790,11840,11106],"governed_registered_voters":41923,"form_printed_registered_voters":48223,"registered_voters_delta":6300,"registered_voters_reconciles":false,"residual_delta_after_visible_special_facility_review":6300,"residual_delta_explained":false},
+  "verification_state":"denominator_mismatch",
+  "promotion_eligible":false,
+  "promotion_state":"unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file":false,
+  "canonical_turnout_value_written":false,
+  "note":"The fresh official Mandera East Form 34B candidate totals reconcile exactly to Total Valid Votes, but its printed Registered Voters total is 6,300 above the independently governed four-ward denominator. This review does not infer or inherit an explanation for that residual. Under the extraction contract, exact denominator reconciliation remains mandatory, so the row stays non-promotable and no turnout observation is written."
+}
