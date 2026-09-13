@@ -12,6 +12,7 @@ on:
       - 'data/indicators/registry/**'
       - 'data/audit/legacy-*'
       - '.github/workflows/p28a-epra-fuel-provenance.yml'
+      - '.github/workflows/p28a-legacy-source-audit.yml'
   push:
     branches: [main]
     paths:
@@ -24,6 +25,7 @@ on:
       - 'data/indicators/registry/**'
       - 'data/audit/legacy-*'
       - '.github/workflows/p28a-epra-fuel-provenance.yml'
+      - '.github/workflows/p28a-legacy-source-audit.yml'
 
 permissions:
   contents: write
@@ -51,6 +53,7 @@ jobs:
         run: |
           npm run catalogue:build
           npm run indicators:build
+          npm run p06:direction
 
       - name: Validate official EPRA pricing-town proxy provenance
         run: node scripts/p28/validate-epra-fuel-provenance.mjs
@@ -94,6 +97,7 @@ jobs:
         run: |
           npm run catalogue:build
           npm run indicators:build
+          npm run p06:direction
           node scripts/p28/validate-epra-fuel-provenance.mjs
           node scripts/p28/build-legacy-source-audit.mjs
           node scripts/p28/validate-legacy-source-audit.mjs
