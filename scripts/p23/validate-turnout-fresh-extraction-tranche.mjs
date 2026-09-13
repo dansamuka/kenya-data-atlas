@@ -23,6 +23,12 @@ const trancheSpecs = [
     start: 8,
     count: 8,
   },
+  {
+    id: 'fresh-c',
+    path: 'data/p23/turnout-fresh-extraction-tranche-c.json',
+    start: 16,
+    count: 8,
+  },
 ];
 
 const untouched = triage?.genuinely_untouched?.constituencies;
@@ -89,6 +95,10 @@ for (const spec of trancheSpecs) {
   }
 }
 
+if (Array.isArray(untouched) && seenCodes.size !== untouched.length) {
+  fail(`fresh tranches must cover all ${untouched.length} canonical untouched rows exactly once; saw ${seenCodes.size}`);
+}
+
 if (!process.exitCode) {
-  console.log('P23 fresh extraction tranche validation passed: fresh-a + fresh-b; 16 canonical untouched rows; source-discovery only; exactly 250-DPI future review; no promotion.');
+  console.log('P23 fresh extraction tranche validation passed: fresh-a + fresh-b + fresh-c; all 24 canonical untouched rows; source-discovery only; exactly 250-DPI future review; no promotion.');
 }
