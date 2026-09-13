@@ -57,8 +57,9 @@ def main():
     fresh = load_json(args.fresh_manifest)
     if fresh.get("schema_version") != "kda.p23.turnout-salvage-fresh-download.v1":
         raise SystemExit("unexpected fresh-download manifest schema")
-    if fresh.get("tranche") != "salvage-a":
-        raise SystemExit("review-context preparation currently governs salvage-a only")
+    tranche_id = fresh.get("tranche")
+    if not isinstance(tranche_id, str) or not re.fullmatch(r"salvage-[a-k]", tranche_id):
+        raise SystemExit(f"review-context preparation requires governed salvage tranche a-k; saw {tranche_id!r}")
     governance = fresh.get("governance", {})
     required = {
         "no_inheritance": True,
@@ -77,8 +78,8 @@ def main():
     render_dir.mkdir(parents=True, exist_ok=True)
 
     rows = fresh.get("rows", [])
-    if len(rows) != 8:
-        raise SystemExit(f"expected 8 salvage-a rows, saw {len(rows)}")
+    if not isinstance(rows, list) or not rows or len(rows) > 8:
+        raise SystemExit(f"expected 1-8 governed {tranche_id} rows, saw {len(rows) if isinstance(rows, list) else 'non-array'}")
 
     rendered_rows = []
     for row in rows:
@@ -137,8 +138,8 @@ def main():
     manifest = {
         "schema_version": "kda.p23.turnout-salvage-review-context.v1",
         "as_of": fresh.get("as_of"),
-        "purpose": "Prepare deterministic full-page 250-DPI review images from freshly downloaded official IEBC Form 34B PDFs. No OCR, result-field reading, source verification or promotion occurs in this step.",
-        "tranche": "salvage-a",
+        "purpose": f"Prepare deterministic full-page 250-DPI review images for {tranche_id} from freshly downloaded official IEBC Form 34B PDFs. No OCR, result-field reading, source verification or promotion occurs in this step.",
+        "tranche": tranche_id,
         "fresh_download_manifest": pathlib.Path(args.fresh_manifest).name,
         "governance": {
             "no_inheritance": True,
@@ -155,7 +156,7 @@ def main():
     scan_forbidden(manifest)
     pathlib.Path(args.output).write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     total_pages = sum(row["page_count"] for row in rendered_rows)
-    print(f"P23_SALVAGE_REVIEW_CONTEXT_A rows={len(rendered_rows)} pages={total_pages} dpi={RENDER_DPI} reviewed=0 no_promotion=true")
+    print(f"P23_SALVAGE_REVIEW_CONTEXT tranche={tranche_id} rows={len(rendered_rows)} pages={total_pages} dpi={RENDER_DPI} reviewed=0 no_promotion=true")
 
 
 if __name__ == "__main__":
