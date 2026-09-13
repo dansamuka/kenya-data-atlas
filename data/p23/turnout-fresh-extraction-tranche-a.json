@@ -19,14 +19,134 @@
     "count": 8,
     "selection_rule": "First eight rows of turnout-followup-triage.json genuinely_untouched.constituencies in canonical queue order.",
     "rows": [
-      {"geo_code": "KEN-C001-CON003", "name": "Kisauni", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C009-CON044", "name": "Lafey", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C010-CON048", "name": "Laisamis", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C012-CON052", "name": "Igembe Central", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C012-CON056", "name": "North Imenti", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C013-CON060", "name": "Maara", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C014-CON064", "name": "Runyenjes", "state": "pending_official_source_discovery"},
-      {"geo_code": "KEN-C015-CON069", "name": "Mwingi Central", "state": "pending_official_source_discovery"}
+      {
+        "geo_code": "KEN-C001-CON003",
+        "name": "Kisauni",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C009-CON044",
+        "name": "Lafey",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C010-CON048",
+        "name": "Laisamis",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C012-CON052",
+        "name": "Igembe Central",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C012-CON056",
+        "name": "North Imenti",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C013-CON060",
+        "name": "Maara",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C014-CON064",
+        "name": "Runyenjes",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C015-CON069",
+        "name": "Mwingi Central",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": [
+            "IEBC result-forms portal inspection",
+            "IEBC-domain web search for constituency name + Form 34B + 2022",
+            "forms.iebc.or.ke web search for constituency name + 34B"
+          ],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      }
     ]
   },
   "allowed_next_states": [
@@ -41,6 +161,7 @@
   "notes": [
     "A source URL or form identifier may be added only after it is confirmed to resolve to an official IEBC source for the named constituency.",
     "Locating a source does not verify any turnout numerator, denominator, ballot or candidate-vote value.",
-    "Any future visual review must use an exactly 250-DPI review context and satisfy the existing machine-review-context, reconciliation and promotion-contract gates."
+    "Any future visual review must use an exactly 250-DPI review context and satisfy the existing machine-review-context, reconciliation and promotion-contract gates.",
+    "Tranche A discovery on 2026-09-13 confirmed the official IEBC result-forms portal is reachable, but no constituency-specific 2022 Form 34B URL or form identifier for these eight rows was confirmed through the public portal/search surface; rows therefore remain non-verified and non-promotable."
   ]
 }
