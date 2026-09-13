@@ -1,0 +1,68 @@
+{
+  "schema_version": "kda.p23.turnout-followup-triage.v1",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_queue": "data/p23/never-attempted-constituencies.json",
+  "source_queue_count": 109,
+  "purpose": "Split the post-PR #142 active-missing turnout queue into genuinely untouched constituencies and constituencies that already have preserved but non-promotable source-verification attempts in closed PRs #143-#145. This prevents duplicate extraction work while preserving the rule that failed/non-conforming evidence is not promoted or silently inherited.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "required_render_dpi_for_new_source_verification": 250,
+    "nonpromotable_prior_attempts_must_not_be_relabeled_as_250dpi": true,
+    "fresh_source_review_required_before_any_future_promotion": true
+  },
+  "prior_nonpromotable_attempts": {
+    "pull_requests": [143, 144, 145],
+    "count_within_current_109_row_queue": 85,
+    "treatment": "salvage_queue",
+    "instruction": "Use the preserved PR history only as a locator for constituency/form/source candidates. Re-download or freshly verify the official source, render the review context at exactly 250 DPI, recompute hashes, satisfy the current machine-review-context and reconciliation validators, and obtain fresh source-verification evidence before any promotion consideration. Do not copy or relabel prior 400/900-DPI review-context hashes."
+  },
+  "genuinely_untouched": {
+    "count": 24,
+    "treatment": "fresh_extraction_queue",
+    "constituencies": [
+      {"geo_code": "KEN-C001-CON003", "name": "Kisauni"},
+      {"geo_code": "KEN-C009-CON044", "name": "Lafey"},
+      {"geo_code": "KEN-C010-CON048", "name": "Laisamis"},
+      {"geo_code": "KEN-C012-CON052", "name": "Igembe Central"},
+      {"geo_code": "KEN-C012-CON056", "name": "North Imenti"},
+      {"geo_code": "KEN-C013-CON060", "name": "Maara"},
+      {"geo_code": "KEN-C014-CON064", "name": "Runyenjes"},
+      {"geo_code": "KEN-C015-CON069", "name": "Mwingi Central"},
+      {"geo_code": "KEN-C016-CON076", "name": "Yatta"},
+      {"geo_code": "KEN-C016-CON081", "name": "Machakos Town"},
+      {"geo_code": "KEN-C017-CON085", "name": "Kaiti"},
+      {"geo_code": "KEN-C018-CON089", "name": "Kinangop"},
+      {"geo_code": "KEN-C018-CON093", "name": "Ndaragwa"},
+      {"geo_code": "KEN-C019-CON098", "name": "Mukurweini"},
+      {"geo_code": "KEN-C020-CON102", "name": "Ndia"},
+      {"geo_code": "KEN-C021-CON107", "name": "Kigumo"},
+      {"geo_code": "KEN-C022-CON111", "name": "Gatundu South"},
+      {"geo_code": "KEN-C022-CON115", "name": "Ruiru"},
+      {"geo_code": "KEN-C022-CON120", "name": "Kikuyu"},
+      {"geo_code": "KEN-C023-CON124", "name": "Turkana West"},
+      {"geo_code": "KEN-C024-CON129", "name": "Kapenguria"},
+      {"geo_code": "KEN-C025-CON133", "name": "Samburu West"},
+      {"geo_code": "KEN-C026-CON137", "name": "Endebess"},
+      {"geo_code": "KEN-C027-CON143", "name": "Moiben"}
+    ]
+  },
+  "invariants": {
+    "fresh_extraction_count_plus_salvage_count_equals_source_queue_count": true,
+    "fresh_extraction_count": 24,
+    "salvage_count": 85,
+    "source_queue_count": 109
+  },
+  "next_execution_order": [
+    "fresh_extraction_queue",
+    "salvage_queue"
+  ],
+  "notes": [
+    "The source queue file remains an audit snapshot of merged/default-branch evidence state after PR #142 and is not rewritten by this triage file.",
+    "Closed PR evidence is useful for locating official forms but is not canonical evidence and does not resolve an active-missing slot.",
+    "A future promotion still requires the existing governed promotion contract; this file cannot authorize materialization."
+  ]
+}
