@@ -1,0 +1,91 @@
+name: P23 final salvage-A review contexts
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-salvage-a-final-review-context.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/build-salvage-a-final-review-context.py
+      - scripts/p23/validate-salvage-a-final-review-context.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  final-salvage-a-review-contexts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      - name: Install deterministic PDF/image tooling
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils python3-pil
+      - name: Fresh-download governed salvage-A sources
+        run: >-
+          python3 scripts/p23/fresh-download-turnout-salvage-tranche.py
+          --tranche data/p23/turnout-salvage-tranche-a.json
+          --source-index data/p23/form34b-source-index-contract.json
+          --output /tmp/p23-turnout-salvage-a-fresh-download.json
+          --download-dir /tmp/p23-turnout-salvage-a-pdfs
+      - name: Render target pages at exactly 250 DPI
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p23-final-review-images
+          pdftoppm -f 2 -singlefile -r 250 -png /tmp/p23-turnout-salvage-a-pdfs/KEN-C005-CON022-form34b.pdf /tmp/p23-final-review-images/lamu-west-page2-250dpi
+          pdftoppm -f 2 -singlefile -r 250 -png /tmp/p23-turnout-salvage-a-pdfs/KEN-C006-CON023-form34b.pdf /tmp/p23-final-review-images/taveta-page2-250dpi
+          pdftoppm -f 1 -singlefile -r 250 -png /tmp/p23-turnout-salvage-a-pdfs/KEN-C006-CON024-form34b.pdf /tmp/p23-final-review-images/wundanyi-page1-250dpi
+      - name: Build governed review contexts without extracting values
+        env:
+          RUN_ID: ${{ github.run_id }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: >-
+          python3 scripts/p23/build-salvage-a-final-review-context.py
+          --download-manifest /tmp/p23-turnout-salvage-a-fresh-download.json
+          --pdf-dir /tmp/p23-turnout-salvage-a-pdfs
+          --image-dir /tmp/p23-final-review-images
+          --output /tmp/p23-salvage-a-final-review-context.json
+          --workflow-run-id "$RUN_ID"
+          --workflow-head-sha "$HEAD_SHA"
+      - name: Validate exactly-250-DPI no-value no-promotion contexts
+        run: node scripts/p23/validate-salvage-a-final-review-context.mjs /tmp/p23-salvage-a-final-review-context.json /tmp/p23-final-review-images
+      - name: Publish temporary branch review files for independent visual inspection
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          root=review-artifacts/p23/salvage-a-final
+          mkdir -p "$root"
+          cp /tmp/p23-salvage-a-final-review-context.json "$root/manifest.json"
+          for spec in 'lamu-west 2' 'taveta 2' 'wundanyi 1'; do
+            set -- $spec
+            slug="$1"; page="$2"
+            src="/tmp/p23-final-review-images/${slug}-page${page}-250dpi.png"
+            cp "$src" "$root/${slug}-page${page}-250dpi.png"
+            python3 - "$src" "$root/${slug}-page${page}-250dpi.pdf" <<'PY'
+          import sys
+          from PIL import Image
+          Image.open(sys.argv[1]).convert('RGB').save(sys.argv[2], 'PDF', resolution=250.0)
+          PY
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f "$root"
+          if ! git diff --cached --quiet; then
+            git commit -m "P23: publish temporary final salvage-A review files"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
+      - name: Upload fresh final salvage-A review evidence locators
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-salvage-a-final-review-context
+          path: |
+            /tmp/p23-salvage-a-final-review-context.json
+            /tmp/p23-final-review-images/*.png
+            /tmp/p23-turnout-salvage-a-pdfs/KEN-C005-CON022-form34b.pdf
+            /tmp/p23-turnout-salvage-a-pdfs/KEN-C006-CON023-form34b.pdf
+            /tmp/p23-turnout-salvage-a-pdfs/KEN-C006-CON024-form34b.pdf
+          if-no-files-found: error
+          retention-days: 2
