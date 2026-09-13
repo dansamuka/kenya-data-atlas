@@ -64,18 +64,23 @@ jobs:
           /tmp/matuga-form34b-page3-250dpi.png
       - name: Record manifest digest
         run: sha256sum /tmp/matuga-fresh-review-context.json | tee /tmp/matuga-fresh-review-context.sha256
-      - name: Publish temporary branch review image for independent visual inspection
+      - name: Publish temporary branch review files for independent visual inspection
         if: github.event_name == 'pull_request'
         run: |
           set -euo pipefail
           mkdir -p review-artifacts/p23/matuga
           cp /tmp/matuga-form34b-page3-250dpi.png review-artifacts/p23/matuga/page3-250dpi.png
           cp /tmp/matuga-fresh-review-context.json review-artifacts/p23/matuga/manifest.json
+          python3 - <<'PY'
+          from PIL import Image
+          image = Image.open('/tmp/matuga-form34b-page3-250dpi.png').convert('RGB')
+          image.save('review-artifacts/p23/matuga/page3-250dpi.pdf', 'PDF', resolution=250.0)
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f review-artifacts/p23/matuga/page3-250dpi.png review-artifacts/p23/matuga/manifest.json
+          git add -f review-artifacts/p23/matuga/page3-250dpi.png review-artifacts/p23/matuga/page3-250dpi.pdf review-artifacts/p23/matuga/manifest.json
           if ! git diff --cached --quiet; then
-            git commit -m "P23: publish temporary Matuga review image"
+            git commit -m "P23: publish temporary Matuga review files"
             git push origin HEAD:${{ github.event.pull_request.head.ref }}
           fi
       - name: Upload fresh Matuga review evidence locator
