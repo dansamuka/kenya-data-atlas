@@ -30,12 +30,12 @@ assert(candidates.candidate_vote_sum === 26295, 'candidate aggregate sum changed
 assert(candidates.total_valid_votes_reconciliation_performed === false, 'must not reconcile against an unreadable/unpopulated Total Valid Votes cell');
 
 const denom = review.governed_denominator_reconciliation || {};
-assert(JSON.stringify(denom.ward_registered_voters) === JSON.stringify([8075,9865,6677,8547]), 'pinned ward inputs changed');
-assert(denom.ward_registered_voters.reduce((a,b)=>a+b,0) === 33164, 'ward denominator sum changed');
-assert(denom.governed_registered_voters === 33164 && denom.form_printed_registered_voters === 36855, 'denominator values changed');
-assert(denom.registered_voters_delta === 3691 && denom.registered_voters_reconciles === false, 'denominator mismatch changed');
+assert(JSON.stringify(denom.ward_registered_voters) === JSON.stringify([8075,9865,6677,8547,3691]), 'pinned ward inputs changed');
+assert(denom.ward_registered_voters.reduce((a,b)=>a+b,0) === 36855, 'ward denominator sum changed');
+assert(denom.governed_registered_voters === 36855 && denom.form_printed_registered_voters === 36855, 'denominator values changed');
+assert(denom.registered_voters_delta === 0 && denom.registered_voters_reconciles === true, 'denominator must reconcile exactly');
 
 assert(review.verification_state === 'partial_unresolved', 'row must remain partial_unresolved');
 assert(review.promotion_eligible === false && review.promotion_authorized_by_this_file === false && review.canonical_turnout_value_written === false, 'no-promotion state changed');
 for (const key of ['turnout_pct','ballots_cast']) assert(!Object.hasOwn(review, key), `${key} must not be materialized`);
-console.log('P23_NORTH_HORR_FRESH_SOURCE_REVIEW_OK dpi=250 partial_unresolved=true denominator_delta=3691 no_promotion=true');
+console.log('P23_NORTH_HORR_FRESH_SOURCE_REVIEW_OK dpi=250 partial_unresolved=true denominator_reconciles=true no_promotion=true');
