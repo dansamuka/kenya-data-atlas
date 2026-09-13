@@ -1,0 +1,128 @@
+{
+  "schema_version": "kda.p23.turnout-fresh-extraction-tranche.v1",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_triage": "data/p23/turnout-followup-triage.json",
+  "purpose": "Execute the second governed batch of genuinely untouched constituency turnout follow-up work without creating or implying source-verification or promotion evidence.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "source_discovery_only": true,
+    "required_render_dpi_for_any_future_source_verification": 250,
+    "future_source_verification_must_use_fresh_download_and_hashes": true,
+    "canonical_turnout_values_must_not_be_written_by_this_tranche": true
+  },
+  "tranche": {
+    "id": "fresh-b",
+    "count": 8,
+    "selection_rule": "Rows 9-16 of turnout-followup-triage.json genuinely_untouched.constituencies in canonical queue order.",
+    "rows": [
+      {
+        "geo_code": "KEN-C016-CON076",
+        "name": "Yatta",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C016-CON081",
+        "name": "Machakos Town",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C017-CON085",
+        "name": "Kaiti",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C018-CON089",
+        "name": "Kinangop",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C018-CON093",
+        "name": "Ndaragwa",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C019-CON098",
+        "name": "Mukurweini",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C020-CON102",
+        "name": "Ndia",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      },
+      {
+        "geo_code": "KEN-C021-CON107",
+        "name": "Kigumo",
+        "state": "official_source_not_located",
+        "discovery_attempt": {
+          "attempted_on": "2026-09-13",
+          "official_portal": "https://forms.iebc.or.ke/",
+          "methods": ["IEBC result-forms portal inspection", "IEBC-domain web search for constituency name + Form 34B + 2022", "forms.iebc.or.ke web search for constituency name + 34B"],
+          "result": "No constituency-specific official 2022 Form 34B URL or form identifier was confirmed.",
+          "promotion_effect": "none"
+        }
+      }
+    ]
+  },
+  "allowed_next_states": ["official_source_located_unreviewed", "official_source_not_located"],
+  "forbidden_until_fresh_source_review": ["source_verified", "promotion_eligible", "explicit_materialization_authorized"],
+  "notes": [
+    "A source URL or form identifier may be added only after it is confirmed to resolve to an official IEBC source for the named constituency.",
+    "Locating a source does not verify any turnout numerator, denominator, ballot or candidate-vote value.",
+    "Any future visual review must use an exactly 250-DPI review context and satisfy the existing machine-review-context, reconciliation and promotion-contract gates.",
+    "Tranche B discovery on 2026-09-13 did not confirm a constituency-specific 2022 Form 34B URL or form identifier for these eight rows through the public official portal/search surface; rows therefore remain non-verified and non-promotable."
+  ]
+}
