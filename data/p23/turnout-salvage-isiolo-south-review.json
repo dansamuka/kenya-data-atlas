@@ -1,0 +1,56 @@
+{
+  "schema_version": "kda.p23.turnout-salvage-tranche.v1",
+  "as_of": "2026-09-14",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_queue": "data/p23/turnout-salvage-tranche-c.json",
+  "source_triage": "data/p23/turnout-followup-triage.json",
+  "purpose": "Create a row-scoped fresh official-source review context for Isiolo South (CON050) without inheriting any prior verification, hashes, result values, or promotion state.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "locator_recovery_only": true,
+    "prior_pr_evidence_is_noncanonical": true,
+    "prior_pr_values_must_not_be_copied": true,
+    "prior_pr_hashes_must_not_be_copied": true,
+    "fresh_official_download_required_before_review": true,
+    "fresh_hashes_required_before_review": true,
+    "required_render_dpi_for_any_new_source_verification": 250,
+    "canonical_turnout_values_must_not_be_written_by_this_tranche": true
+  },
+  "tranche": {
+    "id": "salvage-c-isiolo-south-row-review",
+    "count": 1,
+    "selection_rule": "Single-row review context for KEN-C011-CON050 selected from governed salvage-C after Isiolo North review merged to main.",
+    "rows": [
+      {
+        "geo_code": "KEN-C011-CON050",
+        "name": "Isiolo South",
+        "state": "locator_recovered_pending_fresh_review",
+        "prior_locator": {
+          "pull_requests": [145],
+          "files": ["data/p23/form34b-isiolo-south-source-verification.json"],
+          "prior_disposition": "arithmetic_mismatch"
+        }
+      }
+    ]
+  },
+  "allowed_next_states": [
+    "fresh_official_source_located_unreviewed",
+    "fresh_official_source_not_located",
+    "fresh_source_reviewed_nonpromotable",
+    "fresh_source_verification_candidate"
+  ],
+  "forbidden_until_fresh_source_review": [
+    "source_verified",
+    "promotion_eligible",
+    "explicit_materialization_authorized"
+  ],
+  "notes": [
+    "Prior PR #145 is locator history only and is not canonical evidence.",
+    "Only the governed locator may be reused; all source bytes and hashes must be freshly obtained.",
+    "No prior result integer, verification state, rendered-image hash, or promotion state may be copied into the fresh review.",
+    "Any subsequent source-verification artifact must independently satisfy the existing machine-review-context, row-reconciliation, denominator, arithmetic, and promotion-contract gates."
+  ]
+}
