@@ -1,0 +1,59 @@
+name: P23 salvage fresh download
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-salvage-fresh-download.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/validate-turnout-salvage-fresh-download.mjs
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/p23-salvage-fresh-download.yml
+      - data/p23/turnout-salvage-tranche-a.json
+      - data/p23/form34b-source-index-contract.json
+      - scripts/p23/fresh-download-turnout-salvage-tranche.py
+      - scripts/p23/validate-turnout-salvage-fresh-download.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  salvage-a-fresh-download:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF inspection utility
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Fresh-download official IEBC Form 34B sources for salvage A
+        run: >-
+          python3 scripts/p23/fresh-download-turnout-salvage-tranche.py
+          --tranche data/p23/turnout-salvage-tranche-a.json
+          --source-index data/p23/form34b-source-index-contract.json
+          --output /tmp/p23-turnout-salvage-a-fresh-download.json
+          --download-dir /tmp/p23-turnout-salvage-a-pdfs
+      - name: Validate no-inheritance and no-promotion manifest
+        run: node scripts/p23/validate-turnout-salvage-fresh-download.mjs /tmp/p23-turnout-salvage-a-fresh-download.json
+      - name: Report downloaded PDF page counts without reading result values
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          for pdf in /tmp/p23-turnout-salvage-a-pdfs/*.pdf; do
+            pages="$(pdfinfo "$pdf" 2>/dev/null | awk -F: '/^Pages:/{gsub(/[[:space:]]/,"",$2); print $2; exit}')"
+            printf 'P23_SALVAGE_FRESH_PDF file=%s pages=%s\n' "$(basename "$pdf")" "${pages:-unknown}"
+          done
+      - name: Upload fresh-source audit artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-turnout-salvage-a-fresh-download
+          path: |
+            /tmp/p23-turnout-salvage-a-fresh-download.json
+            /tmp/p23-turnout-salvage-a-pdfs/*.pdf
+          if-no-files-found: warn
+          retention-days: 2
