@@ -33,7 +33,7 @@
       {
         "geo_code": "KEN-C002-CON009",
         "name": "Matuga",
-        "state": "locator_recovered_pending_fresh_review",
+        "state": "fresh_source_reviewed_nonpromotable",
         "prior_locator": {"pull_requests": [143, 145], "files": ["data/p23/form34b-matuga-source-verification.json"], "prior_disposition": "denominator_mismatch"}
       },
       {
