@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1",
-  "generated_at": "2026-08-26T23:30:00+03:00",
+  "schema_version": "1.2",
+  "generated_at": "2026-09-13T09:34:00+03:00",
   "sources": {
     "population_2009": {
       "agency": "Kenya National Bureau of Statistics (KNBS)",
@@ -34,13 +34,15 @@
     "fuel_aug_sep_2026": {
       "agency": "Energy & Petroleum Regulatory Authority (EPRA)",
       "title": "Maximum retail Super Petrol prices, 15 August–14 September 2026",
+      "url": "https://www.epra.go.ke/index.php/pump-prices",
+      "release_url": "https://epra.go.ke/maximum-retail-petroleum-prices-kenya-period-15th-august-2026-14th-september-2026",
       "official_context_url": "https://www.epra.go.ke/",
       "current_cycle_corroboration_url": "https://www.pulse.co.ke/story/epra-announces-august-september-fuel-prices-2026081413042614562",
       "secondary_current_towns_url": "https://www.pulse.co.ke/story/epra-announces-august-september-fuel-prices-2026081413042614562",
       "full_town_transcription_url": "https://github.com/erickarugu/fuelkenya/blob/main/api/data/epra-cycles/2026-07-15_to_2026-08-14.csv",
       "full_town_feed_url": "https://github.com/erickarugu/fuelkenya/blob/main/api/data/epra-cycles/2026-07-15_to_2026-08-14.csv",
-      "quality": "E",
-      "note": "EPRA stated that Super Petrol remained unchanged for 15 Aug–14 Sep 2026, so the prior cycle's full pricing-town PMS schedule remains applicable to Super Petrol. The county display uses one representative published pricing town per county for navigation only; it is not a county average. Forty-six mappings use a pricing town in the same county. Nyandarua uses Nyahururu as the nearest published pricing town and is explicitly disclosed as a proxy. The underlying full-town transcription is external, so non-native county-linked observations remain badge E."
+      "quality": "C",
+      "note": "EPRA's official pump-price database publishes the full pricing-town schedule for 15 Aug–14 Sep 2026 directly. KDA maps one named official EPRA pricing-town value to each county as a reference-town proxy for navigation; the value is not a county average. Forty-six mappings use a pricing town in the same county. Nyandarua uses Nyahururu as the nearest published pricing town and is explicitly disclosed as a proxy. Secondary sources and the historical external transcription are retained only as corroborating or historical evidence, not as the numeric authority."
     }
   }
 }
