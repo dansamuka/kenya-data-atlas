@@ -1,0 +1,54 @@
+{
+  "schema_version": "kda.p23.turnout-salvage-tranche.v1",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_queue": "data/p23/never-attempted-constituencies.json",
+  "source_triage": "data/p23/turnout-followup-triage.json",
+  "purpose": "Recover official-source locators for the fifth governed batch of prior non-promotable P23 turnout attempts without inheriting any prior verification, hashes, values, or promotion state.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "locator_recovery_only": true,
+    "prior_pr_evidence_is_noncanonical": true,
+    "prior_pr_values_must_not_be_copied": true,
+    "prior_pr_hashes_must_not_be_copied": true,
+    "fresh_official_download_required_before_review": true,
+    "fresh_hashes_required_before_review": true,
+    "required_render_dpi_for_any_new_source_verification": 250,
+    "canonical_turnout_values_must_not_be_written_by_this_tranche": true
+  },
+  "tranche": {
+    "id": "salvage-e",
+    "count": 8,
+    "selection_rule": "Rows 33-40 of the canonical 85-row salvage queue, derived as never-attempted-constituencies.json minus turnout-followup-triage.json genuinely_untouched.constituencies, preserving source-queue order.",
+    "rows": [
+      {"geo_code":"KEN-C015-CON068","name":"Mwingi West","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[144],"files":["data/p23/form34b-mwingi-west-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C015-CON070","name":"Kitui West","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-kitui-west-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C015-CON072","name":"Kitui Central","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[145],"files":["data/p23/form34b-kitui-central-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C016-CON075","name":"Masinga","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[144],"files":["data/p23/form34b-masinga-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C016-CON077","name":"Kangundo","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-kangundo-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C016-CON078","name":"Matungulu","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[145],"files":["data/p23/form34b-matungulu-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C016-CON079","name":"Kathiani","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[144],"files":["data/p23/form34b-kathiani-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C016-CON082","name":"Mwala","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-mwala-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}}
+    ]
+  },
+  "allowed_next_states": [
+    "fresh_official_source_located_unreviewed",
+    "fresh_official_source_not_located",
+    "fresh_source_reviewed_nonpromotable",
+    "fresh_source_verification_candidate"
+  ],
+  "forbidden_until_fresh_source_review": [
+    "source_verified",
+    "promotion_eligible",
+    "explicit_materialization_authorized"
+  ],
+  "notes": [
+    "Closed PRs #143-#145 are locator history only and are not canonical evidence.",
+    "A prior source URL or form id may be used to find the official source candidate, but the source must be downloaded again and hashed again before any new review.",
+    "No prior review-context image hash may be copied or relabelled as a fresh 250-DPI review.",
+    "Any new source-verification artifact must independently satisfy the existing machine-review-context, row-reconciliation, denominator, arithmetic, and promotion-contract gates."
+  ]
+}
