@@ -4,7 +4,11 @@ import path from 'node:path';
 const manifestPath = process.argv[2] || '/tmp/p23-turnout-salvage-a-fresh-download.json';
 const root = process.cwd();
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-const tranche = JSON.parse(fs.readFileSync(path.join(root, 'data/p23/turnout-salvage-tranche-a.json'), 'utf8'));
+const trancheId = manifest?.tranche;
+const trancheMatch = typeof trancheId === 'string' ? /^salvage-([a-k])$/.exec(trancheId) : null;
+if (!trancheMatch) throw new Error(`P23 salvage fresh-download validation failed: invalid tranche ${trancheId}`);
+const tranchePath = path.join(root, `data/p23/turnout-salvage-tranche-${trancheMatch[1]}.json`);
+const tranche = JSON.parse(fs.readFileSync(tranchePath, 'utf8'));
 const sourceIndex = JSON.parse(fs.readFileSync(path.join(root, 'data/p23/form34b-source-index-contract.json'), 'utf8'));
 
 const fail = (message) => {
@@ -13,7 +17,7 @@ const fail = (message) => {
 };
 
 if (manifest?.schema_version !== 'kda.p23.turnout-salvage-fresh-download.v1') fail('unexpected schema_version');
-if (manifest?.tranche !== 'salvage-a') fail('manifest must target salvage-a');
+if (tranche?.tranche?.id !== trancheId) fail(`manifest/tranche file id mismatch for ${trancheId}`);
 if (manifest?.governance?.no_inheritance !== true) fail('no_inheritance must remain true');
 if (manifest?.governance?.no_promotion !== true) fail('no_promotion must remain true');
 if (manifest?.governance?.result_values_forbidden !== true) fail('result_values_forbidden must remain true');
@@ -41,8 +45,9 @@ scan(manifest);
 
 const rows = manifest?.rows;
 const expected = tranche?.tranche?.rows;
-if (!Array.isArray(rows) || rows.length !== 8) fail(`expected exactly 8 manifest rows; saw ${Array.isArray(rows) ? rows.length : 'missing'}`);
-if (!Array.isArray(expected) || expected.length !== 8) fail('governed salvage-a must contain 8 rows');
+const expectedCount = tranche?.tranche?.count;
+if (!Array.isArray(expected) || expected.length < 1 || expected.length > 8 || expectedCount !== expected.length) fail(`governed ${trancheId} row/count contract is invalid`);
+if (!Array.isArray(rows) || rows.length !== expected.length) fail(`expected exactly ${expected.length} manifest rows; saw ${Array.isArray(rows) ? rows.length : 'missing'}`);
 
 const offset = sourceIndex?.source_index_relation?.form_id_offset;
 const template = sourceIndex?.source_index_relation?.download_url_template;
@@ -59,7 +64,7 @@ let downloaded = 0;
 for (let i = 0; i < (rows || []).length; i += 1) {
   const row = rows[i];
   const exp = expected[i];
-  if (row?.geo_code !== exp?.geo_code || row?.name !== exp?.name) fail(`row ${i + 1} does not match canonical salvage-a order`);
+  if (row?.geo_code !== exp?.geo_code || row?.name !== exp?.name) fail(`row ${i + 1} does not match canonical ${trancheId} order`);
   const codeMatch = /^KEN-C\d{3}-CON(\d{3})$/.exec(row?.geo_code || '');
   if (!codeMatch) {
     fail(`row ${i + 1} has invalid geo_code`);
@@ -86,5 +91,5 @@ for (let i = 0; i < (rows || []).length; i += 1) {
 }
 
 if (!process.exitCode) {
-  console.log(`P23 salvage fresh-download validation passed: rows=8 downloaded_pdf=${downloaded}; locator-only source-index formula; no values; no promotion; 250-DPI review remains future-gated.`);
+  console.log(`P23 salvage fresh-download validation passed: tranche=${trancheId} rows=${rows.length} downloaded_pdf=${downloaded}; locator-only source-index formula; no values; no promotion; 250-DPI review remains future-gated.`);
 }
