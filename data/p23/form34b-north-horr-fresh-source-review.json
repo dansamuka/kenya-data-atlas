@@ -6,7 +6,7 @@
   "geo_code": "KEN-C010-CON046",
   "constituency_code": 46,
   "constituency_name": "North Horr",
-  "purpose": "Record an independent visual review of the freshly downloaded official IEBC North Horr Form 34B from the governed salvage-C exactly-250-DPI artifact. The printed registered-voter total and four candidate aggregates are readable, but the aggregate Total Valid Votes and Rejected Ballots cells are not populated/readable on the TOTAL row. The row therefore remains partial_unresolved and non-promotable.",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC North Horr Form 34B from the governed salvage-C exactly-250-DPI artifact. The printed registered-voter total and four candidate aggregates are readable and the registered-voter denominator reconciles exactly, but the aggregate Total Valid Votes and Rejected Ballots cells are not populated/readable on the TOTAL row. The row therefore remains partial_unresolved and non-promotable.",
   "contracts": {
     "extraction": "data/p23/form34b-extraction-contract.json",
     "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
@@ -38,7 +38,7 @@
     "result_table_present": true,
     "total_row_present": true,
     "total_row_legibility": "partial",
-    "finding": "The fresh page-1 TOTAL row visibly prints Registered Voters 36,855 and candidate aggregates 23,160, 3,040, 29 and 66. The aggregate Total Valid Votes and Rejected Ballots cells on that TOTAL row are not populated/readable, so those required fields cannot be source-verified. The printed registered-voter total also exceeds the independently governed four-ward denominator by 3,691. No missing aggregate value is inferred from candidate arithmetic and no denominator discrepancy is silently repaired."
+    "finding": "The fresh page-1 TOTAL row visibly prints Registered Voters 36,855 and candidate aggregates 23,160, 3,040, 29 and 66. The aggregate Total Valid Votes and Rejected Ballots cells on that TOTAL row are not populated/readable, so those required fields cannot be source-verified. The printed registered-voter total reconciles exactly to the independently governed five-ward denominator, including Illeret = 3,691. No missing aggregate value is inferred from candidate arithmetic."
   },
   "field_evidence": {
     "registered_voters": {"page_number": 1, "source_image_sha256": "32748fc24280b1927ee92eaadd1bc669bf23def2b2da959f8cd05e7c6423aaf1", "verified_value": 36855, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
@@ -52,16 +52,16 @@
     "reason": "The TOTAL-row Total Valid Votes cell is not populated/readable and is therefore not accepted as a source-verified integer."
   },
   "governed_denominator_reconciliation": {
-    "derivation": "Exact sum of the four pinned North Horr ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
-    "ward_registered_voters": [8075, 9865, 6677, 8547],
-    "governed_registered_voters": 33164,
+    "derivation": "Exact sum of the five pinned North Horr ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [8075, 9865, 6677, 8547, 3691],
+    "governed_registered_voters": 36855,
     "form_printed_registered_voters": 36855,
-    "registered_voters_delta": 3691,
-    "registered_voters_reconciles": false
+    "registered_voters_delta": 0,
+    "registered_voters_reconciles": true
   },
   "verification_state": "partial_unresolved",
   "promotion_eligible": false,
-  "promotion_state": "unresolved_partial_source_and_denominator_mismatch",
+  "promotion_state": "unresolved_partial_source_fields",
   "promotion_authorized_by_this_file": false,
   "canonical_turnout_value_written": false,
   "note": "No turnout percentage, ballots-cast value, inferred Total Valid Votes, inferred rejected-ballot total, series or canonical turnout observation is materialized."
