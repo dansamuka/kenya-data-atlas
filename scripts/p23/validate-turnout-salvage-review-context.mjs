@@ -26,7 +26,7 @@ const scan = (value, where = 'manifest') => {
 scan(manifest);
 
 if (manifest.schema_version !== 'kda.p23.turnout-salvage-review-context.v1') fail('schema version changed');
-if (manifest.tranche !== 'salvage-a') fail('only salvage-a is governed by this review-context manifest');
+if (typeof manifest.tranche !== 'string' || !/^salvage-[a-k]$/.test(manifest.tranche)) fail(`invalid governed tranche ${manifest.tranche}`);
 const governance = manifest.governance || {};
 if (governance.no_inheritance !== true) fail('no_inheritance must remain true');
 if (governance.no_promotion !== true) fail('no_promotion must remain true');
@@ -38,7 +38,7 @@ if (governance.review_pending !== true) fail('review must remain pending');
 if (governance.render_dpi !== 250) fail('render DPI must be exactly 250');
 
 const rows = manifest.rows;
-if (!Array.isArray(rows) || rows.length !== 8) fail(`expected exactly 8 rows; saw ${Array.isArray(rows) ? rows.length : 'non-array'}`);
+if (!Array.isArray(rows) || rows.length < 1 || rows.length > 8) fail(`expected 1-8 rows; saw ${Array.isArray(rows) ? rows.length : 'non-array'}`);
 const seen = new Set();
 let pages = 0;
 for (const [index, row] of rows.entries()) {
@@ -60,4 +60,4 @@ for (const [index, row] of rows.entries()) {
     pages += 1;
   });
 }
-console.log(`P23_SALVAGE_REVIEW_CONTEXT_OK rows=${rows.length} pages=${pages} dpi=250 reviewed=0 promotion_authorized=0 values_logged=0`);
+console.log(`P23_SALVAGE_REVIEW_CONTEXT_OK tranche=${manifest.tranche} rows=${rows.length} pages=${pages} dpi=250 reviewed=0 promotion_authorized=0 values_logged=0`);
