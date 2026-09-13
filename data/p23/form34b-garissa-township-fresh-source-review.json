@@ -1,0 +1,69 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-GARISSA-TOWNSHIP-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C007-CON027",
+  "constituency_code": 27,
+  "constituency_name": "Garissa Township",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Garissa Township Form 34B from the governed salvage-B exactly-250-DPI artifact, preserving the registered-voter denominator conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-b.json"
+  },
+  "fresh_source": {
+    "form_id": 277655,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277655",
+    "source_pdf_sha256": "34a6b2b04f4e945d30f309d9fd19c76a0335906429c1fb62be9612b2761b18d7",
+    "page_number": 2,
+    "render_dpi": 250,
+    "full_page_image_sha256": "2f915b4961de6dc225f9a0144530f276762ef23f84d73674db146492c65c96a3",
+    "review_context_image_sha256": "2f915b4961de6dc225f9a0144530f276762ef23f84d73674db146492c65c96a3",
+    "workflow_run_id": 34756901800,
+    "workflow_head_sha": "c43819c9ad2ac5de12cc8fcc17cd85020080cf4e",
+    "artifact_id": 10317568226,
+    "artifact_sha256": "f821b096dd7b781ede18f0fe73082d7bf10f415ffb1808253df240dcee26804e",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T14:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "TOTAL-row integers and the final visible non-ward row were read directly from the fresh exactly-250-DPI page-2 image in workflow artifact 10317568226. No value, source hash, image hash, verification state, promotion state or denominator was copied from closed PRs #143-#145. The governed denominator was independently recomputed from the four pinned Garissa Township ward rows in the source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh Form 34B page 1 visibly identifies GARISSA TOWNSHIP, code 027; reviewed TOTAL row appears on page 2 of 3",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 2, "source_image_sha256": "2f915b4961de6dc225f9a0144530f276762ef23f84d73674db146492c65c96a3", "verified_value": 53293, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 2, "source_image_sha256": "2f915b4961de6dc225f9a0144530f276762ef23f84d73674db146492c65c96a3", "verified_value": 25086, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "rejected_ballots": {"page_number": 2, "source_image_sha256": "2f915b4961de6dc225f9a0144530f276762ef23f84d73674db146492c65c96a3", "verified_value": 228, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [16925, 8031, 18, 112],
+    "candidate_vote_sum": 25086,
+    "reconciles_total_valid_votes": true
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the four pinned Garissa Township ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [11657, 16698, 13419, 11479],
+    "governed_registered_voters": 53253,
+    "form_printed_registered_voters": 53293,
+    "registered_voters_delta": 40,
+    "registered_voters_reconciles": false,
+    "visible_extra_row": {
+      "polling_station_code": "049292145101801",
+      "polling_station_name": "GARISSA MAIN - 01",
+      "registered_voters": 40
+    },
+    "visible_extra_row_exactly_explains_delta": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "The fresh official Garissa Township Form 34B is internally consistent for candidate votes and Total Valid Votes, but printed Registered Voters exceed the independently governed four-ward denominator by 40. The final visible row GARISSA MAIN - 01 contains exactly 40 registered voters and therefore explains the numerical gap, but exact denominator reconciliation to the governed ward source remains a hard precondition. No turnout observation is promoted."
+}
