@@ -1,0 +1,61 @@
+{
+  "schema_version": "kda.p23.form34b.salvage-a-final-review-contexts.v1",
+  "as_of": "2026-09-13",
+  "purpose": "Prepare fresh exactly-250-DPI full-page review contexts for the final three salvage-A rows without extracting or promoting any result value.",
+  "governance": {
+    "fresh_official_download_required": true,
+    "fresh_hashes_only": true,
+    "no_inheritance": true,
+    "no_result_value_extraction": true,
+    "no_ocr_result_promotion": true,
+    "promotion_authorized": false,
+    "contexts_are_evidence_locators_only_until_independent_visual_review": true
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C005-CON022",
+      "name": "Lamu West",
+      "form_id": 277650,
+      "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277650",
+      "fresh_download_state": "fresh_official_source_downloaded_unreviewed",
+      "source_pdf_sha256": "f0423c79f608905f1c0df408687263253511803d032814e5d3ec8f08105a440a",
+      "page_number": 2,
+      "render_dpi": 250,
+      "full_page_image_sha256": "f33594122197dac9a66995c3a8571c94761bc2afaaf2c4d443fb3cd719c9f327",
+      "width_px": 2921,
+      "height_px": 4132,
+      "workflow_run_id": 34754497123,
+      "workflow_head_sha": "0a89825330b349a5f94fa2cd18cc011bfcd050c3"
+    },
+    {
+      "geo_code": "KEN-C006-CON023",
+      "name": "Taveta",
+      "form_id": 277651,
+      "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277651",
+      "fresh_download_state": "fresh_official_source_downloaded_unreviewed",
+      "source_pdf_sha256": "b0a46e0bed4274ef5f651cc7e50dfc0d671b61780fb160d3e0a58326751a5267",
+      "page_number": 2,
+      "render_dpi": 250,
+      "full_page_image_sha256": "29147b504975ea9ab22af62baa989dcfff7708566be6098474d56737cc129225",
+      "width_px": 2921,
+      "height_px": 4132,
+      "workflow_run_id": 34754497123,
+      "workflow_head_sha": "0a89825330b349a5f94fa2cd18cc011bfcd050c3"
+    },
+    {
+      "geo_code": "KEN-C006-CON024",
+      "name": "Wundanyi",
+      "form_id": 277652,
+      "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277652",
+      "fresh_download_state": "fresh_official_source_downloaded_unreviewed",
+      "source_pdf_sha256": "7f44697b4c712c7f6595d189a128c72409162733fe66d9473ddcdf2d5cb40e7f",
+      "page_number": 1,
+      "render_dpi": 250,
+      "full_page_image_sha256": "d931eca65a375a30e145e7ce18b4e12ba0c7b84570b1fab76b5e8bc75d15e1e9",
+      "width_px": 2921,
+      "height_px": 4132,
+      "workflow_run_id": 34754497123,
+      "workflow_head_sha": "0a89825330b349a5f94fa2cd18cc011bfcd050c3"
+    }
+  ]
+}
