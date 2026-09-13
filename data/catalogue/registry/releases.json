@@ -281,10 +281,10 @@
     "published_at": "2026-08-14",
     "discovered_at": "2026-08-26T20:30:00.000Z",
     "ingested_at": "2026-08-26T20:30:00.000Z",
-    "release_url": "https://www.pulse.co.ke/story/epra-announces-august-september-fuel-prices-2026081413042614562",
+    "release_url": "https://epra.go.ke/maximum-retail-petroleum-prices-kenya-period-15th-august-2026-14th-september-2026",
     "release_status": "published",
     "version_label": "",
-    "release_notes": "EPRA stated that Super Petrol remained unchanged for 15 Aug–14 Sep 2026, so the prior cycle's full pricing-town PMS schedule remains applicable to Super Petrol. The county display uses one representative published pricing town per county for navigation only; it is not a county average. Forty-six mappings use a pricing town in the same county. Nyandarua uses Nyahururu as the nearest published pricing town and is explicitly disclosed as a proxy. The underlying full-town transcription is external, so non-native county-linked observations remain badge E.",
+    "release_notes": "EPRA's official pump-price database publishes the full pricing-town schedule for 15 Aug–14 Sep 2026 directly. KDA maps one named official EPRA pricing-town value to each county as a reference-town proxy for navigation; the value is not a county average. Forty-six mappings use a pricing town in the same county. Nyandarua uses Nyahururu as the nearest published pricing town and is explicitly disclosed as a proxy. Secondary sources and the historical external transcription are retained only as corroborating or historical evidence, not as the numeric authority.",
     "supersedes_release_id": ""
   },
   {
