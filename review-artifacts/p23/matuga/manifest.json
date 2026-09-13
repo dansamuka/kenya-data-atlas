@@ -16,8 +16,8 @@
   "review_context_sha256": "03bd3495accd7f1d1d5277aa117245efa17a80bd4c0959d57a69187a0e83544b",
   "page_width_px": 2923,
   "page_height_px": 4134,
-  "workflow_run_id": 34750357169,
-  "workflow_head_sha": "c21de6bf2dcc799bad0ed00ed22a336d810e9bb0",
+  "workflow_run_id": 34750504798,
+  "workflow_head_sha": "6b6d4fc4792700d4a6e045051d319568adf7c298",
   "governance": {
     "fresh_official_download_required": true,
     "fresh_hashes_only": true,
