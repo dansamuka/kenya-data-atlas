@@ -21,7 +21,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   matuga-fresh-review-context:
@@ -29,6 +29,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - name: Install deterministic PDF/image tooling
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils python3-pil
       - name: Fresh-download governed salvage-A sources
@@ -62,6 +64,20 @@ jobs:
           /tmp/matuga-form34b-page3-250dpi.png
       - name: Record manifest digest
         run: sha256sum /tmp/matuga-fresh-review-context.json | tee /tmp/matuga-fresh-review-context.sha256
+      - name: Publish temporary branch review image for independent visual inspection
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          mkdir -p review-artifacts/p23/matuga
+          cp /tmp/matuga-form34b-page3-250dpi.png review-artifacts/p23/matuga/page3-250dpi.png
+          cp /tmp/matuga-fresh-review-context.json review-artifacts/p23/matuga/manifest.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f review-artifacts/p23/matuga/page3-250dpi.png review-artifacts/p23/matuga/manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "P23: publish temporary Matuga review image"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
       - name: Upload fresh Matuga review evidence locator
         uses: actions/upload-artifact@v4
         with:
