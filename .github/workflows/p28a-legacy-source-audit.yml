@@ -53,6 +53,7 @@ jobs:
         run: |
           npm run catalogue:build
           npm run indicators:build
+          npm run p06:direction
       - name: Build deterministic P28A audit outputs
         run: node scripts/p28/build-legacy-source-audit.mjs
       - name: Validate P28A audit coverage and tiers
@@ -78,6 +79,7 @@ jobs:
           git push origin HEAD:${{ github.head_ref }}
           npm run catalogue:build
           npm run indicators:build
+          npm run p06:direction
           node scripts/p28/build-legacy-source-audit.mjs
           git diff --exit-code -- data/catalogue/registry data/indicators/registry data/audit/legacy-*
       - name: Show P28A summary
