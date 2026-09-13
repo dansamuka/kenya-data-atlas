@@ -1,0 +1,54 @@
+{
+  "schema_version": "kda.p23.turnout-salvage-tranche.v1",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "level": "constituency",
+  "source_queue": "data/p23/never-attempted-constituencies.json",
+  "source_triage": "data/p23/turnout-followup-triage.json",
+  "purpose": "Recover official-source locators for the seventh governed batch of prior non-promotable P23 turnout attempts without inheriting any prior verification, hashes, values, or promotion state.",
+  "governance": {
+    "promotion_authorized_by_this_file": false,
+    "no_promotion": true,
+    "no_inheritance": true,
+    "locator_recovery_only": true,
+    "prior_pr_evidence_is_noncanonical": true,
+    "prior_pr_values_must_not_be_copied": true,
+    "prior_pr_hashes_must_not_be_copied": true,
+    "fresh_official_download_required_before_review": true,
+    "fresh_hashes_required_before_review": true,
+    "required_render_dpi_for_any_new_source_verification": 250,
+    "canonical_turnout_values_must_not_be_written_by_this_tranche": true
+  },
+  "tranche": {
+    "id": "salvage-g",
+    "count": 8,
+    "selection_rule": "Rows 49-56 of the canonical 85-row salvage queue, derived as never-attempted-constituencies.json minus turnout-followup-triage.json genuinely_untouched.constituencies, preserving source-queue order.",
+    "rows": [
+      {"geo_code":"KEN-C019-CON094","name":"Tetu","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-tetu-source-verification.json"],"prior_disposition":"arithmetic_mismatch"}},
+      {"geo_code":"KEN-C019-CON096","name":"Mathira","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[145],"files":["data/p23/form34b-mathira-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C019-CON097","name":"Othaya","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[144],"files":["data/p23/form34b-othaya-source-verification.json"],"prior_disposition":"partial_unresolved_registered_voters_column_absent"}},
+      {"geo_code":"KEN-C019-CON099","name":"Nyeri Town","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-nyeri-town-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C020-CON100","name":"Mwea","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[145],"files":["data/p23/form34b-mwea-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C020-CON101","name":"Gichugu","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[144],"files":["data/p23/form34b-gichugu-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}},
+      {"geo_code":"KEN-C020-CON103","name":"Kirinyaga Central","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[143],"files":["data/p23/form34b-kirinyaga-central-source-verification.json"],"prior_disposition":"denominator_mismatch"}},
+      {"geo_code":"KEN-C021-CON105","name":"Mathioya","state":"locator_recovered_pending_fresh_review","prior_locator":{"pull_requests":[145],"files":["data/p23/form34b-mathioya-source-verification.json"],"prior_disposition":"previously_promotion_eligible_noncanonical"}}
+    ]
+  },
+  "allowed_next_states": [
+    "fresh_official_source_located_unreviewed",
+    "fresh_official_source_not_located",
+    "fresh_source_reviewed_nonpromotable",
+    "fresh_source_verification_candidate"
+  ],
+  "forbidden_until_fresh_source_review": [
+    "source_verified",
+    "promotion_eligible",
+    "explicit_materialization_authorized"
+  ],
+  "notes": [
+    "Closed PRs #143-#145 are locator history only and are not canonical evidence.",
+    "A prior source URL or form id may be used to find the official source candidate, but the source must be downloaded again and hashed again before any new review.",
+    "No prior review-context image hash may be copied or relabelled as a fresh 250-DPI review.",
+    "Any new source-verification artifact must independently satisfy the existing machine-review-context, row-reconciliation, denominator, arithmetic, and promotion-contract gates."
+  ]
+}
