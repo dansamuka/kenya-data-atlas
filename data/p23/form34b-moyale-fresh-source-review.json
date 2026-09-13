@@ -1,0 +1,62 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-MOYALE-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C010-CON045",
+  "constituency_code": 45,
+  "constituency_name": "Moyale",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Moyale Form 34B from the governed salvage-B exactly-250-DPI artifact. Constituency identity and the results table are visible, but the dark aggregate TOTAL row is not sufficiently legible for reliable independent transcription of all required turnout integers; therefore the row remains source_unreadable and non-promotable.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-b.json"
+  },
+  "fresh_source": {
+    "form_id": 277673,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277673",
+    "source_pdf_sha256": "fc0425851ab85b8471984864b5c282fdd2ccada0bb4c1cc567628457ef61e3aa",
+    "page_number": 2,
+    "render_dpi": 250,
+    "full_page_image_sha256": "bae8dd36aed7ab3a9b138deb08eee610b244151160c9c42e72b728846cfad0ce",
+    "review_context_image_sha256": "bae8dd36aed7ab3a9b138deb08eee610b244151160c9c42e72b728846cfad0ce",
+    "identity_page_number": 1,
+    "identity_page_image_sha256": "5cc430f690a7bf35cacde988a08be2b3546aa0ab9b51abf08940b445d065efbc",
+    "page_count": 3,
+    "workflow_run_id": 34756901800,
+    "workflow_head_sha": "c43819c9ad2ac5de12cc8fcc17cd85020080cf4e",
+    "artifact_id": 10317568226,
+    "artifact_sha256": "f821b096dd7b781ede18f0fe73082d7bf10f415ffb1808253df240dcee26804e",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T18:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "This review used only the fresh official PDF and exactly-250-DPI page images from workflow artifact 10317568226. Closed PR #143 is locator history only; no prior result value, verification state, source hash, image hash or promotion state was inherited.",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh page 1 visibly identifies FORM 34 B, MOYALE, constituency code 045 and Marsabit county code 010",
+    "result_table_present": true,
+    "total_row_present": true,
+    "total_row_legibility": "insufficient_for_reliable_independent_transcription",
+    "finding": "The fresh page-2 TOTAL row is present but is printed over a very dark green band with watermark interference and compressed/blurred digits. Some individual characters appear partially discernible, but the full required registered-voter, candidate-total, Total Valid Votes and rejected-ballot integers cannot all be transcribed with source-verification confidence. The contract prohibits silently correcting or inferring digits to force arithmetic or denominator reconciliation, so no result integer is accepted from this review."
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 2, "source_image_sha256": "bae8dd36aed7ab3a9b138deb08eee610b244151160c9c42e72b728846cfad0ce", "verified_value": null, "verification_method": "independent_visual_review_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_unreadable"},
+    "total_valid_votes": {"page_number": 2, "source_image_sha256": "bae8dd36aed7ab3a9b138deb08eee610b244151160c9c42e72b728846cfad0ce", "verified_value": null, "verification_method": "independent_visual_review_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_unreadable"},
+    "rejected_ballots": {"page_number": 2, "source_image_sha256": "bae8dd36aed7ab3a9b138deb08eee610b244151160c9c42e72b728846cfad0ce", "verified_value": null, "verification_method": "independent_visual_review_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_unreadable"}
+  },
+  "governed_denominator_context": {
+    "derivation": "Exact sum of the four pinned Moyale ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [9614, 8376, 10431, 15692],
+    "governed_registered_voters": 44113,
+    "form_denominator_comparison_performed": false,
+    "reason": "The fresh form TOTAL-row registered-voter integer is not accepted as source-verified because the aggregate row is insufficiently legible."
+  },
+  "verification_state": "source_unreadable",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_source_unreadable",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "No turnout percentage, ballots-cast value, candidate aggregate, or canonical turnout observation is materialized. A future review may proceed only from a newly governed source image or other independently approved evidence path that satisfies the existing extraction contract."
+}
