@@ -1,0 +1,27 @@
+name: P23 Mvita fresh source review
+
+on:
+  pull_request:
+    paths:
+      - data/p23/form34b-mvita-fresh-source-review.json
+      - scripts/p23/validate-mvita-fresh-source-review.mjs
+      - .github/workflows/p23-mvita-fresh-source-review.yml
+  push:
+    branches: [main]
+    paths:
+      - data/p23/form34b-mvita-fresh-source-review.json
+      - scripts/p23/validate-mvita-fresh-source-review.mjs
+      - .github/workflows/p23-mvita-fresh-source-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-mvita-fresh-source-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate fresh 250-DPI source review and no-promotion state
+        run: node scripts/p23/validate-mvita-fresh-source-review.mjs data/p23/form34b-mvita-fresh-source-review.json
