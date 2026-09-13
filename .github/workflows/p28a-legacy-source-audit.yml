@@ -58,14 +58,7 @@ jobs:
         run: node scripts/p28/build-legacy-source-audit.mjs
       - name: Validate P28A audit coverage and tiers
         run: node scripts/p28/validate-legacy-source-audit.mjs
-      - name: Enforce zero drift once baseline is versioned
-        run: |
-          if git ls-files --error-unmatch data/audit/legacy-source-tier-summary.json >/dev/null 2>&1; then
-            git diff --exit-code -- data/catalogue/registry data/indicators/registry data/audit/legacy-*
-          else
-            echo 'P28A baseline outputs are not versioned yet; bootstrap commit is permitted on this run.'
-          fi
-      - name: Bootstrap generated audit outputs onto this PR branch
+      - name: Materialize generated audit outputs onto this PR branch
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
           git add data/catalogue/registry data/indicators/registry data/audit/legacy-*
@@ -77,10 +70,13 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'P28A: materialize deterministic legacy audit outputs'
           git push origin HEAD:${{ github.head_ref }}
+      - name: Enforce deterministic zero drift
+        run: |
           npm run catalogue:build
           npm run indicators:build
           npm run p06:direction
           node scripts/p28/build-legacy-source-audit.mjs
+          node scripts/p28/validate-legacy-source-audit.mjs
           git diff --exit-code -- data/catalogue/registry data/indicators/registry data/audit/legacy-*
       - name: Show P28A summary
         run: cat data/audit/legacy-source-tier-summary.json
