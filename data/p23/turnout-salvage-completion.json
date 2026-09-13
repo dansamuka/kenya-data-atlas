@@ -1,0 +1,11 @@
+{
+  "schema_version":"kda.p23.turnout-salvage-completion.v1",
+  "as_of":"2026-09-13",
+  "indicator_code":"IND-TURNOUT-HISTORY",
+  "canonical_salvage_count":85,
+  "governed_positions":{"first":1,"last":85,"complete":true},
+  "tranches":["salvage-a","salvage-b","salvage-c","salvage-d","salvage-e","salvage-f","salvage-g","salvage-h","salvage-i","salvage-j","salvage-k"],
+  "governance":{"promotion_authorized_by_this_file":false,"no_promotion":true,"no_inheritance":true,"locator_recovery_only":true,"fresh_official_download_required":true,"fresh_hashes_required":true,"required_render_dpi":250},
+  "meaning":"Completion here means every row in the governed 85-row salvage queue has a deterministic locator-only tranche assignment. It does not mean any row is source verified, promotion eligible, or materialized.",
+  "next_phase":"Freshly download and independently review official sources under the existing P23 machine-review-context, row-reconciliation, denominator, arithmetic, and promotion-contract gates."
+}
