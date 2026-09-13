@@ -1,0 +1,51 @@
+{
+  "schema_version": "kda.p23.turnout-salvage-review-outcomes.v1",
+  "as_of": "2026-09-13",
+  "purpose": "Record fresh independent visual review outcomes for governed P23 turnout salvage rows that cannot advance to source verification, without inheriting prior values or authorizing promotion.",
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "result_values_forbidden": true,
+    "fresh_official_source_required": true,
+    "fresh_hashes_required": true,
+    "required_render_dpi": 250,
+    "canonical_turnout_values_must_not_be_written": true
+  },
+  "outcomes": [
+    {
+      "geo_code": "KEN-C003-CON011",
+      "name": "Kilifi North",
+      "state": "fresh_source_reviewed_nonpromotable",
+      "reason": "official_pdf_missing_results_pages",
+      "fresh_source_provenance": {
+        "workflow_run_id": 34747327457,
+        "workflow_head_sha": "d066ec55415a0bc76b836f5763e20bb93a216dcd",
+        "artifact_id": 10313879563,
+        "artifact_sha256": "01aba603884347a46d49bf42df4e994adc989815f65e7ecb23ef43d84ed01452",
+        "source_pdf_sha256": "1d74d863548f807c05ac001b9e8c9a9da752ab32c144a930c136870f6170e4b6"
+      },
+      "review_context": {
+        "render_dpi": 250,
+        "review_context_image_sha256": "e4fbe53c671b3991999233b71e22ffc2d992cc5ba44d54435cf98dd117cc773d",
+        "width_px": 4132,
+        "height_px": 2921,
+        "served_pdf_page_count": 1,
+        "reviewed_pdf_page_number": 1,
+        "visible_form_page_label": "Page 4 of 4"
+      },
+      "review": {
+        "reviewer_class": "independent_visual_source_image_review",
+        "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+        "source_image_legibility": "clear",
+        "form_type_visually_confirmed": true,
+        "constituency_identity_visually_confirmed": false,
+        "result_table_present": false,
+        "total_row_present": false,
+        "finding": "The freshly downloaded official PDF contains one served page only. The rendered page visibly identifies itself as Page 4 of 4 and contains the Form 34B handing-over/taking-over and candidate-agent section, not the polling-station results table or constituency TOTAL row. The required result fields therefore cannot be independently source-read from the official PDF served in this fresh download."
+      },
+      "source_verification_granted": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
