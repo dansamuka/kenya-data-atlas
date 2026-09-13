@@ -18,32 +18,9 @@
       "state": "fresh_source_reviewed_nonpromotable",
       "reason": "denominator_mismatch",
       "source_review_file": "data/p23/form34b-mvita-fresh-source-review.json",
-      "fresh_source_provenance": {
-        "workflow_run_id": 34747813707,
-        "workflow_head_sha": "6e1bdffad9d86805e67c33c3872b4ee02fcf3aba",
-        "artifact_id": 10315030586,
-        "artifact_sha256": "855eacb4640676c29db50b0f83858f3e920fe139236e5e89f6b0168d5ec2909f",
-        "source_pdf_sha256": "f6e9b644935aa922f47e89f16b1b5c72d0a143555c4b499da267c8110bfba637"
-      },
-      "review_context": {
-        "render_dpi": 250,
-        "review_context_image_sha256": "6ca268e151e5b5e62d3b0a7d3453cd827e04a13048bf0bb469cdb0ec13c8d297",
-        "width_px": 2560,
-        "height_px": 250,
-        "served_pdf_page_count": 4,
-        "reviewed_pdf_page_number": 3,
-        "visible_form_page_label": "CON 006 03/18"
-      },
-      "review": {
-        "reviewer_class": "independent_visual_source_image_review",
-        "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
-        "source_image_legibility": "clear",
-        "form_type_visually_confirmed": true,
-        "constituency_identity_visually_confirmed": true,
-        "result_table_present": true,
-        "total_row_present": true,
-        "finding": "The fresh 250-DPI Form 34B TOTAL row is legible and internally reviewed, but the printed registered-voter denominator does not reconcile to the governed constituency denominator. The separately validated fresh Mvita source-review artifact records the special-facility explanation and keeps the row promotion-blocked."
-      },
+      "fresh_source_provenance": {"workflow_run_id":34747813707,"workflow_head_sha":"6e1bdffad9d86805e67c33c3872b4ee02fcf3aba","artifact_id":10315030586,"artifact_sha256":"855eacb4640676c29db50b0f83858f3e920fe139236e5e89f6b0168d5ec2909f","source_pdf_sha256":"f6e9b644935aa922f47e89f16b1b5c72d0a143555c4b499da267c8110bfba637"},
+      "review_context": {"render_dpi":250,"review_context_image_sha256":"6ca268e151e5b5e62d3b0a7d3453cd827e04a13048bf0bb469cdb0ec13c8d297","width_px":2560,"height_px":250,"served_pdf_page_count":4,"reviewed_pdf_page_number":3,"visible_form_page_label":"CON 006 03/18"},
+      "review": {"reviewer_class":"independent_visual_source_image_review","reviewed_by":"OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent","source_image_legibility":"clear","form_type_visually_confirmed":true,"constituency_identity_visually_confirmed":true,"result_table_present":true,"total_row_present":true,"finding":"The fresh 250-DPI Form 34B TOTAL row is legible and internally reviewed, but the printed registered-voter denominator does not reconcile to the governed constituency denominator. The separately validated fresh Mvita source-review artifact records the special-facility explanation and keeps the row promotion-blocked."},
       "source_verification_granted": false,
       "promotion_authorized_by_this_record": false,
       "canonical_turnout_written": false
@@ -53,32 +30,9 @@
       "name": "Kilifi North",
       "state": "fresh_source_reviewed_nonpromotable",
       "reason": "official_pdf_missing_results_pages",
-      "fresh_source_provenance": {
-        "workflow_run_id": 34747327457,
-        "workflow_head_sha": "d066ec55415a0bc76b836f5763e20bb93a216dcd",
-        "artifact_id": 10313879563,
-        "artifact_sha256": "01aba603884347a46d49bf42df4e994adc989815f65e7ecb23ef43d84ed01452",
-        "source_pdf_sha256": "1d74d863548f807c05ac001b9e8c9a9da752ab32c144a930c136870f6170e4b6"
-      },
-      "review_context": {
-        "render_dpi": 250,
-        "review_context_image_sha256": "e4fbe53c671b3991999233b71e22ffc2d992cc5ba44d54435cf98dd117cc773d",
-        "width_px": 4132,
-        "height_px": 2921,
-        "served_pdf_page_count": 1,
-        "reviewed_pdf_page_number": 1,
-        "visible_form_page_label": "Page 4 of 4"
-      },
-      "review": {
-        "reviewer_class": "independent_visual_source_image_review",
-        "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
-        "source_image_legibility": "clear",
-        "form_type_visually_confirmed": true,
-        "constituency_identity_visually_confirmed": false,
-        "result_table_present": false,
-        "total_row_present": false,
-        "finding": "The freshly downloaded official PDF contains one served page only. The rendered page visibly identifies itself as Page 4 of 4 and contains the Form 34B handing-over/taking-over and candidate-agent section, not the polling-station results table or constituency TOTAL row. The required result fields therefore cannot be independently source-read from the official PDF served in this fresh download."
-      },
+      "fresh_source_provenance": {"workflow_run_id":34747327457,"workflow_head_sha":"d066ec55415a0bc76b836f5763e20bb93a216dcd","artifact_id":10313879563,"artifact_sha256":"01aba603884347a46d49bf42df4e994adc989815f65e7ecb23ef43d84ed01452","source_pdf_sha256":"1d74d863548f807c05ac001b9e8c9a9da752ab32c144a930c136870f6170e4b6"},
+      "review_context": {"render_dpi":250,"review_context_image_sha256":"e4fbe53c671b3991999233b71e22ffc2d992cc5ba44d54435cf98dd117cc773d","width_px":4132,"height_px":2921,"served_pdf_page_count":1,"reviewed_pdf_page_number":1,"visible_form_page_label":"Page 4 of 4"},
+      "review": {"reviewer_class":"independent_visual_source_image_review","reviewed_by":"OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent","source_image_legibility":"clear","form_type_visually_confirmed":true,"constituency_identity_visually_confirmed":false,"result_table_present":false,"total_row_present":false,"finding":"The freshly downloaded official PDF contains one served page only. The rendered page visibly identifies itself as Page 4 of 4 and contains the Form 34B handing-over/taking-over and candidate-agent section, not the polling-station results table or constituency TOTAL row. The required result fields therefore cannot be independently source-read from the official PDF served in this fresh download."},
       "source_verification_granted": false,
       "promotion_authorized_by_this_record": false,
       "canonical_turnout_written": false
@@ -89,32 +43,22 @@
       "state": "fresh_source_reviewed_nonpromotable",
       "reason": "denominator_mismatch",
       "source_review_file": "data/p23/form34b-matuga-fresh-source-review.json",
-      "fresh_source_provenance": {
-        "workflow_run_id": 34747991023,
-        "workflow_head_sha": "59ec9a4f1f0f2ce5d40f5cd08c8a0cf507649ef6",
-        "artifact_id": 10315105932,
-        "artifact_sha256": "1bb43299d51f30587480efd6cb83d59f3c38f0d3b94483de9482a40b3ec21d5c",
-        "source_pdf_sha256": "bc902f92afcd6fcac25db35d1f79aab8d4a15a0d7e8690b1958d18d1393418db"
-      },
-      "review_context": {
-        "render_dpi": 250,
-        "review_context_image_sha256": "03bd3495accd7f1d1d5277aa117245efa17a80bd4c0959d57a69187a0e83544b",
-        "width_px": 2923,
-        "height_px": 4134,
-        "served_pdf_page_count": 4,
-        "reviewed_pdf_page_number": 3,
-        "visible_form_page_label": "CON 009 03/18"
-      },
-      "review": {
-        "reviewer_class": "independent_visual_source_image_review",
-        "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
-        "source_image_legibility": "clear",
-        "form_type_visually_confirmed": true,
-        "constituency_identity_visually_confirmed": true,
-        "result_table_present": true,
-        "total_row_present": true,
-        "finding": "The fresh exactly-250-DPI Matuga Form 34B TOTAL row is clear and internally reconciles, but its printed registered-voter denominator is 63 above the independently governed ward-summed denominator. Two visible special-facility rows account for exactly that delta, so the separately validated Matuga review preserves the row as a denominator mismatch with promotion blocked."
-      },
+      "fresh_source_provenance": {"workflow_run_id":34747991023,"workflow_head_sha":"59ec9a4f1f0f2ce5d40f5cd08c8a0cf507649ef6","artifact_id":10315105932,"artifact_sha256":"1bb43299d51f30587480efd6cb83d59f3c38f0d3b94483de9482a40b3ec21d5c","source_pdf_sha256":"bc902f92afcd6fcac25db35d1f79aab8d4a15a0d7e8690b1958d18d1393418db"},
+      "review_context": {"render_dpi":250,"review_context_image_sha256":"03bd3495accd7f1d1d5277aa117245efa17a80bd4c0959d57a69187a0e83544b","width_px":2923,"height_px":4134,"served_pdf_page_count":4,"reviewed_pdf_page_number":3,"visible_form_page_label":"CON 009 03/18"},
+      "review": {"reviewer_class":"independent_visual_source_image_review","reviewed_by":"OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent","source_image_legibility":"clear","form_type_visually_confirmed":true,"constituency_identity_visually_confirmed":true,"result_table_present":true,"total_row_present":true,"finding":"The fresh exactly-250-DPI Matuga Form 34B TOTAL row is clear and internally reconciles, but its printed registered-voter denominator is 63 above the independently governed ward-summed denominator. Two visible special-facility rows account for exactly that delta, so the separately validated Matuga review preserves the row as a denominator mismatch with promotion blocked."},
+      "source_verification_granted": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C003-CON017",
+      "name": "Magarini",
+      "state": "fresh_source_reviewed_nonpromotable",
+      "reason": "denominator_mismatch",
+      "source_review_file": "data/p23/form34b-magarini-fresh-source-review.json",
+      "fresh_source_provenance": {"workflow_run_id":34747991023,"workflow_head_sha":"59ec9a4f1f0f2ce5d40f5cd08c8a0cf507649ef6","artifact_id":10315105932,"artifact_sha256":"1bb43299d51f30587480efd6cb83d59f3c38f0d3b94483de9482a40b3ec21d5c","source_pdf_sha256":"4eacf3ac1ae7dcd03ad11daac1e7b841e71f555df14a369c8cb9dac5a85c70ba"},
+      "review_context": {"render_dpi":250,"review_context_image_sha256":"6cb26cb7fc6957bf1e2d33ffd460f9ae94ab1ea0eaf5cd9e596c2f0335fd9edc","width_px":2923,"height_px":4134,"served_pdf_page_count":4,"reviewed_pdf_page_number":3,"visible_form_page_label":"CON 017 02/12"},
+      "review": {"reviewer_class":"independent_visual_source_image_review","reviewed_by":"OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent","source_image_legibility":"clear","form_type_visually_confirmed":true,"constituency_identity_visually_confirmed":true,"result_table_present":true,"total_row_present":true,"finding":"The fresh exactly-250-DPI Magarini Form 34B TOTAL row reconciles internally for candidate votes and total valid votes, but its printed registered-voter denominator is 167 above the independently governed ward-summed denominator. Two visible special-facility rows account for exactly that delta, so the separately validated Magarini review preserves the row as a denominator mismatch with promotion blocked."},
       "source_verification_granted": false,
       "promotion_authorized_by_this_record": false,
       "canonical_turnout_written": false
