@@ -1,0 +1,1 @@
+P23 turnout salvage governance covers canonical positions 1-85 via tranches A-K. This marker does not authorize source verification or promotion. Fresh official download, fresh hashes, exactly 250-DPI review, reconciliation, arithmetic, and promotion-contract gates remain mandatory.
