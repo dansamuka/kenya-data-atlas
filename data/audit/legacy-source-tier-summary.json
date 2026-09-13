@@ -1,0 +1,42 @@
+{
+  "schema_version": "kda.legacy-source-tier-summary.v1",
+  "phase": "P28A",
+  "tranche": "P28A.1-P28A.2-baseline",
+  "status": "executing_manual_remediation_required",
+  "audited_at": "2026-09-12",
+  "indicator_scope_count": 54,
+  "preferred_observations_in_scope": 6007,
+  "preferred_observations_with_disposition": 6007,
+  "preferred_observation_disposition_pct": 100,
+  "closure_cells_in_scope": 3781,
+  "closure_cells_with_disposition": 3781,
+  "closure_cell_disposition_pct": 100,
+  "closure_slot_keys_covered": 5541,
+  "legacy_external_slots_without_canonical_observation": 0,
+  "source_tier_counts": {
+    "S0_direct_primary_official": 3643,
+    "S1_derived_from_primary_official": 532,
+    "S2_secondary_verified_to_identifiable_primary": 45,
+    "S3_secondary_corroborated_independent": 0,
+    "S4_probable_value_conflicting_sources": 0,
+    "S5_transparent_modelled_or_spatial_estimate": 1787,
+    "S6_governed_unavailable": 3781,
+    "S7_not_applicable": 0
+  },
+  "secondary_preferred_observation_count": 45,
+  "secondary_explicit_relabel_queue_count": 45,
+  "modelled_or_spatial_preferred_observation_count": 1787,
+  "probable_conflict_preferred_observation_count": 0,
+  "candidate_conflict_group_count": 0,
+  "governed_unavailable_reopen_queue_count": 3781,
+  "manual_review_count": 3826,
+  "successor_acceptance": {
+    "mechanical_inventory_complete": true,
+    "mechanical_tiering_complete": true,
+    "secondary_lineage_remediation_complete": false,
+    "unavailable_state_research_complete": false,
+    "conflict_adjudication_complete": true,
+    "p28a_complete": false
+  },
+  "note": "Deterministic exhaustive baseline for current registry/slot-ledger metadata. It does not claim P28A closure: manual rows still require source research, lineage reconstruction, omission promotion/retention decisions, or conflict adjudication."
+}
