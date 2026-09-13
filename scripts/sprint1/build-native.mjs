@@ -90,7 +90,7 @@ async function buildCatalogue() {
     if (releaseCodes.has(def.code)) continue;
     const ds = byCode.get(datasetDefs.find(d => d.key === def.key).code);
     const src = sources[def.source];
-    const releaseUrl = def.key === 'fuel' ? (src.secondary_current_towns_url || src.url || src.primary_url) : src.url;
+    const releaseUrl = def.key === 'fuel' ? (src.release_url || src.url || src.primary_url) : src.url;
     releases.push({
       release_id: uuid(`release:${def.code}`), release_code: def.code, dataset_id: ds.dataset_id,
       title: src.title, reference_period_start: def.start, reference_period_end: def.end,
@@ -172,7 +172,7 @@ async function buildIndicators() {
   function addObs({ seriesRow, key, start, end, periodType, label, value, method='direct', status='final', sourceClass='official', release, dataset, table='', rowLabel='', url, published='', notes='' }) {
     const oid = uuid(`observation:${key}`);
     if (obsById.has(oid)) return obsById.get(oid);
-    const badge = sourceClass === 'external' ? 'E' : ({direct:'A',aggregated:'B',interpolated:'C',modelled:'D'}[method] || null);
+    const badge = sourceClass === 'external' ? 'E' : ({direct:'A',aggregated:'B',interpolated:'C',proxy:'C',modelled:'D'}[method] || null);
     const row = {
       observation_id:oid, series_id:seriesRow.series_id, geography_id:seriesRow.geography_id, boundary_version:seriesRow.boundary_version,
       period_start:start, period_end:end, period_type:periodType, period_label:label, value:Number(value), geographic_method:method,
@@ -221,8 +221,8 @@ async function buildIndicators() {
   for (const r of fuel) {
     const geo = geoByCode.get(r.geo_code); if (!geo) throw new Error(`fuel: unknown ${r.geo_code}`);
     if (existingFuelGeo.has(geo.geography_id)) continue;
-    const s = addSeries({ code:`KDA-FUEL-PETROL-${r.geo_code}`, indicator:fuelInd, geo, unitCode:'kes_per_litre', dataset:ds.fuel, frequency:'monthly', periodType:'period', group:'EPRA-SUPER-PETROL-PRICING-TOWN-AUG2026' });
-    addObs({ seriesRow:s, key:`fuel:${r.geo_code}`, start:'2026-08-15', end:'2026-09-14', periodType:'period', label:'15 Aug–14 Sep 2026', value:r.super_petrol_kes_per_litre, release:rel.fuel, dataset:ds.fuel, rowLabel:r.pricing_town, url:sources.fuel_aug_sep_2026.secondary_current_towns_url || sources.fuel_aug_sep_2026.url, published:'', sourceClass:'external', notes:`Representative pricing town: ${r.pricing_town}. This is not a county average.${r.geo_code === 'KEN-C018' ? ' Nyandarua uses nearest published pricing town Nyahururu.' : ''}` });
+    const s = addSeries({ code:`KDA-FUEL-PETROL-${r.geo_code}`, indicator:fuelInd, geo, unitCode:'kes_per_litre', dataset:ds.fuel, frequency:'monthly', periodType:'period', method:'proxy', group:'EPRA-SUPER-PETROL-PRICING-TOWN-AUG2026' });
+    addObs({ seriesRow:s, key:`fuel:${r.geo_code}`, start:'2026-08-15', end:'2026-09-14', periodType:'period', label:'15 Aug–14 Sep 2026', value:r.super_petrol_kes_per_litre, method:'proxy', release:rel.fuel, dataset:ds.fuel, rowLabel:r.pricing_town, url:sources.fuel_aug_sep_2026.url, published:'', sourceClass:'official', notes:`Official EPRA maximum retail Super Petrol price for pricing town ${r.pricing_town}, mapped to ${geo.name} as a county reference-town proxy. This is not a county average.${r.geo_code === 'KEN-C018' ? ' Nyandarua uses nearest published pricing town Nyahururu, outside the county, and is explicitly a geographic proxy.' : ''}` });
   }
 
   for (const s of series) {
