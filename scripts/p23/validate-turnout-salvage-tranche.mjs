@@ -39,6 +39,12 @@ const specs = [
     start: 8,
     count: 8,
   },
+  {
+    id: 'salvage-c',
+    path: 'data/p23/turnout-salvage-tranche-c.json',
+    start: 16,
+    count: 8,
+  },
 ];
 
 const allowedPriorPrs = new Set([143, 144, 145]);
@@ -152,5 +158,5 @@ for (const spec of specs) {
 }
 
 if (!process.exitCode) {
-  console.log(`P23 turnout salvage tranche validation passed: ${salvageQueue.length} canonical salvage rows derived; salvage-a + salvage-b cover positions 1-16 as locator-only; fresh download + fresh hashes + exactly 250-DPI review required; no promotion.`);
+  console.log(`P23 turnout salvage tranche validation passed: ${salvageQueue.length} canonical salvage rows derived; salvage-a + salvage-b + salvage-c cover positions 1-24 as locator-only; fresh download + fresh hashes + exactly 250-DPI review required; no promotion.`);
 }
