@@ -1,0 +1,31 @@
+{
+  "schema_version": "kda.p23.form34b.machine-review-contexts.v1",
+  "as_of": "2026-09-13",
+  "purpose": "Record a reproducible fresh 250-DPI full-page visual-review context for Matuga Form 34B without extracting, verifying, or promoting any result value.",
+  "geo_code": "KEN-C002-CON009",
+  "constituency_code": 9,
+  "constituency_name": "Matuga",
+  "form_id": 277637,
+  "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277637",
+  "source_pdf_sha256": "bc902f92afcd6fcac25db35d1f79aab8d4a15a0d7e8690b1958d18d1393418db",
+  "fresh_download_state": "fresh_official_source_downloaded_unreviewed",
+  "page_number": 3,
+  "render_dpi": 250,
+  "review_context_mode": "full_page",
+  "full_page_image_sha256": "03bd3495accd7f1d1d5277aa117245efa17a80bd4c0959d57a69187a0e83544b",
+  "review_context_sha256": "03bd3495accd7f1d1d5277aa117245efa17a80bd4c0959d57a69187a0e83544b",
+  "page_width_px": 2923,
+  "page_height_px": 4134,
+  "workflow_run_id": 34750357169,
+  "workflow_head_sha": "c21de6bf2dcc799bad0ed00ed22a336d810e9bb0",
+  "governance": {
+    "fresh_official_download_required": true,
+    "fresh_hashes_only": true,
+    "no_inheritance": true,
+    "historical_evidence_used_for_page_locator_only": true,
+    "no_result_value_extraction": true,
+    "no_ocr_result_promotion": true,
+    "promotion_authorized": false,
+    "review_context_is_evidence_locator_only_until_independent_visual_review": true
+  }
+}
