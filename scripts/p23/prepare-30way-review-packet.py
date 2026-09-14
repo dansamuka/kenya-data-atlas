@@ -85,8 +85,6 @@ def main():
         if row.get('promotion_authorized') is not False or row.get('canonical_turnout_written') is not False:
             raise SystemExit('promotion/canonical-write invariant failed')
 
-        context_path = pathlib.Path(row['review_context_file'])
-        # The stored path is the producer's absolute /tmp path; resolve by geo-code in downloaded artifact.
         matches = list(root.rglob(f"{row['geo_code']}/review-context.json"))
         if len(matches) != 1:
             raise SystemExit(f"missing/ambiguous review context for {row['geo_code']}: {len(matches)}")
@@ -105,19 +103,24 @@ def main():
         if not pages:
             raise SystemExit(f"no rendered pages for {row['geo_code']}")
         page_packets = []
-        for p in pages:
+        for page_number, p in enumerate(pages, start=1):
             if p.get('render_dpi') != 250:
                 raise SystemExit(f"page DPI mismatch for {row['geo_code']}")
-            image_name = pathlib.Path(p['image']).name
+            image_name = pathlib.Path(p['file']).name
             image_matches = list(context_path.parent.rglob(image_name))
             if len(image_matches) != 1:
                 raise SystemExit(f"missing/ambiguous rendered page {image_name} for {row['geo_code']}")
             image = image_matches[0]
+            image_hash = sha256(image)
+            if image_hash != p.get('sha256'):
+                raise SystemExit(f"rendered page hash mismatch for {row['geo_code']} page {page_number}")
             page_packets.append({
-                'page_number': p.get('page_number'),
+                'page_number': page_number,
                 'render_dpi': 250,
                 'image_file': str(image.relative_to(root)),
-                'image_sha256': sha256(image),
+                'image_sha256': image_hash,
+                'width_px': p.get('width_px'),
+                'height_px': p.get('height_px'),
             })
 
         packets.append({
