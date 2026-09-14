@@ -12,8 +12,8 @@
     {
       "geo_code": "KEN-C018-CON090", "name": "Kipipiri", "queue": "salvage",
       "source_pdf_sha256": "28f2eb98169597269e96aa03dda8912650e55e1eefe97c2facb16aa92569a25c", "page_number": 2, "review_context_image_sha256": "1aa2dc09101d4594e4f4bb0386e1090910204dce5db5c3be96790b3647c88742", "render_dpi": 250,
-      "visual_transcription": {"registered_voters": 54628, "candidate_vote_totals_in_source_column_order": [7816,28770,138,181], "total_valid_votes": 36505, "rejected_ballots": 210},
-      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 36505, "reconciles_total_valid_votes": true, "delta": 0},
+      "visual_transcription": {"registered_voters": 54628, "candidate_vote_totals_in_source_column_order": [7816,28770,138,181], "total_valid_votes": 36905, "rejected_ballots": 210},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 36905, "reconciles_total_valid_votes": true, "delta": 0},
       "governed_denominator": {"ward_values": [17474,14364,11098,11692], "sum": 54628, "form_registered_voters": 54628, "delta": 0, "reconciles": true},
       "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
     },
