@@ -24,8 +24,8 @@ jobs:
       matrix:
         shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
     env:
-      PINNED_RUN_ID: '34850237885'
-      PINNED_HEAD_SHA: '2d14b06d8bebfd4d22d275d52303fcfe2f57fd5b'
+      PINNED_RUN_ID: '34857558594'
+      PINNED_HEAD_SHA: '456377d5b27ec8a041e978d449ede293165cdba4'
       ARTIFACT_NAME: p23-final-evidence-shard-${{ matrix.shard }}
       GH_TOKEN: ${{ github.token }}
     steps:
