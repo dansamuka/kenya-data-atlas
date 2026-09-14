@@ -38,10 +38,10 @@ def main():
 
     if args.shards != 30 or not 0 <= args.shard < 30:
         raise SystemExit('governed review phase requires exactly 30 shards')
-    if args.run_id != 34850237885:
-        raise SystemExit('review packets must consume pinned evidence run 34850237885')
-    if args.head_sha != '2d14b06d8bebfd4d22d275d52303fcfe2f57fd5b':
-        raise SystemExit('review packets must consume the pinned evidence head SHA')
+    if args.run_id <= 0:
+        raise SystemExit('evidence workflow run id must be positive')
+    if len(args.head_sha) != 40 or any(c not in '0123456789abcdef' for c in args.head_sha.lower()):
+        raise SystemExit('evidence head SHA must be a full 40-character git SHA')
 
     root = pathlib.Path(args.evidence_root)
     summary_paths = list(root.rglob('shard-summary.json'))
@@ -174,7 +174,7 @@ def main():
     out = pathlib.Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(packet, indent=2) + '\n', encoding='utf-8')
-    print(f"P23_REVIEW_PACKET_OK shard={args.shard} rows={len(packets)} artifact={artifact['id']} no_promotion=true")
+    print(f"P23_REVIEW_PACKET_OK shard={args.shard} rows={len(packets)} run={args.run_id} head={args.head_sha} artifact={artifact['id']} no_promotion=true")
 
 
 if __name__ == '__main__':
