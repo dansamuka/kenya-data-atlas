@@ -1,0 +1,67 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for the two current P23 rows in dynamic parallel evidence shard 5. This file records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34838089286,
+    "workflow_head_sha": "a8e940605f7498b2d78017ece831dfa2768646d5",
+    "artifact_id": 10344524081,
+    "artifact_name": "p23-final-evidence-shard-5",
+    "artifact_digest": "sha256:87c8c399328fd4132a23c7b42a37032b2b1883c86b302c52f2b6059c6211b0e8"
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T12:28:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned dynamic-remainder workflow artifact. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C015-CON067",
+      "name": "Mwingi North",
+      "queue": "salvage",
+      "source_pdf_sha256": "6b36f1ab492dec4ad4f84a72599af5c31555403ea632ef95f92098b4e489d74e",
+      "page_number": 3,
+      "review_context_image_sha256": "2934b5f39c1610b4a8f4daa6e503a04c55c4511a57cf78dfacb56a135556b6ae",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 68829, "candidate_vote_totals_in_source_column_order": [31655, 11508, 230, 424], "total_valid_votes": 43817, "rejected_ballots": 282},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 43817, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [9131, 19921, 15877, 16471, 7429], "sum": 68829, "form_registered_voters": 68829, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C027-CON142",
+      "name": "Turbo",
+      "queue": "salvage",
+      "source_pdf_sha256": "562031860595794f7747b861f18982f736da9026168235a809099ee0fd2f2126",
+      "page_number": 3,
+      "review_context_image_sha256": "8abca847341a80175ccf857d22c056d54f62c7968b800dee02ce1ae4010dfc1c",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 120202, "candidate_vote_totals_in_source_column_order": [25950, 51062, 116, 166], "total_valid_votes": 77294, "rejected_ballots": 459},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 77294, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [13131, 16483, 16462, 26347, 16119, 31660], "sum": 120202, "form_registered_voters": 120202, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
