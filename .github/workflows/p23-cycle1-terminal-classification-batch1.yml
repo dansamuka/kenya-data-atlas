@@ -1,0 +1,88 @@
+name: P23 cycle 1 terminal classification batch 1
+
+on:
+  pull_request:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-batch1.json'
+      - '.github/workflows/p23-cycle1-terminal-classification-batch1.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-cycle1-batch1:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate terminal classifications and no-promotion contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('data/p23/p23-cycle1-terminal-classification-batch1.json')
+          d = json.loads(p.read_text())
+          assert d['schema_version'] == 'kda.p23.cycle1-terminal-classification-batch.v1'
+          g = d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi'] == 250
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          assert g['verified_rows_still_require_separate_cycle2_promotion_review'] is True
+          src = d['denominator_source']
+          assert src['commit'] == '29b269a6562262a77faf6d22ba5837f46d35df75'
+          assert src['blob_sha'] == '2bd2861bb9378b3f0b5274d8db3c41912911077f'
+
+          rows = d['rows']
+          assert len(rows) == 8
+          assert len({r['geo_code'] for r in rows}) == 8
+          allowed = {'verified', 'arithmetic_mismatch', 'denominator_mismatch'}
+          expected = {
+            'KEN-C007-CON031': 'arithmetic_mismatch',
+            'KEN-C017-CON086': 'denominator_mismatch',
+            'KEN-C024-CON132': 'arithmetic_mismatch',
+            'KEN-C025-CON133': 'denominator_mismatch',
+            'KEN-C008-CON034': 'denominator_mismatch',
+            'KEN-C017-CON087': 'verified',
+            'KEN-C025-CON134': 'verified',
+            'KEN-C026-CON137': 'verified',
+          }
+          assert {r['geo_code'] for r in rows} == set(expected)
+          for r in rows:
+              assert r['render_dpi'] == 250
+              assert len(r['source_pdf_sha256']) == 64
+              assert len(r['review_context_image_sha256']) == 64
+              assert r['promotion_eligible'] is False
+              assert r['promotion_authorized_by_this_record'] is False
+              assert r['canonical_turnout_written'] is False
+              assert r['verification_state'] in allowed
+              assert r['verification_state'] == expected[r['geo_code']]
+
+              v = r['visual_transcription']
+              votes = v['candidate_vote_totals_in_source_column_order']
+              assert len(votes) == 4 and all(isinstance(x, int) and x >= 0 for x in votes)
+              a = r['same_row_valid_vote_reconciliation']
+              assert a['candidate_vote_sum'] == sum(votes)
+              assert a['delta'] == a['candidate_vote_sum'] - v['total_valid_votes']
+              assert a['reconciles_total_valid_votes'] == (a['delta'] == 0)
+
+              den = r['governed_denominator']
+              assert den['sum'] == sum(den['ward_values'])
+              assert den['form_registered_voters'] == v['registered_voters']
+              assert den['delta'] == den['form_registered_voters'] - den['sum']
+              assert den['reconciles'] == (den['delta'] == 0)
+
+              state = r['verification_state']
+              if state == 'verified':
+                  assert a['reconciles_total_valid_votes'] is True
+                  assert den['reconciles'] is True
+              elif state == 'arithmetic_mismatch':
+                  assert a['reconciles_total_valid_votes'] is False
+              elif state == 'denominator_mismatch':
+                  assert a['reconciles_total_valid_votes'] is True
+                  assert den['reconciles'] is False
+
+              forbidden = {'turnout_pct', 'canonical_turnout', 'canonical_turnout_value', 'promotion_authorized'}
+              assert forbidden.isdisjoint(r.keys())
+
+          print('P23_CYCLE1_BATCH1 rows=8 terminal=8 verified=3 no_promotion=true')
+          PY
