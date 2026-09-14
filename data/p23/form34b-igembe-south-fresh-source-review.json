@@ -1,0 +1,78 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-IGEMBE-SOUTH-FRESH-SOURCE-REVIEW-2026-09-14",
+  "as_of": "2026-09-14",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C012-CON051",
+  "constituency_code": 51,
+  "constituency_name": "Igembe South",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Igembe South Form 34B from the governed row-scoped salvage-C exactly-250-DPI artifact. The governed five-ward denominator reconciles exactly, but the independently readable candidate aggregates, Votes Cast, Rejected Ballots and printed Total Valid Votes contain source-internal arithmetic conflicts. Preserve those conflicts without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-c.json",
+    "row_scoped_review_context": "data/p23/turnout-salvage-igembe-south-review.json"
+  },
+  "fresh_source": {
+    "form_id": 277679,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277679",
+    "source_pdf_sha256": "cbedc9c8e054799d269e3ee351a6842a115706b867459da0715d8d667b12e0e9",
+    "page_number": 5,
+    "render_dpi": 250,
+    "review_context_image_sha256": "c37091dfca64927440595fce7ae65d41e02331f5894f75426f0be7eba5069ec7",
+    "page_count": 5,
+    "workflow_run_id": 34798644897,
+    "workflow_head_sha": "929c85cd936a5209dd20065653adac7aad04e8d7",
+    "artifact_id": 10329824983,
+    "artifact_sha256": "8978197eb5f164461a9307094d8a2a854079d64262a2bd0723a26e67d3941586",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T03:15:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "This review used only the fresh official PDF and exactly-250-DPI page image from workflow artifact 10329824983 plus the independently pinned ward source used by scripts/p23/build-constituency-voters.mjs. No prior result integer, verification state, source hash, image hash or promotion state was inherited from PR #144 or any other prior review.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh page 5 visibly identifies FORM 34B, IGEMBE SOUTH, constituency code 051 and Meru county code 012",
+    "result_table_present": true,
+    "total_row_present": true,
+    "total_row_legibility": "clear",
+    "finding": "Fresh page 5 visibly prints Registered Voters 77,126; candidate aggregates 13,033, 36,399, 111 and 310; Votes Cast 49,853; Rejected Ballots 625; and Total Valid Votes 49,488. Candidate aggregates sum to 49,853, which equals printed Votes Cast but exceeds printed Total Valid Votes by 365. Printed Total Valid Votes plus Rejected Ballots equals 50,113, which exceeds printed Votes Cast by 260. The independently pinned five-ward denominator is 77,126 and reconciles exactly. These source-internal arithmetic conflicts remain unresolved, so no turnout result is promoted."
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 5, "source_image_sha256": "c37091dfca64927440595fce7ae65d41e02331f5894f75426f0be7eba5069ec7", "verified_value": 77126, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "votes_cast": {"page_number": 5, "source_image_sha256": "c37091dfca64927440595fce7ae65d41e02331f5894f75426f0be7eba5069ec7", "verified_value": 49853, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_mismatch"},
+    "rejected_ballots": {"page_number": 5, "source_image_sha256": "c37091dfca64927440595fce7ae65d41e02331f5894f75426f0be7eba5069ec7", "verified_value": 625, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 5, "source_image_sha256": "c37091dfca64927440595fce7ae65d41e02331f5894f75426f0be7eba5069ec7", "verified_value": 49488, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_mismatch"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [13033, 36399, 111, 310],
+    "candidate_vote_sum": 49853,
+    "form_printed_total_valid_votes": 49488,
+    "candidate_sum_minus_printed_total_valid_votes": 365,
+    "reconciles_total_valid_votes": false
+  },
+  "same_row_ballot_accounting_reconciliation": {
+    "form_printed_votes_cast": 49853,
+    "form_printed_total_valid_votes": 49488,
+    "form_printed_rejected_ballots": 625,
+    "valid_plus_rejected": 50113,
+    "valid_plus_rejected_minus_votes_cast": 260,
+    "reconciles_ballot_accounting": false
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the five pinned Igembe South ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [17213, 16514, 14443, 14371, 14585],
+    "governed_registered_voters": 77126,
+    "form_printed_registered_voters": 77126,
+    "registered_voters_delta": 0,
+    "registered_voters_reconciles": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "No turnout percentage, canonical ballots-cast value, series or canonical turnout observation is materialized. Exact denominator reconciliation is satisfied, but candidate-to-valid-vote and valid-plus-rejected-to-votes-cast arithmetic do not reconcile; the no-promotion rule therefore remains binding."
+}
