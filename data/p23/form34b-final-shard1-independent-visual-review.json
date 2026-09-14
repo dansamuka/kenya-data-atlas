@@ -1,0 +1,136 @@
+{
+  "schema_version": "kda.p23.form34b-independent-visual-review-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Record independent direct visual readings of the final Form 34B TOTAL rows for the four constituencies in final 32-way evidence shard 1. This batch verifies source legibility and same-row candidate arithmetic only. It does not perform or inherit the governed constituency registered-voter denominator reconciliation and therefore does not authorize turnout materialization or promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34807864713,
+    "workflow_head_sha": "5049c9536f652999809abe67227baa29db87d8ce",
+    "artifact_id": 10333642884,
+    "artifact_name": "p23-final-evidence-shard-1",
+    "artifact_digest": "sha256:6ed359fc4a479baa260334df6d5a818c8bc6884bed86955f617fd064c9438bac"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "denominator_reconciliation_required_before_verification": true,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T06:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the freshly generated exactly-250-DPI page images in the pinned final 32-way workflow artifact. No prior result-value extraction was consulted for these four rows before transcription. The governing worklist supplied only constituency identity, fresh PDF hashes, page hashes and no-promotion state."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C007-CON027",
+      "name": "Garissa Township",
+      "queue": "salvage",
+      "source_pdf_sha256": "34a6b2b04f4e945d30f309d9fd19c76a0335906429c1fb62be9612b2761b18d7",
+      "page_number": 2,
+      "render_dpi": 250,
+      "review_context_image_sha256": "2f915b4961de6dc225f9a0144530f276762ef23f84d73674db146492c65c96a3",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 53293,
+        "candidate_vote_totals_in_source_column_order": [16925, 8031, 18, 112],
+        "total_valid_votes": 25086,
+        "rejected_ballots": 228
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 25086,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C017-CON084",
+      "name": "Kilome",
+      "queue": "salvage",
+      "source_pdf_sha256": "3d0ed8c0a0ab50006553ff4e7ef1d8e72736d7b6dfaa36271489880b27c24137",
+      "page_number": 2,
+      "render_dpi": 250,
+      "review_context_image_sha256": "fe62d3f26d50c6751b5fef6a5b20687467ac194893afa3d3063b1c47766f7f83",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 59178,
+        "candidate_vote_totals_in_source_column_order": [28166, 7023, 82, 233],
+        "total_valid_votes": 35504,
+        "rejected_ballots": 240
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 35504,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C024-CON131",
+      "name": "Kacheliba",
+      "queue": "salvage",
+      "source_pdf_sha256": "3eb21f9f1431a9f4d19b1d7e2b8f4e91bed4fa108f7f0adb3dac0e281ece8aac",
+      "page_number": 3,
+      "render_dpi": 250,
+      "review_context_image_sha256": "fb134c50c8a369a75e87cc6256e55e20a0788c04143ffd381a9cbc19ad6641e9",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 51146,
+        "candidate_vote_totals_in_source_column_order": [16767, 24445, 12, 38],
+        "total_valid_votes": 41262,
+        "rejected_ballots": 94
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 41262,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C024-CON129",
+      "name": "Kapenguria",
+      "queue": "untouched",
+      "source_pdf_sha256": "e21afdc9a2cf804609e3003384e638aace1c133970d45d9e02e260e84bc745c3",
+      "page_number": 4,
+      "render_dpi": 250,
+      "review_context_image_sha256": "c97182f998ee652d843d86807e50d67088d5268bc6ecbc7c1be7594ce79976ca",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 66556,
+        "candidate_vote_totals_in_source_column_order": [15042, 35242, 57, 101],
+        "total_valid_votes": 50442,
+        "rejected_ballots": 390
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 50442,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
