@@ -20,9 +20,9 @@
     "canonical_turnout_values_must_not_be_written_by_this_tranche": true
   },
   "tranche": {
-    "id": "salvage-c-isiolo-south-row-review",
+    "id": "salvage-c",
     "count": 1,
-    "selection_rule": "Single-row review context for KEN-C011-CON050 selected from governed salvage-C after Isiolo North review merged to main.",
+    "selection_rule": "Single-row governed subset of canonical salvage-c for KEN-C011-CON050, selected after Isiolo North review merged to main.",
     "rows": [
       {
         "geo_code": "KEN-C011-CON050",
@@ -49,6 +49,7 @@
   ],
   "notes": [
     "Prior PR #145 is locator history only and is not canonical evidence.",
+    "This row-scoped file must remain an exact subset of canonical data/p23/turnout-salvage-tranche-c.json.",
     "Only the governed locator may be reused; all source bytes and hashes must be freshly obtained.",
     "No prior result integer, verification state, rendered-image hash, or promotion state may be copied into the fresh review.",
     "Any subsequent source-verification artifact must independently satisfy the existing machine-review-context, row-reconciliation, denominator, arithmetic, and promotion-contract gates."
