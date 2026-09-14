@@ -1,0 +1,108 @@
+name: P23 final 32-way evidence cycle
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-final-32way-evidence-cycle.yml
+      - scripts/p23/run-final-32way-evidence-cycle.py
+      - scripts/p23/fresh-review-context-untouched-row.py
+      - data/p23/turnout-followup-triage.json
+      - data/p23/turnout-salvage-review-outcomes.json
+      - data/p23/turnout-salvage-tranche-*.json
+      - data/p23/form34b-source-index-contract.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-worker:
+    name: evidence shard ${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 32
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF renderer
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Run governed evidence shard
+        run: >-
+          python3 scripts/p23/run-final-32way-evidence-cycle.py
+          --shard ${{ matrix.shard }}
+          --shards 32
+          --output-root /tmp/p23-final-${{ matrix.shard }}
+      - name: Validate shard summary
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('/tmp/p23-final-${{ matrix.shard }}/shard-summary.json')
+          d=json.loads(p.read_text())
+          assert d['shard']==${{ matrix.shard }}
+          assert d['shards']==32
+          g=d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['result_values_forbidden'] is True
+          assert g['required_render_dpi']==250
+          assert g['independent_visual_review_still_required'] is True
+          assert g['canonical_turnout_values_must_not_be_written'] is True
+          for r in d['rows']:
+              assert r['state']=='fresh_review_context_ready_pending_independent_visual_review'
+              assert r['required_render_dpi']==250
+              assert r['promotion_authorized'] is False
+              assert r['canonical_turnout_written'] is False
+          print('P23_FINAL_SHARD_OK', d['shard'], len(d['rows']))
+          PY
+      - name: Upload isolated shard evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-final-evidence-shard-${{ matrix.shard }}
+          path: /tmp/p23-final-${{ matrix.shard }}/
+          if-no-files-found: error
+          retention-days: 2
+
+  aggregate:
+    name: deterministic final-cycle aggregation
+    needs: evidence-worker
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p23-final-evidence-shard-*
+          path: /tmp/p23-final-artifacts
+      - name: Verify exact worklist coverage and no promotion
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          triage=json.loads(pathlib.Path('data/p23/turnout-followup-triage.json').read_text())
+          registry=json.loads(pathlib.Path('data/p23/turnout-salvage-review-outcomes.json').read_text())
+          reviewed={x['geo_code'] for x in registry.get('outcomes',[])}
+          salvage=[]
+          for p in sorted(pathlib.Path('data/p23').glob('turnout-salvage-tranche-*.json')):
+              d=json.loads(p.read_text())
+              salvage.extend(d.get('tranche',{}).get('rows',[]))
+          assert len(salvage)==85
+          remaining=[r['geo_code'] for r in salvage if r['geo_code'] not in reviewed]
+          untouched=[r['geo_code'] for r in triage['genuinely_untouched']['constituencies']]
+          expected=remaining+untouched
+          summaries=list(pathlib.Path('/tmp/p23-final-artifacts').rglob('shard-summary.json'))
+          assert len(summaries)==32, len(summaries)
+          rows=[]
+          for p in summaries:
+              d=json.loads(p.read_text())
+              assert d['governance']['no_promotion'] is True
+              assert d['governance']['independent_visual_review_still_required'] is True
+              rows.extend(d['rows'])
+          got=[r['geo_code'] for r in rows]
+          assert len(got)==len(set(got)), 'duplicate final-cycle row'
+          assert set(got)==set(expected), (len(got),len(expected),set(expected)-set(got),set(got)-set(expected))
+          assert len(got)==len(expected)
+          assert all(r['state']=='fresh_review_context_ready_pending_independent_visual_review' for r in rows)
+          assert all(r['promotion_authorized'] is False and r['canonical_turnout_written'] is False for r in rows)
+          print(f'P23_FINAL_32WAY_AGGREGATE_OK rows={len(got)} shards=32 no_promotion=true')
+          PY
