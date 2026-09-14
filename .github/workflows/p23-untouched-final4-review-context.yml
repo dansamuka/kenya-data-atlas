@@ -1,0 +1,70 @@
+name: P23 untouched final-four fresh review context
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-untouched-final4-review-context.yml
+      - scripts/p23/fresh-review-context-untouched-row.py
+      - data/p23/turnout-followup-triage.json
+      - data/p23/form34b-source-index-contract.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  untouched-review-context:
+    name: ${{ matrix.geo_code }} ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - {geo_code: KEN-C024-CON129, name: Kapenguria}
+          - {geo_code: KEN-C025-CON133, name: Samburu West}
+          - {geo_code: KEN-C026-CON137, name: Endebess}
+          - {geo_code: KEN-C027-CON143, name: Moiben}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF renderer
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Fresh-download and render official IEBC source
+        run: >-
+          python3 scripts/p23/fresh-review-context-untouched-row.py
+          --geo-code '${{ matrix.geo_code }}'
+          --name '${{ matrix.name }}'
+          --output-dir '/tmp/${{ matrix.geo_code }}'
+      - name: Enforce no-promotion manifest invariants
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          geo=os.environ['GEO']
+          d=json.loads((pathlib.Path('/tmp')/geo/'review-context.json').read_text())
+          g=d['governance']
+          assert d['geo_code']==geo and d['fresh_download'] is True
+          assert g['no_inheritance'] is True and g['no_promotion'] is True
+          assert g['result_values_forbidden'] is True and g['source_review_performed'] is False
+          assert g['canonical_turnout_value_written'] is False and g['required_render_dpi']==250
+          assert d['pages'] and all(x['render_dpi']==250 for x in d['pages'])
+          forbidden={'registered_voters','total_valid_votes','rejected_ballots','turnout_pct','candidate_vote_sum','verified_value','source_verified','promotion_eligible','promotion_state','explicit_materialization_authorized'}
+          def walk(v):
+              if isinstance(v,dict):
+                  assert not (forbidden & set(v))
+                  for x in v.values(): walk(x)
+              elif isinstance(v,list):
+                  for x in v: walk(x)
+          walk(d)
+          print('P23_UNTOUCHED_FINAL4_NO_PROMOTION_OK', geo)
+          PY
+        env:
+          GEO: ${{ matrix.geo_code }}
+      - name: Upload isolated fresh review context
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-untouched-${{ matrix.geo_code }}-fresh-review-context
+          path: /tmp/${{ matrix.geo_code }}/
+          if-no-files-found: warn
+          retention-days: 2
