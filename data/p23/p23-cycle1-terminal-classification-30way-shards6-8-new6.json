@@ -1,0 +1,91 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for six current P23 rows from the successful 30-way evidence cycle, shards 6-8. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34844699737,
+    "workflow_head_sha": "cec9f2ee607653114c8dcafed3dcee6b8850d855",
+    "artifacts": [
+      {"id": 10347293045, "name": "p23-final-evidence-shard-6", "digest": "sha256:0b2843d00895fda5e3a0644440c9395a6088d971d4425d84fadc8e5781f7f71a"},
+      {"id": 10348095943, "name": "p23-final-evidence-shard-7", "digest": "sha256:3df6a096bed87c85b051b1b737091ed2a4aa196b857b88e9cc94e3eeee4be847"},
+      {"id": 10348086394, "name": "p23-final-evidence-shard-8", "digest": "sha256:db811db1c4d5372ef09b3314edc1aba7c4584f1d7555bac713681e49636dc5fb"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T13:31:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned 30-way workflow artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C015-CON070", "name": "Kitui West", "queue": "salvage",
+      "artifact": {"id": 10347293045, "name": "p23-final-evidence-shard-6", "digest": "sha256:0b2843d00895fda5e3a0644440c9395a6088d971d4425d84fadc8e5781f7f71a"},
+      "source_pdf_sha256": "abd86d38768b9f764354539640d8a8905ba03fba37f8ea59354525d44264287d", "page_number": 2, "review_context_image_sha256": "2620d90f0c028c9806dcc783cd0822875bd9de2abd0ef2e32f0f5cd43ba3312d", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 59047, "candidate_vote_totals_in_source_column_order": [27673, 8363, 143, 303], "total_valid_votes": 36482, "rejected_ballots": 443},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 36482, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [17979, 15767, 14279, 11022], "sum": 59047, "form_registered_voters": 59047, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C027-CON144", "name": "Ainabkoi", "queue": "salvage",
+      "artifact": {"id": 10347293045, "name": "p23-final-evidence-shard-6", "digest": "sha256:0b2843d00895fda5e3a0644440c9395a6088d971d4425d84fadc8e5781f7f71a"},
+      "source_pdf_sha256": "4eda67b1056a858665e78238c2ee068299c5d904b9b48fed2cf48499be2dd14a", "page_number": 2, "review_context_image_sha256": "2846040b57f04900cbcf8495534eb950eec071183a49c8439fc630928ba141f3", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 62611, "candidate_vote_totals_in_source_column_order": [8620, 35401, 50, 86], "total_valid_votes": 44157, "rejected_ballots": 251},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 44157, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [23578, 19923, 19105], "sum": 62606, "form_registered_voters": 62611, "delta": 5, "reconciles": false},
+      "verification_state": "denominator_mismatch", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C015-CON072", "name": "Kitui Central", "queue": "salvage",
+      "artifact": {"id": 10348095943, "name": "p23-final-evidence-shard-7", "digest": "sha256:3df6a096bed87c85b051b1b737091ed2a4aa196b857b88e9cc94e3eeee4be847"},
+      "source_pdf_sha256": "c2b8d78c6a992d32a61eb1cf8568e6ab268151f0f3ff99af4ae8138f4e434632", "page_number": 3, "review_context_image_sha256": "2179f1adef7efeb394c1fffcfa2c2c1072e4b326e6f5cee0210d92d2dd56bd5c", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 77787, "candidate_vote_totals_in_source_column_order": [29067, 16820, 144, 283], "total_valid_votes": 46314, "rejected_ballots": 427},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 46314, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [11759, 19538, 15931, 15135, 15401], "sum": 77764, "form_registered_voters": 77787, "delta": 23, "reconciles": false},
+      "verification_state": "denominator_mismatch", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C027-CON145", "name": "Kapseret", "queue": "salvage",
+      "artifact": {"id": 10348095943, "name": "p23-final-evidence-shard-7", "digest": "sha256:3df6a096bed87c85b051b1b737091ed2a4aa196b857b88e9cc94e3eeee4be847"},
+      "source_pdf_sha256": "20a062e914758d0583db9852f1d02150499b88d224b8e7d7c35efff45a7ea55b", "page_number": 2, "review_context_image_sha256": "d61735a739ecfd7411a6f64e2d919bed838c45a85c89fa16621a5bfda44272e7", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 74933, "candidate_vote_totals_in_source_column_order": [14900, 35218, 60, 92], "total_valid_votes": 50270, "rejected_ballots": 305},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 50270, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [15275, 15509, 11103, 8159, 24763], "sum": 74809, "form_registered_voters": 74933, "delta": 124, "reconciles": false},
+      "verification_state": "denominator_mismatch", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C016-CON075", "name": "Masinga", "queue": "salvage",
+      "artifact": {"id": 10348086394, "name": "p23-final-evidence-shard-8", "digest": "sha256:db811db1c4d5372ef09b3314edc1aba7c4584f1d7555bac713681e49636dc5fb"},
+      "source_pdf_sha256": "aeaa3c6745dc9e3b6398bd2be9294c83b15e72364610f35893d088bef94066b5", "page_number": 3, "review_context_image_sha256": "bc82b36401436072b5df7b1e79806f7ba6bd915fcbb4a1467dad750eeeab096a", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 68879, "candidate_vote_totals_in_source_column_order": [33981, 9031, 112, 238], "total_valid_votes": 43362, "rejected_ballots": 216},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 43362, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [18277, 18410, 11265, 8874, 12053], "sum": 68879, "form_registered_voters": 68879, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C027-CON146", "name": "Kesses", "queue": "salvage",
+      "artifact": {"id": 10348086394, "name": "p23-final-evidence-shard-8", "digest": "sha256:db811db1c4d5372ef09b3314edc1aba7c4584f1d7555bac713681e49636dc5fb"},
+      "source_pdf_sha256": "4d0a84f0406481467892afae4a69215e81d2c477e63cdf545a45612e07b12e4a", "page_number": 2, "review_context_image_sha256": "cb39eeb654fc2211d8a44a4926845e7713da178b7305d354cd57ed3dc3d8bdc6", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 77992, "candidate_vote_totals_in_source_column_order": [8966, 45623, 61, 88], "total_valid_votes": 54738, "rejected_ballots": 334},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 54738, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [20872, 16723, 20134, 20213], "sum": 77942, "form_registered_voters": 77992, "delta": 50, "reconciles": false},
+      "verification_state": "denominator_mismatch", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    }
+  ]
+}
