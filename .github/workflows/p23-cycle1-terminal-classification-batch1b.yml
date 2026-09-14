@@ -1,0 +1,41 @@
+name: P23 cycle 1 terminal classification batch 1b
+
+on:
+  pull_request:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-batch1b.json'
+      - '.github/workflows/p23-cycle1-terminal-classification-batch1b.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-cycle1-batch1b:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate shard 4 terminal classifications
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/p23/p23-cycle1-terminal-classification-batch1b.json').read_text())
+          g=d['governance']
+          assert g['no_inheritance'] and g['no_promotion'] and g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          rows=d['rows']
+          assert len(rows)==4
+          assert {r['geo_code'] for r in rows}=={'KEN-C008-CON035','KEN-C017-CON088','KEN-C025-CON135','KEN-C027-CON143'}
+          for r in rows:
+              assert r['verification_state']=='verified'
+              assert r['promotion_eligible'] is False
+              assert r['promotion_authorized_by_this_record'] is False
+              assert r['canonical_turnout_written'] is False
+              assert r['render_dpi']==250
+              v=r['visual_transcription']; a=r['same_row_valid_vote_reconciliation']; den=r['governed_denominator']
+              assert a['candidate_vote_sum']==sum(v['candidate_vote_totals_in_source_column_order'])==v['total_valid_votes']
+              assert a['reconciles_total_valid_votes'] is True and a['delta']==0
+              assert den['sum']==sum(den['ward_values'])==v['registered_voters']
+              assert den['form_registered_voters']==v['registered_voters']
+              assert den['reconciles'] is True and den['delta']==0
+          print('P23_CYCLE1_BATCH1B rows=4 verified=4 no_promotion=true')
+          PY
