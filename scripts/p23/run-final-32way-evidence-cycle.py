@@ -113,11 +113,11 @@ def canonical_worklist():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--shard', type=int, required=True)
-    ap.add_argument('--shards', type=int, default=32)
+    ap.add_argument('--shards', type=int, default=30)
     ap.add_argument('--output-root', required=True)
     args = ap.parse_args()
-    if args.shards != 32 or not 0 <= args.shard < args.shards:
-        raise SystemExit('this governed final cycle requires exactly 32 shards')
+    if args.shards != 30 or not 0 <= args.shard < args.shards:
+        raise SystemExit('this governed final cycle requires exactly 30 shards')
 
     rows, terminal_count, remaining_salvage_count, remaining_untouched_count = canonical_worklist()
     assigned = [row for i, row in enumerate(rows) if i % args.shards == args.shard]
@@ -158,7 +158,7 @@ def main():
         })
 
     summary = {
-        'schema_version': 'kda.p23.final-32way-evidence-cycle.v3',
+        'schema_version': 'kda.p23.final-30way-evidence-cycle.v1',
         'shard': args.shard,
         'shards': args.shards,
         'governance': {
@@ -182,7 +182,7 @@ def main():
     }
     scan_forbidden(summary)
     (root / 'shard-summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
-    print(f'P23_FINAL_32WAY shard={args.shard} assigned={len(assigned)} total_remaining={len(rows)} terminal_covered={terminal_count} no_promotion=true')
+    print(f'P23_FINAL_30WAY shard={args.shard} assigned={len(assigned)} total_remaining={len(rows)} terminal_covered={terminal_count} no_promotion=true')
 
 
 if __name__ == '__main__':
