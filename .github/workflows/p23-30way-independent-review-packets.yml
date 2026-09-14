@@ -1,0 +1,157 @@
+name: P23 30-way independent review packets
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-30way-independent-review-packets.yml
+      - scripts/p23/prepare-30way-review-packet.py
+      - scripts/p23/audit-turnout-terminal-coverage.py
+      - data/p23/p23-cycle1-terminal-classification-*.json
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  review-packet-worker:
+    name: review packet shard ${{ matrix.shard }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 30
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
+    env:
+      PINNED_RUN_ID: '34850237885'
+      PINNED_HEAD_SHA: '2d14b06d8bebfd4d22d275d52303fcfe2f57fd5b'
+      ARTIFACT_NAME: p23-final-evidence-shard-${{ matrix.shard }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve pinned artifact metadata
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p23-review-${{ matrix.shard }}
+          RUN_HEAD=$(gh api repos/${{ github.repository }}/actions/runs/${PINNED_RUN_ID} --jq '.head_sha')
+          test "$RUN_HEAD" = "$PINNED_HEAD_SHA"
+          gh api repos/${{ github.repository }}/actions/runs/${PINNED_RUN_ID}/artifacts --paginate \
+            --jq ".artifacts[] | select(.name == \"${ARTIFACT_NAME}\")" \
+            > /tmp/p23-review-${{ matrix.shard }}/artifact.json
+          python3 - <<'PY'
+          import json, pathlib, os
+          p=pathlib.Path('/tmp/p23-review-${{ matrix.shard }}/artifact.json')
+          text=p.read_text().strip()
+          assert text, 'pinned artifact not found'
+          d=json.loads(text)
+          assert d['name']==os.environ['ARTIFACT_NAME']
+          assert d['expired'] is False
+          assert d['workflow_run']['id']==int(os.environ['PINNED_RUN_ID'])
+          assert d['workflow_run']['head_sha']==os.environ['PINNED_HEAD_SHA']
+          assert d.get('digest','').startswith('sha256:')
+          print('PINNED_ARTIFACT_OK', d['id'], d['name'], d['digest'])
+          PY
+
+      - name: Download pinned shard evidence
+        run: |
+          set -euo pipefail
+          ARTIFACT_ID=$(python3 -c "import json; print(json.load(open('/tmp/p23-review-${{ matrix.shard }}/artifact.json'))['id'])")
+          gh api repos/${{ github.repository }}/actions/artifacts/${ARTIFACT_ID}/zip > /tmp/p23-review-${{ matrix.shard }}/evidence.zip
+          mkdir -p /tmp/p23-review-${{ matrix.shard }}/evidence
+          unzip -q /tmp/p23-review-${{ matrix.shard }}/evidence.zip -d /tmp/p23-review-${{ matrix.shard }}/evidence
+
+      - name: Build governed independent-review packet
+        run: >-
+          python3 scripts/p23/prepare-30way-review-packet.py
+          --shard ${{ matrix.shard }}
+          --shards 30
+          --evidence-root /tmp/p23-review-${{ matrix.shard }}/evidence
+          --artifact-metadata /tmp/p23-review-${{ matrix.shard }}/artifact.json
+          --run-id ${PINNED_RUN_ID}
+          --head-sha ${PINNED_HEAD_SHA}
+          --output /tmp/p23-review-${{ matrix.shard }}/review-packet.json
+
+      - name: Validate packet remains non-promotional
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          d=json.loads(pathlib.Path('/tmp/p23-review-${{ matrix.shard }}/review-packet.json').read_text())
+          assert d['schema_version']=='kda.p23.30way-independent-review-packet.v1'
+          assert d['shard']==${{ matrix.shard }} and d['shards']==30
+          g=d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi']==250
+          assert g['independent_visual_review_required'] is True
+          assert g['automatic_result_transcription_forbidden'] is True
+          assert g['automatic_terminal_classification_forbidden'] is True
+          assert g['promotion_authorized_by_this_packet'] is False
+          assert g['canonical_turnout_value_written'] is False
+          for r in d['rows']:
+              assert r['review_state']=='ready_for_independent_visual_terminal_classification'
+              assert all(v is None for v in r['review_fields'].values())
+              c=r['review_contract']
+              assert c['promotion_eligible'] is False
+              assert c['promotion_authorized'] is False
+              assert c['canonical_turnout_written'] is False
+              assert r['pages'] and all(p['render_dpi']==250 for p in r['pages'])
+          print('P23_REVIEW_PACKET_GOVERNANCE_OK shard=${{ matrix.shard }} rows=',len(d['rows']))
+          PY
+
+      - name: Upload review packet and pinned evidence subset
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-independent-review-packet-${{ matrix.shard }}
+          path: |
+            /tmp/p23-review-${{ matrix.shard }}/review-packet.json
+            /tmp/p23-review-${{ matrix.shard }}/artifact.json
+            /tmp/p23-review-${{ matrix.shard }}/evidence/**/review-context.json
+            /tmp/p23-review-${{ matrix.shard }}/evidence/**/*.png
+          if-no-files-found: error
+          retention-days: 2
+
+  aggregate-review-readiness:
+    name: aggregate 30-way review readiness
+    needs: review-packet-worker
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: p23-independent-review-packet-*
+          path: /tmp/p23-review-packets
+      - name: Compute exact live terminal remainder
+        run: python3 scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal-coverage.json
+      - name: Assert all 30 workers advanced the exact live remainder
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          audit=json.loads(pathlib.Path('/tmp/p23-terminal-coverage.json').read_text())
+          assert audit['canonical_queue_count']==109
+          assert audit['terminal_covered_count']==58, audit['terminal_covered_count']
+          assert audit['remaining_count']==51, audit['remaining_count']
+          expected={r['geo_code'] for r in audit['remaining']}
+          packets=list(pathlib.Path('/tmp/p23-review-packets').rglob('review-packet.json'))
+          assert len(packets)==30, len(packets)
+          shards=set(); rows=[]
+          for p in packets:
+              d=json.loads(p.read_text())
+              assert d['schema_version']=='kda.p23.30way-independent-review-packet.v1'
+              shards.add(d['shard'])
+              g=d['governance']
+              assert g['no_inheritance'] is True and g['no_promotion'] is True
+              assert g['canonical_turnout_value_written'] is False
+              rows.extend(d['rows'])
+          assert shards==set(range(30)), sorted(shards)
+          got=[r['geo_code'] for r in rows]
+          assert len(got)==51, len(got)
+          assert len(got)==len(set(got)), 'duplicate review row'
+          assert set(got)==expected, (expected-set(got),set(got)-expected)
+          assert all(r['review_state']=='ready_for_independent_visual_terminal_classification' for r in rows)
+          assert all(all(v is None for v in r['review_fields'].values()) for r in rows)
+          assert all(r['review_contract']['promotion_authorized'] is False for r in rows)
+          assert all(r['review_contract']['canonical_turnout_written'] is False for r in rows)
+          print('P23_30WAY_REVIEW_READINESS_OK workers=30 rows=51 terminal_covered=58 no_promotion=true')
+          PY
