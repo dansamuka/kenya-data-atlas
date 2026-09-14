@@ -1,0 +1,136 @@
+{
+  "schema_version": "kda.p23.form34b-independent-visual-review-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Record independent direct visual readings of the final TOTAL rows for the four constituencies in final 32-way evidence shard 0. This batch verifies source legibility and same-row candidate arithmetic only. It does not perform or inherit the governed constituency registered-voter denominator reconciliation and therefore does not authorize turnout materialization or promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34807864713,
+    "workflow_head_sha": "5049c9536f652999809abe67227baa29db87d8ce",
+    "artifact_id": 10333508463,
+    "artifact_name": "p23-final-evidence-shard-0",
+    "artifact_digest": "sha256:f089830e58621b4f9e5a6dfa15c5d5b53f8af583f8f397601128ea2bf3a438b3"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "denominator_reconciliation_required_before_verification": true,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T05:18:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the freshly generated exactly-250-DPI page images in the pinned final 32-way workflow artifact. No prior result-value extraction was consulted for these four rows before transcription. The governing worklist supplied only constituency identity, fresh PDF hashes, page hashes and no-promotion state."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C006-CON026",
+      "name": "Voi",
+      "queue": "salvage",
+      "source_pdf_sha256": "a53586ebc185ac620b3a3109f7fd4086501f622c6a77674e7c0f58b2bfd51df7",
+      "page_number": 2,
+      "render_dpi": 250,
+      "review_context_image_sha256": "43cbbe9455cbf69c3f2967dc15c791da4fdf3e65b62e2c9cc3bc90e6eaa4e579",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 61606,
+        "candidate_vote_totals_in_source_column_order": [21014, 12040, 78, 257],
+        "total_valid_votes": 33389,
+        "rejected_ballots": 357
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 33389,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C017-CON083",
+      "name": "Mbooni",
+      "queue": "salvage",
+      "source_pdf_sha256": "811dea8ae32c01d5e33815bd35842b071a6832c8823c28fed4c56f476e04473b",
+      "page_number": 3,
+      "render_dpi": 250,
+      "review_context_image_sha256": "4aa4dff946195dc72573f29911b653a4869d8fafeed0836646d02bddb1fd1b8d",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 96029,
+        "candidate_vote_totals_in_source_column_order": [50649, 9706, 122, 351],
+        "total_valid_votes": 60828,
+        "rejected_ballots": 445
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 60828,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C024-CON130",
+      "name": "Sigor",
+      "queue": "salvage",
+      "source_pdf_sha256": "238c575231242dee4ba8bdce6e8832e9719388fd08dcd4b5f1e20602d3d2adb7",
+      "page_number": 2,
+      "render_dpi": 250,
+      "review_context_image_sha256": "93c33a0b8b06a575d30667cc823609631a721a1ac0c26877d2be5e489d10045a",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 43934,
+        "candidate_vote_totals_in_source_column_order": [13774, 21261, 55, 102],
+        "total_valid_votes": 35192,
+        "rejected_ballots": 354
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 35192,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C023-CON124",
+      "name": "Turkana West",
+      "queue": "untouched",
+      "source_pdf_sha256": "4ee057149ef00991bcfe0ed8067b656e7c8a1eb69756c35235f7bcadbfe41172",
+      "page_number": 2,
+      "render_dpi": 250,
+      "review_context_image_sha256": "d4e22d13b7ef5460dcbdcaf7f7c21e52f4ac57c3ca6378e4bca303ff282aa64c",
+      "source_image_legibility": "clear",
+      "form_identity_visually_confirmed": true,
+      "total_row_label_visually_confirmed": true,
+      "visual_transcription": {
+        "registered_voters": 42673,
+        "candidate_vote_totals_in_source_column_order": [17107, 9288, 44, 86],
+        "total_valid_votes": 26525,
+        "rejected_ballots": 196
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 26525,
+        "reconciles_total_valid_votes": true
+      },
+      "denominator_reconciliation_state": "pending_separate_governed_denominator_check",
+      "verification_state": "visual_source_transcribed_pending_denominator_reconciliation",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
