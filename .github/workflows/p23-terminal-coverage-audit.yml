@@ -1,0 +1,36 @@
+name: P23 terminal coverage audit
+
+on:
+  pull_request:
+    paths:
+      - 'data/p23/**'
+      - 'scripts/p23/audit-turnout-terminal-coverage.py'
+      - '.github/workflows/p23-terminal-coverage-audit.yml'
+  workflow_dispatch:
+
+jobs:
+  audit-terminal-coverage:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit canonical 109-row terminal coverage
+        run: python scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal-coverage.json
+      - name: Enforce no-promotion audit payload
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p23-terminal-coverage.json'))
+          assert d['canonical_queue_count']==109
+          assert d['terminal_covered_count']+d['remaining_count']==109
+          g=d['governance']
+          assert g['legacy_noncanonical_source_verification_excluded'] is True
+          assert g['fresh_review_contexts_excluded'] is True
+          assert g['pending_denominator_visual_reviews_excluded'] is True
+          assert g['promotion_authorized'] is False
+          assert g['canonical_turnout_written'] is False
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p23-terminal-coverage-audit
+          path: /tmp/p23-terminal-coverage.json
+          retention-days: 2
