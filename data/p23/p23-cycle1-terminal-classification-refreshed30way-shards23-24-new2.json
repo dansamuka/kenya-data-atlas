@@ -1,0 +1,70 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for two current P23 rows from refreshed 30-way evidence shards 23-24. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34886320621,
+    "workflow_head_sha": "b646bc5aa94d47978a2aea1eb6209951afa96d78",
+    "artifacts": [
+      {"id": 10364854288, "name": "p23-final-evidence-shard-23", "digest": "sha256:dd6f6162fe579576cb84f9fe37541c4f4c341343f8b55086280507a7834ca5cd"},
+      {"id": 10365286335, "name": "p23-final-evidence-shard-24", "digest": "sha256:aacf85ddbd21ad48cf79b2f74e9d4789bb8745d0f4e86700d9fb88251cc35243"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T20:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exact 250-DPI page images in the pinned refreshed evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C012-CON052",
+      "name": "Igembe Central",
+      "queue": "untouched",
+      "artifact": {"id": 10364854288, "name": "p23-final-evidence-shard-23", "digest": "sha256:dd6f6162fe579576cb84f9fe37541c4f4c341343f8b55086280507a7834ca5cd"},
+      "source_pdf_sha256": "3a13a46db20171671fc10d1e0b9cfc6a7d5ff28b0cd4d3f40538723c43b64159",
+      "page_number": 3,
+      "review_context_image_sha256": "51a578d981e62212bd731852a232642a83c8226d85c076e90bd9a78d2e26ca3e",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 93471, "candidate_vote_totals_in_source_column_order": [13343, 45495, 165, 294], "total_valid_votes": 59297, "rejected_ballots": 428},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 59297, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [15637, 19920, 19964, 21810, 16103], "sum": 93434, "form_registered_voters": 93471, "delta": 37, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C012-CON056",
+      "name": "North Imenti",
+      "queue": "untouched",
+      "artifact": {"id": 10365286335, "name": "p23-final-evidence-shard-24", "digest": "sha256:aacf85ddbd21ad48cf79b2f74e9d4789bb8745d0f4e86700d9fb88251cc35243"},
+      "source_pdf_sha256": "0bc3e46dee680955f230c9d7c951044fed602138003b0e01f74cdf80183c19f6",
+      "page_number": 3,
+      "review_context_image_sha256": "499741af6105b02c9e0fb7cb0e856a1dbab8227409c010cdd5113652c3c5c2a8",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 96623, "candidate_vote_totals_in_source_column_order": [9680, 51696, 101, 242], "total_valid_votes": 61719, "rejected_ballots": 539},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 61719, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [23655, 14904, 19161, 21192, 17329], "sum": 96241, "form_registered_voters": 96623, "delta": 382, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
