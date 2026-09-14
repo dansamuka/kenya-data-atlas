@@ -1,4 +1,4 @@
-name: P23 final 32-way evidence cycle
+name: P23 final 30-way evidence cycle
 
 on:
   pull_request:
@@ -25,9 +25,9 @@ jobs:
     timeout-minutes: 45
     strategy:
       fail-fast: false
-      max-parallel: 32
+      max-parallel: 30
       matrix:
-        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]
     steps:
       - uses: actions/checkout@v4
       - name: Install deterministic PDF renderer
@@ -36,7 +36,7 @@ jobs:
         run: >-
           python3 scripts/p23/run-final-32way-evidence-cycle.py
           --shard ${{ matrix.shard }}
-          --shards 32
+          --shards 30
           --output-root /tmp/p23-final-${{ matrix.shard }}
       - name: Validate shard summary against live coverage
         run: |
@@ -47,8 +47,8 @@ jobs:
           d=json.loads(p.read_text())
           audit=json.loads(pathlib.Path('/tmp/p23-terminal-coverage.json').read_text())
           assert d['shard']==${{ matrix.shard }}
-          assert d['shards']==32
-          assert d['schema_version']=='kda.p23.final-32way-evidence-cycle.v3'
+          assert d['shards']==30
+          assert d['schema_version']=='kda.p23.final-30way-evidence-cycle.v1'
           assert audit['canonical_queue_count']==109
           assert audit['terminal_covered_count'] + audit['remaining_count'] == 109
           g=d['governance']
@@ -99,10 +99,12 @@ jobs:
           assert audit['terminal_covered_count'] + audit['remaining_count'] == 109
           expected=[r['geo_code'] for r in audit['remaining']]
           summaries=list(pathlib.Path('/tmp/p23-final-artifacts').rglob('shard-summary.json'))
-          assert len(summaries)==32, len(summaries)
+          assert len(summaries)==30, len(summaries)
           rows=[]
           for p in summaries:
               d=json.loads(p.read_text())
+              assert d['shards']==30
+              assert d['schema_version']=='kda.p23.final-30way-evidence-cycle.v1'
               assert d['governance']['no_promotion'] is True
               assert d['governance']['no_inheritance'] is True
               assert d['governance']['independent_visual_review_still_required'] is True
@@ -116,5 +118,5 @@ jobs:
           assert set(got)==set(expected), (set(expected)-set(got),set(got)-set(expected))
           assert all(r['state']=='fresh_review_context_ready_pending_independent_visual_review' for r in rows)
           assert all(r['promotion_authorized'] is False and r['canonical_turnout_written'] is False for r in rows)
-          print(f"P23_FINAL_32WAY_AGGREGATE_OK rows={len(got)} shards=32 terminal_covered={audit['terminal_covered_count']} canonical=109 no_promotion=true")
+          print(f"P23_FINAL_30WAY_AGGREGATE_OK rows={len(got)} shards=30 terminal_covered={audit['terminal_covered_count']} canonical=109 no_promotion=true")
           PY
