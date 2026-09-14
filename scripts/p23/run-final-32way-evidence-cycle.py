@@ -103,6 +103,8 @@ def canonical_worklist():
 
     terminal_codes = set(evidence)
     rows = [r for r in canonical if r['geo_code'] not in terminal_codes]
+    if len(terminal_codes) + len(rows) != 109:
+        raise SystemExit('terminal + remaining must equal canonical 109')
     remaining_salvage = sum(1 for r in rows if r['queue'] == 'salvage')
     remaining_untouched = sum(1 for r in rows if r['queue'] == 'untouched')
     return rows, len(terminal_codes), remaining_salvage, remaining_untouched
@@ -118,8 +120,6 @@ def main():
         raise SystemExit('this governed final cycle requires exactly 32 shards')
 
     rows, terminal_count, remaining_salvage_count, remaining_untouched_count = canonical_worklist()
-    if len(rows) != 71:
-        raise SystemExit(f'expected exact governed terminal remainder of 71 rows; saw {len(rows)}')
     assigned = [row for i, row in enumerate(rows) if i % args.shards == args.shard]
     root = pathlib.Path(args.output_root)
     root.mkdir(parents=True, exist_ok=True)
@@ -158,7 +158,7 @@ def main():
         })
 
     summary = {
-        'schema_version': 'kda.p23.final-32way-evidence-cycle.v2',
+        'schema_version': 'kda.p23.final-32way-evidence-cycle.v3',
         'shard': args.shard,
         'shards': args.shards,
         'governance': {
@@ -169,12 +169,14 @@ def main():
             'independent_visual_review_still_required': True,
             'canonical_turnout_values_must_not_be_written': True,
             'terminal_coverage_rules_mirrored': True,
+            'live_terminal_remainder': True,
         },
         'worklist': {
             'terminal_covered_count': terminal_count,
             'remaining_salvage_count': remaining_salvage_count,
             'remaining_untouched_count': remaining_untouched_count,
             'total_remaining_evidence_rows': len(rows),
+            'canonical_queue_count': 109,
         },
         'rows': results,
     }
