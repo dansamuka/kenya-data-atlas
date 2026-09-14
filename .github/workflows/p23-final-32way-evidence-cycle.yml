@@ -38,15 +38,19 @@ jobs:
           --shard ${{ matrix.shard }}
           --shards 32
           --output-root /tmp/p23-final-${{ matrix.shard }}
-      - name: Validate shard summary
+      - name: Validate shard summary against live coverage
         run: |
+          python3 scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal-coverage.json >/tmp/p23-audit.log
           python3 - <<'PY'
           import json, pathlib
           p=pathlib.Path('/tmp/p23-final-${{ matrix.shard }}/shard-summary.json')
           d=json.loads(p.read_text())
+          audit=json.loads(pathlib.Path('/tmp/p23-terminal-coverage.json').read_text())
           assert d['shard']==${{ matrix.shard }}
           assert d['shards']==32
-          assert d['schema_version']=='kda.p23.final-32way-evidence-cycle.v2'
+          assert d['schema_version']=='kda.p23.final-32way-evidence-cycle.v3'
+          assert audit['canonical_queue_count']==109
+          assert audit['terminal_covered_count'] + audit['remaining_count'] == 109
           g=d['governance']
           assert g['no_inheritance'] is True
           assert g['no_promotion'] is True
@@ -55,14 +59,16 @@ jobs:
           assert g['independent_visual_review_still_required'] is True
           assert g['canonical_turnout_values_must_not_be_written'] is True
           assert g['terminal_coverage_rules_mirrored'] is True
-          assert d['worklist']['terminal_covered_count']==38
-          assert d['worklist']['total_remaining_evidence_rows']==71
+          assert g['live_terminal_remainder'] is True
+          assert d['worklist']['canonical_queue_count']==109
+          assert d['worklist']['terminal_covered_count']==audit['terminal_covered_count']
+          assert d['worklist']['total_remaining_evidence_rows']==audit['remaining_count']
           for r in d['rows']:
               assert r['state']=='fresh_review_context_ready_pending_independent_visual_review'
               assert r['required_render_dpi']==250
               assert r['promotion_authorized'] is False
               assert r['canonical_turnout_written'] is False
-          print('P23_FINAL_SHARD_OK', d['shard'], len(d['rows']))
+          print('P23_FINAL_SHARD_OK', d['shard'], len(d['rows']), 'remaining', audit['remaining_count'])
           PY
       - name: Upload isolated shard evidence
         uses: actions/upload-artifact@v4
@@ -84,14 +90,13 @@ jobs:
           path: /tmp/p23-final-artifacts
       - name: Compute governed terminal remainder
         run: python3 scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal-coverage.json
-      - name: Verify exact 71-row worklist coverage and no promotion
+      - name: Verify exact live worklist coverage and no promotion
         run: |
           python3 - <<'PY'
           import json, pathlib
           audit=json.loads(pathlib.Path('/tmp/p23-terminal-coverage.json').read_text())
           assert audit['canonical_queue_count']==109
-          assert audit['terminal_covered_count']==38
-          assert audit['remaining_count']==71
+          assert audit['terminal_covered_count'] + audit['remaining_count'] == 109
           expected=[r['geo_code'] for r in audit['remaining']]
           summaries=list(pathlib.Path('/tmp/p23-final-artifacts').rglob('shard-summary.json'))
           assert len(summaries)==32, len(summaries)
@@ -101,14 +106,15 @@ jobs:
               assert d['governance']['no_promotion'] is True
               assert d['governance']['no_inheritance'] is True
               assert d['governance']['independent_visual_review_still_required'] is True
-              assert d['worklist']['terminal_covered_count']==38
-              assert d['worklist']['total_remaining_evidence_rows']==71
+              assert d['worklist']['canonical_queue_count']==109
+              assert d['worklist']['terminal_covered_count']==audit['terminal_covered_count']
+              assert d['worklist']['total_remaining_evidence_rows']==audit['remaining_count']
               rows.extend(d['rows'])
           got=[r['geo_code'] for r in rows]
-          assert len(got)==71, len(got)
+          assert len(got)==audit['remaining_count'], (len(got),audit['remaining_count'])
           assert len(got)==len(set(got)), 'duplicate final-cycle row'
           assert set(got)==set(expected), (set(expected)-set(got),set(got)-set(expected))
           assert all(r['state']=='fresh_review_context_ready_pending_independent_visual_review' for r in rows)
           assert all(r['promotion_authorized'] is False and r['canonical_turnout_written'] is False for r in rows)
-          print('P23_FINAL_32WAY_AGGREGATE_OK rows=71 shards=32 terminal_covered=38 canonical=109 no_promotion=true')
+          print(f"P23_FINAL_32WAY_AGGREGATE_OK rows={len(got)} shards=32 terminal_covered={audit['terminal_covered_count']} canonical=109 no_promotion=true")
           PY
