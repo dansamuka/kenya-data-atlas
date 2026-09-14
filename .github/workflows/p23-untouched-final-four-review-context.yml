@@ -47,7 +47,12 @@ jobs:
           assert d['governance']['no_promotion'] is True
           assert d['governance']['result_values_forbidden'] is True
           assert d['governance']['canonical_turnout_value_written'] is False
-          assert d['render_dpi']==250
+          assert d['governance']['required_render_dpi']==250
+          assert isinstance(d.get('pages'), list) and d['pages']
+          assert all(page.get('render_dpi') == 250 for page in d['pages'])
+          assert all(isinstance(page.get('width_px'), int) and page['width_px'] > 0 for page in d['pages'])
+          assert all(isinstance(page.get('height_px'), int) and page['height_px'] > 0 for page in d['pages'])
+          assert all(isinstance(page.get('sha256'), str) and len(page['sha256']) == 64 for page in d['pages'])
           forbidden={'registered_voters','total_valid_votes','rejected_ballots','turnout_pct','candidate_vote_sum','verified_value','source_verified','promotion_eligible','promotion_state','explicit_materialization_authorized'}
           def scan(v):
             if isinstance(v,dict):
