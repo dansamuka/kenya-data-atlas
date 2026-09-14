@@ -1,0 +1,128 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for the three remaining P23 rows in parallel evidence shard 0. This file records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34818134736,
+    "workflow_head_sha": "45fa3790784489ef1042c646df17831eb8bba5c8",
+    "artifact_id": 10336514784,
+    "artifact_name": "p23-final-evidence-shard-0",
+    "artifact_digest": "sha256:8d3ee9f47d25a2a0d75ef8ae557f42ae906aa7f522d9ad1ff7cb4187771fd860"
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T08:18:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned remaining-71 workflow artifact. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these three rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C012-CON053",
+      "name": "Igembe North",
+      "queue": "salvage",
+      "source_pdf_sha256": "c3b99c315880213d3390da02c427a32e161e584d25f63c51984bd36fbc7de955",
+      "page_number": 3,
+      "review_context_image_sha256": "718422de39b344e573ffc0aea9accc5afd97d4ef42c3e1085e2c082fb21bac2d",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 77050,
+        "candidate_vote_totals_in_source_column_order": [12794, 36747, 113, 279],
+        "total_valid_votes": 49933,
+        "rejected_ballots": 744
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 49933,
+        "reconciles_total_valid_votes": true,
+        "delta": 0
+      },
+      "governed_denominator": {
+        "ward_values": [17113, 11829, 15108, 13879, 19121],
+        "sum": 77050,
+        "form_registered_voters": 77050,
+        "delta": 0,
+        "reconciles": true
+      },
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C021-CON110",
+      "name": "Gatanga",
+      "queue": "salvage",
+      "source_pdf_sha256": "26ff72c904c797b53cdfad0b8d936add6603d8fe4817ddf86812ae8824c8c719",
+      "page_number": 4,
+      "review_context_image_sha256": "1e5aaecac77b658e341fb7d468c42b62ead834a149c2e0ef1f24472d01b895de",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 101296,
+        "candidate_vote_totals_in_source_column_order": [15117, 53443, 272, 323],
+        "total_valid_votes": 69155,
+        "rejected_ballots": 496
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 69155,
+        "reconciles_total_valid_votes": true,
+        "delta": 0
+      },
+      "governed_denominator": {
+        "ward_values": [11310, 15291, 14252, 17142, 16842, 26459],
+        "sum": 101296,
+        "form_registered_voters": 101296,
+        "delta": 0,
+        "reconciles": true
+      },
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C018-CON093",
+      "name": "Ndaragwa",
+      "queue": "untouched",
+      "source_pdf_sha256": "b9561cb682a7fbc3cd5f5cf4219262afedd904493c163017a44af844f7ecdee9",
+      "page_number": 2,
+      "review_context_image_sha256": "16f9ffc05e56d2eb785871a32a8c6a621b2b895b7d1e3de14c664d0fd0ab88d2",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 57846,
+        "candidate_vote_totals_in_source_column_order": [7232, 30875, 93, 140],
+        "total_valid_votes": 38340,
+        "rejected_ballots": 293
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 38340,
+        "reconciles_total_valid_votes": true,
+        "delta": 0
+      },
+      "governed_denominator": {
+        "ward_values": [13842, 12977, 18113, 12914],
+        "sum": 57846,
+        "form_registered_voters": 57846,
+        "delta": 0,
+        "reconciles": true
+      },
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
