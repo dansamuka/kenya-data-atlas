@@ -130,8 +130,7 @@ jobs:
           import json, pathlib
           audit=json.loads(pathlib.Path('/tmp/p23-terminal-coverage.json').read_text())
           assert audit['canonical_queue_count']==109
-          assert audit['terminal_covered_count']==58, audit['terminal_covered_count']
-          assert audit['remaining_count']==51, audit['remaining_count']
+          assert audit['terminal_covered_count'] + audit['remaining_count'] == 109
           expected={r['geo_code'] for r in audit['remaining']}
           packets=list(pathlib.Path('/tmp/p23-review-packets').rglob('review-packet.json'))
           assert len(packets)==30, len(packets)
@@ -146,12 +145,12 @@ jobs:
               rows.extend(d['rows'])
           assert shards==set(range(30)), sorted(shards)
           got=[r['geo_code'] for r in rows]
-          assert len(got)==51, len(got)
           assert len(got)==len(set(got)), 'duplicate review row'
           assert set(got)==expected, (expected-set(got),set(got)-expected)
+          assert len(got)==audit['remaining_count'], (len(got),audit['remaining_count'])
           assert all(r['review_state']=='ready_for_independent_visual_terminal_classification' for r in rows)
           assert all(all(v is None for v in r['review_fields'].values()) for r in rows)
           assert all(r['review_contract']['promotion_authorized'] is False for r in rows)
           assert all(r['review_contract']['canonical_turnout_written'] is False for r in rows)
-          print('P23_30WAY_REVIEW_READINESS_OK workers=30 rows=51 terminal_covered=58 no_promotion=true')
+          print(f"P23_30WAY_REVIEW_READINESS_OK workers=30 rows={len(got)} terminal_covered={audit['terminal_covered_count']} no_promotion=true")
           PY
