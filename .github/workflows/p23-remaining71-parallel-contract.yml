@@ -1,0 +1,39 @@
+name: P23 remaining 71 parallel contract
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-remaining71-parallel-contract.yml
+      - .github/workflows/p23-final-32way-evidence-cycle.yml
+      - scripts/p23/run-final-32way-evidence-cycle.py
+      - scripts/p23/audit-turnout-terminal-coverage.py
+      - data/p23/p23-cycle1-remaining71-parallel-manifest.json
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact governed remainder contract
+        run: |
+          python3 scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/audit.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/audit.json').read_text())
+          m=json.loads(Path('data/p23/p23-cycle1-remaining71-parallel-manifest.json').read_text())
+          assert a['canonical_queue_count']==m['canonical_queue_count']==109
+          assert a['terminal_covered_count']==m['terminal_covered_count']==38
+          assert a['remaining_count']==m['remaining_count']==71
+          assert m['parallel_shards']==32
+          g=m['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi']==250
+          assert g['independent_visual_review_required'] is True
+          assert g['canonical_turnout_written'] is False
+          print('P23_REMAINING71_PARALLEL_CONTRACT_OK rows=71 shards=32 no_promotion=true')
+          PY

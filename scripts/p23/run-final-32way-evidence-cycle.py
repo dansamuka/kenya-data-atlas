@@ -4,6 +4,15 @@ import json
 import pathlib
 import subprocess
 
+P23 = pathlib.Path('data/p23')
+TERMINAL = {
+    'verified',
+    'denominator_mismatch',
+    'arithmetic_mismatch',
+    'source_unreadable',
+    'partial_unresolved',
+    'official_pdf_missing_results_pages',
+}
 FORBIDDEN_RESULT_KEYS = {
     'registered_voters', 'total_valid_votes', 'rejected_ballots', 'turnout_pct',
     'candidate_vote_sum', 'verified_value', 'source_verified', 'promotion_eligible',
@@ -27,14 +36,37 @@ def scan_forbidden(value, where='root'):
             scan_forbidden(v, f'{where}[{i}]')
 
 
-def canonical_worklist():
-    triage = load_json('data/p23/turnout-followup-triage.json')
-    registry = load_json('data/p23/turnout-salvage-review-outcomes.json')
-    reviewed = {x['geo_code'] for x in registry.get('outcomes', [])}
+def add_terminal(out, code, state, source):
+    if not code or state not in TERMINAL:
+        return
+    out.setdefault(code, []).append({'state': state, 'source': source})
 
+
+def terminal_evidence():
+    """Mirror audit-turnout-terminal-coverage.py terminal-evidence rules exactly."""
+    out = {}
+    registry = P23 / 'turnout-salvage-review-outcomes.json'
+    if registry.exists():
+        doc = load_json(registry)
+        for row in doc.get('outcomes', []):
+            add_terminal(out, row.get('geo_code'), row.get('reason'), registry.name)
+
+    for path in sorted(P23.glob('form34b-*-fresh-source-review.json')):
+        doc = load_json(path)
+        add_terminal(out, doc.get('geo_code'), doc.get('verification_state'), path.name)
+
+    for path in sorted(P23.glob('p23-cycle1-terminal-classification-*.json')):
+        doc = load_json(path)
+        for row in doc.get('rows', []):
+            add_terminal(out, row.get('geo_code'), row.get('verification_state'), path.name)
+    return out
+
+
+def canonical_worklist():
+    triage = load_json(P23 / 'turnout-followup-triage.json')
     salvage = []
     seen = set()
-    for path in sorted(pathlib.Path('data/p23').glob('turnout-salvage-tranche-*.json')):
+    for path in sorted(P23.glob('turnout-salvage-tranche-*.json')):
         doc = load_json(path)
         for row in doc.get('tranche', {}).get('rows', []):
             geo = row['geo_code']
@@ -46,7 +78,6 @@ def canonical_worklist():
     if len(salvage) != 85:
         raise SystemExit(f'expected 85 governed salvage rows; saw {len(salvage)}')
 
-    remaining_salvage = [r for r in salvage if r['geo_code'] not in reviewed]
     untouched = [
         {'geo_code': r['geo_code'], 'name': r['name'], 'queue': 'untouched'}
         for r in triage.get('genuinely_untouched', {}).get('constituencies', [])
@@ -54,11 +85,27 @@ def canonical_worklist():
     if len(untouched) != 24:
         raise SystemExit(f'expected 24 untouched rows; saw {len(untouched)}')
 
-    rows = remaining_salvage + untouched
-    geos = [r['geo_code'] for r in rows]
-    if len(geos) != len(set(geos)):
-        raise SystemExit('final-cycle worklist contains duplicate geo_code')
-    return rows, len(reviewed), len(remaining_salvage)
+    canonical = salvage + untouched
+    geos = [r['geo_code'] for r in canonical]
+    if len(canonical) != 109 or len(geos) != len(set(geos)):
+        raise SystemExit('canonical 109-row queue invariant failed')
+
+    evidence = terminal_evidence()
+    extraneous = sorted(set(evidence) - set(geos))
+    if extraneous:
+        raise SystemExit(f'terminal evidence outside canonical queue: {extraneous}')
+    conflicts = {
+        code: records for code, records in evidence.items()
+        if len({r['state'] for r in records}) > 1
+    }
+    if conflicts:
+        raise SystemExit(f'conflicting terminal states: {conflicts}')
+
+    terminal_codes = set(evidence)
+    rows = [r for r in canonical if r['geo_code'] not in terminal_codes]
+    remaining_salvage = sum(1 for r in rows if r['queue'] == 'salvage')
+    remaining_untouched = sum(1 for r in rows if r['queue'] == 'untouched')
+    return rows, len(terminal_codes), remaining_salvage, remaining_untouched
 
 
 def main():
@@ -70,7 +117,9 @@ def main():
     if args.shards != 32 or not 0 <= args.shard < args.shards:
         raise SystemExit('this governed final cycle requires exactly 32 shards')
 
-    rows, reviewed_count, remaining_salvage_count = canonical_worklist()
+    rows, terminal_count, remaining_salvage_count, remaining_untouched_count = canonical_worklist()
+    if len(rows) != 71:
+        raise SystemExit(f'expected exact governed terminal remainder of 71 rows; saw {len(rows)}')
     assigned = [row for i, row in enumerate(rows) if i % args.shards == args.shard]
     root = pathlib.Path(args.output_root)
     root.mkdir(parents=True, exist_ok=True)
@@ -109,7 +158,7 @@ def main():
         })
 
     summary = {
-        'schema_version': 'kda.p23.final-32way-evidence-cycle.v1',
+        'schema_version': 'kda.p23.final-32way-evidence-cycle.v2',
         'shard': args.shard,
         'shards': args.shards,
         'governance': {
@@ -119,18 +168,19 @@ def main():
             'required_render_dpi': 250,
             'independent_visual_review_still_required': True,
             'canonical_turnout_values_must_not_be_written': True,
+            'terminal_coverage_rules_mirrored': True,
         },
         'worklist': {
-            'already_reviewed_salvage_count': reviewed_count,
+            'terminal_covered_count': terminal_count,
             'remaining_salvage_count': remaining_salvage_count,
-            'untouched_evidence_review_count': 24,
+            'remaining_untouched_count': remaining_untouched_count,
             'total_remaining_evidence_rows': len(rows),
         },
         'rows': results,
     }
     scan_forbidden(summary)
     (root / 'shard-summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
-    print(f'P23_FINAL_32WAY shard={args.shard} assigned={len(assigned)} total_remaining={len(rows)} no_promotion=true')
+    print(f'P23_FINAL_32WAY shard={args.shard} assigned={len(assigned)} total_remaining={len(rows)} terminal_covered={terminal_count} no_promotion=true')
 
 
 if __name__ == '__main__':
