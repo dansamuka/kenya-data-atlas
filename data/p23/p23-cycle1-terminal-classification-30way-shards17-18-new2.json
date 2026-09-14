@@ -1,0 +1,81 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for two current P23 rows from the successful refreshed 30-way evidence cycle, shards 17-18. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34867685029,
+    "workflow_head_sha": "2f6fb62d936761f90e47d93808bcbb723663b7a9",
+    "artifacts": [
+      {"id": 10357643259, "name": "p23-final-evidence-shard-17", "digest": "sha256:e9fdb35a852b8c8f5cd1a8d2efdf81eecfbb30212fef9be678716c777f8ec5f3"},
+      {"id": 10358321103, "name": "p23-final-evidence-shard-18", "digest": "sha256:f17fbc41a7c887399c013b4118aafbe15b8763a5579d084dc10130109904a5bb"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T17:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from exact 250-DPI page images in the pinned refreshed 30-way evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C022-CON116",
+      "name": "Githunguri",
+      "queue": "salvage",
+      "artifact": {"id": 10357643259, "name": "p23-final-evidence-shard-17", "digest": "sha256:e9fdb35a852b8c8f5cd1a8d2efdf81eecfbb30212fef9be678716c777f8ec5f3"},
+      "source_pdf_sha256": "49cb1104e98ee9566359e5b373029f1bd8a1406db44580ab790c56ec78a37689",
+      "page_number": 4,
+      "review_context_image_sha256": "fc0c291824b48e54a13d3cb2575c9d458dc4d08ce7b4bdd2e8d212d6f3534832",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 104592,
+        "candidate_vote_totals_in_source_column_order": [13429, 58343, 270, 296],
+        "total_valid_votes": 72338,
+        "rejected_ballots": 472
+      },
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 72338, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [27596, 20616, 17450, 18876, 20054], "sum": 104592, "form_registered_voters": 104592, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C022-CON117",
+      "name": "Kiambu",
+      "queue": "salvage",
+      "artifact": {"id": 10358321103, "name": "p23-final-evidence-shard-18", "digest": "sha256:f17fbc41a7c887399c013b4118aafbe15b8763a5579d084dc10130109904a5bb"},
+      "source_pdf_sha256": "566bfafdecedc937e5121d0afa1794733125fd937f3830b181a077de94d4c18a",
+      "page_number": 2,
+      "review_context_image_sha256": "9eb9ad51fdabacfd19865776d27c7adaa7ec4760853fadc94102d26b75c80534",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 87076,
+        "candidate_vote_totals_in_source_column_order": [14760, 41050, 318, 318],
+        "total_valid_votes": 56446,
+        "rejected_ballots": 392
+      },
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 56446, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [14457, 22095, 15896, 34538], "sum": 86986, "form_registered_voters": 87076, "delta": 90, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "secondary_finding": "Form 34B registered voters exceed the governed four-ward denominator by 90; no special-facility row is silently added.",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
