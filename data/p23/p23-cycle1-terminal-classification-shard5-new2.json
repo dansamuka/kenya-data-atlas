@@ -1,0 +1,29 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Cycle 1 continuation for two genuinely new shard-5 rows after excluding already-terminal Wajir West.",
+  "source_cycle": {"workflow_run_id": 34807864713, "workflow_head_sha": "5049c9536f652999809abe67227baa29db87d8ce"},
+  "artifact": {"id": 10333692434, "name": "p23-final-evidence-shard-5"},
+  "denominator_source": {"repository": "samy-migwi/kenya_2022_voters_dashboard_app", "commit": "29b269a6562262a77faf6d22ba5837f46d35df75", "path": "data/voters.csv", "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f"},
+  "governance": {"no_inheritance": true, "no_promotion": true, "required_render_dpi": 250, "promotion_authorized_by_this_file": false, "canonical_turnout_value_written": false, "verified_rows_still_require_separate_cycle2_promotion_review": true},
+  "excluded_as_already_terminal_reviewed": ["KEN-C008-CON036"],
+  "review": {"reviewer_class": "independent_visual_source_image_review", "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent", "independence_note": "Values were read directly from the pinned exactly-250-DPI shard-5 images. Denominators were separately recomputed from the pinned ward dataset."},
+  "rows": [
+    {
+      "geo_code": "KEN-C018-CON090", "name": "Kipipiri", "queue": "salvage",
+      "source_pdf_sha256": "28f2eb98169597269e96aa03dda8912650e55e1eefe97c2facb16aa92569a25c", "page_number": 2, "review_context_image_sha256": "1aa2dc09101d4594e4f4bb0386e1090910204dce5db5c3be96790b3647c88742", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 54628, "candidate_vote_totals_in_source_column_order": [7816,28770,138,181], "total_valid_votes": 36505, "rejected_ballots": 210},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 36505, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [17474,14364,11098,11692], "sum": 54628, "form_registered_voters": 54628, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C026-CON136", "name": "Kwanza", "queue": "salvage",
+      "source_pdf_sha256": "d935d1c48da648d6d0d5b0819e22fb57fb47a187f224c52d1b91d4a684b55c1a", "page_number": 2, "review_context_image_sha256": "556d2527187fcf4191ff858f64a30b3f1ba040f2abcc9d62be60d3c0226117e0", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 75839, "candidate_vote_totals_in_source_column_order": [29040,16162,82,181], "total_valid_votes": 45465, "rejected_ballots": 548},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 45465, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [21873,21487,14969,17510], "sum": 75839, "form_registered_voters": 75839, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    }
+  ]
+}
