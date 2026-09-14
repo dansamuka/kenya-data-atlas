@@ -1,0 +1,44 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Cycle 1 continuation: independent visual transcription, same-row arithmetic, governed denominator reconciliation, and terminal non-promotion classification for final evidence shard 4.",
+  "source_cycle": {"workflow_run_id": 34807864713, "workflow_head_sha": "5049c9536f652999809abe67227baa29db87d8ce"},
+  "artifact": {"id": 10334130944, "name": "p23-final-evidence-shard-4", "digest": "sha256:b121e539dd34cfe9dbea83b8acf916c002ff248df2e8ef9a6c39f48a80af69a0"},
+  "denominator_source": {"repository": "samy-migwi/kenya_2022_voters_dashboard_app", "commit": "29b269a6562262a77faf6d22ba5837f46d35df75", "path": "data/voters.csv", "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f"},
+  "governance": {"no_inheritance": true, "no_promotion": true, "required_render_dpi": 250, "promotion_authorized_by_this_file": false, "canonical_turnout_value_written": false, "verified_rows_still_require_separate_cycle2_promotion_review": true},
+  "review": {"reviewer_class": "independent_visual_source_image_review", "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent", "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned #213 shard-4 artifact, while denominators were independently recomputed from the pinned ward source."},
+  "rows": [
+    {
+      "geo_code": "KEN-C008-CON035", "name": "Tarbaj", "queue": "salvage",
+      "source_pdf_sha256": "d05ae295d746393077e8a3466392bee154a9db1f19a2ccbed81c01a4d08605f1", "page_number": 1, "review_context_image_sha256": "15e12a9a8a52cc8ee2d80ce9a380d1efb926fde524fabfdd8ecdcbb05b232738", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 25267, "candidate_vote_totals_in_source_column_order": [8912, 9735, 51, 96], "total_valid_votes": 18794, "rejected_ballots": 97},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 18794, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [3562, 7416, 9869, 4420], "sum": 25267, "form_registered_voters": 25267, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C017-CON088", "name": "Kibwezi East", "queue": "salvage",
+      "source_pdf_sha256": "0786e6f92cf68e50461661088a519d65388ec249c410fb23746ec5a06b493024", "page_number": 2, "review_context_image_sha256": "8c7e170164b97cbe136e122791f3b09e71700c551137592cc8788cb6ae371a19", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 64740, "candidate_vote_totals_in_source_column_order": [27072, 9762, 81, 270], "total_valid_votes": 37185, "rejected_ballots": 244},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 37185, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [14271, 17622, 17020, 15827], "sum": 64740, "form_registered_voters": 64740, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C025-CON135", "name": "Samburu East", "queue": "salvage",
+      "source_pdf_sha256": "78764b51fa6a17fc8c827a98e227dd9dd9c99aaba694a40ae87fc24295f9f245", "page_number": 2, "review_context_image_sha256": "c7844528d64bc58c9fe8a8a6be50bfa194808596d6912513bb551daafd73b35c", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 26794, "candidate_vote_totals_in_source_column_order": [8147, 9039, 17, 130], "total_valid_votes": 17333, "rejected_ballots": 107},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 17333, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [6707, 6816, 8017, 5254], "sum": 26794, "form_registered_voters": 26794, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C027-CON143", "name": "Moiben", "queue": "untouched",
+      "source_pdf_sha256": "b62a531b9dc75c25c997f7e7a695a977145bd625438641ea616e18c0443081ef", "page_number": 2, "review_context_image_sha256": "758ff9aadcb24015398052996ef7a565fb9b2b7b9d237b26ed53f071985dc11b", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 77877, "candidate_vote_totals_in_source_column_order": [6772, 49625, 54, 51], "total_valid_votes": 56502, "rejected_ballots": 336},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 56502, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [15237, 10267, 12979, 14350, 25044], "sum": 77877, "form_registered_voters": 77877, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    }
+  ]
+}
