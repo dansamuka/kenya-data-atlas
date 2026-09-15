@@ -29,17 +29,17 @@ def evidence():
   for z in load(p).get('rows',[]): add(z.get('geo_code'),z.get('verification_state'),p.name,z)
  return out
 def reconcile(base,recs,state):
- full=[x for x in recs if isinstance(x.get('row'),dict) and ('visual_transcription' in x['row'] or 'governed_denominator' in x['row'])]
- row=full[-1]['row'] if full else recs[-1]['row']
+ full=[x for x in recs if isinstance(x.get('row'),dict) and (isinstance(x['row'].get('visual_transcription'),dict) or isinstance(x['row'].get('governed_denominator'),dict))]
+ row=full[-1]['row'] if full else (recs[-1].get('row') if recs else None)
  checks={'authoritative_terminal_state':state,'source_records':len(recs),'full_evidence_record_available':bool(full)}
- vt=row.get('visual_transcription',{}) if isinstance(row,dict) else {}; gd=row.get('governed_denominator',{}) if isinstance(row,dict) else {}
+ vt=(row.get('visual_transcription') or {}) if isinstance(row,dict) else {}; gd=(row.get('governed_denominator') or {}) if isinstance(row,dict) else {}
+ assert isinstance(vt,dict) and isinstance(gd,dict)
  votes=vt.get('candidate_vote_totals_in_source_column_order'); tv=vt.get('total_valid_votes'); rv=vt.get('registered_voters')
  if isinstance(votes,list) and all(isinstance(v,int) for v in votes) and isinstance(tv,int):
   checks['candidate_vote_sum']=sum(votes); checks['candidate_arithmetic_reconciles']=sum(votes)==tv; checks['candidate_arithmetic_delta']=sum(votes)-tv
- if isinstance(gd,dict) and isinstance(gd.get('ward_values'),list) and all(isinstance(v,int) for v in gd['ward_values']):
+ if isinstance(gd.get('ward_values'),list) and all(isinstance(v,int) for v in gd['ward_values']):
   checks['governed_ward_sum_recomputed']=sum(gd['ward_values']); checks['governed_ward_sum_matches_record']=sum(gd['ward_values'])==gd.get('sum')
   if isinstance(rv,int): checks['form_vs_governed_reconciles']=rv==sum(gd['ward_values']); checks['form_minus_governed_delta']=rv-sum(gd['ward_values'])
- # A Cycle-1 exception can become verified here only if the pinned values themselves prove both checks clean.
  clean=checks.get('candidate_arithmetic_reconciles') is True and checks.get('form_vs_governed_reconciles') is True
  if clean: outcome='reconciled_verified_pending_promotion_review'
  elif state=='denominator_mismatch' and checks.get('candidate_arithmetic_reconciles') is True and checks.get('form_vs_governed_reconciles') is False: outcome='confirmed_denominator_mismatch_requires_source_resolution'
