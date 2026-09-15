@@ -48,9 +48,15 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open('/tmp/p23-terminal.json'))
+          # The audit runs against the checked-out PR head, so the two final19
+          # classification files above are included as terminal evidence. This
+          # gate must never compensate for missing rows by inheritance/promotion.
           assert d['canonical_queue_count']==109
-          assert d['terminal_covered_count']==109
-          assert d['remaining_count']==0
+          assert d['terminal_covered_count']==109, d
+          assert d['remaining_count']==0, d
           assert d['governance']['promotion_authorized'] is False
           assert d['governance']['canonical_turnout_written'] is False
+          assert d['governance']['legacy_noncanonical_source_verification_excluded'] is True
+          assert d['governance']['fresh_review_contexts_excluded'] is True
+          assert d['governance']['pending_denominator_visual_reviews_excluded'] is True
           PY
