@@ -1,0 +1,56 @@
+name: P23 Cycle 1 final19 parallel terminal gate
+on:
+  pull_request:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-final19-parallel-*.json'
+      - '.github/workflows/p23-cycle1-final19-parallel-terminal-gate.yml'
+  workflow_dispatch:
+jobs:
+  validate-final19:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate provenance, arithmetic, denominator states, and no-promotion controls
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          paths=['data/p23/p23-cycle1-terminal-classification-final19-parallel-a.json','data/p23/p23-cycle1-terminal-classification-final19-parallel-b.json']
+          ds=[json.load(open(p)) for p in paths]
+          rows=[r for d in ds for r in d['rows']]
+          expected={'KEN-C016-CON078','KEN-C019-CON096','KEN-C019-CON097','KEN-C019-CON099','KEN-C020-CON100','KEN-C021-CON105','KEN-C021-CON106','KEN-C022-CON113','KEN-C022-CON114','KEN-C022-CON121','KEN-C022-CON122','KEN-C026-CON138','KEN-C026-CON140','KEN-C009-CON044','KEN-C010-CON048','KEN-C016-CON081','KEN-C017-CON085','KEN-C021-CON107','KEN-C022-CON111'}
+          assert len(rows)==19 and {r['geo_code'] for r in rows}==expected
+          for d in ds:
+            assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+            assert d['source_cycle']['workflow_run_id']==34932137603
+            assert d['source_cycle']['workflow_head_sha']=='7de3ede904c2cc493d45ec944b4ddaf36b6922c0'
+            g=d['governance']; assert g['no_inheritance'] and g['no_promotion'] and g['required_render_dpi']==250
+            assert g['promotion_authorized_by_this_file'] is False and g['canonical_turnout_value_written'] is False
+          for r in rows:
+            assert r['render_dpi']==250 and len(r['source_pdf_sha256'])==64 and len(r['review_context_image_sha256'])==64
+            assert r['promotion_eligible'] is False and r['promotion_authorized_by_this_record'] is False and r['canonical_turnout_written'] is False
+            v=r['visual_transcription']; a=r['same_row_valid_vote_reconciliation']; gd=r['governed_denominator']
+            assert sum(v['candidate_vote_totals_in_source_column_order'])==a['candidate_vote_sum']
+            assert a['candidate_vote_sum']-v['total_valid_votes']==a['delta']
+            assert sum(gd['ward_values'])==gd['sum']
+            s=r['verification_state']
+            if s=='verified': assert a['delta']==0 and gd['delta']==0 and gd['reconciles'] is True
+            elif s=='denominator_mismatch': assert a['delta']==0 and gd['delta']!=0 and gd['reconciles'] is False
+            elif s=='arithmetic_mismatch': assert a['delta']!=0
+            elif s=='partial_unresolved': assert v['registered_voters'] is None and gd['form_registered_voters'] is None and gd['delta'] is None
+            else: raise AssertionError(s)
+          assert Counter(r['verification_state'] for r in rows)==Counter({'verified':11,'denominator_mismatch':6,'arithmetic_mismatch':1,'partial_unresolved':1})
+          print('P23_FINAL19_PARALLEL_GATE rows=19 verified=11 denominator_mismatch=6 arithmetic_mismatch=1 partial_unresolved=1 no_promotion=true')
+          PY
+      - name: Require complete canonical terminal coverage
+        run: |
+          python scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/p23-terminal.json'))
+          assert d['canonical_queue_count']==109
+          assert d['terminal_covered_count']==109
+          assert d['remaining_count']==0
+          assert d['governance']['promotion_authorized'] is False
+          assert d['governance']['canonical_turnout_written'] is False
+          PY
