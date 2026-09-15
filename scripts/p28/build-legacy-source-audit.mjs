@@ -45,7 +45,7 @@ function tier(o,s,d,src){
   if(estimated)return'S5_transparent_modelled_or_spatial_estimate';
   if(o.source_class==='external'||o.badge==='E')return/corroborat|multiple independent|independent sources/.test(corpus(o,s,d,src))?'S3_secondary_corroborated_independent':'S2_secondary_verified_to_identifiable_primary';
   if(o.source_class==='official'&&m==='direct')return'S0_direct_primary_official';
-  if(o.source_class==='official'&&['aggregated','exact_aggregation'].includes(m))return'S1_derived_from_primary_official';
+  if(o.source_class==='official'&&['aggregated','exact_aggregation','proxy'].includes(m))return'S1_derived_from_primary_official';
   if(o.badge==='A')return'S0_direct_primary_official';
   if(o.badge==='B')return'S1_derived_from_primary_official';
   if(['C','D'].includes(o.badge))return'S5_transparent_modelled_or_spatial_estimate';
@@ -53,7 +53,7 @@ function tier(o,s,d,src){
 }
 function confidence(t,o){if(['S0_direct_primary_official','S1_derived_from_primary_official'].includes(t))return o.statistical_status==='final'?'high':'medium';if(t==='S4_probable_value_conflicting_sources')return'low';return'medium';}
 function sourceLabel(o,src){return uniq([o.badge?`Badge ${o.badge}`:'',o.source_class?`source_class=${o.source_class}`:'',src?.name]).join(' · ')||o.source_url||'unspecified';}
-function noteFor(t){if(t==='S0_direct_primary_official')return'Legacy provenance supports direct primary-official classification.';if(t==='S1_derived_from_primary_official')return'Legacy provenance supports a derived/aggregated value from primary official evidence.';if(t==='S5_transparent_modelled_or_spatial_estimate')return'Legacy metadata indicates an estimate/model/spatial derivation; successor presentation must label it as estimated rather than imply direct official measurement.';if(t==='S3_secondary_corroborated_independent')return'Legacy metadata contains corroboration language; P28A must still verify that corroborating sources are independent lineages.';return'Legacy metadata indicates external/secondary evidence; P28A requires explicit secondary labelling plus primary-lineage/fallback review.';}
+function noteFor(t){if(t==='S0_direct_primary_official')return'Legacy provenance supports direct primary-official classification.';if(t==='S1_derived_from_primary_official')return'Legacy provenance supports a derived, aggregated or explicitly disclosed proxy representation from primary official evidence.';if(t==='S5_transparent_modelled_or_spatial_estimate')return'Legacy metadata indicates an estimate/model/spatial derivation; successor presentation must label it as estimated rather than imply direct official measurement.';if(t==='S3_secondary_corroborated_independent')return'Legacy metadata contains corroboration language; P28A must still verify that corroborating sources are independent lineages.';return'Legacy metadata indicates external/secondary evidence; P28A requires explicit secondary labelling plus primary-lineage/fallback review.';}
 const fingerprint=o=>o.value!==undefined&&o.value!==null?`n:${Number(o.value)}`:o.text_value?`t:${String(o.text_value).trim()}`:'null';
 
 // Reconstruct machine-detectable conflict candidates only. Final adjudication is P28A.4.
