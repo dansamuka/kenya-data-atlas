@@ -1,65 +1,58 @@
 #!/usr/bin/env python3
-"""Build the exact 54-row P23 Cycle-2 exception worklist and shard it 54 ways.
+"""Run deterministic Cycle-2 reconciliation for the exact 54 P23 exceptions.
 
-This runner is deliberately non-promotional. One worker is assigned to each current
-Cycle-1 non-verified terminal record. Workers may reconcile evidence, but cannot
-inherit values, authorize promotion, or write canonical turnout values.
+Each worker receives the complete authoritative terminal record where available and
+independently recomputes the checks that can be decided from pinned evidence. It never
+inherits values, changes source transcription, authorizes promotion, or writes canonical data.
 """
 from __future__ import annotations
-import argparse, json
+import argparse,json
 from pathlib import Path
-
-ROOT=Path(__file__).resolve().parents[2]
-P23=ROOT/'data'/'p23'
-TERMINAL={'verified','denominator_mismatch','arithmetic_mismatch','source_unreadable','partial_unresolved','official_pdf_missing_results_pages'}
-EXCEPTIONS=TERMINAL-{'verified'}
-
+ROOT=Path(__file__).resolve().parents[2]; P23=ROOT/'data'/'p23'
+TERMINAL={'verified','denominator_mismatch','arithmetic_mismatch','source_unreadable','partial_unresolved','official_pdf_missing_results_pages'}; EXCEPTIONS=TERMINAL-{'verified'}
 def load(p): return json.loads(p.read_text())
-
-def canonical_queue():
-    rows=[]
-    for letter in 'abcdefghijk':
-        for r in load(P23/f'turnout-salvage-tranche-{letter}.json')['tranche']['rows']:
-            rows.append({'geo_code':r['geo_code'],'name':r['name'],'queue':'salvage'})
-    triage=load(P23/'turnout-followup-triage.json')
-    rows += [{'geo_code':r['geo_code'],'name':r['name'],'queue':'untouched'} for r in triage['genuinely_untouched']['constituencies']]
-    assert len(rows)==109 and len({r['geo_code'] for r in rows})==109
-    return {r['geo_code']:r for r in rows}
-
+def queue():
+ r=[]
+ for x in 'abcdefghijk': r += [{'geo_code':z['geo_code'],'name':z['name'],'queue':'salvage'} for z in load(P23/f'turnout-salvage-tranche-{x}.json')['tranche']['rows']]
+ r += [{'geo_code':z['geo_code'],'name':z['name'],'queue':'untouched'} for z in load(P23/'turnout-followup-triage.json')['genuinely_untouched']['constituencies']]
+ assert len(r)==109 and len({z['geo_code'] for z in r})==109; return {z['geo_code']:z for z in r}
 def evidence():
-    out={}
-    reg=P23/'turnout-salvage-review-outcomes.json'
-    if reg.exists():
-        for r in load(reg).get('outcomes',[]):
-            s=r.get('reason'); c=r.get('geo_code')
-            if c and s in TERMINAL: out.setdefault(c,[]).append({'state':s,'source':reg.name})
-    for p in sorted(P23.glob('form34b-*-fresh-source-review.json')):
-        d=load(p); c=d.get('geo_code'); s=d.get('verification_state')
-        if c and s in TERMINAL: out.setdefault(c,[]).append({'state':s,'source':p.name})
-    for p in sorted(P23.glob('p23-cycle1-terminal-classification-*.json')):
-        d=load(p)
-        for r in d.get('rows',[]):
-            c=r.get('geo_code'); s=r.get('verification_state')
-            if c and s in TERMINAL: out.setdefault(c,[]).append({'state':s,'source':p.name})
-    return out
-
+ out={}
+ def add(c,s,src,row=None):
+  if c and s in TERMINAL: out.setdefault(c,[]).append({'state':s,'source':src,'row':row})
+ reg=P23/'turnout-salvage-review-outcomes.json'
+ if reg.exists():
+  for z in load(reg).get('outcomes',[]): add(z.get('geo_code'),z.get('reason'),reg.name,z)
+ for p in sorted(P23.glob('form34b-*-fresh-source-review.json')):
+  d=load(p); add(d.get('geo_code'),d.get('verification_state'),p.name,d)
+ for p in sorted(P23.glob('p23-cycle1-terminal-classification-*.json')):
+  for z in load(p).get('rows',[]): add(z.get('geo_code'),z.get('verification_state'),p.name,z)
+ return out
+def reconcile(base,recs,state):
+ full=[x for x in recs if isinstance(x.get('row'),dict) and ('visual_transcription' in x['row'] or 'governed_denominator' in x['row'])]
+ row=full[-1]['row'] if full else recs[-1]['row']
+ checks={'authoritative_terminal_state':state,'source_records':len(recs),'full_evidence_record_available':bool(full)}
+ vt=row.get('visual_transcription',{}) if isinstance(row,dict) else {}; gd=row.get('governed_denominator',{}) if isinstance(row,dict) else {}
+ votes=vt.get('candidate_vote_totals_in_source_column_order'); tv=vt.get('total_valid_votes'); rv=vt.get('registered_voters')
+ if isinstance(votes,list) and all(isinstance(v,int) for v in votes) and isinstance(tv,int):
+  checks['candidate_vote_sum']=sum(votes); checks['candidate_arithmetic_reconciles']=sum(votes)==tv; checks['candidate_arithmetic_delta']=sum(votes)-tv
+ if isinstance(gd,dict) and isinstance(gd.get('ward_values'),list) and all(isinstance(v,int) for v in gd['ward_values']):
+  checks['governed_ward_sum_recomputed']=sum(gd['ward_values']); checks['governed_ward_sum_matches_record']=sum(gd['ward_values'])==gd.get('sum')
+  if isinstance(rv,int): checks['form_vs_governed_reconciles']=rv==sum(gd['ward_values']); checks['form_minus_governed_delta']=rv-sum(gd['ward_values'])
+ # A Cycle-1 exception can become verified here only if the pinned values themselves prove both checks clean.
+ clean=checks.get('candidate_arithmetic_reconciles') is True and checks.get('form_vs_governed_reconciles') is True
+ if clean: outcome='reconciled_verified_pending_promotion_review'
+ elif state=='denominator_mismatch' and checks.get('candidate_arithmetic_reconciles') is True and checks.get('form_vs_governed_reconciles') is False: outcome='confirmed_denominator_mismatch_requires_source_resolution'
+ elif state=='arithmetic_mismatch' and checks.get('candidate_arithmetic_reconciles') is False: outcome='confirmed_arithmetic_mismatch_requires_source_resolution'
+ else: outcome='confirmed_unresolved_requires_source_recovery'
+ return {**base,'cycle1_state':state,'terminal_sources':[x['source'] for x in recs],'deterministic_reconciliation':checks,'cycle2_outcome':outcome,'promotion_eligible':False,'promotion_authorized':False,'canonical_turnout_written':False,'review_contract':{'no_inheritance':True,'no_promotion':True,'required_render_dpi':250,'independent_reconciliation_required':True}}
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--shard',type=int); ap.add_argument('--output',required=True); a=ap.parse_args()
-    q=canonical_queue(); ev=evidence(); rows=[]
-    for code in sorted(q):
-        recs=ev.get(code,[]); states={x['state'] for x in recs}
-        assert len(states)==1,(code,recs)
-        state=next(iter(states))
-        if state in EXCEPTIONS:
-            rows.append({**q[code],'cycle1_state':state,'terminal_sources':[x['source'] for x in recs],
-                'review_contract':{'no_inheritance':True,'no_promotion':True,'promotion_authorized':False,'canonical_turnout_written':False,
-                'required_render_dpi':250,'independent_reconciliation_required':True}})
-    assert len(rows)==54,len(rows)
-    if a.shard is not None:
-        assert 0<=a.shard<54
-        rows=[rows[a.shard]]
-    payload={'schema_version':'kda.p23.cycle2-54way-exception-worklist.v1','workers':54,'rows':rows,
-      'governance':{'no_inheritance':True,'no_promotion':True,'promotion_authorized':False,'canonical_turnout_written':False}}
-    Path(a.output).write_text(json.dumps(payload,indent=2)+'\n')
-    print(f"P23_CYCLE2_EXCEPTION_WORKLIST rows={len(rows)} workers=54 no_promotion=true")
+ a=argparse.ArgumentParser(); a.add_argument('--shard',type=int); a.add_argument('--output',required=True); x=a.parse_args(); q=queue(); ev=evidence(); rows=[]
+ for c in sorted(q):
+  recs=ev.get(c,[]); states={z['state'] for z in recs}; assert len(states)==1,(c,recs); s=next(iter(states))
+  if s in EXCEPTIONS: rows.append(reconcile(q[c],recs,s))
+ assert len(rows)==54,len(rows)
+ if x.shard is not None: assert 0<=x.shard<54; rows=[rows[x.shard]]
+ d={'schema_version':'kda.p23.cycle2-54way-exception-reconciliation.v1','workers':54,'rows':rows,'governance':{'no_inheritance':True,'no_promotion':True,'promotion_authorized':False,'canonical_turnout_written':False}}
+ Path(x.output).write_text(json.dumps(d,indent=2)+'\n'); print('P23_CYCLE2_RECONCILIATION',len(rows),'no_promotion=true')
 if __name__=='__main__': main()
