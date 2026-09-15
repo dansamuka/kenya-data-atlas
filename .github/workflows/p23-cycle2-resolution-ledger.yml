@@ -1,0 +1,36 @@
+name: P23 Cycle 2 resolution ledger
+on:
+  pull_request:
+    paths:
+      - scripts/p23/build-cycle2-resolution-ledger.py
+      - scripts/p23/run-cycle2-54way-source-resolution.py
+      - scripts/p23/run-cycle2-54way-exception-resolution.py
+      - .github/workflows/p23-cycle2-resolution-ledger.yml
+      - data/p23/p23-cycle1-terminal-classification-*.json
+      - data/p23/form34b-*-fresh-source-review.json
+      - data/p23/turnout-salvage-review-outcomes.json
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  ledger:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build governed resolution ledger
+        run: python3 scripts/p23/build-cycle2-resolution-ledger.py --output /tmp/p23-cycle2-resolution-ledger.json
+      - name: Gate ledger contract
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open('/tmp/p23-cycle2-resolution-ledger.json'))
+          assert d['row_count']==54 and len(d['rows'])==54
+          assert d['action_counts']=={'independent_denominator_source_resolution':41,'independent_arithmetic_source_resolution':6,'independent_source_recovery':7}
+          g=d['governance']; assert g['no_inheritance'] and g['no_promotion'] and not g['promotion_authorized'] and not g['canonical_turnout_written'] and g['required_render_dpi']==250
+          assert all(r['resolution_status']=='pending_independent_source_resolution' for r in d['rows'])
+          print('P23_CYCLE2_LEDGER_GATE',d['row_count'],d['action_counts'],'no_promotion=true')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p23-cycle2-resolution-ledger
+          path: /tmp/p23-cycle2-resolution-ledger.json
+          retention-days: 30
