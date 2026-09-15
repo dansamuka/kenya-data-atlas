@@ -1,0 +1,37 @@
+name: P23 cycle 1 shard5 new2 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-shard5-new2.json'
+      - '.github/workflows/p23-cycle1-terminal-classification-shard5-new2.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-shard5-new2:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Kipipiri and Kwanza terminal reviews
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/p23/p23-cycle1-terminal-classification-shard5-new2.json'))
+          g=d['governance']
+          assert g['no_inheritance'] and g['no_promotion'] and g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          assert d['excluded_as_already_terminal_reviewed']==['KEN-C008-CON036']
+          rows=d['rows']
+          assert {r['geo_code'] for r in rows}=={'KEN-C018-CON090','KEN-C026-CON136'}
+          for r in rows:
+            assert r['verification_state']=='verified'
+            assert r['promotion_eligible'] is False and r['promotion_authorized_by_this_record'] is False and r['canonical_turnout_written'] is False
+            assert r['render_dpi']==250 and len(r['source_pdf_sha256'])==64 and len(r['review_context_image_sha256'])==64
+            v=r['visual_transcription']; a=r['same_row_valid_vote_reconciliation']; den=r['governed_denominator']
+            assert a['candidate_vote_sum']==sum(v['candidate_vote_totals_in_source_column_order'])==v['total_valid_votes']
+            assert a['reconciles_total_valid_votes'] and a['delta']==0
+            assert den['sum']==sum(den['ward_values'])==v['registered_voters']==den['form_registered_voters']
+            assert den['reconciles'] and den['delta']==0
+          print('P23_CYCLE1_SHARD5_NEW2 rows=2 verified=2 no_promotion=true')
+          PY
