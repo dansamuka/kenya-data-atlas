@@ -118,8 +118,14 @@ def main():
         raise SystemExit('this governed final cycle requires exactly 32 shards')
 
     rows, terminal_count, remaining_salvage_count, remaining_untouched_count = canonical_worklist()
-    if len(rows) != 71:
-        raise SystemExit(f'expected exact governed terminal remainder of 71 rows; saw {len(rows)}')
+    # The worklist is deliberately live: it is the exact complement of current
+    # governed terminal evidence in the canonical 109-row queue. Do not freeze an
+    # historical remainder count here; doing so makes later valid terminal batches
+    # break evidence generation or tempt inheritance from excluded evidence classes.
+    if terminal_count + len(rows) != 109:
+        raise SystemExit(f'canonical coverage invariant failed: terminal={terminal_count} remaining={len(rows)}')
+    if not rows:
+        raise SystemExit('no governed terminal remainder: evidence cycle has nothing to process')
     assigned = [row for i, row in enumerate(rows) if i % args.shards == args.shard]
     root = pathlib.Path(args.output_root)
     root.mkdir(parents=True, exist_ok=True)
@@ -158,7 +164,7 @@ def main():
         })
 
     summary = {
-        'schema_version': 'kda.p23.final-32way-evidence-cycle.v2',
+        'schema_version': 'kda.p23.final-32way-evidence-cycle.v3',
         'shard': args.shard,
         'shards': args.shards,
         'governance': {
