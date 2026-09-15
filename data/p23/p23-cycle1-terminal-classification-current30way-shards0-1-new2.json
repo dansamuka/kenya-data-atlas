@@ -1,0 +1,124 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-15",
+  "purpose": "Independent visual review and governed denominator reconciliation for two live P23 rows from the current successful 30-way evidence cycle, shards 0-1. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34903665755,
+    "workflow_head_sha": "983ae302b568087ba13c9d21b99829230031b4bc",
+    "artifacts": [
+      {
+        "id": 10372420614,
+        "name": "p23-final-evidence-shard-0",
+        "digest": "sha256:4bbb60042214d4c34a907a94115de0a54b12ad8a90e2fc98faa7b5f20dcb5090"
+      },
+      {
+        "id": 10372345657,
+        "name": "p23-final-evidence-shard-1",
+        "digest": "sha256:2eb93ccf89c72e6eeba185583805a39ade3c08f5a5f6208819280c15ead632fa"
+      }
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "automatic_polling_station_aggregation_for_terminal_result_values_forbidden": true,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T23:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exact 250-DPI page images in the pinned current evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction was used as transcription input, and no polling-station values were automatically aggregated to manufacture a missing constituency summary."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C012-CON055",
+      "name": "Tigania East",
+      "queue": "salvage",
+      "artifact": {
+        "id": 10372420614,
+        "name": "p23-final-evidence-shard-0",
+        "digest": "sha256:4bbb60042214d4c34a907a94115de0a54b12ad8a90e2fc98faa7b5f20dcb5090"
+      },
+      "source_pdf_sha256": "81762e14ffdec2dea38649628ea47438aea2ecc5f67fea6a1926d4140811bacb",
+      "page_number": 5,
+      "review_context_image_sha256": "af335442c6a713c15b0ae33ab91c18c395862044a828ca3708a34f956cc799cd",
+      "supporting_page_image_sha256s": [
+        {"page_number": 4, "sha256": "b8979a67d35f136ff5a4e46366fff208998c241bd4bf43c694dc47672b858044"},
+        {"page_number": 5, "sha256": "af335442c6a713c15b0ae33ab91c18c395862044a828ca3708a34f956cc799cd"}
+      ],
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 83527,
+        "voters_who_turned_out_to_vote": 53114,
+        "printed_turnout_percent": "63.59%",
+        "candidate_vote_totals_in_source_column_order": null,
+        "total_valid_votes": null,
+        "rejected_ballots": null
+      },
+      "governed_denominator": {
+        "ward_values": [21025, 18246, 11544, 19902, 12810],
+        "sum": 83527,
+        "form_registered_voters": 83527,
+        "delta": 0,
+        "reconciles": true
+      },
+      "unresolved_result_summary": {
+        "candidate_totals_resolved": false,
+        "reason": "The official five-page Form 34B scan reaches the constituency voter-turnout summary on page 5 but does not present a constituency-level candidate-total / total-valid-votes summary row. Cycle 1 does not infer those totals by inheritance or automatic aggregation of polling-station rows.",
+        "automatic_aggregation_performed": false
+      },
+      "verification_state": "partial_unresolved",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C012-CON057",
+      "name": "Buuri",
+      "queue": "salvage",
+      "artifact": {
+        "id": 10372345657,
+        "name": "p23-final-evidence-shard-1",
+        "digest": "sha256:2eb93ccf89c72e6eeba185583805a39ade3c08f5a5f6208819280c15ead632fa"
+      },
+      "source_pdf_sha256": "76cff6d3e7ee45d2aef7a9dae9b066fa37bb1cc30e4edf248a08fd0162dd6215",
+      "page_number": 3,
+      "review_context_image_sha256": "5535307522e908fb9bb6ad97ac7c9f0ab114ce560052d885c65d2d152e76acd9",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 82341,
+        "voters_who_turned_out_to_vote": 54311,
+        "candidate_vote_totals_in_source_column_order": [7107, 46441, 78, 206],
+        "total_valid_votes": 53832,
+        "rejected_ballots": 479
+      },
+      "same_row_valid_vote_reconciliation": {
+        "candidate_vote_sum": 53832,
+        "reconciles_total_valid_votes": true,
+        "delta": 0
+      },
+      "governed_denominator": {
+        "ward_values": [22215, 18075, 15690, 11521, 14840],
+        "sum": 82341,
+        "form_registered_voters": 82341,
+        "delta": 0,
+        "reconciles": true
+      },
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}

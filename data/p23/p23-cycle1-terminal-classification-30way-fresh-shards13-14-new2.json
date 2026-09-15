@@ -1,0 +1,66 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for two current P23 rows from the refreshed successful 30-way evidence cycle, shards 13-14. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34857558594,
+    "workflow_head_sha": "456377d5b27ec8a041e978d449ede293165cdba4",
+    "artifacts": [
+      {"id": 10353289419, "name": "p23-final-evidence-shard-13", "digest": "sha256:a2b92d213f5788b0a5f3bb7dabd37909e52fd3ea6ac4b648c06e31dcb4e62216"},
+      {"id": 10353234155, "name": "p23-final-evidence-shard-14", "digest": "sha256:281192688d058388418975d530724c43e1697a1ccb686824a62801721029f731"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T15:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exact 250-DPI page images in the pinned refreshed 30-way evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C020-CON101", "name": "Gichugu", "queue": "salvage",
+      "artifact": {"id": 10353289419, "name": "p23-final-evidence-shard-13", "digest": "sha256:a2b92d213f5788b0a5f3bb7dabd37909e52fd3ea6ac4b648c06e31dcb4e62216"},
+      "source_pdf_sha256": "a662e6e0b8a1a838f649c61a76206da312ed78a2a8da62bfa10acd576eeef35a",
+      "page_number": 3,
+      "review_context_image_sha256": "3493dddda004213f14752177bcad5843e5196b2bc40f64d1b1875c245ea09334",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 92495, "candidate_vote_totals_in_source_column_order": [9216, 55744, 181, 354], "total_valid_votes": 65495, "rejected_ballots": 397},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 65495, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [27559, 16311, 16338, 13976, 18311], "sum": 92495, "form_registered_voters": 92495, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C020-CON103", "name": "Kirinyaga Central", "queue": "salvage",
+      "artifact": {"id": 10353234155, "name": "p23-final-evidence-shard-14", "digest": "sha256:281192688d058388418975d530724c43e1697a1ccb686824a62801721029f731"},
+      "source_pdf_sha256": "310855eab4d7125a6354b874e9082fe6b0209cc86a8ad17b8f8171e00a8854a8",
+      "page_number": 2,
+      "review_context_image_sha256": "db5631ea4a57ef84929b478bbec786691a1be7df9eb6e3bef7258803f642f3e8",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 82111, "candidate_vote_totals_in_source_column_order": [8978, 48645, 129, 296], "total_valid_votes": 58048, "rejected_ballots": 383},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 58048, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [18169, 21863, 24745, 17272], "sum": 82049, "form_registered_voters": 82111, "delta": 62, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}

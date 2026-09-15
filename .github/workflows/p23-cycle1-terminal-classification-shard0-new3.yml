@@ -1,0 +1,54 @@
+name: P23 cycle 1 shard0 new3 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - data/p23/p23-cycle1-terminal-classification-shard0-new3.json
+      - .github/workflows/p23-cycle1-terminal-classification-shard0-new3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate governed shard 0 classifications
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('data/p23/p23-cycle1-terminal-classification-shard0-new3.json')
+          d=json.loads(p.read_text())
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34818134736
+          assert d['source_cycle']['workflow_head_sha']=='45fa3790784489ef1042c646df17831eb8bba5c8'
+          assert d['source_cycle']['artifact_id']==10336514784
+          assert d['source_cycle']['artifact_digest']=='sha256:8d3ee9f47d25a2a0d75ef8ae557f42ae906aa7f522d9ad1ff7cb4187771fd860'
+          g=d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          assert g['verified_rows_still_require_separate_cycle2_promotion_review'] is True
+          rows=d['rows']
+          assert len(rows)==3
+          assert len({r['geo_code'] for r in rows})==3
+          for r in rows:
+              vt=r['visual_transcription']
+              rec=r['same_row_valid_vote_reconciliation']
+              den=r['governed_denominator']
+              assert r['render_dpi']==250
+              assert sum(vt['candidate_vote_totals_in_source_column_order'])==vt['total_valid_votes']
+              assert rec['candidate_vote_sum']==vt['total_valid_votes']
+              assert rec['reconciles_total_valid_votes'] is True and rec['delta']==0
+              assert sum(den['ward_values'])==den['sum']==vt['registered_voters']==den['form_registered_voters']
+              assert den['reconciles'] is True and den['delta']==0
+              assert r['verification_state']=='verified'
+              assert r['promotion_eligible'] is False
+              assert r['promotion_authorized_by_this_record'] is False
+              assert r['canonical_turnout_written'] is False
+          print('P23_CYCLE1_SHARD0_NEW3_OK rows=3 verified=3 no_promotion=true')
+          PY

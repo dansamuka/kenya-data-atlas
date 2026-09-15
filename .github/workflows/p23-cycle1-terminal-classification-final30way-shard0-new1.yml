@@ -1,0 +1,40 @@
+name: P23 cycle 1 final 30-way shard0 new1 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - data/p23/p23-cycle1-terminal-classification-final30way-shard0-new1.json
+      - .github/workflows/p23-cycle1-terminal-classification-final30way-shard0-new1.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate governed terminal classification
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/p23/p23-cycle1-terminal-classification-final30way-shard0-new1.json').read_text())
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34924608659
+          assert d['source_cycle']['workflow_head_sha']=='6e6cdb94b8e8256c526fa358030d32babeb6ba6f'
+          a=d['source_cycle']['artifacts']; assert len(a)==1 and a[0]['id']==10379676645 and a[0]['digest']=='sha256:1ba22890a1a3ad871232cac79c46ec37993aabb5312439a87f7fac5933c1700c'
+          g=d['governance']; assert g['no_inheritance'] and g['no_promotion'] and g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False and g['canonical_turnout_value_written'] is False
+          assert len(d['rows'])==1
+          r=d['rows'][0]; assert r['geo_code']=='KEN-C015-CON068' and r['verification_state']=='verified' and r['render_dpi']==250
+          assert r['source_pdf_sha256']=='12b8642056f2f35a26e7aa9282535c4b4e85ab1129d6f1b0ca10488e154f9584'
+          assert r['review_context_image_sha256']=='9410fe4e98af761d8f22de23ab46837ddfe9b6f8d57d317bb708b41137cb24eb'
+          v=r['visual_transcription']; rec=r['same_row_valid_vote_reconciliation']; den=r['governed_denominator']
+          assert sum(v['candidate_vote_totals_in_source_column_order'])==v['total_valid_votes']==rec['candidate_vote_sum']==35789
+          assert rec['reconciles_total_valid_votes'] is True and rec['delta']==0
+          assert den['ward_values']==[14979,15121,14678,12360] and sum(den['ward_values'])==den['sum']==57138
+          assert den['form_registered_voters']==v['registered_voters']==57138 and den['delta']==0 and den['reconciles'] is True
+          assert r['promotion_eligible'] is False and r['promotion_authorized_by_this_record'] is False and r['canonical_turnout_written'] is False
+          print('P23_FINAL30WAY_SHARD0_NEW1_OK rows=1 verified=1 no_promotion=true')
+          PY

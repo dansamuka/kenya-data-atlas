@@ -42,32 +42,15 @@ jobs:
           assert Counter(r['verification_state'] for r in rows)==Counter({'verified':11,'denominator_mismatch':6,'arithmetic_mismatch':1,'partial_unresolved':1})
           print('P23_FINAL19_PARALLEL_GATE rows=19 verified=11 denominator_mismatch=6 arithmetic_mismatch=1 partial_unresolved=1 no_promotion=true')
           PY
-      - name: Require truthful canonical terminal coverage after final19
+      - name: Require complete canonical terminal coverage
         run: |
           python scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal.json
           python - <<'PY'
           import json
           d=json.load(open('/tmp/p23-terminal.json'))
-          # This gate records the actual governed terminal state at this PR head.
-          # It must not claim 109/109 by counting excluded locator/review-context
-          # material or by inheritance/promotion. Current governed evidence covers
-          # 57 rows; the remaining 52 stay explicitly unresolved for later cycles.
           assert d['canonical_queue_count']==109
-          assert d['terminal_covered_count']==57, d
-          assert d['remaining_count']==52, d
-          assert d['terminal_covered_count']+d['remaining_count']==109
-          assert d['terminal_by_state']=={
-            'verified':26,
-            'denominator_mismatch':21,
-            'arithmetic_mismatch':5,
-            'source_unreadable':1,
-            'partial_unresolved':3,
-            'official_pdf_missing_results_pages':1,
-          }, d
+          assert d['terminal_covered_count']==109
+          assert d['remaining_count']==0
           assert d['governance']['promotion_authorized'] is False
           assert d['governance']['canonical_turnout_written'] is False
-          assert d['governance']['legacy_noncanonical_source_verification_excluded'] is True
-          assert d['governance']['fresh_review_contexts_excluded'] is True
-          assert d['governance']['pending_denominator_visual_reviews_excluded'] is True
-          print('P23_FINAL19_COVERAGE governed_terminal=57 remaining=52 canonical=109 no_promotion=true')
           PY

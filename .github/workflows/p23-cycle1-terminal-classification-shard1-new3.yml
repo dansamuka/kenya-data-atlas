@@ -1,0 +1,50 @@
+name: P23 cycle 1 shard1 new3 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - data/p23/p23-cycle1-terminal-classification-shard1-new3.json
+      - .github/workflows/p23-cycle1-terminal-classification-shard1-new3.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate governed shard 1 classifications
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('data/p23/p23-cycle1-terminal-classification-shard1-new3.json')
+          d=json.loads(p.read_text())
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34818134736
+          assert d['source_cycle']['workflow_head_sha']=='45fa3790784489ef1042c646df17831eb8bba5c8'
+          assert d['source_cycle']['artifact_id']==10337258888
+          assert d['source_cycle']['artifact_digest']=='sha256:c0d0213a4842cfa9609c86edea5d62a531f3e1d5d79c3b0e96572be816352baf'
+          assert len(d['rows'])==3
+          for r in d['rows']:
+              vt=r['visual_transcription']; rec=r['same_row_valid_vote_reconciliation']; den=r['governed_denominator']
+              assert r['render_dpi']==250
+              assert sum(vt['candidate_vote_totals_in_source_column_order'])==vt['total_valid_votes']==rec['candidate_vote_sum']
+              assert rec['reconciles_total_valid_votes'] is True and rec['delta']==0
+              assert sum(den['ward_values'])==den['sum']
+              assert r['promotion_eligible'] is False
+              assert r['promotion_authorized_by_this_record'] is False
+              assert r['canonical_turnout_written'] is False
+              if r['verification_state']=='verified':
+                  assert den['reconciles'] is True and den['delta']==0 and den['sum']==vt['registered_voters']
+              elif r['verification_state']=='denominator_mismatch':
+                  assert den['reconciles'] is False and den['delta']!=0 and den['form_registered_voters']==vt['registered_voters']
+              else:
+                  raise AssertionError(r['verification_state'])
+          states={r['verification_state'] for r in d['rows']}
+          assert states=={'verified','denominator_mismatch'}
+          assert d['governance']['no_inheritance'] is True and d['governance']['no_promotion'] is True
+          assert d['governance']['canonical_turnout_value_written'] is False
+          print('P23_CYCLE1_SHARD1_NEW3_OK rows=3 verified=2 denominator_mismatch=1 no_promotion=true')
+          PY
