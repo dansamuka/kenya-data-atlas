@@ -1,0 +1,72 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for four current P23 rows from the successful 30-way evidence cycle, shards 9-10. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34850237885,
+    "workflow_head_sha": "2d14b06d8bebfd4d22d275d52303fcfe2f57fd5b",
+    "artifacts": [
+      {"id": 10350786393, "name": "p23-final-evidence-shard-9", "digest": "sha256:61d293e074257dfd9df17b06dbf134e2ae48d7c318c589727c108fbf0f7df7d2"},
+      {"id": 10350211953, "name": "p23-final-evidence-shard-10", "digest": "sha256:c93a103416605b9b509ccbfe9741a50fd67600e2f8bcce31a0dea37dc8adcf82"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T14:19:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exact 250-DPI page images in the pinned 30-way evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C016-CON082", "name": "Mwala", "queue": "salvage",
+      "artifact": {"id": 10350786393, "name": "p23-final-evidence-shard-9", "digest": "sha256:61d293e074257dfd9df17b06dbf134e2ae48d7c318c589727c108fbf0f7df7d2"},
+      "source_pdf_sha256": "934d30c0028ddabaabfe823f83517e9f1776a9d2d1ff16452e523042313e7c29", "page_number": 3, "review_context_image_sha256": "06ffc874b4ed251cca1f3a140849b6f2483200137c44e62f402a0222c0ef068a", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 89898, "candidate_vote_totals_in_source_column_order": [42286, 13267, 113, 411], "total_valid_votes": 56077, "rejected_ballots": 380},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 56077, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [16671, 17815, 18523, 12571, 14342, 9976], "sum": 89898, "form_registered_voters": 89898, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C013-CON060", "name": "Maara", "queue": "untouched",
+      "artifact": {"id": 10350786393, "name": "p23-final-evidence-shard-9", "digest": "sha256:61d293e074257dfd9df17b06dbf134e2ae48d7c318c589727c108fbf0f7df7d2"},
+      "source_pdf_sha256": "4144b7854a6f68296f3185684ccf10ed351b65fa6ac9f3d09f54c1a291e6f636", "page_number": 3, "review_context_image_sha256": "6ca4a3a63346fe9af715a18295939fe60a8fe509c3d0abf5b35a68f24950b7a2", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 73248, "candidate_vote_totals_in_source_column_order": [4902, 45182, 134, 275], "total_valid_votes": 50493, "rejected_ballots": 290},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 50493, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [10862, 12753, 15145, 12691, 21797], "sum": 73248, "form_registered_voters": 73248, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C018-CON091", "name": "Ol Kalou", "queue": "salvage",
+      "artifact": {"id": 10350211953, "name": "p23-final-evidence-shard-10", "digest": "sha256:c93a103416605b9b509ccbfe9741a50fd67600e2f8bcce31a0dea37dc8adcf82"},
+      "source_pdf_sha256": "59986e3cc33bde8915a5e88477696cda8eaf2ea83a89dd5f200976bc041e7153", "page_number": 2, "review_context_image_sha256": "15c0f8ae1e43508601661a9a7cbb98ef774c4101d14312979a805d6b0c4098db", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 72997, "candidate_vote_totals_in_source_column_order": [11202, 35690, 202, 232], "total_valid_votes": 47326, "rejected_ballots": 267},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 47326, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [13594, 15596, 14695, 13540, 15572], "sum": 72997, "form_registered_voters": 72997, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C014-CON064", "name": "Runyenjes", "queue": "untouched",
+      "artifact": {"id": 10350211953, "name": "p23-final-evidence-shard-10", "digest": "sha256:c93a103416605b9b509ccbfe9741a50fd67600e2f8bcce31a0dea37dc8adcf82"},
+      "source_pdf_sha256": "23ce60445627470c2ea462a5f18fe6ea5d516b8fde3efb9c8a86ec924ff458f9", "page_number": 2, "review_context_image_sha256": "e4f980aedc45acad6d9fa4fa24744e6dbccb7dffa120f47c83971776cd40983c", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 95326, "candidate_vote_totals_in_source_column_order": [5191, 57695, 104, 397], "total_valid_votes": 63387, "rejected_ballots": 600},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 63387, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [14872, 13564, 17035, 17286, 15314, 17255], "sum": 95326, "form_registered_voters": 95326, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    }
+  ]
+}

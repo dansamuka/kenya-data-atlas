@@ -103,6 +103,8 @@ def canonical_worklist():
 
     terminal_codes = set(evidence)
     rows = [r for r in canonical if r['geo_code'] not in terminal_codes]
+    if len(terminal_codes) + len(rows) != 109:
+        raise SystemExit('terminal + remaining must equal canonical 109')
     remaining_salvage = sum(1 for r in rows if r['queue'] == 'salvage')
     remaining_untouched = sum(1 for r in rows if r['queue'] == 'untouched')
     return rows, len(terminal_codes), remaining_salvage, remaining_untouched
@@ -111,15 +113,13 @@ def canonical_worklist():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--shard', type=int, required=True)
-    ap.add_argument('--shards', type=int, default=32)
+    ap.add_argument('--shards', type=int, default=30)
     ap.add_argument('--output-root', required=True)
     args = ap.parse_args()
-    if args.shards != 32 or not 0 <= args.shard < args.shards:
-        raise SystemExit('this governed final cycle requires exactly 32 shards')
+    if args.shards != 30 or not 0 <= args.shard < args.shards:
+        raise SystemExit('this governed final cycle requires exactly 30 shards')
 
     rows, terminal_count, remaining_salvage_count, remaining_untouched_count = canonical_worklist()
-    if len(rows) != 71:
-        raise SystemExit(f'expected exact governed terminal remainder of 71 rows; saw {len(rows)}')
     assigned = [row for i, row in enumerate(rows) if i % args.shards == args.shard]
     root = pathlib.Path(args.output_root)
     root.mkdir(parents=True, exist_ok=True)
@@ -158,7 +158,7 @@ def main():
         })
 
     summary = {
-        'schema_version': 'kda.p23.final-32way-evidence-cycle.v2',
+        'schema_version': 'kda.p23.final-30way-evidence-cycle.v1',
         'shard': args.shard,
         'shards': args.shards,
         'governance': {
@@ -169,18 +169,20 @@ def main():
             'independent_visual_review_still_required': True,
             'canonical_turnout_values_must_not_be_written': True,
             'terminal_coverage_rules_mirrored': True,
+            'live_terminal_remainder': True,
         },
         'worklist': {
             'terminal_covered_count': terminal_count,
             'remaining_salvage_count': remaining_salvage_count,
             'remaining_untouched_count': remaining_untouched_count,
             'total_remaining_evidence_rows': len(rows),
+            'canonical_queue_count': 109,
         },
         'rows': results,
     }
     scan_forbidden(summary)
     (root / 'shard-summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
-    print(f'P23_FINAL_32WAY shard={args.shard} assigned={len(assigned)} total_remaining={len(rows)} terminal_covered={terminal_count} no_promotion=true')
+    print(f'P23_FINAL_30WAY shard={args.shard} assigned={len(assigned)} total_remaining={len(rows)} terminal_covered={terminal_count} no_promotion=true')
 
 
 if __name__ == '__main__':

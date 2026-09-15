@@ -1,0 +1,51 @@
+name: P23 cycle 1 refreshed 30-way shards19-20 new2 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - data/p23/p23-cycle1-terminal-classification-30way-shards19-20-new2.json
+      - .github/workflows/p23-cycle1-terminal-classification-30way-shards19-20-new2.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate governed terminal classifications
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/p23/p23-cycle1-terminal-classification-30way-shards19-20-new2.json')
+          d=json.loads(p.read_text())
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34873926306
+          assert d['source_cycle']['workflow_head_sha']=='3889ed45afea30a38c4dcbe6082bb1403082f03a'
+          assert len(d['source_cycle']['artifacts'])==2
+          g=d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          assert g['verified_rows_still_require_separate_cycle2_promotion_review'] is True
+          rows=d['rows']
+          assert len(rows)==2
+          expected={'KEN-C023-CON127','KEN-C023-CON128'}
+          assert {r['geo_code'] for r in rows}==expected
+          for r in rows:
+              assert r['verification_state']=='verified'
+              assert r['render_dpi']==250
+              v=r['visual_transcription']; rec=r['same_row_valid_vote_reconciliation']; den=r['governed_denominator']
+              assert sum(v['candidate_vote_totals_in_source_column_order'])==v['total_valid_votes']==rec['candidate_vote_sum']
+              assert rec['reconciles_total_valid_votes'] is True and rec['delta']==0
+              assert sum(den['ward_values'])==den['sum']==v['registered_voters']==den['form_registered_voters']
+              assert den['delta']==0 and den['reconciles'] is True
+              assert r['promotion_eligible'] is False
+              assert r['promotion_authorized_by_this_record'] is False
+              assert r['canonical_turnout_written'] is False
+          print('P23_CYCLE1_REFRESHED_30WAY_SHARDS19_20_NEW2_OK rows=2 verified=2 no_promotion=true')
+          PY

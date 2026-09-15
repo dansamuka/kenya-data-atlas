@@ -1,0 +1,37 @@
+name: P23 cycle 1 current 30-way shard2 new1 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - data/p23/p23-cycle1-terminal-classification-current30way-shard2-new1.json
+      - .github/workflows/p23-cycle1-terminal-classification-current30way-shard2-new1.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate governed terminal classification
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/p23/p23-cycle1-terminal-classification-current30way-shard2-new1.json').read_text())
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34908462354
+          assert d['source_cycle']['workflow_head_sha']=='99f9c273263347277ea17694ff14d113957ea7f9'
+          g=d['governance']; assert g['no_inheritance'] and g['no_promotion'] and g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False and g['canonical_turnout_value_written'] is False
+          assert len(d['rows'])==1
+          r=d['rows'][0]; assert r['geo_code']=='KEN-C014-CON065' and r['verification_state']=='verified' and r['render_dpi']==250
+          v=r['visual_transcription']; rec=r['same_row_valid_vote_reconciliation']; den=r['governed_denominator']
+          assert sum(v['candidate_vote_totals_in_source_column_order'])==v['total_valid_votes']==rec['candidate_vote_sum']==50793
+          assert rec['reconciles_total_valid_votes'] is True and rec['delta']==0
+          assert sum(den['ward_values'])==den['sum']==v['registered_voters']==den['form_registered_voters']==77264
+          assert den['delta']==0 and den['reconciles'] is True
+          assert r['promotion_eligible'] is False and r['promotion_authorized_by_this_record'] is False and r['canonical_turnout_written'] is False
+          print('P23_CURRENT30WAY_SHARD2_NEW1_OK rows=1 verified=1 no_promotion=true')
+          PY

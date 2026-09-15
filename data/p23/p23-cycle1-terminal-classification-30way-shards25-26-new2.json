@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-15",
+  "purpose": "Independent visual review and governed denominator reconciliation for two current P23 rows from refreshed 30-way evidence shards 25-26. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34892281098,
+    "workflow_head_sha": "03902c83ede8e438f0ddfe517e2928bd98e453d0",
+    "artifacts": [
+      {"id": 10367621966, "name": "p23-final-evidence-shard-25", "digest": "sha256:ba7137e837b6e8aa9c493f873c1972406c0fbe4ada1e68b53d08e4f6231b7b2e"},
+      {"id": 10367801275, "name": "p23-final-evidence-shard-26", "digest": "sha256:1fcc1971ce38a7caa2a33524bf00067486739df205cf761d8f7eb648935155bb"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T21:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from exact 250-DPI page images in the pinned refreshed 30-way evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C018-CON089",
+      "name": "Kinangop",
+      "queue": "untouched",
+      "artifact": {"id": 10367621966, "name": "p23-final-evidence-shard-25", "digest": "sha256:ba7137e837b6e8aa9c493f873c1972406c0fbe4ada1e68b53d08e4f6231b7b2e"},
+      "source_pdf_sha256": "ed9394671e1ef31f0ad89bef0e13cf761ef6b3d30ca7003aaf7cf96f2a389856",
+      "page_number": 3,
+      "review_context_image_sha256": "070f201575ada8870bf6650aa4bd83f8e18b84253e93bbf25ad779ea852e43d0",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 115547,
+        "candidate_vote_totals_in_source_column_order": [15359, 61960, 260, 328],
+        "total_valid_votes": 77907,
+        "rejected_ballots": 513
+      },
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 77907, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {
+        "ward_values": [16199, 18144, 11265, 15669, 12793, 15177, 11473, 14827],
+        "sum": 115547,
+        "form_registered_voters": 115547,
+        "delta": 0,
+        "reconciles": true
+      },
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C020-CON102",
+      "name": "Ndia",
+      "queue": "untouched",
+      "artifact": {"id": 10367801275, "name": "p23-final-evidence-shard-26", "digest": "sha256:1fcc1971ce38a7caa2a33524bf00067486739df205cf761d8f7eb648935155bb"},
+      "source_pdf_sha256": "b06f2f370ed40e19a799166099e1d2634a00f28505a1cd867b708390010b45e9",
+      "page_number": 4,
+      "review_context_image_sha256": "96d40f012634a5b8f0906ed932ecaa1b5776e107984a4ef05011946d9507a5b5",
+      "render_dpi": 250,
+      "visual_transcription": {
+        "registered_voters": 69743,
+        "candidate_vote_totals_in_source_column_order": [6872, 41293, 151, 232],
+        "total_valid_votes": 48548,
+        "rejected_ballots": 346
+      },
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 48548, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {
+        "ward_values": [22087, 27843, 19813],
+        "sum": 69743,
+        "form_registered_voters": 69743,
+        "delta": 0,
+        "reconciles": true
+      },
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}

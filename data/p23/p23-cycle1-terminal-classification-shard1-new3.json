@@ -1,0 +1,83 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for the three remaining P23 rows in parallel evidence shard 1. This file records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34818134736,
+    "workflow_head_sha": "45fa3790784489ef1042c646df17831eb8bba5c8",
+    "artifact_id": 10337258888,
+    "artifact_name": "p23-final-evidence-shard-1",
+    "artifact_digest": "sha256:c0d0213a4842cfa9609c86edea5d62a531f3e1d5d79c3b0e96572be816352baf"
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T08:25:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned remaining-71 workflow artifact. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these three rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C012-CON054",
+      "name": "Tigania West",
+      "queue": "salvage",
+      "source_pdf_sha256": "3305b3bab8fdab6281d61b253cb000c2760ca5ee112f121c9bdae38492aa4bad",
+      "page_number": 2,
+      "review_context_image_sha256": "ba7d31670135a58214c7e7e63c23a12397d680b38c9fc82108ce31cfd84dff5b",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 70283, "candidate_vote_totals_in_source_column_order": [8823, 36454, 112, 310], "total_valid_votes": 45699, "rejected_ballots": 422},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 45699, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [9123, 16709, 21037, 13030, 10384], "sum": 70283, "form_registered_voters": 70283, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C022-CON112",
+      "name": "Gatundu North",
+      "queue": "salvage",
+      "source_pdf_sha256": "c2201dca87d70a4507bfac634bc658b78ea954b87f7c817c289d3c104edad1f9",
+      "page_number": 2,
+      "review_context_image_sha256": "73467c2fafbe4b857ffae57917f32d4745f91235d28dd46ab1fbc5a2e5565577",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 71830, "candidate_vote_totals_in_source_column_order": [8745, 40303, 138, 208], "total_valid_votes": 49394, "rejected_ballots": 481},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 49394, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [19246, 15208, 18324, 19032], "sum": 71810, "form_registered_voters": 71830, "delta": 20, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C019-CON098",
+      "name": "Mukurweini",
+      "queue": "untouched",
+      "source_pdf_sha256": "e8a4a273e9ac88f9fba744d92117be68b1659ae55730992ff34bd8beb7574c77",
+      "page_number": 2,
+      "review_context_image_sha256": "fc005bc1282f6a86df1ae2104b49d101becc89e63530b9d62d9dba0d95a0aa18",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 58534, "candidate_vote_totals_in_source_column_order": [5514, 34322, 132, 163], "total_valid_votes": 40131, "rejected_ballots": 245},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 40131, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [12644, 13959, 12801, 19130], "sum": 58534, "form_registered_voters": 58534, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}
