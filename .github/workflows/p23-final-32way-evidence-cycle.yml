@@ -14,10 +14,8 @@ on:
       - data/p23/p23-cycle1-terminal-classification-*.json
       - data/p23/form34b-source-index-contract.json
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   evidence-worker:
     name: evidence shard ${{ matrix.shard }}
@@ -33,36 +31,26 @@ jobs:
       - name: Install deterministic PDF renderer
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
       - name: Run governed evidence shard
-        run: >-
-          python3 scripts/p23/run-final-32way-evidence-cycle.py
-          --shard ${{ matrix.shard }}
-          --shards 32
-          --output-root /tmp/p23-final-${{ matrix.shard }}
-      - name: Validate shard summary
+        run: python3 scripts/p23/run-final-32way-evidence-cycle.py --shard ${{ matrix.shard }} --shards 32 --output-root /tmp/p23-final-${{ matrix.shard }}
+      - name: Validate shard summary against live governed worklist
         run: |
           python3 - <<'PY'
-          import json, pathlib
-          p=pathlib.Path('/tmp/p23-final-${{ matrix.shard }}/shard-summary.json')
-          d=json.loads(p.read_text())
-          assert d['shard']==${{ matrix.shard }}
-          assert d['shards']==32
+          import json,pathlib
+          d=json.loads(pathlib.Path('/tmp/p23-final-${{ matrix.shard }}/shard-summary.json').read_text())
+          assert d['shard']==${{ matrix.shard }} and d['shards']==32
           assert d['schema_version']=='kda.p23.final-32way-evidence-cycle.v2'
           g=d['governance']
-          assert g['no_inheritance'] is True
-          assert g['no_promotion'] is True
-          assert g['result_values_forbidden'] is True
-          assert g['required_render_dpi']==250
+          assert g['no_inheritance'] is True and g['no_promotion'] is True
+          assert g['result_values_forbidden'] is True and g['required_render_dpi']==250
           assert g['independent_visual_review_still_required'] is True
           assert g['canonical_turnout_values_must_not_be_written'] is True
           assert g['terminal_coverage_rules_mirrored'] is True
-          assert d['worklist']['terminal_covered_count']==38
-          assert d['worklist']['total_remaining_evidence_rows']==71
+          covered=d['worklist']['terminal_covered_count']; remaining=d['worklist']['total_remaining_evidence_rows']
+          assert covered+remaining==109,(covered,remaining)
           for r in d['rows']:
               assert r['state']=='fresh_review_context_ready_pending_independent_visual_review'
-              assert r['required_render_dpi']==250
-              assert r['promotion_authorized'] is False
-              assert r['canonical_turnout_written'] is False
-          print('P23_FINAL_SHARD_OK', d['shard'], len(d['rows']))
+              assert r['required_render_dpi']==250 and r['promotion_authorized'] is False and r['canonical_turnout_written'] is False
+          print('P23_FINAL_SHARD_OK',d['shard'],len(d['rows']),'terminal=',covered,'remaining=',remaining)
           PY
       - name: Upload isolated shard evidence
         uses: actions/upload-artifact@v4
@@ -71,7 +59,6 @@ jobs:
           path: /tmp/p23-final-${{ matrix.shard }}/
           if-no-files-found: error
           retention-days: 2
-
   aggregate:
     name: deterministic final-cycle aggregation
     needs: evidence-worker
@@ -84,31 +71,25 @@ jobs:
           path: /tmp/p23-final-artifacts
       - name: Compute governed terminal remainder
         run: python3 scripts/p23/audit-turnout-terminal-coverage.py --output /tmp/p23-terminal-coverage.json
-      - name: Verify exact 71-row worklist coverage and no promotion
+      - name: Verify exact live worklist coverage and no promotion
         run: |
           python3 - <<'PY'
-          import json, pathlib
+          import json,pathlib
           audit=json.loads(pathlib.Path('/tmp/p23-terminal-coverage.json').read_text())
           assert audit['canonical_queue_count']==109
-          assert audit['terminal_covered_count']==38
-          assert audit['remaining_count']==71
+          covered=audit['terminal_covered_count']; remaining=audit['remaining_count']; assert covered+remaining==109
           expected=[r['geo_code'] for r in audit['remaining']]
-          summaries=list(pathlib.Path('/tmp/p23-final-artifacts').rglob('shard-summary.json'))
-          assert len(summaries)==32, len(summaries)
+          summaries=list(pathlib.Path('/tmp/p23-final-artifacts').rglob('shard-summary.json')); assert len(summaries)==32
           rows=[]
           for p in summaries:
               d=json.loads(p.read_text())
-              assert d['governance']['no_promotion'] is True
-              assert d['governance']['no_inheritance'] is True
+              assert d['governance']['no_promotion'] is True and d['governance']['no_inheritance'] is True
               assert d['governance']['independent_visual_review_still_required'] is True
-              assert d['worklist']['terminal_covered_count']==38
-              assert d['worklist']['total_remaining_evidence_rows']==71
+              assert d['worklist']['terminal_covered_count']==covered and d['worklist']['total_remaining_evidence_rows']==remaining
               rows.extend(d['rows'])
           got=[r['geo_code'] for r in rows]
-          assert len(got)==71, len(got)
-          assert len(got)==len(set(got)), 'duplicate final-cycle row'
-          assert set(got)==set(expected), (set(expected)-set(got),set(got)-set(expected))
+          assert len(got)==remaining and len(got)==len(set(got)) and set(got)==set(expected)
           assert all(r['state']=='fresh_review_context_ready_pending_independent_visual_review' for r in rows)
           assert all(r['promotion_authorized'] is False and r['canonical_turnout_written'] is False for r in rows)
-          print('P23_FINAL_32WAY_AGGREGATE_OK rows=71 shards=32 terminal_covered=38 canonical=109 no_promotion=true')
+          print(f'P23_FINAL_32WAY_AGGREGATE_OK rows={remaining} shards=32 terminal_covered={covered} canonical=109 no_promotion=true')
           PY
