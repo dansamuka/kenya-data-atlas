@@ -1,0 +1,59 @@
+name: P23 Cycle 2 governed parallel resolution shards
+on:
+  pull_request:
+    paths:
+      - scripts/p23/build-cycle2-resolution-ledger.py
+      - scripts/p23/run-cycle2-54way-source-resolution.py
+      - .github/workflows/p23-cycle2-ledger-parallel-shards.yml
+      - data/p23/p23-cycle1-terminal-classification-*.json
+      - data/p23/form34b-*-fresh-source-review.json
+      - data/p23/turnout-salvage-review-outcomes.json
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  shard:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Materialize governed shard
+        run: python3 scripts/p23/run-cycle2-54way-source-resolution.py --shard ${{ matrix.shard }} --output /tmp/p23-cycle2-shard-${{ matrix.shard }}.json
+      - name: Gate no-promotion contract
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p=f"/tmp/p23-cycle2-shard-{os.environ['SHARD']}.json"
+          d=json.load(open(p)); assert d['workers']==54 and len(d['rows'])==1
+          r=d['rows'][0]; g=r['governance']
+          assert r['resolution_status']=='pending_independent_source_resolution'
+          assert g['no_inheritance'] and g['no_promotion'] and not g['promotion_authorized'] and not g['canonical_turnout_written'] and g['required_render_dpi']==250
+          assert r['resolution_action'] in {'independent_denominator_source_resolution','independent_arithmetic_source_resolution','independent_source_recovery'}
+          assert 'terminal_sources' in r and r['terminal_sources']
+          print('P23_CYCLE2_SHARD_GATE',os.environ['SHARD'],r['geo_code'],r['resolution_action'],'no_promotion=true')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p23-cycle2-resolution-shard-${{ matrix.shard }}
+          path: /tmp/p23-cycle2-shard-${{ matrix.shard }}.json
+          retention-days: 30
+  aggregate:
+    needs: shard
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild and gate authoritative ledger
+        run: |
+          python3 scripts/p23/build-cycle2-resolution-ledger.py --output /tmp/ledger.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('/tmp/ledger.json')); assert d['row_count']==54 and len({r['geo_code'] for r in d['rows']})==54
+          assert d['action_counts']=={'independent_denominator_source_resolution':41,'independent_arithmetic_source_resolution':6,'independent_source_recovery':7}
+          g=d['governance']; assert g['no_inheritance'] and g['no_promotion'] and not g['promotion_authorized'] and not g['canonical_turnout_written'] and g['required_render_dpi']==250
+          assert all(r['resolution_status']=='pending_independent_source_resolution' for r in d['rows'])
+          print('P23_CYCLE2_AGGREGATE_GATE',d['row_count'],d['action_counts'],'no_promotion=true')
+          PY
