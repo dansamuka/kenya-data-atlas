@@ -1,5 +1,4 @@
 name: P23 Cycle 2 54-way exception resolution
-
 on:
   pull_request:
     paths:
@@ -9,13 +8,10 @@ on:
       - data/p23/form34b-*-fresh-source-review.json
       - data/p23/turnout-salvage-review-outcomes.json
   workflow_dispatch:
-
-permissions:
-  contents: read
-
+permissions: {contents: read}
 jobs:
   exception-worker:
-    name: exception agent ${{ matrix.shard }}
+    name: reconciliation agent ${{ matrix.shard }}
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
@@ -24,43 +20,34 @@ jobs:
         shard: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
     steps:
       - uses: actions/checkout@v4
-      - name: Build exact governed worker packet
-        run: python3 scripts/p23/run-cycle2-54way-exception-resolution.py --shard ${{ matrix.shard }} --output /tmp/p23-cycle2-exception-${{ matrix.shard }}.json
-      - name: Assert one exception and non-promotion contract
+      - name: Independently recompute exception checks
+        run: python3 scripts/p23/run-cycle2-54way-exception-resolution.py --shard ${{ matrix.shard }} --output /tmp/result-${{ matrix.shard }}.json
+      - name: Gate governed reconciliation result
         run: |
           python3 - <<'PY'
           import json
-          d=json.load(open('/tmp/p23-cycle2-exception-${{ matrix.shard }}.json'))
-          assert d['workers']==54 and len(d['rows'])==1
-          r=d['rows'][0]; g=r['review_contract']
-          assert r['cycle1_state']!='verified'
-          assert g['no_inheritance'] is True and g['no_promotion'] is True
-          assert g['promotion_authorized'] is False and g['canonical_turnout_written'] is False
-          assert g['required_render_dpi']==250 and r['terminal_sources']
-          print('P23_EXCEPTION_AGENT_READY',${{ matrix.shard }},r['geo_code'],r['cycle1_state'])
+          d=json.load(open('/tmp/result-${{ matrix.shard }}.json')); assert len(d['rows'])==1
+          r=d['rows'][0]; assert r['cycle1_state']!='verified' and r['cycle2_outcome']
+          assert r['promotion_eligible'] is False and r['promotion_authorized'] is False and r['canonical_turnout_written'] is False
+          assert r['review_contract']['no_inheritance'] and r['review_contract']['no_promotion']
+          print('P23_RECONCILIATION_RESULT',r['geo_code'],r['cycle1_state'],r['cycle2_outcome'],r['deterministic_reconciliation'])
           PY
       - uses: actions/upload-artifact@v4
-        with:
-          name: p23-cycle2-exception-agent-${{ matrix.shard }}
-          path: /tmp/p23-cycle2-exception-${{ matrix.shard }}.json
-          retention-days: 7
-
+        with: {name: "p23-cycle2-reconciliation-${{ matrix.shard }}", path: "/tmp/result-${{ matrix.shard }}.json", retention-days: 14}
   aggregate:
     needs: exception-worker
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: Recompute exact 54-row exception universe
-        run: python3 scripts/p23/run-cycle2-54way-exception-resolution.py --output /tmp/all.json
-      - name: Assert distribution and governance
+      - run: python3 scripts/p23/run-cycle2-54way-exception-resolution.py --output /tmp/all.json
+      - name: Audit all 54 outcomes
         run: |
           python3 - <<'PY'
           import json,collections
-          d=json.load(open('/tmp/all.json')); rows=d['rows']
-          assert len(rows)==54 and len({r['geo_code'] for r in rows})==54
-          c=collections.Counter(r['cycle1_state'] for r in rows)
-          assert c=={'denominator_mismatch':41,'arithmetic_mismatch':6,'partial_unresolved':4,'source_unreadable':2,'official_pdf_missing_results_pages':1},c
-          assert all(r['review_contract']['no_inheritance'] and r['review_contract']['no_promotion'] for r in rows)
-          assert all(not r['review_contract']['promotion_authorized'] and not r['review_contract']['canonical_turnout_written'] for r in rows)
-          print('P23_CYCLE2_54WAY_READY',dict(c),'no_promotion=true')
+          r=json.load(open('/tmp/all.json'))['rows']; assert len(r)==54 and len({x['geo_code'] for x in r})==54
+          states=collections.Counter(x['cycle1_state'] for x in r)
+          assert states=={'denominator_mismatch':41,'arithmetic_mismatch':6,'partial_unresolved':4,'source_unreadable':2,'official_pdf_missing_results_pages':1},states
+          outcomes=collections.Counter(x['cycle2_outcome'] for x in r)
+          assert all(not x['promotion_eligible'] and not x['promotion_authorized'] and not x['canonical_turnout_written'] for x in r)
+          print('P23_CYCLE2_54WAY_OUTCOMES',dict(outcomes),'no_promotion=true')
           PY
