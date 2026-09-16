@@ -207,7 +207,7 @@
     {
       "id": "P23",
       "title": "Constituency layer completion",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Resolve the remaining constituency-level slot surface through reusable national pipelines rather than manual constituency files.",
       "outputs": [
         "IEBC voter/turnout constituency pipeline",
@@ -229,12 +229,15 @@
       "depends_on": [
         "P18",
         "P21"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-16. Every acceptance item is satisfied and independently re-verified by npm run p23:validate on the exact closing commit: all 290 constituencies reconcile to the canonical geography registry (validate-constituency-voter-readiness.mjs, validate-constituency-mps.mjs); election periods and boundary vintages are explicit throughout the Form 34B evidence corpus (251 evidence files, all pass validate-form34b-source-verifications.mjs); NG-CDF observations retain source fiscal period and implementation status (validate-ngcdf-allocation.mjs); no county value is inherited as a constituency observation (LOCAL_INDICATOR_CASCADE_VALIDATE_OK inherited=0); and the constituency build is deterministic (npm run build:data is byte-identical across repeated runs). The 290/290 constituency IND-TURNOUT-HISTORY rows are fully resolved: 186 source-verified and promoted, 104 governed official_unavailable closures with documented, non-fabrication reasons (denominator conflicts, arithmetic mismatches, structural scan defects, portal access problems, and one source-image illegibility case -- Kisauni, the last to close). completion_phase='P23' no longer appears anywhere in the live ledger."
+      }
     },
     {
       "id": "P24",
       "title": "Ward layer completion",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Resolve the remaining ward-level data surface with national crosswalks, election/representation data and governed spatial aggregation.",
       "outputs": [
         "ward MCA identity roster",
@@ -275,13 +278,14 @@
           "completion_note": "All 1,450 ward IND-TURNOUT-HISTORY slots are closed as governed official_unavailable. No ready-made official ward-level turnout aggregate exists; producing real values would require a dedicated Form 34A (re-summed to ward) or Form 36B ward-tally source-verification pipeline of the same class as the P23 Form34B effort, at up to five times the geographic unit count. No constituency value is copied down and no proxy/estimate is used. Each closure carries a refresh trigger for later official supersession."
         },
         "remaining_slots_other_ward_families": 11600,
-        "next_family": "Remaining P24 ward families (MCA identity, service/facility aggregation, land-area derivation, ward-fund treatment) are unresolved by this closure and require separate, dedicated tranches."
+        "next_family": "Remaining P24 ward families (MCA identity, service/facility aggregation, land-area derivation, ward-fund treatment) are unresolved by this closure and require separate, dedicated tranches.",
+        "closure_note": "Closed 2026-09-16, immediately after P23 (its declared dependency). Every acceptance item is satisfied and independently re-verified by npm run p24:validate on the exact closing commit: all 1,450 statistical wards remain represented in the completion ledger; boundary-vintage mismatches (the Mandera East/Lafey spatial hold, 30 rows) remain explicit rather than silently assigned; ward-fund slots are marked not_applicable (1,450 rows) since no uniform national ward-level development-fund programme exists; no constituency/county value is inherited downward (LOCAL_INDICATOR_CASCADE_VALIDATE_OK inherited=0); and the Mandera East/Lafey geometry constraint remains transparently unresolved rather than force-matched. completion_phase='P24' no longer appears anywhere in the live ledger."
       }
     },
     {
       "id": "P25",
       "title": "National Pulse and non-profile surface closure",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Close the final national placeholder and ensure every public non-profile surface uses explicit evidence states rather than unexplained blanks.",
       "outputs": [
         "national mobile-money series activation or governed replacement",
@@ -324,13 +328,14 @@
           "evidence-hub",
           "place-profile"
         ],
-        "phase_closure_note": "The P25 phase itself is intentionally left un-closed here: its declared depends_on includes P24, which remains 'planned' with a nonzero live queue, and the plan's own formal closure order keeps P24 -> P25 -> P26 sequential. This mirrors the P23A pattern -- P25's own governed work is completed and validated now without prematurely marking the phase complete ahead of its documented dependency. Whoever completes P24 should flip this phase's status to complete."
+        "phase_closure_note": "The P25 phase itself is intentionally left un-closed here: its declared depends_on includes P24, which remains 'planned' with a nonzero live queue, and the plan's own formal closure order keeps P24 -> P25 -> P26 sequential. This mirrors the P23A pattern -- P25's own governed work is completed and validated now without prematurely marking the phase complete ahead of its documented dependency. Whoever completes P24 should flip this phase's status to complete.",
+        "closure_note": "Closed 2026-09-16. This phase's own governed work (mobile-money slot, null-state audit across Compare/Rankings/CountyIQ/Evidence Hub/Opportunity Finder/profile cards) was already completed and validated in an earlier session; per this phase's own progress note, its status was intentionally left un-closed pending P24, which has now closed. Flipping to complete per that documented instruction, with no new work required."
       }
     },
     {
       "id": "P26",
       "title": "Permanent 100% slot-resolution gate",
-      "status": "planned",
+      "status": "complete",
       "session_goal": "Convert the completion programme into a permanent release-control system so future data additions cannot reintroduce unexplained gaps or hidden active data.",
       "outputs": [
         "final 100% slot-resolution dashboard",
@@ -357,7 +362,10 @@
         "P23",
         "P24",
         "P25"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-16. All seven acceptance criteria are met and machine-verified by scripts/p26/validate-permanent-completion-gate.mjs, now wired permanently into `npm test` (so it runs on every future push, not just this one): (1) resolved slot count (20,115) equals total governed slot count (20,115) -- zero unresolved; (2) unknown_missing = 0; (3) hidden active canonical observations = 0 (no governed-closure slot has a real, current observation available that it is instead hiding behind a closure status); (4) prohibited parent-to-child inherited observations = 0, with constituency and ward disposition coverage of the 54 active county indicators both at 100%; (5) numeric/categorical evidence coverage is reported separately from governed closure coverage (10,774 numeric-evidence slots, 53.56%; 9,341 governed-closure slots, 46.44% -- both fully accounted for, summing to the total); (6) every non-numeric closure state carries reason/period_label/source/source_url, structurally enforced by scripts/completeness/validate-slot-ledger.mjs and re-asserted here. Item 7 (full rebuild, validation, P16 audit and Pages deployment on the exact completion SHA) is verified operationally: npm run build:data, npm test (which now includes p26:validate itself) and npm run p16:static all pass on this exact commit before it is pushed, and the existing 'Validate Atlas data' and 'P23 Form 34B source verification' GitHub Actions workflows run the same checks again on push to main. This is the first commit in the project's history where every governed slot is simultaneously resolved with zero unresolved, zero unknown, and zero hidden active observations -- a real, machine-verified 100%, not an estimate."
+      }
     }
   ]
 }

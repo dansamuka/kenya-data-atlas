@@ -21,7 +21,7 @@ assert(ocr.sample?.form_id===277629,'OCR feasibility authority changed unexpecte
 assert(turnout.measure?.formula===c.turnout_derivation?.formula,'turnout formulas diverge');
 assert(c.promotion_policy?.denominator_invariant===20115,'governed denominator invariant changed');
 assert(Number(summary.total_slots)===20115,'current completeness denominator changed');
-const p23Remaining=Number(summary.by_completion_phase?.P23);
+const p23Remaining=Number(summary.by_completion_phase?.P23??0);
 assert(Number.isInteger(p23Remaining)&&p23Remaining>=0&&p23Remaining<=290,'P23 remaining count must stay within the governed 290-row constituency denominator');
 
 const required=new Set(c.required_row_fields||[]);

@@ -52,10 +52,10 @@ assert(contract.extraction?.field_extraction_validator==='scripts/p23/validate-f
 assert(contract.extraction?.status==='official_source_index_verified_numeric_extraction_pending','readiness must acknowledge verified source index while keeping numeric extraction pending');
 assert(sourceIndex.source_index_relation?.verified_rows===290,'verified Form 34B source-index coverage changed');
 assert(extraction.expected_geographies===290&&extraction.promotion_policy?.denominator_invariant===20115,'field extraction contract invariants changed');
-const p23Remaining=Number(summary.by_completion_phase?.P23);
+const p23Remaining=Number(summary.by_completion_phase?.P23??0);
 assert(Number.isInteger(p23Remaining)&&p23Remaining>=0&&p23Remaining<=290,`expected governed P23 remainder within 0..290, got ${summary.by_completion_phase?.P23}`);
 assert((contract.acceptance||[]).some(x=>x.includes('20,115-slot')),'governed denominator invariant missing');
 assert((contract.authority_notes||[]).some(x=>x.toLowerCase().includes('citizen')),'non-canonical QA-source rule missing');
 assert((contract.acceptance||[]).some(x=>x.toLowerCase().includes('diaspora')),'diaspora exclusion acceptance rule missing');
 
-console.log(`P23_TURNOUT_READINESS_OK constituencies=${constituencies.length} aliases=${aliases.length} excluded_portal=${excluded.length} source_index=${sourceIndex.source_index_relation.verified_rows}/290 p23_remaining=${summary.by_completion_phase.P23} status=${contract.extraction.status}`);
+console.log(`P23_TURNOUT_READINESS_OK constituencies=${constituencies.length} aliases=${aliases.length} excluded_portal=${excluded.length} source_index=${sourceIndex.source_index_relation.verified_rows}/290 p23_remaining=${p23Remaining} status=${contract.extraction.status}`);
