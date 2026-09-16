@@ -8597,6 +8597,742 @@
       "evidence_constraint": "iebc_portal_did_not_serve_a_complete_or_correctly_identified_form34b_document",
       "refresh_trigger": "Revisit once the IEBC Result Forms Portal serves the correct, complete PDF for this constituency's form id, or an alternate confirmed official capture (a corrected portal upload, or an archival capture with the full page range) becomes available.",
       "reason": "Independently investigated during the P23 Form 34B turnout extraction programme, documented in PR #139 (https://github.com/dansamuka/kenya-data-atlas/pull/139): for Bobasi, the official PDF served for this form id prints page numbers up to 18/18 but the download contains only two non-adjacent data pages and no TOTAL page. This is a source-access failure at the IEBC Result Forms Portal (forms.iebc.or.ke), confirmed reproducible across repeated independent retries in more than one session, not a data-quality problem with an available document. No alternate official capture of a complete, correctly identified Form 34B for this constituency was located and independently confirmed."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C001-CON006",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C001-CON006"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-mvita-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 47,216 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (119,008) does not exactly match the separately governed P23 registered-voter denominator for this constituency (118,974). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145100501 KINGORANI PRISON (B) - 01', registered 34), exactly explaining the observed delta of 34. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C002-CON009",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C002-CON009"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-matuga-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 45,083 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (83,078) does not exactly match the separately governed P23 registered-voter denominator for this constituency (83,015). The printed Form 34B total includes two special-facility polling stations with non-ward codes on the same page immediately preceding the TOTAL row ('049292145100601 KWALE MAIN PRISON (B) - 01', registered 59, and '049292145100701 KWALE WOMEN - 01', registered 4), summing to exactly 63 and exactly explaining the observed delta. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C003-CON011",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C003-CON011"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "iebc_portal_did_not_serve_a_complete_or_correctly_identified_form34b_document",
+      "refresh_trigger": "Revisit once the IEBC Result Forms Portal serves the correct, complete PDF for this constituency's form id, or an alternate confirmed official capture (a corrected portal upload, or an archival capture with the full page range) becomes available.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kilifi-north-source-verification.json): The official IEBC portal's own download reference for Kilifi North (form_id 277639, independently re-confirmed as the sole download/view id for this constituency via a fresh run of scripts/p23/discover-iebc-form34b-manifest.py) serves a PDF containing only a single page: the Form 34B 'Agent of Candidates' handing-over/taking-over signature page, printed in its own footer as 'Page 4 of 4'. Pages 1-3, which would contain the polling-station results table and the constituency TOTAL row (registered voters, the four presidential candidate totals, rejected ballots and total valid votes), are simply not present in the file the portal serves. Re-downloading in a second, independent curl session produced a byte-identical file (same sha256), ruling out a one-off network truncation. This is a genuine official-source availability gap, not a misread or a transcription question, so no field can be visually source-verified and no turnout observation may be promoted for this constituency from this evidence. Recorded as verification_state=source_unreadable per the extraction contract's allowed row_verification_states; left unresolved rather than inferring or estimating any value."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C003-CON017",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C003-CON017"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-magarini-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 42,240 = printed Total Valid Votes). The row's own printed Registered Voters figure (80,295) does not exactly match the separately governed P23 registered-voter denominator for this constituency (80,128), a gap of 167. Two special-facility polling stations with non-ward codes were found on page 3 immediately preceding the TOTAL row ('049292145101001 MALINDI PRISON (B) - 01', registered 34, and '049292145101101 MALINDI WOMEN - 01', registered 13), together accounting for only 47 of the 167-vote gap; all three pages of the polling-station listing were independently reviewed and no further special-facility rows were found, so a residual 120-voter portion of the denominator gap remains unattributed and is not asserted as explained. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C004-CON019",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C004-CON019"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-galole-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 28,597 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (39,979) does not exactly match the separately governed P23 registered-voter denominator for this constituency (39,965). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145101201 HOLA PRISON - 01', registered 14), exactly explaining the observed delta of 14. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Mvita) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C005-CON022",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C005-CON022"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-lamu-west-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 35,369 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (59,421) does not exactly match the separately governed P23 registered-voter denominator for this constituency (59,406). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145101301 HINDI PRISON - 01', registered 15) on the same page immediately preceding the TOTAL row, exactly explaining the observed delta of 15. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C006-CON023",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C006-CON023"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-taveta-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 27,937 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (41,062) does not exactly match the separately governed P23 registered-voter denominator for this constituency (41,031). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145101401 TAVETA PRISON - 01', registered 31) on the same page immediately preceding the TOTAL row, exactly explaining the observed delta of 31. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C006-CON024",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C006-CON024"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-wundanyi-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 21,469 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (35,047) does not exactly match the separately governed P23 registered-voter denominator for this constituency (35,008). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145101501 WUNDANYI - 01', registered 39) on the same TOTAL row, exactly explaining the observed delta of 39. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C006-CON026",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C006-CON026"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-voi-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 35,389 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (61,606) does not exactly match the separately governed P23 registered-voter denominator for this constituency (61,377). The printed Form 34B total includes two special-facility polling stations with non-ward codes ('049292145101601 VOI REMAND PRISON - 01', registered 40, and '049292145101701 MANYANI - 01', registered 189, sum 229), exactly explaining the observed delta of 229. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Mvita, Galole) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C007-CON027",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C007-CON027"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-garissa-township-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 25,086 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (53,293) does not exactly match the separately governed P23 registered-voter denominator for this constituency (53,253). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145101801 GARISSA MAIN - 01', registered 40) on the same page immediately preceding the TOTAL row, exactly explaining the observed delta of 40. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C007-CON031",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C007-CON031"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-fafi-source-verification.json): The printed Registered Voters figure (27,335) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-031-2022) exactly, and Rejected Ballots (48) is individually clear. However, the row's own four candidate cells (5,403 + 8,377 + 18 + 49 = 13,847) do not sum to the printed Total Valid Votes (13,662), a 185-vote discrepancy. All four candidate figures were independently cross-checked against the page's own separate 'Aggregate Results' box, which restates each value in spelled-out words exactly matching the printed figures (e.g. 'EIGHT THOUSAND THREE HUNDRED AND SEVENTY SEVEN' for Ruto's 8,377), ruling out a legibility or transcription error on the candidate side. This is judged a genuine printed-form arithmetic error rather than a legibility or column-order issue. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is preserved unresolved and no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C008-CON034",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C008-CON034"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-wajir-east-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 22,020 = printed Total Valid Votes). However, unlike the recurring special-facility pattern documented elsewhere in this Atlas, the row's own printed Registered Voters figure (35,003) is LOWER than the separately governed P23 registered-voter denominator (35,794) by 791, rather than higher via an uncounted special-facility station. The one non-ward polling station visible on this page ('049292145102001 WAJIR - 01', registered 9) is already included within the printed 35,003 total, so it cannot explain a shortfall. No special-facility or non-ward polling-station code was found anywhere on this form's pages that would explain the gap, and both figures were independently re-confirmed (the printed total re-read on the rendered page image; the governed figure re-queried from data/indicators/registry/observations.json). No cause is asserted here since none is evidenced on the source; this mirrors the same below-governed-denominator pattern already documented for Kasipul in data/p23/form34b-kasipul-source-verification.json. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C009-CON043",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C009-CON043"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-mandera-east-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 25801 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (48223) does not exactly match the separately governed P23 registered-voter denominator for this constituency (48219). No single polling station on the source page exactly explains this 4-voter gap; it is preserved unresolved rather than forced, consistent with the extraction contract's exact-reconciliation requirement. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C010-CON045",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C010-CON045"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "iebc_portal_did_not_serve_a_complete_or_correctly_identified_form34b_document",
+      "refresh_trigger": "Revisit once the IEBC Result Forms Portal serves the correct, complete PDF for this constituency's form id, or an alternate confirmed official capture (a corrected portal upload, or an archival capture with the full page range) becomes available.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-moyale-source-verification.json): This constituency's Form 34B page is an unusually dark, tilted photograph of the physical document (like Voi) whose anti-fraud watermark directly overlaps the TOTAL row's numeric cells. Rejected Ballots (276) and three of four candidate cells (Ruto 23,749; Waihiga David Mwaure 69; Wajackoyah George Luchiri 113) were confirmed with high confidence after saturation/brightness contrast thresholding at up to 2500 DPI. Registered Voters, Odinga Raila's cell, and Total Valid Votes could not be pinned to a single confident digit string despite the same technique: the best-effort readings do not arithmetically reconcile with each other (candidate sum 44,510 vs Total Valid Votes best-effort read 44,544), so at least one of the ambiguous cells is genuinely misread by this process, not merely uncertain in its last digit. Per the extraction contract's explicit prohibition on 'marking a partial or unreadable row verified' and on 'silently correcting OCR digits to make arithmetic or denominators reconcile', this row is recorded as verification_state=source_unreadable rather than guessed at, and is left for a future re-attempt against a cleaner source render (e.g. a non-photographed re-scan, if the IEBC portal ever republishes one) or a specialised image-restoration pass."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C010-CON046",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C010-CON046"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals).",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-north-horr-source-verification.json): Registered Voters is clearly legible and reconciles exactly to the governed P23 constituency denominator (36,855 = 36,855). The four candidate cells on the same TOTAL row are also clearly legible. However, the printed TOTAL row itself leaves the 'Total Valid Votes' and 'Rejected Ballots' cells blank, and the two pages served by the portal for this form_id (the constituency's final tally/signatures page and one unrelated mid-document content page) contain no separate declaration or voter-turnout summary box that states either figure independently, unlike some other constituencies' forms (e.g. Kajiado East). Per the extraction contract's prohibition on inferring a result value from the verified candidate-column arithmetic relation, no Total Valid Votes or Rejected Ballots value is recorded as verified. This row remains unresolved and creates no canonical turnout observation."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C010-CON047",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C010-CON047"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-saku-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 21030 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (30235) does not exactly match the separately governed P23 registered-voter denominator for this constituency (30209). The 26-voter gap (30,235 minus 30,209) exactly equals the registered-voter count printed on this same page for the 'MARSABIT PRISON - 01' polling station (26 registered voters, polling-station code 049292145102301), the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations (e.g. Laikipia East / Nanyuki Prison, Taveta / Taveta Prison), not a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C011-CON049",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C011-CON049"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-isiolo-north-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 42,765 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (67,354) does not exactly match the separately governed P23 registered-voter denominator for this constituency (67,323). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145102401 ISIOLO PRISON - 01', registered 31), exactly explaining the observed delta of 31. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Mvita, Galole, Voi) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C011-CON050",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C011-CON050"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-isiolo-south-source-verification.json): Registered voters, total valid votes and rejected ballots are each individually clear and unambiguous on the printed TOTAL row, and registered voters reconciles exactly to the governed P23 denominator (22,181). However, the four candidate-vote cells on that same row sum to 16,196, exactly 2 less than the row's own printed Total Valid Votes figure of 16,198. This is a genuine internal arithmetic inconsistency on the official source form itself, not a transcription ambiguity. Per the extraction contract's prohibition on silently correcting digits to force reconciliation, this conflict is preserved unresolved and no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C012-CON051",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C012-CON051"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-igembe-south-source-verification.json): Registered voters (77126) matches the governed P23 denominator exactly. However, the four candidate cells on the TOTAL row sum to 49853 (13033 + 36399 + 111 + 310) while the row's own printed Total Valid Votes is 49488 (delta 365). Re-read at high DPI with left/right split crops on the TOTAL row to rule out a misread; all figures are unambiguous on the source image. The printed VOTES CAST column on the TOTAL row (49,853) is not the source of the mismatch's counterpart; that column matches the candidate sum exactly (13,033+36,399+111+310=49,853). The row's own printed Total Valid Votes cell (49,488) is 365 lower, and the printed Voter Turnout box below the table separately reports 50,113 voters turned out (= 49,488 Total Valid Votes + 625 Rejected Ballots), confirming Total Valid Votes and Rejected Ballots are each internally consistent with the turnout box while VOTES CAST/candidate sum is the outlier column, not a misread of Total Valid Votes. Per form34b-extraction-contract.json (prohibited_methods bars silently correcting digits to force reconciliation), this row is recorded as verification_state=arithmetic_mismatch and not promoted."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C012-CON053",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C012-CON053"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-igembe-north-source-verification.json): Registered voters, total valid votes and rejected ballots are each individually clear and unambiguous on the printed TOTAL row of a clean digital scan, and reconcile exactly to the page's own separate 'Voter Turn Out' summary box (77,050 registered; 49,933 + 744 = 50,677 turned out). However, the four candidate-vote cells on that same row sum to only 49,288, a shortfall of 645 against the row's own printed Total Valid Votes of 49,933. This is a genuine internal arithmetic inconsistency on the official source form itself (traceable to an internally impossible Total Valid Votes value of 988 printed against only 645 registered voters at one upstream polling station, 'KATHANGA PRIMARY SCHOOL'), not a transcription ambiguity by this review. Per the extraction contract's prohibition on silently correcting digits to force reconciliation, this conflict is preserved unresolved and no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C012-CON055",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C012-CON055"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals).",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-tigania-east-source-verification.json): Registered voters (83,527) is independently source-verified from the page-5 summary box and reconciles exactly to the governed P23 denominator. However, the polling-station results table on pages 2-4 of the official portal PDF is printed with only four data columns (Registered Voters, Odinga Raila, Ruto William Samoei, Waihiga David Mwaure); the Wajackoyah George Luchiri candidate column and the Votes Cast, Rejected Ballots and Total Valid Votes columns are entirely absent from the scan on every page -- confirmed at 300 DPI that the table's right border sits at the physical page edge with blank margin beyond it, ruling out a rendering crop. The page-5 summary box separately reports only a combined 'voters who turned out' figure (53,114, 63.59%) without breaking it into total_valid_votes and rejected_ballots, and does not report the fourth candidate's total. Per the extraction contract, total_valid_votes and rejected_ballots must each be individually source-verified and the four candidate cells must be independently readable to reconcile; neither is possible from this source. Recorded as verification_state=partial_unresolved (registered_voters verified, remaining required fields source_unreadable); no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C012-CON059",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C012-CON059"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-south-imenti-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 79331 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (115657) does not exactly match the separately governed P23 registered-voter denominator for this constituency (115642). Candidate cells reconcile exactly to Total Valid Votes (9,706+69,050+140+435=79,331). No single polling station across all 4 pages of this constituency's Form 34B has a registered-voter count of exactly 15 (the delta), and no prison or other special-facility station name is visible on any page; the 15-voter gap between the printed TOTAL row denominator and the governed First Schedule denominator is not explained by any single identifiable source-page entry. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C014-CON063",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C014-CON063"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-manyatta-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 68,936 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (106,970) does not exactly match the separately governed P23 registered-voter denominator for this constituency (106,588). The 382-voter gap exactly equals the sum of two special-facility polling stations printed on the same page immediately above the TOTAL row: EMBU MAIN - 01 (349 registered voters) and EMBU WOMEN (33 registered voters), which sit in a national-facility ward code outside the ordinary Manyatta constituency ward series that the governed First Schedule denominator sums from. This is the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations (e.g. Taveta Prison, Marsabit Prison for Saku, Nyandarua Prison for Ol Jorok). Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C015-CON072",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C015-CON072"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kitui-central-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 46,314 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (77,787) does not exactly match the separately governed P23 registered-voter denominator for this constituency (77,764). The printed Form 34B total includes two special-facility polling stations with non-ward codes ('049292145103501 KITUI WOMEN - 01' registered 1 and '049292145103601 KITUI PRISON (B) - 01' registered 22, sum 23 -- exactly the observed delta), which are outside the ordinary ward-boundary polling-station set used to derive the governed ward-summed registered-voters denominator. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters, this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C017-CON086",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C017-CON086"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-makueni-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 61,774 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (102,827) does not exactly match the separately governed P23 registered-voter denominator for this constituency (102,712). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145104101 MAKUENI PRISON (B) - 01', registered 115), exactly explaining the observed delta of 115. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Mvita, Galole, Voi, Isiolo North, Chuka/Igambang'ombe) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C018-CON091",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C018-CON091"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals).",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-ol-kalou-source-verification.json): Registered voters, the four candidate cells, Total Valid Votes and Rejected Ballots are all clearly legible and fully self-consistent: registered voters (72,997) matches the governed P23 denominator exactly, and the candidate-column sum (47,326) reconciles exactly to the printed Total Valid Votes. However, this row is left unresolved rather than promoted because the source document itself deviates materially from the visual anti-fabrication identity check used for every other row in this tranche (see review_context_note for full detail): it is a small born-digital PDF with no IEBC letterhead, no 'CON 091' banner marker, no QR code, and a completely blank, unsigned candidate-agent/returning-officer signature page, rather than a scanned, stamped, hand-signed original. While the server's own Content-Disposition filename, the document body's constituency/county identity, and an election-period PDF creation timestamp are all consistent with this being IEBC's own system-generated rendition of the form, the absence of the usual signed/stamped scan is a meaningful deviation from this Atlas's established verification standard and is left for governed review rather than self-certified as promotion-eligible."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C018-CON092",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C018-CON092"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-ol-jorok-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 39867 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (60199) does not exactly match the separately governed P23 registered-voter denominator for this constituency (60147). The 52-voter gap (60,199 minus 60,147) exactly equals the registered-voter count printed on this same page for the 'NYANDARUA PRISON - 01' polling station (52 registered voters, polling-station code 049292145104201), which sits in a national-facility ward code outside the ordinary Ol Jorok constituency ward series that the governed First Schedule denominator sums from. This is the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations (e.g. Taveta Prison, Marsabit Prison for Saku). Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C019-CON094",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C019-CON094"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-tetu-source-verification.json): The printed Registered Voters figure (54,986) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-094-2022) exactly, and Rejected Ballots (231) is individually clear. However, the row's own four candidate cells (5,970 + 31,781 + 130 + 172 = 38,053) do not sum to the printed Total Valid Votes (38,069), a 16-vote discrepancy. Every digit was independently re-read at 600 DPI on the rotation-corrected page with identical results, so this is judged a genuine printed-form arithmetic error rather than a legibility or transcription issue, matching the Kipkelion West / Bomet Central precedent recorded in the governed promotion contract. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is preserved unresolved and no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C019-CON097",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C019-CON097"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals).",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-othaya-source-verification.json): The official portal PDF for Othaya prints a polling-station results table with no Registered Voters column at all (confirmed at 300 DPI on the page-1 header band: Polling Station Code, Polling Station Name, Odinga Raila, Ruto William Samoei, Waihiga David Mwaure, Wajackoyah George Luchiri, Total Valid Votes, Rejected Ballots only). The four candidate cells on the final CONSTITUENCY SUB TOTAL row sum exactly to the row's own printed Total Valid Votes (7,249+36,606+145+205=44,205), so total_valid_votes, rejected_ballots and the candidate reconciliation are each independently source-verified. However, registered_voters -- required to reconcile against the governed P23 denominator (61,879) and to derive turnout -- is not printed anywhere in this scan (the two remaining pages are a blank handing-over block and a blank page). Recorded as verification_state=partial_unresolved; no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C019-CON099",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C019-CON099"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-nyeri-town-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 56,187 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (87,536) does not exactly match the separately governed P23 registered-voter denominator for this constituency (87,168). The printed Form 34B total includes three special-facility polling stations with non-ward codes on the same TOTAL row -- NYERI MAIN - 01 (276), NYERI WOMEN - 01 (17) and NYERI MEDIUM - 01 (75), summing to exactly 368 -- explaining the observed delta in full. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Makueni, Kirinyaga Central, Maragwa, Naivasha). Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C020-CON100",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C020-CON100"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-mwea-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 88,642 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (131,788) does not exactly match the separately governed P23 registered-voter denominator for this constituency (131,714). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145104601 MWEA PRISON - 01' registered 74 -- exactly the observed delta), which is outside the ordinary ward-boundary polling-station set used to derive the governed ward-summed registered-voters denominator. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Kitui Central) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters, this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C020-CON103",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C020-CON103"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kirinyaga-central-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 58,048 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (82,111) does not exactly match the separately governed P23 registered-voter denominator for this constituency (82,049). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145104701 KERUGOYA PRISON - 01', registered 62) on the same TOTAL row, exactly explaining the observed delta of 62. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Makueni, Nyeri Town, Maragwa) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C021-CON106",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C021-CON106"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kiharu-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 80,743 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (119,465) does not exactly match the separately governed P23 registered-voter denominator for this constituency (119,389). The 76-voter gap exactly equals the sum of two special-facility polling stations printed on the same page immediately above the TOTAL row: MURANGA PRISON (71 registered voters, code 049292145104801) and MURANGA WOMEN (5 registered voters, code 049292145104901), which sit in a national-facility ward code outside the ordinary Kiharu constituency ward series that the governed First Schedule denominator sums from. This is the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C021-CON108",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C021-CON108"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-maragwa-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 67,773 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (102,405) does not exactly match the separately governed P23 registered-voter denominator for this constituency (102,383). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145105001 MARAJAU PRISONS', registered 22) on the same TOTAL row, exactly explaining the observed delta of 22. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Makueni, Nyeri Town, Kirinyaga Central) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C022-CON114",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C022-CON114"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-thika-town-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 91,527 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (156,037) does not exactly match the separately governed P23 registered-voter denominator for this constituency (156,018). The 19-voter gap exactly equals the sum of two special-facility polling stations printed on the same page immediately above the TOTAL row: THIKA MAIN PRISON (14 registered voters) and THIKA WOMEN PRISON (5 registered voters), which sit in a national-facility ward code outside the ordinary Thika Town constituency ward series that the governed First Schedule denominator sums from. This is the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C022-CON117",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C022-CON117"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kiambu-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 56,446 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (87,076) does not exactly match the separately governed P23 registered-voter denominator for this constituency (86,986). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145105401 KIAMBU PRISON - 01', registered 90 -- exactly the observed delta), which is outside the ordinary ward-boundary polling-station set used to derive the governed ward-summed registered-voters denominator. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Kitui Central, Mwea) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters, this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C023-CON123",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C023-CON123"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-turkana-north-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 26,077 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (42,994) does not exactly match the separately governed P23 registered-voter denominator for this constituency (42,937), a 57-voter gap. Unlike the prison/special-station cases documented elsewhere in this tranche, both pages of this form were reviewed in full and no special-facility polling station (prison, hospital, or similar) was found on either page whose registered-voters count would explain the gap. Left unresolved as a genuine, investigated-but-unexplained denominator gap rather than assumed to be the same pattern without evidence, matching the Ainamoi precedent from an earlier tranche."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C023-CON125",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C023-CON125"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-turkana-central-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 33,147 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (55,997) does not exactly match the separately governed P23 registered-voter denominator for this constituency (55,971). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145112101 LODWAR GK PRISON - 01', registered 26) on the same TOTAL row, exactly explaining the observed delta of 26. (Two other stations named 'LODWAR PRISON - 01/02' carry ordinary ward-prefixed codes and are already inside the governed ward denominator, so only the separately-coded GK Prison station accounts for the gap.) This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Makueni, Nyeri Town, Kirinyaga Central, Maragwa) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C023-CON127",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C023-CON127"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_scanned_document_missing_or_internally_inconsistent_required_field",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible, structurally complete scan of this constituency's Form 34B (with the missing field present, or a single internally consistent tally in place of two disagreeing totals).",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-turkana-south-source-verification.json): Registered Voters is clearly legible in the 'Voter Turn Out' declaration summary box printed on the same official page (40,432) and reconciles exactly to the governed P23 constituency denominator (40,432). However, the downloaded Form 34B PDF for this form_id is itself incomplete -- it contains only sheets 10, 11 and 12 of the constituency's polling-station listing, with sheets 1-9 not served by the portal in this session -- so the polling-station table's own printed TOTAL row (Registered Voters 20,472; Total Valid Votes 23,690; Rejected Ballots 217) is only a partial subtotal of those three sheets, not the true constituency-wide total, and cannot be used as verified evidence for Total Valid Votes or Rejected Ballots. The Voter Turn Out box gives only a combined turned-out figure (23,707), not a valid/rejected breakdown, so those two fields cannot be independently reconstructed from this download either. Per the extraction contract's exact-reconciliation requirement and its prohibition on inferring result values from partial or indirect arithmetic, this row remains unresolved for Total Valid Votes and Rejected Ballots and creates no canonical turnout observation. A re-attempt with a download that serves the full sheet set (or the constituency's cover/declaration page, if one exists separately) could resolve this."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C024-CON132",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C024-CON132"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_candidate_vote_columns_do_not_sum_to_printed_total_valid_votes",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-pokot-south-source-verification.json): This TOTAL row carries two independent problems, either of which alone would block promotion. First, the four candidate cells sum to 46,512 (17,489 + 28,825 + 66 + 132) while the row's own printed Total Valid Votes is 46,581, a 69-vote gap; re-read twice at different DPI with identical digits both times, so this is judged a genuine printed-form arithmetic defect rather than a legibility issue, matching the Fafi and Kipkelion West precedents. Second, the printed Registered Voters figure (58,536) does not match the governed P23 denominator (58,406), a 130-voter gap for which no explaining special-facility polling station was identified on the page. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is left unresolved rather than forced through by substituting the candidate-sum figure for the printed total or otherwise reconciling either discrepancy without source evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C026-CON138",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C026-CON138"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-saboti-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 53,955 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (87,633) does not exactly match the separately governed P23 registered-voter denominator for this constituency (87,384). The printed Form 34B total includes four special-facility polling stations with non-ward codes on the same TOTAL row -- KITALE MEDIUM - 01 (21), KITALE ANNEX - 01 (36), KITALE WOMEN - 01 (16) and KITALE MAIN PRISON (B) - 01 (176), summing to exactly 249 -- explaining the observed delta in full. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C026-CON140",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C026-CON140"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_registered_voters_and_candidate_arithmetic_both_fail_to_reconcile",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-cherangany-source-verification.json): This constituency's TOTAL row carries two independent, simultaneous internal conflicts. First, the row's own printed Registered Voters (91,668, which matches the form's own 'Voter Turn Out' declaration box exactly) is 162 short of the separately governed P23 registered-voters denominator (91,830); no special-facility or non-ward polling station is visible in this download to explain the gap, so it is preserved unresolved rather than assumed to be a Kiambu/Mwea/Kandara-style prison-station gap. Second, the row's own printed Total Valid Votes (62,718) does not equal the sum of its own four candidate cells (62,510, short by 208) -- ballots cast using the printed Total Valid Votes figure (63,140) does reconcile exactly to the form's own declared 'Total Number of Voters who turned out to vote' (63,140), so the internal inconsistency is specifically between the candidate cells and the Total Valid Votes cell, not the turnout box. Per the extraction contract's exact-reconciliation requirement and its prohibition on silently correcting digits or inferring values to force reconciliation, both conflicts are preserved unresolved and no turnout observation may be promoted from this evidence."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C027-CON144",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C027-CON144"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-ainabkoi-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 44,157 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (62,611) does not exactly match the separately governed P23 registered-voter denominator for this constituency (62,606). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145106201 ELDORET WOMEN - 01', registered 5) on the same TOTAL row, exactly explaining the observed delta of 5. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C027-CON145",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C027-CON145"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kapseret-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 50,270 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (74,933) does not exactly match the separately governed P23 registered-voter denominator for this constituency (74,809). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145106301 ELDORET MAIN - 01', registered 124 -- exactly the observed delta), which is outside the ordinary ward-boundary polling-station set used to derive the governed ward-summed registered-voters denominator. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Kiambu, Baringo Central, Matuga, Lamu West, Garissa Township, Kitui Central, Mwea) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters, this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C027-CON146",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C027-CON146"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-kesses-source-verification.json): Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 54,768 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (77,992) does not exactly match the separately governed P23 registered-voter denominator for this constituency (77,942). The 50-voter gap exactly matches NGERIA FARM - 01, a special-facility polling station printed on page 1 of the same form, which sits outside the ordinary Kesses constituency ward series that the governed First Schedule denominator sums from. This is the same genuine printed-total-vs-ward-derived-denominator gap already documented for other constituencies' special-facility polling stations. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C037-CON209",
+      "level": "constituency",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "status": "official_unavailable",
+      "geo_codes": [
+        "KEN-C037-CON209"
+      ],
+      "period_label": "2022 general election",
+      "source": "IEBC",
+      "source_url": "https://forms.iebc.or.ke/",
+      "as_of": "2026-09-11",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document.",
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-shinyalu-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 43,607 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (76,993) does not exactly match the separately governed P23 registered-voter denominator for this constituency (76,978). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145108901 SHIKUSA FARM - 01', registered 15) on the same TOTAL row, exactly explaining the observed delta of 15. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process."
     }
   ]
 }
