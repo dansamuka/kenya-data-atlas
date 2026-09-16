@@ -8,7 +8,7 @@
   "source": "IEBC",
   "source_url": "https://forms.iebc.or.ke/",
   "purpose": "Formalize, as governed official_unavailable evidence-state closures, the per-constituency Form 34B turnout blockers that six parallel P23 source-verification tranches (PRs #135-#140) independently documented but left recorded only in their merged pull-request descriptions rather than as persisted repository data. Each decision below reflects a genuine, already-documented source-document defect (a registered-voters denominator conflict, an internal candidate-arithmetic inconsistency, a structural scan defect, or an IEBC portal access failure) rather than a fabricated, estimated, or forced value. No decision in this contract computes or promotes a turnout observation; each closes the corresponding P23 slot-ledger row as officially unavailable pending a specific, named refresh trigger.",
-  "decision_count": 103,
+  "decision_count": 104,
   "decisions": [
     {
       "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C031-CON164",
@@ -1039,6 +1039,16 @@
       "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Samburu West is 43,428, exceeding the governed canonical P23 constituency registered-voters denominator (43,390) by exactly 38 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145105701 MARALAL - 01', registered 38. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
       "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
       "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C001-CON003",
+      "geo_code": "KEN-C001-CON003",
+      "constituency_name": "Kisauni",
+      "category": "source_image_illegible",
+      "source_pr": 230,
+      "reason": "Independently investigated across multiple sessions during the P23 Form 34B turnout extraction programme, most recently documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the official Form 34B PDF for Kisauni was downloaded fresh from forms.iebc.or.ke and its sha256 verified against the portal response. Every other row on the source page is clearly legible at standard resolution, but the constituency's own TOTAL row sits under a dense security-watermark band that defeats digit recognition at any resolution tried: renders from 250 DPI up to 1200 DPI targeted crops, adaptive and Sauvola local thresholding, CLAHE contrast enhancement, and denoising were all attempted, and in each case the printed digits could not be read with confidence. This is a genuine source-image legibility defect distinct from a missing field (the row exists and is printed) or a denominator/arithmetic conflict (no figures could be read to compare in the first place). Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json) and the project's anti-fabrication policy, no evidence file was written and no value is guessed or estimated for this constituency.",
+      "evidence_constraint": "form34b_total_row_obscured_by_watermark_unreadable_at_any_resolution",
+      "refresh_trigger": "Revisit once IEBC re-publishes a legible scan of this constituency's Form 34B (a rescan, or a corrected/reissued document without the obscuring watermark band over the TOTAL row), or once a different rendering/enhancement technique not yet attempted successfully recovers the digits."
     }
   ]
 }

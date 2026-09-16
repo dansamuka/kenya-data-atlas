@@ -58,5 +58,5 @@ assert(resolvedTurnoutUnavailable.every(r=>r.completion_phase==='complete'&&!r.s
 assert(unresolvedTurnout.every(r=>r.completion_phase==='P23'&&!r.series_code&&!r.observation_id),'unresolved turnout slots must remain value-free P23 work');
 const liveP23=ledger.rows.filter(r=>r.completion_phase==='P23');
 assert(liveP23.length===unresolvedTurnout.length&&liveP23.every(r=>r.level==='constituency'&&r.indicator_code==='IND-TURNOUT-HISTORY'),'P23 must contain only unresolved constituency turnout slots');
-assert(Number(summary.by_completion_phase?.P23)===unresolvedTurnout.length,`expected turnout-only P23 remainder of ${unresolvedTurnout.length}, got ${summary.by_completion_phase?.P23}`);
+assert(Number(summary.by_completion_phase?.P23??0)===unresolvedTurnout.length,`expected turnout-only P23 remainder of ${unresolvedTurnout.length}, got ${summary.by_completion_phase?.P23}`);
 console.log(`P23_EVIDENCE_GAP_CLOSURES_OK constituencies=290 rendered_slots=580 turnout_resolved=${resolvedTurnout.length} turnout_promoted=${resolvedTurnoutPromoted.length} turnout_governed_unavailable=${resolvedTurnoutUnavailable.length} p23_remaining=${unresolvedTurnout.length} unknown=0 contract=${contract.contract_id}`);

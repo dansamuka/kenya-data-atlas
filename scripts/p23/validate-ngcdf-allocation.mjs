@@ -32,7 +32,7 @@ if(!releases.some(r=>r.release_code==='REL-NGCDF-CONSTITUENCY-ALLOCATION-FY2025-
 if(summary.total_slots!==20115)fail(`governed denominator changed: ${summary.total_slots}`);
 if(summary.resolved_slots+summary.unresolved_slots!==summary.total_slots)fail(`completeness does not reconcile: resolved=${summary.resolved_slots} unresolved=${summary.unresolved_slots} total=${summary.total_slots}`);
 if(summary.resolved_slots<5324)fail(`resolved slots regressed below the NG-CDF promotion baseline: ${summary.resolved_slots}`);
-const p23Remaining=Number(summary.by_completion_phase?.P23);
+const p23Remaining=Number(summary.by_completion_phase?.P23??0);
 if(!Number.isInteger(p23Remaining)||p23Remaining<0||p23Remaining>1740)fail(`P23 remaining outside post-NG-CDF progression range: ${summary.by_completion_phase?.P23}`);
 if(summary.unknown_missing!==0)fail(`unknown_missing=${summary.unknown_missing}`);
 console.log(`P23_NGCDF_ALLOCATION_OK constituencies=290 observations=290 distribution=${JSON.stringify(distribution)} resolved=${summary.resolved_slots} p23_remaining=${p23Remaining} unknown=0`);

@@ -20,8 +20,13 @@ if(!releases.some(r=>r.release_code==='REL-PARLIAMENT-CONSTITUENCY-MPS-2026-08-1
 if(summary.total_slots!==20115)fail(`governed denominator changed: ${summary.total_slots}`);
 // 5,034 resolved / 15,081 unresolved / 2,030 P23 rows was the terminal MP checkpoint.
 // Later P23 promotions are allowed to improve global completeness but may never regress it.
+// by_completion_phase only counts phases that still have rows tagged with them -- once every
+// P23-phase row resolves (completion_phase flips to 'complete'), the 'P23' key legitimately
+// disappears from the summary rather than reading as an unbounded regression, so missing/absent
+// reads as 0 pending, not Infinity.
 if(summary.resolved_slots<5034)fail(`resolved slots regressed below MP checkpoint: ${summary.resolved_slots}`);
 if(summary.unresolved_slots>15081)fail(`unresolved slots regressed above MP checkpoint: ${summary.unresolved_slots}`);
-if((summary.by_completion_phase?.P23??Infinity)>2030)fail(`P23 queue regressed above MP checkpoint: ${summary.by_completion_phase?.P23}`);
+const p23Remaining=summary.by_completion_phase?.P23??0;
+if(p23Remaining>2030)fail(`P23 queue regressed above MP checkpoint: ${p23Remaining}`);
 if(summary.unknown_missing!==0)fail(`unknown_missing=${summary.unknown_missing}`);
-console.log(`P23_MP_PROMOTION_OK source=290 series=290 observations=290 resolved=${summary.resolved_slots} p23_remaining=${summary.by_completion_phase?.P23} unknown=0`);
+console.log(`P23_MP_PROMOTION_OK source=290 series=290 observations=290 resolved=${summary.resolved_slots} p23_remaining=${p23Remaining} unknown=0`);
