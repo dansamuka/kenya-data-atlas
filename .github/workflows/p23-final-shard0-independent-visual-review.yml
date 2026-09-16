@@ -1,0 +1,66 @@
+name: P23 final shard 0 independent visual review
+
+on:
+  pull_request:
+    paths:
+      - data/p23/form34b-final-shard0-independent-visual-review.json
+      - .github/workflows/p23-final-shard0-independent-visual-review.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate independent visual-review batch
+        run: |
+          python3 - <<'PY'
+          import json
+          p='data/p23/form34b-final-shard0-independent-visual-review.json'
+          d=json.load(open(p))
+          assert d['schema_version']=='kda.p23.form34b-independent-visual-review-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34807864713
+          assert d['source_cycle']['workflow_head_sha']=='5049c9536f652999809abe67227baa29db87d8ce'
+          assert d['source_cycle']['artifact_id']==10333508463
+          g=d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi']==250
+          assert g['denominator_reconciliation_required_before_verification'] is True
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          expected={
+            'KEN-C006-CON026':('Voi',61606,[21014,12040,78,257],33389,357,'a53586ebc185ac620b3a3109f7fd4086501f622c6a77674e7c0f58b2bfd51df7','43cbbe9455cbf69c3f2967dc15c791da4fdf3e65b62e2c9cc3bc90e6eaa4e579'),
+            'KEN-C017-CON083':('Mbooni',96029,[50649,9706,122,351],60828,445,'811dea8ae32c01d5e33815bd35842b071a6832c8823c28fed4c56f476e04473b','4aa4dff946195dc72573f29911b653a4869d8fafeed0836646d02bddb1fd1b8d'),
+            'KEN-C024-CON130':('Sigor',43934,[13774,21261,55,102],35192,354,'238c575231242dee4ba8bdce6e8832e9719388fd08dcd4b5f1e20602d3d2adb7','93c33a0b8b06a575d30667cc823609631a721a1ac0c26877d2be5e489d10045a'),
+            'KEN-C023-CON124':('Turkana West',42673,[17107,9288,44,86],26525,196,'4ee057149ef00991bcfe0ed8067b656e7c8a1eb69756c35235f7bcadbfe41172','d4e22d13b7ef5460dcbdcaf7f7c21e52f4ac57c3ca6378e4bca303ff282aa64c')
+          }
+          assert len(d['rows'])==4
+          assert {r['geo_code'] for r in d['rows']}==set(expected)
+          for r in d['rows']:
+            name,rv,cands,tvv,rej,pdfsha,imgsha=expected[r['geo_code']]
+            assert r['name']==name
+            assert r['render_dpi']==250
+            assert r['source_pdf_sha256']==pdfsha and len(pdfsha)==64
+            assert r['review_context_image_sha256']==imgsha and len(imgsha)==64
+            assert r['source_image_legibility']=='clear'
+            assert r['form_identity_visually_confirmed'] is True
+            assert r['total_row_label_visually_confirmed'] is True
+            v=r['visual_transcription']
+            assert v['registered_voters']==rv
+            assert v['candidate_vote_totals_in_source_column_order']==cands
+            assert v['total_valid_votes']==tvv
+            assert v['rejected_ballots']==rej
+            assert sum(cands)==tvv
+            assert r['same_row_valid_vote_reconciliation']['candidate_vote_sum']==tvv
+            assert r['same_row_valid_vote_reconciliation']['reconciles_total_valid_votes'] is True
+            assert r['denominator_reconciliation_state']=='pending_separate_governed_denominator_check'
+            assert r['verification_state']=='visual_source_transcribed_pending_denominator_reconciliation'
+            assert r['promotion_eligible'] is False
+            assert r['promotion_authorized_by_this_record'] is False
+            assert r['canonical_turnout_written'] is False
+          print('P23_SHARD0_VISUAL_REVIEW_OK rows=4 no_promotion=true denominator_check=pending')
+          PY

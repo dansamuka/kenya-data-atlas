@@ -1,0 +1,89 @@
+name: P23 cycle 1 terminal classification new15
+
+on:
+  pull_request:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-new15.json'
+      - '.github/workflows/p23-cycle1-terminal-classification-new15.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-cycle1-new15:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate terminal classifications and no-promotion contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('data/p23/p23-cycle1-terminal-classification-new15.json').read_text())
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          g=d['governance']
+          assert g['no_inheritance'] is True
+          assert g['no_promotion'] is True
+          assert g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False
+          assert g['canonical_turnout_value_written'] is False
+          assert g['verified_rows_still_require_separate_cycle2_promotion_review'] is True
+          src=d['denominator_source']
+          assert src['commit']=='29b269a6562262a77faf6d22ba5837f46d35df75'
+          assert src['blob_sha']=='2bd2861bb9378b3f0b5274d8db3c41912911077f'
+          assert set(d['excluded_as_already_terminal_reviewed'])=={'KEN-C007-CON031','KEN-C008-CON034','KEN-C008-CON035'}
+
+          expected={
+            'KEN-C017-CON086':'denominator_mismatch',
+            'KEN-C024-CON132':'arithmetic_mismatch',
+            'KEN-C025-CON133':'denominator_mismatch',
+            'KEN-C017-CON087':'verified',
+            'KEN-C025-CON134':'verified',
+            'KEN-C026-CON137':'verified',
+            'KEN-C017-CON088':'verified',
+            'KEN-C025-CON135':'verified',
+            'KEN-C027-CON143':'verified',
+            'KEN-C017-CON083':'verified',
+            'KEN-C024-CON130':'verified',
+            'KEN-C023-CON124':'verified',
+            'KEN-C017-CON084':'verified',
+            'KEN-C024-CON131':'verified',
+            'KEN-C024-CON129':'denominator_mismatch',
+          }
+          rows=d['rows']
+          assert len(rows)==15
+          assert len({r['geo_code'] for r in rows})==15
+          assert {r['geo_code'] for r in rows}==set(expected)
+          verified=0
+          for r in rows:
+            assert r['verification_state']==expected[r['geo_code']]
+            assert r['render_dpi']==250
+            assert len(r['source_pdf_sha256'])==64
+            assert len(r['review_context_image_sha256'])==64
+            assert r['promotion_eligible'] is False
+            assert r['promotion_authorized_by_this_record'] is False
+            assert r['canonical_turnout_written'] is False
+            v=r['visual_transcription']
+            votes=v['candidate_vote_totals_in_source_column_order']
+            assert len(votes)==4 and all(isinstance(x,int) and x>=0 for x in votes)
+            a=r['same_row_valid_vote_reconciliation']
+            assert a['candidate_vote_sum']==sum(votes)
+            assert a['delta']==a['candidate_vote_sum']-v['total_valid_votes']
+            assert a['reconciles_total_valid_votes']==(a['delta']==0)
+            den=r['governed_denominator']
+            assert den['sum']==sum(den['ward_values'])
+            assert den['form_registered_voters']==v['registered_voters']
+            assert den['delta']==den['form_registered_voters']-den['sum']
+            assert den['reconciles']==(den['delta']==0)
+            if r['verification_state']=='verified':
+              verified+=1
+              assert a['reconciles_total_valid_votes'] is True
+              assert den['reconciles'] is True
+            elif r['verification_state']=='arithmetic_mismatch':
+              assert a['reconciles_total_valid_votes'] is False
+            elif r['verification_state']=='denominator_mismatch':
+              assert a['reconciles_total_valid_votes'] is True
+              assert den['reconciles'] is False
+            forbidden={'turnout_pct','canonical_turnout','canonical_turnout_value','promotion_authorized'}
+            assert forbidden.isdisjoint(r.keys())
+          assert verified==11
+          print('P23_CYCLE1_NEW15 rows=15 verified=11 denominator_mismatch=3 arithmetic_mismatch=1 no_promotion=true')
+          PY

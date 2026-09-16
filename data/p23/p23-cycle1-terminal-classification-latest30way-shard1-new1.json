@@ -1,0 +1,28 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-15",
+  "purpose": "Independent visual review and governed denominator reconciliation for Kangundo from the latest successful 30-way evidence cycle. This records a terminal Cycle 1 classification only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34920572898,
+    "workflow_head_sha": "b53a42e1a5e257548b007c8398e4129e8a215af5",
+    "artifacts": [{"id": 10377414678, "name": "p23-final-evidence-shard-1", "digest": "sha256:7e869705ae93270a89ccec3f4cf5d3b1c5a2d4548ccf1f2ac72a72e9448cacd4"}]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {"no_inheritance": true, "no_promotion": true, "required_render_dpi": 250, "promotion_authorized_by_this_file": false, "canonical_turnout_value_written": false, "verified_rows_still_require_separate_cycle2_promotion_review": true},
+  "review": {"reviewed_at": "2026-09-15T03:19:00Z", "reviewer_class": "independent_visual_source_image_review", "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent", "independence_note": "Values were read directly from the exact 250-DPI page image in the pinned latest 30-way evidence artifact. The denominator was independently recomputed from the pinned ward dataset. No previous result-value extraction for this row was used as transcription input."},
+  "rows": [{
+    "geo_code": "KEN-C016-CON077", "name": "Kangundo", "queue": "salvage",
+    "artifact": {"id": 10377414678, "name": "p23-final-evidence-shard-1", "digest": "sha256:7e869705ae93270a89ccec3f4cf5d3b1c5a2d4548ccf1f2ac72a72e9448cacd4"},
+    "source_pdf_sha256": "bff1cbba0998d9132c7a4582e8daf65e8888d16a0e5e7e33f5797fbfc5270d6a", "page_number": 2, "review_context_image_sha256": "76be801506ff4dd3f1709ab9ab4e29245558b685ac554a9a49fa87b68ecbf636", "render_dpi": 250,
+    "visual_transcription": {"registered_voters": 60796, "candidate_vote_totals_in_source_column_order": [29808, 8405, 93, 365], "total_valid_votes": 38671, "rejected_ballots": 330},
+    "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 38671, "reconciles_total_valid_votes": true, "delta": 0},
+    "governed_denominator": {"ward_values": [14938, 16502, 13340, 16016], "sum": 60796, "form_registered_voters": 60796, "delta": 0, "reconciles": true},
+    "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+  }]
+}

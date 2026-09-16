@@ -1,0 +1,54 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for two current P23 rows from refreshed successful 30-way evidence cycle shards 15-16. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34861724480,
+    "workflow_head_sha": "7de5ee40f3f5daa32dd4dc417a06b9654a23bbe3",
+    "artifacts": [
+      {"id": 10355087825, "name": "p23-final-evidence-shard-15", "digest": "sha256:51719a584bde2048be3bbd1798285930d65a9bf7eaa92c71caa935472751c07a"},
+      {"id": 10355067555, "name": "p23-final-evidence-shard-16", "digest": "sha256:ef2cdb625026a3708f4517f5a1d123e0497d2262eca5616be00e84c027b1feb7"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T16:18:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exact 250-DPI page images in the pinned refreshed 30-way evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C021-CON108", "name": "Maragwa", "queue": "salvage",
+      "artifact": {"id": 10355087825, "name": "p23-final-evidence-shard-15", "digest": "sha256:51719a584bde2048be3bbd1798285930d65a9bf7eaa92c71caa935472751c07a"},
+      "source_pdf_sha256": "0a465313235623841c7c00b7fd02ab50992ff791c879124fbbe2a8ee5bebb77b", "page_number": 3, "review_context_image_sha256": "7e6ce15f31a502147b84a42797e32cdef90bd5b713ad726bc66d544034211b7f", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 102405, "candidate_vote_totals_in_source_column_order": [11271, 55962, 216, 324], "total_valid_votes": 67773, "rejected_ballots": 415},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 67773, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [26433, 16588, 13186, 16236, 13524, 16416], "sum": 102383, "form_registered_voters": 102405, "delta": 22, "reconciles": false},
+      "verification_state": "denominator_mismatch", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C021-CON109", "name": "Kandara", "queue": "salvage",
+      "artifact": {"id": 10355067555, "name": "p23-final-evidence-shard-16", "digest": "sha256:ef2cdb625026a3708f4517f5a1d123e0497d2262eca5616be00e84c027b1feb7"},
+      "source_pdf_sha256": "b0bad37c4dedd8cc795c6273749e0aab3a8f0e75ff9998523efcee567f225628", "page_number": 3, "review_context_image_sha256": "b11d5601a65977051da890d8b152a374c9cc6e26805333a99bf06d4826aa8a19", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 105148, "candidate_vote_totals_in_source_column_order": [11118, 59613, 255, 305], "total_valid_votes": 71291, "rejected_ballots": 356},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 71291, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [13776, 16240, 19129, 16280, 18335, 21388], "sum": 105148, "form_registered_voters": 105148, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    }
+  ]
+}

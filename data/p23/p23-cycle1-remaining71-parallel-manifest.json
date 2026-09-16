@@ -1,0 +1,24 @@
+{
+  "schema_version": "kda.p23.cycle1.remaining71-parallel.v1",
+  "as_of": "2026-09-14",
+  "base_head_sha": "b7eb55c24375765be6b486dfe4954d32c26bf116",
+  "canonical_queue_count": 109,
+  "terminal_covered_count": 38,
+  "remaining_count": 71,
+  "parallel_shards": 32,
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "independent_visual_review_required": true,
+    "canonical_turnout_written": false,
+    "terminal_coverage_audit_is_worklist_authority": true
+  },
+  "execution": {
+    "workflow": ".github/workflows/p23-final-32way-evidence-cycle.yml",
+    "worker": "scripts/p23/run-final-32way-evidence-cycle.py",
+    "coverage_audit": "scripts/p23/audit-turnout-terminal-coverage.py",
+    "assignment": "canonical audit remainder assigned round-robin across exactly 32 isolated workers",
+    "aggregate_contract": "exactly 71 unique geo_codes and exact set equality with audit remaining[]"
+  }
+}

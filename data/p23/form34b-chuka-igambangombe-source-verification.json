@@ -1,0 +1,94 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-CHUKA-IGAMBANGOMBE-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Chuka/Igambang'ombe Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 61,
+    "constituency_name": "Chuka/Igambang'ombe",
+    "geo_code": "KEN-C013-CON061",
+    "form_id": 277689,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277689",
+    "source_pdf_sha256": "0657e634cd490b1acfbf0e851fc143c38067a2f99b649de5944c7102ffb8ba3d",
+    "page_number": 3,
+    "render_dpi": 250,
+    "review_context_image_sha256": "be31166bce0d20394ffb3a0403c07874847f2af872f53fb02d0a3c10937736c8",
+    "review_context_note": "Automated green-band TOTAL row locator cleanly isolated the row; rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF at 250 DPI. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity ('Name of Constituency: CHUKA/IGAMBANG'OMBE Code: 061', 'Name of County: THARAKA-NITHI Code: 013') was read from the page-1 header and cross-checked against the visible 'CON 061' banner marker on the TOTAL-row page before this row was accepted. Note: the IEBC portal's discovery manifest lists this constituency's portal display name as 'CHUKA IGAMBANG OMBE' (a governed source-name alias already documented in scripts/p23/discover-iebc-form34b-manifest.py), matching the printed form header exactly.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_page1_form34b_presidential_header_name_of_constituency_chuka_igambangombe_code_061_plus_CON_061_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "be31166bce0d20394ffb3a0403c07874847f2af872f53fb02d0a3c10937736c8",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 84708,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "be31166bce0d20394ffb3a0403c07874847f2af872f53fb02d0a3c10937736c8",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 58805,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "be31166bce0d20394ffb3a0403c07874847f2af872f53fb02d0a3c10937736c8",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 306,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      5249,
+      53038,
+      173,
+      345
+    ],
+    "candidate_vote_sum": 58805,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 84708,
+    "governed_p23_registered_voters": 84674,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-061-2022 (data/indicators/registry/observations.json), exact sum of official IEBC child ward rows",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 34,
+    "denominator_conflict": true,
+    "candidate_sum_reconciles_total_valid_votes": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 58,805 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (84,708) does not exactly match the separately governed P23 registered-voter denominator for this constituency (84,674). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145103001 CHUKA - 01', a GK Prison station, registered 34), exactly explaining the observed delta of 34. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Mvita, Galole, Voi, Isiolo North) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

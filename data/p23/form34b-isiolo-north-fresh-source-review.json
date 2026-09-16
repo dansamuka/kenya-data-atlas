@@ -1,0 +1,72 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-ISIOLO-NORTH-FRESH-SOURCE-REVIEW-2026-09-14",
+  "as_of": "2026-09-14",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C011-CON049",
+  "constituency_code": 49,
+  "constituency_name": "Isiolo North",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Isiolo North Form 34B from the governed salvage-C exactly-250-DPI artifact. Registered voters, candidate aggregates, Total Valid Votes and Rejected Ballots are independently readable. The governed ward denominator differs from the form by 31 voters, exactly matched by the visible ISIOLO PRISON - 01 row. Under the existing exact-denominator contract the row remains denominator_mismatch and non-promotable.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-c.json"
+  },
+  "fresh_source": {
+    "form_id": 277677,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277677",
+    "source_pdf_sha256": "5f72e2609c58716b8fb515df1feea3e7fb84a146cf1e902d1eb1dc3bcd620123",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "45a53067143db97e53d3aa633b6a440f688e1de703e98dc386f23aec9a2cf7cb",
+    "identity_page_number": 1,
+    "identity_page_image_sha256": "cb32990457d3c4af3f11f517c8c5e12f68816e584144b6bf8a5896b58f1eecfb",
+    "page_count": 3,
+    "workflow_run_id": 34777290075,
+    "workflow_head_sha": "9d3098c0fddc0de703f30fb22efc0b5d2f77844d",
+    "artifact_id": 10324187529,
+    "artifact_sha256": "e1b839e5ab67cec1d7b8683909b0c44efaec6a5f44eeb2c951c2927f8397f8bd",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T22:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "This review used only the fresh official PDF and exactly-250-DPI page images from workflow artifact 10324187529 plus the independently pinned ward source used by scripts/p23/build-constituency-voters.mjs. No prior result value, verification state, source hash, image hash or promotion state was inherited.",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh page 1 visibly identifies ISIOLO NORTH, constituency code 049 and Isiolo county code 011",
+    "result_table_present": true,
+    "total_row_present": true,
+    "total_row_legibility": "clear",
+    "finding": "Fresh page 2 visibly prints Registered Voters 67,354; candidate aggregates 19,740, 22,845, 40 and 140; Total Valid Votes 42,765; and Rejected Ballots 343. Candidate aggregates sum exactly to 42,765. The independently pinned seven-ward denominator is 67,323, leaving a 31-voter difference. The same fresh page visibly contains ISIOLO PRISON - 01 with 31 registered voters, exactly explaining that numerical difference. Exact denominator reconciliation nevertheless remains false under the governing contract, so no turnout result is promoted."
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 2, "source_image_sha256": "45a53067143db97e53d3aa633b6a440f688e1de703e98dc386f23aec9a2cf7cb", "verified_value": 67354, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 2, "source_image_sha256": "45a53067143db97e53d3aa633b6a440f688e1de703e98dc386f23aec9a2cf7cb", "verified_value": 42765, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "rejected_ballots": {"page_number": 2, "source_image_sha256": "45a53067143db97e53d3aa633b6a440f688e1de703e98dc386f23aec9a2cf7cb", "verified_value": 343, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [19740, 22845, 40, 140],
+    "candidate_vote_sum": 42765,
+    "reconciles_total_valid_votes": true
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the seven pinned Isiolo North ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [15034, 15125, 4486, 8065, 5434, 13195, 5984],
+    "governed_registered_voters": 67323,
+    "form_printed_registered_voters": 67354,
+    "registered_voters_delta": 31,
+    "registered_voters_reconciles": false,
+    "special_facility_rows": [
+      {"polling_station_name": "ISIOLO PRISON - 01", "registered_voters": 31}
+    ],
+    "special_facility_registered_voters_sum": 31,
+    "special_facility_exactly_explains_delta": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "blocked_exact_denominator_reconciliation_required",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "No turnout percentage, ballots-cast value, series or canonical turnout observation is materialized. The special-facility row explains the numerical delta but does not weaken the exact-denominator promotion rule."
+}

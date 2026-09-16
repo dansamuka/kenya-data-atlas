@@ -1,0 +1,65 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-FAFI-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C007-CON031",
+  "constituency_code": 31,
+  "constituency_name": "Fafi",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Fafi Form 34B from the governed salvage-B exactly-250-DPI artifact, preserving the source-internal candidate/valid-vote arithmetic conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-b.json"
+  },
+  "fresh_source": {
+    "form_id": 277659,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277659",
+    "source_pdf_sha256": "141442b4e63035f60ce3b304927824b579bd183e2b84c2f4097d4b54a76f63c8",
+    "page_number": 2,
+    "render_dpi": 250,
+    "full_page_image_sha256": "856d867a1dd50652f520d833f01c6feffb70aa548d817e01696ee00b5faa49c4",
+    "review_context_image_sha256": "856d867a1dd50652f520d833f01c6feffb70aa548d817e01696ee00b5faa49c4",
+    "workflow_run_id": 34756901800,
+    "workflow_head_sha": "c43819c9ad2ac5de12cc8fcc17cd85020080cf4e",
+    "artifact_id": 10317568226,
+    "artifact_sha256": "f821b096dd7b781ede18f0fe73082d7bf10f415ffb1808253df240dcee26804e",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T14:25:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "Aggregate integers were read directly from the fresh exactly-250-DPI page-2 image in workflow artifact 10317568226. No value, source hash, image hash, verification state, promotion state or denominator was copied from closed PRs #143-#145. The governed denominator was independently recomputed from the five pinned Fafi ward rows in the source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh Form 34B page 1 visibly identifies FAFI, code 031; reviewed aggregate row and candidate aggregate table appear on page 2 of 3",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 2, "source_image_sha256": "856d867a1dd50652f520d833f01c6feffb70aa548d817e01696ee00b5faa49c4", "verified_value": 27335, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_aggregate_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 2, "source_image_sha256": "856d867a1dd50652f520d833f01c6feffb70aa548d817e01696ee00b5faa49c4", "verified_value": 13662, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_aggregate_row", "verification_state": "source_mismatch"},
+    "rejected_ballots": {"page_number": 2, "source_image_sha256": "856d867a1dd50652f520d833f01c6feffb70aa548d817e01696ee00b5faa49c4", "verified_value": 48, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_aggregate_row", "verification_state": "source_verified"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [5403, 8377, 18, 49],
+    "candidate_vote_sum": 13847,
+    "form_printed_total_valid_votes": 13662,
+    "candidate_sum_minus_printed_total_valid_votes": 185,
+    "reconciles_total_valid_votes": false
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the five pinned Fafi ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [5272, 4740, 3123, 7050, 7150],
+    "governed_registered_voters": 27335,
+    "form_printed_registered_voters": 27335,
+    "registered_voters_delta": 0,
+    "registered_voters_reconciles": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "The fresh official Fafi Form 34B registered-voter denominator exactly reconciles to the governed five-ward denominator. However, the same fresh page shows candidate aggregate values 5,403 + 8,377 + 18 + 49 = 13,847 while the printed Total Valid Votes cell reads 13,662, a 185-vote source-internal arithmetic mismatch. The extraction contract requires exact candidate-to-valid-vote reconciliation where candidate totals are independently readable; therefore the row remains unresolved and no turnout observation is promoted."
+}

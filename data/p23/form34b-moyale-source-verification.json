@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-MOYALE-SOURCE-REVIEW-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Moyale Form 34B final TOTAL row, and preserve a genuine source-image legibility limitation without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 45,
+    "constituency_name": "Moyale",
+    "geo_code": "KEN-C010-CON045",
+    "form_id": 277673,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277673",
+    "source_pdf_sha256": "fc0425851ab85b8471984864b5c282fdd2ccada0bb4c1cc567628457ef61e3aa",
+    "page_number": 2,
+    "render_dpi": 150,
+    "review_context_image_sha256": "5b93c999d1e7cd2e7139df5acbfce08f2ec22237b374def3e34bbed67c6d6ec4",
+    "review_context_note": "This constituency's Form 34B page is a photograph of the physical page (visible tilt and wood-grain background, matching the pattern already seen on Voi) rather than a flat scan, and its anti-fraud diagonal text watermark is printed unusually darkly, directly overlapping the TOTAL row's numeric cells. The page was rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF at DPIs from 150 up to 2500, including per-cell crops with saturation- and brightness-based contrast thresholding (isolating near-black ink pixels from the lighter green cell shading and the grey watermark strokes) to attempt a confident digit-level read. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session and its sha256 was computed from the downloaded bytes. Constituency identity (MOYALE, code 045, county MARSABIT code 010) was read explicitly from the page-1 form header ('Name of Constituency: MOYALE Code: 045', 'Name of County: MARSABIT Code: 010') and the visible 'CON 045' banner marker. Rejected Ballots (276), and the Ruto William Samoei (23,749) and two minor-candidate (Waihiga David Mwaure 69; Wajackoyah George Luchiri 113) TOTAL-row cells were read with high confidence after contrast thresholding cleanly separated their ink strokes from the watermark. Registered Voters, Odinga Raila, and Total Valid Votes could not be pinned to a single confident digit string: repeated high-DPI and contrast-thresholded re-reads left the Registered Voters cell's final digit and the Total Valid Votes cell's middle digits genuinely ambiguous (readings consistent with a Registered Voters value in the range 66,401-66,408 and a Total Valid Votes value that appears most consistent with 44,544 but does not reconcile exactly to the four independently read candidate cells, which sum to 44,510, a difference too large to be an artifact of the one ambiguous Registered Voters digit). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted.",
+    "source_image_legibility": "degraded_watermark_interference",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_page1_form34b_presidential_header_name_of_constituency_moyale_code_045_plus_CON_045_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "5b93c999d1e7cd2e7139df5acbfce08f2ec22237b374def3e34bbed67c6d6ec4",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_unreadable",
+      "best_effort_reading_range": [66401, 66408],
+      "governed_p23_registered_voters": 66402
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "5b93c999d1e7cd2e7139df5acbfce08f2ec22237b374def3e34bbed67c6d6ec4",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_unreadable",
+      "best_effort_reading": 44544,
+      "independent_candidate_sum_cross_check": 44510
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "5b93c999d1e7cd2e7139df5acbfce08f2ec22237b374def3e34bbed67c6d6ec4",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 276,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row. Three of four (Ruto, Waihiga, Wajackoyah) were read with high confidence; Odinga Raila's cell remained ambiguous between readings consistent with roughly 20,579-20,613 after repeated contrast-thresholded re-reads.",
+    "candidate_vote_totals_in_source_column_order": [
+      20579,
+      23749,
+      69,
+      113
+    ],
+    "candidate_vote_sum": 44510,
+    "reconciles_total_valid_votes": false,
+    "note": "Sum does not exactly match the best-effort Total Valid Votes reading (44,544); delta 34 is larger than plausible from the one genuinely ambiguous candidate digit alone."
+  },
+  "row_reconciliation": {
+    "registered_voters_reconciles": null,
+    "promotion_blocked": true
+  },
+  "verification_state": "source_unreadable",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_higher_quality_source_image",
+  "promotion_authorized_by_this_file": false,
+  "note": "This constituency's Form 34B page is an unusually dark, tilted photograph of the physical document (like Voi) whose anti-fraud watermark directly overlaps the TOTAL row's numeric cells. Rejected Ballots (276) and three of four candidate cells (Ruto 23,749; Waihiga David Mwaure 69; Wajackoyah George Luchiri 113) were confirmed with high confidence after saturation/brightness contrast thresholding at up to 2500 DPI. Registered Voters, Odinga Raila's cell, and Total Valid Votes could not be pinned to a single confident digit string despite the same technique: the best-effort readings do not arithmetically reconcile with each other (candidate sum 44,510 vs Total Valid Votes best-effort read 44,544), so at least one of the ambiguous cells is genuinely misread by this process, not merely uncertain in its last digit. Per the extraction contract's explicit prohibition on 'marking a partial or unreadable row verified' and on 'silently correcting OCR digits to make arithmetic or denominators reconcile', this row is recorded as verification_state=source_unreadable rather than guessed at, and is left for a future re-attempt against a cleaner source render (e.g. a non-photographed re-scan, if the IEBC portal ever republishes one) or a specialised image-restoration pass.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

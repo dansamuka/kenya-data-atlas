@@ -1,0 +1,44 @@
+name: P23 cycle 1 final 30-way shard1 new1 terminal classification
+
+on:
+  pull_request:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-final30way-shard1-new1.json'
+      - '.github/workflows/p23-cycle1-terminal-classification-final30way-shard1-new1.yml'
+  push:
+    paths:
+      - 'data/p23/p23-cycle1-terminal-classification-final30way-shard1-new1.json'
+      - '.github/workflows/p23-cycle1-terminal-classification-final30way-shard1-new1.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce provenance, arithmetic, denominator and no-promotion controls
+        run: |
+          python - <<'PY'
+          import json
+          p='data/p23/p23-cycle1-terminal-classification-final30way-shard1-new1.json'
+          d=json.load(open(p))
+          assert d['schema_version']=='kda.p23.cycle1-terminal-classification-batch.v1'
+          assert d['source_cycle']['workflow_run_id']==34928370330
+          assert d['source_cycle']['workflow_head_sha']=='1c49ec20245b067733dde8c5119fd41ced3a32ef'
+          a=d['source_cycle']['artifacts'][0]
+          assert a=={'id':10379909742,'name':'p23-final-evidence-shard-1','digest':'sha256:5e96d76aad6787abd84a45431e8e4b7b6766e72b81e53735bf5fb99ab96bb2da'}
+          g=d['governance']
+          assert g['no_inheritance'] and g['no_promotion'] and g['required_render_dpi']==250
+          assert g['promotion_authorized_by_this_file'] is False and g['canonical_turnout_value_written'] is False
+          assert g['verified_rows_still_require_separate_cycle2_promotion_review'] is True
+          assert len(d['rows'])==1
+          r=d['rows'][0]
+          assert r['geo_code']=='KEN-C016-CON079' and r['name']=='Kathiani' and r['queue']=='salvage'
+          assert r['artifact']==a
+          assert r['source_pdf_sha256']=='36d32d2fd6498c6ec9f6a8a38cb96eead8db9b4dcd9a67d85a1ee67210283f02'
+          assert r['page_number']==2 and r['review_context_image_sha256']=='c36c21bb69caeedd637dfc9a1396901a3f42b005efc2a6af438e659c49c955e9' and r['render_dpi']==250
+          v=r['visual_transcription']; assert v=={'registered_voters':60224,'candidate_vote_totals_in_source_column_order':[30984,6624,91,300],'total_valid_votes':37999,'rejected_ballots':260}
+          assert sum(v['candidate_vote_totals_in_source_column_order'])==v['total_valid_votes']==37999
+          den=r['governed_denominator']; assert den['ward_values']==[15867,16961,13442,13954] and sum(den['ward_values'])==den['sum']==60224
+          assert den['form_registered_voters']==60224 and den['delta']==0 and den['reconciles'] is True
+          assert r['verification_state']=='verified' and r['promotion_eligible'] is False and r['promotion_authorized_by_this_record'] is False and r['canonical_turnout_written'] is False
+          PY

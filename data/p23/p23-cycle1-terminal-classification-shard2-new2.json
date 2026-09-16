@@ -1,0 +1,67 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for the two current P23 rows in dynamic parallel evidence shard 2. This file records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34827249886,
+    "workflow_head_sha": "17460478130b9b80b980992c6bc410c80a2fe43b",
+    "artifact_id": 10339994363,
+    "artifact_name": "p23-final-evidence-shard-2",
+    "artifact_digest": "sha256:ef97cc4660180850ded4e54c9a317029e4a8fa329b0e49a5366c3f763dec6a13"
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T10:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned dynamic-remainder workflow artifact. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C012-CON058",
+      "name": "Central Imenti",
+      "queue": "salvage",
+      "source_pdf_sha256": "117771ed6f00e980937eba8c67012d172320f9c73ecc986eb33ba55c35d6267a",
+      "page_number": 2,
+      "review_context_image_sha256": "0aea8bd7ac440aa27ca804eba30ab00df21b73ae12b78456f8bfd3448513c15f",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 76495, "candidate_vote_totals_in_source_column_order": [6001, 47078, 119, 277], "total_valid_votes": 53475, "rejected_ballots": 359},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 53475, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [15057, 24397, 24723, 12318], "sum": 76495, "form_registered_voters": 76495, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C022-CON118",
+      "name": "Kiambaa",
+      "queue": "salvage",
+      "source_pdf_sha256": "c7a45ea0c430b6f563d1afedad2a6d68fb94f9ac1c872a22d6b5c0a76724c9bf",
+      "page_number": 2,
+      "review_context_image_sha256": "1dc212def3da358c7dc86e8460d1c4e13080450c0f60d041a72e2477b308e7e2",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 104268, "candidate_vote_totals_in_source_column_order": [18879, 48357, 347, 381], "total_valid_votes": 67964, "rejected_ballots": 468},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 67964, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [12842, 23677, 28523, 19412, 19814], "sum": 104268, "form_registered_voters": 104268, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}

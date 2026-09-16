@@ -1,0 +1,72 @@
+name: P23 untouched final four fresh review context
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/p23-untouched-final-four-review-context.yml
+      - scripts/p23/fresh-review-context-untouched-row.py
+      - data/p23/form34b-source-index-contract.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fresh-review-context:
+    name: ${{ matrix.geo_code }} ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - {geo_code: KEN-C024-CON129, name: Kapenguria}
+          - {geo_code: KEN-C025-CON133, name: Samburu West}
+          - {geo_code: KEN-C026-CON137, name: Endebess}
+          - {geo_code: KEN-C027-CON143, name: Moiben}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install deterministic PDF renderer
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Fresh-download and render official IEBC source
+        run: >-
+          python3 scripts/p23/fresh-review-context-untouched-row.py
+          --geo-code "${{ matrix.geo_code }}"
+          --name "${{ matrix.name }}"
+          --output-dir "/tmp/${{ matrix.geo_code }}"
+      - name: Enforce no-promotion manifest invariants
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('/tmp/${{ matrix.geo_code }}/review-context.json')
+          d=json.loads(p.read_text())
+          assert d['geo_code']=='${{ matrix.geo_code }}'
+          assert d['name']=='${{ matrix.name }}'
+          assert d['governance']['no_inheritance'] is True
+          assert d['governance']['no_promotion'] is True
+          assert d['governance']['result_values_forbidden'] is True
+          assert d['governance']['canonical_turnout_value_written'] is False
+          assert d['governance']['required_render_dpi']==250
+          assert isinstance(d.get('pages'), list) and d['pages']
+          assert all(page.get('render_dpi') == 250 for page in d['pages'])
+          assert all(isinstance(page.get('width_px'), int) and page['width_px'] > 0 for page in d['pages'])
+          assert all(isinstance(page.get('height_px'), int) and page['height_px'] > 0 for page in d['pages'])
+          assert all(isinstance(page.get('sha256'), str) and len(page['sha256']) == 64 for page in d['pages'])
+          forbidden={'registered_voters','total_valid_votes','rejected_ballots','turnout_pct','candidate_vote_sum','verified_value','source_verified','promotion_eligible','promotion_state','explicit_materialization_authorized'}
+          def scan(v):
+            if isinstance(v,dict):
+              assert not (set(v)&forbidden), set(v)&forbidden
+              for x in v.values(): scan(x)
+            elif isinstance(v,list):
+              for x in v: scan(x)
+          scan(d)
+          print('P23_UNTOUCHED_CONTEXT_OK ${{ matrix.geo_code }} dpi=250 no_promotion=true')
+          PY
+      - name: Upload isolated fresh review context
+        uses: actions/upload-artifact@v4
+        with:
+          name: p23-untouched-${{ matrix.geo_code }}-fresh-review-context
+          path: /tmp/${{ matrix.geo_code }}/
+          if-no-files-found: error
+          retention-days: 2

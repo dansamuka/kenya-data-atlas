@@ -1,0 +1,68 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-LAMU-WEST-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C005-CON022",
+  "constituency_code": 22,
+  "constituency_name": "Lamu West",
+  "purpose": "Record a fresh independent visual review of the official IEBC Lamu West Form 34B TOTAL row from the governed exactly-250-DPI salvage-A review artifact and preserve the exact registered-voter denominator conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-a.json"
+  },
+  "fresh_source": {
+    "form_id": 277650,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277650",
+    "source_pdf_sha256": "f0423c79f608905f1c0df408687263253511803d032814e5d3ec8f08105a440a",
+    "page_number": 2,
+    "render_dpi": 250,
+    "full_page_image_sha256": "f33594122197dac9a66995c3a8571c94761bc2afaaf2c4d443fb3cd719c9f327",
+    "review_context_image_sha256": "f33594122197dac9a66995c3a8571c94761bc2afaaf2c4d443fb3cd719c9f327",
+    "workflow_run_id": 34747991023,
+    "workflow_head_sha": "59ec9a4f1f0f2ce5d40f5cd08c8a0cf507649ef6",
+    "artifact_id": 10315105932,
+    "artifact_sha256": "1bb43299d51f30587480efd6cb83d59f3c38f0d3b94483de9482a40b3ec21d5c",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T11:24:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "The TOTAL-row integers and HINDI PRISON row were read directly from the fresh exactly-250-DPI page-2 image in workflow artifact 10315105932. No value, source hash, image hash, verification state, promotion state, or denominator was copied from closed PRs #143-#145. The governed registered-voter denominator was independently recomputed from the seven pinned Lamu West ward rows in the exact voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh page image visibly shows FORM 34 B and CON 022 02/12",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 2, "source_image_sha256": "f33594122197dac9a66995c3a8571c94761bc2afaaf2c4d443fb3cd719c9f327", "verified_value": 59421, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 2, "source_image_sha256": "f33594122197dac9a66995c3a8571c94761bc2afaaf2c4d443fb3cd719c9f327", "verified_value": 35369, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "rejected_ballots": {"page_number": 2, "source_image_sha256": "f33594122197dac9a66995c3a8571c94761bc2afaaf2c4d443fb3cd719c9f327", "verified_value": 451, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [16598, 18237, 138, 396],
+    "candidate_vote_sum": 35369,
+    "reconciles_total_valid_votes": true
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the seven pinned Lamu West ward rows in the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [3632, 12571, 8533, 8866, 5071, 9697, 11036],
+    "governed_registered_voters": 59406,
+    "form_printed_registered_voters": 59421,
+    "registered_voters_delta": 15,
+    "registered_voters_reconciles": false,
+    "special_facility_rows": [
+      {"polling_station_code": "049292145101301", "polling_station_name": "HINDI PRISON - 01", "registered_voters": 15}
+    ],
+    "special_facility_registered_voters_sum": 15,
+    "special_facility_exactly_explains_delta": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "The fresh official Form 34B is internally consistent for candidate votes and Total Valid Votes, but its printed Registered Voters total is 15 above the governed constituency denominator. The same fresh page visibly contains HINDI PRISON - 01 with 15 registered voters, exactly explaining the gap. Under the extraction contract, exact denominator reconciliation remains a hard precondition; therefore this row is preserved as a source-reviewed denominator mismatch and no turnout observation may be promoted from it by this file."
+}

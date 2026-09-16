@@ -1,0 +1,72 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review for refreshed 30-way evidence shards 21-22. Records governed Cycle-1 terminal states only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34880760190,
+    "workflow_head_sha": "cc3a55927bf8a578cfbf77391e6a96081182bcb8",
+    "artifacts": [
+      {"id": 10363351323, "name": "p23-final-evidence-shard-21", "digest": "sha256:1f28b50720eefa6266c52e02b635f0c64b67efb6890e01b6da37cb3c74660bd2"},
+      {"id": 10362892384, "name": "p23-final-evidence-shard-22", "digest": "sha256:396785aa76fa21a9fac9930bc921daa4e3d76ded373769b6c10e23e345d9bd0d"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T19:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from exact 250-DPI page images in the pinned refreshed evidence artifacts. Governed denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction was used as transcription input. Where the source image does not support reliable transcription, the row is terminally classified source_unreadable rather than guessed."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C037-CON209",
+      "name": "Shinyalu",
+      "queue": "salvage",
+      "artifact": {"id": 10363351323, "name": "p23-final-evidence-shard-21", "digest": "sha256:1f28b50720eefa6266c52e02b635f0c64b67efb6890e01b6da37cb3c74660bd2"},
+      "source_pdf_sha256": "36bcfa8602b252a17c28b62889fdb16b96c5d2d8e296c343c4d4265d37cb5a37",
+      "page_number": 2,
+      "review_context_image_sha256": "8eac64933573823b6284825e1d1a31f7b92c620a260e76fd6dac73b2efbf31a0",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 76993, "candidate_vote_totals_in_source_column_order": [32446,10853,96,212], "total_valid_votes": 43607, "rejected_ballots": 356},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 43607, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [11965,12994,16111,16003,9724,10181], "sum": 76978, "form_registered_voters": 76993, "delta": 15, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "secondary_finding": "Form 34B candidate arithmetic reconciles exactly, but registered voters exceed the pinned six-ward denominator by 15.",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C001-CON003",
+      "name": "Kisauni",
+      "queue": "untouched",
+      "artifact": {"id": 10362892384, "name": "p23-final-evidence-shard-22", "digest": "sha256:396785aa76fa21a9fac9930bc921daa4e3d76ded373769b6c10e23e345d9bd0d"},
+      "source_pdf_sha256": "d6155f2b56e007186efde80cfef31f3d63caed160c3c0836b8a84573e6951860",
+      "page_number": 3,
+      "review_context_image_sha256": "7e55b8ca06c065292976dc1fb1b059c19d7063b23c464432a7f380fa25275ec1",
+      "render_dpi": 250,
+      "visual_transcription": null,
+      "same_row_valid_vote_reconciliation": null,
+      "governed_denominator": {"ward_values": [22692,25602,20470,6423,19474,15105,25510], "sum": 135276, "form_registered_voters": null, "delta": null, "reconciles": false},
+      "verification_state": "source_unreadable",
+      "secondary_finding": "The exact 250-DPI source is present and page 3 contains the constituency total row, but scan degradation/noise prevents reliable independent transcription of the total row. No values are inferred or inherited.",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}

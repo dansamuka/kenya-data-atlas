@@ -1,0 +1,1 @@
+PR-context trigger: run 55 candidate deep-revalidation and 54 exception-resolution workers concurrently; preserve all no-promotion gates.

@@ -1,0 +1,54 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for two current P23 rows from the successful refreshed 30-way evidence cycle, shards 19-20. This records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34873926306,
+    "workflow_head_sha": "3889ed45afea30a38c4dcbe6082bb1403082f03a",
+    "artifacts": [
+      {"id": 10360117846, "name": "p23-final-evidence-shard-19", "digest": "sha256:5a4a31283a967799f700bea33fa18e58d6b8da019caa93ae09f739a55741792b"},
+      {"id": 10360660868, "name": "p23-final-evidence-shard-20", "digest": "sha256:743d1f3c68a51bd9eb9bae28e359a00bc2d3dda537f2cea0c7e5c4e9094eba37"}
+    ]
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T18:20:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exact 250-DPI page images in the pinned refreshed 30-way evidence artifacts. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C023-CON127", "name": "Turkana South", "queue": "salvage",
+      "artifact": {"id": 10360117846, "name": "p23-final-evidence-shard-19", "digest": "sha256:5a4a31283a967799f700bea33fa18e58d6b8da019caa93ae09f739a55741792b"},
+      "source_pdf_sha256": "20e2d54f2f05936284b276715eb95ccd4f1d8b638bf2b5c9f36ecbdde7669de8", "page_number": 3, "review_context_image_sha256": "ec47aa0ab361738a90b03927ff4833ca840bca5331e4fb701c14b5b1a80b353e", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 40432, "candidate_vote_totals_in_source_column_order": [20472, 3088, 51, 79], "total_valid_votes": 23690, "rejected_ballots": 217},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 23690, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [4123, 13254, 4259, 4329, 14467], "sum": 40432, "form_registered_voters": 40432, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C023-CON128", "name": "Turkana East", "queue": "salvage",
+      "artifact": {"id": 10360660868, "name": "p23-final-evidence-shard-20", "digest": "sha256:743d1f3c68a51bd9eb9bae28e359a00bc2d3dda537f2cea0c7e5c4e9094eba37"},
+      "source_pdf_sha256": "ee8d315f57285b66ba7edec810cbf731b91a0179d6b3f7c3cfc45d7042aa421b", "page_number": 2, "review_context_image_sha256": "f6d445a38b954975435b5b5c7c984eb906381bf968ece78fac7d3fc03351670f", "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 20000, "candidate_vote_totals_in_source_column_order": [11080, 1367, 19, 46], "total_valid_votes": 12512, "rejected_ballots": 76},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 12512, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [3721, 6357, 9922], "sum": 20000, "form_registered_voters": 20000, "delta": 0, "reconciles": true},
+      "verification_state": "verified", "promotion_eligible": false, "promotion_authorized_by_this_record": false, "canonical_turnout_written": false
+    }
+  ]
+}

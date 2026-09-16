@@ -1,0 +1,93 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-MANDERA-EAST-SOURCE-REVIEW-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Mandera East Form 34B final TOTAL row and preserve an internal source denominator conflict without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 43,
+    "constituency_name": "Mandera East",
+    "geo_code": "KEN-C009-CON043",
+    "form_id": 277671,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277671",
+    "source_pdf_sha256": "bb933b157f4f6372522fa3fd090a3b0da606aa746d687add498478b0384de824",
+    "page_number": 2,
+    "render_dpi": 700,
+    "review_context_image_sha256": "792ec6f9c87443a558191181d2f883ce29179070e0b700b0a35f0ee6c98cf73c",
+    "review_context_note": "TOTAL row auto-located by green-shading pixel detection (scripts/p23/find_total_row.py) and independently re-rendered at both 400 DPI and 700 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF; the TOTAL row digits are unambiguous and identical at both resolutions."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5, and cross-checked against the independent portal manifest discovery in scripts/p23/discover-iebc-form34b-manifest.py), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_43_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "792ec6f9c87443a558191181d2f883ce29179070e0b700b0a35f0ee6c98cf73c",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 48223,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "792ec6f9c87443a558191181d2f883ce29179070e0b700b0a35f0ee6c98cf73c",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 25801,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "792ec6f9c87443a558191181d2f883ce29179070e0b700b0a35f0ee6c98cf73c",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 296,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      18304,
+      7315,
+      41,
+      141
+    ],
+    "candidate_vote_sum": 25801,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 48223,
+    "governed_p23_registered_voters": 48219,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-043-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 4,
+    "denominator_conflict": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Total Valid Votes, Rejected Ballots and the candidate cells are individually clear and internally reconcile on the printed TOTAL row (candidate sum 25801 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (48223) does not exactly match the separately governed P23 registered-voter denominator for this constituency (48219). No single polling station on the source page exactly explains this 4-voter gap; it is preserved unresolved rather than forced, consistent with the extraction contract's exact-reconciliation requirement. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

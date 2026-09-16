@@ -1,0 +1,67 @@
+{
+  "schema_version": "kda.p23.cycle1-terminal-classification-batch.v1",
+  "as_of": "2026-09-14",
+  "purpose": "Independent visual review and governed denominator reconciliation for the two current P23 rows in dynamic parallel evidence shard 4. This file records terminal Cycle 1 classifications only and does not authorize promotion.",
+  "source_cycle": {
+    "workflow_run_id": 34832774470,
+    "workflow_head_sha": "3691911fdc43843f05547e60d43bef1b2c6ce066",
+    "artifact_id": 10343600888,
+    "artifact_name": "p23-final-evidence-shard-4",
+    "artifact_digest": "sha256:827afc71e2f4ee7648d4ce937943b5a8722f53fae3bb1341490e92fcd7b4a3b4"
+  },
+  "denominator_source": {
+    "repository": "samy-migwi/kenya_2022_voters_dashboard_app",
+    "commit": "29b269a6562262a77faf6d22ba5837f46d35df75",
+    "path": "data/voters.csv",
+    "blob_sha": "2bd2861bb9378b3f0b5274d8db3c41912911077f",
+    "method": "sum all ward rows sharing the constituency code; special-facility rows are not silently added"
+  },
+  "governance": {
+    "no_inheritance": true,
+    "no_promotion": true,
+    "required_render_dpi": 250,
+    "promotion_authorized_by_this_file": false,
+    "canonical_turnout_value_written": false,
+    "verified_rows_still_require_separate_cycle2_promotion_review": true
+  },
+  "review": {
+    "reviewed_at": "2026-09-14T11:24:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol, acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "Values were read directly from the exactly-250-DPI page images in the pinned dynamic-remainder workflow artifact. Denominators were independently recomputed from the pinned ward dataset. No previous result-value extraction for these rows was used as transcription input."
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C013-CON062",
+      "name": "Tharaka",
+      "queue": "salvage",
+      "source_pdf_sha256": "4230ba430c3606b43ab08995b6cdc478445f11668e87ad55af83f921dc6b0924",
+      "page_number": 3,
+      "review_context_image_sha256": "2a1c76358ebfbc26a809ae588f30b3a30f4e9919fa3f9ec7aa44d0fcc5b96131",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 74010, "candidate_vote_totals_in_source_column_order": [4877, 46582, 154, 522], "total_valid_votes": 52135, "rejected_ballots": 375},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 52135, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [13891, 13297, 9543, 18715, 18564], "sum": 74010, "form_registered_voters": 74010, "delta": 0, "reconciles": true},
+      "verification_state": "verified",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    },
+    {
+      "geo_code": "KEN-C023-CON125",
+      "name": "Turkana Central",
+      "queue": "salvage",
+      "source_pdf_sha256": "b3b5459c7935e94392fb8c234e2b21a2c14778b298c09a8fd781623ef5026286",
+      "page_number": 2,
+      "review_context_image_sha256": "ed9698f08812aad143e6239cbdc854e647b842f6ea567692472fcff7d906cb33",
+      "render_dpi": 250,
+      "visual_transcription": {"registered_voters": 55997, "candidate_vote_totals_in_source_column_order": [18848, 14089, 82, 128], "total_valid_votes": 33147, "rejected_ballots": 524},
+      "same_row_valid_vote_reconciliation": {"candidate_vote_sum": 33147, "reconciles_total_valid_votes": true, "delta": 0},
+      "governed_denominator": {"ward_values": [10672, 7625, 9179, 17273, 11222], "sum": 55971, "form_registered_voters": 55997, "delta": 26, "reconciles": false},
+      "verification_state": "denominator_mismatch",
+      "promotion_eligible": false,
+      "promotion_authorized_by_this_record": false,
+      "canonical_turnout_written": false
+    }
+  ]
+}

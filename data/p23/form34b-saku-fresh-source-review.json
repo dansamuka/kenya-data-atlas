@@ -1,0 +1,70 @@
+{
+  "schema_version": "kda.p23.form34b-fresh-source-review.v1",
+  "review_id": "P23-IEBC-2022-FORM34B-SAKU-FRESH-SOURCE-REVIEW-2026-09-13",
+  "as_of": "2026-09-13",
+  "indicator_code": "IND-TURNOUT-HISTORY",
+  "geo_code": "KEN-C010-CON047",
+  "constituency_code": 47,
+  "constituency_name": "Saku",
+  "purpose": "Record an independent visual review of the freshly downloaded official IEBC Saku Form 34B from the governed salvage-C exactly-250-DPI artifact. Registered voters, candidate aggregates and Total Valid Votes are readable; the rejected-ballot aggregate is not accepted because the dark TOTAL-row band does not support reliable independent transcription. The row remains partial_unresolved and non-promotable.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json",
+    "salvage_locator": "data/p23/turnout-salvage-tranche-c.json"
+  },
+  "fresh_source": {
+    "form_id": 277675,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277675",
+    "source_pdf_sha256": "444e96e3dd19cd72ba0f3a53d1e08044844d1006ab23bc11fbc587797509f30c",
+    "page_number": 1,
+    "render_dpi": 250,
+    "review_context_image_sha256": "ab7060ded47491b09f4af8f1e151e485141fd94810e80eaeb31e5b3ac1a29f58",
+    "page_count": 2,
+    "workflow_run_id": 34777290075,
+    "workflow_head_sha": "9d3098c0fddc0de703f30fb22efc0b5d2f77844d",
+    "artifact_id": 10324187529,
+    "artifact_sha256": "e1b839e5ab67cec1d7b8683909b0c44efaec6a5f44eeb2c951c2927f8397f8bd",
+    "fresh_download_state": "fresh_official_source_rendered_250dpi_unreviewed"
+  },
+  "review": {
+    "reviewed_at": "2026-09-13T20:31:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "OpenAI GPT-5.6 Sol acting as a Kenya Data Atlas contributor agent",
+    "independence_note": "This review used only the fresh official PDF and exactly-250-DPI page images from workflow artifact 10324187529. Prior PR evidence is locator history only; no prior result value, verification state, source hash, image hash or promotion state was inherited.",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "fresh page 1 visibly identifies SAKU, constituency code 047 and Marsabit county code 010",
+    "result_table_present": true,
+    "total_row_present": true,
+    "total_row_legibility": "partial",
+    "finding": "The fresh page-1 TOTAL row visibly prints Registered Voters 30,235; candidate aggregates 7,725, 13,233, 11 and 63; and Total Valid Votes 21,032. The candidate aggregates sum exactly to 21,032. The rejected-ballot aggregate is obscured by the dark TOTAL-row band and is not accepted as a source-verified integer. The independently governed three-ward denominator is 30,209, while the form prints 30,235; the same fresh page visibly contains MARSABIT PRISON - 01 with 26 registered voters, exactly explaining the 26-voter difference. Exact denominator reconciliation remains false under the governing contract, and no turnout result is promoted."
+  },
+  "field_evidence": {
+    "registered_voters": {"page_number": 1, "source_image_sha256": "ab7060ded47491b09f4af8f1e151e485141fd94810e80eaeb31e5b3ac1a29f58", "verified_value": 30235, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "total_valid_votes": {"page_number": 1, "source_image_sha256": "ab7060ded47491b09f4af8f1e151e485141fd94810e80eaeb31e5b3ac1a29f58", "verified_value": 21032, "verification_method": "direct_visual_read_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_verified"},
+    "rejected_ballots": {"page_number": 1, "source_image_sha256": "ab7060ded47491b09f4af8f1e151e485141fd94810e80eaeb31e5b3ac1a29f58", "verified_value": null, "verification_method": "independent_visual_review_of_fresh_250dpi_official_form34b_total_row", "verification_state": "source_unreadable"}
+  },
+  "same_row_valid_vote_reconciliation": {
+    "candidate_vote_totals_in_source_column_order": [7725, 13233, 11, 63],
+    "candidate_vote_sum": 21032,
+    "reconciles_total_valid_votes": true
+  },
+  "governed_denominator_reconciliation": {
+    "derivation": "Exact sum of the three pinned Saku ward rows from the voter source pinned by scripts/p23/build-constituency-voters.mjs.",
+    "ward_registered_voters": [9027, 4723, 16459],
+    "governed_registered_voters": 30209,
+    "form_printed_registered_voters": 30235,
+    "registered_voters_delta": 26,
+    "registered_voters_reconciles": false,
+    "special_facility_rows": [
+      {"polling_station_name": "MARSABIT PRISON - 01", "registered_voters": 26}
+    ],
+    "special_facility_registered_voters_sum": 26,
+    "special_facility_exactly_explains_delta": true
+  },
+  "verification_state": "partial_unresolved",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_rejected_ballot_and_denominator_mismatch",
+  "promotion_authorized_by_this_file": false,
+  "canonical_turnout_value_written": false,
+  "note": "No turnout percentage, ballots-cast value, inferred rejected-ballot total, series or canonical turnout observation is materialized."
+}
