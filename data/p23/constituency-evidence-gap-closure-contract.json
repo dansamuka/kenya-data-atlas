@@ -22,9 +22,9 @@
       "period_label": "2023 health-facility census definition · current 290-constituency boundary",
       "source": "Ministry of Health — Kenya Master Health Facility Registry (KMHFR)",
       "source_url": "https://kmhfr.health.go.ke/public/facilities",
-      "reason": "KMHFR provides official facility records with constituency location and can support constituency facility counts. The Atlas indicator, however, is health facilities assessed per 10,000 residents and requires a population denominator aligned to the current 290-constituency boundary and reference period. The governed P23 census review found no direct current-290 constituency population series or authoritative crosswalk supporting that denominator. A facility count is not relabelled as a population density, and no county/sub-county population is inherited downward.",
-      "evidence_constraint": "facility_count_available_but_constituency_population_denominator_unavailable",
-      "refresh_trigger": "Replace this closure when an authoritative current-290 constituency population denominator aligned to the facility-count reference period is published or can be deterministically derived under an approved boundary crosswalk."
+      "reason": "KMHFR's data model carries facility-level constituency location and, if reachable, could in principle support constituency facility counts. The Atlas indicator, however, is health facilities assessed per 10,000 residents and requires a population denominator aligned to the current 290-constituency boundary and reference period. The governed P23 census review found no direct current-290 constituency population series or authoritative crosswalk supporting that denominator. A facility count is not relabelled as a population density, and no county/sub-county population is inherited downward. P28A amendment (2026-09-16): this decision's original framing that KMHFR \"provides\" a usable constituency facility count was never live-verified and is now corrected — direct reachability tests of the KMHFR public portal and its documented API host (run on 2026-09-08 and again on 2026-09-16, eight days apart) both found every connection unreachable (DNS resolves; every TCP handshake over HTTP/HTTPS times out or is refused), while the Ministry's own health.go.ke apex domain responded normally in the same tests, showing this is a targeted, persistent access failure of the KMHFR host rather than a general outage or a one-off blip. No alternative official, current, geocoded/constituency-tagged facility export was found either: the only official KMHFR-derived download on the Humanitarian Data Exchange is a 2017 snapshot with no coordinates that predates and does not reconcile to the 2023 Kenya Health Facility Census total already anchoring this indicator at county level, and the Ministry's own 2023 census report never publishes facility counts below county. So this constituency gap is not solely a denominator problem: the facility-count numerator is also currently blocked at its designated source, on top of the pre-existing, independently confirmed absence of a current-290 constituency population denominator (see the parallel P24 ward-population investigation in data/p24/ward-census-closure-contract.json, which found KNBS's 2019 census tabulates no finer than sub-location and that no gazetted electoral-constituency/ward population count exists). Both inputs remain genuinely unavailable, not merely unintegrated.",
+      "evidence_constraint": "kmhfr_source_unreachable_and_constituency_population_denominator_also_unavailable",
+      "refresh_trigger": "Replace this closure when KMHFR (or another authoritative Ministry of Health facility registry) becomes reachable with constituency-level geocoding/tagging AND an authoritative current-290 constituency population denominator aligned to the facility-count reference period is published or can be deterministically derived under an approved boundary crosswalk. Both conditions must clear; neither alone is sufficient."
     }
   ],
   "rules": [
@@ -33,5 +33,21 @@
     "Do not treat a health-facility count as a per-population density.",
     "Do not inherit county or sub-county population to a constituency denominator.",
     "Every closure must preserve a primary official source, reason and refresh trigger."
+  ],
+  "reopen_reviews": [
+    {
+      "indicator_code": "IND-HEALTH-FACILITY-DENSITY",
+      "phase": "P28A",
+      "reviewed_at": "2026-09-16",
+      "trigger": "data/legacy-secondary-source-audit-contract.json mandatory retrospective re-open of governed_unavailable/official_unavailable closures for S2-S5 fallback representation opportunities",
+      "outcome": "closure_retained_with_amended_reason_and_corrected_evidence_constraint",
+      "correction": "The original 2026-09-02 reason asserted, without a live check, that KMHFR \"provides official facility records\" for constituencies. P28A live-tested KMHFR/its API on 2026-09-16 (matching the independent 2026-09-08 ward-level test) and found it unreachable both times. The decision text and evidence_constraint are amended to reflect that the numerator (reachable KMHFR facility export) is also currently blocked, not just the population denominator.",
+      "newly_checked": [
+        "Live KMHFR/API reachability (unreachable, same failure signature as the ward-level 2026-09-08 finding)",
+        "HDX catalogue for a newer official geocoded/constituency-tagged facility export (none found)",
+        "The Ministry's own 2023 Kenya Health Facility Census report for a constituency-level facility table (none published below county)",
+        "Cross-check against the independent parallel P24 ward-population investigation confirming the denominator gap is genuinely researched"
+      ]
+    }
   ]
 }
