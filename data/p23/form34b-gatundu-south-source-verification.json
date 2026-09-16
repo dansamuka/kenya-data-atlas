@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-GATUNDU-SOUTH-SOURCE-VERIFIED-2026-09-16",
+  "as_of": "2026-09-16",
+  "purpose": "Record an independent visual source-image review of the official Gatundu South Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 111,
+    "constituency_name": "Gatundu South",
+    "geo_code": "KEN-C022-CON111",
+    "form_id": 277739,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277739",
+    "source_pdf_sha256": "ec6da42ead38949c7ce95abc6f9afb42de32529784d72f3699db884d10964793",
+    "page_number": 2,
+    "render_dpi": 250,
+    "review_context_image_sha256": "c19b5f28190b38d6d16da259860b5986bf62acbb6db0c4c5b850f16589d6fe0f",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF at 250 DPI, showing the final TOTAL row of the constituency-wide polling-station table. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-16T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (GATUNDU SOUTH, code 111) was read from the visible 'CON 111' banner marker printed on the page and the constituency/county name block before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_111_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "c19b5f28190b38d6d16da259860b5986bf62acbb6db0c4c5b850f16589d6fe0f",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 79860,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "c19b5f28190b38d6d16da259860b5986bf62acbb6db0c4c5b850f16589d6fe0f",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 54536,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "c19b5f28190b38d6d16da259860b5986bf62acbb6db0c4c5b850f16589d6fe0f",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 475,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      12290,
+      41712,
+      223,
+      311
+    ],
+    "candidate_vote_sum": 54536,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 79860,
+    "registered_voters_reconciles": true,
+    "ballots_cast": 55011,
+    "ballots_cast_lte_registered_voters": true,
+    "turnout_pct": 68.88429752066116,
+    "turnout_range_valid": true
+  },
+  "verification_state": "verified",
+  "promotion_eligible": true,
+  "promotion_state": "explicit_materialization_authorized",
+  "promotion_authorized_by_this_file": false,
+  "note": "This evidence establishes a source-verified row under the extraction contract: the printed TOTAL row's Registered Voters figure reconciles exactly to the separately governed P23 registered-voter denominator for this constituency (79860), and the four candidate cells on the same TOTAL row sum exactly to the printed Total Valid Votes. Canonical materialization is authorized only by the separate governed promotion tranche in data/p23/form34b-turnout-promotion-contract.json.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
