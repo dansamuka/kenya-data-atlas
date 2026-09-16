@@ -1,0 +1,72 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-TIGANIA-EAST-SOURCE-REVIEW-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Tigania East Form 34B and preserve a genuine source-scan column gap without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 55,
+    "constituency_name": "Tigania East",
+    "geo_code": "KEN-C012-CON055",
+    "form_id": 277683,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277683",
+    "source_pdf_sha256": "81762e14ffdec2dea38649628ea47438aea2ecc5f67fea6a1926d4140811bacb",
+    "page_number": 5,
+    "render_dpi": 300,
+    "review_context_image_sha256": "5e8aa30a72e94a7f1ef5920996d7cac0ee1c257cc6aa6e85a52e602c09af18e0",
+    "review_context_note": "The official IEBC Form 34B PDF (5 pages) was freshly downloaded and its sha256 confirmed. Pages 2-4 print the polling-station results table, but that table's printed columns stop after REGISTERED VOTERS, ODINGA RAILA, RUTO WILLIAM SAMOEI and WAIHIGA DAVID MWAURE -- confirmed at both 150 DPI and 300 DPI that the table's right border falls at the physical page edge with blank margin beyond it (not a render-pipeline crop). The WAJACKOYAH GEORGE LUCHIRI candidate column, VOTES CAST, REJECTED BALLOTS and TOTAL VALID VOTES columns are absent from every polling-station page. Page 5 (the final page, rendered here at 150 DPI) is a separate summary block reading 'Total number of registered voters: 83,527', 'Total number of voters who turned out to vote: 53,114', 'Percentage of Voter turnout: 63.59%' -- this independently confirms registered_voters, but does not break the turnout figure into total_valid_votes vs rejected_ballots, nor report the Wajackoyah candidate total, so those required fields remain unreadable from this source."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and every page was rendered and read directly (150 DPI for full-page layout, 300 DPI to confirm the right-edge column cutoff on the polling-station table). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_055_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": false
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 5, "source_image_sha256": "5e8aa30a72e94a7f1ef5920996d7cac0ee1c257cc6aa6e85a52e602c09af18e0", "machine_transcription": null,
+      "machine_verification_state": "source_unreadable", "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true, "verified_value": 83527,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": null, "source_image_sha256": null, "machine_transcription": null,
+      "machine_verification_state": "source_unreadable", "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true, "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_unreadable"
+    },
+    "rejected_ballots": {
+      "page_number": null, "source_image_sha256": null, "machine_transcription": null,
+      "machine_verification_state": "source_unreadable", "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true, "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row", "verification_state": "source_unreadable"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Not applicable -- the WAJACKOYAH candidate column and the VOTES CAST / REJECTED BALLOTS / TOTAL VALID VOTES columns are absent from every printed polling-station page of this source PDF, so the four-candidate TOTAL row cannot be read or summed.",
+    "candidate_vote_totals_in_source_column_order": [],
+    "candidate_vote_sum": null,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 83527,
+    "registered_voters_reconciles": true,
+    "printed_voters_turned_out": 53114,
+    "printed_turnout_pct": 63.59,
+    "total_valid_votes_and_rejected_ballots_breakdown_available": false,
+    "promotion_blocked": true
+  },
+  "verification_state": "partial_unresolved",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_source_columns_unavailable",
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters (83,527) is independently source-verified from the page-5 summary box and reconciles exactly to the governed P23 denominator. However, the polling-station results table on pages 2-4 of the official portal PDF is printed with only four data columns (Registered Voters, Odinga Raila, Ruto William Samoei, Waihiga David Mwaure); the Wajackoyah George Luchiri candidate column and the Votes Cast, Rejected Ballots and Total Valid Votes columns are entirely absent from the scan on every page -- confirmed at 300 DPI that the table's right border sits at the physical page edge with blank margin beyond it, ruling out a rendering crop. The page-5 summary box separately reports only a combined 'voters who turned out' figure (53,114, 63.59%) without breaking it into total_valid_votes and rejected_ballots, and does not report the fourth candidate's total. Per the extraction contract, total_valid_votes and rejected_ballots must each be individually source-verified and the four candidate cells must be independently readable to reconcile; neither is possible from this source. Recorded as verification_state=partial_unresolved (registered_voters verified, remaining required fields source_unreadable); no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

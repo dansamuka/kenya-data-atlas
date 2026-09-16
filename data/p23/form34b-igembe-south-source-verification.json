@@ -1,0 +1,95 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-IGEMBE-SOUTH-SOURCE-REVIEW-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Igembe South Form 34B final TOTAL row and preserve an internal source arithmetic defect without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 51,
+    "constituency_name": "Igembe South",
+    "geo_code": "KEN-C012-CON051",
+    "form_id": 277679,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277679",
+    "source_pdf_sha256": "cbedc9c8e054799d269e3ee351a6842a115706b867459da0715d8d667b12e0e9",
+    "page_number": 4,
+    "render_dpi": 400,
+    "review_context_image_sha256": "31defb2ddaf79f90434f6e289414a31783d78f9ace785fb36b6e0ba020613782",
+    "review_context_note": "Rendered at 400 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (5 pages; polling-station rows span pages 2-4, TOTAL row is the unlabelled summary row immediately after the last polling station row TUMTUM EAPC on page 4, followed by the printed Voter Turnout box). The TOTAL row digits are unambiguous at 400 DPI."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5, and cross-checked against the independent portal manifest discovery in scripts/p23/discover-iebc-form34b-manifest.py), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image at high DPI, split into left/right crops to rule out a misread. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_51_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 4,
+      "source_image_sha256": "31defb2ddaf79f90434f6e289414a31783d78f9ace785fb36b6e0ba020613782",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 77126,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 4,
+      "source_image_sha256": "31defb2ddaf79f90434f6e289414a31783d78f9ace785fb36b6e0ba020613782",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 49488,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 4,
+      "source_image_sha256": "31defb2ddaf79f90434f6e289414a31783d78f9ace785fb36b6e0ba020613782",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 625,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      13033,
+      36399,
+      111,
+      310
+    ],
+    "candidate_vote_sum": 49853,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 77126,
+    "governed_p23_registered_voters": 77126,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-051-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": true,
+    "registered_voters_delta": 0,
+    "denominator_conflict": false,
+    "candidate_sum_reconciles_total_valid_votes": false,
+    "candidate_sum_delta": 365,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered voters (77126) matches the governed P23 denominator exactly. However, the four candidate cells on the TOTAL row sum to 49853 (13033 + 36399 + 111 + 310) while the row's own printed Total Valid Votes is 49488 (delta 365). Re-read at high DPI with left/right split crops on the TOTAL row to rule out a misread; all figures are unambiguous on the source image. The printed VOTES CAST column on the TOTAL row (49,853) is not the source of the mismatch's counterpart; that column matches the candidate sum exactly (13,033+36,399+111+310=49,853). The row's own printed Total Valid Votes cell (49,488) is 365 lower, and the printed Voter Turnout box below the table separately reports 50,113 voters turned out (= 49,488 Total Valid Votes + 625 Rejected Ballots), confirming Total Valid Votes and Rejected Ballots are each internally consistent with the turnout box while VOTES CAST/candidate sum is the outlier column, not a misread of Total Valid Votes. Per form34b-extraction-contract.json (prohibited_methods bars silently correcting digits to force reconciliation), this row is recorded as verification_state=arithmetic_mismatch and not promoted.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

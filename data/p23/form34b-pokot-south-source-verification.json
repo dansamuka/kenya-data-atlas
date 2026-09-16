@@ -1,0 +1,95 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-POKOT-SOUTH-SOURCE-REVIEW-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Pokot South Form 34B final TOTAL row and preserve an internal source arithmetic defect without promotion.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 132,
+    "constituency_name": "Pokot South",
+    "geo_code": "KEN-C024-CON132",
+    "form_id": 277760,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277760",
+    "source_pdf_sha256": "d00876750295f4ab06d5f3a0e9f25e2ed8ff152a4a8062192601bf2fe4f3473e",
+    "page_number": 4,
+    "render_dpi": 300,
+    "review_context_image_sha256": "e177b6ed347244cbe6793ef4ece4fc2b993db19f67fd44cbc73909a09047d7c8",
+    "review_context_note": "Rendered at 300 DPI (4-page official IEBC Form 34B PDF; the TOTAL row is on page 4 of 4). Re-read twice at 120 DPI (full-page layout) and 300 DPI (close crop) with identical results both times; every digit is unambiguous."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session (via the governed form_id = constituency_code + 277628 locator, after resetting the portal session from its default by-election context to the 2022 general election via index.php?r=common/set-election&id=5), its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image at 120 DPI and again at 300 DPI, with identical results. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_132_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 4,
+      "source_image_sha256": "e177b6ed347244cbe6793ef4ece4fc2b993db19f67fd44cbc73909a09047d7c8",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 58536,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 4,
+      "source_image_sha256": "e177b6ed347244cbe6793ef4ece4fc2b993db19f67fd44cbc73909a09047d7c8",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 46581,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 4,
+      "source_image_sha256": "e177b6ed347244cbe6793ef4ece4fc2b993db19f67fd44cbc73909a09047d7c8",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 469,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      17489,
+      28825,
+      66,
+      132
+    ],
+    "candidate_vote_sum": 46512,
+    "reconciles_total_valid_votes": false
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 58536,
+    "governed_p23_registered_voters": 58406,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-132-2022 (data/indicators/registry/observations.json), sourced from the pre-election official IEBC First Schedule registered-voters gazette, published 2022-06-21",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 130,
+    "denominator_conflict": true,
+    "candidate_sum_reconciles_total_valid_votes": false,
+    "candidate_sum_delta": 69,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "This TOTAL row carries two independent problems, either of which alone would block promotion. First, the four candidate cells sum to 46,512 (17,489 + 28,825 + 66 + 132) while the row's own printed Total Valid Votes is 46,581, a 69-vote gap; re-read twice at different DPI with identical digits both times, so this is judged a genuine printed-form arithmetic defect rather than a legibility issue, matching the Fafi and Kipkelion West precedents. Second, the printed Registered Voters figure (58,536) does not match the governed P23 denominator (58,406), a 130-voter gap for which no explaining special-facility polling station was identified on the page. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is left unresolved rather than forced through by substituting the candidate-sum figure for the printed total or otherwise reconciling either discrepancy without source evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

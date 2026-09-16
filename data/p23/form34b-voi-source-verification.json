@@ -1,0 +1,94 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-VOI-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Voi Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 26,
+    "constituency_name": "Voi",
+    "geo_code": "KEN-C006-CON026",
+    "form_id": 277654,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277654",
+    "source_pdf_sha256": "a53586ebc185ac620b3a3109f7fd4086501f622c6a77674e7c0f58b2bfd51df7",
+    "page_number": 2,
+    "render_dpi": 200,
+    "review_context_image_sha256": "c4b8a35bf7a66c446133ffbba2b296d11f99374e09676155678a7279abed5dfd",
+    "review_context_note": "This constituency's Form 34B page is a photograph of the physical page (visible tilt, wood-grain background, a pillow/bedding edge) rather than a flat scan, so the automated green-band row locator could not isolate the TOTAL row; it was located and cropped manually at 200 DPI directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (VOI, code 026) was read from the page header/footer marker 'CON 026' printed on the TOTAL-row page before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_026_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "c4b8a35bf7a66c446133ffbba2b296d11f99374e09676155678a7279abed5dfd",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 61606,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "c4b8a35bf7a66c446133ffbba2b296d11f99374e09676155678a7279abed5dfd",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 35389,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "c4b8a35bf7a66c446133ffbba2b296d11f99374e09676155678a7279abed5dfd",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 357,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row.",
+    "candidate_vote_totals_in_source_column_order": [
+      23014,
+      12040,
+      78,
+      257
+    ],
+    "candidate_vote_sum": 35389,
+    "reconciles_total_valid_votes": true
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 61606,
+    "governed_p23_registered_voters": 61377,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-026-2022 (data/indicators/registry/observations.json), exact sum of official IEBC child ward rows",
+    "registered_voters_reconciles": false,
+    "registered_voters_delta": 229,
+    "denominator_conflict": true,
+    "candidate_sum_reconciles_total_valid_votes": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "denominator_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_denominator_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 35,389 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (61,606) does not exactly match the separately governed P23 registered-voter denominator for this constituency (61,377). The printed Form 34B total includes two special-facility polling stations with non-ward codes ('049292145101601 VOI REMAND PRISON - 01', registered 40, and '049292145101701 MANYANI - 01', registered 189, sum 229), exactly explaining the observed delta of 229. This matches the recurring genuine prison/national-facility denominator gap documented elsewhere in this Atlas (e.g. Baringo Central, Matuga, Lamu West, Garissa Township, Mvita, Galole) rather than a transcription error. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}

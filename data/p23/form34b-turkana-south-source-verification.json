@@ -1,0 +1,95 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-TURKANA-SOUTH-SOURCE-VERIFIED-2026-09-11",
+  "as_of": "2026-09-11",
+  "purpose": "Record an independent visual source-image review of the official Turkana South Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 127,
+    "constituency_name": "Turkana South",
+    "geo_code": "KEN-C023-CON127",
+    "form_id": 277755,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277755",
+    "source_pdf_sha256": "20e2d54f2f05936284b276715eb95ccd4f1d8b638bf2b5c9f36ecbdde7669de8",
+    "page_number": 3,
+    "render_dpi": 150,
+    "review_context_image_sha256": "70e09103a7a83e5065f26be618521cc99f03358d512be582be97fe62e2379b81",
+    "review_context_note": "Full official-page raster rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF (no third-party crop pipeline or CI artifact involved), then rotated 180 degrees (the portal-served scan for this constituency is upside down throughout) and re-cropped/upscaled around the TOTAL row and 'Voter Turn Out' summary box for digit-level confirmation. The downloaded PDF has only 4 pages, printed in their own headers as sheets 'FORM34B10' (download page 1), 'FORM34B11' (download page 2) and 'FORM34B12' (download page 3, ending in the TOTAL row, the Voter Turn Out summary box, and the start of the agent signature block, which continues onto download page 4). Sheets 1-9 of this constituency's polling-station listing were not served by the portal for this form_id in this session. The portal only served this PDF after a home-page + set-election session handshake (id=5)."
+  },
+  "review": {
+    "reviewed_at": "2026-09-11T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row and Voter Turn Out summary box integers were read directly from the rendered page image (after 180-degree rotation to correct the scan's orientation). No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (TURKANA SOUTH, code 127, county TURKANA code 023) was read from the declaration-page header ('Name of Constituency: TURKANA SOUTH Code: 127') on download page 1 and cross-checked against the visible 'CON 127' banner marker printed on the TOTAL-row page itself before this row was accepted.",
+    "source_image_legibility": "clear_but_source_pdf_missing_sheets_1_through_9",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_FORM_34B_header_CON_127_marker_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 3,
+      "source_image_sha256": "70e09103a7a83e5065f26be618521cc99f03358d512be582be97fe62e2379b81",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": 40432,
+      "verification_method": "direct_visual_read_of_official_form34b_voter_turnout_summary_box",
+      "verification_state": "source_verified",
+      "note": "Read from the 'Voter Turn Out' declaration summary box printed directly below the polling-station table on the same page ('Total Number of Registered Voters: 40432'), not from the table's own 'TOTAL' row. The table's own printed TOTAL row shows Registered Voters = 20,472, which is only a sheets-10-12 subtotal of the constituency (see row_reconciliation note) and is not used as the verified value for this field."
+    },
+    "total_valid_votes": {
+      "page_number": 3,
+      "source_image_sha256": "70e09103a7a83e5065f26be618521cc99f03358d512be582be97fe62e2379b81",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_unreadable",
+      "note": "The polling-station table's own TOTAL row (Total Valid Votes = 23,690) only sums sheets 10-12 of this constituency's form, not the full 1-12 sheet set (sheets 1-9 were not served by the portal for this form_id), so it is not the constituency's true Total Valid Votes and is not recorded as verified. The 'Voter Turn Out' summary box states only a combined 'Total Number of Voters who turned out to vote: 23,707' (valid + rejected together), with no separate breakdown into valid votes and rejected ballots, so the true constituency-wide Total Valid Votes cannot be independently derived from either source available in this download."
+    },
+    "rejected_ballots": {
+      "page_number": 3,
+      "source_image_sha256": "70e09103a7a83e5065f26be618521cc99f03358d512be582be97fe62e2379b81",
+      "machine_transcription": null,
+      "machine_verification_state": "source_unreadable",
+      "machine_decision": "no_threshold_consensus",
+      "visual_transcription_required": true,
+      "verified_value": null,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_unreadable",
+      "note": "Same sheets-10-12-only subtotal limitation as total_valid_votes: the table's own TOTAL row shows Rejected Ballots = 217, but this is not the constituency's true Rejected Ballots figure and the Voter Turn Out summary box does not state it separately."
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the polling-station table's own TOTAL row (a sheets-10-12-only subtotal, not the constituency grand total). Recorded for transparency only; not used to infer any verified value.",
+    "candidate_vote_totals_in_source_column_order": [3088, 51, 79, null],
+    "candidate_vote_sum": null,
+    "reconciles_total_valid_votes": null,
+    "note": "Only three of the four candidate cells on this subtotal row were legibly captured in this crop (ODINGA RAILA 3,088; RUTO WILLIAM SAMOEI 51; WAIHIGA DAVID MWAURE 79); the WAJACKOYAH GEORGE LUCHIRI cell was not legibly resolved against the printed Total Valid Votes cell (23,690) for this row. Since this row is a partial-sheets subtotal and is not used as verified evidence regardless, no further attempt was made to resolve the fourth cell."
+  },
+  "row_reconciliation": {
+    "form_printed_registered_voters": 20472,
+    "voter_turnout_box_registered_voters": 40432,
+    "governed_p23_registered_voters": 40432,
+    "governed_p23_registered_voters_source": "KDA-VOTERS-CON-127-2022 (data/indicators/registry/observations.json), exact sum of official IEBC child ward rows",
+    "registered_voters_reconciles": true,
+    "registered_voters_delta": 0,
+    "denominator_conflict": false,
+    "promotion_blocked": true,
+    "source_incomplete": true,
+    "source_incomplete_detail": "The downloaded PDF for this form_id contains only sheets 10, 11 and 12 of this constituency's Form 34B polling-station listing (sheets 1-9 were not served by the portal in this session). The polling-station table's own TOTAL row on sheet 12 (Registered Voters 20,472; Total Valid Votes 23,690; Rejected Ballots 217) is therefore only a sheets-10-12 subtotal, not the constituency grand total, and is not used as verified evidence for any field. Registered Voters is independently corroborated by the separate 'Voter Turn Out' declaration summary box on the same page (40,432), which reconciles exactly to the governed P23 denominator, so that field alone is recorded as source_verified; Total Valid Votes and Rejected Ballots have no equivalent independent corroboration in this download and remain unresolved."
+  },
+  "verification_state": "partial_unresolved",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_source_incomplete",
+  "promotion_authorized_by_this_file": false,
+  "note": "Registered Voters is clearly legible in the 'Voter Turn Out' declaration summary box printed on the same official page (40,432) and reconciles exactly to the governed P23 constituency denominator (40,432). However, the downloaded Form 34B PDF for this form_id is itself incomplete -- it contains only sheets 10, 11 and 12 of the constituency's polling-station listing, with sheets 1-9 not served by the portal in this session -- so the polling-station table's own printed TOTAL row (Registered Voters 20,472; Total Valid Votes 23,690; Rejected Ballots 217) is only a partial subtotal of those three sheets, not the true constituency-wide total, and cannot be used as verified evidence for Total Valid Votes or Rejected Ballots. The Voter Turn Out box gives only a combined turned-out figure (23,707), not a valid/rejected breakdown, so those two fields cannot be independently reconstructed from this download either. Per the extraction contract's exact-reconciliation requirement and its prohibition on inferring result values from partial or indirect arithmetic, this row remains unresolved for Total Valid Votes and Rejected Ballots and creates no canonical turnout observation. A re-attempt with a download that serves the full sheet set (or the constituency's cover/declaration page, if one exists separately) could resolve this.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
