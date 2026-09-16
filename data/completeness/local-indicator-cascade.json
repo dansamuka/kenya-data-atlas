@@ -734,7 +734,7 @@
       "canonical_value_observations": 0,
       "full_canonical_coverage": false,
       "disposition": "governed_unavailable",
-      "disposition_reason": "KNBS's 2019 KPHC publication does not publish average household size as a direct current-290-constituency table; county/sub-county values are not inherited, and no authoritative 2019 administrative-unit-to-2012-01-constituency crosswalk exists. See data/p23/constituency-census-closure-contract.json, which already closes this indicator at constituency level; this entry brings that closure into the P23X cascade ledger.",
+      "disposition_reason": "KNBS's 2019 KPHC publication does not publish average household size as a direct current-290-constituency table; county/sub-county values are not inherited, and no authoritative 2019 administrative-unit-to-2012-01-constituency crosswalk exists. See data/p23/constituency-census-closure-contract.json, which already closes this indicator at constituency level; this entry brings that closure into the P23X cascade ledger. P28A re-audit (2026-09-16) independently re-verified via primary-source download that KNBS 2019 KPHC Volume II's finest published administrative table (2.4) stops at sub-location, that KNBS sub-counties do not match IEBC's 290 constituencies 1:1 (e.g. Kwale: 5 sub-counties vs 4 constituencies), and that KNBS's older standalone constituency table is 2009-census data explicitly tabulated for '210 constituencies' -- the pre-2012 delimitation, not current-290. No promotable source was found; closure retained.",
       "audit_status": "decided",
       "inherited_records": 0
     },
