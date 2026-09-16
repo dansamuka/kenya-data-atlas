@@ -1,0 +1,80 @@
+name: P23 Cycle 2 109-way promotion review
+
+on:
+  push:
+    paths:
+      - 'scripts/p23/build-cycle2-109way-promotion-review.py'
+      - 'data/p23/**'
+      - '.github/workflows/p23-cycle2-109way-promotion-review.yml'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build exact 109-packet manifest
+        run: python scripts/p23/build-cycle2-109way-promotion-review.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p23-cycle2-109way-promotion-review
+          path: data/p23/p23-cycle2-109way-promotion-review.json
+
+  review-worker:
+    needs: build-manifest
+    strategy:
+      fail-fast: false
+      max-parallel: 109
+      matrix:
+        worker: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild governed manifest
+        run: python scripts/p23/build-cycle2-109way-promotion-review.py
+      - name: Validate independent worker packet
+        env:
+          WORKER: ${{ matrix.worker }}
+        run: |
+          python - <<'PY'
+          import json, os
+          p=json.load(open('data/p23/p23-cycle2-109way-promotion-review.json'))
+          i=int(os.environ['WORKER']); r=p['packets'][i]
+          assert r['worker']==i
+          g=r['governance']; assert g=={'no_inheritance':True,'no_promotion':True,'promotion_authorized':False,'canonical_turnout_written':False}
+          if r['promotion_candidate']:
+              assert r['cycle1_terminal_state']=='verified'
+              assert set(r['required_revalidation'])=={'source_provenance','source_pdf_sha256','review_context_image_sha256','render_dpi_250','candidate_arithmetic','governed_denominator','target_geo_mapping'}
+          else:
+              assert r['cycle1_terminal_state']!='verified' and r['required_revalidation']==[]
+          print(f"worker={i} geo={r['geo_code']} state={r['cycle1_terminal_state']} candidate={r['promotion_candidate']} no_promotion=true")
+          PY
+
+  aggregate-gate:
+    needs: [build-manifest, review-worker]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/p23/build-cycle2-109way-promotion-review.py
+      - name: Enforce 109-way exact-set and no-promotion gate
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('data/p23/p23-cycle2-109way-promotion-review.json'))
+          rows=p['packets']; assert len(rows)==109 and len({r['geo_code'] for r in rows})==109
+          assert p['canonical_queue_count']==109
+          assert p['promotion_candidate_count']+p['non_candidate_count']==109
+          assert p['governance']=={'promotion_authorized':False,'canonical_turnout_written':False,'verified_does_not_auto_promote':True}
+          assert all(not r['governance']['promotion_authorized'] and not r['governance']['canonical_turnout_written'] for r in rows)
+          print(f"P23_CYCLE2_109WAY candidates={p['promotion_candidate_count']} non_candidates={p['non_candidate_count']} canonical=109 promotion_authorized=false canonical_turnout_written=false")
+          PY
