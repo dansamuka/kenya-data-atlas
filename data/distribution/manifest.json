@@ -259,8 +259,8 @@
       "formats": {
         "json": {
           "path": "data/evidence/county-documents.json",
-          "bytes": 248910,
-          "sha256": "5442b7feee5a479f603467983254c90a26747c06fdc05ab93a7b33a1a0fcab55"
+          "bytes": 244067,
+          "sha256": "e6b8edb54d06f24a8f184d6d4131a24752461dd5d10ac8100568b2efc76b0ce3"
         },
         "csv": {
           "path": "data/distribution/csv/evidence-records.csv",
@@ -282,8 +282,8 @@
       "formats": {
         "json": {
           "path": "data/policy/indicator-policy.json",
-          "bytes": 3398216,
-          "sha256": "53fe7ec3cde0cd2ae9272bd704a2bb5bcc105c59244593bf6e06d207db54ef58"
+          "bytes": 3297463,
+          "sha256": "302c3eac00780417453b31d3ec164821e441cbd43a2b21317c846725461071d1"
         }
       }
     }
