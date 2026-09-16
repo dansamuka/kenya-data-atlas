@@ -17,10 +17,9 @@
   "by_status": {
     "active_missing": 18,
     "boundary_unresolved": 30,
-    "external_verified": 90,
     "not_applicable": 1450,
     "official_unavailable": 7475,
-    "published_derived": 3255,
+    "published_derived": 3345,
     "published_direct": 7421,
     "retired_replaced": 376
   },
