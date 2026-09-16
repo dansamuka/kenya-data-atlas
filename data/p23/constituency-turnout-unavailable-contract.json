@@ -1,14 +1,14 @@
 {
   "schema_version": "kda.p23.constituency-turnout-unavailable.v1",
   "contract_id": "P23-CONSTITUENCY-TURNOUT-UNAVAILABLE-2026-09-11",
-  "as_of": "2026-09-11",
+  "as_of": "2026-09-16",
   "indicator_code": "IND-TURNOUT-HISTORY",
   "level": "constituency",
   "period_label": "2022 general election",
   "source": "IEBC",
   "source_url": "https://forms.iebc.or.ke/",
   "purpose": "Formalize, as governed official_unavailable evidence-state closures, the per-constituency Form 34B turnout blockers that six parallel P23 source-verification tranches (PRs #135-#140) independently documented but left recorded only in their merged pull-request descriptions rather than as persisted repository data. Each decision below reflects a genuine, already-documented source-document defect (a registered-voters denominator conflict, an internal candidate-arithmetic inconsistency, a structural scan defect, or an IEBC portal access failure) rather than a fabricated, estimated, or forced value. No decision in this contract computes or promotes a turnout observation; each closes the corresponding P23 slot-ledger row as officially unavailable pending a specific, named refresh trigger.",
-  "decision_count": 94,
+  "decision_count": 103,
   "decisions": [
     {
       "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C031-CON164",
@@ -947,6 +947,96 @@
       "category": "denominator_conflict_unattributed",
       "source_pr": 227,
       "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme (recovered and formalized via PR #227, https://github.com/dansamuka/kenya-data-atlas/pull/227, from data/p23/form34b-shinyalu-source-verification.json): Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row (candidate sum 43,607 = printed Total Valid Votes). However, the row's own printed Registered Voters figure (76,993) does not exactly match the separately governed P23 registered-voter denominator for this constituency (76,978). The printed Form 34B total includes one special-facility polling station with a non-ward code ('049292145108901 SHIKUSA FARM - 01', registered 15) on the same TOTAL row, exactly explaining the observed delta of 15. This matches the recurring genuine special-station denominator gap documented elsewhere in this Atlas. Per the extraction contract's exact-reconciliation requirement for registered_voters (mismatch_treatment: unresolved), this row is preserved unresolved and no turnout observation may be promoted from this evidence until the denominator conflict is independently reconciled by the governed P23 registered-voters denominator process.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C012-CON052",
+      "geo_code": "KEN-C012-CON052",
+      "constituency_name": "Igembe Central",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Igembe Central is 93,471, exceeding the governed canonical P23 constituency registered-voters denominator (93,434) by exactly 37 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145102501 KANGETA PRISON - 01', registered 37. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C012-CON056",
+      "geo_code": "KEN-C012-CON056",
+      "constituency_name": "North Imenti",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for North Imenti is 96,623, exceeding the governed canonical P23 constituency registered-voters denominator (96,241) by exactly 382 -- a gap that exactly matches the registered-voter count of special-facility polling station the special-facility polling station(s) named in the source evidence file. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C013-CON061",
+      "geo_code": "KEN-C013-CON061",
+      "constituency_name": "Chuka/Igambang'om",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Chuka/Igambang'ombe is 84,708, exceeding the governed canonical P23 constituency registered-voters denominator (84,674) by exactly 34 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145103001 CHUKA - 01', registered 34. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C015-CON069",
+      "geo_code": "KEN-C015-CON069",
+      "constituency_name": "Mwingi Central",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Mwingi Central is 74,283, exceeding the governed canonical P23 constituency registered-voters denominator (74,231) by exactly 52 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145103401 MWINGI PRISON - 01', registered 52. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C016-CON076",
+      "geo_code": "KEN-C016-CON076",
+      "constituency_name": "Yatta",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Yatta is 82,446, exceeding the governed canonical P23 constituency registered-voters denominator (82,397) by exactly 49 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145103801 YATTA PRISON (B) - 01', registered 49. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C016-CON081",
+      "geo_code": "KEN-C016-CON081",
+      "constituency_name": "Machakos Town",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Machakos Town is 117,444, exceeding the governed canonical P23 constituency registered-voters denominator (117,367) by exactly 77 -- a gap that exactly matches the registered-voter count of special-facility polling station the special-facility polling station(s) named in the source evidence file. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C022-CON115",
+      "geo_code": "KEN-C022-CON115",
+      "constituency_name": "Ruiru",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Ruiru is 172,139, exceeding the governed canonical P23 constituency registered-voters denominator (172,088) by exactly 51 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145105301 RUIRU PRISON', registered 51. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C024-CON129",
+      "geo_code": "KEN-C024-CON129",
+      "constituency_name": "Kapenguria",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Kapenguria is 66,556, exceeding the governed canonical P23 constituency registered-voters denominator (66,540) by exactly 16 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145105601A PRISONS', registered 16. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
+      "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
+      "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
+    },
+    {
+      "contract_id": "P23-TURNOUT-UNAVAILABLE-KEN-C025-CON133",
+      "geo_code": "KEN-C025-CON133",
+      "constituency_name": "Samburu West",
+      "category": "denominator_conflict_named_facility",
+      "source_pr": 230,
+      "reason": "Independently source-verified during the P23 Form 34B turnout extraction programme, documented in PR #230 (https://github.com/dansamuka/kenya-data-atlas/pull/230): the printed Form 34B TOTAL-row registered-voters figure for Samburu West is 43,428, exceeding the governed canonical P23 constituency registered-voters denominator (43,390) by exactly 38 -- a gap that exactly matches the registered-voter count of special-facility polling station '049292145105701 MARALAL - 01', registered 38. This is a genuine denominator conflict between the printed source document and the Atlas's canonical registered-voters series, not a transcription error: the extra voters are real, registered, and printed on the official form, but they are enrolled at special-facility polling station(s) that the canonical ward-derived denominator excludes. Per the P23 Form 34B extraction contract (data/p23/form34b-extraction-contract.json), the registered_voters field carries mismatch_treatment=unresolved and may not be silently corrected or force-reconciled to promote a turnout figure. Total Valid Votes, Rejected Ballots and the four candidate cells are individually clear and internally reconcile exactly on the printed TOTAL row, so this conflict is isolated to the registered-voters denominator alone.",
       "evidence_constraint": "form34b_printed_registered_voters_does_not_reconcile_to_governed_constituency_denominator",
       "refresh_trigger": "Revisit once IEBC publishes a corrected gazette notice or corrigendum reconciling this constituency's Form 34B totals, or once an independent second reviewer resolves the discrepancy through a fresh, independent high-resolution re-read of the same official source document."
     }

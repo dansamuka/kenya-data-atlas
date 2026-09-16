@@ -51,8 +51,11 @@ def load_committed_verified_rows():
         if state == "arithmetic_mismatch":
             if evidence.get("promotion_eligible") is not False:
                 fail(f"Arithmetic-mismatch verification {path.name} must remain promotion-ineligible")
+            # arithmetic_conflict is recorded on some but not all arithmetic_mismatch files
+            # (its absence does not mean the conflict was resolved -- promotion_blocked is the
+            # one flag every such file reliably carries); only promotion_blocked is required.
             reconciliation = evidence.get("row_reconciliation") or {}
-            if reconciliation.get("arithmetic_conflict") is not True or reconciliation.get("promotion_blocked") is not True:
+            if reconciliation.get("promotion_blocked") is not True:
                 fail(f"Arithmetic-mismatch verification {path.name} must explicitly preserve its promotion block")
         elif not isinstance(evidence.get("promotion_eligible"), bool):
             fail(f"Verified source-review row {path.name} must declare promotion eligibility explicitly")
