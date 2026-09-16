@@ -140,7 +140,7 @@ checkAnchor(fuel, 'KEN-C047', 'super_petrol_kes_per_litre', 214.03, 'fuel-super-
 
 const sources = JSON.parse(await readFile(path.join(dataDir, 'sources.json'), 'utf8'));
 for (const key of ['population_2009', 'registered_voters_2022', 'gcp_2020_2024', 'county_budget_fy2024_25', 'fuel_aug_sep_2026']) assert(sources.sources?.[key], `sources.json: missing ${key}`);
-assert(sources.schema_version === '1.1', `sources.json: expected schema_version 1.1, got ${sources.schema_version}`);
+assert(sources.schema_version === '1.2', `sources.json: expected schema_version 1.2, got ${sources.schema_version}`);
 assert(sources.sources.fuel_aug_sep_2026.note.includes('not a county average'), 'sources.json: fuel methodology must state that representative town values are not county averages');
 assert(sources.sources.fuel_aug_sep_2026.note.includes('Nyandarua'), 'sources.json: Nyandarua proxy caveat must be explicit');
 
