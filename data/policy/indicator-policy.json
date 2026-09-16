@@ -78670,8 +78670,56 @@
       }
     },
     {
+      "series_id": "871b7485-7df6-5399-8a1f-9847c5cbbe92",
+      "series_code": "KDA-TURNOUT-CON-002-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "da7d593f-ea05-5f18-8be4-07644d817ee4",
+      "series_code": "KDA-TURNOUT-CON-004-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "ad8655dc-844a-5d7d-8780-023b1fc79672",
       "series_code": "KDA-TURNOUT-CON-005-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2916882d-39bd-5b30-8b94-cb809653e73c",
+      "series_code": "KDA-TURNOUT-CON-007-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8e1b86f1-fc3d-5d74-8b87-a9c17dffce95",
+      "series_code": "KDA-TURNOUT-CON-008-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78694,8 +78742,104 @@
       }
     },
     {
+      "series_id": "15906603-1922-559e-8f42-1a5ac4d29519",
+      "series_code": "KDA-TURNOUT-CON-012-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1f6b72f4-0b02-5db8-8866-855fd15fb7db",
+      "series_code": "KDA-TURNOUT-CON-013-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "529d8b36-cd5b-5e1b-8cbb-663ecfc3b6e1",
+      "series_code": "KDA-TURNOUT-CON-014-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "002e0c4e-99a0-5c91-8060-bb4f578d3003",
+      "series_code": "KDA-TURNOUT-CON-015-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "53eb0a82-474e-51bd-86c8-727283c6f394",
+      "series_code": "KDA-TURNOUT-CON-016-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2a16ccd0-b398-5173-8fdd-60673551c5bb",
+      "series_code": "KDA-TURNOUT-CON-018-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "286e577d-0d35-5014-8812-ebbc7ca95662",
       "series_code": "KDA-TURNOUT-CON-020-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a390d18b-06f0-565d-8dae-08dd2e8ecf38",
+      "series_code": "KDA-TURNOUT-CON-021-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4a426900-993d-552d-8a9d-a2a4fca7aa86",
+      "series_code": "KDA-TURNOUT-CON-025-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78718,6 +78862,78 @@
       }
     },
     {
+      "series_id": "73e2f90f-78d0-5e3b-8517-fc4960629116",
+      "series_code": "KDA-TURNOUT-CON-029-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1b1d63f0-f8db-532f-838b-62925f316bd3",
+      "series_code": "KDA-TURNOUT-CON-030-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "919e721e-bff3-5993-8163-54b5eb09e7a7",
+      "series_code": "KDA-TURNOUT-CON-032-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "5c8b8288-de7a-5731-88a0-b9e87abebbe8",
+      "series_code": "KDA-TURNOUT-CON-033-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a3a195b4-37dd-5e84-85b1-6e7e5ca6f2f2",
+      "series_code": "KDA-TURNOUT-CON-035-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "938d5484-146b-5b33-8b5e-8131514c6086",
+      "series_code": "KDA-TURNOUT-CON-037-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "ac76e8e3-4322-569b-8efb-e8cf280d75cc",
       "series_code": "KDA-TURNOUT-CON-038-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
@@ -78730,8 +78946,200 @@
       }
     },
     {
+      "series_id": "b7624b01-0b41-530e-8be6-fdaca4658de8",
+      "series_code": "KDA-TURNOUT-CON-039-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d7481422-aa29-585b-88a2-9a737dff307f",
+      "series_code": "KDA-TURNOUT-CON-040-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3a0eeddc-e54f-5fea-884c-c4d314916495",
+      "series_code": "KDA-TURNOUT-CON-041-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "84465f44-1053-5ee8-86af-2a908b0fff33",
+      "series_code": "KDA-TURNOUT-CON-042-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e3248bb2-b8fa-5c19-8776-59657a504b3e",
+      "series_code": "KDA-TURNOUT-CON-044-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3e36b42d-a6b2-58b2-8ab2-58e6e92dc0f3",
+      "series_code": "KDA-TURNOUT-CON-048-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "455334ab-4592-59ec-8a59-a33a5c043872",
+      "series_code": "KDA-TURNOUT-CON-054-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9bd22dbd-d112-5b2e-85d4-e63e4b1cf752",
+      "series_code": "KDA-TURNOUT-CON-057-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "88bd2431-1806-51a5-8b61-75a839a8b7bd",
+      "series_code": "KDA-TURNOUT-CON-058-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f0201fb0-5c97-5053-85ac-81fede9d6dad",
+      "series_code": "KDA-TURNOUT-CON-060-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c70c7f98-4f3d-5a26-8e23-07a77fd4865f",
+      "series_code": "KDA-TURNOUT-CON-062-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ee1fd6c3-f711-55e3-8602-6826e109323f",
+      "series_code": "KDA-TURNOUT-CON-064-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "522ebd35-e4ba-5d81-8abd-2401756288c2",
+      "series_code": "KDA-TURNOUT-CON-065-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "6dd08a4a-47af-576a-8fbb-e05518b29355",
       "series_code": "KDA-TURNOUT-CON-066-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ec4e2ec0-d1eb-577d-8970-832305423626",
+      "series_code": "KDA-TURNOUT-CON-067-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7ad12793-f7a8-5326-80c0-ae06f5ba76f2",
+      "series_code": "KDA-TURNOUT-CON-068-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c919a6e3-70e7-5de9-8098-bed7907de2e2",
+      "series_code": "KDA-TURNOUT-CON-070-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78778,8 +79186,164 @@
       }
     },
     {
+      "series_id": "b6d0570d-cdf7-51fa-8bf8-5b7e8fde2dac",
+      "series_code": "KDA-TURNOUT-CON-075-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "44f30470-da89-5aea-8fbd-5d8b23468566",
+      "series_code": "KDA-TURNOUT-CON-077-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7274dd4b-ff66-51a4-8cfc-8dc00148fe8c",
+      "series_code": "KDA-TURNOUT-CON-078-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "70ecb295-768a-5d74-871a-428465e488bf",
+      "series_code": "KDA-TURNOUT-CON-079-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "c38bc692-41af-5c75-8c89-b9c85ff09443",
       "series_code": "KDA-TURNOUT-CON-080-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7d0e0dd5-4a26-5385-83ad-669c13e3b7bc",
+      "series_code": "KDA-TURNOUT-CON-082-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0ffa36b2-4fa6-5892-8880-00b6c4d1813e",
+      "series_code": "KDA-TURNOUT-CON-083-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "905195fc-a56f-52ab-8712-e7ca9b0383e5",
+      "series_code": "KDA-TURNOUT-CON-084-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "65e30bc0-d8aa-5df3-89dc-f8926fe4b969",
+      "series_code": "KDA-TURNOUT-CON-085-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "dde2afd9-c40d-5bf6-82f6-94f3d1fc7a7e",
+      "series_code": "KDA-TURNOUT-CON-087-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "970ec19e-88ed-57c7-8382-26ee5da73cd1",
+      "series_code": "KDA-TURNOUT-CON-088-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "81dfd4f6-2757-5e18-8d4f-c214140f5e93",
+      "series_code": "KDA-TURNOUT-CON-089-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1ad9aaf0-056a-59b8-8fc3-88833b33c4f4",
+      "series_code": "KDA-TURNOUT-CON-090-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ebf64208-ff42-5562-8f88-6089582df941",
+      "series_code": "KDA-TURNOUT-CON-093-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78802,8 +79366,128 @@
       }
     },
     {
+      "series_id": "13fe3c99-d789-511f-84a8-0ee1d7459762",
+      "series_code": "KDA-TURNOUT-CON-096-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7b3b2d55-8d61-5ea0-8092-4947cd083a44",
+      "series_code": "KDA-TURNOUT-CON-098-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e81040f3-07c0-55df-8ec2-a0f35d7c06dd",
+      "series_code": "KDA-TURNOUT-CON-101-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "200d4388-a4d9-57d6-8400-939b7796c9f9",
       "series_code": "KDA-TURNOUT-CON-104-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d60b3239-b792-56bc-8289-5d79df1c9642",
+      "series_code": "KDA-TURNOUT-CON-105-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "08da3576-6bf4-59b7-885b-734d1a5df8a4",
+      "series_code": "KDA-TURNOUT-CON-109-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ce68884e-bfb2-5566-8765-62f65122d56d",
+      "series_code": "KDA-TURNOUT-CON-110-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fc6437ed-255e-50f5-822e-850fcab273d1",
+      "series_code": "KDA-TURNOUT-CON-112-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "99857d09-757f-5b6d-8a9a-28daa28a07af",
+      "series_code": "KDA-TURNOUT-CON-113-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ff431b9f-7c00-56f3-8f1b-b58f08ffadda",
+      "series_code": "KDA-TURNOUT-CON-116-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "67abd0eb-8ab1-50ae-830f-1b0c527373d6",
+      "series_code": "KDA-TURNOUT-CON-118-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78826,8 +79510,104 @@
       }
     },
     {
+      "series_id": "c3ae76ec-9bad-594f-8642-1876a434325e",
+      "series_code": "KDA-TURNOUT-CON-121-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6ff664a0-04e0-5778-8af3-7448abc66111",
+      "series_code": "KDA-TURNOUT-CON-122-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "2edec9c7-142b-5953-8331-9180d1587ab4",
       "series_code": "KDA-TURNOUT-CON-126-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "b2059670-a34e-5cac-8906-4f009694e944",
+      "series_code": "KDA-TURNOUT-CON-128-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "dabf8330-34f9-597f-8769-8f6d8920372e",
+      "series_code": "KDA-TURNOUT-CON-130-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "48253043-b775-5e69-8935-944a6716d5ea",
+      "series_code": "KDA-TURNOUT-CON-131-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "511bd6a8-dbf6-55b8-86f5-6ba640cf2f1e",
+      "series_code": "KDA-TURNOUT-CON-134-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "16f70663-d28c-5b3a-89d9-0838127ed686",
+      "series_code": "KDA-TURNOUT-CON-135-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "18065309-ab14-569b-8fe8-1cd41ae728a5",
+      "series_code": "KDA-TURNOUT-CON-136-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78862,6 +79642,234 @@
       }
     },
     {
+      "series_id": "88f42c5c-760e-51cb-808f-eb42a77aabef",
+      "series_code": "KDA-TURNOUT-CON-142-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c7fbbe23-b314-5a97-8c92-b3ad61f8b6b3",
+      "series_code": "KDA-TURNOUT-CON-147-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "638b8185-d647-5a05-8242-18015c99aefe",
+      "series_code": "KDA-TURNOUT-CON-148-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0066fadf-b859-52c6-8597-65ee5b0d98f1",
+      "series_code": "KDA-TURNOUT-CON-150-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "73fc8f5b-4ed4-5fb2-8896-2ce7c2dca610",
+      "series_code": "KDA-TURNOUT-CON-151-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e04b4a0a-0cc1-5158-8718-734bfb375a18",
+      "series_code": "KDA-TURNOUT-CON-152-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "8e4b4290-7777-56e4-8c67-ee83dd5a019c",
+      "series_code": "KDA-TURNOUT-CON-153-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f8f0ad2f-26a4-5f87-8180-76593e3e54ca",
+      "series_code": "KDA-TURNOUT-CON-154-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ebc99e9b-ce9c-51d7-8caa-dc3defef78cb",
+      "series_code": "KDA-TURNOUT-CON-156-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d35aeddc-ee15-51ed-8d9d-cc7096112108",
+      "series_code": "KDA-TURNOUT-CON-157-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c4c00b6e-c708-52e9-8d55-5e9cc6cd31db",
+      "series_code": "KDA-TURNOUT-CON-158-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1327d29b-e2ec-552c-8ac6-c9f5dcccdda3",
+      "series_code": "KDA-TURNOUT-CON-160-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e3a3daec-474b-5785-8566-6091081eb206",
+      "series_code": "KDA-TURNOUT-CON-161-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "a68a7f44-8874-55e2-82c4-785b92bec64b",
+      "series_code": "KDA-TURNOUT-CON-165-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0aa11990-c8dc-5453-8297-70720fe1a87d",
+      "series_code": "KDA-TURNOUT-CON-166-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "dc689389-9527-5e64-8585-43a56548981d",
+      "series_code": "KDA-TURNOUT-CON-167-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9929443b-3fcf-5c9f-85f1-0a8d2c9fabb9",
+      "series_code": "KDA-TURNOUT-CON-169-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ce21706e-d0f1-5e04-8e07-15317ea3a527",
+      "series_code": "KDA-TURNOUT-CON-170-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7bfd306c-ee60-568b-87f2-d6e326190005",
+      "series_code": "KDA-TURNOUT-CON-171-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "38085f1d-fecf-5a5c-8ad0-5869eb772a66",
       "series_code": "KDA-TURNOUT-CON-172-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
@@ -78874,8 +79882,56 @@
       }
     },
     {
+      "series_id": "de507e96-a8df-565b-837a-ad26daafd5e6",
+      "series_code": "KDA-TURNOUT-CON-173-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "75ae6529-0f6c-570a-8866-f56eac5230cd",
+      "series_code": "KDA-TURNOUT-CON-174-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "ebcf1491-63e5-5c6d-8a80-ad6ebcf36bb1",
       "series_code": "KDA-TURNOUT-CON-176-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "58704e28-2cd8-5177-8f1a-8caff3ded469",
+      "series_code": "KDA-TURNOUT-CON-178-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2908763a-9d94-5196-8191-1503d1269378",
+      "series_code": "KDA-TURNOUT-CON-180-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78910,8 +79966,68 @@
       }
     },
     {
+      "series_id": "4f796695-a673-5f26-861e-30c77af36fd3",
+      "series_code": "KDA-TURNOUT-CON-185-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cb705ab3-6463-59ba-8c73-3cfdeb11cf38",
+      "series_code": "KDA-TURNOUT-CON-186-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "20a94672-ffc1-5c22-818f-17712ec6672e",
+      "series_code": "KDA-TURNOUT-CON-188-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9a146116-1779-5d39-87fb-da1205746f5e",
+      "series_code": "KDA-TURNOUT-CON-191-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "5f3f75cd-6268-5e13-83af-a9ae0da94449",
       "series_code": "KDA-TURNOUT-CON-192-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9cf53c83-a438-5ad7-8ebd-73d23b01399c",
+      "series_code": "KDA-TURNOUT-CON-193-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78958,8 +80074,92 @@
       }
     },
     {
+      "series_id": "76031c74-4fe5-5ac4-8e7a-5df011b3c55a",
+      "series_code": "KDA-TURNOUT-CON-201-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3f2c68c3-8400-567b-8a7d-e03e1fcdeafc",
+      "series_code": "KDA-TURNOUT-CON-203-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "c80e45f8-5e7b-5d81-8f8d-1a2082d53638",
+      "series_code": "KDA-TURNOUT-CON-204-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "2c4aa3b6-8f4f-5710-8c91-4a13111e0ece",
+      "series_code": "KDA-TURNOUT-CON-206-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "3e77aa8b-a29f-5055-85bc-31f032142a8d",
+      "series_code": "KDA-TURNOUT-CON-207-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "deb31025-8975-5a5e-8ad3-a728d2691d99",
+      "series_code": "KDA-TURNOUT-CON-208-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "40c772cb-68d4-5f04-8ff2-024b26142998",
       "series_code": "KDA-TURNOUT-CON-213-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "19c503dc-4cfe-592b-8bac-2067f4364ed1",
+      "series_code": "KDA-TURNOUT-CON-215-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -78982,8 +80182,104 @@
       }
     },
     {
+      "series_id": "68f6d8d7-9b97-5d83-8758-a393fa070063",
+      "series_code": "KDA-TURNOUT-CON-219-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "607ee7ef-3733-50bc-81be-04122ab250ef",
+      "series_code": "KDA-TURNOUT-CON-221-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1c979474-2b6d-5f54-884c-13ce460c7dac",
+      "series_code": "KDA-TURNOUT-CON-222-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e3ad2915-e7b8-5e1a-8caa-6be91101247b",
+      "series_code": "KDA-TURNOUT-CON-223-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "aaab36df-8d9c-5e8e-8585-97646cc1bd89",
+      "series_code": "KDA-TURNOUT-CON-224-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "fbb210f6-546e-5975-86c0-d7fd49a04c16",
       "series_code": "KDA-TURNOUT-CON-225-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e02d5a72-f212-53f4-8900-a9cf16913f02",
+      "series_code": "KDA-TURNOUT-CON-226-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "cf3f0c93-5fda-5d7a-8e77-46af3494565d",
+      "series_code": "KDA-TURNOUT-CON-227-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d80ae4b9-309c-576a-80df-ba8aacce2f4b",
+      "series_code": "KDA-TURNOUT-CON-229-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -79006,6 +80302,90 @@
       }
     },
     {
+      "series_id": "1e3ffefd-ec14-5afe-86b1-daec91c89bed",
+      "series_code": "KDA-TURNOUT-CON-231-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d7f2019b-094f-51f6-86d2-563f4c9acd48",
+      "series_code": "KDA-TURNOUT-CON-232-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "88d53732-0733-5500-844c-a0588de9724c",
+      "series_code": "KDA-TURNOUT-CON-233-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "217a7ac2-d346-55e6-8b57-1cfe3438be0d",
+      "series_code": "KDA-TURNOUT-CON-235-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "9938f785-23e8-5dc5-8d4e-33a5b90d9d40",
+      "series_code": "KDA-TURNOUT-CON-236-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "fc2ceb98-fce3-5c74-8e96-8906865662e9",
+      "series_code": "KDA-TURNOUT-CON-237-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f1991067-abc6-56ac-8979-802524b4b370",
+      "series_code": "KDA-TURNOUT-CON-238-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "ae56afa9-b9c6-5b8e-8dd3-5d3ce6bc5650",
       "series_code": "KDA-TURNOUT-CON-240-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
@@ -79018,8 +80398,32 @@
       }
     },
     {
+      "series_id": "6f2e13db-63ed-5887-886f-e8ebc70b16d8",
+      "series_code": "KDA-TURNOUT-CON-241-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "3b0fcb5f-de35-5642-8b56-8f735d5e8c9c",
       "series_code": "KDA-TURNOUT-CON-242-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d93284af-e958-5a79-8dbf-36f853bfd368",
+      "series_code": "KDA-TURNOUT-CON-244-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -79066,8 +80470,164 @@
       }
     },
     {
+      "series_id": "36653981-3874-58f4-85a7-e0da988fa8b4",
+      "series_code": "KDA-TURNOUT-CON-251-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4f2719e2-923f-56c3-820f-e15678a051fe",
+      "series_code": "KDA-TURNOUT-CON-254-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "893d44a5-2cce-5e31-85bc-93e1461c512f",
+      "series_code": "KDA-TURNOUT-CON-257-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "ac8b3f1e-0872-546f-8416-2350ada05fc4",
+      "series_code": "KDA-TURNOUT-CON-258-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "9b9b873c-d006-53c8-8e1a-fc3acbf7d08f",
       "series_code": "KDA-TURNOUT-CON-259-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e4c084e5-cfe7-5ab4-87e0-74b2236ebc2a",
+      "series_code": "KDA-TURNOUT-CON-262-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "958cedb8-f34a-59aa-89aa-7a71e4d7c200",
+      "series_code": "KDA-TURNOUT-CON-263-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "59f73e8e-d2dd-56d7-8683-c973bcebc9bd",
+      "series_code": "KDA-TURNOUT-CON-265-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "d090cd78-7a6c-5edf-8e10-95520623ff2a",
+      "series_code": "KDA-TURNOUT-CON-268-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "4fc98b80-44f7-530d-8db8-5fe5aa32f8ab",
+      "series_code": "KDA-TURNOUT-CON-269-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "880383ad-d0a1-5a39-89af-48458cb30d2f",
+      "series_code": "KDA-TURNOUT-CON-270-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "7ebbf200-155a-527c-82aa-3cb7157f0303",
+      "series_code": "KDA-TURNOUT-CON-271-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "be184eb0-79d0-5be4-8c20-de429518e50a",
+      "series_code": "KDA-TURNOUT-CON-272-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "65222177-715c-50f4-8340-a0480235591f",
+      "series_code": "KDA-TURNOUT-CON-273-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
@@ -79090,6 +80650,18 @@
       }
     },
     {
+      "series_id": "eacf38fc-e376-5aa3-80f1-c3e8644a2cff",
+      "series_code": "KDA-TURNOUT-CON-276-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "9d58430b-c166-5101-8dc1-8743d410b0c3",
       "series_code": "KDA-TURNOUT-CON-278-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
@@ -79102,8 +80674,116 @@
       }
     },
     {
+      "series_id": "e9fefa0a-37e8-5e07-8247-9253af2d1db2",
+      "series_code": "KDA-TURNOUT-CON-280-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "e3e85b45-73de-5e9b-875c-27867748955a",
+      "series_code": "KDA-TURNOUT-CON-281-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6e4c51f1-4fe5-5e05-8ad7-e0ed39991f4f",
+      "series_code": "KDA-TURNOUT-CON-282-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "0f530d6b-567b-5085-8a04-3f43fec8ff58",
+      "series_code": "KDA-TURNOUT-CON-283-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "1a4f575f-fd17-5455-8f5b-0b09cdaca27c",
+      "series_code": "KDA-TURNOUT-CON-284-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "39ae7b18-bd79-50f8-89d2-bd5ff09e3bf4",
+      "series_code": "KDA-TURNOUT-CON-285-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
       "series_id": "0cb6661e-ff1d-5362-84db-70a00261db63",
       "series_code": "KDA-TURNOUT-CON-286-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6fcbda68-49b9-530e-8b7e-e5578d239333",
+      "series_code": "KDA-TURNOUT-CON-287-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "6dc9d542-c57c-510c-8366-d6ef470b2e3c",
+      "series_code": "KDA-TURNOUT-CON-288-2022-PRES",
+      "indicator_code": "IND-TURNOUT-HISTORY",
+      "unit_code": "percent",
+      "transformation": "level",
+      "aggregation": null,
+      "cross_level_comparison": {
+        "eligible": true,
+        "rule_basis": "unit.dimension=ratio"
+      }
+    },
+    {
+      "series_id": "f574f596-4bfa-5fd7-8e87-ab885ee09e7f",
+      "series_code": "KDA-TURNOUT-CON-290-2022-PRES",
       "indicator_code": "IND-TURNOUT-HISTORY",
       "unit_code": "percent",
       "transformation": "level",
