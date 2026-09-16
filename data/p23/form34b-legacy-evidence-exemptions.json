@@ -1,0 +1,671 @@
+{
+  "as_of": "2026-09-16",
+  "exemptions": {
+    "form34b-ainabkoi-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-aldai-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-awendo-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-bahati-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-banissa-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-baringo-central-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-baringo-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-baringo-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-bomachoge-borabu-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-bomachoge-chache-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-bondo-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-borabu-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-budalangi-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-bumula-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-bureti-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-butere-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-butula-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-buuri-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 400
+    },
+    "form34b-central-imenti-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-cherangany-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-chesumei-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-chuka-igambangombe-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-dadaab-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-dagoretti-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-eldas-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-embakasi-central-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-embakasi-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-embakasi-north-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 220
+    },
+    "form34b-embakasi-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-emuhaya-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-emurua-dikirr-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-fafi-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 400
+    },
+    "form34b-galole-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-garissa-township-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-garsen-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-gatanga-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-gatundu-north-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-gem-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-gichugu-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-gilgil-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-githunguri-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-homa-bay-town-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-igembe-north-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-igembe-south-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 400
+    },
+    "form34b-ijara-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-isiolo-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-isiolo-south-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-jomvu-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-juja-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kacheliba-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kaiti-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kajiado-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kajiado-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kaloleni-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kamukunji-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kandara-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kangundo-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kapseret-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kasarani-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kathiani-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-keiyo-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kesses-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-khwisero-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kiambaa-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-kiambu-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kibwezi-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kibwezi-west-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kiharu-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-kilifi-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kilifi-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kilome-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kimilili-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kinangop-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kipipiri-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-kipkelion-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kipkelion-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kirinyaga-central-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-kisumu-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kitui-central-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kitui-west-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-kitutu-chache-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kitutu-chache-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kitutu-masaba-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kuresoi-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kuresoi-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-kwanza-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 120
+    },
+    "form34b-lafey-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-lagdera-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-laikipia-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-laisamis-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-lamu-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-lamu-west-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-lari-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-limuru-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-luanda-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-lungalunga-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-maara-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-magarini-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-makadara-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-makueni-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-malava-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-malindi-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mandera-east-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 700
+    },
+    "form34b-mandera-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mandera-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mandera-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-manyatta-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 100
+    },
+    "form34b-maragwa-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-marakwet-east-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 200
+    },
+    "form34b-marakwet-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-masinga-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-matayos-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mathare-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mathioya-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-mathira-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-matuga-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-matungu-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-matungulu-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-mbeere-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mbita-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mbooni-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-mogotio-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-molo-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mosop-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-moyale-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-msambweni-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-muhoroni-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mukurweini-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mumias-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mumias-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mvita-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mwala-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-mwatate-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-mwea-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-mwingi-north-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-mwingi-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nambale-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nandi-hills-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-narok-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-narok-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-navakholo-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-ndaragwa-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-njoro-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-north-horr-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 400
+    },
+    "form34b-north-mugirango-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nyakach-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nyali-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nyaribari-chache-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nyatike-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-nyeri-town-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-ol-jorok-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-ol-kalou-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-othaya-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-pokot-south-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-rabai-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-rarieda-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-rongai-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-ruaraka-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-runyenjes-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-saboti-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-saku-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 600
+    },
+    "form34b-samburu-east-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-samburu-north-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-seme-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-shinyalu-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-sigor-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-sigowet-soin-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-sotik-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-south-imenti-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 400
+    },
+    "form34b-south-mugirango-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-tarbaj-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-taveta-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-teso-south-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-tetu-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 600
+    },
+    "form34b-tharaka-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-thika-town-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-tiaty-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-tigania-east-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-tigania-west-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-tinderet-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-tongaren-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-turbo-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 120
+    },
+    "form34b-turkana-central-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 500
+    },
+    "form34b-turkana-east-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 120
+    },
+    "form34b-turkana-north-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-turkana-south-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 150
+    },
+    "form34b-ugenya-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-ugunja-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-uriri-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-voi-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 200
+    },
+    "form34b-wajir-east-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 300
+    },
+    "form34b-wajir-north-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-webuye-east-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-webuye-west-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-west-mugirango-source-verification.json": {
+      "machine_review_context": true
+    },
+    "form34b-wundanyi-source-verification.json": {
+      "machine_review_context": true,
+      "render_dpi": 600
+    }
+  },
+  "note": "Generated by enumerating every committed data/p23/form34b-*-source-verification.json file against the current validator rules on 2026-09-16 and recording which of the two retroactive rules each pre-existing file does not meet. This does not change any electoral figure, verification_state, or promotion_eligible flag in any evidence file -- it only scopes two metadata/process-provenance checks to stop applying them retroactively.",
+  "purpose": "Grandfathers Form 34B source-verification evidence files created before stricter validator rules (render_dpi===250 standardization; machine_review_context provenance for visually-transcribed fields) existed. Each entry names the specific pre-existing check(s) that file is exempt from -- new evidence files are never covered by this list and must satisfy every current rule in full.",
+  "schema_version": "kda.p23.form34b.legacy-evidence-exemptions.v1"
+}

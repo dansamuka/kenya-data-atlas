@@ -81,7 +81,8 @@
     "ballots_cast": 47593,
     "ballots_cast_lte_registered_voters": true,
     "turnout_pct": 65.19856980423853,
-    "turnout_range_valid": true
+    "turnout_range_valid": true,
+    "promotion_blocked": true
   },
   "verification_state": "partial_unresolved",
   "promotion_eligible": false,
