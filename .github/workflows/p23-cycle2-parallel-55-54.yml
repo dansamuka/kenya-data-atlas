@@ -1,0 +1,76 @@
+name: P23 Cycle 2 parallel 55 deep review + 54 exception resolution
+
+on:
+  push:
+    branches: [p23-cycle2-parallel-55-54]
+    paths:
+      - 'scripts/p23/run-cycle2-parallel-55-54.py'
+      - '.github/workflows/p23-cycle2-parallel-55-54.yml'
+      - 'data/p23/p23-cycle2-parallel-55-54-trigger.txt'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build governed 109-way manifest
+        run: python scripts/p23/build-cycle2-109way-promotion-review.py
+      - run: python scripts/p23/run-cycle2-parallel-55-54.py summary
+
+  candidate-deep-revalidation:
+    needs: contract
+    strategy:
+      fail-fast: false
+      max-parallel: 55
+      matrix:
+        worker: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build governed 109-way manifest
+        run: python scripts/p23/build-cycle2-109way-promotion-review.py
+      - name: Run candidate deep-revalidation contract
+        run: python scripts/p23/run-cycle2-parallel-55-54.py candidate ${{ matrix.worker }}
+
+  exception-resolution:
+    needs: contract
+    strategy:
+      fail-fast: false
+      max-parallel: 54
+      matrix:
+        worker: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Build governed 109-way manifest
+        run: python scripts/p23/build-cycle2-109way-promotion-review.py
+      - name: Run governed exception-resolution task
+        run: python scripts/p23/run-cycle2-parallel-55-54.py exception ${{ matrix.worker }}
+
+  aggregate:
+    needs: [candidate-deep-revalidation, exception-resolution]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Enforce exact 55 + 54 = 109 and no-promotion gate
+        run: |
+          python scripts/p23/build-cycle2-109way-promotion-review.py
+          python scripts/p23/run-cycle2-parallel-55-54.py summary
+          python - <<'PY'
+          import json
+          p=json.load(open('data/p23/p23-cycle2-109way-promotion-review.json'))
+          c=[r for r in p['packets'] if r['promotion_candidate']]; e=[r for r in p['packets'] if not r['promotion_candidate']]
+          assert len(c)==55 and len(e)==54 and len(c)+len(e)==109
+          assert not p['governance']['promotion_authorized'] and not p['governance']['canonical_turnout_written']
+          print('P23_PARALLEL_55_54_GATE=PASS promotion_authorized=false canonical_turnout_written=false')
+          PY

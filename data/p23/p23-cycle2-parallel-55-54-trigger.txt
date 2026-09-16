@@ -1,0 +1,1 @@
+Dispatch 55 governed candidate deep-revalidation workers and 54 governed exception-resolution workers in parallel. No promotion or canonical turnout write is authorized.
