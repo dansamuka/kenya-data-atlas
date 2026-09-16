@@ -1,0 +1,19 @@
+# Normalize all text files to LF in the repository, regardless of a contributor's
+# local core.autocrlf setting. Without this, a Windows checkout (core.autocrlf=true)
+# reads working-tree files back with CRLF when a build script computes a byte-size or
+# sha256 for a manifest (e.g. data/distribution/manifest.json), producing values that
+# diverge from a Linux CI checkout of the same LF-stored git blob -- surfacing as a
+# large, spurious "committed build outputs diverge" failure unrelated to any real
+# content change. See PR #228 for a concrete instance of this failure and its fix.
+* text=auto eol=lf
+
+# Genuine binary formats: never treat as text, never touch line endings.
+*.shp binary
+*.shx binary
+*.dbf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
