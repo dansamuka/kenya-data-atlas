@@ -1,0 +1,92 @@
+{
+  "schema_version": "kda.p23.form34b-source-verification.v1",
+  "verification_id": "P23-IEBC-2022-FORM34B-FAFI-SOURCE-VERIFIED-2026-09-12",
+  "as_of": "2026-09-12",
+  "purpose": "Record an independent visual source-image review of the official Fafi Form 34B final TOTAL row, read directly from the official IEBC portal PDF.",
+  "contracts": {
+    "extraction": "data/p23/form34b-extraction-contract.json",
+    "turnout_readiness": "data/p23/constituency-turnout-readiness-contract.json"
+  },
+  "sample": {
+    "constituency_code": 31,
+    "constituency_name": "Fafi",
+    "geo_code": "KEN-C007-CON031",
+    "form_id": 277659,
+    "source_url": "https://forms.iebc.or.ke/index.php?r=site%2Fdownload&id=277659",
+    "source_pdf_sha256": "141442b4e63035f60ce3b304927824b579bd183e2b84c2f4097d4b54a76f63c8",
+    "page_number": 2,
+    "render_dpi": 400,
+    "review_context_image_sha256": "080dae3ed5e6675815a789eaf96111ecef9c032a000442be4bba197edd481805",
+    "review_context_note": "This form is a hand-photographed (CamScanner) scan rather than a flatbed scan, printed in a landscape orientation that PyMuPDF renders upright via the page's own rotation. Rendered directly from the freshly downloaded, sha256-verified official IEBC Form 34B PDF, cropped around the TOTAL row and the page's own separate 'Aggregate Results' box (which restates each candidate's valid votes in both figures and words) for cross-checked digit-level confirmation. The portal only served this PDF after a home-page + set-election (2022 General Election, election id 5) session handshake."
+  },
+  "review": {
+    "reviewed_at": "2026-09-12T00:00:00Z",
+    "reviewer_class": "independent_visual_source_image_review",
+    "reviewed_by": "Claude Sonnet 5 (Anthropic), acting as an independent Kenya Data Atlas contributor agent",
+    "independence_note": "The official Form 34B PDF was downloaded fresh directly from forms.iebc.or.ke in this session, its sha256 was computed from the downloaded bytes, and the TOTAL row integers were read directly from the rendered page image. Each candidate's TOTAL-row figure was independently cross-checked against the page's own 'Aggregate Results' box, which separately restates the same four values both in figures and in spelled-out words (e.g. 'FIVE THOUSAND FOUR HUNDRED AND THREE' for Odinga's 5,403) -- all four figures matched their own words exactly. No OCR, machine-candidate pipeline, or prior extraction artifact was used or consulted before recording these values. Constituency identity (code 031) was read from the '007031' county-constituency polling-station code prefix and the 'CON 031' banner marker printed on the page before this row was accepted.",
+    "source_image_legibility": "clear",
+    "form_identity_visually_confirmed": true,
+    "form_identity_confirmation_method": "visible_polling_station_code_prefix_007031_plus_governed_official_source_url_form_id_and_freshly_computed_pdf_sha256",
+    "total_row_label_visually_confirmed": true
+  },
+  "field_evidence": {
+    "registered_voters": {
+      "page_number": 2,
+      "source_image_sha256": "080dae3ed5e6675815a789eaf96111ecef9c032a000442be4bba197edd481805",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 27335,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "total_valid_votes": {
+      "page_number": 2,
+      "source_image_sha256": "080dae3ed5e6675815a789eaf96111ecef9c032a000442be4bba197edd481805",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 13662,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    },
+    "rejected_ballots": {
+      "page_number": 2,
+      "source_image_sha256": "080dae3ed5e6675815a789eaf96111ecef9c032a000442be4bba197edd481805",
+      "machine_transcription": null,
+      "machine_verification_state": "not_extracted_by_recovery_locator",
+      "machine_decision": "visual_source_transcription_required",
+      "visual_transcription_required": true,
+      "verified_value": 48,
+      "verification_method": "direct_visual_read_of_official_form34b_total_row",
+      "verification_state": "source_verified"
+    }
+  },
+  "same_row_valid_vote_reconciliation": {
+    "method": "Independent visual read of the four presidential candidate total cells on the same final TOTAL row, cross-checked against the page's own 'Aggregate Results' box giving each candidate's valid votes in both figures and spelled-out words.",
+    "candidate_vote_totals_in_source_column_order": [
+      5403,
+      8377,
+      18,
+      49
+    ],
+    "candidate_vote_sum": 13847,
+    "reconciles_total_valid_votes": false,
+    "reconciliation_delta": 185
+  },
+  "row_reconciliation": {
+    "governed_registered_voters": 27335,
+    "registered_voters_reconciles": true,
+    "candidate_sum_reconciles_total_valid_votes": false,
+    "arithmetic_mismatch": true,
+    "promotion_blocked": true
+  },
+  "verification_state": "arithmetic_mismatch",
+  "promotion_eligible": false,
+  "promotion_state": "unresolved_pending_arithmetic_reconciliation",
+  "promotion_authorized_by_this_file": false,
+  "note": "The printed Registered Voters figure (27,335) matches the governed P23 ward-summed registered-voters denominator (KDA-VOTERS-CON-031-2022) exactly, and Rejected Ballots (48) is individually clear. However, the row's own four candidate cells (5,403 + 8,377 + 18 + 49 = 13,847) do not sum to the printed Total Valid Votes (13,662), a 185-vote discrepancy. All four candidate figures were independently cross-checked against the page's own separate 'Aggregate Results' box, which restates each value in spelled-out words exactly matching the printed figures (e.g. 'EIGHT THOUSAND THREE HUNDRED AND SEVENTY SEVEN' for Ruto's 8,377), ruling out a legibility or transcription error on the candidate side. This is judged a genuine printed-form arithmetic error rather than a legibility or column-order issue. Per the extraction contract's invariant that arithmetic-mismatch rows remain promotion-blocked even when their component integers are individually source-verified, this row is preserved unresolved and no turnout observation may be promoted from this evidence.",
+  "promotion_authorization_contract": "data/p23/form34b-turnout-promotion-contract.json"
+}
