@@ -33,7 +33,7 @@
       "geography_name": "Changamwe",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -94,7 +94,7 @@
       "geography_name": "Jomvu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -155,7 +155,7 @@
       "geography_name": "Kisauni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -216,7 +216,7 @@
       "geography_name": "Nyali",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -277,7 +277,7 @@
       "geography_name": "Likoni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -338,7 +338,7 @@
       "geography_name": "Mvita",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -399,7 +399,7 @@
       "geography_name": "Msambweni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -460,7 +460,7 @@
       "geography_name": "Lungalunga",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -521,7 +521,7 @@
       "geography_name": "Matuga",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -582,7 +582,7 @@
       "geography_name": "Kinango",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -643,7 +643,7 @@
       "geography_name": "Kilifi North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -704,7 +704,7 @@
       "geography_name": "Kilifi South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -765,7 +765,7 @@
       "geography_name": "Kaloleni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -826,7 +826,7 @@
       "geography_name": "Rabai",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -887,7 +887,7 @@
       "geography_name": "Ganze",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -948,7 +948,7 @@
       "geography_name": "Malindi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1009,7 +1009,7 @@
       "geography_name": "Magarini",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1070,7 +1070,7 @@
       "geography_name": "Garsen",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1131,7 +1131,7 @@
       "geography_name": "Galole",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1192,7 +1192,7 @@
       "geography_name": "Bura",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1253,7 +1253,7 @@
       "geography_name": "Lamu East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1314,7 +1314,7 @@
       "geography_name": "Lamu West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1375,7 +1375,7 @@
       "geography_name": "Taveta",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1436,7 +1436,7 @@
       "geography_name": "Wundanyi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1497,7 +1497,7 @@
       "geography_name": "Mwatate",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1558,7 +1558,7 @@
       "geography_name": "Voi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1619,7 +1619,7 @@
       "geography_name": "Garissa Township",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1680,7 +1680,7 @@
       "geography_name": "Balambala",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1741,7 +1741,7 @@
       "geography_name": "Lagdera",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1802,7 +1802,7 @@
       "geography_name": "Dadaab",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1863,7 +1863,7 @@
       "geography_name": "Fafi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1924,7 +1924,7 @@
       "geography_name": "Ijara",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -1985,7 +1985,7 @@
       "geography_name": "Wajir North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2046,7 +2046,7 @@
       "geography_name": "Wajir East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2107,7 +2107,7 @@
       "geography_name": "Tarbaj",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2168,7 +2168,7 @@
       "geography_name": "Wajir West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2229,7 +2229,7 @@
       "geography_name": "Eldas",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2290,7 +2290,7 @@
       "geography_name": "Wajir South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2351,7 +2351,7 @@
       "geography_name": "Mandera West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2412,7 +2412,7 @@
       "geography_name": "Banissa",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2473,7 +2473,7 @@
       "geography_name": "Mandera North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2534,7 +2534,7 @@
       "geography_name": "Mandera South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2595,7 +2595,7 @@
       "geography_name": "Mandera East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2656,7 +2656,7 @@
       "geography_name": "Lafey",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2717,7 +2717,7 @@
       "geography_name": "Moyale",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2778,7 +2778,7 @@
       "geography_name": "North Horr",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2839,7 +2839,7 @@
       "geography_name": "Saku",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2900,7 +2900,7 @@
       "geography_name": "Laisamis",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -2961,7 +2961,7 @@
       "geography_name": "Isiolo North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3022,7 +3022,7 @@
       "geography_name": "Isiolo South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3083,7 +3083,7 @@
       "geography_name": "Igembe South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3144,7 +3144,7 @@
       "geography_name": "Igembe Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3205,7 +3205,7 @@
       "geography_name": "Igembe North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3266,7 +3266,7 @@
       "geography_name": "Tigania West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3327,7 +3327,7 @@
       "geography_name": "Tigania East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3388,7 +3388,7 @@
       "geography_name": "North Imenti",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3449,7 +3449,7 @@
       "geography_name": "Buuri",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3510,7 +3510,7 @@
       "geography_name": "Central Imenti",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3571,7 +3571,7 @@
       "geography_name": "South Imenti",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3632,7 +3632,7 @@
       "geography_name": "Maara",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3693,7 +3693,7 @@
       "geography_name": "Chuka/Igambang'om",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3754,7 +3754,7 @@
       "geography_name": "Tharaka",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3815,7 +3815,7 @@
       "geography_name": "Manyatta",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3876,7 +3876,7 @@
       "geography_name": "Runyenjes",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3937,7 +3937,7 @@
       "geography_name": "Mbeere South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -3998,7 +3998,7 @@
       "geography_name": "Mbeere North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4059,7 +4059,7 @@
       "geography_name": "Mwingi North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4120,7 +4120,7 @@
       "geography_name": "Mwingi West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4181,7 +4181,7 @@
       "geography_name": "Mwingi Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4242,7 +4242,7 @@
       "geography_name": "Kitui West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4303,7 +4303,7 @@
       "geography_name": "Kitui Rural",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4364,7 +4364,7 @@
       "geography_name": "Kitui Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4425,7 +4425,7 @@
       "geography_name": "Kitui East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4486,7 +4486,7 @@
       "geography_name": "Kitui South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4547,7 +4547,7 @@
       "geography_name": "Masinga",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4608,7 +4608,7 @@
       "geography_name": "Yatta",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4669,7 +4669,7 @@
       "geography_name": "Kangundo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4730,7 +4730,7 @@
       "geography_name": "Matungulu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4791,7 +4791,7 @@
       "geography_name": "Kathiani",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4852,7 +4852,7 @@
       "geography_name": "Mavoko",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4913,7 +4913,7 @@
       "geography_name": "Machakos Town",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -4974,7 +4974,7 @@
       "geography_name": "Mwala",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5035,7 +5035,7 @@
       "geography_name": "Mbooni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5096,7 +5096,7 @@
       "geography_name": "Kilome",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5157,7 +5157,7 @@
       "geography_name": "Kaiti",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5218,7 +5218,7 @@
       "geography_name": "Makueni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5279,7 +5279,7 @@
       "geography_name": "Kibwezi West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5340,7 +5340,7 @@
       "geography_name": "Kibwezi East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5401,7 +5401,7 @@
       "geography_name": "Kinangop",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5462,7 +5462,7 @@
       "geography_name": "Kipipiri",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5523,7 +5523,7 @@
       "geography_name": "Ol Kalou",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5584,7 +5584,7 @@
       "geography_name": "Ol Jorok",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5645,7 +5645,7 @@
       "geography_name": "Ndaragwa",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5706,7 +5706,7 @@
       "geography_name": "Tetu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5767,7 +5767,7 @@
       "geography_name": "Kieni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5828,7 +5828,7 @@
       "geography_name": "Mathira",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5889,7 +5889,7 @@
       "geography_name": "Othaya",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -5950,7 +5950,7 @@
       "geography_name": "Mukurweini",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6011,7 +6011,7 @@
       "geography_name": "Nyeri Town",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6072,7 +6072,7 @@
       "geography_name": "Mwea",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6133,7 +6133,7 @@
       "geography_name": "Gichugu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6194,7 +6194,7 @@
       "geography_name": "Ndia",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6255,7 +6255,7 @@
       "geography_name": "Kirinyaga Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6316,7 +6316,7 @@
       "geography_name": "Kangema",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6377,7 +6377,7 @@
       "geography_name": "Mathioya",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6438,7 +6438,7 @@
       "geography_name": "Kiharu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6499,7 +6499,7 @@
       "geography_name": "Kigumo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6560,7 +6560,7 @@
       "geography_name": "Maragwa",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6621,7 +6621,7 @@
       "geography_name": "Kandara",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6682,7 +6682,7 @@
       "geography_name": "Gatanga",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6743,7 +6743,7 @@
       "geography_name": "Gatundu South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6804,7 +6804,7 @@
       "geography_name": "Gatundu North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6865,7 +6865,7 @@
       "geography_name": "Juja",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6926,7 +6926,7 @@
       "geography_name": "Thika Town",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -6987,7 +6987,7 @@
       "geography_name": "Ruiru",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7048,7 +7048,7 @@
       "geography_name": "Githunguri",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7109,7 +7109,7 @@
       "geography_name": "Kiambu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7170,7 +7170,7 @@
       "geography_name": "Kiambaa",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7231,7 +7231,7 @@
       "geography_name": "Kabete",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7292,7 +7292,7 @@
       "geography_name": "Kikuyu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7353,7 +7353,7 @@
       "geography_name": "Limuru",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7414,7 +7414,7 @@
       "geography_name": "Lari",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7475,7 +7475,7 @@
       "geography_name": "Turkana North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7536,7 +7536,7 @@
       "geography_name": "Turkana West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7597,7 +7597,7 @@
       "geography_name": "Turkana Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7658,7 +7658,7 @@
       "geography_name": "Loima",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7719,7 +7719,7 @@
       "geography_name": "Turkana South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7780,7 +7780,7 @@
       "geography_name": "Turkana East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7841,7 +7841,7 @@
       "geography_name": "Kapenguria",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7902,7 +7902,7 @@
       "geography_name": "Sigor",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -7963,7 +7963,7 @@
       "geography_name": "Kacheliba",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8024,7 +8024,7 @@
       "geography_name": "Pokot South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8085,7 +8085,7 @@
       "geography_name": "Samburu West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8146,7 +8146,7 @@
       "geography_name": "Samburu North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8207,7 +8207,7 @@
       "geography_name": "Samburu East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8268,7 +8268,7 @@
       "geography_name": "Kwanza",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8329,7 +8329,7 @@
       "geography_name": "Endebess",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8390,7 +8390,7 @@
       "geography_name": "Saboti",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8451,7 +8451,7 @@
       "geography_name": "Kiminini",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8512,7 +8512,7 @@
       "geography_name": "Cherangany",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8573,7 +8573,7 @@
       "geography_name": "Soy",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8634,7 +8634,7 @@
       "geography_name": "Turbo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8695,7 +8695,7 @@
       "geography_name": "Moiben",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8756,7 +8756,7 @@
       "geography_name": "Ainabkoi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8817,7 +8817,7 @@
       "geography_name": "Kapseret",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8878,7 +8878,7 @@
       "geography_name": "Kesses",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -8939,7 +8939,7 @@
       "geography_name": "Marakwet East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9000,7 +9000,7 @@
       "geography_name": "Marakwet West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9061,7 +9061,7 @@
       "geography_name": "Keiyo North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9122,7 +9122,7 @@
       "geography_name": "Keiyo South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9183,7 +9183,7 @@
       "geography_name": "Tinderet",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9244,7 +9244,7 @@
       "geography_name": "Aldai",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9305,7 +9305,7 @@
       "geography_name": "Nandi Hills",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9366,7 +9366,7 @@
       "geography_name": "Chesumei",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9427,7 +9427,7 @@
       "geography_name": "Emgwen",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9488,7 +9488,7 @@
       "geography_name": "Mosop",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9549,7 +9549,7 @@
       "geography_name": "Tiaty",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9610,7 +9610,7 @@
       "geography_name": "Baringo North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9671,7 +9671,7 @@
       "geography_name": "Baringo Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9732,7 +9732,7 @@
       "geography_name": "Baringo South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9793,7 +9793,7 @@
       "geography_name": "Mogotio",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9854,7 +9854,7 @@
       "geography_name": "Eldama Ravine",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9915,7 +9915,7 @@
       "geography_name": "Laikipia West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -9976,7 +9976,7 @@
       "geography_name": "Laikipia East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10037,7 +10037,7 @@
       "geography_name": "Laikipia North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10098,7 +10098,7 @@
       "geography_name": "Molo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10159,7 +10159,7 @@
       "geography_name": "Njoro",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10220,7 +10220,7 @@
       "geography_name": "Naivasha",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10281,7 +10281,7 @@
       "geography_name": "Gilgil",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10342,7 +10342,7 @@
       "geography_name": "Kuresoi South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10403,7 +10403,7 @@
       "geography_name": "Kuresoi North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10464,7 +10464,7 @@
       "geography_name": "Subukia",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10525,7 +10525,7 @@
       "geography_name": "Rongai",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10586,7 +10586,7 @@
       "geography_name": "Bahati",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10647,7 +10647,7 @@
       "geography_name": "Nakuru Town West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10708,7 +10708,7 @@
       "geography_name": "Nakuru Town East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10769,7 +10769,7 @@
       "geography_name": "Kilgoris",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10830,7 +10830,7 @@
       "geography_name": "Emurua Dikirr",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10891,7 +10891,7 @@
       "geography_name": "Narok North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -10952,7 +10952,7 @@
       "geography_name": "Narok East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11013,7 +11013,7 @@
       "geography_name": "Narok South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11074,7 +11074,7 @@
       "geography_name": "Narok West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11135,7 +11135,7 @@
       "geography_name": "Kajiado North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11196,7 +11196,7 @@
       "geography_name": "Kajiado Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11257,7 +11257,7 @@
       "geography_name": "Kajiado East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11318,7 +11318,7 @@
       "geography_name": "Kajiado West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11379,7 +11379,7 @@
       "geography_name": "Kajiado South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11440,7 +11440,7 @@
       "geography_name": "Kipkelion East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11501,7 +11501,7 @@
       "geography_name": "Kipkelion West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11562,7 +11562,7 @@
       "geography_name": "Ainamoi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11623,7 +11623,7 @@
       "geography_name": "Bureti",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11684,7 +11684,7 @@
       "geography_name": "Belgut",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11745,7 +11745,7 @@
       "geography_name": "Sigowet/Soin",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11806,7 +11806,7 @@
       "geography_name": "Sotik",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11867,7 +11867,7 @@
       "geography_name": "Chepalungu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11928,7 +11928,7 @@
       "geography_name": "Bomet East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -11989,7 +11989,7 @@
       "geography_name": "Bomet Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12050,7 +12050,7 @@
       "geography_name": "Konoin",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12111,7 +12111,7 @@
       "geography_name": "Lugari",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12172,7 +12172,7 @@
       "geography_name": "Likuyani",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12233,7 +12233,7 @@
       "geography_name": "Malava",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12294,7 +12294,7 @@
       "geography_name": "Lurambi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12355,7 +12355,7 @@
       "geography_name": "Navakholo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12416,7 +12416,7 @@
       "geography_name": "Mumias West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12477,7 +12477,7 @@
       "geography_name": "Mumias East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12538,7 +12538,7 @@
       "geography_name": "Matungu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12599,7 +12599,7 @@
       "geography_name": "Butere",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12660,7 +12660,7 @@
       "geography_name": "Khwisero",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12721,7 +12721,7 @@
       "geography_name": "Shinyalu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12782,7 +12782,7 @@
       "geography_name": "Ikolomani",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12843,7 +12843,7 @@
       "geography_name": "Vihiga",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12904,7 +12904,7 @@
       "geography_name": "Sabatia",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -12965,7 +12965,7 @@
       "geography_name": "Hamisi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13026,7 +13026,7 @@
       "geography_name": "Luanda",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13087,7 +13087,7 @@
       "geography_name": "Emuhaya",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13148,7 +13148,7 @@
       "geography_name": "Mt.elgon",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13209,7 +13209,7 @@
       "geography_name": "Sirisia",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13270,7 +13270,7 @@
       "geography_name": "Kabuchai",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13331,7 +13331,7 @@
       "geography_name": "Bumula",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13392,7 +13392,7 @@
       "geography_name": "Kanduyi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13453,7 +13453,7 @@
       "geography_name": "Webuye East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13514,7 +13514,7 @@
       "geography_name": "Webuye West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13575,7 +13575,7 @@
       "geography_name": "Kimilili",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13636,7 +13636,7 @@
       "geography_name": "Tongaren",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13697,7 +13697,7 @@
       "geography_name": "Teso North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13758,7 +13758,7 @@
       "geography_name": "Teso South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13819,7 +13819,7 @@
       "geography_name": "Nambale",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13880,7 +13880,7 @@
       "geography_name": "Matayos",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -13941,7 +13941,7 @@
       "geography_name": "Butula",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14002,7 +14002,7 @@
       "geography_name": "Funyula",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14063,7 +14063,7 @@
       "geography_name": "Budalangi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14124,7 +14124,7 @@
       "geography_name": "Ugenya",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14185,7 +14185,7 @@
       "geography_name": "Ugunja",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14246,7 +14246,7 @@
       "geography_name": "Alego Usonga",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14307,7 +14307,7 @@
       "geography_name": "Gem",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14368,7 +14368,7 @@
       "geography_name": "Bondo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14429,7 +14429,7 @@
       "geography_name": "Rarieda",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14490,7 +14490,7 @@
       "geography_name": "Kisumu East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14551,7 +14551,7 @@
       "geography_name": "Kisumu West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14612,7 +14612,7 @@
       "geography_name": "Kisumu Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14673,7 +14673,7 @@
       "geography_name": "Seme",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14734,7 +14734,7 @@
       "geography_name": "Nyando",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14795,7 +14795,7 @@
       "geography_name": "Muhoroni",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14856,7 +14856,7 @@
       "geography_name": "Nyakach",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14917,7 +14917,7 @@
       "geography_name": "Kasipul",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -14978,7 +14978,7 @@
       "geography_name": "Kabondo Kasipul",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15039,7 +15039,7 @@
       "geography_name": "Karachuonyo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15100,7 +15100,7 @@
       "geography_name": "Rangwe",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15161,7 +15161,7 @@
       "geography_name": "Homa Bay Town",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15222,7 +15222,7 @@
       "geography_name": "Ndhiwa",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15283,7 +15283,7 @@
       "geography_name": "Mbita",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15344,7 +15344,7 @@
       "geography_name": "Suba",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15405,7 +15405,7 @@
       "geography_name": "Rongo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15466,7 +15466,7 @@
       "geography_name": "Awendo",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15527,7 +15527,7 @@
       "geography_name": "Suna East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15588,7 +15588,7 @@
       "geography_name": "Suna West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15649,7 +15649,7 @@
       "geography_name": "Uriri",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15710,7 +15710,7 @@
       "geography_name": "Nyatike",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15771,7 +15771,7 @@
       "geography_name": "Kuria West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15832,7 +15832,7 @@
       "geography_name": "Kuria East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15893,7 +15893,7 @@
       "geography_name": "Bonchari",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -15954,7 +15954,7 @@
       "geography_name": "South Mugirango",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16015,7 +16015,7 @@
       "geography_name": "Bomachoge Borabu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16076,7 +16076,7 @@
       "geography_name": "Bobasi",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16137,7 +16137,7 @@
       "geography_name": "Bomachoge Chache",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16198,7 +16198,7 @@
       "geography_name": "Nyaribari Masaba",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16259,7 +16259,7 @@
       "geography_name": "Nyaribari Chache",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16320,7 +16320,7 @@
       "geography_name": "Kitutu Chache North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16381,7 +16381,7 @@
       "geography_name": "Kitutu Chache South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16442,7 +16442,7 @@
       "geography_name": "Kitutu Masaba",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16503,7 +16503,7 @@
       "geography_name": "West Mugirango",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16564,7 +16564,7 @@
       "geography_name": "North Mugirango",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16625,7 +16625,7 @@
       "geography_name": "Borabu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16686,7 +16686,7 @@
       "geography_name": "Westlands",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16747,7 +16747,7 @@
       "geography_name": "Dagoretti North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16808,7 +16808,7 @@
       "geography_name": "Dagoretti South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16869,7 +16869,7 @@
       "geography_name": "Langata",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16930,7 +16930,7 @@
       "geography_name": "Kibra",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -16991,7 +16991,7 @@
       "geography_name": "Roysambu",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17052,7 +17052,7 @@
       "geography_name": "Kasarani",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17113,7 +17113,7 @@
       "geography_name": "Ruaraka",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17174,7 +17174,7 @@
       "geography_name": "Embakasi South",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17235,7 +17235,7 @@
       "geography_name": "Embakasi North",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17296,7 +17296,7 @@
       "geography_name": "Embakasi Central",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17357,7 +17357,7 @@
       "geography_name": "Embakasi East",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17418,7 +17418,7 @@
       "geography_name": "Embakasi West",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17479,7 +17479,7 @@
       "geography_name": "Makadara",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17540,7 +17540,7 @@
       "geography_name": "Kamukunji",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17601,7 +17601,7 @@
       "geography_name": "Starehe",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [
@@ -17662,7 +17662,7 @@
       "geography_name": "Mathare",
       "level": "constituency",
       "current_state": "official_unavailable",
-      "representation_opportunity": "secondary_or_modelled_review",
+      "representation_opportunity": "secondary_source_review",
       "priority": "medium",
       "treatment_class": "census_or_household_crosswalk",
       "source_urls": [

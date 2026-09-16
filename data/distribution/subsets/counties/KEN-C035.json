@@ -5757,7 +5757,7 @@
       "period_label": "2023",
       "value": 2.7,
       "geographic_method": "aggregated",
-      "statistical_status": "final",
+      "statistical_status": "estimated",
       "source_class": "official",
       "badge": "B",
       "source_release_id": "a58638d4-aeaa-576c-a8d3-3d6cd44a952a",
