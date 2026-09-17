@@ -186,7 +186,7 @@
     {
       "id": "P29",
       "title": "Build the complete 54 × local-geography denominator",
-      "status": "planned",
+      "status": "complete",
       "goal": "Compile the deterministic successor ledger for all constituencies and wards and audit county coverage against the same 54-indicator framework.",
       "outputs": [
         "data/completeness/local-54-slot-ledger.json",
@@ -207,7 +207,10 @@
       "depends_on": [
         "P27",
         "P28"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-17, immediately after P27/P28 (its declared dependencies). All 6 acceptance items are machine-verified by scripts/p29/validate-local-54-slot-ledger.mjs (wired into npm test as p29:validate) and re-derived deterministically from the canonical registry on every run: the ledger is the full 96,498-cell cross-product of the frozen 54 local indicators (P27) against all 47 counties, 290 constituencies and 1,450 wards -- exactly 15,660 constituency cells, 78,300 ward cells, 93,960 child-level cells, and 2,538 county audit cells compile (data/completeness/local-54-slot-ledger.json, .csv and local-54-summary.json). unclassified_cells is 0. Disposition and numeric completeness are reported separately: 6,007 cells (6.22%) carry a real published value (identical to P28A's preferred-observation count, confirming no double counting), and 90,491 cells (93.78%) are honest governed closures with an auditable, checkable reason -- 12,180 not_applicable (the 7 institutional_county_only indicators below county, per their own treatment-class conditions in data/policy/local-54-indicator-contract.json), 3,771 official_unavailable plus 10 boundary_unresolved (the exact P28A-reviewed closures: IND-POPULATION/IND-HOUSEHOLD-SIZE/IND-HEALTH-FACILITY-DENSITY family closures, the 10-ward Mandera East/Lafey hold, and the 1-county Narok pending-bills non-submission), and 74,530 governed_unavailable. The governed_unavailable cells cover the other 49 local indicators at constituency/ward level, where the canonical registry (series.json) carries zero active series today; prior analysis confirmed coverage at every (indicator, level) pair is either fully 0% or fully 100% (never partial), so a shared, checkable, indicator-family reason could be applied honestly without risking a cell that could show a real value being silently closed instead. No value was interpolated, spatially allocated from a county figure, or otherwise fabricated to fill a cell -- this ledger is the denominator P31 (constituency) and P32 (ward) genuinely complete against, not a substitute for completing them."
+      }
     },
     {
       "id": "P30",

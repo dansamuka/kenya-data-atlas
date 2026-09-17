@@ -1,0 +1,89 @@
+name: P29 local-54 slot ledger
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/p29/**'
+      - 'data/policy/local-54-indicator-contract.json'
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/evidence-states.json'
+      - 'data/indicators/registry/**'
+      - 'data/catalogue/registry/**'
+      - 'data/geography/registry/geographies.json'
+      - 'data/completeness/local-54-slot-ledger.json'
+      - 'data/completeness/local-54-reason-catalogue.json'
+      - '.github/workflows/p29-local-54-slot-ledger.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/p29/**'
+      - 'data/policy/local-54-indicator-contract.json'
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/evidence-states.json'
+      - 'data/indicators/registry/**'
+      - 'data/catalogue/registry/**'
+      - 'data/geography/registry/geographies.json'
+      - 'data/completeness/local-54-slot-ledger.json'
+      - 'data/completeness/local-54-reason-catalogue.json'
+
+permissions:
+  contents: write
+
+jobs:
+  local-54-slot-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 1
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Rebuild canonical catalogue and indicator registries
+        run: |
+          npm run catalogue:build
+          npm run indicators:build
+          npm run p06:direction
+      - name: Build deterministic P29 local-54 ledger
+        run: npm run p29:build
+      - name: Validate P29 cell counts and dispositions
+        run: npm run p29:validate
+      - name: Materialize generated ledger outputs onto this PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git add data/catalogue/registry data/indicators/registry data/completeness/local-54-slot-ledger.json data/completeness/local-54-slot-ledger.csv data/completeness/local-54-reason-catalogue.json data/completeness/local-54-reason-catalogue.csv data/completeness/local-54-summary.json
+          if git diff --cached --quiet; then
+            echo 'P29 generated outputs already match the committed baseline.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'P29: materialize deterministic local-54 slot ledger'
+          git push origin HEAD:${{ github.head_ref }}
+      - name: Enforce deterministic zero drift
+        run: |
+          npm run catalogue:build
+          npm run indicators:build
+          npm run p06:direction
+          npm run p29:build
+          npm run p29:validate
+          git diff --exit-code -- data/catalogue/registry data/indicators/registry data/completeness/local-54-slot-ledger.json data/completeness/local-54-slot-ledger.csv data/completeness/local-54-reason-catalogue.json data/completeness/local-54-reason-catalogue.csv data/completeness/local-54-summary.json
+      - name: Show P29 summary
+        run: cat data/completeness/local-54-summary.json
+      - name: Upload P29 generated ledger evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p29-local-54-slot-ledger
+          path: |
+            data/completeness/local-54-slot-ledger.json
+            data/completeness/local-54-slot-ledger.csv
+            data/completeness/local-54-reason-catalogue.json
+            data/completeness/local-54-reason-catalogue.csv
+            data/completeness/local-54-summary.json
+          if-no-files-found: error

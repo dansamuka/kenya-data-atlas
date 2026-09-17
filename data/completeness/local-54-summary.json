@@ -1,0 +1,42 @@
+{
+  "schema_version": "kda.local-54-slot-ledger.summary.v1",
+  "as_of": "2026-09-12",
+  "definition": "The full cross-product of the frozen 54 local indicators (P27) against every county, constituency and ward geography. Every cell ends in a numeric published disposition or a governed closure (official_unavailable, governed_unavailable, not_applicable, boundary_unresolved, retired_replaced) with an auditable reason; none are inherited, interpolated or fabricated.",
+  "total_cells": 96498,
+  "county_cells": 2538,
+  "constituency_cells": 15660,
+  "ward_cells": 78300,
+  "child_level_cells": 93960,
+  "unclassified_cells": 0,
+  "numeric_evidence_cells": 6007,
+  "numeric_evidence_pct": 6.22,
+  "governed_closure_cells": 90491,
+  "governed_closure_pct": 93.78,
+  "by_status": {
+    "boundary_unresolved": 10,
+    "governed_unavailable": 74530,
+    "not_applicable": 12180,
+    "official_unavailable": 3771,
+    "published_derived": 2364,
+    "published_direct": 3643
+  },
+  "by_level": {
+    "constituency": 15660,
+    "county": 2538,
+    "ward": 78300
+  },
+  "by_treatment_class": {
+    "administrative_point_aggregate": 3574,
+    "agriculture_local": 5361,
+    "census_or_household_crosswalk": 12509,
+    "dynamic_location_price": 1787,
+    "economic_accounts_small_area": 8935,
+    "education_admin_aggregate": 7148,
+    "electoral_direct": 1787,
+    "facility_service_rate": 3574,
+    "geometry_derived": 1787,
+    "institutional_county_only": 12509,
+    "network_spatial": 1787,
+    "survey_small_area": 35740
+  }
+}
