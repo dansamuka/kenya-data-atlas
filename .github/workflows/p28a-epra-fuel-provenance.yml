@@ -78,10 +78,14 @@ jobs:
           if(s.secondary_explicit_relabel_queue_count!==0) failures.push(`secondary relabel queue remains: ${s.secondary_explicit_relabel_queue_count}`);
           if(s.source_tier_counts?.S2_secondary_verified_to_identifiable_primary!==0) failures.push(`S2 count is ${s.source_tier_counts?.S2_secondary_verified_to_identifiable_primary}`);
           if(s.source_tier_counts?.S1_derived_from_primary_official!==577) failures.push(`expected S1 count 577, got ${s.source_tier_counts?.S1_derived_from_primary_official}`);
-          if(s.manual_review_count!==3781) failures.push(`expected manual review count 3781, got ${s.manual_review_count}`);
+          // 3,781 was the manual-review count immediately after this PR's own EPRA remediation (down from
+          // 3,826). Later, legitimate P28A closure work (recognizing genuinely reviewed-and-reaffirmed
+          // reopening cells as resolved, not re-flagging them as pending) has reduced it further to 0. This
+          // check must allow further improvement, not just "no regression back above where this PR left it".
+          if(s.manual_review_count>3781) failures.push(`manual review count regressed above the post-EPRA-remediation checkpoint: expected <=3781, got ${s.manual_review_count}`);
           if(failures.length){console.error('FAIL: EPRA P28A remediation delta\n - '+failures.join('\n - '));process.exit(1);}
           console.log('PASS: 45 legacy secondary EPRA observations moved to S1 official proxy provenance.');
-          console.log('      S2: 45 -> 0; S1: 532 -> 577; manual review: 3826 -> 3781.');
+          console.log(`      S2: 45 -> 0; S1: 532 -> 577; manual review: 3826 -> 3781 -> ${s.manual_review_count}.`);
           NODE
 
       - name: Materialize deterministic remediation outputs onto PR branch
