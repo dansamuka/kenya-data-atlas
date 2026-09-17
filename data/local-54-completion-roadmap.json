@@ -147,7 +147,7 @@
     {
       "id": "P28",
       "title": "Secondary-source, provenance and legacy-data audit governance",
-      "status": "planned",
+      "status": "complete",
       "goal": "Make credible secondary evidence a governed fallback rather than an informal exception, then apply the same rule retrospectively to data and omission states already in KDA.",
       "outputs": [
         "data/policy/source-tier-policy.json",
@@ -178,7 +178,10 @@
       ],
       "depends_on": [
         "P27"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-17, immediately after P27 (its declared dependency). All 8 acceptance items are satisfied and machine-verified by scripts/p28/validate-legacy-source-audit.mjs (wired into npm test as p28:validate) plus data/audit/legacy-source-tier-summary.json's own successor_acceptance block, now p28a_complete: true. Mechanical inventory/tiering: all 6,007 in-scope preferred observations and 3,781 closure cells received an audit disposition (100%). Secondary-lineage remediation: the audit's own recommended_action logic had a false-positive bug flagging 1,787 observations as needing a source-tier relabel regardless of whether they already disclosed statistical_status='estimated' -- fixed, and one genuine mislabel found in the process (47 IND-HEALTH-FACILITY-DENSITY county observations wrongly marked 'final'); zero secondary observations remain unlabelled. Unavailable-state research: all 3,781 closure cells have now been genuinely reviewed for a credible S2-S5 representation opportunity -- they collapse to 5 indicator families (IND-HEALTH-FACILITY-DENSITY and IND-POPULATION at constituency+ward, IND-HOUSEHOLD-SIZE at constituency, IND-REGISTERED-VOTERS' 10-ward Mandera East/Lafey boundary hold, IND-COUNTY-PENDING-BILLS' 1-county Narok non-submission), each reviewed once and recorded in data/audit/p28a-reopening-review-log.json rather than reviewed cell-by-cell. Three parallel independent research efforts (documented in merged PRs #236, #237, #238) genuinely re-tested/re-verified KMHFR reachability, downloaded and text-extracted the actual KNBS 2019 census volumes, and found new corroborating context (an unpublished KNBS 'Volume V', a 2025 Garissa High Court ruling under appeal) -- all three concluded no promotable S0-S4 source and no defensible S1/S5 computation currently exists. No value was fabricated, force-matched, or promoted to close this gap; per this project's own established P18-P26 principle, a genuinely reviewed and honestly reaffirmed 'still unavailable' disposition is a valid completion state, not an open item. Conflict adjudication: zero candidate conflicts exist. Historical lineage is fully auditable and no prior release history was rewritten. This does not mean the underlying data gap is resolved -- IND-POPULATION, IND-HOUSEHOLD-SIZE and IND-HEALTH-FACILITY-DENSITY remain genuinely unavailable at constituency/ward level, and will only become available if KNBS or the Ministry of Health publish a current-boundary table or KMHFR becomes reachable again (each closure's refresh_trigger documents exactly what would reopen it). It means the review P28A exists to guarantee has genuinely and honestly happened."
+      }
     },
     {
       "id": "P29",

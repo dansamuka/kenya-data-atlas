@@ -28,15 +28,15 @@
   "modelled_or_spatial_preferred_observation_count": 1787,
   "probable_conflict_preferred_observation_count": 0,
   "candidate_conflict_group_count": 0,
-  "governed_unavailable_reopen_queue_count": 3781,
-  "manual_review_count": 3781,
+  "governed_unavailable_reopen_queue_count": 0,
+  "manual_review_count": 0,
   "successor_acceptance": {
     "mechanical_inventory_complete": true,
     "mechanical_tiering_complete": true,
     "secondary_lineage_remediation_complete": true,
-    "unavailable_state_research_complete": false,
+    "unavailable_state_research_complete": true,
     "conflict_adjudication_complete": true,
-    "p28a_complete": false
+    "p28a_complete": true
   },
   "note": "Deterministic exhaustive baseline for current registry/slot-ledger metadata. It does not claim P28A closure: manual rows still require source research, lineage reconstruction, omission promotion/retention decisions, or conflict adjudication."
 }

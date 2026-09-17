@@ -91,7 +91,9 @@ const externalCells=new Set();
 for(const r of ledger.rows)if(codes.has(r.indicator_code)&&levels.has(r.level)&&r.lifecycle_status==='active'&&r.status==='external_verified'&&!r.observation_id)externalCells.add(`${r.geography_id}|${r.indicator_code}`);
 assert(audit.rows.filter(x=>x.record_type==='legacy_external_slot').length===externalCells.size,'legacy external slot coverage mismatch');
 
-const reopen=closureRows.filter(x=>x.audited_source_tier==='S6_governed_unavailable');
+// Mirrors build-legacy-source-audit.mjs: the reopen queue is S6 cells that still require a P28A review,
+// not S6 cells outright -- a reviewed-and-reaffirmed family has left the queue while remaining S6-tier.
+const reopen=closureRows.filter(x=>x.audited_source_tier==='S6_governed_unavailable'&&x.requires_manual_review);
 assert(opportunities.count===reopen.length,`representation opportunity count=${opportunities.count} expected=${reopen.length}`);
 assert(opportunities.rows.length===reopen.length,'representation opportunity rows mismatch');
 assert(conflicts.count===conflicts.rows.length,'conflict count/row mismatch');

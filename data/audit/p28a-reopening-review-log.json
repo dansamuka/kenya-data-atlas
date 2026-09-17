@@ -1,0 +1,46 @@
+{
+  "schema_version": "kda.p28a.reopening-review-log.v1",
+  "purpose": "Records each indicator family whose closure_cell rows have been genuinely reviewed under P28A's re-opening rule (re-checked for a credible S2-S5 representation opportunity per data/legacy-secondary-source-audit-contract.json). A logged entry means a real, independent review happened -- it does not mean the indicator was promoted. Mirrors the same principle already established for P18-P26: 100% completion means 100% governed resolution (promoted, or explicitly and honestly closed with cited evidence), not 100% fabricated numbers. This file is the single source of truth scripts/p28/build-legacy-source-audit.mjs consults to distinguish 'never reviewed' from 'reviewed and reaffirmed' -- it is never used to promote a value or change a closure's status/tier, only to record that a review occurred.",
+  "entries": [
+    {
+      "indicator_id": "IND-HEALTH-FACILITY-DENSITY",
+      "levels": ["constituency", "ward"],
+      "reviewed_at": "2026-09-16",
+      "outcome": "reaffirmed_unavailable",
+      "reference": "PR #236",
+      "note": "KMHFR (portal and API) and opendata.go.ke live-retested and confirmed unreachable, 8 days after the original P24 check with an identical failure signature (ruling out a transient outage); no new official geocoded facility dataset found on HDX; the Ministry's 2023 Kenya Health Facility Census report read in full confirms ward-level facility tagging exists in underlying microdata but the published report never tabulates below county. Both the facility-count numerator and the population denominator remain genuinely blocked."
+    },
+    {
+      "indicator_id": "IND-POPULATION",
+      "levels": ["constituency", "ward"],
+      "reviewed_at": "2026-09-16",
+      "outcome": "reaffirmed_unavailable",
+      "reference": "PR #238",
+      "note": "KNBS's full 2019 KPHC volumes downloaded and text-inspected directly: finest published tier is sub-location, with no current-290-constituency or 1,450-ward table. Independently found and documented new context: Kenyan press reporting that KNBS compiled an internal 'Volume V' with constituency/ward population, withheld amid an IEBC/KNBS boundary dispute and never published; a 2025 Garissa High Court ruling (under appeal) invalidating the 2019 count for three counties. A WorldPop modelled (S5) fallback was considered and correctly declined: no reference figure exists anywhere in the repo to validate a from-scratch raster aggregation against, so publishing one would be an unverifiable derived number."
+    },
+    {
+      "indicator_id": "IND-HOUSEHOLD-SIZE",
+      "levels": ["constituency"],
+      "reviewed_at": "2026-09-16",
+      "outcome": "reaffirmed_unavailable",
+      "reference": "PR #237",
+      "note": "KNBS's full 2019 KPHC Volume II downloaded and text-extracted directly: no constituency table exists at any published tier finer than sub-location. Independently confirmed KNBS sub-counties are not the same delineation as IEBC's 290 constituencies (e.g. Kwale 5 vs 4, Meru 11 vs 9), ruling out substitution. The older KNBS constituency table is 2009-census, pre-2012-delimitation (210 constituencies), confirmed obsolete for the current 290-constituency configuration."
+    },
+    {
+      "indicator_id": "IND-REGISTERED-VOTERS",
+      "levels": ["ward"],
+      "reviewed_at": "2026-09-17",
+      "outcome": "reaffirmed_permanent_geometry_constraint",
+      "reference": "data/p24/ward-voters-boundary-hold-contract.json; documented since P23A/P23X",
+      "note": "This is not a source-availability gap: the ten Mandera East/Lafey CAW source rows are real, official, and already correctly included in their constituency-level totals. The externally sourced ward boundary layer for this pair of constituencies conflicts with the operative IEBC configuration, so a safe deterministic one-to-one crosswalk to the ten canonical ward polygons cannot be established without risking false attribution. This is a genuine geometry/crosswalk constraint, categorically different from the other four families in this log, and has been transparently preserved (not force-matched) since it was first documented."
+    },
+    {
+      "indicator_id": "IND-COUNTY-PENDING-BILLS",
+      "levels": ["county"],
+      "reviewed_at": "2026-09-17",
+      "outcome": "reaffirmed_official_non_submission",
+      "reference": "data/completeness/evidence-states.json; National Treasury Budget Review and Outlook Paper 2025, Table 10",
+      "note": "Narok is explicitly shown without a pending-bills amount in the official Treasury source table because the entity did not submit pending-bills data. Already cited to the exact source document, table, and page; the Atlas correctly preserves this as official non-submission rather than zero or a reverse-engineered estimate."
+    }
+  ]
+}
