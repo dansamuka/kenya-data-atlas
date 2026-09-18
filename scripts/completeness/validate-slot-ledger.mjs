@@ -51,8 +51,16 @@ for(const row of ledger.rows){
   }
 }
 
+// Entries tagged surface:'local_54' (e.g. P31 constituency-completion closures for indicators that
+// are not part of this legacy 20,115-slot public-UI taxonomy at that level -- see
+// scripts/p29/build-local-54-slot-ledger.mjs, which reads the same evidence-states.json file for the
+// separate, ungated local-54 cross-product ledger) never render a public slot here and are validated
+// instead by `npm run p29:validate`. They are excluded from every P18 assertion below.
 const configured=[];
-for(const state of evidenceStates.states||[])for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configured.push({...state,geo_code:geoCode});
+for(const state of evidenceStates.states||[]){
+  if(state.surface==='local_54')continue;
+  for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configured.push({...state,geo_code:geoCode});
+}
 const authorizedExplicit=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
 for(const state of configured){
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
