@@ -157,9 +157,11 @@ function extractIndicatorCodes(...texts) {
   return [...codes].sort();
 }
 
-function phaseMentioned(item, phaseId) {
+function phaseScopedPr(item, phaseId) {
   if (!phaseId || !item) return false;
-  return new RegExp(`\\b${phaseId}\\b`, 'i').test(`${item.title || ''}\n${item.body || ''}`);
+  const titlePattern = new RegExp(`^\\s*${phaseId}\\b`, 'i');
+  const branchPattern = new RegExp(`^${phaseId.toLowerCase()}(?:[-/_]|$)`, 'i');
+  return titlePattern.test(item.title || '') || branchPattern.test(item.head?.ref || '');
 }
 
 async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndicatorCount) {
@@ -251,7 +253,7 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndica
   });
 
   const mergedCurrentPhasePrs = currentPhaseId
-    ? closedPrs.filter(pr => pr.merged_at && phaseMentioned(pr, currentPhaseId))
+    ? closedPrs.filter(pr => pr.merged_at && phaseScopedPr(pr, currentPhaseId))
     : [];
   const mergedIndicatorCodes = extractIndicatorCodes(
     mergedCurrentPhasePrs.flatMap(pr => [pr.title, pr.body])
