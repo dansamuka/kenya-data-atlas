@@ -54,7 +54,19 @@ for(const row of ledger.rows){
 const configured=[];
 for(const state of evidenceStates.states||[])for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configured.push({...state,geo_code:geoCode});
 const authorizedExplicit=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
+// data/completeness/evidence-states.json is shared: this legacy P18 ledger only ever renders the
+// public UI taxonomy's 20,115 slots, while P29's local-54 ledger (data/completeness/local-54-*)
+// separately consults the same file for its own, larger 96,498-cell cross-product and additionally
+// recognizes status 'governed_unavailable' -- a status this legacy ledger never renders. Such a
+// state is legitimately out of this ledger's scope rather than unauthorized, but only if it truly
+// maps to zero legacy slots; if it ever did map to one, that would be real vocabulary leakage.
+const p29OnlyStatuses=new Set(['governed_unavailable']);
 for(const state of configured){
+  if(p29OnlyStatuses.has(state.status)){
+    const p29Matches=ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code);
+    assert(p29Matches.length===0,`${state.geo_code}/${state.indicator_code}: governed_unavailable evidence state (P29 local-54 vocabulary) unexpectedly maps to a legacy public-taxonomy slot; use an authorized legacy status instead`);
+    continue;
+  }
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
   const matches=ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code);
   assert(matches.length>=1,`${state.geo_code}/${state.indicator_code}: explicit evidence state must map to at least one public slot, got ${matches.length}`);
