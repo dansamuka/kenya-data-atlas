@@ -1,0 +1,40 @@
+{
+  "schema_version": "kda.p31.epra-fuel-constituency-pricing-review.v1",
+  "indicator_code": "IND-FUEL-PETROL",
+  "as_of": "2026-09-18",
+  "purpose": "Verifies (rather than assumes) whether EPRA's Super Petrol maximum-retail-price regulation is published at any geography finer than a small set of designated pricing towns, before closing IND-FUEL-PETROL at constituency level. Confirms and re-corroborates the county-level pricing-town proxy methodology this project already established in data/sprint1/ (Sprint 1, 26 Aug 2026) and scripts/p28/validate-epra-fuel-provenance.mjs (P28), and checks whether it still holds one pricing cycle later.",
+  "existing_project_methodology_reviewed": {
+    "files": [
+      "data/sprint1/README.md",
+      "data/sprint1/VALIDATION.md",
+      "data/sprint1/sources.json",
+      "data/sprint1/fuel-super-petrol-2026-08.csv",
+      "data/sprint1/fuel-super-petrol-2026-08-audit.csv",
+      "scripts/p28/validate-epra-fuel-provenance.mjs"
+    ],
+    "summary": "The Atlas already established, and P28's validator already enforces as a regression check, that EPRA publishes maximum retail Super Petrol prices by pricing town/location only (a legal notice/gazette-driven schedule under the Petroleum Act 2019 s.101(y) and Legal Notice No. 192 of 2022), not as a per-county average and not below county level. The existing county-level series (45 of 47 county display slots; Nairobi and Mombasa retain base/direct provenance since they are themselves pricing towns) maps one official EPRA pricing town to each county as an explicitly labelled Badge C proxy -- 'not a county average' -- with Nyandarua flagged as an out-of-county proxy (Nyahururu). The validator asserts geographic_method must be 'proxy' and badge 'C' for every one of these series; none is presented as direct or as a constituency value."
+  },
+  "fresh_verification_2026_09": {
+    "purpose": "Check that EPRA's pricing-town structure has not changed in the pricing cycle current at the time of this P31 review (it was theoretically possible EPRA moved to finer-grained regulation), using the live September-October 2026 circular rather than assuming the August cycle still applies.",
+    "checks": [
+      {
+        "source": "EPRA official notice, maximum retail petroleum prices for 15 September 2026 - 14 October 2026",
+        "url": "https://www.epra.go.ke/maximum-retail-petroleum-prices-kenya-period-15th-september-2026-14th-october-2026",
+        "legal_basis": "Section 101(y) of the Petroleum Act 2019 and Legal Notice No. 192 of 2022 (same legal basis as the Aug-Sep 2026 cycle already in the Atlas)",
+        "result": "Confirmed still town-based. The notice again publishes prices per named town/location (e.g. Nairobi Sh214.03/l, Mombasa Sh210.87/l, Nakuru Sh212.92/l, Eldoret and Kisumu Sh213.69/l, Meru Sh218.67/l, Kitale Sh213.94/l, Kisii Sh214.77/l for Super Petrol), the same structure as the prior cycle. No county-average or sub-town/constituency price is published; the notice makes no reference to constituency, sub-county or ward geography at all."
+      },
+      {
+        "source": "Contemporaneous press corroboration of the Sept-Oct 2026 cycle",
+        "urls": [
+          "https://www.the-star.co.ke/news/2026-09-14-fuel-prices-unchanged-in-new-epra-notice",
+          "https://www.pulse.co.ke/story/epra-announces-new-september-october-fuel-prices-details-2026091413130007136",
+          "https://k24.digital/news/fuel-prices-remain-unchanged-in-epras-september-october-review"
+        ],
+        "result": "All three independently report the same town-level structure and the same unchanged Super Petrol prices for the 15 Sep-14 Oct 2026 cycle, corroborating the EPRA notice itself."
+      }
+    ],
+    "conclusion": "EPRA's pricing-town regulatory structure is unchanged from the methodology already documented and validated in data/sprint1 and P28: prices are set for a limited, named set of pricing towns (roughly one to a few per county, well under 47 in total once duplicates and multi-town counties are accounted for), never for individual petrol stations, wards or constituencies, and never as a constituency-level or ward-level figure. EPRA has never published constituency-level or per-station maximum retail prices under this or any prior cycle found. Kenya's 290 constituencies do not correspond to EPRA's pricing-town geography at all -- a single pricing town's schedule typically spans a whole county (46 of 47 county slots already use an in-county town under the existing Sprint 1 mapping) and pricing towns are not aligned to, or evenly distributed across, constituency boundaries."
+  },
+  "decision": "Do not build a constituency-level series for IND-FUEL-PETROL. Close it at constituency level as governed_unavailable via data/p31/fuel-petrol-constituency-closure-contract.json. The existing county-level pricing-town proxy series (Badge C, geographic_method 'proxy') is unaffected and unchanged; per data/policy/local-54-indicator-contract.json's dynamic_location_price treatment class, spatial_derivation is not even an allowed method for this indicator (only direct_official, official_administrative_or_geocoded_records, secondary_verified, secondary_corroborated, probable_conflicting_value, modelled_estimate or governed_unavailable are permitted), so there is no permitted alternative construction method to attempt.",
+  "refresh_trigger": "EPRA publishes maximum retail prices at constituency level, ward level or per individual petrol station under a new regulatory instrument superseding Legal Notice No. 192 of 2022 / Section 101(y) of the Petroleum Act 2019."
+}

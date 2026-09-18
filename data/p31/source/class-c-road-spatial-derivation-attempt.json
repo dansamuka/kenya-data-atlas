@@ -1,0 +1,111 @@
+{
+  "schema_version": "kda.p31.class-c-road-spatial-derivation-attempt.v1",
+  "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+  "as_of": "2026-09-18",
+  "purpose": "Records a genuine attempt to resolve IND-CLASS-C-RURAL-ROAD-LENGTH (treatment_class network_spatial) at constituency level via spatial_derivation, the reconciliation test the attempt failed, and every source checked, so the resulting governed_unavailable closure in data/completeness/evidence-states.json is auditable and reproducible.",
+  "method_attempted": "spatial_derivation: geometry intersection of a classified national road-network GIS layer against this project's canonical constituency polygons (data/geography/geometry/constituencies.geojson, boundary_version 2012-01, 290 features), extracting only Class C segments and summing clipped length per constituency.",
+  "sources_checked": [
+    {
+      "source": "Kenya Roads Board (KRB) official Map Portal — \"1. Road Network Classification\" interactive layer (roads gazetted in Kenya Gazette Supplement No. 4 of 2016, plus a 2021 revised classification overlay)",
+      "url": "https://maps.krb.go.ke/kenya-roads-board12769/maps/109276/1-road-network-classification-",
+      "access_method": "Direct browser-fetch inspection, 2026-09-18",
+      "result": "Reachable and inspected. Runs on the MangoMap commercial web-mapping platform (view-only interactive map: streetview, distance/area measurement tools, bridge locations). No shapefile/GeoJSON/KML download link, REST/OGC service endpoint, or open-data API is exposed anywhere on the portal. The portal homepage additionally states: \"Reproducing portions of, or in its entirety, the contents of data and documents, without getting prior written consent from KRB is prohibited.\" Not usable as a bulk GIS input under this Atlas's sourcing rules."
+    },
+    {
+      "source": "Kenya Roads Board downloads page",
+      "url": "https://krb.go.ke/downloads/",
+      "access_method": "Direct browser-fetch inspection, 2026-09-18",
+      "result": "Lists Cost Estimation Manuals, the KRB Act, the FY24/25 Annual Public Roads Programme report and county RMLF templates. The one road-register item present links back to the same view-only maps.krb.go.ke portal above, not to a downloadable file. No GIS dataset found."
+    },
+    {
+      "source": "Kenya Open Data Portal (ArcGIS Hub)",
+      "url": "https://www.opendata.go.ke/datasets",
+      "access_method": "Web search and direct fetch attempt, 2026-09-18",
+      "result": "No classified Kenya road-network dataset located; the specific query URL returned HTTP 404."
+    },
+    {
+      "source": "World Bank / ESMAP \"Kenya - Roads\" dataset (energydata.info), described in its own CKAN metadata as \"provided by Kenya Roads Board (KRB)\"",
+      "url": "https://energydata.info/dataset/kenya-roads-1",
+      "access_method": "HDX/CKAN-style package_show API call, then direct download of both distributed resources, 2026-09-18",
+      "result": "License CC BY 4.0. release_date 2017; project context: collected to inform the World Bank-financed Kenya Off-grid Solar Access Project (P160009) and the Kenya National Electrification Strategy (launched Dec 2018). Two resources: (1) GeoJSON, declared size 366,691,802 bytes — downloaded to the exact declared byte count but the file is not well-formed JSON (ijson streaming parse fails with a premature-EOF error mid-geometry); the corruption is in the publisher's own hosted file, not a transfer error. (2) SHP ZIP, declared size 321,911,783 bytes — downloaded successfully and opened without error via geopandas/pyogrio: 61,201 road-segment features (LineString/MultiLineString Z), fields OBJECTID, RID_8 (Kenya's official road-number code, e.g. \"A1\", \"B3\", \"C13\", \"D435\" — not an OpenStreetMap highway tag), Length_km; native CRS EPSG:32737 (Arc 1960 / UTM zone 37S)."
+    },
+    {
+      "source": "World Bank AICD (2008) \"Kenya Roads\" shapefile",
+      "url": "https://datacatalog.worldbank.org/infrastructure-data/search/dataset/0041430/kenya-roads",
+      "access_method": "Web search and metadata inspection, 2026-09-18",
+      "result": "License CC BY 4.0, downloadable (49.9 MB SHP ZIP), fields include road class/width/lanes/surface/condition. Vintage 2008 (shapefile last touched 2017), roughly 9 years older than the energydata.info KRB-attributed dataset above. Not processed further: it would fail the reconciliation test below even more severely than the newer dataset, since Kenya's classified road network has only grown and been re-surveyed since 2008 (see KNBS Table 11.9's own note below), so an older input cannot reconcile better than a newer one that already fails materially."
+    },
+    {
+      "source": "Humanitarian Data Exchange — \"Kenya - Roads Network\"",
+      "url": "https://data.humdata.org/dataset/kenya-roads",
+      "access_method": "HDX CKAN API (package_show), 2026-09-18",
+      "result": "dataset_source \"Government of Kenya, WFP\"; dataset_date/notes state explicitly \"Kenyan roads as last updated 2004 by WFP\". No class attribute documented. Rejected: 22 years out of date, predates the current classification and this project's other governed closures already treat comparably-aged data as disqualifying on vintage grounds alone."
+    },
+    {
+      "source": "healthsites.io / Humanitarian OpenStreetMap Team Kenya road exports (not directly queried for roads, but the disqualification precedent is load-bearing here)",
+      "url": "https://data.humdata.org/dataset/hotosm_ken_roads",
+      "access_method": "Precedent from this Atlas's own governance, not re-queried",
+      "result": "Not pursued. data/p24/ward-health-facility-density-closure-contract.json and docs/governance/data-quality-framework.md already establish, for the same Atlas, that volunteer OpenStreetMap-derived layers do not qualify as the documented official input a Class C (spatially derived, badge C) observation requires. OSM highway=primary/secondary/tertiary tags also do not correspond to Kenya's official A-E road classification scheme used by KNBS Table 11.9 and KeRRA, so an OSM export could not even be filtered to \"Class C\" in the first place."
+    }
+  ],
+  "reconciliation_test": {
+    "rule_invoked": "data/policy/local-54-indicator-contract.json treatment_classes.network_spatial.conditions: \"network classification must match indicator definition\", \"geometry intersection must be reproducible\", \"reconcile additive totals where meaningful\".",
+    "method": "From the energydata.info/KRB SHP ZIP, extracted every feature whose RID_8 attribute starts with 'C' followed by a digit (Kenya's official Class C road-numbering convention), yielding 398 of 61,201 national road-segment features (attribute-declared Length_km sum: 19,563.5 km). Reprojected this project's canonical county polygons (data/geography/geometry/counties.geojson, WGS84) into the source data's native CRS (EPSG:32737) using pyproj, then computed the exact geometric intersection (gpd.overlay 'intersection') of every Class C segment against every county polygon using shapely/geopandas, summing clipped segment length per county in kilometres. This mirrors, at county level, the exact constituency-level spatial_derivation that would have been applied if the reconciliation had passed.",
+    "ground_truth": "The already-published KNBS Economic Survey 2026 Table 11.9 county-level Class C totals for the same indicator, currently live in data/indicators/registry/observations.json (displayed county sum 28,150.5 km; see data/p21/source/class-c-rural-road-length-economic-survey-2026.json).",
+    "result_national": "Derived national Class C total (sum of clipped county intersections) = 19,503.7 km, i.e. 69.3% of the published 28,150.5 km national total.",
+    "result_finding": "KNBS Table 11.9 itself states that the 2025 county totals' increase over prior years 'largely reflects the 2025 Road Inventory and Condition Surveys identifying and mapping previously unmapped roads' -- i.e. Kenya's recognised Class C network has grown and been substantially re-surveyed since this GIS layer's ~2017 vintage, and that growth/remapping is not geographically uniform.",
+    "result_by_county_summary": "Per-county derived-vs-published ratios range from 29.9% (Marsabit, KEN-C010) to 170.4% (Mombasa, KEN-C001) to 6,020% (Nairobi, KEN-C047: derived 30.1 km vs published 0.5 km). See class_c_by_county_reconciliation below for the full 47-county table.",
+    "conclusion": "The reconciliation condition ('reconcile additive totals where meaningful') fails decisively and non-uniformly, not merely by an acceptable rounding/vintage margin. This means the 'C'-prefixed RID_8 codes in the only publicly downloadable classified road GIS layer found do not correspond reliably to KeRRA's current official Class C classification underlying KNBS Table 11.9. Building a constituency breakdown on this input would misrepresent individual constituencies by up to an order of magnitude (worst case, two orders of magnitude for Nairobi), which is precisely the kind of fabricated-precision outcome the Atlas's anti-fabrication rule exists to prevent. No defensible spatial_derivation is currently possible for this indicator at constituency level."
+  },
+  "class_c_by_county_reconciliation": [
+    {"geo_code":"KEN-C001","name":"Mombasa","derived_km":13.8,"published_km":8.1,"ratio_pct":170.4},
+    {"geo_code":"KEN-C002","name":"Kwale","derived_km":637.4,"published_km":809.8,"ratio_pct":78.7},
+    {"geo_code":"KEN-C003","name":"Kilifi","derived_km":542.5,"published_km":856.8,"ratio_pct":63.3},
+    {"geo_code":"KEN-C004","name":"Tana River","derived_km":342.2,"published_km":471.0,"ratio_pct":72.7},
+    {"geo_code":"KEN-C005","name":"Lamu","derived_km":118.3,"published_km":201.4,"ratio_pct":58.7},
+    {"geo_code":"KEN-C006","name":"Taita/Taveta","derived_km":246.6,"published_km":663.5,"ratio_pct":37.2},
+    {"geo_code":"KEN-C007","name":"Garissa","derived_km":560.9,"published_km":1119.0,"ratio_pct":50.1},
+    {"geo_code":"KEN-C008","name":"Wajir","derived_km":665.4,"published_km":1178.6,"ratio_pct":56.5},
+    {"geo_code":"KEN-C009","name":"Mandera","derived_km":556.3,"published_km":721.4,"ratio_pct":77.1},
+    {"geo_code":"KEN-C010","name":"Marsabit","derived_km":323.6,"published_km":1083.9,"ratio_pct":29.9},
+    {"geo_code":"KEN-C011","name":"Isiolo","derived_km":482.1,"published_km":692.2,"ratio_pct":69.6},
+    {"geo_code":"KEN-C012","name":"Meru","derived_km":556.2,"published_km":658.7,"ratio_pct":84.4},
+    {"geo_code":"KEN-C013","name":"Tharaka-Nithi","derived_km":331.4,"published_km":340.4,"ratio_pct":97.4},
+    {"geo_code":"KEN-C014","name":"Embu","derived_km":345.8,"published_km":444.2,"ratio_pct":77.8},
+    {"geo_code":"KEN-C015","name":"Kitui","derived_km":893.9,"published_km":1258.7,"ratio_pct":71.0},
+    {"geo_code":"KEN-C016","name":"Machakos","derived_km":655.6,"published_km":814.8,"ratio_pct":80.5},
+    {"geo_code":"KEN-C017","name":"Makueni","derived_km":554.7,"published_km":832.5,"ratio_pct":66.6},
+    {"geo_code":"KEN-C018","name":"Nyandarua","derived_km":365.3,"published_km":343.3,"ratio_pct":106.4},
+    {"geo_code":"KEN-C019","name":"Nyeri","derived_km":489.7,"published_km":524.1,"ratio_pct":93.4},
+    {"geo_code":"KEN-C020","name":"Kirinyaga","derived_km":219.5,"published_km":339.8,"ratio_pct":64.6},
+    {"geo_code":"KEN-C021","name":"Murang'a","derived_km":525.4,"published_km":552.1,"ratio_pct":95.2},
+    {"geo_code":"KEN-C022","name":"Kiambu","derived_km":416.7,"published_km":709.1,"ratio_pct":58.8},
+    {"geo_code":"KEN-C023","name":"Turkana","derived_km":782.5,"published_km":1019.4,"ratio_pct":76.8},
+    {"geo_code":"KEN-C024","name":"West Pokot","derived_km":285.7,"published_km":518.7,"ratio_pct":55.1},
+    {"geo_code":"KEN-C025","name":"Samburu","derived_km":613.9,"published_km":715.5,"ratio_pct":85.8},
+    {"geo_code":"KEN-C026","name":"Trans Nzoia","derived_km":218.2,"published_km":338.8,"ratio_pct":64.4},
+    {"geo_code":"KEN-C027","name":"Uasin Gishu","derived_km":466.6,"published_km":562.6,"ratio_pct":82.9},
+    {"geo_code":"KEN-C028","name":"Elgeyo/Marakwet","derived_km":402.1,"published_km":339.5,"ratio_pct":118.4},
+    {"geo_code":"KEN-C029","name":"Nandi","derived_km":368.7,"published_km":436.6,"ratio_pct":84.4},
+    {"geo_code":"KEN-C030","name":"Baringo","derived_km":606.7,"published_km":936.0,"ratio_pct":64.8},
+    {"geo_code":"KEN-C031","name":"Laikipia","derived_km":411.4,"published_km":393.0,"ratio_pct":104.7},
+    {"geo_code":"KEN-C032","name":"Nakuru","derived_km":565.9,"published_km":953.0,"ratio_pct":59.4},
+    {"geo_code":"KEN-C033","name":"Narok","derived_km":882.5,"published_km":1192.0,"ratio_pct":74.0},
+    {"geo_code":"KEN-C034","name":"Kajiado","derived_km":394.3,"published_km":762.8,"ratio_pct":51.7},
+    {"geo_code":"KEN-C035","name":"Kericho","derived_km":328.5,"published_km":464.6,"ratio_pct":70.7},
+    {"geo_code":"KEN-C036","name":"Bomet","derived_km":391.6,"published_km":352.6,"ratio_pct":111.1},
+    {"geo_code":"KEN-C037","name":"Kakamega","derived_km":421.6,"published_km":612.5,"ratio_pct":68.8},
+    {"geo_code":"KEN-C038","name":"Vihiga","derived_km":136.0,"published_km":186.6,"ratio_pct":72.9},
+    {"geo_code":"KEN-C039","name":"Bungoma","derived_km":433.1,"published_km":645.5,"ratio_pct":67.1},
+    {"geo_code":"KEN-C040","name":"Busia","derived_km":263.4,"published_km":376.3,"ratio_pct":70.0},
+    {"geo_code":"KEN-C041","name":"Siaya","derived_km":311.3,"published_km":399.1,"ratio_pct":78.0},
+    {"geo_code":"KEN-C042","name":"Kisumu","derived_km":258.5,"published_km":318.6,"ratio_pct":81.1},
+    {"geo_code":"KEN-C043","name":"Homa Bay","derived_km":353.5,"published_km":640.1,"ratio_pct":55.2},
+    {"geo_code":"KEN-C044","name":"Migori","derived_km":260.7,"published_km":577.0,"ratio_pct":45.2},
+    {"geo_code":"KEN-C045","name":"Kisii","derived_km":323.1,"published_km":525.9,"ratio_pct":61.4},
+    {"geo_code":"KEN-C046","name":"Nyamira","derived_km":150.5,"published_km":259.9,"ratio_pct":57.9},
+    {"geo_code":"KEN-C047","name":"Nairobi","derived_km":30.1,"published_km":0.5,"ratio_pct":6020.0}
+  ],
+  "decision": "Do not build a constituency-level spatial_derivation series. Close IND-CLASS-C-RURAL-ROAD-LENGTH at constituency level as governed_unavailable via data/p31/class-c-road-constituency-closure-contract.json, citing this evidence trail. The county-level direct KNBS observations already in the registry are unaffected and unchanged.",
+  "refresh_trigger": "KRB, KeNHA, KeRRA or the Kenya Open Data Portal publishes a downloadable, currently-classified road-network GIS layer (shapefile/GeoJSON) whose Class C segments reconcile with KNBS Table 11.9's published county totals within a defensible margin (per-county ratio consistently close to 100%, not ranging 30%-6,000%) -- or KNBS/KeRRA itself publishes a constituency-level Class C road-length table directly."
+}
