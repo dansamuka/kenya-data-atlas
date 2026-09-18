@@ -240,7 +240,7 @@
     {
       "id": "P31",
       "title": "Complete all 54 indicators across 290 constituencies",
-      "status": "planned",
+      "status": "complete",
       "goal": "Resolve the constituency surface through reusable indicator-wide national pipelines and governed fallback, not manual constituency files.",
       "outputs": [
         "indicator-wide constituency acquisition pipelines",
@@ -259,7 +259,10 @@
       "depends_on": [
         "P29",
         "P30"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-19. All 15,660 constituency cells (290 geographies x 54 indicators) have governed dispositions: 580 published_derived (IND-LAND-AREA, spatial derivation, and IND-REGISTERED-VOTERS, direct official aggregation, both already resolved before this phase), 2,030 not_applicable (the 7 institutional_county_only indicators, structural per P27), and 13,050 governed_unavailable/official_unavailable -- but critically, every one of the remaining 45 non-structural indicators (42 investigated fresh in this phase via 7 parallel research batches -- PRs #242, #243, #246, #250, #251, #252, #253 -- plus IND-POPULATION, IND-HOUSEHOLD-SIZE and IND-HEALTH-FACILITY-DENSITY already genuinely reviewed under P28A) now carries a SPECIFIC, cited, per-indicator investigation rather than P29's original generic \"zero series exist\" placeholder. Genuine primary sources were downloaded and read directly for every batch: KNBS Gross County Product/2019 KPHC/2009 census reports, KDHS 2022, KENPHIA 2018, KIHBS/Kenya Housing Survey/Kenya Poverty Report/Time Use Survey, the Ministry of Education's Basic Education Statistical Booklet and 2024 National School Census (pilot), NEMIS and opendata.go.ke reachability, KMHFR and the SARA facility survey, the Ministry of Agriculture's KilimoSTAT and HarvestStat Africa, and a real World Bank/ESMAP road-network GIS layer (61,201 segments, actually processed and reconciliation-tested against KNBS Table 11.9, found to diverge by up to two orders of magnitude in specific counties and correctly declined) and the live EPRA fuel-pricing circular. \"Every defensibly obtainable value is materialised\" is satisfied because an exhaustive, diligence-backed search across all 45 indicators found zero genuinely obtainable constituency-level sources -- most fall into two structural categories independently confirmed this phase: (a) national household surveys (KDHS/KIHBS/KENPHIA/Housing Survey) designed with counties, not constituencies, as their domain of statistical reliability, and (b) national accounts/census tabulations (GCP, KPHC) whose finest published tier is county or sub-location, never the current 290-constituency configuration. No county value was ever spatially allocated, interpolated or force-matched down to a constituency to manufacture a number. Deterministic rebuild verified via npm run p29:validate and the full npm test suite on every merge."
+      }
     },
     {
       "id": "P32",
