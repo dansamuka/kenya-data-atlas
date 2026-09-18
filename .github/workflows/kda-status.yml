@@ -25,7 +25,8 @@ permissions:
   issues: write
 
 concurrency:
-  group: kda-repository-status
+  # Keep each PR/ref isolated so branch activity cannot cancel the canonical main status refresh.
+  group: kda-repository-status-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
