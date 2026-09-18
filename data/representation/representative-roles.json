@@ -1,0 +1,39 @@
+{
+  "schema_version": "kda.representation.roles.v1",
+  "purpose": "Governed vocabulary of elected/appointed representative roles data/representation/representatives.json may carry. New roles (e.g. governor, senator) are added here first -- the shared schema is designed so adding a role never requires conflating it with an existing one's geography level or identity fields.",
+  "roles": [
+    {
+      "role_id": "county_woman_representative",
+      "title": "County Woman Representative",
+      "level": "county",
+      "expected_count": 47,
+      "constitutional_basis": "Constitution of Kenya, Article 97(1)(b)",
+      "elected_or_nominated": "elected",
+      "authority": "Parliament of Kenya -- National Assembly",
+      "expected_refresh_cadence": "Re-check the live Parliament roster whenever this phase or a dependent phase rebuilds; a general election or by-election supersedes the prior term.",
+      "introduced_in_phase": "P30"
+    },
+    {
+      "role_id": "member_of_parliament",
+      "title": "Member of Parliament (constituency)",
+      "level": "constituency",
+      "expected_count": 290,
+      "constitutional_basis": "Constitution of Kenya, Article 97(1)(a)",
+      "elected_or_nominated": "elected",
+      "authority": "Parliament of Kenya -- National Assembly",
+      "expected_refresh_cadence": "Re-check the live Parliament roster whenever this phase or a dependent phase rebuilds; a general election or by-election supersedes the prior term.",
+      "introduced_in_phase": "P23"
+    },
+    {
+      "role_id": "member_of_county_assembly",
+      "title": "Member of County Assembly",
+      "level": "ward",
+      "expected_count": 1450,
+      "constitutional_basis": "Constitution of Kenya, Article 177(1)(a)",
+      "elected_or_nominated": "elected",
+      "authority": "Independent Electoral and Boundaries Commission (IEBC)",
+      "expected_refresh_cadence": "Sourced from the original 2022 general-election gazette declaration; not re-verified against a live post-election roster by this phase. Individual by-elections or vacancies since 2022-08-22 are NOT reflected unless a governed evidence-state closure documents them.",
+      "introduced_in_phase": "P24"
+    }
+  ]
+}

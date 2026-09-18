@@ -1,0 +1,402 @@
+{
+  "schema_version": "kda.p30.woman-representatives-snapshot.v1",
+  "source_authority": "Parliament of Kenya -- National Assembly",
+  "source_url": "https://www.parliament.go.ke/the-national-assembly/mps",
+  "source_document_url": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf",
+  "parliamentary_session": "13th Parliament",
+  "source_as_of_label": "12 Aug 2026",
+  "retrieved_at": "2026-09-18T00:00:00.000Z",
+  "retrieval_note": "Downloaded the official \"List of Members by Parties, 13th Parliament as at 12082026\" PDF (linked from https://www.parliament.go.ke/the-national-assembly/mps) and extracted every row whose CONSTITUENCY column carries the \"(CWR)\" (County Woman Representative) suffix -- exactly 47 rows, one per county, matching the page's own statement that \"47 women [are] elected by registered voters from the counties\". One row (Wambilianga, Catherine Nanjala) was corrected: the PDF itself mislabels her seat as \"Busia (CWR)\", contradicted by parliament.go.ke's own live roster search (shows county=BUNGOMA) and independently corroborated by Wikipedia and a contemporaneous news report (The Star, 14 Aug 2022) that both identify her as the Bungoma County Woman Representative -- see each corrected row's correction_note/correction_sources. Two county labels were normalized to the canonical geography registry's spelling (\"Nairobi City\"->\"Nairobi\", \"Elgeyo Marakwet\"->\"Elgeyo/Marakwet\") and one to its canonical apostrophe character (\"Murang’a\"->\"Murang'a\"); these are spelling normalizations only, not factual corrections.",
+  "coverage": {
+    "counties": 47
+  },
+  "rows": [
+    {
+      "geo_code": "KEN-C001",
+      "county": "Mombasa",
+      "member_name": "HON. CHIMBA, ZAMZAM MOHAMED",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C002",
+      "county": "Kwale",
+      "member_name": "HON. MASITO, FATUMA HAMISI",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C003",
+      "county": "Kilifi",
+      "member_name": "HON. MWANYANJE, GERTRUDE MBEYU",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C004",
+      "county": "Tana River",
+      "member_name": "HON. ABDULLAHI, AMINA DIKA",
+      "party": "KANU",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C005",
+      "county": "Lamu",
+      "member_name": "HON. MARUBU, MONICAH MUTHONI",
+      "party": "Independent",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C006",
+      "county": "Taita Taveta",
+      "member_name": "HON. MIZIGHI, LYDIA HAIKA MNENE",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C007",
+      "county": "Garissa",
+      "member_name": "HON. SIYAD, AMINA UDGOON",
+      "party": "JP",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C008",
+      "county": "Wajir",
+      "member_name": "HON. JEHOW, FATUMA ABDI",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C009",
+      "county": "Mandera",
+      "member_name": "HON. SHEIKH, UMUL KER KASSIM",
+      "party": "UDM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C010",
+      "county": "Marsabit",
+      "member_name": "HON. WAQO, NAOMI JILLO",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C011",
+      "county": "Isiolo",
+      "member_name": "HON. BONAYA, MUMINA GOLLO",
+      "party": "JP",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C012",
+      "county": "Meru",
+      "member_name": "HON. KAILEMA, ELIZABETH KARAMBU",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C013",
+      "county": "Tharaka-Nithi",
+      "member_name": "HON. NDUYO, SUSAN NGUGI",
+      "party": "TSP",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C014",
+      "county": "Embu",
+      "member_name": "HON. DOUBLE N, PAMELA NJOKI NJERU",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C015",
+      "county": "Kitui",
+      "member_name": "HON. KASALU, IRENE MUTHONI",
+      "party": "WDM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C016",
+      "county": "Machakos",
+      "member_name": "HON. KAMENE, JOYCE",
+      "party": "WDM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C017",
+      "county": "Makueni",
+      "member_name": "HON. MUMO, ROSE MUSEO",
+      "party": "WDM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C018",
+      "county": "Nyandarua",
+      "member_name": "HON. GITAU, FAITH WAIRIMU",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C019",
+      "county": "Nyeri",
+      "member_name": "HON. WACHIRA, RAHAB MUKAMI",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C020",
+      "county": "Kirinyaga",
+      "member_name": "HON. MAINA, JANE NJERI",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C021",
+      "county": "Murang'a",
+      "member_name": "HON. MAINA, BETTY NJERI",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf",
+      "pdf_county_label": "Murang’a (CWR) -- normalized to canonical registry spelling"
+    },
+    {
+      "geo_code": "KEN-C022",
+      "county": "Kiambu",
+      "member_name": "HON. MURATHA, ANNE WANJIKU MUGO",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C023",
+      "county": "Turkana",
+      "member_name": "HON. NGITIT, CECILIA ASINYEN",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C024",
+      "county": "West Pokot",
+      "member_name": "HON. KASIWAI, RAEL CHEPKEMOI",
+      "party": "KUP",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C025",
+      "county": "Samburu",
+      "member_name": "HON. LENGURIS, PAULINE",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C026",
+      "county": "Trans Nzoia",
+      "member_name": "HON. SIYOI, LILLIAN CHEBET",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C027",
+      "county": "Uasin Gishu",
+      "member_name": "HON. SHOLLEI, GLADYS JEPKOSGEI BOSS",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C028",
+      "county": "Elgeyo/Marakwet",
+      "member_name": "HON. CAROLINE, JEPTOO NG’ELECHEI",
+      "party": "Independent",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf",
+      "pdf_county_label": "Elgeyo Marakwet (CWR) -- normalized to canonical registry spelling"
+    },
+    {
+      "geo_code": "KEN-C029",
+      "county": "Nandi",
+      "member_name": "HON. MUGE, CYNTHIA JEPKOSGEI",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C030",
+      "county": "Baringo",
+      "member_name": "HON. SERGON, FLOWRENCE JEMATIAH",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C031",
+      "county": "Laikipia",
+      "member_name": "HON. KAGIRI, JANE WANGECHI",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C032",
+      "county": "Nakuru",
+      "member_name": "HON. CHELULE, LIZA CHEPKORIR",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C033",
+      "county": "Narok",
+      "member_name": "HON. TONKEI, REBECCA NOONAISHI",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C034",
+      "county": "Kajiado",
+      "member_name": "HON. SANKAIRE, LEAH SOPIATO",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C035",
+      "county": "Kericho",
+      "member_name": "HON. KEMEI, BEATRICE CHEPNG’ENO",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C036",
+      "county": "Bomet",
+      "member_name": "HON. CHEPKORIR, LINET",
+      "party": "UDA",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C037",
+      "county": "Kakamega",
+      "member_name": "HON. MUHANDA, ELSIE BUSIHILE",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C038",
+      "county": "Vihiga",
+      "member_name": "HON. ADAGALA, BEATRICE KAHAI",
+      "party": "ANC",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C039",
+      "county": "Bungoma",
+      "member_name": "HON. WAMBILIANGA, CATHERINE NANJALA",
+      "party": "FORD-K",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf",
+      "pdf_county_label": "Busia (CWR) -- corrected, see correction_note",
+      "pdf_error_corrected": true,
+      "correction_note": "The source PDF lists this row's constituency as \"Busia (CWR)\", but this is a data-entry error in that document: parliament.go.ke's own live MP search shows Wambilianga's county as BUNGOMA (not Busia), and this is independently corroborated by Wikipedia (\"Catherine Wambilianga\" -- elected Bungoma County Woman Representative 2017, re-elected 2022) and The Star (14 Aug 2022, \"Bungoma Woman rep Catherine Wambilianga retains seat\"). The Busia County Woman Representative is Catherine Nakhabi Omanyo (ODM), also independently corroborated by Wikipedia (\"Catherine Omanyo\").",
+      "correction_sources": [
+        "https://www.parliament.go.ke/the-national-assembly/mps (live roster search, retrieved 2026-09-18: county=BUNGOMA)",
+        "https://en.wikipedia.org/wiki/Catherine_Wambilianga (retrieved 2026-09-18)",
+        "https://www.the-star.co.ke/counties/western/2022-08-14-bungoma-woman-rep-catherine-wambilianga-retains-seat/"
+      ]
+    },
+    {
+      "geo_code": "KEN-C040",
+      "county": "Busia",
+      "member_name": "HON. OMANYO, CATHERINE NAKHABI",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C041",
+      "county": "Siaya",
+      "member_name": "HON. ODUOR, CHRISTINE OMBAKA",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C042",
+      "county": "Kisumu",
+      "member_name": "HON. BUSIA, RUTH ADHIAMBO ODINGA",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C043",
+      "county": "Homa Bay",
+      "member_name": "HON. OSOGO, BENSUDA JOYCE ATIENO",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C044",
+      "county": "Migori",
+      "member_name": "HON. MOHAMMED, FATUMA ZAINABU",
+      "party": "Independent",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C045",
+      "county": "Kisii",
+      "member_name": "HON. ABURI, DONYA DORICE",
+      "party": "WDM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C046",
+      "county": "Nyamira",
+      "member_name": "HON. MONGINA, JERUSHA MOMANYI",
+      "party": "JP",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf"
+    },
+    {
+      "geo_code": "KEN-C047",
+      "county": "Nairobi",
+      "member_name": "HON. PASSARIS, ESTHER MUTHOMI",
+      "party": "ODM",
+      "status": "Elected",
+      "source_page": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf",
+      "pdf_county_label": "Nairobi City (CWR) -- normalized to canonical registry spelling"
+    }
+  ]
+}

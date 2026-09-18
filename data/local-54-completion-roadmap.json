@@ -215,7 +215,7 @@
     {
       "id": "P30",
       "title": "County representation layer",
-      "status": "planned",
+      "status": "complete",
       "goal": "Add a governed county-level elected-representative record and an extensible representation schema consistent with MP and MCA records.",
       "outputs": [
         "data/representation/representatives.json",
@@ -232,7 +232,10 @@
       ],
       "depends_on": [
         "P28"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-18. All 5 acceptance items are machine-verified by scripts/p30/validate-representation-registry.mjs (wired into npm test as p30:validate) and re-derived deterministically from source on every run. 47/47 counties resolve to an explicit current County Woman Representative disposition (data/representation/representatives.json, role_id=county_woman_representative), built from the official 13th Parliament members-by-party roster (as at 12 Aug 2026). One genuine data-entry error in that source PDF was caught and corrected: it mislabelled Catherine Wambilianga's seat as \"Busia (CWR)\"; parliament.go.ke's own live roster search, Wikipedia and a contemporaneous 14 Aug 2022 news report all independently confirm she is the Bungoma County Woman Representative, and Busia's is Catherine Omanyo -- the correction and all three corroborating sources are retained inline on the row (data/p30/source/woman-representatives-13th-parliament.json). The shared representation schema (data/representation/representative-roles.json) is proven, not merely asserted, to hold MP (290 rows) and MCA (1,433 rows) alongside Woman Rep without conflating roles: all three are concretely populated from their respective canonical sources (MP/MCA reused read-only from the already-governed IND-MP-IDENTITY/IND-MCA-IDENTITY series -- P30 adds no new claim about those roles) under one schema, with role_id/level/geo_code partitioned so no duplicate or cross-level identity is possible. Vacancy is surfaced explicitly (Garissa Township's MP seat is genuinely vacant per the live roster; status=vacant, no party) rather than silently defaulted. Every row carries a computed freshness_status so a role not re-verified on every build is never silently presented as current: the 1,433 MCA rows (sourced to the original 2022-08-22 IEBC gazette declaration, not re-checked here) are honestly marked stale_unverified, while the 337 Woman Rep/MP rows (sourced to the live Aug 2026 roster) are current."
+      }
     },
     {
       "id": "P31",

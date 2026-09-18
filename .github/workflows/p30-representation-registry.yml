@@ -1,0 +1,80 @@
+name: P30 representation registry
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/p30/**'
+      - 'data/p30/**'
+      - 'data/representation/**'
+      - 'data/indicators/registry/**'
+      - 'data/catalogue/registry/**'
+      - 'data/geography/registry/geographies.json'
+      - '.github/workflows/p30-representation-registry.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/p30/**'
+      - 'data/p30/**'
+      - 'data/representation/**'
+      - 'data/indicators/registry/**'
+      - 'data/catalogue/registry/**'
+      - 'data/geography/registry/geographies.json'
+
+permissions:
+  contents: write
+
+jobs:
+  representation-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 1
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Rebuild canonical catalogue and indicator registries
+        run: |
+          npm run catalogue:build
+          npm run indicators:build
+          npm run p06:direction
+      - name: Build deterministic P30 representation registry
+        run: npm run p30:build
+      - name: Validate P30 representation registry
+        run: npm run p30:validate
+      - name: Materialize generated registry outputs onto this PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git add data/catalogue/registry data/indicators/registry data/representation/representatives.json data/representation/representatives.csv
+          if git diff --cached --quiet; then
+            echo 'P30 generated outputs already match the committed baseline.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'P30: materialize deterministic representation registry'
+          git push origin HEAD:${{ github.head_ref }}
+      - name: Enforce deterministic zero drift
+        run: |
+          npm run catalogue:build
+          npm run indicators:build
+          npm run p06:direction
+          npm run p30:build
+          npm run p30:validate
+          git diff --exit-code -- data/catalogue/registry data/indicators/registry data/representation/representatives.json data/representation/representatives.csv
+      - name: Show P30 registry counts
+        run: node -e "const r=require('./data/representation/representatives.json'); console.log(JSON.stringify({total:r.rows.length, roles_used:r.roles_used},null,2))"
+      - name: Upload P30 generated registry evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p30-representation-registry
+          path: |
+            data/representation/representatives.json
+            data/representation/representatives.csv
+          if-no-files-found: error
