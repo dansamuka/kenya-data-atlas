@@ -21,9 +21,9 @@
     "ranking_allowed": false,
     "requires_sampling_uncertainty": false,
     "lifecycle_status": "active",
-    "expected_source": "",
-    "expected_source_url": "",
-    "expected_availability_note": "",
+    "expected_source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County'), the same source already cited at county level for this indicator; investigated but not found published below county in the 2023-2025 report editions, KilimoSTAT, opendata.go.ke, HarvestStat Africa or the (still pilot-stage) 2025/26 Kenya Census of Agriculture -- see data/completeness/local-54-agriculture-evidence-states.json (contract_id prefix P31-AGRICULTURE-MAIZE-CONSTITUENCY-CLOSURE-2026-09-18) for the full cited investigation.",
+    "expected_source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf",
+    "expected_availability_note": "County-level only (2023 Annex 1 of the KNBS National Agriculture Production Report). P31 (2026-09-18) checked the 2023, 2024 and 2025 report editions (county is the finest tier in each), KilimoSTAT (HTTPS unreachable -- expired TLS certificate; its own 2024 publications list, retrieved via the Internet Archive, carries no maize sub-county dataset), opendata.go.ke (its ArcGIS Hub catalogue returns 'SB_0006: Subscription is canceled, the item is not accessible'; a previously indexed 'Kisumu County Crop Statistics' sub-county dataset is now a dead link everywhere checked), and HarvestStat Africa (Nature Scientific Data 2025), which covers Kenya only at Admin-1/county -- unlike 15 other African countries it covers at Admin-2. A peer-reviewed study (Simbolon et al., Scientific Reports 2024, PMC11190209) confirms MoALD holds genuine sub-county administrative maize-yield records for Trans Nzoia and Uasin Gishu Counties (2017-2021), obtained privately for model validation and never published. Kenya's first-ever Census of Agriculture (2025/26) intends to eventually disaggregate below county but has released only a 2024/25 pilot report to date.",
     "tab": "economy",
     "applies_to_levels": [],
     "applies_to_geography_subset": ""
