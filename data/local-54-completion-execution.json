@@ -5,7 +5,7 @@
   "status": "executing",
   "authority": "Scheduling/execution overlay only. data/local-54-completion-roadmap.json controls phase meaning and acceptance.",
   "progress": {
-    "as_of": "2026-09-18",
+    "as_of": "2026-09-19",
     "P27": {
       "status": "complete",
       "note": "The exact live 54-indicator local contract, applicability rules, S0–S7 source governance and dedicated validator are merged on main via PR #146. The historical 49-slot figure remains a P18 baseline only and is not treated as the current local-indicator scope."
@@ -56,6 +56,10 @@
     "P30": {
       "status": "complete",
       "note": "scripts/p30/build-representation-registry.mjs + validate-representation-registry.mjs merged and wired into npm test. data/representation/representatives.json holds 1,770 rows across 3 roles (47 county_woman_representative, 290 member_of_parliament, 1,433 member_of_county_assembly) under one shared, non-conflating schema. One source-PDF data-entry error corrected and cited (Wambilianga: Busia -> Bungoma). See data/local-54-completion-roadmap.json P30 closure_note for the full detail."
+    },
+    "P31": {
+      "status": "complete",
+      "note": "7 parallel research batches (PRs #242, #243, #246, #250, #251, #252, #253) genuinely investigated all 42 non-structural local-54 indicators for real constituency-level sources. All confirmed genuinely unavailable with specific citations, replacing P29's generic closure. Combined with the 3 already reviewed under P28A and the 9 already structurally resolved (7 institutional_county_only + IND-LAND-AREA + IND-REGISTERED-VOTERS), all 54 indicators now have a genuinely-investigated constituency-level disposition. See data/local-54-completion-roadmap.json P31 closure_note for full detail."
     }
   },
   "work_rules": [
