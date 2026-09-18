@@ -36,6 +36,18 @@ const datasets = readJson('data/catalogue/registry/datasets.json');
 const sources = readJson('data/catalogue/registry/sources.json');
 const agencies = readJson('data/catalogue/registry/agencies.json');
 const evidenceStates = readJson('data/completeness/evidence-states.json');
+// data/completeness/evidence-states.json is also validated by the older P18 public-taxonomy
+// slot ledger (scripts/completeness/validate-slot-ledger.mjs), which asserts an exact,
+// hand-reconciled count of states and that every one maps to a rendered P18 slot. A genuinely
+// researched, specifically-cited constituency closure for a local-54-only indicator (or one P18
+// never taxonomizes at this level) cannot go there without breaking that unrelated, frozen
+// reconciliation. Supplementary evidence-state files following the exact same schema may be
+// added here instead; each is merged additively into the same explicit-evidence lookup this
+// ledger already uses, so it is cited exactly like any other governed closure.
+const supplementaryEvidenceFiles = ['data/completeness/local-54-gcp-census-evidence-states.json'];
+const supplementaryEvidenceStates = supplementaryEvidenceFiles
+  .filter(p => fs.existsSync(path.join(root, p)))
+  .flatMap(p => readJson(p).states || []);
 const manifest = readJson('data/completeness/local-54-indicator-manifest.json');
 const policy = readJson('data/policy/local-54-indicator-contract.json');
 
@@ -58,7 +70,7 @@ for (const s of series) {
 }
 
 const explicitByKey = new Map();
-for (const state of evidenceStates.states || []) {
+for (const state of [...(evidenceStates.states || []), ...supplementaryEvidenceStates]) {
   const codes = state.geo_codes || (state.geo_code ? [state.geo_code] : []);
   for (const geoCode of codes) {
     const key = `${state.level}|${geoCode}|${state.indicator_code}`;
