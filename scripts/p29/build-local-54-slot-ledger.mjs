@@ -44,7 +44,10 @@ const evidenceStates = readJson('data/completeness/evidence-states.json');
 // reconciliation. Supplementary evidence-state files following the exact same schema may be
 // added here instead; each is merged additively into the same explicit-evidence lookup this
 // ledger already uses, so it is cited exactly like any other governed closure.
-const supplementaryEvidenceFiles = ['data/completeness/local-54-gcp-census-evidence-states.json'];
+const supplementaryEvidenceFiles = [
+  'data/completeness/local-54-education-admin-evidence-states.json',
+  'data/completeness/local-54-gcp-census-evidence-states.json'
+];
 const supplementaryEvidenceStates = supplementaryEvidenceFiles
   .filter(p => fs.existsSync(path.join(root, p)))
   .flatMap(p => readJson(p).states || []);
