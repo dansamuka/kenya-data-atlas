@@ -1,0 +1,30 @@
+{
+  "schema_version": "kda.p31.class-c-road-constituency-closure.v1",
+  "contract_id": "P31-CLASS-C-ROAD-CONSTITUENCY-2026-09-18",
+  "as_of": "2026-09-18",
+  "level": "constituency",
+  "boundary_version": "2012-01",
+  "expected_constituencies": 290,
+  "attempted_method": "spatial_derivation",
+  "attempted_method_description": "Geometry intersection of a classified national road-network GIS layer against this project's canonical constituency polygons (data/geography/geometry/constituencies.geojson), extracting Class C-coded segments and summing clipped length per constituency, matching the network_spatial treatment class's allowed spatial_derivation method in data/policy/local-54-indicator-contract.json.",
+  "evidence_file": "data/p31/source/class-c-road-spatial-derivation-attempt.json",
+  "decisions": [
+    {
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "status": "governed_unavailable",
+      "period_label": "2025 provisional · Economic Survey 2026 · P31 constituency spatial-derivation review",
+      "source": "KNBS Economic Survey 2026 Table 11.9; underlying source Kenya Rural Roads Authority; spatial-derivation candidate World Bank/ESMAP \"Kenya - Roads\" (energydata.info, KRB-attributed)",
+      "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+      "reason": "The Atlas attempted to resolve this indicator at constituency level via spatial_derivation, the method network_spatial indicators are explicitly permitted to use (data/policy/local-54-indicator-contract.json). A systematic search found no bulk-downloadable classified road-network GIS layer on KRB's own channels: the KRB Map Portal (maps.krb.go.ke) hosts an interactive 'Road Network Classification' layer (gazetted Jan 2016, plus a 2021 revised overlay) but is a view-only MangoMap deployment with no shapefile/GeoJSON/API export and an explicit notice prohibiting reproduction of its data without KRB's prior written consent; krb.go.ke/downloads links back to the same view-only portal; opendata.go.ke has no matching dataset. The only publicly downloadable classified road GIS layer located anywhere was the World Bank/ESMAP 'Kenya - Roads' dataset (energydata.info, CC BY 4.0), described in its own metadata as 'provided by Kenya Roads Board (KRB)', released 2017 (collected for the Kenya Off-grid Solar Access Project / National Electrification Strategy). Its SHP ZIP resource opened successfully (61,201 road segments, RID_8 field encoding Kenya's official road-number classification, e.g. 'C13'); its GeoJSON resource is corrupted on the publisher's own server (premature EOF, not a transfer fault) and was unusable. Extracting the 398 RID_8='C…' (Class C) segments and geometrically clipping them against the Atlas's own canonical county polygons (the required reconciliation step before any constituency-level publication, per network_spatial's own condition to 'reconcile additive totals where meaningful') produced a national total of 19,503.7 km versus the already-published KNBS Table 11.9 total of 28,150.5 km (69.3%), with per-county ratios ranging non-uniformly from 29.9% (Marsabit) to 170.4% (Mombasa) to 6,020% (Nairobi). KNBS's own Table 11.9 attributes the 2025 county increases to newly mapped roads found by the 2025 Road Inventory and Condition Surveys, consistent with this ~2017-vintage GIS layer materially under- and unevenly representing the current official Class C network. Publishing a constituency breakdown derived from an input that fails this reconciliation test by up to two orders of magnitude in specific counties would misrepresent individual constituencies, which the Atlas's anti-fabrication standard exists to prevent. The older (2008) World Bank AICD road shapefile and a 2004 WFP/HDX roads layer were also identified and rejected on vintage grounds without full processing, since both predate and would reconcile no better than the 2017 layer already tested; OpenStreetmap-derived exports (healthsites.io, HOT OSM) were not used per this Atlas's existing rule (data/p24/ward-health-facility-density-closure-contract.json; docs/governance/data-quality-framework.md) that a Class C/spatially-derived observation requires a documented official input, which volunteer OSM mapping is not, and OSM's highway tags do not correspond to Kenya's official A-E road classification in any case. No county value is inherited or interpolated down to any constituency.",
+      "evidence_constraint": "no_reconciling_classified_road_geometry_publicly_downloadable",
+      "refresh_trigger": "KRB, KeNHA, KeRRA or the Kenya Open Data Portal publishes a downloadable, currently-classified road-network GIS layer whose Class C segments reconcile with KNBS Table 11.9's published county totals within a defensible margin, or KNBS/KeRRA directly publishes a constituency-level Class C road-length table."
+    }
+  ],
+  "rules": [
+    "Do not inherit or interpolate any county Class C road-length value down to any constituency.",
+    "Do not substitute OpenStreetMap-derived or other non-official geocoded road data for an official input to satisfy Class C (network_spatial) spatial derivation.",
+    "A spatial_derivation candidate must pass the network_spatial treatment class's own reconciliation condition (additive totals must reconcile with the already-published parent-level official total) before it may be published, not merely produce a plausible-looking number.",
+    "Every closure must preserve a primary official source, reason and refresh trigger.",
+    "This closure records a genuine, diligence-backed evidence gap (a real GIS source was found, downloaded, parsed and tested; the reconciliation check is reproducible from data/p31/source/class-c-road-spatial-derivation-attempt.json), not an unattempted or abandoned integration task."
+  ]
+}
