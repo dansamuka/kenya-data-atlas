@@ -52,18 +52,18 @@
       "formats": {
         "json": {
           "path": "data/indicators/registry/indicators.json",
-          "bytes": 126628,
-          "sha256": "c1e88b71ab52b88fe306be2bfc94d82a72d5d57a72bbdbef748c64ab164a8b22"
+          "bytes": 131788,
+          "sha256": "0004ecfd3bccfc8daae41e8d5eea212e151a23907f871a506b8efef78c82c3e3"
         },
         "csv": {
           "path": "data/indicators/registry/indicators.csv",
-          "bytes": 67715,
-          "sha256": "a828edbde03a7a8cf1bececb472ec534a6cd189244cd3e01c2cf51080045bd1f"
+          "bytes": 72875,
+          "sha256": "dd7318581ebdbca747de7be3f88a5bf7c6dee65845cade07b239644012648962"
         },
         "ndjson": {
           "path": "data/distribution/ndjson/indicators.ndjson",
-          "bytes": 110121,
-          "sha256": "b14f39af3c63aed2025a8cbe97b3e17cd79a6e7a9ad7652588ce062a54fa80da"
+          "bytes": 115281,
+          "sha256": "0662bcf66abf1b9f5aeaa5b844cba540d792580028e4235516e6d7fcb7177c7e"
         }
       }
     },
