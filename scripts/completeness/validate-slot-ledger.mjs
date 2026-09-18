@@ -51,29 +51,28 @@ for(const row of ledger.rows){
   }
 }
 
+// data/completeness/evidence-states.json is shared with the newer P29 local-54 cartesian ledger
+// (data/completeness/local-54-slot-ledger.json, built by scripts/p29/build-local-54-slot-ledger.mjs),
+// which covers indicator/level/geography combinations this legacy 20,115-slot P18 taxonomy never
+// rendered at all (e.g. a constituency-level closure for an indicator the public UI only shows at
+// county level). Scope is determined empirically, not by a tag an entry's author could forget to
+// set: a state that maps to zero rows in THIS ledger is entirely out of P18's jurisdiction and is
+// validated instead by `npm run p29:validate`; every other assertion below applies only to states
+// that do render at least one legacy slot.
 const local54Manifest=json('data/completeness/local-54-indicator-manifest.json');
 const local54Codes=new Set(local54Manifest.indicators.map(i=>i.indicator_id));
+const authorizedExplicit=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
+const p29OnlyStatuses=new Set(['governed_unavailable']);
 
 const configuredAll=[];
 for(const state of evidenceStates.states||[])for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configuredAll.push({...state,geo_code:geoCode});
-
-// data/completeness/evidence-states.json is shared with the newer P29 local-54 cartesian ledger
-// (data/completeness/local-54-slot-ledger.json, built by scripts/p29/build-local-54-slot-ledger.mjs),
-// which covers indicator/level/geography combinations the legacy 20,115-slot P18 taxonomy never
-// rendered at all -- e.g. constituency-level closures for local-54-only indicators such as
-// IND-COMPUTER-USE, or constituency-level closures for indicators that exist in the legacy
-// taxonomy only at county level (e.g. IND-DISABILITY-PREVALENCE). This P18 validator's
-// authorization/exact-count reconciliation rules below only make sense for -- and must only be
-// applied to -- states that actually resolve to a legacy P18 slot; states with zero legacy-slot
-// matches are entirely out of P18's jurisdiction and are validated instead by npm run p29:validate.
 const configuredWithMatches=configuredAll.map(state=>({state,matches:ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code)}));
 const configured=configuredWithMatches.filter(x=>x.matches.length>0).map(x=>x.state);
 const local54OnlyStates=configuredWithMatches.filter(x=>x.matches.length===0).map(x=>x.state);
 for(const state of local54OnlyStates){
   assert(local54Codes.has(state.indicator_code),`${state.geo_code}/${state.indicator_code}: evidence state has no matching P18 legacy slot and its indicator is not part of the local-54 manifest either`);
-  assert(state.status==='governed_unavailable'||state.status==='not_applicable',`${state.geo_code}/${state.indicator_code}: local-54-only evidence state has unexpected status ${state.status}`);
+  assert(authorizedExplicit.has(state.status)||p29OnlyStatuses.has(state.status),`${state.geo_code}/${state.indicator_code}: local-54-only evidence state has unexpected status ${state.status}`);
 }
-const authorizedExplicit=new Set(['official_unavailable','retired_replaced','not_applicable','boundary_unresolved']);
 for(const state of configured){
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
   const matches=ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code);
