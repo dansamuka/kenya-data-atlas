@@ -1,0 +1,105 @@
+name: KDA repository status
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - 'scripts/status/**'
+      - 'package.json'
+      - 'data/project-roadmap.json'
+      - 'data/data-completion-roadmap.json'
+      - 'data/local-54-completion-roadmap.json'
+      - 'data/completeness/summary.json'
+      - 'data/completeness/local-54-summary.json'
+      - 'data/representation/**'
+      - '.github/workflows/kda-status.yml'
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+  issues: write
+
+concurrency:
+  group: kda-repository-status
+  cancel-in-progress: true
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate local status contract
+        run: node scripts/status/validate-status.mjs
+
+      - name: Build repository dashboard
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/kda-status"
+          node scripts/status/build-status.mjs \
+            --markdown "$RUNNER_TEMP/kda-status/status.md" \
+            --json "$RUNNER_TEMP/kda-status/status.json"
+          cat "$RUNNER_TEMP/kda-status/status.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload status artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kda-repository-status-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/kda-status/status.md
+            ${{ runner.temp }}/kda-status/status.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Update canonical status issue
+        if: github.event_name != 'pull_request'
+        uses: actions/github-script@v7
+        env:
+          STATUS_MD: ${{ runner.temp }}/kda-status/status.md
+        with:
+          script: |
+            const fs = require('fs');
+            const title = 'KDA — Live Repository Status';
+            const body = fs.readFileSync(process.env.STATUS_MD, 'utf8');
+            const { owner, repo } = context.repo;
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: 'open',
+              per_page: 100
+            });
+            const issue = issues.find(item => !item.pull_request && item.title === title);
+
+            if (issue) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: issue.number,
+                title,
+                body
+              });
+              core.info(`Updated status issue #${issue.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body
+              });
+              core.info(`Created status issue #${created.data.number}`);
+            }
