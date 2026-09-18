@@ -1,0 +1,36 @@
+{
+  "schema_version": "kda.p30.county-woman-representative-roster.v1",
+  "phase": "P30",
+  "goal": "Add a governed county-level elected-representative record (County Woman Representative) and an extensible representation schema shared with MP and MCA records, without conflating roles.",
+  "indicator_code": "IND-WOMAN-REP-IDENTITY",
+  "target_level": "county",
+  "target_count": 47,
+  "source": {
+    "authority": "Parliament of Kenya -- National Assembly",
+    "source_url": "https://www.parliament.go.ke/the-national-assembly/mps",
+    "source_document_url": "https://www.parliament.go.ke/sites/default/files/2026-08/List%20of%20Members%20by%20Parties%2013th%20Parliament%20as%20at%2012082026_1.pdf",
+    "parliamentary_session": "13th Parliament",
+    "source_as_of_label": "12 Aug 2026",
+    "source_claim": "The official 13th Parliament members-by-party list states there are 47 women elected by registered voters from the counties, and marks each County Woman Representative row's constituency column with a \"(CWR)\" suffix."
+  },
+  "method": {
+    "type": "direct_official_roster_with_corroborated_correction",
+    "snapshot_path": "data/p30/source/woman-representatives-13th-parliament.json",
+    "preparation": "Download the official Parliament members-by-party PDF, extract every row whose constituency column carries the \"(CWR)\" suffix (47 rows -- one per county, cross-checked against the canonical 47-county registry for exact 1:1 coverage), normalize county-name spelling to the canonical geography registry, and freeze the checked source rows as the release snapshot.",
+    "correction_policy": "Where the frozen official document itself conflicts with parliament.go.ke's own live roster search and at least two independent corroborating sources (encyclopedia and contemporaneous news), the row is corrected and the correction, its reasoning and every corroborating source are retained inline on the row (pdf_error_corrected/correction_note/correction_sources) rather than silently overwritten -- exactly one such case exists in this snapshot (see woman-representatives-13th-parliament.json, geo_code KEN-C039).",
+    "canonical_mapping": "Normalized county name plus explicit source row metadata; no constituency or ward inference.",
+    "observation_value": "Text category containing the published member name and party.",
+    "badge": "A",
+    "geographic_method": "direct"
+  },
+  "acceptance": [
+    "Exactly 47 canonical counties reconcile to exactly one County Woman Representative disposition.",
+    "Every promoted row retains the published member name, party, county and source URL, plus any correction rationale and corroborating sources.",
+    "The representation schema (data/representation/representatives.json) can hold Woman Representative, MP and MCA rows under a shared role vocabulary (data/representation/representative-roles.json) without conflating roles -- verified by concretely populating all three from their respective canonical sources, not merely asserted.",
+    "Vacancy/by-election/disputed states are surfaced explicitly, not silently defaulted to a stale 'elected' status -- a freshness validator checks each row's verification_date/term_label against its role's expected refresh cadence.",
+    "No county/parent geography value is inherited into a constituency or ward representation row, and no representation row inherits from another role."
+  ],
+  "depends_on": [
+    "P28"
+  ]
+}

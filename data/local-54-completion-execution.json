@@ -5,7 +5,7 @@
   "status": "executing",
   "authority": "Scheduling/execution overlay only. data/local-54-completion-roadmap.json controls phase meaning and acceptance.",
   "progress": {
-    "as_of": "2026-09-17",
+    "as_of": "2026-09-18",
     "P27": {
       "status": "complete",
       "note": "The exact live 54-indicator local contract, applicability rules, S0–S7 source governance and dedicated validator are merged on main via PR #146. The historical 49-slot figure remains a P18 baseline only and is not treated as the current local-indicator scope."
@@ -52,6 +52,10 @@
     "P29": {
       "status": "complete",
       "note": "scripts/p29/build-local-54-slot-ledger.mjs + validate-local-54-slot-ledger.mjs merged and wired into npm test. Full 96,498-cell cartesian ledger built (2,538 county audit + 15,660 constituency + 78,300 ward); unclassified_cells=0; 6,007 numeric / 90,491 governed-closure cells, reported separately. See data/local-54-completion-roadmap.json P29 closure_note for the full disposition breakdown."
+    },
+    "P30": {
+      "status": "complete",
+      "note": "scripts/p30/build-representation-registry.mjs + validate-representation-registry.mjs merged and wired into npm test. data/representation/representatives.json holds 1,770 rows across 3 roles (47 county_woman_representative, 290 member_of_parliament, 1,433 member_of_county_assembly) under one shared, non-conflating schema. One source-PDF data-entry error corrected and cited (Wambilianga: Busia -> Bungoma). See data/local-54-completion-roadmap.json P30 closure_note for the full detail."
     }
   },
   "work_rules": [
