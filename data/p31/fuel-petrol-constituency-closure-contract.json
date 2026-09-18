@@ -1,0 +1,29 @@
+{
+  "schema_version": "kda.p31.fuel-petrol-constituency-closure.v1",
+  "contract_id": "P31-FUEL-PETROL-CONSTITUENCY-2026-09-18",
+  "as_of": "2026-09-18",
+  "level": "constituency",
+  "boundary_version": "2012-01",
+  "expected_constituencies": 290,
+  "attempted_method": "verification_of_structural_unavailability",
+  "attempted_method_description": "treatment_class dynamic_location_price does not permit spatial_derivation (data/policy/local-54-indicator-contract.json). The only route to a constituency value would be a genuine EPRA publication at constituency/station granularity, so this review re-verifies EPRA's current pricing-town regulatory structure (rather than assuming the existing county-level Sprint 1 methodology still holds) using the live pricing cycle current at the time of review.",
+  "evidence_file": "data/p31/source/epra-fuel-constituency-pricing-review.json",
+  "decisions": [
+    {
+      "indicator_code": "IND-FUEL-PETROL",
+      "status": "governed_unavailable",
+      "period_label": "15 September 2026 - 14 October 2026 EPRA pricing cycle · P31 constituency review",
+      "source": "Energy & Petroleum Regulatory Authority (EPRA) — maximum retail petroleum prices notice",
+      "source_url": "https://www.epra.go.ke/maximum-retail-petroleum-prices-kenya-period-15th-september-2026-14th-october-2026",
+      "reason": "EPRA sets maximum retail Super Petrol prices under Section 101(y) of the Petroleum Act 2019 and Legal Notice No. 192 of 2022 for a small, named set of designated pricing towns, not per petrol station, ward or constituency. This is the same structure this project already documented and validated at county level (data/sprint1/README.md, data/sprint1/VALIDATION.md, scripts/p28/validate-epra-fuel-provenance.mjs), where 45 of 47 county display slots carry an explicitly labelled Badge C 'representative pricing town, not a county average' proxy and none is presented as a direct county or sub-county value. This P31 review re-verified the structure against the live 15 September-14 October 2026 EPRA circular (independently corroborated by The Star, Pulse Kenya and K24 Digital) rather than assuming the prior cycle still applied: the same town-named schedule continues (e.g. Nairobi, Mombasa, Nakuru, Eldoret, Kisumu, Meru, Kitale, Kisii), with no reference anywhere in the notice to constituency, sub-county or ward geography, and no per-station pricing. Kenya's 290 constituencies do not correspond to EPRA's pricing-town geography: pricing towns are not aligned to, or evenly distributed across, constituency boundaries, and a single town's schedule typically covers an entire county. Under the dynamic_location_price treatment class (data/policy/local-54-indicator-contract.json), spatial_derivation is not an allowed method for this indicator in the first place, so there is no permitted construction path from the county-level pricing-town data down to constituency; only a genuine EPRA publication at that granularity could resolve this, and no prior or current EPRA cycle publishes one. No county pricing-town value is inherited, averaged or interpolated down to any constituency.",
+      "evidence_constraint": "epra_regulates_by_pricing_town_only_never_below_county_and_spatial_derivation_not_a_permitted_method_for_this_treatment_class",
+      "refresh_trigger": "EPRA publishes maximum retail prices at constituency level, ward level or per individual petrol station under a new regulatory instrument superseding Legal Notice No. 192 of 2022 / Section 101(y) of the Petroleum Act 2019."
+    }
+  ],
+  "rules": [
+    "Do not inherit, average or interpolate any county pricing-town value down to any constituency.",
+    "Do not silently describe a pricing-town value as a constituency value or constituency average.",
+    "Every closure must preserve a primary official source, reason and refresh trigger.",
+    "This closure records a genuine, diligence-backed re-verification against the current pricing cycle (not a stale assumption carried over from Sprint 1), consistent with the local-54 source-governance contract's requirement to re-check reachability/structure before reaffirming an unavailable state."
+  ]
+}
