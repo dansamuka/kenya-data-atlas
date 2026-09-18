@@ -135,7 +135,34 @@ async function githubJson(path, token) {
   return response.json();
 }
 
-async function remoteGitHubSummary(currentPhase, completedLocalIds) {
+async function githubCollection(path, token, { maxPages = 5 } = {}) {
+  const items = [];
+  const separator = path.includes('?') ? '&' : '?';
+  for (let page = 1; page <= maxPages; page += 1) {
+    const batch = await githubJson(`${path}${separator}page=${page}`, token);
+    if (!Array.isArray(batch)) throw new Error(`Expected GitHub collection for ${path}`);
+    items.push(...batch);
+    if (batch.length < 100) break;
+  }
+  return items;
+}
+
+function extractIndicatorCodes(...texts) {
+  const codes = new Set();
+  const pattern = /\bIND-[A-Z0-9][A-Z0-9-]*\b/g;
+  for (const text of texts.flat(Infinity)) {
+    if (!text) continue;
+    for (const match of String(text).matchAll(pattern)) codes.add(match[0]);
+  }
+  return [...codes].sort();
+}
+
+function phaseMentioned(item, phaseId) {
+  if (!phaseId || !item) return false;
+  return new RegExp(`\\b${phaseId}\\b`, 'i').test(`${item.title || ''}\n${item.body || ''}`);
+}
+
+async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndicatorCount) {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
   const repository = process.env.GITHUB_REPOSITORY;
   if (!token || !repository) {
@@ -143,10 +170,11 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds) {
   }
 
   const encodedRepo = repository.split('/').map(encodeURIComponent).join('/');
-  const [openPrs, closedPrs, runs] = await Promise.all([
+  const [openPrs, closedPrs, runs, branches] = await Promise.all([
     githubJson(`/repos/${encodedRepo}/pulls?state=open&per_page=100&sort=updated&direction=desc`, token),
     githubJson(`/repos/${encodedRepo}/pulls?state=closed&per_page=100&sort=updated&direction=desc`, token),
-    githubJson(`/repos/${encodedRepo}/actions/runs?branch=main&per_page=100`, token)
+    githubJson(`/repos/${encodedRepo}/actions/runs?branch=main&per_page=100`, token),
+    githubCollection(`/repos/${encodedRepo}/branches?per_page=100`, token)
   ]);
 
   const latestMerged = closedPrs
@@ -167,6 +195,93 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds) {
   });
   const failing = critical.filter(run => run.status === 'completed' && !['success', 'skipped'].includes(run.conclusion));
 
+  const currentPhaseId = currentPhase?.id || null;
+  const currentPhasePattern = currentPhaseId
+    ? new RegExp(`^${currentPhaseId.toLowerCase()}(?:[-/_]|$)`, 'i')
+    : null;
+  const openPrByHead = new Map(openPrs.map(pr => [pr.head?.ref, pr]));
+  const currentPhaseBranches = currentPhasePattern
+    ? branches.filter(branch => currentPhasePattern.test(branch.name))
+    : [];
+
+  const branchWork = [];
+  for (const branch of currentPhaseBranches) {
+    const pr = openPrByHead.get(branch.name) || null;
+    let compare = null;
+    try {
+      compare = await githubJson(
+        `/repos/${encodedRepo}/compare/main...${encodeURIComponent(branch.name)}`,
+        token
+      );
+    } catch (error) {
+      compare = { status: 'unknown', ahead_by: null, behind_by: null, commits: [], compare_error: error.message };
+    }
+
+    if (!pr && compare?.ahead_by === 0) continue;
+
+    const commitMessages = (compare?.commits || []).map(commit => commit.commit?.message || '');
+    const indicatorCodes = extractIndicatorCodes(pr?.title, pr?.body, commitMessages);
+    const latestCommit = (compare?.commits || []).at(-1) || null;
+
+    branchWork.push({
+      branch: branch.name,
+      url: `https://github.com/${repository}/tree/${encodeURIComponent(branch.name)}`,
+      head_sha: branch.commit?.sha || latestCommit?.sha || null,
+      ahead_by: compare?.ahead_by ?? null,
+      behind_by: compare?.behind_by ?? null,
+      compare_status: compare?.status || 'unknown',
+      latest_commit_at: latestCommit?.commit?.committer?.date || latestCommit?.commit?.author?.date || null,
+      latest_commit_subject: latestCommit?.commit?.message?.split('\n')[0] || null,
+      open_pr: pr ? {
+        number: pr.number,
+        title: pr.title,
+        url: pr.html_url,
+        draft: pr.draft
+      } : null,
+      indicator_codes: indicatorCodes,
+      indicator_count: indicatorCodes.length,
+      state: pr ? 'open_pr' : 'branch_only',
+      compare_error: compare?.compare_error || null
+    });
+  }
+
+  branchWork.sort((a, b) => {
+    if (a.state !== b.state) return a.state === 'open_pr' ? -1 : 1;
+    return String(b.latest_commit_at || '').localeCompare(String(a.latest_commit_at || ''));
+  });
+
+  const mergedCurrentPhasePrs = currentPhaseId
+    ? closedPrs.filter(pr => pr.merged_at && phaseMentioned(pr, currentPhaseId))
+    : [];
+  const mergedIndicatorCodes = extractIndicatorCodes(
+    mergedCurrentPhasePrs.flatMap(pr => [pr.title, pr.body])
+  );
+  const mergedSet = new Set(mergedIndicatorCodes);
+  const activeIndicatorCodes = extractIndicatorCodes(branchWork.flatMap(item => item.indicator_codes))
+    .filter(code => !mergedSet.has(code));
+  const coveredIndicatorCodes = [...new Set([...mergedIndicatorCodes, ...activeIndicatorCodes])].sort();
+
+  const indicatorBasedPhase = ['P31', 'P32'].includes(currentPhaseId);
+  const phaseProgress = indicatorBasedPhase && targetIndicatorCount
+    ? {
+        phase_id: currentPhaseId,
+        method: 'Distinct frozen Local-54 indicator families with concrete merged or ahead-of-main current-phase branch/PR work divided by the frozen indicator count. This is a coverage estimate, not a declaration that phase acceptance criteria are met.',
+        target_indicator_count: targetIndicatorCount,
+        covered_indicator_count: coveredIndicatorCodes.length,
+        covered_indicator_pct: pct(coveredIndicatorCodes.length, targetIndicatorCount),
+        merged_indicator_count: mergedIndicatorCodes.length,
+        merged_indicator_pct: pct(mergedIndicatorCodes.length, targetIndicatorCount),
+        in_flight_indicator_count: activeIndicatorCodes.length,
+        in_flight_indicator_pct: pct(activeIndicatorCodes.length, targetIndicatorCount),
+        covered_indicator_codes: coveredIndicatorCodes,
+        merged_indicator_codes: mergedIndicatorCodes,
+        in_flight_indicator_codes: activeIndicatorCodes,
+        current_phase_branch_count: branchWork.length,
+        open_pr_branch_count: branchWork.filter(item => item.state === 'open_pr').length,
+        branch_only_count: branchWork.filter(item => item.state === 'branch_only').length
+      }
+    : null;
+
   return {
     available: true,
     open_pr_count: openPrs.length,
@@ -175,7 +290,9 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds) {
       title: pr.title,
       url: pr.html_url,
       updated_at: pr.updated_at,
-      draft: pr.draft
+      draft: pr.draft,
+      head_branch: pr.head?.ref || null,
+      head_sha: pr.head?.sha || null
     })),
     latest_merged_pr: latestMerged ? {
       number: latestMerged.number,
@@ -183,6 +300,18 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds) {
       url: latestMerged.html_url,
       merged_at: latestMerged.merged_at
     } : null,
+    current_phase_work: {
+      phase_id: currentPhaseId,
+      branches: branchWork,
+      branch_count: branchWork.length,
+      merged_phase_prs: mergedCurrentPhasePrs.map(pr => ({
+        number: pr.number,
+        title: pr.title,
+        url: pr.html_url,
+        merged_at: pr.merged_at
+      })),
+      progress_estimate: phaseProgress
+    },
     critical_workflows: critical.map(run => ({
       name: run.name,
       status: run.status,
@@ -270,6 +399,8 @@ export async function buildStatus({ includeRemote = true } = {}) {
 
   const legacy = readJson('data/completeness/summary.json');
   const local54 = readJson('data/completeness/local-54-summary.json', { optional: true });
+  const local54Manifest = readJson('data/completeness/local-54-indicator-manifest.json', { optional: true });
+  const targetIndicatorCount = local54Manifest?.indicator_count || local54Manifest?.indicators?.length || null;
   const representation = representationSummary();
 
   const generatedAt = new Date().toISOString();
@@ -279,7 +410,7 @@ export async function buildStatus({ includeRemote = true } = {}) {
   let githubSummary = { available: false, reason: 'remote GitHub checks disabled' };
   if (includeRemote) {
     try {
-      githubSummary = await remoteGitHubSummary(currentPhase, completedLocalIds);
+      githubSummary = await remoteGitHubSummary(currentPhase, completedLocalIds, targetIndicatorCount);
     } catch (error) {
       githubSummary = { available: false, reason: `GitHub API check failed: ${error.message}` };
     }
@@ -373,6 +504,11 @@ export function renderMarkdown(status) {
       `| Representation registry records | **${status.representation.total_records.toLocaleString()}** |`
     ] : []),
     ...(gh.available ? [
+      ...(gh.current_phase_work?.progress_estimate ? [
+        `| Current-phase progress estimate | **${gh.current_phase_work.progress_estimate.covered_indicator_pct}%** (${gh.current_phase_work.progress_estimate.covered_indicator_count}/${gh.current_phase_work.progress_estimate.target_indicator_count} indicator families incl. in-flight) |`,
+        `| Current-phase merged coverage | **${gh.current_phase_work.progress_estimate.merged_indicator_pct}%** (${gh.current_phase_work.progress_estimate.merged_indicator_count}/${gh.current_phase_work.progress_estimate.target_indicator_count}) |`
+      ] : []),
+      `| Current-phase active branches | **${gh.current_phase_work?.branch_count ?? 0}** |`,
       `| Open PRs | **${gh.open_pr_count}** |`,
       `| Critical workflow failures | **${failures}** |`
     ] : [
@@ -390,6 +526,49 @@ export function renderMarkdown(status) {
     lines.push(
       `| **${phase.id}** ${phase.title} | ${statusIcon(phase.status)} ${phase.status} | ${e.validator ? '✅' : '—'} | ${e.script_dir ? '✅' : '—'} | ${e.workflows.length ? '✅' : '—'} | ${e.evidence_state} |`
     );
+  }
+
+  if (gh.available && gh.current_phase_work) {
+    const progress = gh.current_phase_work.progress_estimate;
+    lines.push('', '## Current-phase progress and ongoing branch work', '');
+
+    if (progress) {
+      lines.push(
+        `**${progress.phase_id} estimated coverage: ${progress.covered_indicator_pct}%** — ${progress.covered_indicator_count}/${progress.target_indicator_count} frozen indicator families have concrete merged or in-flight work.`,
+        '',
+        `- Merged onto main: **${progress.merged_indicator_count}/${progress.target_indicator_count} (${progress.merged_indicator_pct}%)**`,
+        `- In-flight on current-phase branches: **${progress.in_flight_indicator_count}/${progress.target_indicator_count} (${progress.in_flight_indicator_pct}%)**`,
+        `- Active current-phase branches: **${progress.current_phase_branch_count}** (${progress.open_pr_branch_count} with open PRs; ${progress.branch_only_count} branch-only)`,
+        '',
+        `_Method: ${progress.method}_`,
+        ''
+      );
+    }
+
+    const branches = gh.current_phase_work.branches || [];
+    if (branches.length) {
+      lines.push(
+        '| Branch | PR | Ahead / behind main | Indicator families | State |',
+        '|---|---|---:|---:|---|'
+      );
+      for (const branch of branches) {
+        const prText = branch.open_pr
+          ? `[#${branch.open_pr.number}](${branch.open_pr.url})${branch.open_pr.draft ? ' draft' : ''}`
+          : '—';
+        const divergence = branch.ahead_by == null
+          ? 'unknown'
+          : `+${branch.ahead_by} / -${branch.behind_by ?? 0}`;
+        const indicatorText = branch.indicator_count
+          ? `**${branch.indicator_count}**`
+          : '0 detected';
+        lines.push(
+          `| [\`${branch.branch}\`](${branch.url}) | ${prText} | ${divergence} | ${indicatorText} | ${branch.state === 'open_pr' ? 'open PR' : 'branch only'} |`
+        );
+      }
+      lines.push('');
+    } else {
+      lines.push('No ahead-of-main branches matching the current phase prefix were detected.', '');
+    }
   }
 
   lines.push('', '## Repository health', '');
@@ -432,7 +611,7 @@ export function renderMarkdown(status) {
     '',
     '## Interpretation rule',
     '',
-    'This dashboard does not treat a roadmap declaration as sufficient on its own. For Local-54 phases it separately reports whether validator scripts, phase scripts, workflows and known outputs are present. A planned phase with implementation evidence is flagged rather than silently treated as untouched.',
+    'This dashboard does not treat a roadmap declaration as sufficient on its own. For Local-54 phases it separately reports whether validator scripts, phase scripts, workflows and known outputs are present. A planned phase with implementation evidence is flagged rather than silently treated as untouched. For P31/P32, the progress percentage is a coverage estimate based on distinct frozen indicator families with concrete merged or ahead-of-main branch/PR work; the separate merged figure remains the stricter measure of work already on main.',
     '',
     '---',
     '_Generated by `.github/workflows/kda-status.yml`; the workflow updates this issue without committing generated status files back to the repository._',

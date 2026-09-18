@@ -12,9 +12,10 @@ The runner treats the following as authoritative inputs:
 - `data/completeness/summary.json` — governed legacy slot completion;
 - `data/completeness/local-54-summary.json` — Local-54 denominator and evidence coverage;
 - `data/representation/representatives.json` — representation registry when present;
-- `package.json`, phase scripts and phase workflows — implementation evidence.
+- `package.json`, phase scripts and phase workflows — implementation evidence;
+- open PRs and all ahead-of-`main` branches whose name matches the current phase (for example `p31-*`) — ongoing implementation evidence.
 
-When run in GitHub Actions it also makes a small number of GitHub API reads for open PRs, the latest merged PR and the latest critical workflow states.
+When run in GitHub Actions it also makes GitHub API reads for open/merged PRs, current-phase branches, branch divergence from `main`, and the latest critical workflow states.
 
 ## What it checks
 
@@ -25,9 +26,27 @@ The runner validates that:
 - P26 closure is consistent with 100% governed legacy resolution and zero unknown slots;
 - P29 closure is consistent with a Local-54 summary and zero unclassified cells;
 - P30 closure is backed by a representation registry and a wired validator;
-- Local-54 roadmap declarations are shown separately from implementation evidence.
+- Local-54 roadmap declarations are shown separately from implementation evidence;
+- P31/P32 progress is estimated from distinct frozen Local-54 indicator families with concrete merged or ahead-of-main branch/PR work.
 
 This last check is deliberate: a phase can have scripts, workflows or outputs before the roadmap is formally closed. The dashboard flags that state instead of silently treating the phase as untouched or complete.
+
+## Current-phase progress estimate
+
+For P31 and P32, the runner reports a transparent coverage estimate:
+
+```text
+progress % = distinct indicator families with concrete current-phase work / 54
+```
+
+The numerator includes both work merged to `main` and work on ahead-of-`main` current-phase branches. The dashboard always shows the two separately:
+
+- **merged coverage** — indicator families already represented by merged current-phase PRs;
+- **in-flight coverage** — additional indicator families currently represented on active branches/open PRs.
+
+This is deliberately a **coverage estimate**, not a declaration that the phase acceptance criteria are met. P31/P32 still remain incomplete until their roadmap acceptance gates, deterministic rebuilds and validators pass.
+
+Branches are considered current-phase work when their name begins with the current phase ID (for example `p31-`, `p31/` or `p31_`) and they are either ahead of `main` or have an open PR. Branches without PRs are therefore visible rather than silently omitted.
 
 ## Outputs
 
