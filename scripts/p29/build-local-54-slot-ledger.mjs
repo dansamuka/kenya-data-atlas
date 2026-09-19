@@ -49,7 +49,8 @@ const evidenceStates = readJson('data/completeness/evidence-states.json');
 const supplementaryEvidenceFiles = [
   'data/completeness/local-54-education-admin-evidence-states.json',
   'data/completeness/local-54-gcp-census-evidence-states.json',
-  'data/completeness/local-54-agriculture-evidence-states.json'
+  'data/completeness/local-54-agriculture-evidence-states.json',
+  'data/completeness/local-54-health-facility-ward-evidence-states.json'
 ];
 const supplementaryEvidenceStates = supplementaryEvidenceFiles
   .filter(p => fs.existsSync(path.join(root, p)))
