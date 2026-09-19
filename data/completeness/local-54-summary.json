@@ -14,9 +14,9 @@
   "governed_closure_pct": 93.78,
   "by_status": {
     "boundary_unresolved": 10,
-    "governed_unavailable": 52780,
+    "governed_unavailable": 64380,
     "not_applicable": 12180,
-    "official_unavailable": 25521,
+    "official_unavailable": 13921,
     "published_derived": 2364,
     "published_direct": 3643
   },
