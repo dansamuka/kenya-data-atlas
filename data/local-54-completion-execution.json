@@ -5,7 +5,7 @@
   "status": "executing",
   "authority": "Scheduling/execution overlay only. data/local-54-completion-roadmap.json controls phase meaning and acceptance.",
   "progress": {
-    "as_of": "2026-09-19",
+    "as_of": "2026-09-20",
     "P27": {
       "status": "complete",
       "note": "The exact live 54-indicator local contract, applicability rules, S0–S7 source governance and dedicated validator are merged on main via PR #146. The historical 49-slot figure remains a P18 baseline only and is not treated as the current local-indicator scope."
@@ -60,6 +60,10 @@
     "P31": {
       "status": "complete",
       "note": "7 parallel research batches (PRs #242, #243, #246, #250, #251, #252, #253) genuinely investigated all 42 non-structural local-54 indicators for real constituency-level sources. All confirmed genuinely unavailable with specific citations, replacing P29's generic closure. Combined with the 3 already reviewed under P28A and the 9 already structurally resolved (7 institutional_county_only + IND-LAND-AREA + IND-REGISTERED-VOTERS), all 54 indicators now have a genuinely-investigated constituency-level disposition. See data/local-54-completion-roadmap.json P31 closure_note for full detail."
+    },
+    "P32": {
+      "status": "complete",
+      "note": "7 parallel research batches (PRs #255, #256, #257, #258, #259, #260, #261) extended ward-level coverage for 43 non-structural local-54 indicators, mostly by applying P31's constituency-level finding to ward 'a fortiori' (a ward is strictly finer than its parent constituency, so the same source limitation applies) after a live re-check confirmed the underlying source condition was unchanged. IND-HOUSEHOLD-SIZE required genuinely fresh ward-level research, having only ever been reviewed at constituency level under P28A. All 78,300 ward cells now have a governed disposition; zero new numeric values were materialised, by design. See data/local-54-completion-roadmap.json P32 closure_note for full detail, including the CI-runner-queue capacity issue encountered mid-phase."
     }
   },
   "work_rules": [
