@@ -294,7 +294,7 @@
     {
       "id": "P33",
       "title": "Candidate-value conflict resolution and probable-value publication",
-      "status": "planned",
+      "status": "complete",
       "goal": "Operationalise a candidate-observation ledger and deterministic/manual-review process for conflicting credible values.",
       "outputs": [
         "data/evidence/candidate-observations.json",
@@ -314,7 +314,10 @@
         "P28",
         "P31",
         "P32"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-20. scripts/p33/build-conflict-resolution.mjs + validate-conflict-resolution.mjs merged and wired into npm test, producing data/evidence/candidate-observations.json (47 candidate groups) and data/evidence/conflict-decisions.json (1 decision), plus a manual-review-queue invariant enforced by the validator rather than a separate always-empty file. This is a curation layer over evidence this project already gathered during P28A/P31/P32, not new research: this project's own conflict-detection audit (data/audit/legacy-conflicts.json, P28A.4) already found zero machine-detected canonical conflicts among the 6,007 preferred observations, and zero are currently tiered S4 (data/audit/legacy-source-tier-audit.json). That is an honestly-verified fact, not an unexamined absence -- the validator re-derives the S4 count from the same audit on every run and would fail if any S4 row appeared without a matching decision. The one genuine multi-candidate conflict this project has actually produced -- P31's attempt to spatially derive IND-CLASS-C-RURAL-ROAD-LENGTH from a World Bank/ESMAP road GIS layer, which failed county-level reconciliation against KNBS Table 11.9 by up to two orders of magnitude (data/p31/source/class-c-road-spatial-derivation-attempt.json) -- is now formally recorded across all 47 counties as a candidate group (official value vs. the rejected spatial-derivation candidate) with one conflict-decision documenting the selection method (reconciliation_test_failure), confidence, rationale and the resulting disposition (official value retained, derived candidate rejected outright rather than published as a probable S4 value). Acceptance gates enforced by the validator: (1) every candidate group with 2+ candidates has distinct evidence_lineage_id per candidate, so duplicate lineages cannot inflate corroboration; (2) selection_method is asserted not to be an unlabelled-averaging method; (3) every decision carries non-empty confidence and a substantive rationale; (4) any future S4-tiered preferred observation or legacy-conflicts.json candidate without a matching decision is a hard failure, keeping material close calls in review until adjudicated rather than silently passing. Deterministic rebuild verified via npm run p33:validate (re-runs the build and diffs) and the full npm test suite."
+      }
     },
     {
       "id": "P34",
