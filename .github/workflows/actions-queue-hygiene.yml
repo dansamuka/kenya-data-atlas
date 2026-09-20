@@ -21,7 +21,7 @@ jobs:
       STALE_AFTER_HOURS: '6'
       GH_TOKEN: ${{ github.token }}
     steps:
-      - name: Cancel stale queued workflow runs
+      - name: Clear stale queued workflow runs
         shell: bash
         run: |
           set -euo pipefail
@@ -29,6 +29,7 @@ jobs:
           cutoff_epoch="$(date -u -d "${STALE_AFTER_HOURS} hours ago" +%s)"
           normal_cancelled=0
           force_cancelled=0
+          deleted=0
           failed=0
           seen=0
 
@@ -42,19 +43,33 @@ jobs:
               continue
             fi
 
-            echo "CANCEL #${run_id} | ${created_at} | ${run_name} | ${head_branch}"
+            echo "CLEAR  #${run_id} | ${created_at} | ${run_name} | ${head_branch}"
+
             if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/cancel" >/dev/null 2>&1; then
               normal_cancelled=$((normal_cancelled + 1))
               continue
             fi
 
-            echo "Normal cancellation rejected; trying force-cancel for #${run_id}."
-            if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/force-cancel" >/dev/null; then
+            if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/force-cancel" >/dev/null 2>&1; then
               force_cancelled=$((force_cancelled + 1))
-            else
-              failed=$((failed + 1))
-              echo "::warning::Could not force-cancel stale run #${run_id}."
+              continue
             fi
+
+            # Some GitHub Actions records can become "phantom queued" entries:
+            # list APIs say queued, but cancel/force-cancel both return 409
+            # ("has not been queued yet") and no jobs were ever instantiated.
+            # Re-check state immediately before deleting only that stale run record.
+            live_status="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}" --jq '.status')"
+            if [[ "${live_status}" == "queued" ]]; then
+              echo "Phantom queued record detected; deleting stale run #${run_id}."
+              if gh api --method DELETE "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}" >/dev/null; then
+                deleted=$((deleted + 1))
+                continue
+              fi
+            fi
+
+            failed=$((failed + 1))
+            echo "::warning::Could not clear stale run #${run_id}; live status=${live_status:-unknown}."
           done < <(
             gh api --paginate               "/repos/${GITHUB_REPOSITORY}/actions/runs?status=queued&per_page=100"               --jq '.workflow_runs[] | [.id, .created_at, .name, (.head_branch // "")] | @tsv'
           )
@@ -62,7 +77,8 @@ jobs:
           echo "Queued runs inspected: ${seen}"
           echo "Normal cancellations accepted: ${normal_cancelled}"
           echo "Force-cancellations accepted: ${force_cancelled}"
-          echo "Cancellation failures: ${failed}"
+          echo "Phantom queued records deleted: ${deleted}"
+          echo "Cleanup failures: ${failed}"
 
           {
             echo "## Actions queue hygiene"
@@ -71,16 +87,15 @@ jobs:
             echo "- Queued runs inspected: **${seen}**"
             echo "- Normal cancellations accepted: **${normal_cancelled}**"
             echo "- Force-cancellations accepted: **${force_cancelled}**"
-            echo "- Cancellation failures: **${failed}**"
+            echo "- Phantom queued records deleted: **${deleted}**"
+            echo "- Cleanup failures: **${failed}**"
           } >> "${GITHUB_STEP_SUMMARY}"
 
       - name: Verify stale queue is clear
         shell: bash
         run: |
           set -euo pipefail
-
-          # GitHub may take a few seconds to project forced cancellations into list results.
-          sleep 5
+          sleep 3
 
           cutoff_epoch="$(date -u -d "${STALE_AFTER_HOURS} hours ago" +%s)"
           stale=0
