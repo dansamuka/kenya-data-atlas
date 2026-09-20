@@ -1,7 +1,7 @@
 // P34 -- Validate the public local-54 profile subsets.
 //
 // Re-checks the roadmap's exact P34 acceptance criteria (data/local-54-completion-roadmap.json)
-// against data/distribution/subsets/local-54/*.json:
+// against data/local-54-profiles/*.json:
 //   1. every constituency and ward (and county) renders the governed 54-indicator framework
 //   2. unavailable/not-applicable indicators remain visible (never omitted)
 //   3. source tier/period/confidence/conflict are inspectable (fields present)
@@ -20,8 +20,8 @@ const readJson = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 const fail = m => { console.error(`P34_LOCAL54_PROFILE_FAIL ${m}`); process.exitCode = 1; };
 const assert = (c, m) => { if (!c) fail(m); };
 
-const subsetDir = path.join(root, 'data/distribution/subsets/local-54');
-const manifest = readJson('data/distribution/subsets/local-54/manifest.json');
+const subsetDir = path.join(root, 'data/local-54-profiles');
+const manifest = readJson('data/local-54-profiles/manifest.json');
 const geographies = readJson('data/geography/registry/geographies.json');
 const localGeos = geographies.filter(g => ['county', 'constituency', 'ward'].includes(g.level));
 const reasonById = new Map(readJson('data/completeness/local-54-reason-catalogue.json').reasons.map(r => [r.reason_id, r]));
@@ -45,7 +45,7 @@ for (const entry of manifest.geographies) {
   const file = path.join(subsetDir, `${entry.geo_code}.json`);
   assert(fs.existsSync(file), `manifest references ${entry.geo_code}.json which does not exist on disk`);
   if (!fs.existsSync(file)) continue;
-  const subset = readJson(`data/distribution/subsets/local-54/${entry.geo_code}.json`);
+  const subset = readJson(`data/local-54-profiles/${entry.geo_code}.json`);
   assert(subset.schema_version === 'kda.p34.local-54-profile-subset.v1', `${entry.geo_code}: subset schema mismatch`);
   assert(subset.geography.geo_code === entry.geo_code, `${entry.geo_code}: geography.geo_code mismatch`);
   assert(subset.indicator_count === 54, `${entry.geo_code}: expected exactly 54 indicators, got ${subset.indicator_count}`);
@@ -93,7 +93,7 @@ function hashDir(dir) {
 const beforeHash = hashDir(subsetDir);
 execFileSync(process.execPath, ['scripts/p34/build-local-54-profile-subsets.mjs'], { cwd: root, stdio: 'pipe' });
 const afterHash = hashDir(subsetDir);
-assert(beforeHash === afterHash, 'data/distribution/subsets/local-54/*.json is not deterministic / not up to date -- re-run npm run p34:build and commit the result');
+assert(beforeHash === afterHash, 'data/local-54-profiles/*.json is not deterministic / not up to date -- re-run npm run p34:build and commit the result');
 
 if (process.exitCode !== 1) {
   console.log(`P34_LOCAL54_PROFILE_OK files=${checkedFiles} indicators_per_file=54`);

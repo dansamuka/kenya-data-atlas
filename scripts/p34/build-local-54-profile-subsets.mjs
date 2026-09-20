@@ -1,12 +1,17 @@
 // P34 -- Public-product exposure: per-geography local-54 profile subsets.
 //
-// Builds data/distribution/subsets/local-54/<geo_code>.json -- one small, client-fetchable file
-// per county/constituency/ward (47 + 290 + 1,450 = 1,787 files) exposing all 54 governed local
+// Builds data/local-54-profiles/<geo_code>.json -- one small, client-fetchable file per
+// county/constituency/ward (47 + 290 + 1,450 = 1,787 files) exposing all 54 governed local
 // indicators for that exact geography, plus its representation record. This exists because
 // data/completeness/local-54-slot-ledger.json (the full 96,498-row cross-product) is ~65MB and
 // cannot be fetched client-side for a single page view; each subset here is the ~54 rows relevant
 // to one geography, with closure reasons resolved from the shared reason catalogue rather than
 // duplicated inline.
+//
+// Deliberately NOT under data/distribution/: scripts/distribution/build-distribution.mjs does a
+// full fs.rmSync of that whole directory before rebuilding only the subfolders it manages
+// (subsets/counties, subsets/indicators) -- placing this output there would make it collateral
+// damage of an unrelated rebuild every time npm run build:data runs.
 //
 // Every row keeps its status visible (unavailable/not_applicable are never omitted) and maps to
 // the public badge vocabulary docs/governance/data-quality-framework.md requires: Official;
@@ -17,7 +22,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const readJson = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
-const outDir = path.join(root, 'data/distribution/subsets/local-54');
+const outDir = path.join(root, 'data/local-54-profiles');
 
 const ledger = readJson('data/completeness/local-54-slot-ledger.json');
 const reasonCatalogue = readJson('data/completeness/local-54-reason-catalogue.json');

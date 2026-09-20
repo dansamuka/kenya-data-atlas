@@ -141,13 +141,13 @@
   }
 
   // P34 -- the governed local-54 indicator panel. Fetches a small per-geography subset
-  // (data/distribution/subsets/local-54/<geo_code>.json, built by scripts/p34/build-local-54-
+  // (data/local-54-profiles/<geo_code>.json, built by scripts/p34/build-local-54-
   // profile-subsets.mjs) rather than the ~65MB full ledger, and renders all 54 indicators —
   // including official_unavailable/not_applicable ones — plus the representative for this level.
   const UNAVAILABLE_L54_LABELS=new Set(['Data unavailable','Not applicable']);
   async function fetchLocal54(geoCode){
     if(local54Cache.has(geoCode))return local54Cache.get(geoCode);
-    const data=await json(`data/distribution/subsets/local-54/${geoCode}.json`);
+    const data=await json(`data/local-54-profiles/${geoCode}.json`);
     local54Cache.set(geoCode,data);
     return data;
   }
