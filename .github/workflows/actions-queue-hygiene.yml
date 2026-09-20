@@ -27,7 +27,9 @@ jobs:
           set -euo pipefail
 
           cutoff_epoch="$(date -u -d "${STALE_AFTER_HOURS} hours ago" +%s)"
-          cancelled=0
+          normal_cancelled=0
+          force_cancelled=0
+          failed=0
           seen=0
 
           while IFS=$'\t' read -r run_id created_at run_name head_branch; do
@@ -41,30 +43,44 @@ jobs:
             fi
 
             echo "CANCEL #${run_id} | ${created_at} | ${run_name} | ${head_branch}"
-            if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/cancel" >/dev/null; then
-              cancelled=$((cancelled + 1))
+            if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/cancel" >/dev/null 2>&1; then
+              normal_cancelled=$((normal_cancelled + 1))
+              continue
+            fi
+
+            echo "Normal cancellation rejected; trying force-cancel for #${run_id}."
+            if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/force-cancel" >/dev/null; then
+              force_cancelled=$((force_cancelled + 1))
             else
-              echo "::warning::Could not cancel run #${run_id}; it may have changed state concurrently."
+              failed=$((failed + 1))
+              echo "::warning::Could not force-cancel stale run #${run_id}."
             fi
           done < <(
             gh api --paginate               "/repos/${GITHUB_REPOSITORY}/actions/runs?status=queued&per_page=100"               --jq '.workflow_runs[] | [.id, .created_at, .name, (.head_branch // "")] | @tsv'
           )
 
           echo "Queued runs inspected: ${seen}"
-          echo "Stale queued runs cancellation requested: ${cancelled}"
+          echo "Normal cancellations accepted: ${normal_cancelled}"
+          echo "Force-cancellations accepted: ${force_cancelled}"
+          echo "Cancellation failures: ${failed}"
 
           {
             echo "## Actions queue hygiene"
             echo
             echo "- Safety threshold: **${STALE_AFTER_HOURS} hours**"
             echo "- Queued runs inspected: **${seen}**"
-            echo "- Stale cancellation requests sent: **${cancelled}**"
+            echo "- Normal cancellations accepted: **${normal_cancelled}**"
+            echo "- Force-cancellations accepted: **${force_cancelled}**"
+            echo "- Cancellation failures: **${failed}**"
           } >> "${GITHUB_STEP_SUMMARY}"
 
       - name: Verify stale queue is clear
         shell: bash
         run: |
           set -euo pipefail
+
+          # GitHub may take a few seconds to project forced cancellations into list results.
+          sleep 5
 
           cutoff_epoch="$(date -u -d "${STALE_AFTER_HOURS} hours ago" +%s)"
           stale=0
@@ -80,4 +96,7 @@ jobs:
             gh api --paginate               "/repos/${GITHUB_REPOSITORY}/actions/runs?status=queued&per_page=100"               --jq '.workflow_runs[] | [.id, .created_at, .name] | @tsv'
           )
 
-          echo "Stale queued runs remaining immediately after cleanup: ${stale}"
+          echo "Stale queued runs remaining after cleanup: ${stale}"
+          if (( stale > 0 )); then
+            exit 1
+          fi
