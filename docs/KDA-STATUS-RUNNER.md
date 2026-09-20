@@ -17,6 +17,8 @@ The runner treats the following as authoritative inputs:
 
 When run in GitHub Actions it also makes GitHub API reads for open/merged PRs, current-phase branches, branch divergence from `main`, and the latest critical workflow states.
 
+The active [`P36–P41 successor roadmap`](POST-P35-CLOSURE-PLAN.md) is intentionally separate from the completed 36/36 historical counter. The current runner does not yet ingest it. P37 will add a second successor-progress counter and final-state workflow refresh without rewriting P00–P35 history.
+
 ## What it checks
 
 The runner validates that:
@@ -99,3 +101,5 @@ node scripts/status/build-status.mjs --offline \
 This runner is the canonical **fast status** surface. It is intentionally mechanical and cheap.
 
 It does not replace deeper milestone audits that inspect implementation quality, statistical methodology, UI behaviour or source evidence. Those remain useful after major phases such as P31, P32, P34 and P35.
+
+The runner also does not currently treat GitHub-side zero-job phantom queue records as a separate state. Until P37 closes, API-level checks should distinguish the 24 frozen 13 September 2026 records from fresh queued or in-progress work.

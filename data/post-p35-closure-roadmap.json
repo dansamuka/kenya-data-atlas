@@ -1,0 +1,179 @@
+{
+  "schema_version": "kda.post-p35-closure-roadmap.v1",
+  "project": "Kenya Data Atlas",
+  "programme": "P36–P41 Repository Assurance and Numeric-Yield Programme",
+  "status": "active",
+  "created_on": "2026-09-20",
+  "purpose": "Convert the post-P35 recommendations into bounded, independently closable phases without reopening or rewriting the completed P00–P35 roadmaps.",
+  "relationship_to_completed_programmes": {
+    "p00_p17": "The v1.0 implementation and release ledger remains closed at 18/18 phases.",
+    "p18_p26": "The governed 20,115-slot completion programme remains closed at 9/9 phases.",
+    "p27_p35": "The Local-54 programme remains closed at 9/9 phases and continues to define the 96,498-cell governed surface.",
+    "successor_rule": "P36–P41 is reported separately. Planning or executing it must not reduce, relabel or rewrite the historical 36/36 P00–P35 completion result."
+  },
+  "baseline": {
+    "as_of": "2026-09-20",
+    "completed_historical_phases": 36,
+    "historical_phase_total": 36,
+    "local_54_cells": 96498,
+    "numeric_evidence_cells": 6007,
+    "numeric_evidence_pct": 6.22,
+    "governed_closure_cells": 90491,
+    "governed_closure_pct": 93.78,
+    "unclassified_cells": 0,
+    "open_pull_requests": 0,
+    "fresh_queued_workflow_runs": 0,
+    "in_progress_workflow_runs": 0,
+    "historical_phantom_queued_records": 24,
+    "baseline_note": "The 24 queued records are frozen GitHub-side records from 2026-09-13 with no jobs; they are an observability defect, not evidence of current runner blockage."
+  },
+  "rules": [
+    "Each phase must have one primary closure surface and should normally fit one substantial implementation session or one explicitly bounded cleanup batch.",
+    "P00–P35 completion counts and historical acceptance semantics must not be rewritten.",
+    "A roadmap or status declaration is not implementation evidence; every completed phase requires deterministic validation and committed outputs.",
+    "No branch or workflow may be deleted until its unique commits, evidence and audit value have been classified and preserved where necessary.",
+    "Numeric-yield work must never copy a parent value downward, force-match incompatible boundaries, invent a value or weaken the S0–S7 source policy.",
+    "Numeric evidence and governed closures must always be reported separately.",
+    "A data-yield tranche cannot close with zero numeric promotions; if every selected opportunity remains blocked, the opportunity portfolio must be revised and a replacement tranche selected.",
+    "Every phase that changes the website must pass the full browser, accessibility, release and GitHub Pages gates before closure."
+  ],
+  "phases": [
+    {
+      "id": "P36",
+      "title": "Local-54 assurance and validator parity",
+      "status": "next",
+      "goal": "Remove the remaining assurance ambiguity by giving P32 a dedicated closure validator and making implementation-evidence reporting accurate for P31–P35.",
+      "outputs": [
+        "dedicated P32 ward-completion validator",
+        "P32 package script and CI wiring",
+        "phase-evidence detection that recognises shared and dedicated validators without calling a completed phase declaration-only",
+        "focused fixtures for denominator, disposition, anti-inheritance and deterministic-rebuild failures"
+      ],
+      "acceptance": [
+        "the P32 validator independently confirms 54 indicators, 1,450 wards and 78,300 ward dispositions",
+        "unknown/unclassified ward cells and prohibited parent-to-ward inheritance both equal zero",
+        "the validator checks specific P32 evidence coverage rather than merely restating the P29 denominator",
+        "the repository status report no longer labels P32 declaration-only when its implementation evidence is present",
+        "npm test, the P16 release audit and GitHub Pages deployment pass"
+      ],
+      "depends_on": [
+        "P35"
+      ]
+    },
+    {
+      "id": "P37",
+      "title": "Truthful status and Actions-queue observability",
+      "status": "planned",
+      "goal": "Make the canonical status issue reflect settled workflow outcomes and distinguish current runner blockage from irrecoverable historical GitHub queue records.",
+      "outputs": [
+        "post-workflow status refresh/finalisation trigger",
+        "fresh, active, stale and phantom workflow-state classification",
+        "separate historical P00–P35 and successor P36–P41 progress reporting",
+        "status JSON and Markdown fields for final-state completeness",
+        "fixtures covering the 24 zero-job phantom records and a genuine fresh queue"
+      ],
+      "acceptance": [
+        "the latest main SHA is refreshed after critical workflows settle and the canonical issue shows their final conclusions",
+        "the dashboard preserves the historical 36/36 result while separately reporting P36–P41 progress and the current successor phase",
+        "fresh queued and in-progress runs remain visible as blockers",
+        "historical zero-job phantom records are reported separately and do not inflate the active queue",
+        "the workflow cannot create self-triggering commit or issue-update loops",
+        "least-privilege workflow permissions, deterministic status validation and a successful live dispatch are demonstrated"
+      ],
+      "depends_on": [
+        "P36"
+      ]
+    },
+    {
+      "id": "P38",
+      "title": "Evidence-preserving branch and workflow inventory",
+      "status": "planned",
+      "goal": "Classify repository history before cleanup so stale references can be removed without losing unique evidence, unmerged work or auditability.",
+      "outputs": [
+        "machine-readable remote-branch disposition ledger",
+        "workflow inventory distinguishing permanent gates, reusable research tools and one-off historical workflows",
+        "retention and archive policy",
+        "bounded cleanup batches with explicit keep/archive/delete decisions"
+      ],
+      "acceptance": [
+        "every non-default remote branch is classified as active, protected evidence, merged/superseded or deletion candidate",
+        "every workflow is classified as permanent, reusable on demand or historical one-off",
+        "unique commits and evidence are referenced by an retained branch, tag, release, pull request or governed archive before deletion is authorised",
+        "no open-pull-request branch, protected branch or unresolved unique work is a deletion candidate",
+        "the first cleanup batch is capped at 50 branch references and carries a recoverable manifest"
+      ],
+      "depends_on": [
+        "P37"
+      ]
+    },
+    {
+      "id": "P39",
+      "title": "Safe repository cleanup and CI consolidation",
+      "status": "planned",
+      "goal": "Execute the P38 decisions in reviewable batches and reduce routine CI noise while preserving every permanent release and data-governance gate.",
+      "outputs": [
+        "executed branch-cleanup batches with before/after manifests",
+        "archived or disabled one-off workflow set",
+        "consolidated reusable workflow entry points where semantics are identical",
+        "post-cleanup repository-health report"
+      ],
+      "acceptance": [
+        "only P38-authorised branch references are removed and every batch can be reconstructed from its manifest",
+        "active branches and open pull requests are unaffected",
+        "one-off workflows no longer create routine push or pull-request noise",
+        "required checks, scheduled freshness controls and manual research tools remain available",
+        "full CI, release audit, status runner and GitHub Pages deployment pass after cleanup"
+      ],
+      "depends_on": [
+        "P38"
+      ]
+    },
+    {
+      "id": "P40",
+      "title": "Numeric-yield opportunity portfolio",
+      "status": "planned",
+      "goal": "Turn the 90,491 governed closures into a ranked, source-led portfolio and select a small first tranche with a credible path to real numeric promotion.",
+      "outputs": [
+        "machine-readable opportunity portfolio grouped by indicator, geography level, closure reason and source trigger",
+        "ranking model covering cells potentially unlocked, source authority, boundary fit, reproducibility, rights, freshness and implementation effort",
+        "structural-closure exclusion list",
+        "first-tranche contract selecting no more than three source families and ten closure-reason groups"
+      ],
+      "acceptance": [
+        "all 90,491 governed closures reconcile to the portfolio or an explicit structural/non-yield category",
+        "the 12,180 not-applicable cells and other permanent structural closures are excluded from the addressable numeric-yield denominator",
+        "every opportunity records its potential cell yield, exact source/reopening trigger, geography and boundary fit, evidence tier, rights risk and validation method",
+        "the first tranche is selected from evidence of source accessibility and definitional compatibility rather than cell count alone",
+        "the 6,007-cell and 6.22% numeric-evidence baseline is frozen for before/after measurement"
+      ],
+      "depends_on": [
+        "P39"
+      ]
+    },
+    {
+      "id": "P41",
+      "title": "First governed numeric-yield tranche",
+      "status": "planned",
+      "goal": "Execute the bounded P40 tranche and prove that KDA can increase numeric coverage without weakening provenance, boundary or anti-inheritance rules.",
+      "outputs": [
+        "governed source snapshots and access-attempt record",
+        "reproducible extraction, mapping and validation pipeline for each selected source family",
+        "candidate and preferred observations with complete S0–S7 metadata",
+        "updated Local-54 ledgers, profiles, queues and before/after yield report"
+      ],
+      "acceptance": [
+        "every selected opportunity is adjudicated and at least one produces defensible numeric promotions",
+        "numeric evidence exceeds the 6,007-cell baseline and the exact cell and percentage-point gain is reported",
+        "zero promoted values use prohibited parent-child inheritance, arbitrary allocation, force-matched boundaries or invented precision",
+        "source tier, period, geography vintage, methodology, confidence and refresh/supersession rules are complete for every promotion",
+        "affected public profiles render the new values and retain truthful unavailable states for unsuccessful opportunities",
+        "all Local-54, browser, accessibility, release and Pages gates pass; if no opportunity promotes, P41 remains open and returns to P40 for a replacement tranche"
+      ],
+      "depends_on": [
+        "P40"
+      ]
+    }
+  ],
+  "formal_closure_order": "P36 → P37 → P38 → P39 → P40 → P41",
+  "parallelism_note": "Source reconnaissance for P40 may begin during P38/P39, but the P40 portfolio cannot close until the post-cleanup baseline is stable. P41 cannot begin until P40 freezes its bounded tranche."
+}
