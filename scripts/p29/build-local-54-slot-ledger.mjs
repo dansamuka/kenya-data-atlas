@@ -50,6 +50,7 @@ const supplementaryEvidenceFiles = [
   'data/completeness/local-54-education-admin-evidence-states.json',
   'data/completeness/local-54-gcp-census-evidence-states.json',
   'data/completeness/local-54-agriculture-evidence-states.json',
+  'data/completeness/local-54-health-facility-ward-evidence-states.json',
   'data/completeness/local-54-kdhs-ward-evidence-states.json',
   'data/completeness/local-54-kihbs-ward-evidence-states.json',
   'data/completeness/local-54-roads-fuel-ward-evidence-states.json'
