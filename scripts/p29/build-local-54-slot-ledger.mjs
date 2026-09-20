@@ -150,7 +150,7 @@ for (const level of LEVELS) {
     for (const geo of geosAtLevel) {
       const pair = latestPair(geo.geography_id, indicator);
       const explicit = !pair ? explicitByKey.get(`${level}|${geo.geo_code}|${code}`) : null;
-      let status, resolved, reason, source, sourceUrl, periodLabel, value, badge, method, seriesCode, observationId;
+      let status, resolved, reason, source, sourceUrl, periodLabel, value, badge, method, seriesCode, observationId, refreshTrigger;
       if (pair) {
         status = evidenceStatus(pair);
         resolved = true;
@@ -163,6 +163,7 @@ for (const level of LEVELS) {
         method = pair.obs.geographic_method || pair.series.geographic_method || '';
         seriesCode = pair.series.series_code || '';
         observationId = pair.obs.observation_id || '';
+        refreshTrigger = pair.series.next_expected_release ? `Next expected release: ${pair.series.next_expected_release}.` : '';
       } else if (explicit) {
         status = explicit.status;
         resolved = true;
@@ -175,6 +176,7 @@ for (const level of LEVELS) {
         method = '';
         seriesCode = '';
         observationId = '';
+        refreshTrigger = explicit.refresh_trigger || `Re-check data/indicators/registry/series.json for an active series for ${code} at ${level} level, and re-check the source cited above for an updated publication scope.`;
       } else if (treatmentClass === 'institutional_county_only' && level !== 'county') {
         status = 'not_applicable';
         resolved = true;
@@ -187,6 +189,7 @@ for (const level of LEVELS) {
         method = '';
         seriesCode = '';
         observationId = '';
+        refreshTrigger = '';
       } else if (level === 'county') {
         throw new Error(`${code} at county level ${geo.geo_code} has neither a series nor an explicit evidence state -- county-level coverage must be complete`);
       } else {
@@ -201,6 +204,7 @@ for (const level of LEVELS) {
         method = '';
         seriesCode = '';
         observationId = '';
+        refreshTrigger = `Re-check data/indicators/registry/series.json for an active series for ${code} at ${level} level; this closure is a checkable fact re-verified on every rebuild.`;
       }
       rows.push({
         slot_key: `${geo.geo_code}|local_54|${code}`,
@@ -223,7 +227,8 @@ for (const level of LEVELS) {
         badge,
         geographic_method: method,
         source,
-        source_url: sourceUrl
+        source_url: sourceUrl,
+        refresh_trigger: refreshTrigger || ''
       });
     }
   }
@@ -237,16 +242,19 @@ const closureStatuses = new Set(['official_unavailable', 'governed_unavailable',
 // Closure reasons repeat verbatim across every geography an indicator-family closure covers (up to
 // 1,450 wards for one reason). Storing that text on every row would balloon the ledger to hundreds
 // of megabytes for zero new information, so closure rows are normalized against a small reason
-// catalogue instead: reason/source/source_url/period_label move to data/completeness/
+// catalogue instead: reason/source/source_url/period_label/refresh_trigger move to data/completeness/
 // local-54-reason-catalogue.json, keyed by a content-derived reason_id, and the row keeps only
-// that id. Numeric (published) rows keep their reason/source/source_url/period_label inline --
-// there are only 6,007 of them and each one is genuinely distinct (real series/observation/source).
-const reasonGroupKey = r => JSON.stringify([r.reason, r.source, r.source_url, r.period_label]);
+// that id. Numeric (published) rows keep their reason/source/source_url/period_label/refresh_trigger
+// inline -- there are only 6,007 of them and each one is genuinely distinct (real series/
+// observation/source). refresh_trigger (P35) records the condition under which this closure should
+// be re-checked -- e.g. a specific future data release, or the generic "re-check the canonical
+// series registry" fact every governed_unavailable closure can already be re-verified against.
+const reasonGroupKey = r => JSON.stringify([r.reason, r.source, r.source_url, r.period_label, r.refresh_trigger]);
 const uniqueClosureGroups = [...new Set(rows.filter(r => closureStatuses.has(r.status)).map(reasonGroupKey))].sort();
 const reasonIdByGroup = new Map(uniqueClosureGroups.map((g, i) => [g, `R${String(i + 1).padStart(3, '0')}`]));
 const reasonCatalogue = uniqueClosureGroups.map(g => {
-  const [reason, source, source_url, period_label] = JSON.parse(g);
-  return { reason_id: reasonIdByGroup.get(g), reason, source, source_url, period_label };
+  const [reason, source, source_url, period_label, refresh_trigger] = JSON.parse(g);
+  return { reason_id: reasonIdByGroup.get(g), reason, source, source_url, period_label, refresh_trigger };
 });
 for (const r of rows) {
   if (!closureStatuses.has(r.status)) continue;
@@ -255,6 +263,7 @@ for (const r of rows) {
   delete r.source;
   delete r.source_url;
   delete r.period_label;
+  delete r.refresh_trigger;
 }
 const countBy = key => Object.fromEntries([...new Set(rows.map(r => r[key]))].sort().map(v => [v, rows.filter(r => r[key] === v).length]));
 const numericCount = rows.filter(r => numericStatuses.has(r.status)).length;
@@ -289,11 +298,11 @@ const ledger = {
   rows
 };
 
-const csvCols = ['slot_key', 'surface', 'geo_code', 'geography_name', 'level', 'indicator_code', 'indicator_name', 'treatment_class', 'lifecycle_status', 'status', 'resolved', 'reason_id', 'reason', 'series_code', 'observation_id', 'period_label', 'value', 'badge', 'geographic_method', 'source', 'source_url'];
+const csvCols = ['slot_key', 'surface', 'geo_code', 'geography_name', 'level', 'indicator_code', 'indicator_name', 'treatment_class', 'lifecycle_status', 'status', 'resolved', 'reason_id', 'reason', 'series_code', 'observation_id', 'period_label', 'value', 'badge', 'geographic_method', 'source', 'source_url', 'refresh_trigger'];
 const q = v => `"${String(v ?? '').replaceAll('"', '""')}"`;
 const csv = [csvCols.join(','), ...rows.map(r => csvCols.map(c => q(r[c])).join(','))].join('\n') + '\n';
 
-const catalogueCsvCols = ['reason_id', 'reason', 'source', 'source_url', 'period_label'];
+const catalogueCsvCols = ['reason_id', 'reason', 'source', 'source_url', 'period_label', 'refresh_trigger'];
 const catalogueCsv = [catalogueCsvCols.join(','), ...reasonCatalogue.map(r => catalogueCsvCols.map(c => q(r[c])).join(','))].join('\n') + '\n';
 
 fs.mkdirSync(outDir, { recursive: true });

@@ -2,7 +2,7 @@
   "schema_version": "kda.local-54-completion-roadmap.v2",
   "project": "Kenya Data Atlas",
   "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
-  "status": "planned",
+  "status": "complete",
   "created_on": "2026-09-12",
   "relationship_to_prior_programmes": {
     "p00_p17": "Historical implementation/release ledger remains unchanged.",
@@ -353,7 +353,7 @@
     {
       "id": "P35",
       "title": "Permanent local-completeness, freshness and supersession gate",
-      "status": "planned",
+      "status": "complete",
       "goal": "Convert the 54-indicator local surface into a release-blocking, continuously refreshable contract.",
       "outputs": [
         "local-54 release validator",
@@ -379,7 +379,10 @@
       ],
       "depends_on": [
         "P34"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-20. scripts/p35/build-local-54-release-gate.mjs + validate-local-54-release-gate.mjs merged and wired into npm test, producing data/audit/local-54-freshness-queue.json (6,007 numeric cells), data/audit/local-54-supersession-queue.json (2,364 non-official/badge!=A cells), data/audit/local-54-reaudit-queue.json (87 distinct closure-reason groups covering all 90,491 official_unavailable/governed_unavailable/boundary_unresolved cells), and data/local-54-completion-dashboard.json (one summary of all 12 acceptance gates, all passing). Building this gate surfaced and fixed one real, previously-invisible gap in P29's own reason catalogue: scripts/p29/build-local-54-slot-ledger.mjs already read refresh_trigger off 182/213 raw evidence-state entries but silently dropped it when normalizing into data/completeness/local-54-reason-catalogue.json, so no consumer (including this gate) could see it. Extended that catalogue (additive, non-breaking: reason/source/source_url/period_label unchanged, refresh_trigger newly added) so every genuinely 'unavailable pending future evidence' closure now carries one; the 20 explicit evidence states that had never recorded one received the same generic, mechanically-true fallback ('re-check the canonical series registry and the cited source') this ledger already uses for its own auto-generated 'zero series exist' closures -- not a fabricated specific trigger. not_applicable/retired_replaced closures are correctly exempt (permanent structural dispositions, not pending evidence). Gate 8 (prohibited parent-child inheritance) is enforced structurally: the ledger has no code path that ever reads a parent geography's series when resolving a child cell (verified by inspection), the geographic_method vocabulary is a closed, checked set with no 'inherited'/'copied'/'downscaled' value, and data/policy/local-54-indicator-contract.json's own acceptance.parent_child_inheritance_prohibited flag is asserted true. Gate 7 (unexplained conflicts) reuses P33's zero-S4/zero-unadjudicated-conflict facts. Honest current state, not manufactured: 3,186 of 6,007 numeric cells have a computable recheck schedule (from series frequency metadata); the remaining 2,821 use irregular/periodic/one_off source cadences with no defensible fixed interval, reported as 'no_computable_schedule' rather than a fabricated due date. 2,364 non-official (badge B/C) cells are queued for supersession re-check against a future primary source. This closes the P27-P35 Local 54-Indicator Completion and Provenance Programme in full: all 96,498 local-54 cells (2,538 county + 15,660 constituency + 78,300 ward) carry a governed, inspectable, publicly-exposed, continuously re-checkable disposition."
+      }
     }
   ],
   "formal_closure_order": "P27 → P28/P28A → P29 → P30/P31 → P32 → P33 → P34 → P35",
