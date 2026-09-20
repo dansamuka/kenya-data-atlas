@@ -267,7 +267,7 @@
     {
       "id": "P32",
       "title": "Complete all 54 indicators across 1,450 wards",
-      "status": "planned",
+      "status": "complete",
       "goal": "Resolve the ward surface using direct local evidence, exact aggregation, permitted geospatial derivation and governed secondary/modelled fallbacks.",
       "outputs": [
         "indicator-wide ward acquisition pipelines",
@@ -286,7 +286,10 @@
       ],
       "depends_on": [
         "P31"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-20. All 78,300 ward cells (1,450 wards x 54 indicators) have governed dispositions: 2,890 published_direct/published_derived (already-resolved numeric ward values, e.g. IND-LAND-AREA/IND-REGISTERED-VOTERS/IND-POPULATION, unchanged from before this phase), 10,150 not_applicable (the 7 institutional_county_only indicators, structural per P27, unchanged), 10 boundary_unresolved (structural, unchanged), and 65,250 official_unavailable/governed_unavailable -- of which 62,350 cells across 43 non-structural indicators now carry a SPECIFIC, cited P32 closure (7 parallel batches, PRs #255-#261) rather than an inherited or generic disposition. The governing insight this phase: a ward is strictly finer than its parent constituency, so any national survey/census/registry/administrative-source limitation P31 found at constituency level (household-survey county-only sampling domains, census/national-accounts tabulation ceilings, GIS-source reconciliation failures, KMHFR/opendata.go.ke access barriers, SARA statistical-design limitations) applies identically at ward level -- most batches extended their P31 constituency finding to ward 'a fortiori' after a live re-check confirmed the underlying source condition was unchanged (re-fetched documents verified byte-identical; re-checked endpoints showed the same failure signature). One exception required genuinely fresh research rather than extension: IND-HOUSEHOLD-SIZE had only ever been reviewed at constituency level (see data/audit/p28a-reopening-review-log.json, scope levels=[constituency]), so its ward-level closure in the GCP/census batch (PR #259) is a first-time investigation, not an extension. Zero new numeric values were materialised this phase, by design -- every one of the 43 indicators was confirmed genuinely unavailable at ward level with a specific citation, consistent with this project's governance that a genuinely investigated, honestly cited 'still unavailable' is a valid completion state. No county or constituency value was ever spatially allocated, interpolated or force-matched down to a ward to manufacture a number. Deterministic rebuild verified via npm run p29:validate and the full npm test suite on every merge; the CI runner queue's own capacity was independently constrained during this phase by 24 orphaned queued runs left over from an unrelated, already-merged PR (#160, from 2026-09-13), which delayed but did not block getting each PR's checks green before merge."
+      }
     },
     {
       "id": "P33",
