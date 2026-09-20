@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P27–P35 Local 54-Indicator Completion Plan
 
-Status: **planned successor programme**
+Status: **complete — P27–P35 closed 20 September 2026**
 
 Machine-readable phase authority: [`data/local-54-completion-roadmap.json`](../data/local-54-completion-roadmap.json)  
 Machine-readable execution overlay: [`data/local-54-completion-execution.json`](../data/local-54-completion-execution.json)  
@@ -227,3 +227,7 @@ P30 may run in parallel with early P31 work once P28/P29 are stable. Candidate c
 Each tranche must record target indicator/geographies, primary-source attempts, source-tier distribution, evidence lineage, conflicts introduced/resolved, numeric vs closure counts, legacy observations relabelled/promoted where applicable, validation results, known limitations and refresh triggers.
 
 The programme objective is not merely to maximise numbers. It is to make the Atlas able to state, truthfully, that **every one of Kenya's 290 constituencies and 1,450 wards has been assessed against the same 54-indicator framework, every missing value is explained, every secondary value is labelled, every material conflict is disclosed, and legacy gaps are repeatedly challenged rather than permanently grandfathered.**
+
+## Post-P35 handoff
+
+P27–P35 is closed and remains the authority for the 96,498-cell Local-54 surface. The separate [`P36–P41 Post-P35 Closure Plan`](POST-P35-CLOSURE-PLAN.md) addresses the assurance, status observability, repository hygiene and numeric-yield work identified by the final review without rewriting this programme's completion history.

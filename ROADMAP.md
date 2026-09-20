@@ -1,9 +1,11 @@
 # Kenya Data Atlas — Completion Roadmap
 
-Two machine-readable authorities now work together without changing the historical release ledger:
+Four machine-readable phase authorities now work together without rewriting earlier completion ledgers:
 
 - [`data/project-roadmap.json`](data/project-roadmap.json) remains the P00–P17 implementation/release authority.
 - [`data/data-completion-roadmap.json`](data/data-completion-roadmap.json) remains the P18–P26 phase, scope and acceptance authority.
+- [`data/local-54-completion-roadmap.json`](data/local-54-completion-roadmap.json) remains the P27–P35 Local-54 phase, scope and acceptance authority.
+- [`data/post-p35-closure-roadmap.json`](data/post-p35-closure-roadmap.json) defines the active P36–P41 repository-assurance and numeric-yield successor programme.
 - [`data/data-completion-execution.json`](data/data-completion-execution.json) governs execution scheduling only; it may parallelise work but cannot change phase semantics or final acceptance gates.
 - [`docs/LOCAL-INDICATOR-CASCADE-CONTRACT.md`](docs/LOCAL-INDICATOR-CASCADE-CONTRACT.md) is the mandatory local-intelligence convergence contract.
 
@@ -180,3 +182,36 @@ Release-block on: 54/54 indicator contract; complete 290×54 and 1,450×54 dispo
 P30 may run alongside early P31 work once the P28/P29 contracts are stable. Candidate evidence and conflict logging should happen continuously during P31/P32, but P33 remains the formal conflict-clearance gate. No scheduling optimisation can waive the roadmap acceptance criteria.
 
 The successor product objective is explicit: **every constituency and ward is assessed against the same 54-indicator framework; every missing value is explained; every secondary value is labelled; every material conflict is disclosed; and legacy gaps are repeatedly challenged rather than permanently grandfathered.**
+
+## P36–P41 — repository assurance and numeric-yield programme
+
+P00–P35 remain historically complete at **36/36**. P36–P41 is a separate active successor programme, with **P36 next**; it does not reopen those phases or convert governance completion into a claim of full numeric coverage.
+
+Baseline at P35 closure:
+
+- **96,498** governed Local-54 cells;
+- **6,007 numeric evidence cells (6.22%)**;
+- **90,491 governed closures (93.78%)**;
+- **0 unclassified cells**.
+
+The successor phases are deliberately bounded:
+
+| Phase | Closure surface |
+|---|---|
+| **P36** | Dedicated P32 assurance validator and accurate P31–P35 implementation-evidence reporting. |
+| **P37** | Final-state status refresh and truthful separation of fresh queues from 24 historical phantom records. |
+| **P38** | Evidence-preserving branch/workflow inventory and cleanup authorisation. |
+| **P39** | Recoverable stale-reference cleanup and CI consolidation without weakening permanent gates. |
+| **P40** | Ranked portfolio for converting governed closures into real numeric evidence. |
+| **P41** | First bounded data-yield tranche; cannot close without a measured increase above 6,007 numeric cells. |
+
+Formal closure order:
+
+`P36 → P37 → P38 → P39 → P40 → P41`
+
+Authorities:
+
+- [`data/post-p35-closure-roadmap.json`](data/post-p35-closure-roadmap.json) — machine-readable phase, dependency and acceptance authority;
+- [`docs/POST-P35-CLOSURE-PLAN.md`](docs/POST-P35-CLOSURE-PLAN.md) — detailed human/session handoff.
+
+The governing principle is: **make repository health truthful first, clean history without losing evidence second, then increase real numeric coverage without weakening provenance or geography rules.**

@@ -155,7 +155,11 @@ The MIT license does **not** relicense third-party source data. Source-specific 
 
 - [`ROADMAP.md`](ROADMAP.md) — concise completion/release status
 - [`data/project-roadmap.json`](data/project-roadmap.json) — machine-readable P00–P17 completion ledger
+- [`data/data-completion-roadmap.json`](data/data-completion-roadmap.json) — machine-readable P18–P26 governed-completion ledger
+- [`data/local-54-completion-roadmap.json`](data/local-54-completion-roadmap.json) — machine-readable P27–P35 Local-54 completion ledger
+- [`data/post-p35-closure-roadmap.json`](data/post-p35-closure-roadmap.json) — active P36–P41 assurance and numeric-yield ledger
 - [`docs/REPO-COMPLETION-PLAN.md`](docs/REPO-COMPLETION-PLAN.md) — phase acceptance criteria
+- [`docs/POST-P35-CLOSURE-PLAN.md`](docs/POST-P35-CLOSURE-PLAN.md) — detailed post-P35 recommendation-to-phase handoff
 - [`docs/USER-FACING-RESULTS.md`](docs/USER-FACING-RESULTS.md) — public analytical-output boundary
 - [`docs/governance/`](docs/governance/) — statistical publication and governance controls
 - [`docs/methodology/`](docs/methodology/) — published methodologies
