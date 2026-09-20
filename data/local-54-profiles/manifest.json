@@ -1,0 +1,8941 @@
+{
+  "schema_version": "kda.p34.local-54-profile-subset-manifest.v1",
+  "file_count": 1787,
+  "geographies": [
+    {
+      "geo_code": "KEN-C001",
+      "level": "county",
+      "name": "Mombasa"
+    },
+    {
+      "geo_code": "KEN-C001-CON001",
+      "level": "constituency",
+      "name": "Changamwe"
+    },
+    {
+      "geo_code": "KEN-C001-CON001-W0001",
+      "level": "ward",
+      "name": "Port Reitz"
+    },
+    {
+      "geo_code": "KEN-C001-CON001-W0002",
+      "level": "ward",
+      "name": "Kipevu"
+    },
+    {
+      "geo_code": "KEN-C001-CON001-W0003",
+      "level": "ward",
+      "name": "Airport"
+    },
+    {
+      "geo_code": "KEN-C001-CON001-W0004",
+      "level": "ward",
+      "name": "Changamwe"
+    },
+    {
+      "geo_code": "KEN-C001-CON001-W0005",
+      "level": "ward",
+      "name": "Chaani"
+    },
+    {
+      "geo_code": "KEN-C001-CON002",
+      "level": "constituency",
+      "name": "Jomvu"
+    },
+    {
+      "geo_code": "KEN-C001-CON002-W0006",
+      "level": "ward",
+      "name": "Jomvu Kuu"
+    },
+    {
+      "geo_code": "KEN-C001-CON002-W0007",
+      "level": "ward",
+      "name": "Miritini"
+    },
+    {
+      "geo_code": "KEN-C001-CON002-W0008",
+      "level": "ward",
+      "name": "Mikindani"
+    },
+    {
+      "geo_code": "KEN-C001-CON003",
+      "level": "constituency",
+      "name": "Kisauni"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0009",
+      "level": "ward",
+      "name": "Mjambere"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0010",
+      "level": "ward",
+      "name": "Junda"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0011",
+      "level": "ward",
+      "name": "Bamburi"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0012",
+      "level": "ward",
+      "name": "Mwakirunge"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0013",
+      "level": "ward",
+      "name": "Mtopanga"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0014",
+      "level": "ward",
+      "name": "Magogoni"
+    },
+    {
+      "geo_code": "KEN-C001-CON003-W0015",
+      "level": "ward",
+      "name": "Shanzu"
+    },
+    {
+      "geo_code": "KEN-C001-CON004",
+      "level": "constituency",
+      "name": "Nyali"
+    },
+    {
+      "geo_code": "KEN-C001-CON004-W0016",
+      "level": "ward",
+      "name": "Frere Town"
+    },
+    {
+      "geo_code": "KEN-C001-CON004-W0017",
+      "level": "ward",
+      "name": "Ziwa La Ng'ombe"
+    },
+    {
+      "geo_code": "KEN-C001-CON004-W0018",
+      "level": "ward",
+      "name": "Mkomani"
+    },
+    {
+      "geo_code": "KEN-C001-CON004-W0019",
+      "level": "ward",
+      "name": "Kongowea"
+    },
+    {
+      "geo_code": "KEN-C001-CON004-W0020",
+      "level": "ward",
+      "name": "Kadzandani"
+    },
+    {
+      "geo_code": "KEN-C001-CON005",
+      "level": "constituency",
+      "name": "Likoni"
+    },
+    {
+      "geo_code": "KEN-C001-CON005-W0021",
+      "level": "ward",
+      "name": "Mtongwe"
+    },
+    {
+      "geo_code": "KEN-C001-CON005-W0022",
+      "level": "ward",
+      "name": "Shika Adabu"
+    },
+    {
+      "geo_code": "KEN-C001-CON005-W0023",
+      "level": "ward",
+      "name": "Bofu"
+    },
+    {
+      "geo_code": "KEN-C001-CON005-W0024",
+      "level": "ward",
+      "name": "Likoni"
+    },
+    {
+      "geo_code": "KEN-C001-CON005-W0025",
+      "level": "ward",
+      "name": "Timbwani"
+    },
+    {
+      "geo_code": "KEN-C001-CON006",
+      "level": "constituency",
+      "name": "Mvita"
+    },
+    {
+      "geo_code": "KEN-C001-CON006-W0026",
+      "level": "ward",
+      "name": "Mji Wa Kale/Makadara"
+    },
+    {
+      "geo_code": "KEN-C001-CON006-W0027",
+      "level": "ward",
+      "name": "Tudor"
+    },
+    {
+      "geo_code": "KEN-C001-CON006-W0028",
+      "level": "ward",
+      "name": "Tononoka"
+    },
+    {
+      "geo_code": "KEN-C001-CON006-W0029",
+      "level": "ward",
+      "name": "Shimanzi/Ganjoni"
+    },
+    {
+      "geo_code": "KEN-C001-CON006-W0030",
+      "level": "ward",
+      "name": "Majengo"
+    },
+    {
+      "geo_code": "KEN-C002",
+      "level": "county",
+      "name": "Kwale"
+    },
+    {
+      "geo_code": "KEN-C002-CON007",
+      "level": "constituency",
+      "name": "Msambweni"
+    },
+    {
+      "geo_code": "KEN-C002-CON007-W0031",
+      "level": "ward",
+      "name": "Gombatobongwe"
+    },
+    {
+      "geo_code": "KEN-C002-CON007-W0032",
+      "level": "ward",
+      "name": "Ukunda"
+    },
+    {
+      "geo_code": "KEN-C002-CON007-W0033",
+      "level": "ward",
+      "name": "Kinondo"
+    },
+    {
+      "geo_code": "KEN-C002-CON007-W0034",
+      "level": "ward",
+      "name": "Ramisi"
+    },
+    {
+      "geo_code": "KEN-C002-CON008",
+      "level": "constituency",
+      "name": "Lungalunga"
+    },
+    {
+      "geo_code": "KEN-C002-CON008-W0035",
+      "level": "ward",
+      "name": "Pongwekikoneni"
+    },
+    {
+      "geo_code": "KEN-C002-CON008-W0036",
+      "level": "ward",
+      "name": "Dzombo"
+    },
+    {
+      "geo_code": "KEN-C002-CON008-W0037",
+      "level": "ward",
+      "name": "Mwereni"
+    },
+    {
+      "geo_code": "KEN-C002-CON008-W0038",
+      "level": "ward",
+      "name": "Vanga"
+    },
+    {
+      "geo_code": "KEN-C002-CON009",
+      "level": "constituency",
+      "name": "Matuga"
+    },
+    {
+      "geo_code": "KEN-C002-CON009-W0039",
+      "level": "ward",
+      "name": "Tsimba Golini"
+    },
+    {
+      "geo_code": "KEN-C002-CON009-W0040",
+      "level": "ward",
+      "name": "Waa"
+    },
+    {
+      "geo_code": "KEN-C002-CON009-W0041",
+      "level": "ward",
+      "name": "Tiwi"
+    },
+    {
+      "geo_code": "KEN-C002-CON009-W0042",
+      "level": "ward",
+      "name": "Kubo South"
+    },
+    {
+      "geo_code": "KEN-C002-CON009-W0043",
+      "level": "ward",
+      "name": "Mkongani"
+    },
+    {
+      "geo_code": "KEN-C002-CON010",
+      "level": "constituency",
+      "name": "Kinango"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0044",
+      "level": "ward",
+      "name": "Nadavaya"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0045",
+      "level": "ward",
+      "name": "Puma"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0046",
+      "level": "ward",
+      "name": "Kinango"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0047",
+      "level": "ward",
+      "name": "Mackinnon-Road"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0048",
+      "level": "ward",
+      "name": "Chengoni/Samburu"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0049",
+      "level": "ward",
+      "name": "Mwavumbo"
+    },
+    {
+      "geo_code": "KEN-C002-CON010-W0050",
+      "level": "ward",
+      "name": "Kasemeni"
+    },
+    {
+      "geo_code": "KEN-C003",
+      "level": "county",
+      "name": "Kilifi"
+    },
+    {
+      "geo_code": "KEN-C003-CON011",
+      "level": "constituency",
+      "name": "Kilifi North"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0051",
+      "level": "ward",
+      "name": "Tezo"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0052",
+      "level": "ward",
+      "name": "Sokoni"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0053",
+      "level": "ward",
+      "name": "Kibarani"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0054",
+      "level": "ward",
+      "name": "Dabaso"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0055",
+      "level": "ward",
+      "name": "Matsangoni"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0056",
+      "level": "ward",
+      "name": "Watamu"
+    },
+    {
+      "geo_code": "KEN-C003-CON011-W0057",
+      "level": "ward",
+      "name": "Mnarani"
+    },
+    {
+      "geo_code": "KEN-C003-CON012",
+      "level": "constituency",
+      "name": "Kilifi South"
+    },
+    {
+      "geo_code": "KEN-C003-CON012-W0058",
+      "level": "ward",
+      "name": "Junju"
+    },
+    {
+      "geo_code": "KEN-C003-CON012-W0059",
+      "level": "ward",
+      "name": "Mwarakaya"
+    },
+    {
+      "geo_code": "KEN-C003-CON012-W0060",
+      "level": "ward",
+      "name": "Shimo La Tewa"
+    },
+    {
+      "geo_code": "KEN-C003-CON012-W0061",
+      "level": "ward",
+      "name": "Chasimba"
+    },
+    {
+      "geo_code": "KEN-C003-CON012-W0062",
+      "level": "ward",
+      "name": "Mtepeni"
+    },
+    {
+      "geo_code": "KEN-C003-CON013",
+      "level": "constituency",
+      "name": "Kaloleni"
+    },
+    {
+      "geo_code": "KEN-C003-CON013-W0063",
+      "level": "ward",
+      "name": "Mariakani"
+    },
+    {
+      "geo_code": "KEN-C003-CON013-W0064",
+      "level": "ward",
+      "name": "Kayafungo"
+    },
+    {
+      "geo_code": "KEN-C003-CON013-W0065",
+      "level": "ward",
+      "name": "Kaloleni"
+    },
+    {
+      "geo_code": "KEN-C003-CON013-W0066",
+      "level": "ward",
+      "name": "Mwanamwinga"
+    },
+    {
+      "geo_code": "KEN-C003-CON014",
+      "level": "constituency",
+      "name": "Rabai"
+    },
+    {
+      "geo_code": "KEN-C003-CON014-W0067",
+      "level": "ward",
+      "name": "Mwawesa"
+    },
+    {
+      "geo_code": "KEN-C003-CON014-W0068",
+      "level": "ward",
+      "name": "Ruruma"
+    },
+    {
+      "geo_code": "KEN-C003-CON014-W0069",
+      "level": "ward",
+      "name": "Kambe/Ribe"
+    },
+    {
+      "geo_code": "KEN-C003-CON014-W0070",
+      "level": "ward",
+      "name": "Rabai/Kisurutini"
+    },
+    {
+      "geo_code": "KEN-C003-CON015",
+      "level": "constituency",
+      "name": "Ganze"
+    },
+    {
+      "geo_code": "KEN-C003-CON015-W0071",
+      "level": "ward",
+      "name": "Ganze"
+    },
+    {
+      "geo_code": "KEN-C003-CON015-W0072",
+      "level": "ward",
+      "name": "Bamba"
+    },
+    {
+      "geo_code": "KEN-C003-CON015-W0073",
+      "level": "ward",
+      "name": "Jaribuni"
+    },
+    {
+      "geo_code": "KEN-C003-CON015-W0074",
+      "level": "ward",
+      "name": "Sokoke"
+    },
+    {
+      "geo_code": "KEN-C003-CON016",
+      "level": "constituency",
+      "name": "Malindi"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0075",
+      "level": "ward",
+      "name": "Jilore"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0076",
+      "level": "ward",
+      "name": "Kakuyuni"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0077",
+      "level": "ward",
+      "name": "Ganda"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0078",
+      "level": "ward",
+      "name": "Malindi Town"
+    },
+    {
+      "geo_code": "KEN-C003-CON016-W0079",
+      "level": "ward",
+      "name": "Shella"
+    },
+    {
+      "geo_code": "KEN-C003-CON017",
+      "level": "constituency",
+      "name": "Magarini"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0080",
+      "level": "ward",
+      "name": "Marafa"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0081",
+      "level": "ward",
+      "name": "Magarini"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0082",
+      "level": "ward",
+      "name": "Gongoni"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0083",
+      "level": "ward",
+      "name": "Adu"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0084",
+      "level": "ward",
+      "name": "Garashi"
+    },
+    {
+      "geo_code": "KEN-C003-CON017-W0085",
+      "level": "ward",
+      "name": "Sabaki"
+    },
+    {
+      "geo_code": "KEN-C004",
+      "level": "county",
+      "name": "Tana River"
+    },
+    {
+      "geo_code": "KEN-C004-CON018",
+      "level": "constituency",
+      "name": "Garsen"
+    },
+    {
+      "geo_code": "KEN-C004-CON018-W0086",
+      "level": "ward",
+      "name": "Kipini East"
+    },
+    {
+      "geo_code": "KEN-C004-CON018-W0087",
+      "level": "ward",
+      "name": "Garsen South"
+    },
+    {
+      "geo_code": "KEN-C004-CON018-W0088",
+      "level": "ward",
+      "name": "Kipini West"
+    },
+    {
+      "geo_code": "KEN-C004-CON018-W0089",
+      "level": "ward",
+      "name": "Garsen Central"
+    },
+    {
+      "geo_code": "KEN-C004-CON018-W0090",
+      "level": "ward",
+      "name": "Garsen West"
+    },
+    {
+      "geo_code": "KEN-C004-CON018-W0091",
+      "level": "ward",
+      "name": "Garsen North"
+    },
+    {
+      "geo_code": "KEN-C004-CON019",
+      "level": "constituency",
+      "name": "Galole"
+    },
+    {
+      "geo_code": "KEN-C004-CON019-W0092",
+      "level": "ward",
+      "name": "Kinakomba"
+    },
+    {
+      "geo_code": "KEN-C004-CON019-W0093",
+      "level": "ward",
+      "name": "Mikinduni"
+    },
+    {
+      "geo_code": "KEN-C004-CON019-W0094",
+      "level": "ward",
+      "name": "Chewani"
+    },
+    {
+      "geo_code": "KEN-C004-CON019-W0095",
+      "level": "ward",
+      "name": "Wayu"
+    },
+    {
+      "geo_code": "KEN-C004-CON020",
+      "level": "constituency",
+      "name": "Bura"
+    },
+    {
+      "geo_code": "KEN-C004-CON020-W0096",
+      "level": "ward",
+      "name": "Chewele"
+    },
+    {
+      "geo_code": "KEN-C004-CON020-W0097",
+      "level": "ward",
+      "name": "Bura"
+    },
+    {
+      "geo_code": "KEN-C004-CON020-W0098",
+      "level": "ward",
+      "name": "Bangale"
+    },
+    {
+      "geo_code": "KEN-C004-CON020-W0099",
+      "level": "ward",
+      "name": "Sala"
+    },
+    {
+      "geo_code": "KEN-C004-CON020-W0100",
+      "level": "ward",
+      "name": "Madogo"
+    },
+    {
+      "geo_code": "KEN-C005",
+      "level": "county",
+      "name": "Lamu"
+    },
+    {
+      "geo_code": "KEN-C005-CON021",
+      "level": "constituency",
+      "name": "Lamu East"
+    },
+    {
+      "geo_code": "KEN-C005-CON021-W0101",
+      "level": "ward",
+      "name": "Faza"
+    },
+    {
+      "geo_code": "KEN-C005-CON021-W0102",
+      "level": "ward",
+      "name": "Kiunga"
+    },
+    {
+      "geo_code": "KEN-C005-CON021-W0103",
+      "level": "ward",
+      "name": "Basuba"
+    },
+    {
+      "geo_code": "KEN-C005-CON022",
+      "level": "constituency",
+      "name": "Lamu West"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0104",
+      "level": "ward",
+      "name": "Shella"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0105",
+      "level": "ward",
+      "name": "Mkomani"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0106",
+      "level": "ward",
+      "name": "Hindi"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0107",
+      "level": "ward",
+      "name": "Mkunumbi"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0108",
+      "level": "ward",
+      "name": "Hongwe"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0109",
+      "level": "ward",
+      "name": "Witu"
+    },
+    {
+      "geo_code": "KEN-C005-CON022-W0110",
+      "level": "ward",
+      "name": "Bahari"
+    },
+    {
+      "geo_code": "KEN-C006",
+      "level": "county",
+      "name": "Taita Taveta"
+    },
+    {
+      "geo_code": "KEN-C006-CON023",
+      "level": "constituency",
+      "name": "Taveta"
+    },
+    {
+      "geo_code": "KEN-C006-CON023-W0111",
+      "level": "ward",
+      "name": "Chala"
+    },
+    {
+      "geo_code": "KEN-C006-CON023-W0112",
+      "level": "ward",
+      "name": "Mahoo"
+    },
+    {
+      "geo_code": "KEN-C006-CON023-W0113",
+      "level": "ward",
+      "name": "Bomeni"
+    },
+    {
+      "geo_code": "KEN-C006-CON023-W0114",
+      "level": "ward",
+      "name": "Mboghoni"
+    },
+    {
+      "geo_code": "KEN-C006-CON023-W0115",
+      "level": "ward",
+      "name": "Mata"
+    },
+    {
+      "geo_code": "KEN-C006-CON024",
+      "level": "constituency",
+      "name": "Wundanyi"
+    },
+    {
+      "geo_code": "KEN-C006-CON024-W0116",
+      "level": "ward",
+      "name": "Wundanyi/Mbale"
+    },
+    {
+      "geo_code": "KEN-C006-CON024-W0117",
+      "level": "ward",
+      "name": "Werugha"
+    },
+    {
+      "geo_code": "KEN-C006-CON024-W0118",
+      "level": "ward",
+      "name": "Wumingu/Kishushe"
+    },
+    {
+      "geo_code": "KEN-C006-CON024-W0119",
+      "level": "ward",
+      "name": "Mwanda/Mgange"
+    },
+    {
+      "geo_code": "KEN-C006-CON025",
+      "level": "constituency",
+      "name": "Mwatate"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0120",
+      "level": "ward",
+      "name": "Rong'e"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0121",
+      "level": "ward",
+      "name": "Mwatate"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0122",
+      "level": "ward",
+      "name": "Bura"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0123",
+      "level": "ward",
+      "name": "Chawia"
+    },
+    {
+      "geo_code": "KEN-C006-CON025-W0124",
+      "level": "ward",
+      "name": "Wusi/Kishamba"
+    },
+    {
+      "geo_code": "KEN-C006-CON026",
+      "level": "constituency",
+      "name": "Voi"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0125",
+      "level": "ward",
+      "name": "Mbololo"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0126",
+      "level": "ward",
+      "name": "Sagalla"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0127",
+      "level": "ward",
+      "name": "Kaloleni"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0128",
+      "level": "ward",
+      "name": "Marungu"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0129",
+      "level": "ward",
+      "name": "Kasigau"
+    },
+    {
+      "geo_code": "KEN-C006-CON026-W0130",
+      "level": "ward",
+      "name": "Ngolia"
+    },
+    {
+      "geo_code": "KEN-C007",
+      "level": "county",
+      "name": "Garissa"
+    },
+    {
+      "geo_code": "KEN-C007-CON027",
+      "level": "constituency",
+      "name": "Garissa Township"
+    },
+    {
+      "geo_code": "KEN-C007-CON027-W0131",
+      "level": "ward",
+      "name": "Waberi"
+    },
+    {
+      "geo_code": "KEN-C007-CON027-W0132",
+      "level": "ward",
+      "name": "Galbet"
+    },
+    {
+      "geo_code": "KEN-C007-CON027-W0133",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C007-CON027-W0134",
+      "level": "ward",
+      "name": "Iftin"
+    },
+    {
+      "geo_code": "KEN-C007-CON028",
+      "level": "constituency",
+      "name": "Balambala"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0135",
+      "level": "ward",
+      "name": "Balambala"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0136",
+      "level": "ward",
+      "name": "Danyere"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0137",
+      "level": "ward",
+      "name": "Jara Jara"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0138",
+      "level": "ward",
+      "name": "Saka"
+    },
+    {
+      "geo_code": "KEN-C007-CON028-W0139",
+      "level": "ward",
+      "name": "Sankuri"
+    },
+    {
+      "geo_code": "KEN-C007-CON029",
+      "level": "constituency",
+      "name": "Lagdera"
+    },
+    {
+      "geo_code": "KEN-C007-CON029-W0140",
+      "level": "ward",
+      "name": "Modogashe"
+    },
+    {
+      "geo_code": "KEN-C007-CON029-W0141",
+      "level": "ward",
+      "name": "Benane"
+    },
+    {
+      "geo_code": "KEN-C007-CON029-W0142",
+      "level": "ward",
+      "name": "Goreale"
+    },
+    {
+      "geo_code": "KEN-C007-CON029-W0143",
+      "level": "ward",
+      "name": "Maalimin"
+    },
+    {
+      "geo_code": "KEN-C007-CON029-W0144",
+      "level": "ward",
+      "name": "Sabena"
+    },
+    {
+      "geo_code": "KEN-C007-CON029-W0145",
+      "level": "ward",
+      "name": "Baraki"
+    },
+    {
+      "geo_code": "KEN-C007-CON030",
+      "level": "constituency",
+      "name": "Dadaab"
+    },
+    {
+      "geo_code": "KEN-C007-CON030-W0146",
+      "level": "ward",
+      "name": "Dertu"
+    },
+    {
+      "geo_code": "KEN-C007-CON030-W0147",
+      "level": "ward",
+      "name": "Dadaab"
+    },
+    {
+      "geo_code": "KEN-C007-CON030-W0148",
+      "level": "ward",
+      "name": "Labasigale"
+    },
+    {
+      "geo_code": "KEN-C007-CON030-W0149",
+      "level": "ward",
+      "name": "Damajale"
+    },
+    {
+      "geo_code": "KEN-C007-CON030-W0150",
+      "level": "ward",
+      "name": "Liboi"
+    },
+    {
+      "geo_code": "KEN-C007-CON030-W0151",
+      "level": "ward",
+      "name": "Abakaile"
+    },
+    {
+      "geo_code": "KEN-C007-CON031",
+      "level": "constituency",
+      "name": "Fafi"
+    },
+    {
+      "geo_code": "KEN-C007-CON031-W0152",
+      "level": "ward",
+      "name": "Bura"
+    },
+    {
+      "geo_code": "KEN-C007-CON031-W0153",
+      "level": "ward",
+      "name": "Dekaharia"
+    },
+    {
+      "geo_code": "KEN-C007-CON031-W0154",
+      "level": "ward",
+      "name": "Jarajila"
+    },
+    {
+      "geo_code": "KEN-C007-CON031-W0155",
+      "level": "ward",
+      "name": "Fafi"
+    },
+    {
+      "geo_code": "KEN-C007-CON031-W0156",
+      "level": "ward",
+      "name": "Nanighi"
+    },
+    {
+      "geo_code": "KEN-C007-CON032",
+      "level": "constituency",
+      "name": "Ijara"
+    },
+    {
+      "geo_code": "KEN-C007-CON032-W0157",
+      "level": "ward",
+      "name": "Hulugho"
+    },
+    {
+      "geo_code": "KEN-C007-CON032-W0158",
+      "level": "ward",
+      "name": "Sangailu"
+    },
+    {
+      "geo_code": "KEN-C007-CON032-W0159",
+      "level": "ward",
+      "name": "Ijara"
+    },
+    {
+      "geo_code": "KEN-C007-CON032-W0160",
+      "level": "ward",
+      "name": "Masalani"
+    },
+    {
+      "geo_code": "KEN-C008",
+      "level": "county",
+      "name": "Wajir"
+    },
+    {
+      "geo_code": "KEN-C008-CON033",
+      "level": "constituency",
+      "name": "Wajir North"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0161",
+      "level": "ward",
+      "name": "Gurar"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0162",
+      "level": "ward",
+      "name": "Bute"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0163",
+      "level": "ward",
+      "name": "Korondile"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0164",
+      "level": "ward",
+      "name": "Malkagufu"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0165",
+      "level": "ward",
+      "name": "Batalu"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0166",
+      "level": "ward",
+      "name": "Danaba"
+    },
+    {
+      "geo_code": "KEN-C008-CON033-W0167",
+      "level": "ward",
+      "name": "Godoma"
+    },
+    {
+      "geo_code": "KEN-C008-CON034",
+      "level": "constituency",
+      "name": "Wajir East"
+    },
+    {
+      "geo_code": "KEN-C008-CON034-W0168",
+      "level": "ward",
+      "name": "Wagberi"
+    },
+    {
+      "geo_code": "KEN-C008-CON034-W0169",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C008-CON034-W0170",
+      "level": "ward",
+      "name": "Barwago"
+    },
+    {
+      "geo_code": "KEN-C008-CON034-W0171",
+      "level": "ward",
+      "name": "Khorof/Harar"
+    },
+    {
+      "geo_code": "KEN-C008-CON035",
+      "level": "constituency",
+      "name": "Tarbaj"
+    },
+    {
+      "geo_code": "KEN-C008-CON035-W0172",
+      "level": "ward",
+      "name": "Elben"
+    },
+    {
+      "geo_code": "KEN-C008-CON035-W0173",
+      "level": "ward",
+      "name": "Sarman"
+    },
+    {
+      "geo_code": "KEN-C008-CON035-W0174",
+      "level": "ward",
+      "name": "Tarbaj"
+    },
+    {
+      "geo_code": "KEN-C008-CON035-W0175",
+      "level": "ward",
+      "name": "Wargadud"
+    },
+    {
+      "geo_code": "KEN-C008-CON036",
+      "level": "constituency",
+      "name": "Wajir West"
+    },
+    {
+      "geo_code": "KEN-C008-CON036-W0176",
+      "level": "ward",
+      "name": "Arbajahan"
+    },
+    {
+      "geo_code": "KEN-C008-CON036-W0177",
+      "level": "ward",
+      "name": "Hadado/Athibohol"
+    },
+    {
+      "geo_code": "KEN-C008-CON036-W0178",
+      "level": "ward",
+      "name": "Ademasajide"
+    },
+    {
+      "geo_code": "KEN-C008-CON036-W0179",
+      "level": "ward",
+      "name": "Wagalla/Ganyure"
+    },
+    {
+      "geo_code": "KEN-C008-CON037",
+      "level": "constituency",
+      "name": "Eldas"
+    },
+    {
+      "geo_code": "KEN-C008-CON037-W0180",
+      "level": "ward",
+      "name": "Eldas"
+    },
+    {
+      "geo_code": "KEN-C008-CON037-W0181",
+      "level": "ward",
+      "name": "Della"
+    },
+    {
+      "geo_code": "KEN-C008-CON037-W0182",
+      "level": "ward",
+      "name": "Lakoley South/Basir"
+    },
+    {
+      "geo_code": "KEN-C008-CON037-W0183",
+      "level": "ward",
+      "name": "Elnur/Tula Tula"
+    },
+    {
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "name": "Wajir South"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0184",
+      "level": "ward",
+      "name": "Benane"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0185",
+      "level": "ward",
+      "name": "Burder"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0186",
+      "level": "ward",
+      "name": "Dadaja Bulla"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0187",
+      "level": "ward",
+      "name": "Habasswein"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0188",
+      "level": "ward",
+      "name": "Lagboghol South"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0189",
+      "level": "ward",
+      "name": "Ibrahim Ure"
+    },
+    {
+      "geo_code": "KEN-C008-CON038-W0190",
+      "level": "ward",
+      "name": "Diif"
+    },
+    {
+      "geo_code": "KEN-C009",
+      "level": "county",
+      "name": "Mandera"
+    },
+    {
+      "geo_code": "KEN-C009-CON039",
+      "level": "constituency",
+      "name": "Mandera West"
+    },
+    {
+      "geo_code": "KEN-C009-CON039-W0191",
+      "level": "ward",
+      "name": "Takaba South"
+    },
+    {
+      "geo_code": "KEN-C009-CON039-W0192",
+      "level": "ward",
+      "name": "Takaba"
+    },
+    {
+      "geo_code": "KEN-C009-CON039-W0193",
+      "level": "ward",
+      "name": "Lag Sure"
+    },
+    {
+      "geo_code": "KEN-C009-CON039-W0194",
+      "level": "ward",
+      "name": "Dandu"
+    },
+    {
+      "geo_code": "KEN-C009-CON039-W0195",
+      "level": "ward",
+      "name": "Gither"
+    },
+    {
+      "geo_code": "KEN-C009-CON040",
+      "level": "constituency",
+      "name": "Banissa"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0196",
+      "level": "ward",
+      "name": "Banissa"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0197",
+      "level": "ward",
+      "name": "Derkhale"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0198",
+      "level": "ward",
+      "name": "Guba"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0199",
+      "level": "ward",
+      "name": "Malkamari"
+    },
+    {
+      "geo_code": "KEN-C009-CON040-W0200",
+      "level": "ward",
+      "name": "Kiliwehiri"
+    },
+    {
+      "geo_code": "KEN-C009-CON041",
+      "level": "constituency",
+      "name": "Mandera North"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0201",
+      "level": "ward",
+      "name": "Ashabito"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0202",
+      "level": "ward",
+      "name": "Guticha"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0203",
+      "level": "ward",
+      "name": "Morothile"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0204",
+      "level": "ward",
+      "name": "Rhamu"
+    },
+    {
+      "geo_code": "KEN-C009-CON041-W0205",
+      "level": "ward",
+      "name": "Rhamu-Dimtu"
+    },
+    {
+      "geo_code": "KEN-C009-CON042",
+      "level": "constituency",
+      "name": "Mandera South"
+    },
+    {
+      "geo_code": "KEN-C009-CON042-W0206",
+      "level": "ward",
+      "name": "Wargudud"
+    },
+    {
+      "geo_code": "KEN-C009-CON042-W0207",
+      "level": "ward",
+      "name": "Kutulo"
+    },
+    {
+      "geo_code": "KEN-C009-CON042-W0208",
+      "level": "ward",
+      "name": "Elwak South"
+    },
+    {
+      "geo_code": "KEN-C009-CON042-W0209",
+      "level": "ward",
+      "name": "Elwak North"
+    },
+    {
+      "geo_code": "KEN-C009-CON042-W0210",
+      "level": "ward",
+      "name": "Shimbir Fatuma"
+    },
+    {
+      "geo_code": "KEN-C009-CON043",
+      "level": "constituency",
+      "name": "Mandera East"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0211",
+      "level": "ward",
+      "name": "Arabia"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0212",
+      "level": "ward",
+      "name": "Bulla Mpya"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0213",
+      "level": "ward",
+      "name": "Khalalio"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0214",
+      "level": "ward",
+      "name": "Neboi"
+    },
+    {
+      "geo_code": "KEN-C009-CON043-W0215",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C009-CON044",
+      "level": "constituency",
+      "name": "Lafey"
+    },
+    {
+      "geo_code": "KEN-C009-CON044-W0216",
+      "level": "ward",
+      "name": "Libehia"
+    },
+    {
+      "geo_code": "KEN-C009-CON044-W0217",
+      "level": "ward",
+      "name": "Fino"
+    },
+    {
+      "geo_code": "KEN-C009-CON044-W0218",
+      "level": "ward",
+      "name": "Lafey"
+    },
+    {
+      "geo_code": "KEN-C009-CON044-W0219",
+      "level": "ward",
+      "name": "Warankara"
+    },
+    {
+      "geo_code": "KEN-C009-CON044-W0220",
+      "level": "ward",
+      "name": "Alungo Gof"
+    },
+    {
+      "geo_code": "KEN-C010",
+      "level": "county",
+      "name": "Marsabit"
+    },
+    {
+      "geo_code": "KEN-C010-CON045",
+      "level": "constituency",
+      "name": "Moyale"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0221",
+      "level": "ward",
+      "name": "Butiye"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0222",
+      "level": "ward",
+      "name": "Sololo"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0223",
+      "level": "ward",
+      "name": "Heilu-Manyatta"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0224",
+      "level": "ward",
+      "name": "Golbo"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0225",
+      "level": "ward",
+      "name": "Moyale Township"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0226",
+      "level": "ward",
+      "name": "Uran"
+    },
+    {
+      "geo_code": "KEN-C010-CON045-W0227",
+      "level": "ward",
+      "name": "Obbu"
+    },
+    {
+      "geo_code": "KEN-C010-CON046",
+      "level": "constituency",
+      "name": "North Horr"
+    },
+    {
+      "geo_code": "KEN-C010-CON046-W0228",
+      "level": "ward",
+      "name": "Illeret"
+    },
+    {
+      "geo_code": "KEN-C010-CON046-W0229",
+      "level": "ward",
+      "name": "North Horr"
+    },
+    {
+      "geo_code": "KEN-C010-CON046-W0230",
+      "level": "ward",
+      "name": "Dukana"
+    },
+    {
+      "geo_code": "KEN-C010-CON046-W0231",
+      "level": "ward",
+      "name": "Maikona"
+    },
+    {
+      "geo_code": "KEN-C010-CON046-W0232",
+      "level": "ward",
+      "name": "Turbi"
+    },
+    {
+      "geo_code": "KEN-C010-CON047",
+      "level": "constituency",
+      "name": "Saku"
+    },
+    {
+      "geo_code": "KEN-C010-CON047-W0233",
+      "level": "ward",
+      "name": "Sagante/Jaldesa"
+    },
+    {
+      "geo_code": "KEN-C010-CON047-W0234",
+      "level": "ward",
+      "name": "Karare"
+    },
+    {
+      "geo_code": "KEN-C010-CON047-W0235",
+      "level": "ward",
+      "name": "Marsabit Central"
+    },
+    {
+      "geo_code": "KEN-C010-CON048",
+      "level": "constituency",
+      "name": "Laisamis"
+    },
+    {
+      "geo_code": "KEN-C010-CON048-W0236",
+      "level": "ward",
+      "name": "Loiyangalani"
+    },
+    {
+      "geo_code": "KEN-C010-CON048-W0237",
+      "level": "ward",
+      "name": "Kargi/South Horr"
+    },
+    {
+      "geo_code": "KEN-C010-CON048-W0238",
+      "level": "ward",
+      "name": "Korr/Ngurunit"
+    },
+    {
+      "geo_code": "KEN-C010-CON048-W0239",
+      "level": "ward",
+      "name": "Log Logo"
+    },
+    {
+      "geo_code": "KEN-C010-CON048-W0240",
+      "level": "ward",
+      "name": "Laisamis"
+    },
+    {
+      "geo_code": "KEN-C011",
+      "level": "county",
+      "name": "Isiolo"
+    },
+    {
+      "geo_code": "KEN-C011-CON049",
+      "level": "constituency",
+      "name": "Isiolo North"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0241",
+      "level": "ward",
+      "name": "Wabera"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0242",
+      "level": "ward",
+      "name": "Bulla Pesa"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0243",
+      "level": "ward",
+      "name": "Chari"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0244",
+      "level": "ward",
+      "name": "Cherab"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0245",
+      "level": "ward",
+      "name": "Ngare Mara"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0246",
+      "level": "ward",
+      "name": "Burat"
+    },
+    {
+      "geo_code": "KEN-C011-CON049-W0247",
+      "level": "ward",
+      "name": "Oldonyiro"
+    },
+    {
+      "geo_code": "KEN-C011-CON050",
+      "level": "constituency",
+      "name": "Isiolo South"
+    },
+    {
+      "geo_code": "KEN-C011-CON050-W0248",
+      "level": "ward",
+      "name": "Garbatulla"
+    },
+    {
+      "geo_code": "KEN-C011-CON050-W0249",
+      "level": "ward",
+      "name": "Kinna"
+    },
+    {
+      "geo_code": "KEN-C011-CON050-W0250",
+      "level": "ward",
+      "name": "Sericho"
+    },
+    {
+      "geo_code": "KEN-C012",
+      "level": "county",
+      "name": "Meru"
+    },
+    {
+      "geo_code": "KEN-C012-CON051",
+      "level": "constituency",
+      "name": "Igembe South"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0251",
+      "level": "ward",
+      "name": "Maua"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0252",
+      "level": "ward",
+      "name": "Kiegoi/Antubochiu"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0253",
+      "level": "ward",
+      "name": "Athiru Gaiti"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0254",
+      "level": "ward",
+      "name": "Akachiu"
+    },
+    {
+      "geo_code": "KEN-C012-CON051-W0255",
+      "level": "ward",
+      "name": "Kanuni"
+    },
+    {
+      "geo_code": "KEN-C012-CON052",
+      "level": "constituency",
+      "name": "Igembe Central"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0256",
+      "level": "ward",
+      "name": "Akirang'ondu"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0257",
+      "level": "ward",
+      "name": "Athiru Ruujine"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0258",
+      "level": "ward",
+      "name": "Igembe East"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0259",
+      "level": "ward",
+      "name": "Njia"
+    },
+    {
+      "geo_code": "KEN-C012-CON052-W0260",
+      "level": "ward",
+      "name": "Kangeta"
+    },
+    {
+      "geo_code": "KEN-C012-CON053",
+      "level": "constituency",
+      "name": "Igembe North"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0261",
+      "level": "ward",
+      "name": "Antuambui"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0262",
+      "level": "ward",
+      "name": "Ntunene"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0263",
+      "level": "ward",
+      "name": "Antubetwe Kiongo"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0264",
+      "level": "ward",
+      "name": "Naathu"
+    },
+    {
+      "geo_code": "KEN-C012-CON053-W0265",
+      "level": "ward",
+      "name": "Amwathi"
+    },
+    {
+      "geo_code": "KEN-C012-CON054",
+      "level": "constituency",
+      "name": "Tigania West"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0266",
+      "level": "ward",
+      "name": "Athwana"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0267",
+      "level": "ward",
+      "name": "Akithii"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0268",
+      "level": "ward",
+      "name": "Kianjai"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0269",
+      "level": "ward",
+      "name": "Nkomo"
+    },
+    {
+      "geo_code": "KEN-C012-CON054-W0270",
+      "level": "ward",
+      "name": "Mbeu"
+    },
+    {
+      "geo_code": "KEN-C012-CON055",
+      "level": "constituency",
+      "name": "Tigania East"
+    },
+    {
+      "geo_code": "KEN-C012-CON055-W0271",
+      "level": "ward",
+      "name": "Thangatha"
+    },
+    {
+      "geo_code": "KEN-C012-CON055-W0272",
+      "level": "ward",
+      "name": "Mikinduri"
+    },
+    {
+      "geo_code": "KEN-C012-CON055-W0273",
+      "level": "ward",
+      "name": "Kiguchwa"
+    },
+    {
+      "geo_code": "KEN-C012-CON055-W0274",
+      "level": "ward",
+      "name": "Muthara"
+    },
+    {
+      "geo_code": "KEN-C012-CON055-W0275",
+      "level": "ward",
+      "name": "Karama"
+    },
+    {
+      "geo_code": "KEN-C012-CON056",
+      "level": "constituency",
+      "name": "North Imenti"
+    },
+    {
+      "geo_code": "KEN-C012-CON056-W0276",
+      "level": "ward",
+      "name": "Municipality"
+    },
+    {
+      "geo_code": "KEN-C012-CON056-W0277",
+      "level": "ward",
+      "name": "Ntima East"
+    },
+    {
+      "geo_code": "KEN-C012-CON056-W0278",
+      "level": "ward",
+      "name": "Ntima West"
+    },
+    {
+      "geo_code": "KEN-C012-CON056-W0279",
+      "level": "ward",
+      "name": "Nyaki West"
+    },
+    {
+      "geo_code": "KEN-C012-CON056-W0280",
+      "level": "ward",
+      "name": "Nyaki East"
+    },
+    {
+      "geo_code": "KEN-C012-CON057",
+      "level": "constituency",
+      "name": "Buuri"
+    },
+    {
+      "geo_code": "KEN-C012-CON057-W0281",
+      "level": "ward",
+      "name": "Timau"
+    },
+    {
+      "geo_code": "KEN-C012-CON057-W0282",
+      "level": "ward",
+      "name": "Kisima"
+    },
+    {
+      "geo_code": "KEN-C012-CON057-W0283",
+      "level": "ward",
+      "name": "Kiirua/Naari"
+    },
+    {
+      "geo_code": "KEN-C012-CON057-W0284",
+      "level": "ward",
+      "name": "Ruiri/Rwarera"
+    },
+    {
+      "geo_code": "KEN-C012-CON057-W0285",
+      "level": "ward",
+      "name": "Kibirichia"
+    },
+    {
+      "geo_code": "KEN-C012-CON058",
+      "level": "constituency",
+      "name": "Central Imenti"
+    },
+    {
+      "geo_code": "KEN-C012-CON058-W0286",
+      "level": "ward",
+      "name": "Mwanganthia"
+    },
+    {
+      "geo_code": "KEN-C012-CON058-W0287",
+      "level": "ward",
+      "name": "Abothuguchi Central"
+    },
+    {
+      "geo_code": "KEN-C012-CON058-W0288",
+      "level": "ward",
+      "name": "Abothuguchi West"
+    },
+    {
+      "geo_code": "KEN-C012-CON058-W0289",
+      "level": "ward",
+      "name": "Kiagu"
+    },
+    {
+      "geo_code": "KEN-C012-CON059",
+      "level": "constituency",
+      "name": "South Imenti"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0290",
+      "level": "ward",
+      "name": "Mitunguu"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0291",
+      "level": "ward",
+      "name": "Igoji East"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0292",
+      "level": "ward",
+      "name": "Igoji West"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0293",
+      "level": "ward",
+      "name": "Abogeta East"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0294",
+      "level": "ward",
+      "name": "Abogeta West"
+    },
+    {
+      "geo_code": "KEN-C012-CON059-W0295",
+      "level": "ward",
+      "name": "Nkuene"
+    },
+    {
+      "geo_code": "KEN-C013",
+      "level": "county",
+      "name": "Tharaka-Nithi"
+    },
+    {
+      "geo_code": "KEN-C013-CON060",
+      "level": "constituency",
+      "name": "Maara"
+    },
+    {
+      "geo_code": "KEN-C013-CON060-W0296",
+      "level": "ward",
+      "name": "Mitheru"
+    },
+    {
+      "geo_code": "KEN-C013-CON060-W0297",
+      "level": "ward",
+      "name": "Muthambi"
+    },
+    {
+      "geo_code": "KEN-C013-CON060-W0298",
+      "level": "ward",
+      "name": "Mwimbi"
+    },
+    {
+      "geo_code": "KEN-C013-CON060-W0299",
+      "level": "ward",
+      "name": "Ganga"
+    },
+    {
+      "geo_code": "KEN-C013-CON060-W0300",
+      "level": "ward",
+      "name": "Chogoria"
+    },
+    {
+      "geo_code": "KEN-C013-CON061",
+      "level": "constituency",
+      "name": "Chuka/Igambang'om"
+    },
+    {
+      "geo_code": "KEN-C013-CON061-W0301",
+      "level": "ward",
+      "name": "Mariani"
+    },
+    {
+      "geo_code": "KEN-C013-CON061-W0302",
+      "level": "ward",
+      "name": "Karingani"
+    },
+    {
+      "geo_code": "KEN-C013-CON061-W0303",
+      "level": "ward",
+      "name": "Magumoni"
+    },
+    {
+      "geo_code": "KEN-C013-CON061-W0304",
+      "level": "ward",
+      "name": "Mugwe"
+    },
+    {
+      "geo_code": "KEN-C013-CON061-W0305",
+      "level": "ward",
+      "name": "Igambang'ombe"
+    },
+    {
+      "geo_code": "KEN-C013-CON062",
+      "level": "constituency",
+      "name": "Tharaka"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0306",
+      "level": "ward",
+      "name": "Gatunga"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0307",
+      "level": "ward",
+      "name": "Mukothima"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0308",
+      "level": "ward",
+      "name": "Nkondi"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0309",
+      "level": "ward",
+      "name": "Chiakariga"
+    },
+    {
+      "geo_code": "KEN-C013-CON062-W0310",
+      "level": "ward",
+      "name": "Marimanti"
+    },
+    {
+      "geo_code": "KEN-C014",
+      "level": "county",
+      "name": "Embu"
+    },
+    {
+      "geo_code": "KEN-C014-CON063",
+      "level": "constituency",
+      "name": "Manyatta"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0311",
+      "level": "ward",
+      "name": "Ruguru/Ngandori"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0312",
+      "level": "ward",
+      "name": "Kithimu"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0313",
+      "level": "ward",
+      "name": "Nginda"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0314",
+      "level": "ward",
+      "name": "Mbeti North"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0315",
+      "level": "ward",
+      "name": "Kirimari"
+    },
+    {
+      "geo_code": "KEN-C014-CON063-W0316",
+      "level": "ward",
+      "name": "Gaturi South"
+    },
+    {
+      "geo_code": "KEN-C014-CON064",
+      "level": "constituency",
+      "name": "Runyenjes"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0317",
+      "level": "ward",
+      "name": "Gaturi North"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0318",
+      "level": "ward",
+      "name": "Kagaari South"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0319",
+      "level": "ward",
+      "name": "Central Ward"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0320",
+      "level": "ward",
+      "name": "Kagaari North"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0321",
+      "level": "ward",
+      "name": "Kyeni North"
+    },
+    {
+      "geo_code": "KEN-C014-CON064-W0322",
+      "level": "ward",
+      "name": "Kyeni South"
+    },
+    {
+      "geo_code": "KEN-C014-CON065",
+      "level": "constituency",
+      "name": "Mbeere South"
+    },
+    {
+      "geo_code": "KEN-C014-CON065-W0323",
+      "level": "ward",
+      "name": "Mwea"
+    },
+    {
+      "geo_code": "KEN-C014-CON065-W0324",
+      "level": "ward",
+      "name": "Makima"
+    },
+    {
+      "geo_code": "KEN-C014-CON065-W0325",
+      "level": "ward",
+      "name": "Mbeti South"
+    },
+    {
+      "geo_code": "KEN-C014-CON065-W0326",
+      "level": "ward",
+      "name": "Mavuria"
+    },
+    {
+      "geo_code": "KEN-C014-CON065-W0327",
+      "level": "ward",
+      "name": "Kiambere"
+    },
+    {
+      "geo_code": "KEN-C014-CON066",
+      "level": "constituency",
+      "name": "Mbeere North"
+    },
+    {
+      "geo_code": "KEN-C014-CON066-W0328",
+      "level": "ward",
+      "name": "Nthawa"
+    },
+    {
+      "geo_code": "KEN-C014-CON066-W0329",
+      "level": "ward",
+      "name": "Muminji"
+    },
+    {
+      "geo_code": "KEN-C014-CON066-W0330",
+      "level": "ward",
+      "name": "Evurore"
+    },
+    {
+      "geo_code": "KEN-C015",
+      "level": "county",
+      "name": "Kitui"
+    },
+    {
+      "geo_code": "KEN-C015-CON067",
+      "level": "constituency",
+      "name": "Mwingi North"
+    },
+    {
+      "geo_code": "KEN-C015-CON067-W0331",
+      "level": "ward",
+      "name": "Ngomeni"
+    },
+    {
+      "geo_code": "KEN-C015-CON067-W0332",
+      "level": "ward",
+      "name": "Kyuso"
+    },
+    {
+      "geo_code": "KEN-C015-CON067-W0333",
+      "level": "ward",
+      "name": "Mumoni"
+    },
+    {
+      "geo_code": "KEN-C015-CON067-W0334",
+      "level": "ward",
+      "name": "Tseikuru"
+    },
+    {
+      "geo_code": "KEN-C015-CON067-W0335",
+      "level": "ward",
+      "name": "Tharaka"
+    },
+    {
+      "geo_code": "KEN-C015-CON068",
+      "level": "constituency",
+      "name": "Mwingi West"
+    },
+    {
+      "geo_code": "KEN-C015-CON068-W0336",
+      "level": "ward",
+      "name": "Kyome/Thaana"
+    },
+    {
+      "geo_code": "KEN-C015-CON068-W0337",
+      "level": "ward",
+      "name": "Nguutani"
+    },
+    {
+      "geo_code": "KEN-C015-CON068-W0338",
+      "level": "ward",
+      "name": "Migwani"
+    },
+    {
+      "geo_code": "KEN-C015-CON068-W0339",
+      "level": "ward",
+      "name": "Kiomo/Kyethani"
+    },
+    {
+      "geo_code": "KEN-C015-CON069",
+      "level": "constituency",
+      "name": "Mwingi Central"
+    },
+    {
+      "geo_code": "KEN-C015-CON069-W0340",
+      "level": "ward",
+      "name": "Central"
+    },
+    {
+      "geo_code": "KEN-C015-CON069-W0341",
+      "level": "ward",
+      "name": "Kivou"
+    },
+    {
+      "geo_code": "KEN-C015-CON069-W0342",
+      "level": "ward",
+      "name": "Nguni"
+    },
+    {
+      "geo_code": "KEN-C015-CON069-W0343",
+      "level": "ward",
+      "name": "Nuu"
+    },
+    {
+      "geo_code": "KEN-C015-CON069-W0344",
+      "level": "ward",
+      "name": "Mui"
+    },
+    {
+      "geo_code": "KEN-C015-CON069-W0345",
+      "level": "ward",
+      "name": "Waita"
+    },
+    {
+      "geo_code": "KEN-C015-CON070",
+      "level": "constituency",
+      "name": "Kitui West"
+    },
+    {
+      "geo_code": "KEN-C015-CON070-W0346",
+      "level": "ward",
+      "name": "Mutonguni"
+    },
+    {
+      "geo_code": "KEN-C015-CON070-W0347",
+      "level": "ward",
+      "name": "Kauwi"
+    },
+    {
+      "geo_code": "KEN-C015-CON070-W0348",
+      "level": "ward",
+      "name": "Matinyani"
+    },
+    {
+      "geo_code": "KEN-C015-CON070-W0349",
+      "level": "ward",
+      "name": "Kwa Mutonga/Kithumula"
+    },
+    {
+      "geo_code": "KEN-C015-CON071",
+      "level": "constituency",
+      "name": "Kitui Rural"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0350",
+      "level": "ward",
+      "name": "Kisasi"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0351",
+      "level": "ward",
+      "name": "Mbitini"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0352",
+      "level": "ward",
+      "name": "Kwavonza/Yatta"
+    },
+    {
+      "geo_code": "KEN-C015-CON071-W0353",
+      "level": "ward",
+      "name": "Kanyangi"
+    },
+    {
+      "geo_code": "KEN-C015-CON072",
+      "level": "constituency",
+      "name": "Kitui Central"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0354",
+      "level": "ward",
+      "name": "Miambani"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0355",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0356",
+      "level": "ward",
+      "name": "Kyangwithya West"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0357",
+      "level": "ward",
+      "name": "Mulango"
+    },
+    {
+      "geo_code": "KEN-C015-CON072-W0358",
+      "level": "ward",
+      "name": "Kyangwithya East"
+    },
+    {
+      "geo_code": "KEN-C015-CON073",
+      "level": "constituency",
+      "name": "Kitui East"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0359",
+      "level": "ward",
+      "name": "Zombe/Mwitika"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0360",
+      "level": "ward",
+      "name": "Chuluni"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0361",
+      "level": "ward",
+      "name": "Nzambani"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0362",
+      "level": "ward",
+      "name": "Voo/Kyamatu"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0363",
+      "level": "ward",
+      "name": "Endau/Malalani"
+    },
+    {
+      "geo_code": "KEN-C015-CON073-W0364",
+      "level": "ward",
+      "name": "Mutito/Kaliku"
+    },
+    {
+      "geo_code": "KEN-C015-CON074",
+      "level": "constituency",
+      "name": "Kitui South"
+    },
+    {
+      "geo_code": "KEN-C015-CON074-W0365",
+      "level": "ward",
+      "name": "Ikanga/Kyatune"
+    },
+    {
+      "geo_code": "KEN-C015-CON074-W0366",
+      "level": "ward",
+      "name": "Mutomo"
+    },
+    {
+      "geo_code": "KEN-C015-CON074-W0367",
+      "level": "ward",
+      "name": "Mutha"
+    },
+    {
+      "geo_code": "KEN-C015-CON074-W0368",
+      "level": "ward",
+      "name": "Ikutha"
+    },
+    {
+      "geo_code": "KEN-C015-CON074-W0369",
+      "level": "ward",
+      "name": "Kanziko"
+    },
+    {
+      "geo_code": "KEN-C015-CON074-W0370",
+      "level": "ward",
+      "name": "Athi"
+    },
+    {
+      "geo_code": "KEN-C016",
+      "level": "county",
+      "name": "Machakos"
+    },
+    {
+      "geo_code": "KEN-C016-CON075",
+      "level": "constituency",
+      "name": "Masinga"
+    },
+    {
+      "geo_code": "KEN-C016-CON075-W0371",
+      "level": "ward",
+      "name": "Kivaa"
+    },
+    {
+      "geo_code": "KEN-C016-CON075-W0372",
+      "level": "ward",
+      "name": "Masinga Central"
+    },
+    {
+      "geo_code": "KEN-C016-CON075-W0373",
+      "level": "ward",
+      "name": "Ekalakala"
+    },
+    {
+      "geo_code": "KEN-C016-CON075-W0374",
+      "level": "ward",
+      "name": "Muthesya"
+    },
+    {
+      "geo_code": "KEN-C016-CON075-W0375",
+      "level": "ward",
+      "name": "Ndithini"
+    },
+    {
+      "geo_code": "KEN-C016-CON076",
+      "level": "constituency",
+      "name": "Yatta"
+    },
+    {
+      "geo_code": "KEN-C016-CON076-W0376",
+      "level": "ward",
+      "name": "Ndalani"
+    },
+    {
+      "geo_code": "KEN-C016-CON076-W0377",
+      "level": "ward",
+      "name": "Matuu"
+    },
+    {
+      "geo_code": "KEN-C016-CON076-W0378",
+      "level": "ward",
+      "name": "Kithimani"
+    },
+    {
+      "geo_code": "KEN-C016-CON076-W0379",
+      "level": "ward",
+      "name": "Ikombe"
+    },
+    {
+      "geo_code": "KEN-C016-CON076-W0380",
+      "level": "ward",
+      "name": "Katangi"
+    },
+    {
+      "geo_code": "KEN-C016-CON077",
+      "level": "constituency",
+      "name": "Kangundo"
+    },
+    {
+      "geo_code": "KEN-C016-CON077-W0381",
+      "level": "ward",
+      "name": "Kangundo North"
+    },
+    {
+      "geo_code": "KEN-C016-CON077-W0382",
+      "level": "ward",
+      "name": "Kangundo Central"
+    },
+    {
+      "geo_code": "KEN-C016-CON077-W0383",
+      "level": "ward",
+      "name": "Kangundo East"
+    },
+    {
+      "geo_code": "KEN-C016-CON077-W0384",
+      "level": "ward",
+      "name": "Kangundo West"
+    },
+    {
+      "geo_code": "KEN-C016-CON078",
+      "level": "constituency",
+      "name": "Matungulu"
+    },
+    {
+      "geo_code": "KEN-C016-CON078-W0385",
+      "level": "ward",
+      "name": "Tala"
+    },
+    {
+      "geo_code": "KEN-C016-CON078-W0386",
+      "level": "ward",
+      "name": "Matungulu North"
+    },
+    {
+      "geo_code": "KEN-C016-CON078-W0387",
+      "level": "ward",
+      "name": "Matungulu East"
+    },
+    {
+      "geo_code": "KEN-C016-CON078-W0388",
+      "level": "ward",
+      "name": "Matungulu West"
+    },
+    {
+      "geo_code": "KEN-C016-CON078-W0389",
+      "level": "ward",
+      "name": "Kyeleni"
+    },
+    {
+      "geo_code": "KEN-C016-CON079",
+      "level": "constituency",
+      "name": "Kathiani"
+    },
+    {
+      "geo_code": "KEN-C016-CON079-W0390",
+      "level": "ward",
+      "name": "Mitaboni"
+    },
+    {
+      "geo_code": "KEN-C016-CON079-W0391",
+      "level": "ward",
+      "name": "Kathiani Central"
+    },
+    {
+      "geo_code": "KEN-C016-CON079-W0392",
+      "level": "ward",
+      "name": "Upper Kaewa/Iveti"
+    },
+    {
+      "geo_code": "KEN-C016-CON079-W0393",
+      "level": "ward",
+      "name": "Lower Kaewa/Kaani"
+    },
+    {
+      "geo_code": "KEN-C016-CON080",
+      "level": "constituency",
+      "name": "Mavoko"
+    },
+    {
+      "geo_code": "KEN-C016-CON080-W0394",
+      "level": "ward",
+      "name": "Athi River"
+    },
+    {
+      "geo_code": "KEN-C016-CON080-W0395",
+      "level": "ward",
+      "name": "Kinanie"
+    },
+    {
+      "geo_code": "KEN-C016-CON080-W0396",
+      "level": "ward",
+      "name": "Muthwani"
+    },
+    {
+      "geo_code": "KEN-C016-CON080-W0397",
+      "level": "ward",
+      "name": "Syokimau/Mulolongo"
+    },
+    {
+      "geo_code": "KEN-C016-CON081",
+      "level": "constituency",
+      "name": "Machakos Town"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0398",
+      "level": "ward",
+      "name": "Kalama"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0399",
+      "level": "ward",
+      "name": "Mua"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0400",
+      "level": "ward",
+      "name": "Mutituni"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0401",
+      "level": "ward",
+      "name": "Machakos Central"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0402",
+      "level": "ward",
+      "name": "Mumbuni North"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0403",
+      "level": "ward",
+      "name": "Muvuti/Kiima-Kimwe"
+    },
+    {
+      "geo_code": "KEN-C016-CON081-W0404",
+      "level": "ward",
+      "name": "Kola"
+    },
+    {
+      "geo_code": "KEN-C016-CON082",
+      "level": "constituency",
+      "name": "Mwala"
+    },
+    {
+      "geo_code": "KEN-C016-CON082-W0405",
+      "level": "ward",
+      "name": "Mbiuni"
+    },
+    {
+      "geo_code": "KEN-C016-CON082-W0406",
+      "level": "ward",
+      "name": "Makutano/ Mwala"
+    },
+    {
+      "geo_code": "KEN-C016-CON082-W0407",
+      "level": "ward",
+      "name": "Masii"
+    },
+    {
+      "geo_code": "KEN-C016-CON082-W0408",
+      "level": "ward",
+      "name": "Muthetheni"
+    },
+    {
+      "geo_code": "KEN-C016-CON082-W0409",
+      "level": "ward",
+      "name": "Wamunyu"
+    },
+    {
+      "geo_code": "KEN-C016-CON082-W0410",
+      "level": "ward",
+      "name": "Kibauni"
+    },
+    {
+      "geo_code": "KEN-C017",
+      "level": "county",
+      "name": "Makueni"
+    },
+    {
+      "geo_code": "KEN-C017-CON083",
+      "level": "constituency",
+      "name": "Mbooni"
+    },
+    {
+      "geo_code": "KEN-C017-CON083-W0411",
+      "level": "ward",
+      "name": "Tulimani"
+    },
+    {
+      "geo_code": "KEN-C017-CON083-W0412",
+      "level": "ward",
+      "name": "Mbooni"
+    },
+    {
+      "geo_code": "KEN-C017-CON083-W0413",
+      "level": "ward",
+      "name": "Kithungo/Kitundu"
+    },
+    {
+      "geo_code": "KEN-C017-CON083-W0414",
+      "level": "ward",
+      "name": "Kisau/Kiteta"
+    },
+    {
+      "geo_code": "KEN-C017-CON083-W0415",
+      "level": "ward",
+      "name": "Waia/Kako"
+    },
+    {
+      "geo_code": "KEN-C017-CON083-W0416",
+      "level": "ward",
+      "name": "Kalawa"
+    },
+    {
+      "geo_code": "KEN-C017-CON084",
+      "level": "constituency",
+      "name": "Kilome"
+    },
+    {
+      "geo_code": "KEN-C017-CON084-W0417",
+      "level": "ward",
+      "name": "Kasikeu"
+    },
+    {
+      "geo_code": "KEN-C017-CON084-W0418",
+      "level": "ward",
+      "name": "Mukaa"
+    },
+    {
+      "geo_code": "KEN-C017-CON084-W0419",
+      "level": "ward",
+      "name": "Kiima Kiu/Kalanzoni"
+    },
+    {
+      "geo_code": "KEN-C017-CON085",
+      "level": "constituency",
+      "name": "Kaiti"
+    },
+    {
+      "geo_code": "KEN-C017-CON085-W0420",
+      "level": "ward",
+      "name": "Ukia"
+    },
+    {
+      "geo_code": "KEN-C017-CON085-W0421",
+      "level": "ward",
+      "name": "Kee"
+    },
+    {
+      "geo_code": "KEN-C017-CON085-W0422",
+      "level": "ward",
+      "name": "Kilungu"
+    },
+    {
+      "geo_code": "KEN-C017-CON085-W0423",
+      "level": "ward",
+      "name": "Ilima"
+    },
+    {
+      "geo_code": "KEN-C017-CON086",
+      "level": "constituency",
+      "name": "Makueni"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0424",
+      "level": "ward",
+      "name": "Wote"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0425",
+      "level": "ward",
+      "name": "Muvau/Kikuumini"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0426",
+      "level": "ward",
+      "name": "Mavindini"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0427",
+      "level": "ward",
+      "name": "Kitise/Kithuki"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0428",
+      "level": "ward",
+      "name": "Kathonzweni"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0429",
+      "level": "ward",
+      "name": "Nzaui/Kilili/Kalamba"
+    },
+    {
+      "geo_code": "KEN-C017-CON086-W0430",
+      "level": "ward",
+      "name": "Mbitini"
+    },
+    {
+      "geo_code": "KEN-C017-CON087",
+      "level": "constituency",
+      "name": "Kibwezi West"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0431",
+      "level": "ward",
+      "name": "Makindu"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0432",
+      "level": "ward",
+      "name": "Nguumo"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0433",
+      "level": "ward",
+      "name": "Kikumbulyu North"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0434",
+      "level": "ward",
+      "name": "Kikumbulyu South"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0435",
+      "level": "ward",
+      "name": "Nguu/Masumba"
+    },
+    {
+      "geo_code": "KEN-C017-CON087-W0436",
+      "level": "ward",
+      "name": "Emali/Mulala"
+    },
+    {
+      "geo_code": "KEN-C017-CON088",
+      "level": "constituency",
+      "name": "Kibwezi East"
+    },
+    {
+      "geo_code": "KEN-C017-CON088-W0437",
+      "level": "ward",
+      "name": "Masongaleni"
+    },
+    {
+      "geo_code": "KEN-C017-CON088-W0438",
+      "level": "ward",
+      "name": "Mtito Andei"
+    },
+    {
+      "geo_code": "KEN-C017-CON088-W0439",
+      "level": "ward",
+      "name": "Thange"
+    },
+    {
+      "geo_code": "KEN-C017-CON088-W0440",
+      "level": "ward",
+      "name": "Ivingoni/Nzambani"
+    },
+    {
+      "geo_code": "KEN-C018",
+      "level": "county",
+      "name": "Nyandarua"
+    },
+    {
+      "geo_code": "KEN-C018-CON089",
+      "level": "constituency",
+      "name": "Kinangop"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0441",
+      "level": "ward",
+      "name": "Engineer"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0442",
+      "level": "ward",
+      "name": "Gathara"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0443",
+      "level": "ward",
+      "name": "North Kinangop"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0444",
+      "level": "ward",
+      "name": "Murungaru"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0445",
+      "level": "ward",
+      "name": "Njabini\\kiburu"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0446",
+      "level": "ward",
+      "name": "Nyakio"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0447",
+      "level": "ward",
+      "name": "Githabai"
+    },
+    {
+      "geo_code": "KEN-C018-CON089-W0448",
+      "level": "ward",
+      "name": "Magumu"
+    },
+    {
+      "geo_code": "KEN-C018-CON090",
+      "level": "constituency",
+      "name": "Kipipiri"
+    },
+    {
+      "geo_code": "KEN-C018-CON090-W0449",
+      "level": "ward",
+      "name": "Wanjohi"
+    },
+    {
+      "geo_code": "KEN-C018-CON090-W0450",
+      "level": "ward",
+      "name": "Kipipiri"
+    },
+    {
+      "geo_code": "KEN-C018-CON090-W0451",
+      "level": "ward",
+      "name": "Geta"
+    },
+    {
+      "geo_code": "KEN-C018-CON090-W0452",
+      "level": "ward",
+      "name": "Githioro"
+    },
+    {
+      "geo_code": "KEN-C018-CON091",
+      "level": "constituency",
+      "name": "Ol Kalou"
+    },
+    {
+      "geo_code": "KEN-C018-CON091-W0453",
+      "level": "ward",
+      "name": "Karau"
+    },
+    {
+      "geo_code": "KEN-C018-CON091-W0454",
+      "level": "ward",
+      "name": "Kanjuiri Ridge"
+    },
+    {
+      "geo_code": "KEN-C018-CON091-W0455",
+      "level": "ward",
+      "name": "Mirangine"
+    },
+    {
+      "geo_code": "KEN-C018-CON091-W0456",
+      "level": "ward",
+      "name": "Kaimbaga"
+    },
+    {
+      "geo_code": "KEN-C018-CON091-W0457",
+      "level": "ward",
+      "name": "Rurii"
+    },
+    {
+      "geo_code": "KEN-C018-CON092",
+      "level": "constituency",
+      "name": "Ol Jorok"
+    },
+    {
+      "geo_code": "KEN-C018-CON092-W0458",
+      "level": "ward",
+      "name": "Gathanji"
+    },
+    {
+      "geo_code": "KEN-C018-CON092-W0459",
+      "level": "ward",
+      "name": "Gatimu"
+    },
+    {
+      "geo_code": "KEN-C018-CON092-W0460",
+      "level": "ward",
+      "name": "Weru"
+    },
+    {
+      "geo_code": "KEN-C018-CON092-W0461",
+      "level": "ward",
+      "name": "Charagita"
+    },
+    {
+      "geo_code": "KEN-C018-CON093",
+      "level": "constituency",
+      "name": "Ndaragwa"
+    },
+    {
+      "geo_code": "KEN-C018-CON093-W0462",
+      "level": "ward",
+      "name": "Leshau Pondo"
+    },
+    {
+      "geo_code": "KEN-C018-CON093-W0463",
+      "level": "ward",
+      "name": "Kiriita"
+    },
+    {
+      "geo_code": "KEN-C018-CON093-W0464",
+      "level": "ward",
+      "name": "Central"
+    },
+    {
+      "geo_code": "KEN-C018-CON093-W0465",
+      "level": "ward",
+      "name": "Shamata"
+    },
+    {
+      "geo_code": "KEN-C019",
+      "level": "county",
+      "name": "Nyeri"
+    },
+    {
+      "geo_code": "KEN-C019-CON094",
+      "level": "constituency",
+      "name": "Tetu"
+    },
+    {
+      "geo_code": "KEN-C019-CON094-W0466",
+      "level": "ward",
+      "name": "Dedan Kimanthi"
+    },
+    {
+      "geo_code": "KEN-C019-CON094-W0467",
+      "level": "ward",
+      "name": "Wamagana"
+    },
+    {
+      "geo_code": "KEN-C019-CON094-W0468",
+      "level": "ward",
+      "name": "Aguthi/Gaaki"
+    },
+    {
+      "geo_code": "KEN-C019-CON095",
+      "level": "constituency",
+      "name": "Kieni"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0469",
+      "level": "ward",
+      "name": "Mweiga"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0470",
+      "level": "ward",
+      "name": "Naromoru Kiamathaga"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0471",
+      "level": "ward",
+      "name": "Mwiyogo/Endarasha"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0472",
+      "level": "ward",
+      "name": "Mugunda"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0473",
+      "level": "ward",
+      "name": "Gatarakwa"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0474",
+      "level": "ward",
+      "name": "Thegu River"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0475",
+      "level": "ward",
+      "name": "Kabaru"
+    },
+    {
+      "geo_code": "KEN-C019-CON095-W0476",
+      "level": "ward",
+      "name": "Gakawa"
+    },
+    {
+      "geo_code": "KEN-C019-CON096",
+      "level": "constituency",
+      "name": "Mathira"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0477",
+      "level": "ward",
+      "name": "Ruguru"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0478",
+      "level": "ward",
+      "name": "Magutu"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0479",
+      "level": "ward",
+      "name": "Iriaini"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0480",
+      "level": "ward",
+      "name": "Konyu"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0481",
+      "level": "ward",
+      "name": "Kirimukuyu"
+    },
+    {
+      "geo_code": "KEN-C019-CON096-W0482",
+      "level": "ward",
+      "name": "Karatina Town"
+    },
+    {
+      "geo_code": "KEN-C019-CON097",
+      "level": "constituency",
+      "name": "Othaya"
+    },
+    {
+      "geo_code": "KEN-C019-CON097-W0483",
+      "level": "ward",
+      "name": "Mahiga"
+    },
+    {
+      "geo_code": "KEN-C019-CON097-W0484",
+      "level": "ward",
+      "name": "Iria-Ini"
+    },
+    {
+      "geo_code": "KEN-C019-CON097-W0485",
+      "level": "ward",
+      "name": "Chinga"
+    },
+    {
+      "geo_code": "KEN-C019-CON097-W0486",
+      "level": "ward",
+      "name": "Karima"
+    },
+    {
+      "geo_code": "KEN-C019-CON098",
+      "level": "constituency",
+      "name": "Mukurweini"
+    },
+    {
+      "geo_code": "KEN-C019-CON098-W0487",
+      "level": "ward",
+      "name": "Gikondi"
+    },
+    {
+      "geo_code": "KEN-C019-CON098-W0488",
+      "level": "ward",
+      "name": "Rugi"
+    },
+    {
+      "geo_code": "KEN-C019-CON098-W0489",
+      "level": "ward",
+      "name": "Mukurwe-Ini West"
+    },
+    {
+      "geo_code": "KEN-C019-CON098-W0490",
+      "level": "ward",
+      "name": "Mukurwe-Ini Central"
+    },
+    {
+      "geo_code": "KEN-C019-CON099",
+      "level": "constituency",
+      "name": "Nyeri Town"
+    },
+    {
+      "geo_code": "KEN-C019-CON099-W0491",
+      "level": "ward",
+      "name": "Kiganjo/Mathari"
+    },
+    {
+      "geo_code": "KEN-C019-CON099-W0492",
+      "level": "ward",
+      "name": "Rware"
+    },
+    {
+      "geo_code": "KEN-C019-CON099-W0493",
+      "level": "ward",
+      "name": "Gatitu/Muruguru"
+    },
+    {
+      "geo_code": "KEN-C019-CON099-W0494",
+      "level": "ward",
+      "name": "Ruring'u"
+    },
+    {
+      "geo_code": "KEN-C019-CON099-W0495",
+      "level": "ward",
+      "name": "Kamakwa/Mukaro"
+    },
+    {
+      "geo_code": "KEN-C020",
+      "level": "county",
+      "name": "Kirinyaga"
+    },
+    {
+      "geo_code": "KEN-C020-CON100",
+      "level": "constituency",
+      "name": "Mwea"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0496",
+      "level": "ward",
+      "name": "Mutithi"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0497",
+      "level": "ward",
+      "name": "Kangai"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0498",
+      "level": "ward",
+      "name": "Thiba"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0499",
+      "level": "ward",
+      "name": "Wamumu"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0500",
+      "level": "ward",
+      "name": "Nyangati"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0501",
+      "level": "ward",
+      "name": "Murinduko"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0502",
+      "level": "ward",
+      "name": "Gathigiriri"
+    },
+    {
+      "geo_code": "KEN-C020-CON100-W0503",
+      "level": "ward",
+      "name": "Tebere"
+    },
+    {
+      "geo_code": "KEN-C020-CON101",
+      "level": "constituency",
+      "name": "Gichugu"
+    },
+    {
+      "geo_code": "KEN-C020-CON101-W0504",
+      "level": "ward",
+      "name": "Kabare"
+    },
+    {
+      "geo_code": "KEN-C020-CON101-W0505",
+      "level": "ward",
+      "name": "Baragwi"
+    },
+    {
+      "geo_code": "KEN-C020-CON101-W0506",
+      "level": "ward",
+      "name": "Njukiini"
+    },
+    {
+      "geo_code": "KEN-C020-CON101-W0507",
+      "level": "ward",
+      "name": "Ngariama"
+    },
+    {
+      "geo_code": "KEN-C020-CON101-W0508",
+      "level": "ward",
+      "name": "Karumandi"
+    },
+    {
+      "geo_code": "KEN-C020-CON102",
+      "level": "constituency",
+      "name": "Ndia"
+    },
+    {
+      "geo_code": "KEN-C020-CON102-W0509",
+      "level": "ward",
+      "name": "Mukure"
+    },
+    {
+      "geo_code": "KEN-C020-CON102-W0510",
+      "level": "ward",
+      "name": "Kiine"
+    },
+    {
+      "geo_code": "KEN-C020-CON102-W0511",
+      "level": "ward",
+      "name": "Kariti"
+    },
+    {
+      "geo_code": "KEN-C020-CON103",
+      "level": "constituency",
+      "name": "Kirinyaga Central"
+    },
+    {
+      "geo_code": "KEN-C020-CON103-W0512",
+      "level": "ward",
+      "name": "Mutira"
+    },
+    {
+      "geo_code": "KEN-C020-CON103-W0513",
+      "level": "ward",
+      "name": "Kanyeki-Ini"
+    },
+    {
+      "geo_code": "KEN-C020-CON103-W0514",
+      "level": "ward",
+      "name": "Kerugoya"
+    },
+    {
+      "geo_code": "KEN-C020-CON103-W0515",
+      "level": "ward",
+      "name": "Inoi"
+    },
+    {
+      "geo_code": "KEN-C021",
+      "level": "county",
+      "name": "Murang'a"
+    },
+    {
+      "geo_code": "KEN-C021-CON104",
+      "level": "constituency",
+      "name": "Kangema"
+    },
+    {
+      "geo_code": "KEN-C021-CON104-W0516",
+      "level": "ward",
+      "name": "Kanyenyaini"
+    },
+    {
+      "geo_code": "KEN-C021-CON104-W0517",
+      "level": "ward",
+      "name": "Muguru"
+    },
+    {
+      "geo_code": "KEN-C021-CON104-W0518",
+      "level": "ward",
+      "name": "Rwathia"
+    },
+    {
+      "geo_code": "KEN-C021-CON105",
+      "level": "constituency",
+      "name": "Mathioya"
+    },
+    {
+      "geo_code": "KEN-C021-CON105-W0519",
+      "level": "ward",
+      "name": "Gitugi"
+    },
+    {
+      "geo_code": "KEN-C021-CON105-W0520",
+      "level": "ward",
+      "name": "Kiru"
+    },
+    {
+      "geo_code": "KEN-C021-CON105-W0521",
+      "level": "ward",
+      "name": "Kamacharia"
+    },
+    {
+      "geo_code": "KEN-C021-CON106",
+      "level": "constituency",
+      "name": "Kiharu"
+    },
+    {
+      "geo_code": "KEN-C021-CON106-W0522",
+      "level": "ward",
+      "name": "Wangu"
+    },
+    {
+      "geo_code": "KEN-C021-CON106-W0523",
+      "level": "ward",
+      "name": "Mugoiri"
+    },
+    {
+      "geo_code": "KEN-C021-CON106-W0524",
+      "level": "ward",
+      "name": "Mbiri"
+    },
+    {
+      "geo_code": "KEN-C021-CON106-W0525",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C021-CON106-W0526",
+      "level": "ward",
+      "name": "Murarandia"
+    },
+    {
+      "geo_code": "KEN-C021-CON106-W0527",
+      "level": "ward",
+      "name": "Gaturi"
+    },
+    {
+      "geo_code": "KEN-C021-CON107",
+      "level": "constituency",
+      "name": "Kigumo"
+    },
+    {
+      "geo_code": "KEN-C021-CON107-W0528",
+      "level": "ward",
+      "name": "Kahumbu"
+    },
+    {
+      "geo_code": "KEN-C021-CON107-W0529",
+      "level": "ward",
+      "name": "Muthithi"
+    },
+    {
+      "geo_code": "KEN-C021-CON107-W0530",
+      "level": "ward",
+      "name": "Kigumo"
+    },
+    {
+      "geo_code": "KEN-C021-CON107-W0531",
+      "level": "ward",
+      "name": "Kangari"
+    },
+    {
+      "geo_code": "KEN-C021-CON107-W0532",
+      "level": "ward",
+      "name": "Kinyona"
+    },
+    {
+      "geo_code": "KEN-C021-CON108",
+      "level": "constituency",
+      "name": "Maragwa"
+    },
+    {
+      "geo_code": "KEN-C021-CON108-W0533",
+      "level": "ward",
+      "name": "Kimorori/Wempa"
+    },
+    {
+      "geo_code": "KEN-C021-CON108-W0534",
+      "level": "ward",
+      "name": "Makuyu"
+    },
+    {
+      "geo_code": "KEN-C021-CON108-W0535",
+      "level": "ward",
+      "name": "Kambiti"
+    },
+    {
+      "geo_code": "KEN-C021-CON108-W0536",
+      "level": "ward",
+      "name": "Kamahuha"
+    },
+    {
+      "geo_code": "KEN-C021-CON108-W0537",
+      "level": "ward",
+      "name": "Ichagaki"
+    },
+    {
+      "geo_code": "KEN-C021-CON108-W0538",
+      "level": "ward",
+      "name": "Nginda"
+    },
+    {
+      "geo_code": "KEN-C021-CON109",
+      "level": "constituency",
+      "name": "Kandara"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0539",
+      "level": "ward",
+      "name": "Ng'araria"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0540",
+      "level": "ward",
+      "name": "Muruka"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0541",
+      "level": "ward",
+      "name": "Kagundu-Ini"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0542",
+      "level": "ward",
+      "name": "Gaichanjiru"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0543",
+      "level": "ward",
+      "name": "Ithiru"
+    },
+    {
+      "geo_code": "KEN-C021-CON109-W0544",
+      "level": "ward",
+      "name": "Ruchu"
+    },
+    {
+      "geo_code": "KEN-C021-CON110",
+      "level": "constituency",
+      "name": "Gatanga"
+    },
+    {
+      "geo_code": "KEN-C021-CON110-W0545",
+      "level": "ward",
+      "name": "Ithanga"
+    },
+    {
+      "geo_code": "KEN-C021-CON110-W0546",
+      "level": "ward",
+      "name": "Kakuzi/Mitubiri"
+    },
+    {
+      "geo_code": "KEN-C021-CON110-W0547",
+      "level": "ward",
+      "name": "Mugumo-Ini"
+    },
+    {
+      "geo_code": "KEN-C021-CON110-W0548",
+      "level": "ward",
+      "name": "Kihumbu-Ini"
+    },
+    {
+      "geo_code": "KEN-C021-CON110-W0549",
+      "level": "ward",
+      "name": "Gatanga"
+    },
+    {
+      "geo_code": "KEN-C021-CON110-W0550",
+      "level": "ward",
+      "name": "Kariara"
+    },
+    {
+      "geo_code": "KEN-C022",
+      "level": "county",
+      "name": "Kiambu"
+    },
+    {
+      "geo_code": "KEN-C022-CON111",
+      "level": "constituency",
+      "name": "Gatundu South"
+    },
+    {
+      "geo_code": "KEN-C022-CON111-W0551",
+      "level": "ward",
+      "name": "Kiamwangi"
+    },
+    {
+      "geo_code": "KEN-C022-CON111-W0552",
+      "level": "ward",
+      "name": "Kiganjo"
+    },
+    {
+      "geo_code": "KEN-C022-CON111-W0553",
+      "level": "ward",
+      "name": "Ndarugu"
+    },
+    {
+      "geo_code": "KEN-C022-CON111-W0554",
+      "level": "ward",
+      "name": "Ngenda"
+    },
+    {
+      "geo_code": "KEN-C022-CON112",
+      "level": "constituency",
+      "name": "Gatundu North"
+    },
+    {
+      "geo_code": "KEN-C022-CON112-W0555",
+      "level": "ward",
+      "name": "Gituamba"
+    },
+    {
+      "geo_code": "KEN-C022-CON112-W0556",
+      "level": "ward",
+      "name": "Githobokoni"
+    },
+    {
+      "geo_code": "KEN-C022-CON112-W0557",
+      "level": "ward",
+      "name": "Chania"
+    },
+    {
+      "geo_code": "KEN-C022-CON112-W0558",
+      "level": "ward",
+      "name": "Mang'u"
+    },
+    {
+      "geo_code": "KEN-C022-CON113",
+      "level": "constituency",
+      "name": "Juja"
+    },
+    {
+      "geo_code": "KEN-C022-CON113-W0559",
+      "level": "ward",
+      "name": "Murera"
+    },
+    {
+      "geo_code": "KEN-C022-CON113-W0560",
+      "level": "ward",
+      "name": "Theta"
+    },
+    {
+      "geo_code": "KEN-C022-CON113-W0561",
+      "level": "ward",
+      "name": "Juja"
+    },
+    {
+      "geo_code": "KEN-C022-CON113-W0562",
+      "level": "ward",
+      "name": "Witeithie"
+    },
+    {
+      "geo_code": "KEN-C022-CON113-W0563",
+      "level": "ward",
+      "name": "Kalimoni"
+    },
+    {
+      "geo_code": "KEN-C022-CON114",
+      "level": "constituency",
+      "name": "Thika Town"
+    },
+    {
+      "geo_code": "KEN-C022-CON114-W0564",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C022-CON114-W0565",
+      "level": "ward",
+      "name": "Kamenu"
+    },
+    {
+      "geo_code": "KEN-C022-CON114-W0566",
+      "level": "ward",
+      "name": "Hospital"
+    },
+    {
+      "geo_code": "KEN-C022-CON114-W0567",
+      "level": "ward",
+      "name": "Gatuanyaga"
+    },
+    {
+      "geo_code": "KEN-C022-CON114-W0568",
+      "level": "ward",
+      "name": "Ngoliba"
+    },
+    {
+      "geo_code": "KEN-C022-CON115",
+      "level": "constituency",
+      "name": "Ruiru"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0569",
+      "level": "ward",
+      "name": "Gitothua"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0570",
+      "level": "ward",
+      "name": "Biashara"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0571",
+      "level": "ward",
+      "name": "Gatongora"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0572",
+      "level": "ward",
+      "name": "Kahawa Sukari"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0573",
+      "level": "ward",
+      "name": "Kahawa Wendani"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0574",
+      "level": "ward",
+      "name": "Kiuu"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0575",
+      "level": "ward",
+      "name": "Mwiki"
+    },
+    {
+      "geo_code": "KEN-C022-CON115-W0576",
+      "level": "ward",
+      "name": "Mwihoko"
+    },
+    {
+      "geo_code": "KEN-C022-CON116",
+      "level": "constituency",
+      "name": "Githunguri"
+    },
+    {
+      "geo_code": "KEN-C022-CON116-W0577",
+      "level": "ward",
+      "name": "Githunguri"
+    },
+    {
+      "geo_code": "KEN-C022-CON116-W0578",
+      "level": "ward",
+      "name": "Githiga"
+    },
+    {
+      "geo_code": "KEN-C022-CON116-W0579",
+      "level": "ward",
+      "name": "Ikinu"
+    },
+    {
+      "geo_code": "KEN-C022-CON116-W0580",
+      "level": "ward",
+      "name": "Ngewa"
+    },
+    {
+      "geo_code": "KEN-C022-CON116-W0581",
+      "level": "ward",
+      "name": "Komothai"
+    },
+    {
+      "geo_code": "KEN-C022-CON117",
+      "level": "constituency",
+      "name": "Kiambu"
+    },
+    {
+      "geo_code": "KEN-C022-CON117-W0582",
+      "level": "ward",
+      "name": "Ting'ang'a"
+    },
+    {
+      "geo_code": "KEN-C022-CON117-W0583",
+      "level": "ward",
+      "name": "Ndumberi"
+    },
+    {
+      "geo_code": "KEN-C022-CON117-W0584",
+      "level": "ward",
+      "name": "Riabai"
+    },
+    {
+      "geo_code": "KEN-C022-CON117-W0585",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C022-CON118",
+      "level": "constituency",
+      "name": "Kiambaa"
+    },
+    {
+      "geo_code": "KEN-C022-CON118-W0586",
+      "level": "ward",
+      "name": "Cianda"
+    },
+    {
+      "geo_code": "KEN-C022-CON118-W0587",
+      "level": "ward",
+      "name": "Karuri"
+    },
+    {
+      "geo_code": "KEN-C022-CON118-W0588",
+      "level": "ward",
+      "name": "Ndenderu"
+    },
+    {
+      "geo_code": "KEN-C022-CON118-W0589",
+      "level": "ward",
+      "name": "Muchatha"
+    },
+    {
+      "geo_code": "KEN-C022-CON118-W0590",
+      "level": "ward",
+      "name": "Kihara"
+    },
+    {
+      "geo_code": "KEN-C022-CON119",
+      "level": "constituency",
+      "name": "Kabete"
+    },
+    {
+      "geo_code": "KEN-C022-CON119-W0591",
+      "level": "ward",
+      "name": "Gitaru"
+    },
+    {
+      "geo_code": "KEN-C022-CON119-W0592",
+      "level": "ward",
+      "name": "Muguga"
+    },
+    {
+      "geo_code": "KEN-C022-CON119-W0593",
+      "level": "ward",
+      "name": "Nyadhuna"
+    },
+    {
+      "geo_code": "KEN-C022-CON119-W0594",
+      "level": "ward",
+      "name": "Kabete"
+    },
+    {
+      "geo_code": "KEN-C022-CON119-W0595",
+      "level": "ward",
+      "name": "Uthiru"
+    },
+    {
+      "geo_code": "KEN-C022-CON120",
+      "level": "constituency",
+      "name": "Kikuyu"
+    },
+    {
+      "geo_code": "KEN-C022-CON120-W0596",
+      "level": "ward",
+      "name": "Karai"
+    },
+    {
+      "geo_code": "KEN-C022-CON120-W0597",
+      "level": "ward",
+      "name": "Nachu"
+    },
+    {
+      "geo_code": "KEN-C022-CON120-W0598",
+      "level": "ward",
+      "name": "Sigona"
+    },
+    {
+      "geo_code": "KEN-C022-CON120-W0599",
+      "level": "ward",
+      "name": "Kikuyu"
+    },
+    {
+      "geo_code": "KEN-C022-CON120-W0600",
+      "level": "ward",
+      "name": "Kinoo"
+    },
+    {
+      "geo_code": "KEN-C022-CON121",
+      "level": "constituency",
+      "name": "Limuru"
+    },
+    {
+      "geo_code": "KEN-C022-CON121-W0601",
+      "level": "ward",
+      "name": "Bibirioni"
+    },
+    {
+      "geo_code": "KEN-C022-CON121-W0602",
+      "level": "ward",
+      "name": "Limuru Central"
+    },
+    {
+      "geo_code": "KEN-C022-CON121-W0603",
+      "level": "ward",
+      "name": "Ndeiya"
+    },
+    {
+      "geo_code": "KEN-C022-CON121-W0604",
+      "level": "ward",
+      "name": "Limuru East"
+    },
+    {
+      "geo_code": "KEN-C022-CON121-W0605",
+      "level": "ward",
+      "name": "Ngecha Tigoni"
+    },
+    {
+      "geo_code": "KEN-C022-CON122",
+      "level": "constituency",
+      "name": "Lari"
+    },
+    {
+      "geo_code": "KEN-C022-CON122-W0606",
+      "level": "ward",
+      "name": "Kinale"
+    },
+    {
+      "geo_code": "KEN-C022-CON122-W0607",
+      "level": "ward",
+      "name": "Kijabe"
+    },
+    {
+      "geo_code": "KEN-C022-CON122-W0608",
+      "level": "ward",
+      "name": "Nyanduma"
+    },
+    {
+      "geo_code": "KEN-C022-CON122-W0609",
+      "level": "ward",
+      "name": "Kamburu"
+    },
+    {
+      "geo_code": "KEN-C022-CON122-W0610",
+      "level": "ward",
+      "name": "Lari/Kirenga"
+    },
+    {
+      "geo_code": "KEN-C023",
+      "level": "county",
+      "name": "Turkana"
+    },
+    {
+      "geo_code": "KEN-C023-CON123",
+      "level": "constituency",
+      "name": "Turkana North"
+    },
+    {
+      "geo_code": "KEN-C023-CON123-W0611",
+      "level": "ward",
+      "name": "Kaeris"
+    },
+    {
+      "geo_code": "KEN-C023-CON123-W0612",
+      "level": "ward",
+      "name": "Lake Zone"
+    },
+    {
+      "geo_code": "KEN-C023-CON123-W0613",
+      "level": "ward",
+      "name": "Lapur"
+    },
+    {
+      "geo_code": "KEN-C023-CON123-W0614",
+      "level": "ward",
+      "name": "Kaaleng/Kaikor"
+    },
+    {
+      "geo_code": "KEN-C023-CON123-W0615",
+      "level": "ward",
+      "name": "Kibish"
+    },
+    {
+      "geo_code": "KEN-C023-CON123-W0616",
+      "level": "ward",
+      "name": "Nakalale"
+    },
+    {
+      "geo_code": "KEN-C023-CON124",
+      "level": "constituency",
+      "name": "Turkana West"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0617",
+      "level": "ward",
+      "name": "Kakuma"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0618",
+      "level": "ward",
+      "name": "Lopur"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0619",
+      "level": "ward",
+      "name": "Letea"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0620",
+      "level": "ward",
+      "name": "Songot"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0621",
+      "level": "ward",
+      "name": "Kalobeyei"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0622",
+      "level": "ward",
+      "name": "Lokichoggio"
+    },
+    {
+      "geo_code": "KEN-C023-CON124-W0623",
+      "level": "ward",
+      "name": "Nanaam"
+    },
+    {
+      "geo_code": "KEN-C023-CON125",
+      "level": "constituency",
+      "name": "Turkana Central"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0624",
+      "level": "ward",
+      "name": "Kerio Delta"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0625",
+      "level": "ward",
+      "name": "Kang'atotha"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0626",
+      "level": "ward",
+      "name": "Kalokol"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0627",
+      "level": "ward",
+      "name": "Lodwar Township"
+    },
+    {
+      "geo_code": "KEN-C023-CON125-W0628",
+      "level": "ward",
+      "name": "Kanamkemer"
+    },
+    {
+      "geo_code": "KEN-C023-CON126",
+      "level": "constituency",
+      "name": "Loima"
+    },
+    {
+      "geo_code": "KEN-C023-CON126-W0629",
+      "level": "ward",
+      "name": "Kotaruk/Lobei"
+    },
+    {
+      "geo_code": "KEN-C023-CON126-W0630",
+      "level": "ward",
+      "name": "Turkwel"
+    },
+    {
+      "geo_code": "KEN-C023-CON126-W0631",
+      "level": "ward",
+      "name": "Loima"
+    },
+    {
+      "geo_code": "KEN-C023-CON126-W0632",
+      "level": "ward",
+      "name": "Lokiriama/Lorengippi"
+    },
+    {
+      "geo_code": "KEN-C023-CON127",
+      "level": "constituency",
+      "name": "Turkana South"
+    },
+    {
+      "geo_code": "KEN-C023-CON127-W0633",
+      "level": "ward",
+      "name": "Kaputir"
+    },
+    {
+      "geo_code": "KEN-C023-CON127-W0634",
+      "level": "ward",
+      "name": "Katilu"
+    },
+    {
+      "geo_code": "KEN-C023-CON127-W0635",
+      "level": "ward",
+      "name": "Lobokat"
+    },
+    {
+      "geo_code": "KEN-C023-CON127-W0636",
+      "level": "ward",
+      "name": "Kalapata"
+    },
+    {
+      "geo_code": "KEN-C023-CON127-W0637",
+      "level": "ward",
+      "name": "Lokichar"
+    },
+    {
+      "geo_code": "KEN-C023-CON128",
+      "level": "constituency",
+      "name": "Turkana East"
+    },
+    {
+      "geo_code": "KEN-C023-CON128-W0638",
+      "level": "ward",
+      "name": "Kapedo/Napeitom"
+    },
+    {
+      "geo_code": "KEN-C023-CON128-W0639",
+      "level": "ward",
+      "name": "Katilia"
+    },
+    {
+      "geo_code": "KEN-C023-CON128-W0640",
+      "level": "ward",
+      "name": "Lokori/Kochodin"
+    },
+    {
+      "geo_code": "KEN-C024",
+      "level": "county",
+      "name": "West Pokot"
+    },
+    {
+      "geo_code": "KEN-C024-CON129",
+      "level": "constituency",
+      "name": "Kapenguria"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0641",
+      "level": "ward",
+      "name": "Riwo"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0642",
+      "level": "ward",
+      "name": "Kapenguria"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0643",
+      "level": "ward",
+      "name": "Mnagei"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0644",
+      "level": "ward",
+      "name": "Siyoi"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0645",
+      "level": "ward",
+      "name": "Endugh"
+    },
+    {
+      "geo_code": "KEN-C024-CON129-W0646",
+      "level": "ward",
+      "name": "Sook"
+    },
+    {
+      "geo_code": "KEN-C024-CON130",
+      "level": "constituency",
+      "name": "Sigor"
+    },
+    {
+      "geo_code": "KEN-C024-CON130-W0647",
+      "level": "ward",
+      "name": "Sekerr"
+    },
+    {
+      "geo_code": "KEN-C024-CON130-W0648",
+      "level": "ward",
+      "name": "Masool"
+    },
+    {
+      "geo_code": "KEN-C024-CON130-W0649",
+      "level": "ward",
+      "name": "Lomut"
+    },
+    {
+      "geo_code": "KEN-C024-CON130-W0650",
+      "level": "ward",
+      "name": "Weiwei"
+    },
+    {
+      "geo_code": "KEN-C024-CON131",
+      "level": "constituency",
+      "name": "Kacheliba"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0651",
+      "level": "ward",
+      "name": "Suam"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0652",
+      "level": "ward",
+      "name": "Kodich"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0653",
+      "level": "ward",
+      "name": "Kapckok"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0654",
+      "level": "ward",
+      "name": "Kasei"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0655",
+      "level": "ward",
+      "name": "Kiwawa"
+    },
+    {
+      "geo_code": "KEN-C024-CON131-W0656",
+      "level": "ward",
+      "name": "Alale"
+    },
+    {
+      "geo_code": "KEN-C024-CON132",
+      "level": "constituency",
+      "name": "Pokot South"
+    },
+    {
+      "geo_code": "KEN-C024-CON132-W0657",
+      "level": "ward",
+      "name": "Chepareria"
+    },
+    {
+      "geo_code": "KEN-C024-CON132-W0658",
+      "level": "ward",
+      "name": "Batei"
+    },
+    {
+      "geo_code": "KEN-C024-CON132-W0659",
+      "level": "ward",
+      "name": "Lelan"
+    },
+    {
+      "geo_code": "KEN-C024-CON132-W0660",
+      "level": "ward",
+      "name": "Tapach"
+    },
+    {
+      "geo_code": "KEN-C025",
+      "level": "county",
+      "name": "Samburu"
+    },
+    {
+      "geo_code": "KEN-C025-CON133",
+      "level": "constituency",
+      "name": "Samburu West"
+    },
+    {
+      "geo_code": "KEN-C025-CON133-W0661",
+      "level": "ward",
+      "name": "Lodokejek"
+    },
+    {
+      "geo_code": "KEN-C025-CON133-W0662",
+      "level": "ward",
+      "name": "Suguta Marmar"
+    },
+    {
+      "geo_code": "KEN-C025-CON133-W0663",
+      "level": "ward",
+      "name": "Maralal"
+    },
+    {
+      "geo_code": "KEN-C025-CON133-W0664",
+      "level": "ward",
+      "name": "Loosuk"
+    },
+    {
+      "geo_code": "KEN-C025-CON133-W0665",
+      "level": "ward",
+      "name": "Poro"
+    },
+    {
+      "geo_code": "KEN-C025-CON134",
+      "level": "constituency",
+      "name": "Samburu North"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0666",
+      "level": "ward",
+      "name": "El-Barta"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0667",
+      "level": "ward",
+      "name": "Nachola"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0668",
+      "level": "ward",
+      "name": "Ndoto"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0669",
+      "level": "ward",
+      "name": "Nyiro"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0670",
+      "level": "ward",
+      "name": "Angata Nanyokie"
+    },
+    {
+      "geo_code": "KEN-C025-CON134-W0671",
+      "level": "ward",
+      "name": "Baawa"
+    },
+    {
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "name": "Samburu East"
+    },
+    {
+      "geo_code": "KEN-C025-CON135-W0672",
+      "level": "ward",
+      "name": "Waso"
+    },
+    {
+      "geo_code": "KEN-C025-CON135-W0673",
+      "level": "ward",
+      "name": "Wamba West"
+    },
+    {
+      "geo_code": "KEN-C025-CON135-W0674",
+      "level": "ward",
+      "name": "Wamba East"
+    },
+    {
+      "geo_code": "KEN-C025-CON135-W0675",
+      "level": "ward",
+      "name": "Wamba North"
+    },
+    {
+      "geo_code": "KEN-C026",
+      "level": "county",
+      "name": "Trans Nzoia"
+    },
+    {
+      "geo_code": "KEN-C026-CON136",
+      "level": "constituency",
+      "name": "Kwanza"
+    },
+    {
+      "geo_code": "KEN-C026-CON136-W0676",
+      "level": "ward",
+      "name": "Kapomboi"
+    },
+    {
+      "geo_code": "KEN-C026-CON136-W0677",
+      "level": "ward",
+      "name": "Kwanza"
+    },
+    {
+      "geo_code": "KEN-C026-CON136-W0678",
+      "level": "ward",
+      "name": "Keiyo"
+    },
+    {
+      "geo_code": "KEN-C026-CON136-W0679",
+      "level": "ward",
+      "name": "Bidii"
+    },
+    {
+      "geo_code": "KEN-C026-CON137",
+      "level": "constituency",
+      "name": "Endebess"
+    },
+    {
+      "geo_code": "KEN-C026-CON137-W0680",
+      "level": "ward",
+      "name": "Chepchoina"
+    },
+    {
+      "geo_code": "KEN-C026-CON137-W0681",
+      "level": "ward",
+      "name": "Endebess"
+    },
+    {
+      "geo_code": "KEN-C026-CON137-W0682",
+      "level": "ward",
+      "name": "Matumbei"
+    },
+    {
+      "geo_code": "KEN-C026-CON138",
+      "level": "constituency",
+      "name": "Saboti"
+    },
+    {
+      "geo_code": "KEN-C026-CON138-W0683",
+      "level": "ward",
+      "name": "Kinyoro"
+    },
+    {
+      "geo_code": "KEN-C026-CON138-W0684",
+      "level": "ward",
+      "name": "Matisi"
+    },
+    {
+      "geo_code": "KEN-C026-CON138-W0685",
+      "level": "ward",
+      "name": "Tuwani"
+    },
+    {
+      "geo_code": "KEN-C026-CON138-W0686",
+      "level": "ward",
+      "name": "Saboti"
+    },
+    {
+      "geo_code": "KEN-C026-CON138-W0687",
+      "level": "ward",
+      "name": "Machewa"
+    },
+    {
+      "geo_code": "KEN-C026-CON139",
+      "level": "constituency",
+      "name": "Kiminini"
+    },
+    {
+      "geo_code": "KEN-C026-CON139-W0688",
+      "level": "ward",
+      "name": "Kiminini"
+    },
+    {
+      "geo_code": "KEN-C026-CON139-W0689",
+      "level": "ward",
+      "name": "Waitaluk"
+    },
+    {
+      "geo_code": "KEN-C026-CON139-W0690",
+      "level": "ward",
+      "name": "Sirende"
+    },
+    {
+      "geo_code": "KEN-C026-CON139-W0691",
+      "level": "ward",
+      "name": "Hospital"
+    },
+    {
+      "geo_code": "KEN-C026-CON139-W0692",
+      "level": "ward",
+      "name": "Sikhendu"
+    },
+    {
+      "geo_code": "KEN-C026-CON139-W0693",
+      "level": "ward",
+      "name": "Nabiswa"
+    },
+    {
+      "geo_code": "KEN-C026-CON140",
+      "level": "constituency",
+      "name": "Cherangany"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0694",
+      "level": "ward",
+      "name": "Sinyerere"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0695",
+      "level": "ward",
+      "name": "Makutano"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0696",
+      "level": "ward",
+      "name": "Kaplamai"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0697",
+      "level": "ward",
+      "name": "Motosiet"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0698",
+      "level": "ward",
+      "name": "Cherangany/Suwerwa"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0699",
+      "level": "ward",
+      "name": "Chepsiro/Kiptoror"
+    },
+    {
+      "geo_code": "KEN-C026-CON140-W0700",
+      "level": "ward",
+      "name": "Sitatunga"
+    },
+    {
+      "geo_code": "KEN-C027",
+      "level": "county",
+      "name": "Uasin Gishu"
+    },
+    {
+      "geo_code": "KEN-C027-CON141",
+      "level": "constituency",
+      "name": "Soy"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0701",
+      "level": "ward",
+      "name": "Moi's Bridge"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0702",
+      "level": "ward",
+      "name": "Kapkures"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0703",
+      "level": "ward",
+      "name": "Ziwa"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0704",
+      "level": "ward",
+      "name": "Segero/Barsombe"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0705",
+      "level": "ward",
+      "name": "Kipsomba"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0706",
+      "level": "ward",
+      "name": "Soy"
+    },
+    {
+      "geo_code": "KEN-C027-CON141-W0707",
+      "level": "ward",
+      "name": "Kuinet/Kapsuswa"
+    },
+    {
+      "geo_code": "KEN-C027-CON142",
+      "level": "constituency",
+      "name": "Turbo"
+    },
+    {
+      "geo_code": "KEN-C027-CON142-W0708",
+      "level": "ward",
+      "name": "Ngenyilel"
+    },
+    {
+      "geo_code": "KEN-C027-CON142-W0709",
+      "level": "ward",
+      "name": "Tapsagoi"
+    },
+    {
+      "geo_code": "KEN-C027-CON142-W0710",
+      "level": "ward",
+      "name": "Kamagut"
+    },
+    {
+      "geo_code": "KEN-C027-CON142-W0711",
+      "level": "ward",
+      "name": "Kiplombe"
+    },
+    {
+      "geo_code": "KEN-C027-CON142-W0712",
+      "level": "ward",
+      "name": "Kapsaos"
+    },
+    {
+      "geo_code": "KEN-C027-CON142-W0713",
+      "level": "ward",
+      "name": "Huruma"
+    },
+    {
+      "geo_code": "KEN-C027-CON143",
+      "level": "constituency",
+      "name": "Moiben"
+    },
+    {
+      "geo_code": "KEN-C027-CON143-W0714",
+      "level": "ward",
+      "name": "Tembelio"
+    },
+    {
+      "geo_code": "KEN-C027-CON143-W0715",
+      "level": "ward",
+      "name": "Sergoit"
+    },
+    {
+      "geo_code": "KEN-C027-CON143-W0716",
+      "level": "ward",
+      "name": "Karuna/Meibeki"
+    },
+    {
+      "geo_code": "KEN-C027-CON143-W0717",
+      "level": "ward",
+      "name": "Moiben"
+    },
+    {
+      "geo_code": "KEN-C027-CON143-W0718",
+      "level": "ward",
+      "name": "Kimumu"
+    },
+    {
+      "geo_code": "KEN-C027-CON144",
+      "level": "constituency",
+      "name": "Ainabkoi"
+    },
+    {
+      "geo_code": "KEN-C027-CON144-W0719",
+      "level": "ward",
+      "name": "Kapsoya"
+    },
+    {
+      "geo_code": "KEN-C027-CON144-W0720",
+      "level": "ward",
+      "name": "Kaptagat"
+    },
+    {
+      "geo_code": "KEN-C027-CON144-W0721",
+      "level": "ward",
+      "name": "Ainabkoi/Olare"
+    },
+    {
+      "geo_code": "KEN-C027-CON145",
+      "level": "constituency",
+      "name": "Kapseret"
+    },
+    {
+      "geo_code": "KEN-C027-CON145-W0722",
+      "level": "ward",
+      "name": "Simat/Kapseret"
+    },
+    {
+      "geo_code": "KEN-C027-CON145-W0723",
+      "level": "ward",
+      "name": "Kipkenyo"
+    },
+    {
+      "geo_code": "KEN-C027-CON145-W0724",
+      "level": "ward",
+      "name": "Ngeria"
+    },
+    {
+      "geo_code": "KEN-C027-CON145-W0725",
+      "level": "ward",
+      "name": "Megun"
+    },
+    {
+      "geo_code": "KEN-C027-CON145-W0726",
+      "level": "ward",
+      "name": "Langas"
+    },
+    {
+      "geo_code": "KEN-C027-CON146",
+      "level": "constituency",
+      "name": "Kesses"
+    },
+    {
+      "geo_code": "KEN-C027-CON146-W0727",
+      "level": "ward",
+      "name": "Racecourse"
+    },
+    {
+      "geo_code": "KEN-C027-CON146-W0728",
+      "level": "ward",
+      "name": "Cheptiret/Kipchamo"
+    },
+    {
+      "geo_code": "KEN-C027-CON146-W0729",
+      "level": "ward",
+      "name": "Tulwet/Chuiyat"
+    },
+    {
+      "geo_code": "KEN-C027-CON146-W0730",
+      "level": "ward",
+      "name": "Tarakwa"
+    },
+    {
+      "geo_code": "KEN-C028",
+      "level": "county",
+      "name": "Elgeyo/Marakwet"
+    },
+    {
+      "geo_code": "KEN-C028-CON147",
+      "level": "constituency",
+      "name": "Marakwet East"
+    },
+    {
+      "geo_code": "KEN-C028-CON147-W0731",
+      "level": "ward",
+      "name": "Kapyego"
+    },
+    {
+      "geo_code": "KEN-C028-CON147-W0732",
+      "level": "ward",
+      "name": "Sambirir"
+    },
+    {
+      "geo_code": "KEN-C028-CON147-W0733",
+      "level": "ward",
+      "name": "Endo"
+    },
+    {
+      "geo_code": "KEN-C028-CON147-W0734",
+      "level": "ward",
+      "name": "Embobut / Embulot"
+    },
+    {
+      "geo_code": "KEN-C028-CON148",
+      "level": "constituency",
+      "name": "Marakwet West"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0735",
+      "level": "ward",
+      "name": "Lelan"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0736",
+      "level": "ward",
+      "name": "Sengwer"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0737",
+      "level": "ward",
+      "name": "Cherang'any/Chebororwa"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0738",
+      "level": "ward",
+      "name": "Moiben/Kuserwo"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0739",
+      "level": "ward",
+      "name": "Kapsowar"
+    },
+    {
+      "geo_code": "KEN-C028-CON148-W0740",
+      "level": "ward",
+      "name": "Arror"
+    },
+    {
+      "geo_code": "KEN-C028-CON149",
+      "level": "constituency",
+      "name": "Keiyo North"
+    },
+    {
+      "geo_code": "KEN-C028-CON149-W0741",
+      "level": "ward",
+      "name": "Emsoo"
+    },
+    {
+      "geo_code": "KEN-C028-CON149-W0742",
+      "level": "ward",
+      "name": "Kamariny"
+    },
+    {
+      "geo_code": "KEN-C028-CON149-W0743",
+      "level": "ward",
+      "name": "Kapchemutwa"
+    },
+    {
+      "geo_code": "KEN-C028-CON149-W0744",
+      "level": "ward",
+      "name": "Tambach"
+    },
+    {
+      "geo_code": "KEN-C028-CON150",
+      "level": "constituency",
+      "name": "Keiyo South"
+    },
+    {
+      "geo_code": "KEN-C028-CON150-W0745",
+      "level": "ward",
+      "name": "Kaptarakwa"
+    },
+    {
+      "geo_code": "KEN-C028-CON150-W0746",
+      "level": "ward",
+      "name": "Chepkorio"
+    },
+    {
+      "geo_code": "KEN-C028-CON150-W0747",
+      "level": "ward",
+      "name": "Soy North"
+    },
+    {
+      "geo_code": "KEN-C028-CON150-W0748",
+      "level": "ward",
+      "name": "Soy South"
+    },
+    {
+      "geo_code": "KEN-C028-CON150-W0749",
+      "level": "ward",
+      "name": "Kabiemit"
+    },
+    {
+      "geo_code": "KEN-C028-CON150-W0750",
+      "level": "ward",
+      "name": "Metkei"
+    },
+    {
+      "geo_code": "KEN-C029",
+      "level": "county",
+      "name": "Nandi"
+    },
+    {
+      "geo_code": "KEN-C029-CON151",
+      "level": "constituency",
+      "name": "Tinderet"
+    },
+    {
+      "geo_code": "KEN-C029-CON151-W0751",
+      "level": "ward",
+      "name": "Songhor/Soba"
+    },
+    {
+      "geo_code": "KEN-C029-CON151-W0752",
+      "level": "ward",
+      "name": "Tindiret"
+    },
+    {
+      "geo_code": "KEN-C029-CON151-W0753",
+      "level": "ward",
+      "name": "Chemelil/Chemase"
+    },
+    {
+      "geo_code": "KEN-C029-CON151-W0754",
+      "level": "ward",
+      "name": "Kapsimotwo"
+    },
+    {
+      "geo_code": "KEN-C029-CON152",
+      "level": "constituency",
+      "name": "Aldai"
+    },
+    {
+      "geo_code": "KEN-C029-CON152-W0755",
+      "level": "ward",
+      "name": "Kabwareng"
+    },
+    {
+      "geo_code": "KEN-C029-CON152-W0756",
+      "level": "ward",
+      "name": "Terik"
+    },
+    {
+      "geo_code": "KEN-C029-CON152-W0757",
+      "level": "ward",
+      "name": "Kemeloi-Maraba"
+    },
+    {
+      "geo_code": "KEN-C029-CON152-W0758",
+      "level": "ward",
+      "name": "Kobujoi"
+    },
+    {
+      "geo_code": "KEN-C029-CON152-W0759",
+      "level": "ward",
+      "name": "Kaptumo-Kaboi"
+    },
+    {
+      "geo_code": "KEN-C029-CON152-W0760",
+      "level": "ward",
+      "name": "Koyo-Ndurio"
+    },
+    {
+      "geo_code": "KEN-C029-CON153",
+      "level": "constituency",
+      "name": "Nandi Hills"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0761",
+      "level": "ward",
+      "name": "Nandi Hills"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0762",
+      "level": "ward",
+      "name": "Chepkunyuk"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0763",
+      "level": "ward",
+      "name": "Ol'lessos"
+    },
+    {
+      "geo_code": "KEN-C029-CON153-W0764",
+      "level": "ward",
+      "name": "Kapchorua"
+    },
+    {
+      "geo_code": "KEN-C029-CON154",
+      "level": "constituency",
+      "name": "Chesumei"
+    },
+    {
+      "geo_code": "KEN-C029-CON154-W0765",
+      "level": "ward",
+      "name": "Chemundu/Kapng'etuny"
+    },
+    {
+      "geo_code": "KEN-C029-CON154-W0766",
+      "level": "ward",
+      "name": "Kosirai"
+    },
+    {
+      "geo_code": "KEN-C029-CON154-W0767",
+      "level": "ward",
+      "name": "Lelmokwo/Ngechek"
+    },
+    {
+      "geo_code": "KEN-C029-CON154-W0768",
+      "level": "ward",
+      "name": "Kaptel/Kamoiywo"
+    },
+    {
+      "geo_code": "KEN-C029-CON154-W0769",
+      "level": "ward",
+      "name": "Kiptuya"
+    },
+    {
+      "geo_code": "KEN-C029-CON155",
+      "level": "constituency",
+      "name": "Emgwen"
+    },
+    {
+      "geo_code": "KEN-C029-CON155-W0770",
+      "level": "ward",
+      "name": "Chepkumia"
+    },
+    {
+      "geo_code": "KEN-C029-CON155-W0771",
+      "level": "ward",
+      "name": "Kapkangani"
+    },
+    {
+      "geo_code": "KEN-C029-CON155-W0772",
+      "level": "ward",
+      "name": "Kapsabet"
+    },
+    {
+      "geo_code": "KEN-C029-CON155-W0773",
+      "level": "ward",
+      "name": "Kilibwoni"
+    },
+    {
+      "geo_code": "KEN-C029-CON156",
+      "level": "constituency",
+      "name": "Mosop"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0774",
+      "level": "ward",
+      "name": "Chepterwai"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0775",
+      "level": "ward",
+      "name": "Kipkaren"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0776",
+      "level": "ward",
+      "name": "Kurgung/Surungai"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0777",
+      "level": "ward",
+      "name": "Kabiyet"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0778",
+      "level": "ward",
+      "name": "Ndalat"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0779",
+      "level": "ward",
+      "name": "Kabisaga"
+    },
+    {
+      "geo_code": "KEN-C029-CON156-W0780",
+      "level": "ward",
+      "name": "Sangalo/Kebulonik"
+    },
+    {
+      "geo_code": "KEN-C030",
+      "level": "county",
+      "name": "Baringo"
+    },
+    {
+      "geo_code": "KEN-C030-CON157",
+      "level": "constituency",
+      "name": "Tiaty"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0781",
+      "level": "ward",
+      "name": "Tirioko"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0782",
+      "level": "ward",
+      "name": "Kolowa"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0783",
+      "level": "ward",
+      "name": "Ribkwo"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0784",
+      "level": "ward",
+      "name": "Silale"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0785",
+      "level": "ward",
+      "name": "Loiyamorock"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0786",
+      "level": "ward",
+      "name": "Tangulbei/Korossi"
+    },
+    {
+      "geo_code": "KEN-C030-CON157-W0787",
+      "level": "ward",
+      "name": "Churo/Amaya"
+    },
+    {
+      "geo_code": "KEN-C030-CON158",
+      "level": "constituency",
+      "name": "Baringo North"
+    },
+    {
+      "geo_code": "KEN-C030-CON158-W0788",
+      "level": "ward",
+      "name": "Barwessa"
+    },
+    {
+      "geo_code": "KEN-C030-CON158-W0789",
+      "level": "ward",
+      "name": "Kabartonjo"
+    },
+    {
+      "geo_code": "KEN-C030-CON158-W0790",
+      "level": "ward",
+      "name": "Saimo/Kipsaraman"
+    },
+    {
+      "geo_code": "KEN-C030-CON158-W0791",
+      "level": "ward",
+      "name": "Saimo/Soi"
+    },
+    {
+      "geo_code": "KEN-C030-CON158-W0792",
+      "level": "ward",
+      "name": "Bartabwa"
+    },
+    {
+      "geo_code": "KEN-C030-CON159",
+      "level": "constituency",
+      "name": "Baringo Central"
+    },
+    {
+      "geo_code": "KEN-C030-CON159-W0793",
+      "level": "ward",
+      "name": "Kabarnet"
+    },
+    {
+      "geo_code": "KEN-C030-CON159-W0794",
+      "level": "ward",
+      "name": "Sacho"
+    },
+    {
+      "geo_code": "KEN-C030-CON159-W0795",
+      "level": "ward",
+      "name": "Tenges"
+    },
+    {
+      "geo_code": "KEN-C030-CON159-W0796",
+      "level": "ward",
+      "name": "Ewalel Chapchap"
+    },
+    {
+      "geo_code": "KEN-C030-CON159-W0797",
+      "level": "ward",
+      "name": "Kapropita"
+    },
+    {
+      "geo_code": "KEN-C030-CON160",
+      "level": "constituency",
+      "name": "Baringo South"
+    },
+    {
+      "geo_code": "KEN-C030-CON160-W0798",
+      "level": "ward",
+      "name": "Marigat"
+    },
+    {
+      "geo_code": "KEN-C030-CON160-W0799",
+      "level": "ward",
+      "name": "Ilchamus"
+    },
+    {
+      "geo_code": "KEN-C030-CON160-W0800",
+      "level": "ward",
+      "name": "Mochongoi"
+    },
+    {
+      "geo_code": "KEN-C030-CON160-W0801",
+      "level": "ward",
+      "name": "Mukutani"
+    },
+    {
+      "geo_code": "KEN-C030-CON161",
+      "level": "constituency",
+      "name": "Mogotio"
+    },
+    {
+      "geo_code": "KEN-C030-CON161-W0802",
+      "level": "ward",
+      "name": "Mogotio"
+    },
+    {
+      "geo_code": "KEN-C030-CON161-W0803",
+      "level": "ward",
+      "name": "Emining"
+    },
+    {
+      "geo_code": "KEN-C030-CON161-W0804",
+      "level": "ward",
+      "name": "Kisanana"
+    },
+    {
+      "geo_code": "KEN-C030-CON162",
+      "level": "constituency",
+      "name": "Eldama Ravine"
+    },
+    {
+      "geo_code": "KEN-C030-CON162-W0805",
+      "level": "ward",
+      "name": "Lembus"
+    },
+    {
+      "geo_code": "KEN-C030-CON162-W0806",
+      "level": "ward",
+      "name": "Lembus Kwen"
+    },
+    {
+      "geo_code": "KEN-C030-CON162-W0807",
+      "level": "ward",
+      "name": "Ravine"
+    },
+    {
+      "geo_code": "KEN-C030-CON162-W0808",
+      "level": "ward",
+      "name": "Mumberes/Maji Mazuri"
+    },
+    {
+      "geo_code": "KEN-C030-CON162-W0809",
+      "level": "ward",
+      "name": "Lembus/Perkerra"
+    },
+    {
+      "geo_code": "KEN-C030-CON162-W0810",
+      "level": "ward",
+      "name": "Koibatek"
+    },
+    {
+      "geo_code": "KEN-C031",
+      "level": "county",
+      "name": "Laikipia"
+    },
+    {
+      "geo_code": "KEN-C031-CON163",
+      "level": "constituency",
+      "name": "Laikipia West"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0811",
+      "level": "ward",
+      "name": "Olmoran"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0812",
+      "level": "ward",
+      "name": "Rumuruti Township"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0813",
+      "level": "ward",
+      "name": "Kinamba"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0814",
+      "level": "ward",
+      "name": "Marmanet"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0815",
+      "level": "ward",
+      "name": "Igwamiti"
+    },
+    {
+      "geo_code": "KEN-C031-CON163-W0816",
+      "level": "ward",
+      "name": "Salama"
+    },
+    {
+      "geo_code": "KEN-C031-CON164",
+      "level": "constituency",
+      "name": "Laikipia East"
+    },
+    {
+      "geo_code": "KEN-C031-CON164-W0817",
+      "level": "ward",
+      "name": "Ngobit"
+    },
+    {
+      "geo_code": "KEN-C031-CON164-W0818",
+      "level": "ward",
+      "name": "Tigithi"
+    },
+    {
+      "geo_code": "KEN-C031-CON164-W0819",
+      "level": "ward",
+      "name": "Thingithu"
+    },
+    {
+      "geo_code": "KEN-C031-CON164-W0820",
+      "level": "ward",
+      "name": "Nanyuki"
+    },
+    {
+      "geo_code": "KEN-C031-CON164-W0821",
+      "level": "ward",
+      "name": "Umande"
+    },
+    {
+      "geo_code": "KEN-C031-CON165",
+      "level": "constituency",
+      "name": "Laikipia North"
+    },
+    {
+      "geo_code": "KEN-C031-CON165-W0822",
+      "level": "ward",
+      "name": "Sosian"
+    },
+    {
+      "geo_code": "KEN-C031-CON165-W0823",
+      "level": "ward",
+      "name": "Segera"
+    },
+    {
+      "geo_code": "KEN-C031-CON165-W0824",
+      "level": "ward",
+      "name": "Mukogondo West"
+    },
+    {
+      "geo_code": "KEN-C031-CON165-W0825",
+      "level": "ward",
+      "name": "Mukogondo East"
+    },
+    {
+      "geo_code": "KEN-C032",
+      "level": "county",
+      "name": "Nakuru"
+    },
+    {
+      "geo_code": "KEN-C032-CON166",
+      "level": "constituency",
+      "name": "Molo"
+    },
+    {
+      "geo_code": "KEN-C032-CON166-W0826",
+      "level": "ward",
+      "name": "Mariashoni"
+    },
+    {
+      "geo_code": "KEN-C032-CON166-W0827",
+      "level": "ward",
+      "name": "Elburgon"
+    },
+    {
+      "geo_code": "KEN-C032-CON166-W0828",
+      "level": "ward",
+      "name": "Turi"
+    },
+    {
+      "geo_code": "KEN-C032-CON166-W0829",
+      "level": "ward",
+      "name": "Molo"
+    },
+    {
+      "geo_code": "KEN-C032-CON167",
+      "level": "constituency",
+      "name": "Njoro"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0830",
+      "level": "ward",
+      "name": "Maunarok"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0831",
+      "level": "ward",
+      "name": "Mauche"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0832",
+      "level": "ward",
+      "name": "Kihingo"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0833",
+      "level": "ward",
+      "name": "Nessuit"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0834",
+      "level": "ward",
+      "name": "Lare"
+    },
+    {
+      "geo_code": "KEN-C032-CON167-W0835",
+      "level": "ward",
+      "name": "Njoro"
+    },
+    {
+      "geo_code": "KEN-C032-CON168",
+      "level": "constituency",
+      "name": "Naivasha"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0836",
+      "level": "ward",
+      "name": "Biashara"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0837",
+      "level": "ward",
+      "name": "Hells Gate"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0838",
+      "level": "ward",
+      "name": "Lakeview"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0839",
+      "level": "ward",
+      "name": "Maai-Mahiu"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0840",
+      "level": "ward",
+      "name": "Maiella"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0841",
+      "level": "ward",
+      "name": "Olkaria"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0842",
+      "level": "ward",
+      "name": "Naivasha East"
+    },
+    {
+      "geo_code": "KEN-C032-CON168-W0843",
+      "level": "ward",
+      "name": "Viwandani"
+    },
+    {
+      "geo_code": "KEN-C032-CON169",
+      "level": "constituency",
+      "name": "Gilgil"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0844",
+      "level": "ward",
+      "name": "Gilgil"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0845",
+      "level": "ward",
+      "name": "Elementaita"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0846",
+      "level": "ward",
+      "name": "Mbaruk/Eburu"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0847",
+      "level": "ward",
+      "name": "Malewa West"
+    },
+    {
+      "geo_code": "KEN-C032-CON169-W0848",
+      "level": "ward",
+      "name": "Murindati"
+    },
+    {
+      "geo_code": "KEN-C032-CON170",
+      "level": "constituency",
+      "name": "Kuresoi South"
+    },
+    {
+      "geo_code": "KEN-C032-CON170-W0849",
+      "level": "ward",
+      "name": "Amalo"
+    },
+    {
+      "geo_code": "KEN-C032-CON170-W0850",
+      "level": "ward",
+      "name": "Keringet"
+    },
+    {
+      "geo_code": "KEN-C032-CON170-W0851",
+      "level": "ward",
+      "name": "Kiptagich"
+    },
+    {
+      "geo_code": "KEN-C032-CON170-W0852",
+      "level": "ward",
+      "name": "Tinet"
+    },
+    {
+      "geo_code": "KEN-C032-CON171",
+      "level": "constituency",
+      "name": "Kuresoi North"
+    },
+    {
+      "geo_code": "KEN-C032-CON171-W0853",
+      "level": "ward",
+      "name": "Kiptororo"
+    },
+    {
+      "geo_code": "KEN-C032-CON171-W0854",
+      "level": "ward",
+      "name": "Nyota"
+    },
+    {
+      "geo_code": "KEN-C032-CON171-W0855",
+      "level": "ward",
+      "name": "Sirikwa"
+    },
+    {
+      "geo_code": "KEN-C032-CON171-W0856",
+      "level": "ward",
+      "name": "Kamara"
+    },
+    {
+      "geo_code": "KEN-C032-CON172",
+      "level": "constituency",
+      "name": "Subukia"
+    },
+    {
+      "geo_code": "KEN-C032-CON172-W0857",
+      "level": "ward",
+      "name": "Subukia"
+    },
+    {
+      "geo_code": "KEN-C032-CON172-W0858",
+      "level": "ward",
+      "name": "Waseges"
+    },
+    {
+      "geo_code": "KEN-C032-CON172-W0859",
+      "level": "ward",
+      "name": "Kabazi"
+    },
+    {
+      "geo_code": "KEN-C032-CON173",
+      "level": "constituency",
+      "name": "Rongai"
+    },
+    {
+      "geo_code": "KEN-C032-CON173-W0860",
+      "level": "ward",
+      "name": "Menengai West"
+    },
+    {
+      "geo_code": "KEN-C032-CON173-W0861",
+      "level": "ward",
+      "name": "Soin"
+    },
+    {
+      "geo_code": "KEN-C032-CON173-W0862",
+      "level": "ward",
+      "name": "Visoi"
+    },
+    {
+      "geo_code": "KEN-C032-CON173-W0863",
+      "level": "ward",
+      "name": "Mosop"
+    },
+    {
+      "geo_code": "KEN-C032-CON173-W0864",
+      "level": "ward",
+      "name": "Solai"
+    },
+    {
+      "geo_code": "KEN-C032-CON174",
+      "level": "constituency",
+      "name": "Bahati"
+    },
+    {
+      "geo_code": "KEN-C032-CON174-W0865",
+      "level": "ward",
+      "name": "Dundori"
+    },
+    {
+      "geo_code": "KEN-C032-CON174-W0866",
+      "level": "ward",
+      "name": "Kabatini"
+    },
+    {
+      "geo_code": "KEN-C032-CON174-W0867",
+      "level": "ward",
+      "name": "Kiamaina"
+    },
+    {
+      "geo_code": "KEN-C032-CON174-W0868",
+      "level": "ward",
+      "name": "Lanet/Umoja"
+    },
+    {
+      "geo_code": "KEN-C032-CON174-W0869",
+      "level": "ward",
+      "name": "Bahati"
+    },
+    {
+      "geo_code": "KEN-C032-CON175",
+      "level": "constituency",
+      "name": "Nakuru Town West"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0870",
+      "level": "ward",
+      "name": "Barut"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0871",
+      "level": "ward",
+      "name": "London"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0872",
+      "level": "ward",
+      "name": "Kaptembwo"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0873",
+      "level": "ward",
+      "name": "Kapkures"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0874",
+      "level": "ward",
+      "name": "Rhoda"
+    },
+    {
+      "geo_code": "KEN-C032-CON175-W0875",
+      "level": "ward",
+      "name": "Shaabab"
+    },
+    {
+      "geo_code": "KEN-C032-CON176",
+      "level": "constituency",
+      "name": "Nakuru Town East"
+    },
+    {
+      "geo_code": "KEN-C032-CON176-W0876",
+      "level": "ward",
+      "name": "Biashara"
+    },
+    {
+      "geo_code": "KEN-C032-CON176-W0877",
+      "level": "ward",
+      "name": "Kivumbini"
+    },
+    {
+      "geo_code": "KEN-C032-CON176-W0878",
+      "level": "ward",
+      "name": "Flamingo"
+    },
+    {
+      "geo_code": "KEN-C032-CON176-W0879",
+      "level": "ward",
+      "name": "Menengai"
+    },
+    {
+      "geo_code": "KEN-C032-CON176-W0880",
+      "level": "ward",
+      "name": "Nakuru East"
+    },
+    {
+      "geo_code": "KEN-C033",
+      "level": "county",
+      "name": "Narok"
+    },
+    {
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "name": "Kilgoris"
+    },
+    {
+      "geo_code": "KEN-C033-CON177-W0881",
+      "level": "ward",
+      "name": "Kilgoris Central"
+    },
+    {
+      "geo_code": "KEN-C033-CON177-W0882",
+      "level": "ward",
+      "name": "Keyian"
+    },
+    {
+      "geo_code": "KEN-C033-CON177-W0883",
+      "level": "ward",
+      "name": "Angata Barikoi"
+    },
+    {
+      "geo_code": "KEN-C033-CON177-W0884",
+      "level": "ward",
+      "name": "Shankoe"
+    },
+    {
+      "geo_code": "KEN-C033-CON177-W0885",
+      "level": "ward",
+      "name": "Kimintet"
+    },
+    {
+      "geo_code": "KEN-C033-CON177-W0886",
+      "level": "ward",
+      "name": "Lolgorian"
+    },
+    {
+      "geo_code": "KEN-C033-CON178",
+      "level": "constituency",
+      "name": "Emurua Dikirr"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0887",
+      "level": "ward",
+      "name": "Ilkerin"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0888",
+      "level": "ward",
+      "name": "Ololmasani"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0889",
+      "level": "ward",
+      "name": "Mogondo"
+    },
+    {
+      "geo_code": "KEN-C033-CON178-W0890",
+      "level": "ward",
+      "name": "Kapsasian"
+    },
+    {
+      "geo_code": "KEN-C033-CON179",
+      "level": "constituency",
+      "name": "Narok North"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0891",
+      "level": "ward",
+      "name": "Olpusimoru"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0892",
+      "level": "ward",
+      "name": "Olokurto"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0893",
+      "level": "ward",
+      "name": "Narok Town"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0894",
+      "level": "ward",
+      "name": "Nkareta"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0895",
+      "level": "ward",
+      "name": "Olorropil"
+    },
+    {
+      "geo_code": "KEN-C033-CON179-W0896",
+      "level": "ward",
+      "name": "Melili"
+    },
+    {
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "name": "Narok East"
+    },
+    {
+      "geo_code": "KEN-C033-CON180-W0897",
+      "level": "ward",
+      "name": "Mosiro"
+    },
+    {
+      "geo_code": "KEN-C033-CON180-W0898",
+      "level": "ward",
+      "name": "Ildamat"
+    },
+    {
+      "geo_code": "KEN-C033-CON180-W0899",
+      "level": "ward",
+      "name": "Keekonyokie"
+    },
+    {
+      "geo_code": "KEN-C033-CON180-W0900",
+      "level": "ward",
+      "name": "Suswa"
+    },
+    {
+      "geo_code": "KEN-C033-CON181",
+      "level": "constituency",
+      "name": "Narok South"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0901",
+      "level": "ward",
+      "name": "Majimoto/Naroosura"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0902",
+      "level": "ward",
+      "name": "Ololulung'a"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0903",
+      "level": "ward",
+      "name": "Melelo"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0904",
+      "level": "ward",
+      "name": "Loita"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0905",
+      "level": "ward",
+      "name": "Sogoo"
+    },
+    {
+      "geo_code": "KEN-C033-CON181-W0906",
+      "level": "ward",
+      "name": "Sagamian"
+    },
+    {
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "name": "Narok West"
+    },
+    {
+      "geo_code": "KEN-C033-CON182-W0907",
+      "level": "ward",
+      "name": "Ilmotiok"
+    },
+    {
+      "geo_code": "KEN-C033-CON182-W0908",
+      "level": "ward",
+      "name": "Mara"
+    },
+    {
+      "geo_code": "KEN-C033-CON182-W0909",
+      "level": "ward",
+      "name": "Siana"
+    },
+    {
+      "geo_code": "KEN-C033-CON182-W0910",
+      "level": "ward",
+      "name": "Naikarra"
+    },
+    {
+      "geo_code": "KEN-C034",
+      "level": "county",
+      "name": "Kajiado"
+    },
+    {
+      "geo_code": "KEN-C034-CON183",
+      "level": "constituency",
+      "name": "Kajiado North"
+    },
+    {
+      "geo_code": "KEN-C034-CON183-W0911",
+      "level": "ward",
+      "name": "Olkeri"
+    },
+    {
+      "geo_code": "KEN-C034-CON183-W0912",
+      "level": "ward",
+      "name": "Ongata Rongai"
+    },
+    {
+      "geo_code": "KEN-C034-CON183-W0913",
+      "level": "ward",
+      "name": "Nkaimurunya"
+    },
+    {
+      "geo_code": "KEN-C034-CON183-W0914",
+      "level": "ward",
+      "name": "Oloolua"
+    },
+    {
+      "geo_code": "KEN-C034-CON183-W0915",
+      "level": "ward",
+      "name": "Ngong"
+    },
+    {
+      "geo_code": "KEN-C034-CON184",
+      "level": "constituency",
+      "name": "Kajiado Central"
+    },
+    {
+      "geo_code": "KEN-C034-CON184-W0916",
+      "level": "ward",
+      "name": "Purko"
+    },
+    {
+      "geo_code": "KEN-C034-CON184-W0917",
+      "level": "ward",
+      "name": "Ildamat"
+    },
+    {
+      "geo_code": "KEN-C034-CON184-W0918",
+      "level": "ward",
+      "name": "Dalalekutuk"
+    },
+    {
+      "geo_code": "KEN-C034-CON184-W0919",
+      "level": "ward",
+      "name": "Matapato North"
+    },
+    {
+      "geo_code": "KEN-C034-CON184-W0920",
+      "level": "ward",
+      "name": "Matapato South"
+    },
+    {
+      "geo_code": "KEN-C034-CON185",
+      "level": "constituency",
+      "name": "Kajiado East"
+    },
+    {
+      "geo_code": "KEN-C034-CON185-W0921",
+      "level": "ward",
+      "name": "Kaputiei North"
+    },
+    {
+      "geo_code": "KEN-C034-CON185-W0922",
+      "level": "ward",
+      "name": "Kitengela"
+    },
+    {
+      "geo_code": "KEN-C034-CON185-W0923",
+      "level": "ward",
+      "name": "Oloosirkon/Sholinke"
+    },
+    {
+      "geo_code": "KEN-C034-CON185-W0924",
+      "level": "ward",
+      "name": "Kenyawa-Poka"
+    },
+    {
+      "geo_code": "KEN-C034-CON185-W0925",
+      "level": "ward",
+      "name": "Imaroro"
+    },
+    {
+      "geo_code": "KEN-C034-CON186",
+      "level": "constituency",
+      "name": "Kajiado West"
+    },
+    {
+      "geo_code": "KEN-C034-CON186-W0926",
+      "level": "ward",
+      "name": "Keekonyokie"
+    },
+    {
+      "geo_code": "KEN-C034-CON186-W0927",
+      "level": "ward",
+      "name": "Iloodokilani"
+    },
+    {
+      "geo_code": "KEN-C034-CON186-W0928",
+      "level": "ward",
+      "name": "Magadi"
+    },
+    {
+      "geo_code": "KEN-C034-CON186-W0929",
+      "level": "ward",
+      "name": "Ewuaso Oonkidong'i"
+    },
+    {
+      "geo_code": "KEN-C034-CON186-W0930",
+      "level": "ward",
+      "name": "Mosiro"
+    },
+    {
+      "geo_code": "KEN-C034-CON187",
+      "level": "constituency",
+      "name": "Kajiado South"
+    },
+    {
+      "geo_code": "KEN-C034-CON187-W0931",
+      "level": "ward",
+      "name": "Entonet/Lenkisim"
+    },
+    {
+      "geo_code": "KEN-C034-CON187-W0932",
+      "level": "ward",
+      "name": "Mbirikani/Eselenkei"
+    },
+    {
+      "geo_code": "KEN-C034-CON187-W0933",
+      "level": "ward",
+      "name": "Kuku"
+    },
+    {
+      "geo_code": "KEN-C034-CON187-W0934",
+      "level": "ward",
+      "name": "Rombo"
+    },
+    {
+      "geo_code": "KEN-C034-CON187-W0935",
+      "level": "ward",
+      "name": "Kimana"
+    },
+    {
+      "geo_code": "KEN-C035",
+      "level": "county",
+      "name": "Kericho"
+    },
+    {
+      "geo_code": "KEN-C035-CON188",
+      "level": "constituency",
+      "name": "Kipkelion East"
+    },
+    {
+      "geo_code": "KEN-C035-CON188-W0936",
+      "level": "ward",
+      "name": "Londiani"
+    },
+    {
+      "geo_code": "KEN-C035-CON188-W0937",
+      "level": "ward",
+      "name": "Kedowa/Kimugul"
+    },
+    {
+      "geo_code": "KEN-C035-CON188-W0938",
+      "level": "ward",
+      "name": "Chepseon"
+    },
+    {
+      "geo_code": "KEN-C035-CON188-W0939",
+      "level": "ward",
+      "name": "Tendeno/Sorget"
+    },
+    {
+      "geo_code": "KEN-C035-CON189",
+      "level": "constituency",
+      "name": "Kipkelion West"
+    },
+    {
+      "geo_code": "KEN-C035-CON189-W0940",
+      "level": "ward",
+      "name": "Kunyak"
+    },
+    {
+      "geo_code": "KEN-C035-CON189-W0941",
+      "level": "ward",
+      "name": "Kamasian"
+    },
+    {
+      "geo_code": "KEN-C035-CON189-W0942",
+      "level": "ward",
+      "name": "Kipkelion"
+    },
+    {
+      "geo_code": "KEN-C035-CON189-W0943",
+      "level": "ward",
+      "name": "Chilchila"
+    },
+    {
+      "geo_code": "KEN-C035-CON190",
+      "level": "constituency",
+      "name": "Ainamoi"
+    },
+    {
+      "geo_code": "KEN-C035-CON190-W0944",
+      "level": "ward",
+      "name": "Kapsoit"
+    },
+    {
+      "geo_code": "KEN-C035-CON190-W0945",
+      "level": "ward",
+      "name": "Ainamoi"
+    },
+    {
+      "geo_code": "KEN-C035-CON190-W0946",
+      "level": "ward",
+      "name": "Kapkugerwet"
+    },
+    {
+      "geo_code": "KEN-C035-CON190-W0947",
+      "level": "ward",
+      "name": "Kipchebor"
+    },
+    {
+      "geo_code": "KEN-C035-CON190-W0948",
+      "level": "ward",
+      "name": "Kipchimchim"
+    },
+    {
+      "geo_code": "KEN-C035-CON190-W0949",
+      "level": "ward",
+      "name": "Kapsaos"
+    },
+    {
+      "geo_code": "KEN-C035-CON191",
+      "level": "constituency",
+      "name": "Bureti"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0950",
+      "level": "ward",
+      "name": "Kisiara"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0951",
+      "level": "ward",
+      "name": "Tebesonik"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0952",
+      "level": "ward",
+      "name": "Cheboin"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0953",
+      "level": "ward",
+      "name": "Chemosot"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0954",
+      "level": "ward",
+      "name": "Litein"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0955",
+      "level": "ward",
+      "name": "Cheplanget"
+    },
+    {
+      "geo_code": "KEN-C035-CON191-W0956",
+      "level": "ward",
+      "name": "Kapkatet"
+    },
+    {
+      "geo_code": "KEN-C035-CON192",
+      "level": "constituency",
+      "name": "Belgut"
+    },
+    {
+      "geo_code": "KEN-C035-CON192-W0957",
+      "level": "ward",
+      "name": "Waldai"
+    },
+    {
+      "geo_code": "KEN-C035-CON192-W0958",
+      "level": "ward",
+      "name": "Kabianga"
+    },
+    {
+      "geo_code": "KEN-C035-CON192-W0959",
+      "level": "ward",
+      "name": "Cheptororiet/Seretut"
+    },
+    {
+      "geo_code": "KEN-C035-CON192-W0960",
+      "level": "ward",
+      "name": "Chaik"
+    },
+    {
+      "geo_code": "KEN-C035-CON192-W0961",
+      "level": "ward",
+      "name": "Kapsuser"
+    },
+    {
+      "geo_code": "KEN-C035-CON193",
+      "level": "constituency",
+      "name": "Sigowet/Soin"
+    },
+    {
+      "geo_code": "KEN-C035-CON193-W0962",
+      "level": "ward",
+      "name": "Sigowet"
+    },
+    {
+      "geo_code": "KEN-C035-CON193-W0963",
+      "level": "ward",
+      "name": "Kaplelartet"
+    },
+    {
+      "geo_code": "KEN-C035-CON193-W0964",
+      "level": "ward",
+      "name": "Soliat"
+    },
+    {
+      "geo_code": "KEN-C035-CON193-W0965",
+      "level": "ward",
+      "name": "Soin"
+    },
+    {
+      "geo_code": "KEN-C036",
+      "level": "county",
+      "name": "Bomet"
+    },
+    {
+      "geo_code": "KEN-C036-CON194",
+      "level": "constituency",
+      "name": "Sotik"
+    },
+    {
+      "geo_code": "KEN-C036-CON194-W0966",
+      "level": "ward",
+      "name": "Ndanai/Abosi"
+    },
+    {
+      "geo_code": "KEN-C036-CON194-W0967",
+      "level": "ward",
+      "name": "Chemagel"
+    },
+    {
+      "geo_code": "KEN-C036-CON194-W0968",
+      "level": "ward",
+      "name": "Kipsonoi"
+    },
+    {
+      "geo_code": "KEN-C036-CON194-W0969",
+      "level": "ward",
+      "name": "Kapletundo"
+    },
+    {
+      "geo_code": "KEN-C036-CON194-W0970",
+      "level": "ward",
+      "name": "Rongena/Manaret"
+    },
+    {
+      "geo_code": "KEN-C036-CON195",
+      "level": "constituency",
+      "name": "Chepalungu"
+    },
+    {
+      "geo_code": "KEN-C036-CON195-W0971",
+      "level": "ward",
+      "name": "Kong'asis"
+    },
+    {
+      "geo_code": "KEN-C036-CON195-W0972",
+      "level": "ward",
+      "name": "Nyangores"
+    },
+    {
+      "geo_code": "KEN-C036-CON195-W0973",
+      "level": "ward",
+      "name": "Sigor"
+    },
+    {
+      "geo_code": "KEN-C036-CON195-W0974",
+      "level": "ward",
+      "name": "Chebunyo"
+    },
+    {
+      "geo_code": "KEN-C036-CON195-W0975",
+      "level": "ward",
+      "name": "Siongiroi"
+    },
+    {
+      "geo_code": "KEN-C036-CON196",
+      "level": "constituency",
+      "name": "Bomet East"
+    },
+    {
+      "geo_code": "KEN-C036-CON196-W0976",
+      "level": "ward",
+      "name": "Merigi"
+    },
+    {
+      "geo_code": "KEN-C036-CON196-W0977",
+      "level": "ward",
+      "name": "Kembu"
+    },
+    {
+      "geo_code": "KEN-C036-CON196-W0978",
+      "level": "ward",
+      "name": "Longisa"
+    },
+    {
+      "geo_code": "KEN-C036-CON196-W0979",
+      "level": "ward",
+      "name": "Kipreres"
+    },
+    {
+      "geo_code": "KEN-C036-CON196-W0980",
+      "level": "ward",
+      "name": "Chemaner"
+    },
+    {
+      "geo_code": "KEN-C036-CON197",
+      "level": "constituency",
+      "name": "Bomet Central"
+    },
+    {
+      "geo_code": "KEN-C036-CON197-W0981",
+      "level": "ward",
+      "name": "Silibwet Township"
+    },
+    {
+      "geo_code": "KEN-C036-CON197-W0982",
+      "level": "ward",
+      "name": "Ndaraweta"
+    },
+    {
+      "geo_code": "KEN-C036-CON197-W0983",
+      "level": "ward",
+      "name": "Singorwet"
+    },
+    {
+      "geo_code": "KEN-C036-CON197-W0984",
+      "level": "ward",
+      "name": "Chesoen"
+    },
+    {
+      "geo_code": "KEN-C036-CON197-W0985",
+      "level": "ward",
+      "name": "Mutarakwa"
+    },
+    {
+      "geo_code": "KEN-C036-CON198",
+      "level": "constituency",
+      "name": "Konoin"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0986",
+      "level": "ward",
+      "name": "Chepchabas"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0987",
+      "level": "ward",
+      "name": "Kimulot"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0988",
+      "level": "ward",
+      "name": "Mogogosiek"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0989",
+      "level": "ward",
+      "name": "Boito"
+    },
+    {
+      "geo_code": "KEN-C036-CON198-W0990",
+      "level": "ward",
+      "name": "Embomos"
+    },
+    {
+      "geo_code": "KEN-C037",
+      "level": "county",
+      "name": "Kakamega"
+    },
+    {
+      "geo_code": "KEN-C037-CON199",
+      "level": "constituency",
+      "name": "Lugari"
+    },
+    {
+      "geo_code": "KEN-C037-CON199-W0991",
+      "level": "ward",
+      "name": "Mautuma"
+    },
+    {
+      "geo_code": "KEN-C037-CON199-W0992",
+      "level": "ward",
+      "name": "Lugari"
+    },
+    {
+      "geo_code": "KEN-C037-CON199-W0993",
+      "level": "ward",
+      "name": "Lumakanda"
+    },
+    {
+      "geo_code": "KEN-C037-CON199-W0994",
+      "level": "ward",
+      "name": "Chekalini"
+    },
+    {
+      "geo_code": "KEN-C037-CON199-W0995",
+      "level": "ward",
+      "name": "Chevaywa"
+    },
+    {
+      "geo_code": "KEN-C037-CON199-W0996",
+      "level": "ward",
+      "name": "Lwandeti"
+    },
+    {
+      "geo_code": "KEN-C037-CON200",
+      "level": "constituency",
+      "name": "Likuyani"
+    },
+    {
+      "geo_code": "KEN-C037-CON200-W0997",
+      "level": "ward",
+      "name": "Likuyani"
+    },
+    {
+      "geo_code": "KEN-C037-CON200-W0998",
+      "level": "ward",
+      "name": "Sango"
+    },
+    {
+      "geo_code": "KEN-C037-CON200-W0999",
+      "level": "ward",
+      "name": "Kongoni"
+    },
+    {
+      "geo_code": "KEN-C037-CON200-W1000",
+      "level": "ward",
+      "name": "Nzoia"
+    },
+    {
+      "geo_code": "KEN-C037-CON200-W1001",
+      "level": "ward",
+      "name": "Sinoko"
+    },
+    {
+      "geo_code": "KEN-C037-CON201",
+      "level": "constituency",
+      "name": "Malava"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1002",
+      "level": "ward",
+      "name": "West Kabras"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1003",
+      "level": "ward",
+      "name": "Chemuche"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1004",
+      "level": "ward",
+      "name": "East Kabras"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1005",
+      "level": "ward",
+      "name": "Butali/Chegulo"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1006",
+      "level": "ward",
+      "name": "Manda-Shivanga"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1007",
+      "level": "ward",
+      "name": "Shirugu-Mugai"
+    },
+    {
+      "geo_code": "KEN-C037-CON201-W1008",
+      "level": "ward",
+      "name": "South Kabras"
+    },
+    {
+      "geo_code": "KEN-C037-CON202",
+      "level": "constituency",
+      "name": "Lurambi"
+    },
+    {
+      "geo_code": "KEN-C037-CON202-W1009",
+      "level": "ward",
+      "name": "Butsotso East"
+    },
+    {
+      "geo_code": "KEN-C037-CON202-W1010",
+      "level": "ward",
+      "name": "Butsotso South"
+    },
+    {
+      "geo_code": "KEN-C037-CON202-W1011",
+      "level": "ward",
+      "name": "Butsotso Central"
+    },
+    {
+      "geo_code": "KEN-C037-CON202-W1012",
+      "level": "ward",
+      "name": "Sheywe"
+    },
+    {
+      "geo_code": "KEN-C037-CON202-W1013",
+      "level": "ward",
+      "name": "Mahiakalo"
+    },
+    {
+      "geo_code": "KEN-C037-CON202-W1014",
+      "level": "ward",
+      "name": "Shirere"
+    },
+    {
+      "geo_code": "KEN-C037-CON203",
+      "level": "constituency",
+      "name": "Navakholo"
+    },
+    {
+      "geo_code": "KEN-C037-CON203-W1015",
+      "level": "ward",
+      "name": "Ingostse-Mathia"
+    },
+    {
+      "geo_code": "KEN-C037-CON203-W1016",
+      "level": "ward",
+      "name": "Shinoyi-Shikomari-"
+    },
+    {
+      "geo_code": "KEN-C037-CON203-W1017",
+      "level": "ward",
+      "name": "Bunyala West"
+    },
+    {
+      "geo_code": "KEN-C037-CON203-W1018",
+      "level": "ward",
+      "name": "Bunyala East"
+    },
+    {
+      "geo_code": "KEN-C037-CON203-W1019",
+      "level": "ward",
+      "name": "Bunyala Central"
+    },
+    {
+      "geo_code": "KEN-C037-CON204",
+      "level": "constituency",
+      "name": "Mumias West"
+    },
+    {
+      "geo_code": "KEN-C037-CON204-W1020",
+      "level": "ward",
+      "name": "Mumias Central"
+    },
+    {
+      "geo_code": "KEN-C037-CON204-W1021",
+      "level": "ward",
+      "name": "Mumias North"
+    },
+    {
+      "geo_code": "KEN-C037-CON204-W1022",
+      "level": "ward",
+      "name": "Etenje"
+    },
+    {
+      "geo_code": "KEN-C037-CON204-W1023",
+      "level": "ward",
+      "name": "Musanda"
+    },
+    {
+      "geo_code": "KEN-C037-CON205",
+      "level": "constituency",
+      "name": "Mumias East"
+    },
+    {
+      "geo_code": "KEN-C037-CON205-W1024",
+      "level": "ward",
+      "name": "Lubinu/Lusheya"
+    },
+    {
+      "geo_code": "KEN-C037-CON205-W1025",
+      "level": "ward",
+      "name": "Isongo/Makunga/Malaha"
+    },
+    {
+      "geo_code": "KEN-C037-CON205-W1026",
+      "level": "ward",
+      "name": "East Wanga"
+    },
+    {
+      "geo_code": "KEN-C037-CON206",
+      "level": "constituency",
+      "name": "Matungu"
+    },
+    {
+      "geo_code": "KEN-C037-CON206-W1027",
+      "level": "ward",
+      "name": "Koyonzo"
+    },
+    {
+      "geo_code": "KEN-C037-CON206-W1028",
+      "level": "ward",
+      "name": "Kholera"
+    },
+    {
+      "geo_code": "KEN-C037-CON206-W1029",
+      "level": "ward",
+      "name": "Khalaba"
+    },
+    {
+      "geo_code": "KEN-C037-CON206-W1030",
+      "level": "ward",
+      "name": "Mayoni"
+    },
+    {
+      "geo_code": "KEN-C037-CON206-W1031",
+      "level": "ward",
+      "name": "Namamali"
+    },
+    {
+      "geo_code": "KEN-C037-CON207",
+      "level": "constituency",
+      "name": "Butere"
+    },
+    {
+      "geo_code": "KEN-C037-CON207-W1032",
+      "level": "ward",
+      "name": "Marama West"
+    },
+    {
+      "geo_code": "KEN-C037-CON207-W1033",
+      "level": "ward",
+      "name": "Marama Central"
+    },
+    {
+      "geo_code": "KEN-C037-CON207-W1034",
+      "level": "ward",
+      "name": "Marenyo - Shianda"
+    },
+    {
+      "geo_code": "KEN-C037-CON207-W1035",
+      "level": "ward",
+      "name": "Marama North"
+    },
+    {
+      "geo_code": "KEN-C037-CON207-W1036",
+      "level": "ward",
+      "name": "Marama South"
+    },
+    {
+      "geo_code": "KEN-C037-CON208",
+      "level": "constituency",
+      "name": "Khwisero"
+    },
+    {
+      "geo_code": "KEN-C037-CON208-W1037",
+      "level": "ward",
+      "name": "Kisa North"
+    },
+    {
+      "geo_code": "KEN-C037-CON208-W1038",
+      "level": "ward",
+      "name": "Kisa East"
+    },
+    {
+      "geo_code": "KEN-C037-CON208-W1039",
+      "level": "ward",
+      "name": "Kisa West"
+    },
+    {
+      "geo_code": "KEN-C037-CON208-W1040",
+      "level": "ward",
+      "name": "Kisa Central"
+    },
+    {
+      "geo_code": "KEN-C037-CON209",
+      "level": "constituency",
+      "name": "Shinyalu"
+    },
+    {
+      "geo_code": "KEN-C037-CON209-W1041",
+      "level": "ward",
+      "name": "Isukha North"
+    },
+    {
+      "geo_code": "KEN-C037-CON209-W1042",
+      "level": "ward",
+      "name": "Murhanda"
+    },
+    {
+      "geo_code": "KEN-C037-CON209-W1043",
+      "level": "ward",
+      "name": "Isukha Central"
+    },
+    {
+      "geo_code": "KEN-C037-CON209-W1044",
+      "level": "ward",
+      "name": "Isukha South"
+    },
+    {
+      "geo_code": "KEN-C037-CON209-W1045",
+      "level": "ward",
+      "name": "Isukha East"
+    },
+    {
+      "geo_code": "KEN-C037-CON209-W1046",
+      "level": "ward",
+      "name": "Isukha West"
+    },
+    {
+      "geo_code": "KEN-C037-CON210",
+      "level": "constituency",
+      "name": "Ikolomani"
+    },
+    {
+      "geo_code": "KEN-C037-CON210-W1047",
+      "level": "ward",
+      "name": "Idakho South"
+    },
+    {
+      "geo_code": "KEN-C037-CON210-W1048",
+      "level": "ward",
+      "name": "Idakho East"
+    },
+    {
+      "geo_code": "KEN-C037-CON210-W1049",
+      "level": "ward",
+      "name": "Idakho North"
+    },
+    {
+      "geo_code": "KEN-C037-CON210-W1050",
+      "level": "ward",
+      "name": "Idakho Central"
+    },
+    {
+      "geo_code": "KEN-C038",
+      "level": "county",
+      "name": "Vihiga"
+    },
+    {
+      "geo_code": "KEN-C038-CON211",
+      "level": "constituency",
+      "name": "Vihiga"
+    },
+    {
+      "geo_code": "KEN-C038-CON211-W1051",
+      "level": "ward",
+      "name": "Lugaga-Wamuluma"
+    },
+    {
+      "geo_code": "KEN-C038-CON211-W1052",
+      "level": "ward",
+      "name": "South Maragoli"
+    },
+    {
+      "geo_code": "KEN-C038-CON211-W1053",
+      "level": "ward",
+      "name": "Central Maragoli"
+    },
+    {
+      "geo_code": "KEN-C038-CON211-W1054",
+      "level": "ward",
+      "name": "Mungoma"
+    },
+    {
+      "geo_code": "KEN-C038-CON212",
+      "level": "constituency",
+      "name": "Sabatia"
+    },
+    {
+      "geo_code": "KEN-C038-CON212-W1055",
+      "level": "ward",
+      "name": "Lyaduywa/Izava"
+    },
+    {
+      "geo_code": "KEN-C038-CON212-W1056",
+      "level": "ward",
+      "name": "West Sabatia"
+    },
+    {
+      "geo_code": "KEN-C038-CON212-W1057",
+      "level": "ward",
+      "name": "Chavakali"
+    },
+    {
+      "geo_code": "KEN-C038-CON212-W1058",
+      "level": "ward",
+      "name": "North Maragoli"
+    },
+    {
+      "geo_code": "KEN-C038-CON212-W1059",
+      "level": "ward",
+      "name": "Wodanga"
+    },
+    {
+      "geo_code": "KEN-C038-CON212-W1060",
+      "level": "ward",
+      "name": "Busali"
+    },
+    {
+      "geo_code": "KEN-C038-CON213",
+      "level": "constituency",
+      "name": "Hamisi"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1061",
+      "level": "ward",
+      "name": "Shiru"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1062",
+      "level": "ward",
+      "name": "Muhudu"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1063",
+      "level": "ward",
+      "name": "Shamakhokho"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1064",
+      "level": "ward",
+      "name": "Gisambai"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1065",
+      "level": "ward",
+      "name": "Banja"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1066",
+      "level": "ward",
+      "name": "Tambua"
+    },
+    {
+      "geo_code": "KEN-C038-CON213-W1067",
+      "level": "ward",
+      "name": "Jepkoyai"
+    },
+    {
+      "geo_code": "KEN-C038-CON214",
+      "level": "constituency",
+      "name": "Luanda"
+    },
+    {
+      "geo_code": "KEN-C038-CON214-W1068",
+      "level": "ward",
+      "name": "Luanda Township"
+    },
+    {
+      "geo_code": "KEN-C038-CON214-W1069",
+      "level": "ward",
+      "name": "Wemilabi"
+    },
+    {
+      "geo_code": "KEN-C038-CON214-W1070",
+      "level": "ward",
+      "name": "Mwibona"
+    },
+    {
+      "geo_code": "KEN-C038-CON214-W1071",
+      "level": "ward",
+      "name": "Luanda South"
+    },
+    {
+      "geo_code": "KEN-C038-CON214-W1072",
+      "level": "ward",
+      "name": "Emabungo"
+    },
+    {
+      "geo_code": "KEN-C038-CON215",
+      "level": "constituency",
+      "name": "Emuhaya"
+    },
+    {
+      "geo_code": "KEN-C038-CON215-W1073",
+      "level": "ward",
+      "name": "North East Bunyore"
+    },
+    {
+      "geo_code": "KEN-C038-CON215-W1074",
+      "level": "ward",
+      "name": "Central Bunyore"
+    },
+    {
+      "geo_code": "KEN-C038-CON215-W1075",
+      "level": "ward",
+      "name": "West Bunyore"
+    },
+    {
+      "geo_code": "KEN-C039",
+      "level": "county",
+      "name": "Bungoma"
+    },
+    {
+      "geo_code": "KEN-C039-CON216",
+      "level": "constituency",
+      "name": "Mt.elgon"
+    },
+    {
+      "geo_code": "KEN-C039-CON216-W1076",
+      "level": "ward",
+      "name": "Cheptais"
+    },
+    {
+      "geo_code": "KEN-C039-CON216-W1077",
+      "level": "ward",
+      "name": "Chesikaki"
+    },
+    {
+      "geo_code": "KEN-C039-CON216-W1078",
+      "level": "ward",
+      "name": "Chepyuk"
+    },
+    {
+      "geo_code": "KEN-C039-CON216-W1079",
+      "level": "ward",
+      "name": "Kapkateny"
+    },
+    {
+      "geo_code": "KEN-C039-CON216-W1080",
+      "level": "ward",
+      "name": "Kaptama"
+    },
+    {
+      "geo_code": "KEN-C039-CON216-W1081",
+      "level": "ward",
+      "name": "Elgon"
+    },
+    {
+      "geo_code": "KEN-C039-CON217",
+      "level": "constituency",
+      "name": "Sirisia"
+    },
+    {
+      "geo_code": "KEN-C039-CON217-W1082",
+      "level": "ward",
+      "name": "Namwela"
+    },
+    {
+      "geo_code": "KEN-C039-CON217-W1083",
+      "level": "ward",
+      "name": "Malakisi/South Kulisiru"
+    },
+    {
+      "geo_code": "KEN-C039-CON217-W1084",
+      "level": "ward",
+      "name": "Lwandanyi"
+    },
+    {
+      "geo_code": "KEN-C039-CON218",
+      "level": "constituency",
+      "name": "Kabuchai"
+    },
+    {
+      "geo_code": "KEN-C039-CON218-W1085",
+      "level": "ward",
+      "name": "Kabuchai/Chwele"
+    },
+    {
+      "geo_code": "KEN-C039-CON218-W1086",
+      "level": "ward",
+      "name": "West Nalondo"
+    },
+    {
+      "geo_code": "KEN-C039-CON218-W1087",
+      "level": "ward",
+      "name": "Bwake/Luuya"
+    },
+    {
+      "geo_code": "KEN-C039-CON218-W1088",
+      "level": "ward",
+      "name": "Mukuyuni"
+    },
+    {
+      "geo_code": "KEN-C039-CON219",
+      "level": "constituency",
+      "name": "Bumula"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1089",
+      "level": "ward",
+      "name": "South Bukusu"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1090",
+      "level": "ward",
+      "name": "Bumula"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1091",
+      "level": "ward",
+      "name": "Khasoko"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1092",
+      "level": "ward",
+      "name": "Kabula"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1093",
+      "level": "ward",
+      "name": "Kimaeti"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1094",
+      "level": "ward",
+      "name": "West Bukusu"
+    },
+    {
+      "geo_code": "KEN-C039-CON219-W1095",
+      "level": "ward",
+      "name": "Siboti"
+    },
+    {
+      "geo_code": "KEN-C039-CON220",
+      "level": "constituency",
+      "name": "Kanduyi"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1096",
+      "level": "ward",
+      "name": "Bukembe West"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1097",
+      "level": "ward",
+      "name": "Bukembe East"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1098",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1099",
+      "level": "ward",
+      "name": "Khalaba"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1100",
+      "level": "ward",
+      "name": "Musikoma"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1101",
+      "level": "ward",
+      "name": "East Sang'alo"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1102",
+      "level": "ward",
+      "name": "Marakaru/Tuuti"
+    },
+    {
+      "geo_code": "KEN-C039-CON220-W1103",
+      "level": "ward",
+      "name": "Sang'alo West"
+    },
+    {
+      "geo_code": "KEN-C039-CON221",
+      "level": "constituency",
+      "name": "Webuye East"
+    },
+    {
+      "geo_code": "KEN-C039-CON221-W1104",
+      "level": "ward",
+      "name": "Mihuu"
+    },
+    {
+      "geo_code": "KEN-C039-CON221-W1105",
+      "level": "ward",
+      "name": "Ndivisi"
+    },
+    {
+      "geo_code": "KEN-C039-CON221-W1106",
+      "level": "ward",
+      "name": "Maraka"
+    },
+    {
+      "geo_code": "KEN-C039-CON222",
+      "level": "constituency",
+      "name": "Webuye West"
+    },
+    {
+      "geo_code": "KEN-C039-CON222-W1107",
+      "level": "ward",
+      "name": "Misikhu"
+    },
+    {
+      "geo_code": "KEN-C039-CON222-W1108",
+      "level": "ward",
+      "name": "Sitikho"
+    },
+    {
+      "geo_code": "KEN-C039-CON222-W1109",
+      "level": "ward",
+      "name": "Matulo"
+    },
+    {
+      "geo_code": "KEN-C039-CON222-W1110",
+      "level": "ward",
+      "name": "Bokoli"
+    },
+    {
+      "geo_code": "KEN-C039-CON223",
+      "level": "constituency",
+      "name": "Kimilili"
+    },
+    {
+      "geo_code": "KEN-C039-CON223-W1111",
+      "level": "ward",
+      "name": "Kimilili"
+    },
+    {
+      "geo_code": "KEN-C039-CON223-W1112",
+      "level": "ward",
+      "name": "Kibingei"
+    },
+    {
+      "geo_code": "KEN-C039-CON223-W1113",
+      "level": "ward",
+      "name": "Maeni"
+    },
+    {
+      "geo_code": "KEN-C039-CON223-W1114",
+      "level": "ward",
+      "name": "Kamukuywa"
+    },
+    {
+      "geo_code": "KEN-C039-CON224",
+      "level": "constituency",
+      "name": "Tongaren"
+    },
+    {
+      "geo_code": "KEN-C039-CON224-W1115",
+      "level": "ward",
+      "name": "Mbakalo"
+    },
+    {
+      "geo_code": "KEN-C039-CON224-W1116",
+      "level": "ward",
+      "name": "Naitiri/Kabuyefwe"
+    },
+    {
+      "geo_code": "KEN-C039-CON224-W1117",
+      "level": "ward",
+      "name": "Milima"
+    },
+    {
+      "geo_code": "KEN-C039-CON224-W1118",
+      "level": "ward",
+      "name": "Ndalu/ Tabani"
+    },
+    {
+      "geo_code": "KEN-C039-CON224-W1119",
+      "level": "ward",
+      "name": "Tongaren"
+    },
+    {
+      "geo_code": "KEN-C039-CON224-W1120",
+      "level": "ward",
+      "name": "Soysambu/ Mitua"
+    },
+    {
+      "geo_code": "KEN-C040",
+      "level": "county",
+      "name": "Busia"
+    },
+    {
+      "geo_code": "KEN-C040-CON225",
+      "level": "constituency",
+      "name": "Teso North"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1121",
+      "level": "ward",
+      "name": "Malaba Central"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1122",
+      "level": "ward",
+      "name": "Malaba North"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1123",
+      "level": "ward",
+      "name": "Ang'urai South"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1124",
+      "level": "ward",
+      "name": "Ang'urai North"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1125",
+      "level": "ward",
+      "name": "Ang'urai East"
+    },
+    {
+      "geo_code": "KEN-C040-CON225-W1126",
+      "level": "ward",
+      "name": "Malaba South"
+    },
+    {
+      "geo_code": "KEN-C040-CON226",
+      "level": "constituency",
+      "name": "Teso South"
+    },
+    {
+      "geo_code": "KEN-C040-CON226-W1127",
+      "level": "ward",
+      "name": "Ang'orom"
+    },
+    {
+      "geo_code": "KEN-C040-CON226-W1128",
+      "level": "ward",
+      "name": "Chakol South"
+    },
+    {
+      "geo_code": "KEN-C040-CON226-W1129",
+      "level": "ward",
+      "name": "Chakol North"
+    },
+    {
+      "geo_code": "KEN-C040-CON226-W1130",
+      "level": "ward",
+      "name": "Amukura West"
+    },
+    {
+      "geo_code": "KEN-C040-CON226-W1131",
+      "level": "ward",
+      "name": "Amukura East"
+    },
+    {
+      "geo_code": "KEN-C040-CON226-W1132",
+      "level": "ward",
+      "name": "Amukura Central"
+    },
+    {
+      "geo_code": "KEN-C040-CON227",
+      "level": "constituency",
+      "name": "Nambale"
+    },
+    {
+      "geo_code": "KEN-C040-CON227-W1133",
+      "level": "ward",
+      "name": "Nambale Township"
+    },
+    {
+      "geo_code": "KEN-C040-CON227-W1134",
+      "level": "ward",
+      "name": "Bukhayo North/Waltsi"
+    },
+    {
+      "geo_code": "KEN-C040-CON227-W1135",
+      "level": "ward",
+      "name": "Bukhayo East"
+    },
+    {
+      "geo_code": "KEN-C040-CON227-W1136",
+      "level": "ward",
+      "name": "Bukhayo Central"
+    },
+    {
+      "geo_code": "KEN-C040-CON228",
+      "level": "constituency",
+      "name": "Matayos"
+    },
+    {
+      "geo_code": "KEN-C040-CON228-W1137",
+      "level": "ward",
+      "name": "Bukhayo West"
+    },
+    {
+      "geo_code": "KEN-C040-CON228-W1138",
+      "level": "ward",
+      "name": "Mayenje"
+    },
+    {
+      "geo_code": "KEN-C040-CON228-W1139",
+      "level": "ward",
+      "name": "Matayos South"
+    },
+    {
+      "geo_code": "KEN-C040-CON228-W1140",
+      "level": "ward",
+      "name": "Busibwabo"
+    },
+    {
+      "geo_code": "KEN-C040-CON228-W1141",
+      "level": "ward",
+      "name": "Burumba"
+    },
+    {
+      "geo_code": "KEN-C040-CON229",
+      "level": "constituency",
+      "name": "Butula"
+    },
+    {
+      "geo_code": "KEN-C040-CON229-W1142",
+      "level": "ward",
+      "name": "Marachi West"
+    },
+    {
+      "geo_code": "KEN-C040-CON229-W1143",
+      "level": "ward",
+      "name": "Kingandole"
+    },
+    {
+      "geo_code": "KEN-C040-CON229-W1144",
+      "level": "ward",
+      "name": "Marachi Central"
+    },
+    {
+      "geo_code": "KEN-C040-CON229-W1145",
+      "level": "ward",
+      "name": "Marachi East"
+    },
+    {
+      "geo_code": "KEN-C040-CON229-W1146",
+      "level": "ward",
+      "name": "Marachi North"
+    },
+    {
+      "geo_code": "KEN-C040-CON229-W1147",
+      "level": "ward",
+      "name": "Elugulu"
+    },
+    {
+      "geo_code": "KEN-C040-CON230",
+      "level": "constituency",
+      "name": "Funyula"
+    },
+    {
+      "geo_code": "KEN-C040-CON230-W1148",
+      "level": "ward",
+      "name": "Namboboto Nambuku"
+    },
+    {
+      "geo_code": "KEN-C040-CON230-W1149",
+      "level": "ward",
+      "name": "Nangina"
+    },
+    {
+      "geo_code": "KEN-C040-CON230-W1150",
+      "level": "ward",
+      "name": "Ageng'a Nanguba"
+    },
+    {
+      "geo_code": "KEN-C040-CON230-W1151",
+      "level": "ward",
+      "name": "Bwiri"
+    },
+    {
+      "geo_code": "KEN-C040-CON231",
+      "level": "constituency",
+      "name": "Budalangi"
+    },
+    {
+      "geo_code": "KEN-C040-CON231-W1152",
+      "level": "ward",
+      "name": "Bunyala Central"
+    },
+    {
+      "geo_code": "KEN-C040-CON231-W1153",
+      "level": "ward",
+      "name": "Bunyala North"
+    },
+    {
+      "geo_code": "KEN-C040-CON231-W1154",
+      "level": "ward",
+      "name": "Bunyala West"
+    },
+    {
+      "geo_code": "KEN-C040-CON231-W1155",
+      "level": "ward",
+      "name": "Bunyala South"
+    },
+    {
+      "geo_code": "KEN-C041",
+      "level": "county",
+      "name": "Siaya"
+    },
+    {
+      "geo_code": "KEN-C041-CON232",
+      "level": "constituency",
+      "name": "Ugenya"
+    },
+    {
+      "geo_code": "KEN-C041-CON232-W1156",
+      "level": "ward",
+      "name": "West Ugenya"
+    },
+    {
+      "geo_code": "KEN-C041-CON232-W1157",
+      "level": "ward",
+      "name": "Ukwala"
+    },
+    {
+      "geo_code": "KEN-C041-CON232-W1158",
+      "level": "ward",
+      "name": "North Ugenya"
+    },
+    {
+      "geo_code": "KEN-C041-CON232-W1159",
+      "level": "ward",
+      "name": "East Ugenya"
+    },
+    {
+      "geo_code": "KEN-C041-CON233",
+      "level": "constituency",
+      "name": "Ugunja"
+    },
+    {
+      "geo_code": "KEN-C041-CON233-W1160",
+      "level": "ward",
+      "name": "Sidindi"
+    },
+    {
+      "geo_code": "KEN-C041-CON233-W1161",
+      "level": "ward",
+      "name": "Sigomere"
+    },
+    {
+      "geo_code": "KEN-C041-CON233-W1162",
+      "level": "ward",
+      "name": "Ugunja"
+    },
+    {
+      "geo_code": "KEN-C041-CON234",
+      "level": "constituency",
+      "name": "Alego Usonga"
+    },
+    {
+      "geo_code": "KEN-C041-CON234-W1163",
+      "level": "ward",
+      "name": "Usonga"
+    },
+    {
+      "geo_code": "KEN-C041-CON234-W1164",
+      "level": "ward",
+      "name": "West Alego"
+    },
+    {
+      "geo_code": "KEN-C041-CON234-W1165",
+      "level": "ward",
+      "name": "Central Alego"
+    },
+    {
+      "geo_code": "KEN-C041-CON234-W1166",
+      "level": "ward",
+      "name": "Siaya Township"
+    },
+    {
+      "geo_code": "KEN-C041-CON234-W1167",
+      "level": "ward",
+      "name": "North Alego"
+    },
+    {
+      "geo_code": "KEN-C041-CON234-W1168",
+      "level": "ward",
+      "name": "South East Alego"
+    },
+    {
+      "geo_code": "KEN-C041-CON235",
+      "level": "constituency",
+      "name": "Gem"
+    },
+    {
+      "geo_code": "KEN-C041-CON235-W1169",
+      "level": "ward",
+      "name": "North Gem"
+    },
+    {
+      "geo_code": "KEN-C041-CON235-W1170",
+      "level": "ward",
+      "name": "West Gem"
+    },
+    {
+      "geo_code": "KEN-C041-CON235-W1171",
+      "level": "ward",
+      "name": "Central Gem"
+    },
+    {
+      "geo_code": "KEN-C041-CON235-W1172",
+      "level": "ward",
+      "name": "Yala Township"
+    },
+    {
+      "geo_code": "KEN-C041-CON235-W1173",
+      "level": "ward",
+      "name": "East Gem"
+    },
+    {
+      "geo_code": "KEN-C041-CON235-W1174",
+      "level": "ward",
+      "name": "South Gem"
+    },
+    {
+      "geo_code": "KEN-C041-CON236",
+      "level": "constituency",
+      "name": "Bondo"
+    },
+    {
+      "geo_code": "KEN-C041-CON236-W1175",
+      "level": "ward",
+      "name": "West Yimbo"
+    },
+    {
+      "geo_code": "KEN-C041-CON236-W1176",
+      "level": "ward",
+      "name": "Central Sakwa"
+    },
+    {
+      "geo_code": "KEN-C041-CON236-W1177",
+      "level": "ward",
+      "name": "South Sakwa"
+    },
+    {
+      "geo_code": "KEN-C041-CON236-W1178",
+      "level": "ward",
+      "name": "Yimbo East"
+    },
+    {
+      "geo_code": "KEN-C041-CON236-W1179",
+      "level": "ward",
+      "name": "West Sakwa"
+    },
+    {
+      "geo_code": "KEN-C041-CON236-W1180",
+      "level": "ward",
+      "name": "North Sakwa"
+    },
+    {
+      "geo_code": "KEN-C041-CON237",
+      "level": "constituency",
+      "name": "Rarieda"
+    },
+    {
+      "geo_code": "KEN-C041-CON237-W1181",
+      "level": "ward",
+      "name": "East Asembo"
+    },
+    {
+      "geo_code": "KEN-C041-CON237-W1182",
+      "level": "ward",
+      "name": "West Asembo"
+    },
+    {
+      "geo_code": "KEN-C041-CON237-W1183",
+      "level": "ward",
+      "name": "North Uyoma"
+    },
+    {
+      "geo_code": "KEN-C041-CON237-W1184",
+      "level": "ward",
+      "name": "South Uyoma"
+    },
+    {
+      "geo_code": "KEN-C041-CON237-W1185",
+      "level": "ward",
+      "name": "West Uyoma"
+    },
+    {
+      "geo_code": "KEN-C042",
+      "level": "county",
+      "name": "Kisumu"
+    },
+    {
+      "geo_code": "KEN-C042-CON238",
+      "level": "constituency",
+      "name": "Kisumu East"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1186",
+      "level": "ward",
+      "name": "Kajulu"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1187",
+      "level": "ward",
+      "name": "Kolwa East"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1188",
+      "level": "ward",
+      "name": "Manyatta 'b'"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1189",
+      "level": "ward",
+      "name": "Nyalenda 'a'"
+    },
+    {
+      "geo_code": "KEN-C042-CON238-W1190",
+      "level": "ward",
+      "name": "Kolwa Central"
+    },
+    {
+      "geo_code": "KEN-C042-CON239",
+      "level": "constituency",
+      "name": "Kisumu West"
+    },
+    {
+      "geo_code": "KEN-C042-CON239-W1191",
+      "level": "ward",
+      "name": "South West Kisumu"
+    },
+    {
+      "geo_code": "KEN-C042-CON239-W1192",
+      "level": "ward",
+      "name": "Central Kisumu"
+    },
+    {
+      "geo_code": "KEN-C042-CON239-W1193",
+      "level": "ward",
+      "name": "Kisumu North"
+    },
+    {
+      "geo_code": "KEN-C042-CON239-W1194",
+      "level": "ward",
+      "name": "West Kisumu"
+    },
+    {
+      "geo_code": "KEN-C042-CON239-W1195",
+      "level": "ward",
+      "name": "North West Kisumu"
+    },
+    {
+      "geo_code": "KEN-C042-CON240",
+      "level": "constituency",
+      "name": "Kisumu Central"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1196",
+      "level": "ward",
+      "name": "Railways"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1197",
+      "level": "ward",
+      "name": "Migosi"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1198",
+      "level": "ward",
+      "name": "Shaurimoyo Kaloleni"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1199",
+      "level": "ward",
+      "name": "Market Milimani"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1200",
+      "level": "ward",
+      "name": "Kondele"
+    },
+    {
+      "geo_code": "KEN-C042-CON240-W1201",
+      "level": "ward",
+      "name": "Nyalenda B"
+    },
+    {
+      "geo_code": "KEN-C042-CON241",
+      "level": "constituency",
+      "name": "Seme"
+    },
+    {
+      "geo_code": "KEN-C042-CON241-W1202",
+      "level": "ward",
+      "name": "West Seme"
+    },
+    {
+      "geo_code": "KEN-C042-CON241-W1203",
+      "level": "ward",
+      "name": "Central Seme"
+    },
+    {
+      "geo_code": "KEN-C042-CON241-W1204",
+      "level": "ward",
+      "name": "East Seme"
+    },
+    {
+      "geo_code": "KEN-C042-CON241-W1205",
+      "level": "ward",
+      "name": "North Seme"
+    },
+    {
+      "geo_code": "KEN-C042-CON242",
+      "level": "constituency",
+      "name": "Nyando"
+    },
+    {
+      "geo_code": "KEN-C042-CON242-W1206",
+      "level": "ward",
+      "name": "East Kano/Wawidhi"
+    },
+    {
+      "geo_code": "KEN-C042-CON242-W1207",
+      "level": "ward",
+      "name": "Awasi/Onjiko"
+    },
+    {
+      "geo_code": "KEN-C042-CON242-W1208",
+      "level": "ward",
+      "name": "Ahero"
+    },
+    {
+      "geo_code": "KEN-C042-CON242-W1209",
+      "level": "ward",
+      "name": "Kabonyo/Kanyagwal"
+    },
+    {
+      "geo_code": "KEN-C042-CON242-W1210",
+      "level": "ward",
+      "name": "Kobura"
+    },
+    {
+      "geo_code": "KEN-C042-CON243",
+      "level": "constituency",
+      "name": "Muhoroni"
+    },
+    {
+      "geo_code": "KEN-C042-CON243-W1211",
+      "level": "ward",
+      "name": "Miwani"
+    },
+    {
+      "geo_code": "KEN-C042-CON243-W1212",
+      "level": "ward",
+      "name": "Ombeyi"
+    },
+    {
+      "geo_code": "KEN-C042-CON243-W1213",
+      "level": "ward",
+      "name": "Masogo/Nyang'oma"
+    },
+    {
+      "geo_code": "KEN-C042-CON243-W1214",
+      "level": "ward",
+      "name": "Chemelil"
+    },
+    {
+      "geo_code": "KEN-C042-CON243-W1215",
+      "level": "ward",
+      "name": "Muhoroni/Koru"
+    },
+    {
+      "geo_code": "KEN-C042-CON244",
+      "level": "constituency",
+      "name": "Nyakach"
+    },
+    {
+      "geo_code": "KEN-C042-CON244-W1216",
+      "level": "ward",
+      "name": "South West Nyakach"
+    },
+    {
+      "geo_code": "KEN-C042-CON244-W1217",
+      "level": "ward",
+      "name": "North Nyakach"
+    },
+    {
+      "geo_code": "KEN-C042-CON244-W1218",
+      "level": "ward",
+      "name": "Central Nyakach"
+    },
+    {
+      "geo_code": "KEN-C042-CON244-W1219",
+      "level": "ward",
+      "name": "West Nyakach"
+    },
+    {
+      "geo_code": "KEN-C042-CON244-W1220",
+      "level": "ward",
+      "name": "South East Nyakach"
+    },
+    {
+      "geo_code": "KEN-C043",
+      "level": "county",
+      "name": "Homa Bay"
+    },
+    {
+      "geo_code": "KEN-C043-CON245",
+      "level": "constituency",
+      "name": "Kasipul"
+    },
+    {
+      "geo_code": "KEN-C043-CON245-W1221",
+      "level": "ward",
+      "name": "West Kasipul"
+    },
+    {
+      "geo_code": "KEN-C043-CON245-W1222",
+      "level": "ward",
+      "name": "South Kasipul"
+    },
+    {
+      "geo_code": "KEN-C043-CON245-W1223",
+      "level": "ward",
+      "name": "Central Kasipul"
+    },
+    {
+      "geo_code": "KEN-C043-CON245-W1224",
+      "level": "ward",
+      "name": "East Kamagak"
+    },
+    {
+      "geo_code": "KEN-C043-CON245-W1225",
+      "level": "ward",
+      "name": "West Kamagak"
+    },
+    {
+      "geo_code": "KEN-C043-CON246",
+      "level": "constituency",
+      "name": "Kabondo Kasipul"
+    },
+    {
+      "geo_code": "KEN-C043-CON246-W1226",
+      "level": "ward",
+      "name": "Kabondo East"
+    },
+    {
+      "geo_code": "KEN-C043-CON246-W1227",
+      "level": "ward",
+      "name": "Kabondo West"
+    },
+    {
+      "geo_code": "KEN-C043-CON246-W1228",
+      "level": "ward",
+      "name": "Kokwanyo/Kakelo"
+    },
+    {
+      "geo_code": "KEN-C043-CON246-W1229",
+      "level": "ward",
+      "name": "Kojwach"
+    },
+    {
+      "geo_code": "KEN-C043-CON247",
+      "level": "constituency",
+      "name": "Karachuonyo"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1230",
+      "level": "ward",
+      "name": "West Karachuonyo"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1231",
+      "level": "ward",
+      "name": "North Karachuonyo"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1232",
+      "level": "ward",
+      "name": "Central"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1233",
+      "level": "ward",
+      "name": "Kanyaluo"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1234",
+      "level": "ward",
+      "name": "Kibiri"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1235",
+      "level": "ward",
+      "name": "Wangchieng"
+    },
+    {
+      "geo_code": "KEN-C043-CON247-W1236",
+      "level": "ward",
+      "name": "Kendu Bay Town"
+    },
+    {
+      "geo_code": "KEN-C043-CON248",
+      "level": "constituency",
+      "name": "Rangwe"
+    },
+    {
+      "geo_code": "KEN-C043-CON248-W1237",
+      "level": "ward",
+      "name": "West Gem"
+    },
+    {
+      "geo_code": "KEN-C043-CON248-W1238",
+      "level": "ward",
+      "name": "East Gem"
+    },
+    {
+      "geo_code": "KEN-C043-CON248-W1239",
+      "level": "ward",
+      "name": "Kagan"
+    },
+    {
+      "geo_code": "KEN-C043-CON248-W1240",
+      "level": "ward",
+      "name": "Kochia"
+    },
+    {
+      "geo_code": "KEN-C043-CON249",
+      "level": "constituency",
+      "name": "Homa Bay Town"
+    },
+    {
+      "geo_code": "KEN-C043-CON249-W1241",
+      "level": "ward",
+      "name": "Homa Bay Central"
+    },
+    {
+      "geo_code": "KEN-C043-CON249-W1242",
+      "level": "ward",
+      "name": "Homa Bay Arujo"
+    },
+    {
+      "geo_code": "KEN-C043-CON249-W1243",
+      "level": "ward",
+      "name": "Homa Bay West"
+    },
+    {
+      "geo_code": "KEN-C043-CON249-W1244",
+      "level": "ward",
+      "name": "Homa Bay East"
+    },
+    {
+      "geo_code": "KEN-C043-CON250",
+      "level": "constituency",
+      "name": "Ndhiwa"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1245",
+      "level": "ward",
+      "name": "Kwabwai"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1246",
+      "level": "ward",
+      "name": "Kanyadoto"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1247",
+      "level": "ward",
+      "name": "Kanyikela"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1248",
+      "level": "ward",
+      "name": "North Kabuoch"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1249",
+      "level": "ward",
+      "name": "Kabuoch South/Pala"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1250",
+      "level": "ward",
+      "name": "Kanyamwa Kologi"
+    },
+    {
+      "geo_code": "KEN-C043-CON250-W1251",
+      "level": "ward",
+      "name": "Kanyamwa Kosewe"
+    },
+    {
+      "geo_code": "KEN-C043-CON251",
+      "level": "constituency",
+      "name": "Mbita"
+    },
+    {
+      "geo_code": "KEN-C043-CON251-W1252",
+      "level": "ward",
+      "name": "Mfangano Island"
+    },
+    {
+      "geo_code": "KEN-C043-CON251-W1253",
+      "level": "ward",
+      "name": "Rusinga Island"
+    },
+    {
+      "geo_code": "KEN-C043-CON251-W1254",
+      "level": "ward",
+      "name": "Kasgunga"
+    },
+    {
+      "geo_code": "KEN-C043-CON251-W1255",
+      "level": "ward",
+      "name": "Gembe"
+    },
+    {
+      "geo_code": "KEN-C043-CON251-W1256",
+      "level": "ward",
+      "name": "Lambwe"
+    },
+    {
+      "geo_code": "KEN-C043-CON252",
+      "level": "constituency",
+      "name": "Suba"
+    },
+    {
+      "geo_code": "KEN-C043-CON252-W1257",
+      "level": "ward",
+      "name": "Gwassi South"
+    },
+    {
+      "geo_code": "KEN-C043-CON252-W1258",
+      "level": "ward",
+      "name": "Gwassi North"
+    },
+    {
+      "geo_code": "KEN-C043-CON252-W1259",
+      "level": "ward",
+      "name": "Kaksingri West"
+    },
+    {
+      "geo_code": "KEN-C043-CON252-W1260",
+      "level": "ward",
+      "name": "Ruma Kaksingri East"
+    },
+    {
+      "geo_code": "KEN-C044",
+      "level": "county",
+      "name": "Migori"
+    },
+    {
+      "geo_code": "KEN-C044-CON253",
+      "level": "constituency",
+      "name": "Rongo"
+    },
+    {
+      "geo_code": "KEN-C044-CON253-W1261",
+      "level": "ward",
+      "name": "North Kamagambo"
+    },
+    {
+      "geo_code": "KEN-C044-CON253-W1262",
+      "level": "ward",
+      "name": "Central Kamagambo"
+    },
+    {
+      "geo_code": "KEN-C044-CON253-W1263",
+      "level": "ward",
+      "name": "East Kamagambo"
+    },
+    {
+      "geo_code": "KEN-C044-CON253-W1264",
+      "level": "ward",
+      "name": "South Kamagambo"
+    },
+    {
+      "geo_code": "KEN-C044-CON254",
+      "level": "constituency",
+      "name": "Awendo"
+    },
+    {
+      "geo_code": "KEN-C044-CON254-W1265",
+      "level": "ward",
+      "name": "North Sakwa"
+    },
+    {
+      "geo_code": "KEN-C044-CON254-W1266",
+      "level": "ward",
+      "name": "South Sakwa"
+    },
+    {
+      "geo_code": "KEN-C044-CON254-W1267",
+      "level": "ward",
+      "name": "West Sakwa"
+    },
+    {
+      "geo_code": "KEN-C044-CON254-W1268",
+      "level": "ward",
+      "name": "Central Sakwa"
+    },
+    {
+      "geo_code": "KEN-C044-CON255",
+      "level": "constituency",
+      "name": "Suna East"
+    },
+    {
+      "geo_code": "KEN-C044-CON255-W1269",
+      "level": "ward",
+      "name": "God Jope"
+    },
+    {
+      "geo_code": "KEN-C044-CON255-W1270",
+      "level": "ward",
+      "name": "Suna Central"
+    },
+    {
+      "geo_code": "KEN-C044-CON255-W1271",
+      "level": "ward",
+      "name": "Kakrao"
+    },
+    {
+      "geo_code": "KEN-C044-CON255-W1272",
+      "level": "ward",
+      "name": "Kwa"
+    },
+    {
+      "geo_code": "KEN-C044-CON256",
+      "level": "constituency",
+      "name": "Suna West"
+    },
+    {
+      "geo_code": "KEN-C044-CON256-W1273",
+      "level": "ward",
+      "name": "Wiga"
+    },
+    {
+      "geo_code": "KEN-C044-CON256-W1274",
+      "level": "ward",
+      "name": "Wasweta Ii"
+    },
+    {
+      "geo_code": "KEN-C044-CON256-W1275",
+      "level": "ward",
+      "name": "Ragana-Oruba"
+    },
+    {
+      "geo_code": "KEN-C044-CON256-W1276",
+      "level": "ward",
+      "name": "Wasimbete"
+    },
+    {
+      "geo_code": "KEN-C044-CON257",
+      "level": "constituency",
+      "name": "Uriri"
+    },
+    {
+      "geo_code": "KEN-C044-CON257-W1277",
+      "level": "ward",
+      "name": "West Kanyamkago"
+    },
+    {
+      "geo_code": "KEN-C044-CON257-W1278",
+      "level": "ward",
+      "name": "North Kanyamkago"
+    },
+    {
+      "geo_code": "KEN-C044-CON257-W1279",
+      "level": "ward",
+      "name": "Central Kanyamkago"
+    },
+    {
+      "geo_code": "KEN-C044-CON257-W1280",
+      "level": "ward",
+      "name": "South Kanyamkago"
+    },
+    {
+      "geo_code": "KEN-C044-CON257-W1281",
+      "level": "ward",
+      "name": "East Kanyamkago"
+    },
+    {
+      "geo_code": "KEN-C044-CON258",
+      "level": "constituency",
+      "name": "Nyatike"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1282",
+      "level": "ward",
+      "name": "Kachien'g"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1283",
+      "level": "ward",
+      "name": "Kanyasa"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1284",
+      "level": "ward",
+      "name": "North Kadem"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1285",
+      "level": "ward",
+      "name": "Macalder/Kanyarwanda"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1286",
+      "level": "ward",
+      "name": "Kaler"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1287",
+      "level": "ward",
+      "name": "Got Kachola"
+    },
+    {
+      "geo_code": "KEN-C044-CON258-W1288",
+      "level": "ward",
+      "name": "Muhuru"
+    },
+    {
+      "geo_code": "KEN-C044-CON259",
+      "level": "constituency",
+      "name": "Kuria West"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1289",
+      "level": "ward",
+      "name": "Bukira East"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1290",
+      "level": "ward",
+      "name": "Bukira Centrl/Ikerege"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1291",
+      "level": "ward",
+      "name": "Isibania"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1292",
+      "level": "ward",
+      "name": "Makerero"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1293",
+      "level": "ward",
+      "name": "Masaba"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1294",
+      "level": "ward",
+      "name": "Tagare"
+    },
+    {
+      "geo_code": "KEN-C044-CON259-W1295",
+      "level": "ward",
+      "name": "Nyamosense/Komosoko"
+    },
+    {
+      "geo_code": "KEN-C044-CON260",
+      "level": "constituency",
+      "name": "Kuria East"
+    },
+    {
+      "geo_code": "KEN-C044-CON260-W1296",
+      "level": "ward",
+      "name": "Gokeharaka/Getambwega"
+    },
+    {
+      "geo_code": "KEN-C044-CON260-W1297",
+      "level": "ward",
+      "name": "Ntimaru West"
+    },
+    {
+      "geo_code": "KEN-C044-CON260-W1298",
+      "level": "ward",
+      "name": "Ntimaru East"
+    },
+    {
+      "geo_code": "KEN-C044-CON260-W1299",
+      "level": "ward",
+      "name": "Nyabasi East"
+    },
+    {
+      "geo_code": "KEN-C044-CON260-W1300",
+      "level": "ward",
+      "name": "Nyabasi West"
+    },
+    {
+      "geo_code": "KEN-C045",
+      "level": "county",
+      "name": "Kisii"
+    },
+    {
+      "geo_code": "KEN-C045-CON261",
+      "level": "constituency",
+      "name": "Bonchari"
+    },
+    {
+      "geo_code": "KEN-C045-CON261-W1301",
+      "level": "ward",
+      "name": "Bomariba"
+    },
+    {
+      "geo_code": "KEN-C045-CON261-W1302",
+      "level": "ward",
+      "name": "Bogiakumu"
+    },
+    {
+      "geo_code": "KEN-C045-CON261-W1303",
+      "level": "ward",
+      "name": "Bomorenda"
+    },
+    {
+      "geo_code": "KEN-C045-CON261-W1304",
+      "level": "ward",
+      "name": "Riana"
+    },
+    {
+      "geo_code": "KEN-C045-CON262",
+      "level": "constituency",
+      "name": "South Mugirango"
+    },
+    {
+      "geo_code": "KEN-C045-CON262-W1305",
+      "level": "ward",
+      "name": "Tabaka"
+    },
+    {
+      "geo_code": "KEN-C045-CON262-W1306",
+      "level": "ward",
+      "name": "Boikang'a"
+    },
+    {
+      "geo_code": "KEN-C045-CON262-W1307",
+      "level": "ward",
+      "name": "Bogetenga"
+    },
+    {
+      "geo_code": "KEN-C045-CON262-W1308",
+      "level": "ward",
+      "name": "Borabu / Chitago"
+    },
+    {
+      "geo_code": "KEN-C045-CON262-W1309",
+      "level": "ward",
+      "name": "Moticho"
+    },
+    {
+      "geo_code": "KEN-C045-CON262-W1310",
+      "level": "ward",
+      "name": "Getenga"
+    },
+    {
+      "geo_code": "KEN-C045-CON263",
+      "level": "constituency",
+      "name": "Bomachoge Borabu"
+    },
+    {
+      "geo_code": "KEN-C045-CON263-W1311",
+      "level": "ward",
+      "name": "Bombaba Borabu"
+    },
+    {
+      "geo_code": "KEN-C045-CON263-W1312",
+      "level": "ward",
+      "name": "Boochi Borabu"
+    },
+    {
+      "geo_code": "KEN-C045-CON263-W1313",
+      "level": "ward",
+      "name": "Bokimonge"
+    },
+    {
+      "geo_code": "KEN-C045-CON263-W1314",
+      "level": "ward",
+      "name": "Magenche"
+    },
+    {
+      "geo_code": "KEN-C045-CON264",
+      "level": "constituency",
+      "name": "Bobasi"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1315",
+      "level": "ward",
+      "name": "Masige West"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1316",
+      "level": "ward",
+      "name": "Masige East"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1317",
+      "level": "ward",
+      "name": "Bobasi Central"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1318",
+      "level": "ward",
+      "name": "Nyacheki"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1319",
+      "level": "ward",
+      "name": "Bobasi Bogetaorio"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1320",
+      "level": "ward",
+      "name": "Bobasi Chache"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1321",
+      "level": "ward",
+      "name": "Sameta/Mokwerero"
+    },
+    {
+      "geo_code": "KEN-C045-CON264-W1322",
+      "level": "ward",
+      "name": "Bobasi Boitangare"
+    },
+    {
+      "geo_code": "KEN-C045-CON265",
+      "level": "constituency",
+      "name": "Bomachoge Chache"
+    },
+    {
+      "geo_code": "KEN-C045-CON265-W1323",
+      "level": "ward",
+      "name": "Majoge"
+    },
+    {
+      "geo_code": "KEN-C045-CON265-W1324",
+      "level": "ward",
+      "name": "Boochi/Tendere"
+    },
+    {
+      "geo_code": "KEN-C045-CON265-W1325",
+      "level": "ward",
+      "name": "Bosoti/Sengera"
+    },
+    {
+      "geo_code": "KEN-C045-CON266",
+      "level": "constituency",
+      "name": "Nyaribari Masaba"
+    },
+    {
+      "geo_code": "KEN-C045-CON266-W1326",
+      "level": "ward",
+      "name": "Ichuni"
+    },
+    {
+      "geo_code": "KEN-C045-CON266-W1327",
+      "level": "ward",
+      "name": "Nyamasibi"
+    },
+    {
+      "geo_code": "KEN-C045-CON266-W1328",
+      "level": "ward",
+      "name": "Masimba"
+    },
+    {
+      "geo_code": "KEN-C045-CON266-W1329",
+      "level": "ward",
+      "name": "Gesusu"
+    },
+    {
+      "geo_code": "KEN-C045-CON266-W1330",
+      "level": "ward",
+      "name": "Kiamokama"
+    },
+    {
+      "geo_code": "KEN-C045-CON267",
+      "level": "constituency",
+      "name": "Nyaribari Chache"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1331",
+      "level": "ward",
+      "name": "Bobaracho"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1332",
+      "level": "ward",
+      "name": "Kisii Central"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1333",
+      "level": "ward",
+      "name": "Keumbu"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1334",
+      "level": "ward",
+      "name": "Kiogoro"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1335",
+      "level": "ward",
+      "name": "Birongo"
+    },
+    {
+      "geo_code": "KEN-C045-CON267-W1336",
+      "level": "ward",
+      "name": "Ibeno"
+    },
+    {
+      "geo_code": "KEN-C045-CON268",
+      "level": "constituency",
+      "name": "Kitutu Chache North"
+    },
+    {
+      "geo_code": "KEN-C045-CON268-W1337",
+      "level": "ward",
+      "name": "Monyerero"
+    },
+    {
+      "geo_code": "KEN-C045-CON268-W1338",
+      "level": "ward",
+      "name": "Sensi"
+    },
+    {
+      "geo_code": "KEN-C045-CON268-W1339",
+      "level": "ward",
+      "name": "Marani"
+    },
+    {
+      "geo_code": "KEN-C045-CON268-W1340",
+      "level": "ward",
+      "name": "Kegogi"
+    },
+    {
+      "geo_code": "KEN-C045-CON269",
+      "level": "constituency",
+      "name": "Kitutu Chache South"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1341",
+      "level": "ward",
+      "name": "Bogusero"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1342",
+      "level": "ward",
+      "name": "Bogeka"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1343",
+      "level": "ward",
+      "name": "Nyakoe"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1344",
+      "level": "ward",
+      "name": "Kitutu Central"
+    },
+    {
+      "geo_code": "KEN-C045-CON269-W1345",
+      "level": "ward",
+      "name": "Nyatieko"
+    },
+    {
+      "geo_code": "KEN-C046",
+      "level": "county",
+      "name": "Nyamira"
+    },
+    {
+      "geo_code": "KEN-C046-CON270",
+      "level": "constituency",
+      "name": "Kitutu Masaba"
+    },
+    {
+      "geo_code": "KEN-C046-CON270-W1346",
+      "level": "ward",
+      "name": "Rigoma"
+    },
+    {
+      "geo_code": "KEN-C046-CON270-W1347",
+      "level": "ward",
+      "name": "Gachuba"
+    },
+    {
+      "geo_code": "KEN-C046-CON270-W1348",
+      "level": "ward",
+      "name": "Kemera"
+    },
+    {
+      "geo_code": "KEN-C046-CON270-W1349",
+      "level": "ward",
+      "name": "Magombo"
+    },
+    {
+      "geo_code": "KEN-C046-CON270-W1350",
+      "level": "ward",
+      "name": "Manga"
+    },
+    {
+      "geo_code": "KEN-C046-CON270-W1351",
+      "level": "ward",
+      "name": "Gesima"
+    },
+    {
+      "geo_code": "KEN-C046-CON271",
+      "level": "constituency",
+      "name": "West Mugirango"
+    },
+    {
+      "geo_code": "KEN-C046-CON271-W1352",
+      "level": "ward",
+      "name": "Nyamaiya"
+    },
+    {
+      "geo_code": "KEN-C046-CON271-W1353",
+      "level": "ward",
+      "name": "Bogichora"
+    },
+    {
+      "geo_code": "KEN-C046-CON271-W1354",
+      "level": "ward",
+      "name": "Bosamaro"
+    },
+    {
+      "geo_code": "KEN-C046-CON271-W1355",
+      "level": "ward",
+      "name": "Bonyamatuta"
+    },
+    {
+      "geo_code": "KEN-C046-CON271-W1356",
+      "level": "ward",
+      "name": "Township"
+    },
+    {
+      "geo_code": "KEN-C046-CON272",
+      "level": "constituency",
+      "name": "North Mugirango"
+    },
+    {
+      "geo_code": "KEN-C046-CON272-W1357",
+      "level": "ward",
+      "name": "Itibo"
+    },
+    {
+      "geo_code": "KEN-C046-CON272-W1358",
+      "level": "ward",
+      "name": "Bomwagamo"
+    },
+    {
+      "geo_code": "KEN-C046-CON272-W1359",
+      "level": "ward",
+      "name": "Bokeira"
+    },
+    {
+      "geo_code": "KEN-C046-CON272-W1360",
+      "level": "ward",
+      "name": "Magwagwa"
+    },
+    {
+      "geo_code": "KEN-C046-CON272-W1361",
+      "level": "ward",
+      "name": "Ekerenyo"
+    },
+    {
+      "geo_code": "KEN-C046-CON273",
+      "level": "constituency",
+      "name": "Borabu"
+    },
+    {
+      "geo_code": "KEN-C046-CON273-W1362",
+      "level": "ward",
+      "name": "Mekenene"
+    },
+    {
+      "geo_code": "KEN-C046-CON273-W1363",
+      "level": "ward",
+      "name": "Kiabonyoru"
+    },
+    {
+      "geo_code": "KEN-C046-CON273-W1364",
+      "level": "ward",
+      "name": "Nyansiongo"
+    },
+    {
+      "geo_code": "KEN-C046-CON273-W1365",
+      "level": "ward",
+      "name": "Esise"
+    },
+    {
+      "geo_code": "KEN-C047",
+      "level": "county",
+      "name": "Nairobi"
+    },
+    {
+      "geo_code": "KEN-C047-CON274",
+      "level": "constituency",
+      "name": "Westlands"
+    },
+    {
+      "geo_code": "KEN-C047-CON274-W1366",
+      "level": "ward",
+      "name": "Kitisuru"
+    },
+    {
+      "geo_code": "KEN-C047-CON274-W1367",
+      "level": "ward",
+      "name": "Parklands/Highridge"
+    },
+    {
+      "geo_code": "KEN-C047-CON274-W1368",
+      "level": "ward",
+      "name": "Karura"
+    },
+    {
+      "geo_code": "KEN-C047-CON274-W1369",
+      "level": "ward",
+      "name": "Kangemi"
+    },
+    {
+      "geo_code": "KEN-C047-CON274-W1370",
+      "level": "ward",
+      "name": "Mountain View"
+    },
+    {
+      "geo_code": "KEN-C047-CON275",
+      "level": "constituency",
+      "name": "Dagoretti North"
+    },
+    {
+      "geo_code": "KEN-C047-CON275-W1371",
+      "level": "ward",
+      "name": "Kilimani"
+    },
+    {
+      "geo_code": "KEN-C047-CON275-W1372",
+      "level": "ward",
+      "name": "Kawangware"
+    },
+    {
+      "geo_code": "KEN-C047-CON275-W1373",
+      "level": "ward",
+      "name": "Gatina"
+    },
+    {
+      "geo_code": "KEN-C047-CON275-W1374",
+      "level": "ward",
+      "name": "Kileleshwa"
+    },
+    {
+      "geo_code": "KEN-C047-CON275-W1375",
+      "level": "ward",
+      "name": "Kabiro"
+    },
+    {
+      "geo_code": "KEN-C047-CON276",
+      "level": "constituency",
+      "name": "Dagoretti South"
+    },
+    {
+      "geo_code": "KEN-C047-CON276-W1376",
+      "level": "ward",
+      "name": "Mutuini"
+    },
+    {
+      "geo_code": "KEN-C047-CON276-W1377",
+      "level": "ward",
+      "name": "Ngando"
+    },
+    {
+      "geo_code": "KEN-C047-CON276-W1378",
+      "level": "ward",
+      "name": "Riruta"
+    },
+    {
+      "geo_code": "KEN-C047-CON276-W1379",
+      "level": "ward",
+      "name": "Uthiru/Ruthimitu"
+    },
+    {
+      "geo_code": "KEN-C047-CON276-W1380",
+      "level": "ward",
+      "name": "Waithaka"
+    },
+    {
+      "geo_code": "KEN-C047-CON277",
+      "level": "constituency",
+      "name": "Langata"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1381",
+      "level": "ward",
+      "name": "Karen"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1382",
+      "level": "ward",
+      "name": "Nairobi West"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1383",
+      "level": "ward",
+      "name": "Mugumo-Ini"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1384",
+      "level": "ward",
+      "name": "South-C"
+    },
+    {
+      "geo_code": "KEN-C047-CON277-W1385",
+      "level": "ward",
+      "name": "Nyayo Highrise"
+    },
+    {
+      "geo_code": "KEN-C047-CON278",
+      "level": "constituency",
+      "name": "Kibra"
+    },
+    {
+      "geo_code": "KEN-C047-CON278-W1386",
+      "level": "ward",
+      "name": "Laini Saba"
+    },
+    {
+      "geo_code": "KEN-C047-CON278-W1387",
+      "level": "ward",
+      "name": "Lindi"
+    },
+    {
+      "geo_code": "KEN-C047-CON278-W1388",
+      "level": "ward",
+      "name": "Makina"
+    },
+    {
+      "geo_code": "KEN-C047-CON278-W1389",
+      "level": "ward",
+      "name": "Woodley/Kenyatta Golf"
+    },
+    {
+      "geo_code": "KEN-C047-CON278-W1390",
+      "level": "ward",
+      "name": "Sarangombe"
+    },
+    {
+      "geo_code": "KEN-C047-CON279",
+      "level": "constituency",
+      "name": "Roysambu"
+    },
+    {
+      "geo_code": "KEN-C047-CON279-W1391",
+      "level": "ward",
+      "name": "Githurai"
+    },
+    {
+      "geo_code": "KEN-C047-CON279-W1392",
+      "level": "ward",
+      "name": "Kahawa West"
+    },
+    {
+      "geo_code": "KEN-C047-CON279-W1393",
+      "level": "ward",
+      "name": "Zimmerman"
+    },
+    {
+      "geo_code": "KEN-C047-CON279-W1394",
+      "level": "ward",
+      "name": "Roysambu"
+    },
+    {
+      "geo_code": "KEN-C047-CON279-W1395",
+      "level": "ward",
+      "name": "Kahawa"
+    },
+    {
+      "geo_code": "KEN-C047-CON280",
+      "level": "constituency",
+      "name": "Kasarani"
+    },
+    {
+      "geo_code": "KEN-C047-CON280-W1396",
+      "level": "ward",
+      "name": "Claycity"
+    },
+    {
+      "geo_code": "KEN-C047-CON280-W1397",
+      "level": "ward",
+      "name": "Mwiki"
+    },
+    {
+      "geo_code": "KEN-C047-CON280-W1398",
+      "level": "ward",
+      "name": "Kasarani"
+    },
+    {
+      "geo_code": "KEN-C047-CON280-W1399",
+      "level": "ward",
+      "name": "Njiru"
+    },
+    {
+      "geo_code": "KEN-C047-CON280-W1400",
+      "level": "ward",
+      "name": "Ruai"
+    },
+    {
+      "geo_code": "KEN-C047-CON281",
+      "level": "constituency",
+      "name": "Ruaraka"
+    },
+    {
+      "geo_code": "KEN-C047-CON281-W1401",
+      "level": "ward",
+      "name": "Baba Dogo"
+    },
+    {
+      "geo_code": "KEN-C047-CON281-W1402",
+      "level": "ward",
+      "name": "Utalii"
+    },
+    {
+      "geo_code": "KEN-C047-CON281-W1403",
+      "level": "ward",
+      "name": "Mathare North"
+    },
+    {
+      "geo_code": "KEN-C047-CON281-W1404",
+      "level": "ward",
+      "name": "Lucky Summer"
+    },
+    {
+      "geo_code": "KEN-C047-CON281-W1405",
+      "level": "ward",
+      "name": "Korogocho"
+    },
+    {
+      "geo_code": "KEN-C047-CON282",
+      "level": "constituency",
+      "name": "Embakasi South"
+    },
+    {
+      "geo_code": "KEN-C047-CON282-W1406",
+      "level": "ward",
+      "name": "Imara Daima"
+    },
+    {
+      "geo_code": "KEN-C047-CON282-W1407",
+      "level": "ward",
+      "name": "Kwa Njenga"
+    },
+    {
+      "geo_code": "KEN-C047-CON282-W1408",
+      "level": "ward",
+      "name": "Kwa Reuben"
+    },
+    {
+      "geo_code": "KEN-C047-CON282-W1409",
+      "level": "ward",
+      "name": "Pipeline"
+    },
+    {
+      "geo_code": "KEN-C047-CON282-W1410",
+      "level": "ward",
+      "name": "Kware"
+    },
+    {
+      "geo_code": "KEN-C047-CON283",
+      "level": "constituency",
+      "name": "Embakasi North"
+    },
+    {
+      "geo_code": "KEN-C047-CON283-W1411",
+      "level": "ward",
+      "name": "Kariobangi North"
+    },
+    {
+      "geo_code": "KEN-C047-CON283-W1412",
+      "level": "ward",
+      "name": "Dandora Area I"
+    },
+    {
+      "geo_code": "KEN-C047-CON283-W1413",
+      "level": "ward",
+      "name": "Dandora Area Ii"
+    },
+    {
+      "geo_code": "KEN-C047-CON283-W1414",
+      "level": "ward",
+      "name": "Dandora Area Iii"
+    },
+    {
+      "geo_code": "KEN-C047-CON283-W1415",
+      "level": "ward",
+      "name": "Dandora Area Iv"
+    },
+    {
+      "geo_code": "KEN-C047-CON284",
+      "level": "constituency",
+      "name": "Embakasi Central"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1416",
+      "level": "ward",
+      "name": "Kayole North"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1417",
+      "level": "ward",
+      "name": "Kayole Central"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1418",
+      "level": "ward",
+      "name": "Kayole South"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1419",
+      "level": "ward",
+      "name": "Komarock"
+    },
+    {
+      "geo_code": "KEN-C047-CON284-W1420",
+      "level": "ward",
+      "name": "Matopeni"
+    },
+    {
+      "geo_code": "KEN-C047-CON285",
+      "level": "constituency",
+      "name": "Embakasi East"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1421",
+      "level": "ward",
+      "name": "Upper Savannah"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1422",
+      "level": "ward",
+      "name": "Lower Savannah"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1423",
+      "level": "ward",
+      "name": "Embakasi"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1424",
+      "level": "ward",
+      "name": "Utawala"
+    },
+    {
+      "geo_code": "KEN-C047-CON285-W1425",
+      "level": "ward",
+      "name": "Mihango"
+    },
+    {
+      "geo_code": "KEN-C047-CON286",
+      "level": "constituency",
+      "name": "Embakasi West"
+    },
+    {
+      "geo_code": "KEN-C047-CON286-W1426",
+      "level": "ward",
+      "name": "Umoja I"
+    },
+    {
+      "geo_code": "KEN-C047-CON286-W1427",
+      "level": "ward",
+      "name": "Umoja Ii"
+    },
+    {
+      "geo_code": "KEN-C047-CON286-W1428",
+      "level": "ward",
+      "name": "Mowlem"
+    },
+    {
+      "geo_code": "KEN-C047-CON286-W1429",
+      "level": "ward",
+      "name": "Kariobangi South"
+    },
+    {
+      "geo_code": "KEN-C047-CON287",
+      "level": "constituency",
+      "name": "Makadara"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1430",
+      "level": "ward",
+      "name": "Makongeni"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1431",
+      "level": "ward",
+      "name": "Maringo/Hamza"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1432",
+      "level": "ward",
+      "name": "Harambee"
+    },
+    {
+      "geo_code": "KEN-C047-CON287-W1433",
+      "level": "ward",
+      "name": "Viwandani"
+    },
+    {
+      "geo_code": "KEN-C047-CON288",
+      "level": "constituency",
+      "name": "Kamukunji"
+    },
+    {
+      "geo_code": "KEN-C047-CON288-W1434",
+      "level": "ward",
+      "name": "Pumwani"
+    },
+    {
+      "geo_code": "KEN-C047-CON288-W1435",
+      "level": "ward",
+      "name": "Eastleigh North"
+    },
+    {
+      "geo_code": "KEN-C047-CON288-W1436",
+      "level": "ward",
+      "name": "Eastleigh South"
+    },
+    {
+      "geo_code": "KEN-C047-CON288-W1437",
+      "level": "ward",
+      "name": "Airbase"
+    },
+    {
+      "geo_code": "KEN-C047-CON288-W1438",
+      "level": "ward",
+      "name": "California"
+    },
+    {
+      "geo_code": "KEN-C047-CON289",
+      "level": "constituency",
+      "name": "Starehe"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1439",
+      "level": "ward",
+      "name": "Nairobi Central"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1440",
+      "level": "ward",
+      "name": "Ngara"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1441",
+      "level": "ward",
+      "name": "Ziwani/Kariokor"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1442",
+      "level": "ward",
+      "name": "Pangani"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1443",
+      "level": "ward",
+      "name": "Landimawe"
+    },
+    {
+      "geo_code": "KEN-C047-CON289-W1444",
+      "level": "ward",
+      "name": "Nairobi South"
+    },
+    {
+      "geo_code": "KEN-C047-CON290",
+      "level": "constituency",
+      "name": "Mathare"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1445",
+      "level": "ward",
+      "name": "Hospital"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1446",
+      "level": "ward",
+      "name": "Mabatini"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1447",
+      "level": "ward",
+      "name": "Huruma"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1448",
+      "level": "ward",
+      "name": "Ngei"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1449",
+      "level": "ward",
+      "name": "Mlango Kubwa"
+    },
+    {
+      "geo_code": "KEN-C047-CON290-W1450",
+      "level": "ward",
+      "name": "Kiamaiko"
+    }
+  ]
+}

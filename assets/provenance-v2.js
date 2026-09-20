@@ -127,17 +127,24 @@
     body.innerHTML='<p class="eyebrow">Trace this figure</p><h3 id="kda-provenance-title">Loading canonical lineage…</h3><div class="kda-prov-skeleton" aria-hidden="true"><i></i><i></i><i></i></div>';
     try{render(trigger,await loadData());}catch(error){body.innerHTML=`<p class="eyebrow">Trace this figure</p><h3 id="kda-provenance-title">Lineage unavailable</h3><p>${esc(error?.message||'The canonical provenance registries could not be loaded.')}</p>`;}
   }
+  // P34's governed local-54 badges (.badge.l54-*) carry their own accurate, purpose-built
+  // inspection panel (.place-l54-detail) sourced from the local-54 evidence model (closure
+  // reasons, conflict decisions, S0-S7 tiers). This registry-driven popover only resolves the
+  // older per-indicator series/observations registry by fuzzy text matching, which does not cover
+  // that evidence model and could show an unrelated or empty lineage for an l54 badge -- so l54
+  // badges are exempt, the same way "missing"/"demo" badges already are.
+  const isL54Badge=b=>[...b.classList].some(c=>c.startsWith('l54-'));
   function prepareBadges(){
-    $$('.badge').forEach(b=>{if(b.dataset.provenanceV2)return;b.dataset.provenanceV2='1';b.tabIndex=b.tabIndex>=0?b.tabIndex:0;b.setAttribute('role','button');b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');b.title='Open provenance';});
+    $$('.badge').forEach(b=>{if(b.dataset.provenanceV2)return;b.dataset.provenanceV2='1';if(isL54Badge(b))return;b.tabIndex=b.tabIndex>=0?b.tabIndex:0;b.setAttribute('role','button');b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-expanded','false');b.title='Open provenance';});
   }
   document.addEventListener('click',event=>{
     const badge=event.target.closest?.('.badge');
-    if(badge&&!badge.classList.contains('missing')&&!badge.classList.contains('demo')){event.preventDefault();event.stopImmediatePropagation();open(badge);return;}
+    if(badge&&!badge.classList.contains('missing')&&!badge.classList.contains('demo')&&!isL54Badge(badge)){event.preventDefault();event.stopImmediatePropagation();open(badge);return;}
     if(panel&&!panel.hidden&&!event.target.closest('#kda-provenance-v2'))close();
   },true);
   document.addEventListener('keydown',event=>{
     const badge=event.target.closest?.('.badge');
-    if(badge&&(event.key==='Enter'||event.key===' ')){event.preventDefault();event.stopImmediatePropagation();open(badge);return;}
+    if(badge&&!isL54Badge(badge)&&(event.key==='Enter'||event.key===' ')){event.preventDefault();event.stopImmediatePropagation();open(badge);return;}
     if(event.key==='Escape'&&panel&&!panel.hidden){event.preventDefault();close();}
   },true);
   new MutationObserver(prepareBadges).observe(document.body,{childList:true,subtree:true});
