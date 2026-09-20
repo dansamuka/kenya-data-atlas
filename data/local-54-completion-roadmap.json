@@ -322,7 +322,7 @@
     {
       "id": "P34",
       "title": "Expose all 54 indicators and representation in the public product",
-      "status": "planned",
+      "status": "complete",
       "goal": "Make the full 54-indicator skeleton visible for each county, constituency and ward with provenance, freshness, confidence and conflict semantics.",
       "outputs": [
         "54-indicator Explore/profile rendering contract",
@@ -345,7 +345,10 @@
         "P31",
         "P32",
         "P33"
-      ]
+      ],
+      "progress": {
+        "closure_note": "Closed 2026-09-20. scripts/p34/build-local-54-profile-subsets.mjs + validate-local-54-profile-subsets.mjs merged and wired into npm test, producing data/distribution/subsets/local-54/<geo_code>.json -- one small (~10-30KB) client-fetchable file per county/constituency/ward (1,787 files) exposing all 54 governed local indicators plus the geography's representative record, rather than requiring the client to fetch the ~65MB full ledger. assets/place-profile.js gained a new 'All 54 Governed Indicators' tab (added unconditionally to every geography level, not gated behind an eligibility check like other tabs) rendering the fetched subset with the exact 8-label public badge vocabulary docs/governance/data-quality-framework.md requires (Official; Derived from official data; Secondary -- verified; Secondary -- corroborated; Probable value -- sources conflict; Estimated/modelled; Data unavailable; Not applicable), each mapped to a namespaced .badge.l54-* CSS class so it can never collide with or be mistaken for the older A-E badge vocabulary used elsewhere on the same page. Unavailable/not-applicable cells are rendered unfiltered (all 54 indicators always render) with their full governed reason inspectable via an expandable detail panel; the one P33 conflict-decision case (IND-CLASS-C-RURAL-ROAD-LENGTH) surfaces as an inspectable 'conflict history' note on the affected county cells without mislabelling the underlying value, which remains correctly badged Official. The county/constituency/ward representative (from data/representation/representatives.json, P30) is now rendered for the first time in the public product, including a visible flag when a role's freshness_status is stale_unverified. A pre-existing, unrelated global 'provenance' popover (assets/provenance-v2.js) that intercepts every .badge click and resolves lineage via fuzzy-matching the older per-indicator registry was patched to exempt the new l54-* badges, since it does not cover the local-54 evidence model and could otherwise show an incorrect or empty lineage. New automated coverage: scripts/ui/validate-local-54-panel.mjs (wired into npm run ui:validate) plus tests/p16/local-54-panel.spec.mjs (5 Playwright tests: full 54-card render, representative + staleness flag, inspectable conflict history, badge-vocabulary distinctness plus provenance-popover exemption, and a WCAG 2.2 AA critical-impact axe gate) -- verified manually in a live browser session (0 axe violations) before being committed as an automated regression. Existing tabs, badges and the legacy per-indicator registry are entirely untouched; this phase is additive only."
+      }
     },
     {
       "id": "P35",

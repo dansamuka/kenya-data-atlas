@@ -18,8 +18,13 @@
   ensureStyles();
 
   const json=async url=>{try{const r=await fetch(url);return r.ok?await r.json():null;}catch{return null;}};
-  const TAB_LABEL={overview:'Overview',people:'People',education:'Education',economy:'Economy',health:'Health',finance:'Finance',representation:'Representation',infrastructure:'Infrastructure',resilience:'Resilience & Environment'};
+  const TAB_LABEL={overview:'Overview',people:'People',education:'Education',economy:'Economy',health:'Health',finance:'Finance',representation:'Representation',infrastructure:'Infrastructure',resilience:'Resilience & Environment',local54:'All 54 Governed Indicators'};
   const BADGE_LABEL={A:'Official direct',B:'Official derived',C:'Spatially derived',D:'Modelled',E:'External source'};
+  // P34 -- public badge vocabulary for the governed local-54 panel (docs/governance/data-quality-framework.md).
+  // Deliberately namespaced (l54-*) so it never collides with the older A-E classes above.
+  const L54_BADGE_CLASS={'Official':'l54-official','Derived from official data':'l54-derived','Secondary — verified':'l54-secondary-verified','Secondary — corroborated':'l54-secondary-corroborated','Probable value — sources conflict':'l54-probable','Estimated/modelled':'l54-modelled','Data unavailable':'l54-unavailable','Not applicable':'l54-na'};
+  const ROLE_LABEL={county_woman_representative:'Woman Representative',member_of_parliament:'Member of Parliament',member_of_county_assembly:'Member of County Assembly'};
+  const local54Cache=new Map();
 
   const COUNTY_PUBLIC_SLOTS={
     people:[
@@ -88,9 +93,10 @@
     if(geo.level==='county'){
       const tabs=[...COUNTY_TAB_ORDER];
       if(isEligibleConditionalTab(geo,'resilience'))tabs.push('resilience');
+      tabs.push('local54');
       return tabs;
     }
-    return [...(state.taxonomy.tabs?.[geo.level]||[])].filter(tab=>isEligibleConditionalTab(geo,tab));
+    return [...(state.taxonomy.tabs?.[geo.level]||[]).filter(tab=>isEligibleConditionalTab(geo,tab)),'local54'];
   }
   function slotCodes(geo,tab){
     if(tab==='overview'){
@@ -134,11 +140,76 @@
     return `<article class="place-profile-card lifecycle-${esc(life)}" data-indicator-code="${esc(code)}"><div class="place-card-top"><span class="place-card-label">${esc(ind.name)}</span><span class="badge lifecycle ${esc(life)}">${status}</span></div><div class="place-card-value-row"><div class="place-card-value missing">—</div>${unitChip}</div><div class="place-card-meta"><strong>${status}</strong> · ${esc(source)}</div><button class="placeholder-explain" type="button" aria-expanded="false">More about availability ↓</button><div class="placeholder-detail" hidden><b>${esc(TAB_LABEL[tab]||tab)} · ${esc(status)}</b><div>Intended levels: ${esc(levels)}</div><div>${esc(ind.expected_availability_note||'No additional availability note.')}</div>${link}</div></article>`;
   }
 
+  // P34 -- the governed local-54 indicator panel. Fetches a small per-geography subset
+  // (data/distribution/subsets/local-54/<geo_code>.json, built by scripts/p34/build-local-54-
+  // profile-subsets.mjs) rather than the ~65MB full ledger, and renders all 54 indicators —
+  // including official_unavailable/not_applicable ones — plus the representative for this level.
+  const UNAVAILABLE_L54_LABELS=new Set(['Data unavailable','Not applicable']);
+  async function fetchLocal54(geoCode){
+    if(local54Cache.has(geoCode))return local54Cache.get(geoCode);
+    const data=await json(`data/distribution/subsets/local-54/${geoCode}.json`);
+    local54Cache.set(geoCode,data);
+    return data;
+  }
+  // The reason catalogue (~340KB, ~100 unique entries) is fetched once and cached, rather than
+  // duplicating each closure's full reason/source/period text into every one of the 1,787
+  // per-geography subsets -- the same national-source limitation applies to most geographies a
+  // given indicator is closed for, so the text is shared, not per-geography.
+  let local54ReasonCataloguePromise=null;
+  function fetchLocal54ReasonCatalogue(){
+    if(!local54ReasonCataloguePromise)local54ReasonCataloguePromise=json('data/completeness/local-54-reason-catalogue.json').then(doc=>new Map((doc?.reasons||[]).map(r=>[r.reason_id,r])));
+    return local54ReasonCataloguePromise;
+  }
+  function local54BadgeHtml(label){
+    const cls=L54_BADGE_CLASS[label]||'l54-unavailable';
+    return `<span class="badge ${esc(cls)}" title="${esc(label)}" aria-label="${esc(label)}">${esc(label)}</span>`;
+  }
+  function local54CardHtml(ind,reasonById){
+    const unavailable=UNAVAILABLE_L54_LABELS.has(ind.badge_label);
+    const valueHtml=unavailable?'<strong class="missing">—</strong>':`<strong>${esc(ind.value)}</strong>`;
+    const closure=ind.reason_id?reasonById?.get(ind.reason_id):null;
+    const periodLabel=unavailable?closure?.period_label:ind.period_label;
+    const source=unavailable?closure?.source:ind.source;
+    const sourceUrl=unavailable?closure?.source_url:ind.source_url;
+    const reasonHtml=closure?.reason?`<div>${esc(closure.reason)}</div>`:'';
+    const conflictHtml=ind.conflict_note?`<div class="l54-conflict"><b>Conflict history</b><div>${esc(ind.conflict_note.summary)}</div></div>`:'';
+    const sourceLink=sourceUrl?`<a href="${esc(sourceUrl)}" target="_blank" rel="noopener">Open source ↗</a>`:'';
+    return `<article class="place-l54-card ${unavailable?(ind.badge_label==='Not applicable'?'na':'unavailable'):''}" data-indicator-code="${esc(ind.indicator_code)}"><div class="place-l54-card-top"><span>${esc(ind.indicator_name)}</span>${local54BadgeHtml(ind.badge_label)}</div><div class="place-l54-value">${valueHtml}</div><small><b>${esc(periodLabel||ind.status)}</b><span>${esc(source||'')}</span></small><button class="place-l54-explain" type="button" aria-expanded="false">Details ↓</button><div class="place-l54-detail" hidden>${reasonHtml}${conflictHtml}${sourceLink}</div></article>`;
+  }
+  function local54RepHtml(reps){
+    if(!reps||!reps.length)return '';
+    return reps.map(r=>{
+      const stale=r.freshness_status&&r.freshness_status!=='current';
+      return `<div class="place-l54-rep"><b>${esc(ROLE_LABEL[r.role_id]||r.role_id)}</b><span>${esc(r.person_name)}${r.party?` (${esc(r.party)})`:''}</span><span class="place-l54-rep-meta">${esc(r.status)} · verified ${esc(r.verification_date)}</span>${stale?'<span class="badge l54-stale">Not recently re-verified</span>':''}</div>`;
+    }).join('');
+  }
+  async function renderLocal54Tab(){
+    const section=$('#profile');if(!section)return;
+    const geo=currentGeo,tab=currentTab;
+    const head=$('.place-profile-tab-head',section);
+    if(head)head.innerHTML=`<h3>${esc(TAB_LABEL.local54)}</h3><p class="place-profile-coverage">Loading…</p>`;
+    const grid=$('.place-profile-grid',section);
+    if(grid)grid.innerHTML='<div class="place-profile-empty">Loading the governed 54-indicator framework…</div>';
+    const [subset,reasonById]=await Promise.all([fetchLocal54(geo.geo_code),fetchLocal54ReasonCatalogue()]);
+    if(currentGeo!==geo||currentTab!==tab)return;
+    if(!subset){
+      if(head)head.innerHTML=`<h3>${esc(TAB_LABEL.local54)}</h3><p class="place-profile-coverage">unavailable</p>`;
+      if(grid)grid.innerHTML=`<div class="place-profile-empty">The governed 54-indicator dataset for ${esc(geo.name)} is not available.</div>`;
+      return;
+    }
+    const published=subset.indicators.filter(i=>!UNAVAILABLE_L54_LABELS.has(i.badge_label)).length;
+    if(head)head.innerHTML=`<h3>${esc(TAB_LABEL.local54)}</h3><p class="place-profile-coverage">${published}/54 published · ${esc(geo.level)}</p>`;
+    const repHtml=local54RepHtml(subset.representative);
+    const cardsHtml=subset.indicators.map(ind=>local54CardHtml(ind,reasonById)).join('');
+    if(grid)grid.innerHTML=`<div class="place-l54-panel"><div class="place-l54-head"><div><span class="place-l54-eyebrow">Governed 54-indicator framework</span><h3>Every indicator, every disposition</h3><p>All 54 local indicators are shown for this ${esc(geo.level)}, including those confirmed unavailable or not applicable — nothing is hidden for lacking a value. Secondary, modelled or probable values are visually distinct from official figures and every disposition is inspectable.</p></div><div class="place-l54-coverage"><strong>${published}/54</strong><span>published</span></div></div>${repHtml}<div class="place-l54-grid">${cardsHtml}</div></div>`;
+  }
+
   function renderTab(){
     if(!currentGeo)return;const section=$('#profile');if(!section)return;
+    $$('.place-profile-tabs button',section).forEach(b=>{const active=b.dataset.profileTab===currentTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
+    if(currentTab==='local54'){renderLocal54Tab();return;}
     const codes=slotCodes(currentGeo,currentTab);
     const available=codes.filter(code=>{const i=state.indicatorByCode.get(code);return i?.lifecycle_status==='active'&&latestPair(currentGeo.geography_id,i);}).length;
-    $$('.place-profile-tabs button',section).forEach(b=>{const active=b.dataset.profileTab===currentTab;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
     const label=TAB_LABEL[currentTab]||currentTab;
     const head=$('.place-profile-tab-head',section);if(head)head.innerHTML=`<h3>${esc(label)}</h3><p class="place-profile-coverage">${available}/${codes.length} available · ${esc(currentGeo.level)}</p>`;
     const grid=$('.place-profile-grid',section);if(grid)grid.innerHTML=codes.length?codes.map(code=>cardHtml(code,currentGeo,currentTab)).join(''):`<div class="place-profile-empty">No published indicator slots are defined for this topic at ${esc(currentGeo.level)} level.</div>`;
@@ -154,8 +225,21 @@
     renderTab();
   }
 
-  function downloadCurrent(){
-    if(!currentGeo)return;const codes=slotCodes(currentGeo,currentTab),rows=[['indicator_code','indicator','lifecycle','value','unit','period','source'].join(',')];
+  async function downloadCurrent(){
+    if(!currentGeo)return;
+    if(currentTab==='local54'){
+      const subset=local54Cache.get(currentGeo.geo_code);if(!subset)return;
+      const reasonById=await fetchLocal54ReasonCatalogue();
+      const q=v=>`"${String(v??'').replaceAll('"','""')}"`;
+      const rows=[['indicator_code','indicator_name','status','badge_label','value','period','source','confidence'].join(',')];
+      for(const ind of subset.indicators){
+        const closure=ind.reason_id?reasonById.get(ind.reason_id):null;
+        rows.push([q(ind.indicator_code),q(ind.indicator_name),q(ind.status),q(ind.badge_label),q(ind.value),q(ind.period_label||closure?.period_label),q(ind.source||closure?.source),q(ind.confidence)].join(','));
+      }
+      const blob=new Blob([rows.join('\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kenya-data-atlas-${currentGeo.geo_code.toLowerCase()}-local54.csv`;a.click();URL.revokeObjectURL(a.href);
+      return;
+    }
+    const codes=slotCodes(currentGeo,currentTab),rows=[['indicator_code','indicator','lifecycle','value','unit','period','source'].join(',')];
     const q=v=>`"${String(v??'').replaceAll('"','""')}"`;
     for(const code of codes){const i=state.indicatorByCode.get(code);if(!i)continue;const p=latestPair(currentGeo.geography_id,i),u=unitFor(i);rows.push([q(code),q(i.name),q(i.lifecycle_status),q((String(p?.obs?.text_value??'').trim()!==''?p.obs.text_value:(p?.obs?.value??''))),q(unitLabel(u)),q(p?.obs?.period_label??''),q(p?agencyFor(p.series):(i.expected_source||''))].join(','));}
     const blob=new Blob([rows.join('\n')],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`kenya-data-atlas-${currentGeo.geo_code.toLowerCase()}-${currentTab}.csv`;a.click();URL.revokeObjectURL(a.href);
@@ -166,6 +250,7 @@
     section.addEventListener('click',e=>{
       const tab=e.target.closest('[data-profile-tab]');if(tab){currentTab=tab.dataset.profileTab;renderTab();return;}
       const explain=e.target.closest('.placeholder-explain');if(explain){const detail=explain.nextElementSibling,open=detail?.hidden!==false;$$('.placeholder-detail',section).forEach(d=>d.hidden=true);$$('.placeholder-explain',section).forEach(b=>b.setAttribute('aria-expanded','false'));if(detail){detail.hidden=!open;explain.setAttribute('aria-expanded',String(open));}return;}
+      const l54explain=e.target.closest('.place-l54-explain');if(l54explain){const detail=l54explain.nextElementSibling,open=detail?.hidden!==false;$$('.place-l54-detail',section).forEach(d=>d.hidden=true);$$('.place-l54-explain',section).forEach(b=>b.setAttribute('aria-expanded','false'));if(detail){detail.hidden=!open;l54explain.setAttribute('aria-expanded',String(open));}return;}
       if(e.target.closest('#place-profile-download'))downloadCurrent();
     });
     section.addEventListener('keydown',e=>{
