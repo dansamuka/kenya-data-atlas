@@ -1,0 +1,1606 @@
+{
+  "schema_version": "kda.p33.candidate-observations.v1",
+  "generated_at": "2026-09-20",
+  "definition": "Every documented case where this project identified and evaluated more than one candidate source/value for the same indicator+geography+level cell before publishing a disposition, so a competing-source record exists for any value that could ever be tiered S4. Curated from already-existing P28A/P31/P32 investigation contracts (see candidateInvestigationContracts in scripts/p33/build-conflict-resolution.mjs) -- not new research.",
+  "candidate_group_count": 47,
+  "candidate_groups": [
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C001",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C001",
+      "geo_name": "Mombasa",
+      "geography_id": "d4d620d7-8602-55a8-8c78-774bc9148a70",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C001-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 8.1,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C001-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 13.8,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 170.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C002",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C002",
+      "geo_name": "Kwale",
+      "geography_id": "66a1bc3d-acfb-5bf1-82a7-14c3e4158e2a",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C002-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 809.8,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C002-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 637.4,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 78.7,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C003",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C003",
+      "geo_name": "Kilifi",
+      "geography_id": "6303f3f4-e271-5f8a-a153-730ee1bee865",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C003-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 856.8,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C003-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 542.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 63.3,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C004",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C004",
+      "geo_name": "Tana River",
+      "geography_id": "5359be9e-cb0b-59d6-9561-e48914468109",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C004-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 471,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C004-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 342.2,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 72.7,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C005",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C005",
+      "geo_name": "Lamu",
+      "geography_id": "0f1ecb4e-f7cf-5a6e-8774-13a1e5350904",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C005-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 201.4,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C005-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 118.3,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 58.7,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C006",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C006",
+      "geo_name": "Taita/Taveta",
+      "geography_id": "4457e0ad-60f9-5d86-abda-241b77ba3f8b",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C006-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 663.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C006-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 246.6,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 37.2,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C007",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C007",
+      "geo_name": "Garissa",
+      "geography_id": "a7ea7bb6-5575-57dc-947e-650b9091b279",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C007-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 1119,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C007-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 560.9,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 50.1,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C008",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C008",
+      "geo_name": "Wajir",
+      "geography_id": "48bb9364-5557-534e-9ceb-246529626b0f",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C008-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 1178.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C008-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 665.4,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 56.5,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C009",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C009",
+      "geo_name": "Mandera",
+      "geography_id": "14ae35bd-4cdf-553f-ad03-439c502a49e6",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C009-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 721.4,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C009-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 556.3,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 77.1,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C010",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C010",
+      "geo_name": "Marsabit",
+      "geography_id": "758ead44-179a-5d2e-8612-a3aea3ec83b4",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C010-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 1083.9,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C010-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 323.6,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 29.9,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C011",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C011",
+      "geo_name": "Isiolo",
+      "geography_id": "31c6c13b-4440-5fd6-b5d1-2cbac05963be",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C011-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 692.2,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C011-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 482.1,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 69.6,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C012",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C012",
+      "geo_name": "Meru",
+      "geography_id": "6c320716-08cb-5cfb-b4d1-16ce0a1aed8b",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C012-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 658.7,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C012-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 556.2,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 84.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C013",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C013",
+      "geo_name": "Tharaka-Nithi",
+      "geography_id": "46d871ad-38a9-5f7f-8caf-fa62cf5efbbe",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C013-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 340.4,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C013-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 331.4,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 97.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C014",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C014",
+      "geo_name": "Embu",
+      "geography_id": "73c49e9b-999b-5afe-b5e0-c5df4a48efed",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C014-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 444.2,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C014-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 345.8,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 77.8,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C015",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C015",
+      "geo_name": "Kitui",
+      "geography_id": "efcf0d37-384c-58d0-ba43-bf8937e062a8",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C015-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 1258.7,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C015-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 893.9,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 71,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C016",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C016",
+      "geo_name": "Machakos",
+      "geography_id": "110b5a9b-accf-53d3-b558-8d1cc1476690",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C016-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 814.8,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C016-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 655.6,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 80.5,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C017",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C017",
+      "geo_name": "Makueni",
+      "geography_id": "418212dc-0a47-510e-83c3-c30fd9deb53e",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C017-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 832.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C017-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 554.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 66.6,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C018",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C018",
+      "geo_name": "Nyandarua",
+      "geography_id": "f1432c15-8450-5e4b-a668-5151dd0e008d",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C018-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 343.3,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C018-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 365.3,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 106.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C019",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C019",
+      "geo_name": "Nyeri",
+      "geography_id": "16808e44-6168-57a9-81fd-29dbe2682acb",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C019-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 524.1,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C019-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 489.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 93.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C020",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C020",
+      "geo_name": "Kirinyaga",
+      "geography_id": "b183f606-6fbd-55ba-b94c-f4819df0a852",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C020-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 339.8,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C020-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 219.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 64.6,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C021",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C021",
+      "geo_name": "Murang'a",
+      "geography_id": "63e6158b-4293-559b-a0b8-cb068735d4a8",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C021-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 552.1,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C021-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 525.4,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 95.2,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C022",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C022",
+      "geo_name": "Kiambu",
+      "geography_id": "b4bc133a-fe17-5ab9-8824-af7895fdd276",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C022-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 709.1,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C022-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 416.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 58.8,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C023",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C023",
+      "geo_name": "Turkana",
+      "geography_id": "79e6e98b-2569-5520-b4c1-7faa24557250",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C023-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 1019.4,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C023-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 782.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 76.8,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C024",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C024",
+      "geo_name": "West Pokot",
+      "geography_id": "321c4e21-8c5a-5baf-ba86-a539c99a5e9b",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C024-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 518.7,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C024-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 285.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 55.1,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C025",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C025",
+      "geo_name": "Samburu",
+      "geography_id": "2e88f596-ae2e-5298-a295-8078bb369a9d",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C025-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 715.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C025-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 613.9,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 85.8,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C026",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C026",
+      "geo_name": "Trans Nzoia",
+      "geography_id": "1435e02a-7508-5914-9d5c-399adc0ff5f5",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C026-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 338.8,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C026-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 218.2,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 64.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C027",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C027",
+      "geo_name": "Uasin Gishu",
+      "geography_id": "550f28f3-a8f8-566e-a458-137789e3f89d",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C027-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 562.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C027-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 466.6,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 82.9,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C028",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C028",
+      "geo_name": "Elgeyo/Marakwet",
+      "geography_id": "f4d743d7-f527-5691-818d-83ca7ae22c14",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C028-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 339.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C028-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 402.1,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 118.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C029",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C029",
+      "geo_name": "Nandi",
+      "geography_id": "bd1f873f-6065-5372-96a9-0849be7e402f",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C029-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 436.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C029-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 368.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 84.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C030",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C030",
+      "geo_name": "Baringo",
+      "geography_id": "c10e40a8-4a0f-5ac9-9a9c-9538938f81fd",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C030-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 936,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C030-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 606.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 64.8,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C031",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C031",
+      "geo_name": "Laikipia",
+      "geography_id": "2929fd5b-add6-5a6b-918b-661d37c1e21a",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C031-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 393,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C031-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 411.4,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 104.7,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C032",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C032",
+      "geo_name": "Nakuru",
+      "geography_id": "9dc9005d-2ad9-57f1-9927-c951df4e5cfb",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C032-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 953,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C032-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 565.9,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 59.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C033",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C033",
+      "geo_name": "Narok",
+      "geography_id": "84932ef0-f570-5d9b-892c-3c561b214be9",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C033-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 1192,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C033-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 882.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 74,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C034",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C034",
+      "geo_name": "Kajiado",
+      "geography_id": "a91c60cb-b2b4-5cdf-a1fc-fbe89f9f0665",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C034-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 762.8,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C034-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 394.3,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 51.7,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C035",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C035",
+      "geo_name": "Kericho",
+      "geography_id": "f377dad1-a4e8-5681-af41-07de7a5e66bc",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C035-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 464.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C035-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 328.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 70.7,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C036",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C036",
+      "geo_name": "Bomet",
+      "geography_id": "0b3dac6f-b81a-5ac8-bd57-34f3507c8c14",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C036-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 352.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C036-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 391.6,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 111.1,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C037",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C037",
+      "geo_name": "Kakamega",
+      "geography_id": "ce6e7794-14b4-5706-bff1-dd7a12880f11",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C037-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 612.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C037-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 421.6,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 68.8,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C038",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C038",
+      "geo_name": "Vihiga",
+      "geography_id": "e6c43924-d70e-57f7-9f0b-03aa5740d7f7",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C038-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 186.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C038-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 136,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 72.9,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C039",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C039",
+      "geo_name": "Bungoma",
+      "geography_id": "a4499272-a024-54c9-81a0-3596489b405f",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C039-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 645.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C039-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 433.1,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 67.1,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C040",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C040",
+      "geo_name": "Busia",
+      "geography_id": "ddeb0cc9-7b20-50d0-8a9e-9d5fd98d1131",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C040-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 376.3,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C040-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 263.4,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 70,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C041",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C041",
+      "geo_name": "Siaya",
+      "geography_id": "ef4a5751-388d-5620-9293-0a16f87395f2",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C041-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 399.1,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C041-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 311.3,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 78,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C042",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C042",
+      "geo_name": "Kisumu",
+      "geography_id": "b480fa47-cda8-5199-afd4-eedc5ebd6a8f",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C042-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 318.6,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C042-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 258.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 81.1,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C043",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C043",
+      "geo_name": "Homa Bay",
+      "geography_id": "9ddae9f2-988b-581a-8282-7230e27be6b7",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C043-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 640.1,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C043-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 353.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 55.2,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C044",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C044",
+      "geo_name": "Migori",
+      "geography_id": "9575e583-e49f-5e62-9a5d-e48f053e76e8",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C044-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 577,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C044-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 260.7,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 45.2,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C045",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C045",
+      "geo_name": "Kisii",
+      "geography_id": "c2c462d1-7f28-5551-952b-482a5cfd3003",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C045-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 525.9,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C045-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 323.1,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 61.4,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C046",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C046",
+      "geo_name": "Nyamira",
+      "geography_id": "d403dba1-a3d3-5e2d-a896-78018f6b7c8e",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C046-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 259.9,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C046-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 150.5,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 57.9,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    },
+    {
+      "group_id": "P33-CAND-CLASS-C-ROAD-KEN-C047",
+      "indicator_code": "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "level": "county",
+      "geo_code": "KEN-C047",
+      "geo_name": "Nairobi",
+      "geography_id": "bf6864bc-9f15-5e5f-819e-b6c30c83e8e8",
+      "candidates": [
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C047-C1",
+          "source_tier": "S0_direct_primary_official",
+          "source_label": "KNBS Economic Survey 2026 Table 11.9",
+          "source_url": "https://www.knbs.or.ke/reports/2026-economic-survey/",
+          "value": 0.5,
+          "unit": "km",
+          "period_label": "2025 provisional",
+          "status": "published",
+          "evidence_lineage_id": "KNBS-ECONOMIC-SURVEY-2026-TABLE-11.9"
+        },
+        {
+          "candidate_id": "P33-CAND-CLASS-C-ROAD-KEN-C047-C2",
+          "source_tier": "S5_transparent_modelled_or_spatial_estimate",
+          "source_label": "World Bank/ESMAP \"Kenya - Roads\" spatial derivation (energydata.info, KRB-attributed, ~2017 vintage)",
+          "source_url": "https://energydata.info/dataset/kenya-roads-1",
+          "value": 30.1,
+          "unit": "km",
+          "period_label": "~2017 vintage GIS layer",
+          "status": "rejected_failed_reconciliation",
+          "evidence_lineage_id": "WORLDBANK-ESMAP-KENYA-ROADS-2017-CLASS-C-CLIP"
+        }
+      ],
+      "ratio_pct": 6020,
+      "source_contract": "data/p31/source/class-c-road-spatial-derivation-attempt.json"
+    }
+  ]
+}

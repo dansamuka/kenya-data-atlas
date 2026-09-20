@@ -64,6 +64,10 @@
     "P32": {
       "status": "complete",
       "note": "7 parallel research batches (PRs #255, #256, #257, #258, #259, #260, #261) extended ward-level coverage for 43 non-structural local-54 indicators, mostly by applying P31's constituency-level finding to ward 'a fortiori' (a ward is strictly finer than its parent constituency, so the same source limitation applies) after a live re-check confirmed the underlying source condition was unchanged. IND-HOUSEHOLD-SIZE required genuinely fresh ward-level research, having only ever been reviewed at constituency level under P28A. All 78,300 ward cells now have a governed disposition; zero new numeric values were materialised, by design. See data/local-54-completion-roadmap.json P32 closure_note for full detail, including the CI-runner-queue capacity issue encountered mid-phase."
+    },
+    "P33": {
+      "status": "complete",
+      "note": "scripts/p33/build-conflict-resolution.mjs + validate-conflict-resolution.mjs merged and wired into npm test. data/evidence/candidate-observations.json (47 candidate groups) and data/evidence/conflict-decisions.json (1 decision) curate the diligence trail already gathered during P28A/P31/P32 rather than new research: zero preferred observations are currently tiered S4 (data/audit/legacy-source-tier-audit.json) and P28A's own conflict audit already found zero machine-detected conflicts (data/audit/legacy-conflicts.json). The one genuine multi-candidate conflict this project has produced -- P31's rejected spatial-derivation attempt for IND-CLASS-C-RURAL-ROAD-LENGTH, which failed county-level reconciliation against KNBS Table 11.9 by up to two orders of magnitude -- is now formally recorded with its competing candidates and adjudication decision. The validator enforces all 5 roadmap acceptance gates going forward, including failing hard if any future S4 value or detected conflict lacks a matching decision. See data/local-54-completion-roadmap.json P33 closure_note for full detail."
     }
   },
   "work_rules": [
