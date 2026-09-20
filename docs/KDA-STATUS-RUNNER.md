@@ -28,7 +28,8 @@ The runner validates that:
 - P26 closure is consistent with 100% governed legacy resolution and zero unknown slots;
 - P29 closure is consistent with a Local-54 summary and zero unclassified cells;
 - P30 closure is backed by a representation registry and a wired validator;
-- Local-54 roadmap declarations are shown separately from implementation evidence;
+- completed P32 is backed by its dedicated `p32:validate` gate and is never reported as declaration-only when that gate is present;
+- Local-54 roadmap declarations are shown separately from dedicated validators, shared cross-phase gates, phase scripts, workflows and known outputs across P31–P35;
 - P31/P32 progress is estimated from distinct frozen Local-54 indicator families with concrete merged or ahead-of-main branch/PR work.
 
 This last check is deliberate: a phase can have scripts, workflows or outputs before the roadmap is formally closed. The dashboard flags that state instead of silently treating the phase as untouched or complete.
@@ -46,9 +47,20 @@ The numerator includes both work merged to `main` and work on ahead-of-`main` cu
 - **merged coverage** — indicator families already represented by merged current-phase PRs;
 - **in-flight coverage** — additional indicator families currently represented on active branches/open PRs.
 
-This is deliberately a **coverage estimate**, not a declaration that the phase acceptance criteria are met. P31/P32 still remain incomplete until their roadmap acceptance gates, deterministic rebuilds and validators pass.
+This is deliberately a **coverage estimate**, not a declaration that phase acceptance criteria are met. It did not close P31 or P32; their roadmap acceptance gates, deterministic rebuilds and validators did. Both phases are now complete, so the estimate is retained only for historical/current-phase compatibility.
 
 Branches are considered current-phase work when their name begins with the current phase ID (for example `p31-`, `p31/` or `p31_`) and they are either ahead of `main` or have an open PR. Branches without PRs are therefore visible rather than silently omitted.
+
+## P32 assurance boundary
+
+P29 remains the whole-Local-54 denominator and deterministic ledger gate. P32 now has a separate assurance contract and validator:
+
+- [`data/p32/ward-completion-assurance-contract.json`](../data/p32/ward-completion-assurance-contract.json) fixes the P32 claim at 54 indicators, 1,450 wards and 78,300 dispositions;
+- `npm run p32:validate` independently checks the ward cross-product, zero unknown/unclassified cells, zero prohibited inheritance and 43 specifically investigated P32 indicator families covering 62,350 ward cells;
+- focused fixtures intentionally break the denominator, disposition, inheritance, evidence-family and deterministic-rebuild invariants;
+- the generated roads/fuel evidence is rebuilt in memory and compared with its committed representation, so validation does not mutate the repository.
+
+This distinction prevents the broad P29 count from being mistaken for evidence that P32's ward-specific research was actually completed.
 
 ## Outputs
 

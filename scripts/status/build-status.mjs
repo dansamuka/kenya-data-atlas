@@ -46,6 +46,51 @@ function phaseNumber(id) {
   return Number(String(id).replace(/^P/, ''));
 }
 
+const LOCAL_PHASE_EVIDENCE_CONFIG = {
+  P27: {
+    outputs: ['data/policy/local-54-indicator-contract.json']
+  },
+  P28: {
+    outputs: ['data/audit/legacy-source-tier-audit.json', 'data/audit/legacy-source-tier-summary.json']
+  },
+  P29: {
+    outputs: ['data/completeness/local-54-summary.json', 'data/completeness/local-54-slot-ledger.json']
+  },
+  P30: {
+    outputs: ['data/representation/representatives.json', 'data/representation/representatives.csv']
+  },
+  P31: {
+    outputs: [
+      'data/p31/class-c-road-constituency-closure-contract.json',
+      'data/p31/fuel-petrol-constituency-closure-contract.json'
+    ],
+    shared_validators: ['p29:validate', 'p35:validate']
+  },
+  P32: {
+    outputs: [
+      'data/p32/ward-completion-assurance-contract.json',
+      'data/completeness/local-54-roads-fuel-ward-evidence-states.json'
+    ],
+    shared_validators: ['p29:validate', 'p35:validate']
+  },
+  P33: {
+    outputs: ['data/evidence/candidate-observations.json', 'data/evidence/conflict-decisions.json'],
+    shared_validators: ['p35:validate']
+  },
+  P34: {
+    outputs: ['data/local-54-profiles'],
+    shared_validators: ['p35:validate']
+  },
+  P35: {
+    outputs: [
+      'data/local-54-completion-dashboard.json',
+      'data/audit/local-54-freshness-queue.json',
+      'data/audit/local-54-supersession-queue.json',
+      'data/audit/local-54-reaudit-queue.json'
+    ]
+  }
+};
+
 function loadRoadmaps() {
   const groups = [
     { key: 'core', label: 'Core product', path: 'data/project-roadmap.json' },
@@ -60,21 +105,19 @@ function loadRoadmaps() {
 
 function localPhaseEvidence(phase, packageJson) {
   const id = phase.id.toLowerCase();
+  const config = LOCAL_PHASE_EVIDENCE_CONFIG[phase.id] || {};
   const workflowDir = resolve(ROOT, '.github/workflows');
   const workflows = existsSync(workflowDir)
     ? readdirSync(workflowDir).filter(name => name.toLowerCase().startsWith(id))
     : [];
   const scriptDir = `scripts/${id}`;
-  const validator = Boolean(packageJson.scripts?.[`${id}:validate`]);
+  const dedicatedValidatorNames = config.dedicated_validators || [`${id}:validate`];
+  const sharedValidatorNames = config.shared_validators || [];
+  const dedicatedValidators = dedicatedValidatorNames.filter(name => Boolean(packageJson.scripts?.[name]));
+  const sharedValidators = sharedValidatorNames.filter(name => Boolean(packageJson.scripts?.[name]));
+  const validator = dedicatedValidators.length > 0 || sharedValidators.length > 0;
   const builder = Boolean(packageJson.scripts?.[`${id}:build`]);
-
-  const knownOutputs = {
-    P27: ['data/policy/local-54-indicator-contract.json'],
-    P28: ['data/audit/legacy-source-tier-audit.json', 'data/audit/legacy-source-tier-summary.json'],
-    P29: ['data/completeness/local-54-summary.json', 'data/completeness/local-54-slot-ledger.json'],
-    P30: ['data/representation/representatives.json', 'data/representation/representatives.csv']
-  };
-  const outputPaths = knownOutputs[phase.id] || [];
+  const outputPaths = config.outputs || [];
   const outputsPresent = outputPaths.filter(exists);
 
   const implementationDetected =
@@ -90,6 +133,9 @@ function localPhaseEvidence(phase, packageJson) {
   return {
     script_dir: dirHasFiles(scriptDir),
     validator,
+    dedicated_validator: dedicatedValidators.length > 0,
+    dedicated_validator_scripts: dedicatedValidators,
+    shared_validator_scripts: sharedValidators,
     builder,
     workflows,
     known_outputs_present: outputsPresent,
@@ -376,6 +422,14 @@ export function validateStatus(status) {
     if (!status.roadmap.local54_evidence.P30?.validator) errors.push('P30 is complete but p30:validate is not wired');
   }
 
+  if (byId.get('P32')?.status === 'complete') {
+    const evidence = status.roadmap.local54_evidence.P32;
+    if (!evidence?.dedicated_validator) errors.push('P32 is complete but a dedicated p32:validate gate is not wired');
+    if (evidence?.evidence_state === 'complete (declaration only)') {
+      errors.push('P32 is complete but the status report still labels it declaration-only');
+    }
+  }
+
   if (errors.length) {
     throw new Error(`KDA status validation failed:\n- ${errors.join('\n- ')}`);
   }
@@ -519,14 +573,17 @@ export function renderMarkdown(status) {
     '',
     '## Local-54 phase evidence',
     '',
-    '| Phase | Roadmap | Validator | Scripts | Workflow | Assessment |',
-    '|---|---|---:|---:|---:|---|'
+    '| Phase | Roadmap | Dedicated validator | Shared gates | Scripts | Workflow | Outputs | Assessment |',
+    '|---|---|---:|---|---:|---:|---:|---|'
   ];
 
   for (const phase of status.roadmap.phases.filter(p => phaseNumber(p.id) >= 27)) {
     const e = status.roadmap.local54_evidence[phase.id];
+    const sharedGates = e.shared_validator_scripts.length
+      ? e.shared_validator_scripts.map(name => `\`${name}\``).join(', ')
+      : '—';
     lines.push(
-      `| **${phase.id}** ${phase.title} | ${statusIcon(phase.status)} ${phase.status} | ${e.validator ? '✅' : '—'} | ${e.script_dir ? '✅' : '—'} | ${e.workflows.length ? '✅' : '—'} | ${e.evidence_state} |`
+      `| **${phase.id}** ${phase.title} | ${statusIcon(phase.status)} ${phase.status} | ${e.dedicated_validator ? '✅' : '—'} | ${sharedGates} | ${e.script_dir ? '✅' : '—'} | ${e.workflows.length ? '✅' : '—'} | ${e.known_outputs_present.length ? '✅' : '—'} | ${e.evidence_state} |`
     );
   }
 
@@ -613,7 +670,7 @@ export function renderMarkdown(status) {
     '',
     '## Interpretation rule',
     '',
-    'This dashboard does not treat a roadmap declaration as sufficient on its own. For Local-54 phases it separately reports whether validator scripts, phase scripts, workflows and known outputs are present. A planned phase with implementation evidence is flagged rather than silently treated as untouched. For P31/P32, the progress percentage is a coverage estimate based on distinct frozen indicator families with concrete merged or ahead-of-main branch/PR work; the separate merged figure remains the stricter measure of work already on main.',
+    'This dashboard does not treat a roadmap declaration as sufficient on its own. For Local-54 phases it separately reports dedicated validators, shared cross-phase gates, phase scripts, workflows and known outputs. A planned phase with implementation evidence is flagged rather than silently treated as untouched. For P31/P32, the progress percentage is a coverage estimate based on distinct frozen indicator families with concrete merged or ahead-of-main branch/PR work; the separate merged figure remains the stricter measure of work already on main.',
     '',
     '---',
     '_Generated by `.github/workflows/kda-status.yml`; the workflow updates this issue without committing generated status files back to the repository._',

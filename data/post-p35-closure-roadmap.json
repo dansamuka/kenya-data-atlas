@@ -41,7 +41,7 @@
     {
       "id": "P36",
       "title": "Local-54 assurance and validator parity",
-      "status": "next",
+      "status": "complete",
       "goal": "Remove the remaining assurance ambiguity by giving P32 a dedicated closure validator and making implementation-evidence reporting accurate for P31–P35.",
       "outputs": [
         "dedicated P32 ward-completion validator",
@@ -58,12 +58,16 @@
       ],
       "depends_on": [
         "P35"
-      ]
+      ],
+      "progress": {
+        "closed_on": "2026-09-20",
+        "closure_note": "Closed with an independent, fixture-tested P32 ward-completion assurance surface. data/p32/ward-completion-assurance-contract.json freezes the 54-indicator, 1,450-ward and 78,300-cell denominator and distinguishes the 43 families / 62,350 cells carrying specific P32 evidence from 11 structural or previously resolved families. scripts/p32/validate-ward-completion.mjs verifies the exact ward cross-product, governed dispositions, zero unclassified or unresolved cells, zero prohibited parent-to-ward inheritance, exact P32 evidence-family and geography coverage, evidence-to-ledger reason lineage and in-memory deterministic rebuild parity for the generated roads/fuel evidence. Six focused node:test fixtures prove pass and intentional failures for denominator, disposition, inheritance, missing evidence and rebuild drift. p32:validate is wired into npm test and a least-privilege path-scoped P32 workflow. The status runner now recognises dedicated validators, shared gates and committed outputs across P31-P35, and enforces that completed P32 has its own validator; its rendered evidence matrix reports P32 as complete with implementation evidence rather than declaration-only. P29 remains the whole-ledger denominator gate; P32 now independently assures the ward tranche and its phase-specific evidence."
+      }
     },
     {
       "id": "P37",
       "title": "Truthful status and Actions-queue observability",
-      "status": "planned",
+      "status": "next",
       "goal": "Make the canonical status issue reflect settled workflow outcomes and distinguish current runner blockage from irrecoverable historical GitHub queue records.",
       "outputs": [
         "post-workflow status refresh/finalisation trigger",

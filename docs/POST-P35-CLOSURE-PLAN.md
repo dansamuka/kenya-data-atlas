@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P41 Post-P35 Closure Plan
 
-Status: **active successor programme — P36 next**  
+Status: **active successor programme — P36 complete; P37 next**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -64,6 +64,8 @@ The 24 phantom records were created on 13 September 2026, contain no jobs and ha
 
 ## P36 — Local-54 assurance and validator parity
 
+**Status: complete (20 September 2026).**
+
 **Goal:** Remove the final assurance ambiguity by adding a dedicated P32 closure validator and making the implementation-evidence report accurate across P31–P35.
 
 ### Scope
@@ -86,9 +88,20 @@ The 24 phantom records were created on 13 September 2026, contain no jobs and ha
 
 P36 closes only when the dedicated validator detects intentionally introduced count, disposition, evidence-family and inheritance failures; the live status output recognises P32 implementation evidence; and `npm test`, P16 and Pages are green.
 
+### Closure evidence
+
+- [`data/p32/ward-completion-assurance-contract.json`](../data/p32/ward-completion-assurance-contract.json) freezes the assurance denominator at 54 indicators, 1,450 wards and 78,300 ward cells. It separately names the 43 P32-investigated families covering 62,350 cells and the 11 structural or previously resolved families.
+- `npm run p32:validate` checks the full ward cross-product, valid/resolved dispositions, zero prohibited parent-to-ward inheritance, exact P32 evidence coverage and evidence-to-ledger reason lineage. It rebuilds the generated roads/fuel evidence in memory and rejects drift without changing the worktree.
+- Six focused `node:test` cases prove the success path and deliberate denominator, disposition, inheritance, evidence-family and rebuild-drift failures.
+- `npm test` and the path-scoped, read-only `P32 ward-completion assurance` workflow run the gate. The status runner requires the dedicated validator and recognises the shared P29/P35 gates and committed outputs across P31–P35.
+
+P29 and P32 now have distinct assurance jobs: P29 proves the complete 96,498-cell Local-54 denominator and generated ledger; P32 independently proves the 78,300-cell ward tranche and the specific evidence behind its closure claim.
+
 ---
 
 ## P37 — Truthful status and Actions-queue observability
+
+**Status: next.**
 
 **Goal:** Ensure the canonical KDA status issue reports settled outcomes for the latest `main` SHA and distinguishes real execution blockage from historical GitHub anomalies.
 

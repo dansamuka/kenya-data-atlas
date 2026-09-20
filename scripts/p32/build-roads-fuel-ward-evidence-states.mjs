@@ -38,13 +38,10 @@
 // observation, and never inherits or interpolates any county/constituency value down to any ward.
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-const root = process.cwd();
-const readJson = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
-const outPath = path.join(root, 'data/completeness/local-54-roads-fuel-ward-evidence-states.json');
-
-const geographies = readJson('data/geography/registry/geographies.json');
-const wardGeoCodes = geographies
+export function buildRoadsFuelWardEvidenceStates(geographies) {
+  const wardGeoCodes = geographies
   .filter(g => g.level === 'ward')
   .map(g => g.geo_code)
   .sort();
@@ -88,5 +85,18 @@ const output = {
   states
 };
 
-fs.writeFileSync(outPath, JSON.stringify(output, null, 2) + '\n');
-console.log(`Wrote ${states.length} states (${states.length * wardGeoCodes.length} geo-indicator cells) to ${outPath}`);
+  return output;
+}
+
+function main() {
+  const root = process.cwd();
+  const readJson = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
+  const outPath = path.join(root, 'data/completeness/local-54-roads-fuel-ward-evidence-states.json');
+  const output = buildRoadsFuelWardEvidenceStates(readJson('data/geography/registry/geographies.json'));
+  fs.writeFileSync(outPath, JSON.stringify(output, null, 2) + '\n');
+  console.log(`Wrote ${output.states.length} states (${output.states.reduce((sum, state) => sum + state.geo_codes.length, 0)} geo-indicator cells) to ${outPath}`);
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main();
+}
