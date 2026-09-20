@@ -1,0 +1,83 @@
+name: Actions queue hygiene
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/actions-queue-hygiene.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  clear-stale-queued-runs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      STALE_AFTER_HOURS: '6'
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Cancel stale queued workflow runs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cutoff_epoch="$(date -u -d "${STALE_AFTER_HOURS} hours ago" +%s)"
+          cancelled=0
+          seen=0
+
+          while IFS=$'\t' read -r run_id created_at run_name head_branch; do
+            [[ -z "${run_id:-}" ]] && continue
+            seen=$((seen + 1))
+            created_epoch="$(date -u -d "${created_at}" +%s)"
+
+            if (( created_epoch >= cutoff_epoch )); then
+              echo "KEEP   #${run_id} | ${created_at} | ${run_name} | ${head_branch} (younger than ${STALE_AFTER_HOURS}h)"
+              continue
+            fi
+
+            echo "CANCEL #${run_id} | ${created_at} | ${run_name} | ${head_branch}"
+            if gh api --method POST "/repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/cancel" >/dev/null; then
+              cancelled=$((cancelled + 1))
+            else
+              echo "::warning::Could not cancel run #${run_id}; it may have changed state concurrently."
+            fi
+          done < <(
+            gh api --paginate               "/repos/${GITHUB_REPOSITORY}/actions/runs?status=queued&per_page=100"               --jq '.workflow_runs[] | [.id, .created_at, .name, (.head_branch // "")] | @tsv'
+          )
+
+          echo "Queued runs inspected: ${seen}"
+          echo "Stale queued runs cancellation requested: ${cancelled}"
+
+          {
+            echo "## Actions queue hygiene"
+            echo
+            echo "- Safety threshold: **${STALE_AFTER_HOURS} hours**"
+            echo "- Queued runs inspected: **${seen}**"
+            echo "- Stale cancellation requests sent: **${cancelled}**"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Verify stale queue is clear
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cutoff_epoch="$(date -u -d "${STALE_AFTER_HOURS} hours ago" +%s)"
+          stale=0
+
+          while IFS=$'\t' read -r run_id created_at run_name; do
+            [[ -z "${run_id:-}" ]] && continue
+            created_epoch="$(date -u -d "${created_at}" +%s)"
+            if (( created_epoch < cutoff_epoch )); then
+              echo "::warning::Still queued: #${run_id} | ${created_at} | ${run_name}"
+              stale=$((stale + 1))
+            fi
+          done < <(
+            gh api --paginate               "/repos/${GITHUB_REPOSITORY}/actions/runs?status=queued&per_page=100"               --jq '.workflow_runs[] | [.id, .created_at, .name] | @tsv'
+          )
+
+          echo "Stale queued runs remaining immediately after cleanup: ${stale}"
