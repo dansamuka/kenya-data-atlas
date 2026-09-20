@@ -1,0 +1,66 @@
+{
+  "schema_version": "kda.p35.local-54-completion-dashboard.v1",
+  "as_of": "2026-09-20",
+  "gates": {
+    "indicators_governed": {
+      "value": 54,
+      "target": 54,
+      "pass": true
+    },
+    "constituency_dispositions": {
+      "value": 15660,
+      "target": 15660,
+      "pass": true
+    },
+    "ward_dispositions": {
+      "value": 78300,
+      "target": 78300,
+      "pass": true
+    },
+    "county_representative_dispositions": {
+      "value": 47,
+      "target": 47,
+      "pass": true
+    },
+    "unknown_local_cells": {
+      "value": 0,
+      "target": 0,
+      "pass": true
+    },
+    "unlabelled_secondary_observations": {
+      "value": 0,
+      "target": 0,
+      "pass": true
+    },
+    "unexplained_conflicts": {
+      "value": 0,
+      "target": 0,
+      "pass": true,
+      "s4_preferred_observations": 0,
+      "legacy_conflict_candidates": 0,
+      "recorded_decisions": 1
+    },
+    "prohibited_parent_child_inheritance": {
+      "value": 0,
+      "target": 0,
+      "pass": true
+    },
+    "dynamic_observations_with_recheck_schedule": {
+      "value": 3186,
+      "of": 6007
+    },
+    "reauditable_closures_with_refresh_trigger": {
+      "value": 87,
+      "of": 87,
+      "pass": true
+    },
+    "secondary_observations_queued_for_supersession": {
+      "value": 2364
+    },
+    "local_geographies_covered": {
+      "value": 1787,
+      "target": 1787
+    }
+  },
+  "all_gates_pass": true
+}

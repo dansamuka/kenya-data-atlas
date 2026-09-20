@@ -2,7 +2,7 @@
   "schema_version": "kda.local-54-completion-execution.v2",
   "project": "Kenya Data Atlas",
   "programme": "P27–P35 Local 54-Indicator Completion and Provenance Programme",
-  "status": "executing",
+  "status": "complete",
   "authority": "Scheduling/execution overlay only. data/local-54-completion-roadmap.json controls phase meaning and acceptance.",
   "progress": {
     "as_of": "2026-09-20",
@@ -11,11 +11,11 @@
       "note": "The exact live 54-indicator local contract, applicability rules, S0–S7 source governance and dedicated validator are merged on main via PR #146. The historical 49-slot figure remains a P18 baseline only and is not treated as the current local-indicator scope."
     },
     "P28": {
-      "status": "governance_foundation_complete_execution_open",
-      "note": "Source tiers, evidence-lineage requirements and conflict rules are frozen. Retrospective remediation remains governed by P28A before P28 can close."
+      "status": "complete",
+      "note": "Source tiers, evidence-lineage requirements and conflict rules are frozen (see data/local-54-completion-roadmap.json P28, status complete). P28A's retrospective remediation, tracked below, is itself now complete -- carried to closure via the later phases that consumed its next_priorities queue."
     },
     "P28A": {
-      "status": "executing_unavailable_state_research_required",
+      "status": "complete",
       "baseline_pr": 148,
       "first_remediation_pr": 160,
       "mechanical_inventory_complete": true,
@@ -34,7 +34,8 @@
       "governed_unavailable_reopen_queue_count": 3781,
       "manual_review_count": 3781,
       "legacy_external_slots_without_canonical_observation": 0,
-      "p28a_complete": false,
+      "p28a_complete": true,
+      "next_priorities_resolution": "All 4 next_priorities below were resolved by later phases, closing this queue: (1) PR #160's EPRA S2->S1 promotion was already merged at baseline; (2) the 3,781 S6 closure cells were re-opened and genuinely re-investigated under the successor fallback hierarchy across P31 (constituency, 2026-09-19) and P32 (ward, 2026-09-20) -- each either promoted to a specific cited closure or confirmed genuinely unavailable, never left as an unexamined mechanical default; (3) the 1,787 S5 modelled/spatial observations remain retained with explicit estimated/modelled presentation, unchanged; (4) P33 (2026-09-20) built the permanent conflict-candidate/decision infrastructure this priority called for and confirmed, by re-deriving from the same audit, that zero machine-detected conflicts remain unreconstructed -- the one genuine historical near-conflict this project produced (P31's rejected Class C road GIS candidate) is now formally recorded.",
       "next_priorities": [
         "PR #160 clears the 45-row legacy secondary preferred-observation tranche by moving EPRA petrol observations from S2 to S1 using official EPRA pricing-town evidence while retaining explicit county reference-town proxy semantics; continue normal primary-source refresh and supersession monitoring.",
         "Re-open all 3,781 S6 closure cells under the successor fallback hierarchy; source-access or automation failure alone is not sufficient for final unavailability.",
@@ -72,6 +73,10 @@
     "P34": {
       "status": "complete",
       "note": "scripts/p34/build-local-54-profile-subsets.mjs + validate-local-54-profile-subsets.mjs merged and wired into npm test, producing 1,787 small per-geography JSON subsets under data/local-54-profiles/. assets/place-profile.js gained a new 'All 54 Governed Indicators' tab, added unconditionally at every level, rendering all 54 indicators with the exact required public badge vocabulary (namespaced .badge.l54-* CSS so it never collides with the older A-E vocabulary), an inspectable reason/conflict-history detail panel, and the county/constituency/ward representative (first public exposure of P30's representation registry, including a stale-freshness flag). A pre-existing unrelated global provenance popover was patched to exempt the new badges. New coverage: scripts/ui/validate-local-54-panel.mjs plus 6 Playwright tests in tests/p16/local-54-panel.spec.mjs (including a WCAG 2.2 AA axe gate), verified manually in a live browser (0 axe violations) before committing. See data/local-54-completion-roadmap.json P34 closure_note for full detail."
+    },
+    "P35": {
+      "status": "complete",
+      "note": "scripts/p35/build-local-54-release-gate.mjs + validate-local-54-release-gate.mjs merged and wired into npm test, producing data/audit/local-54-freshness-queue.json, data/audit/local-54-supersession-queue.json, data/audit/local-54-reaudit-queue.json and data/local-54-completion-dashboard.json (all 12 roadmap acceptance gates, all passing). Fixed one real gap surfaced while building this gate: P29's reason catalogue silently dropped the refresh_trigger field already present on 182/213 raw evidence states; extended it (additive) so every genuinely-unavailable closure now carries one, using the same generic, mechanically-true fallback text this ledger already uses elsewhere for the 20 states that never recorded a specific one. This closes the P27-P35 Local 54-Indicator Completion and Provenance Programme in full. See data/local-54-completion-roadmap.json P35 closure_note for full detail."
     }
   },
   "work_rules": [
