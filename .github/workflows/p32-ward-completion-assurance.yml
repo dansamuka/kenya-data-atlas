@@ -1,0 +1,53 @@
+name: P32 ward-completion assurance
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/p32/**'
+      - 'tests/p32/**'
+      - 'scripts/status/**'
+      - 'package.json'
+      - 'data/p32/**'
+      - 'data/completeness/local-54-*-evidence-states.json'
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/local-54-slot-ledger.json'
+      - 'data/completeness/local-54-reason-catalogue.json'
+      - 'data/geography/registry/geographies.json'
+      - 'data/policy/local-54-indicator-contract.json'
+      - '.github/workflows/p32-ward-completion-assurance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/p32/**'
+      - 'tests/p32/**'
+      - 'scripts/status/**'
+      - 'package.json'
+      - 'data/p32/**'
+      - 'data/completeness/local-54-*-evidence-states.json'
+      - 'data/completeness/local-54-indicator-manifest.json'
+      - 'data/completeness/local-54-slot-ledger.json'
+      - 'data/completeness/local-54-reason-catalogue.json'
+      - 'data/geography/registry/geographies.json'
+      - 'data/policy/local-54-indicator-contract.json'
+
+permissions:
+  contents: read
+
+jobs:
+  ward-completion-assurance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate P32 ward completion and failure fixtures
+        run: npm run p32:validate
+      - name: Verify P32 implementation-evidence reporting
+        run: npm run status:validate

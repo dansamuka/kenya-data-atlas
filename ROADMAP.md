@@ -185,7 +185,7 @@ The successor product objective is explicit: **every constituency and ward is as
 
 ## P36–P41 — repository assurance and numeric-yield programme
 
-P00–P35 remain historically complete at **36/36**. P36–P41 is a separate active successor programme, with **P36 next**; it does not reopen those phases or convert governance completion into a claim of full numeric coverage.
+P00–P35 remain historically complete at **36/36**. P36–P41 is a separate active successor programme, with **P36 complete and P37 next**; it does not reopen those phases or convert governance completion into a claim of full numeric coverage.
 
 Baseline at P35 closure:
 
@@ -196,14 +196,14 @@ Baseline at P35 closure:
 
 The successor phases are deliberately bounded:
 
-| Phase | Closure surface |
-|---|---|
-| **P36** | Dedicated P32 assurance validator and accurate P31–P35 implementation-evidence reporting. |
-| **P37** | Final-state status refresh and truthful separation of fresh queues from 24 historical phantom records. |
-| **P38** | Evidence-preserving branch/workflow inventory and cleanup authorisation. |
-| **P39** | Recoverable stale-reference cleanup and CI consolidation without weakening permanent gates. |
-| **P40** | Ranked portfolio for converting governed closures into real numeric evidence. |
-| **P41** | First bounded data-yield tranche; cannot close without a measured increase above 6,007 numeric cells. |
+| Phase | State | Closure surface |
+|---|---|---|
+| **P36** | **Complete** | Dedicated P32 assurance validator and accurate P31–P35 implementation-evidence reporting. |
+| **P37** | **Next** | Final-state status refresh and truthful separation of fresh queues from 24 historical phantom records. |
+| **P38** | Planned | Evidence-preserving branch/workflow inventory and cleanup authorisation. |
+| **P39** | Planned | Recoverable stale-reference cleanup and CI consolidation without weakening permanent gates. |
+| **P40** | Planned | Ranked portfolio for converting governed closures into real numeric evidence. |
+| **P41** | Planned | First bounded data-yield tranche; cannot close without a measured increase above 6,007 numeric cells. |
 
 Formal closure order:
 

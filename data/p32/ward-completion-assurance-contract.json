@@ -1,0 +1,116 @@
+{
+  "schema_version": "kda.p32.ward-completion-assurance.v1",
+  "phase": "P32",
+  "definition": "Independent assurance contract for the completed Local-54 ward tranche. It separates the 43 indicator families that received specific P32 ward evidence from the 11 families already resolved structurally or by earlier ward work, while requiring a complete and non-inherited disposition for every one of the 78,300 ward cells.",
+  "expected": {
+    "indicator_count": 54,
+    "ward_count": 1450,
+    "ward_cell_count": 78300,
+    "p32_specific_indicator_count": 43,
+    "p32_specific_evidence_cell_count": 62350
+  },
+  "allowed_dispositions": [
+    "published_direct",
+    "published_derived",
+    "published_modelled",
+    "external_verified",
+    "official_unavailable",
+    "governed_unavailable",
+    "not_applicable",
+    "boundary_unresolved",
+    "retired_replaced"
+  ],
+  "allowed_geographic_methods": [
+    "",
+    "direct",
+    "aggregated",
+    "proxy",
+    "modelled"
+  ],
+  "prohibited_parent_child_methods": [
+    "inherited",
+    "copied",
+    "downscaled",
+    "equal_share",
+    "parent_rate"
+  ],
+  "p32_specific_evidence": {
+    "files": [
+      "data/completeness/local-54-agriculture-evidence-states.json",
+      "data/completeness/local-54-education-admin-evidence-states.json",
+      "data/completeness/local-54-gcp-census-evidence-states.json",
+      "data/completeness/local-54-health-facility-ward-evidence-states.json",
+      "data/completeness/local-54-kdhs-ward-evidence-states.json",
+      "data/completeness/local-54-kihbs-ward-evidence-states.json",
+      "data/completeness/local-54-roads-fuel-ward-evidence-states.json"
+    ],
+    "indicator_codes": [
+      "IND-AGRICULTURE-GCP-SHARE",
+      "IND-AGRICULTURE-GVA",
+      "IND-CLASS-C-RURAL-ROAD-LENGTH",
+      "IND-COMPUTER-USE",
+      "IND-CONTRACEPTIVE-USE",
+      "IND-DISABILITY-PREVALENCE",
+      "IND-ELECTRICITY-ACCESS",
+      "IND-FGM-CHILD-MARRIAGE",
+      "IND-FUEL-PETROL",
+      "IND-GCP-CURRENT",
+      "IND-HEALTH-FACILITY-COUNT",
+      "IND-HEALTH-FACILITY-STOCK",
+      "IND-HIV-PREVALENCE",
+      "IND-HOME-BIRTH-RATE",
+      "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "IND-HOUSEHOLD-SIZE",
+      "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
+      "IND-HOUSING-MATERIAL",
+      "IND-HOUSING-OWNER-OCCUPIED",
+      "IND-IMMUNIZATION-RATE",
+      "IND-INPATIENT-SERVICE-AVAILABILITY",
+      "IND-INTERNET-USE",
+      "IND-LABOUR-FORCE-PARTICIPATION",
+      "IND-LITERACY-RATE",
+      "IND-MAIN-GRID-ELECTRICITY",
+      "IND-MAIZE-AREA",
+      "IND-MAIZE-PRODUCTION",
+      "IND-MAIZE-YIELD",
+      "IND-MANUFACTURING-GCP-SHARE",
+      "IND-MANUFACTURING-GVA",
+      "IND-MATERNAL-HEALTH",
+      "IND-POP-2009",
+      "IND-POVERTY-RATE",
+      "IND-PRIMARY-CLASSROOM-TEACHERS",
+      "IND-PUBLIC-PRIMARY-SCHOOLS",
+      "IND-PUBLIC-SECONDARY-SCHOOLS",
+      "IND-RENT-BURDEN",
+      "IND-SCHOOL-ATTENDANCE-RATE",
+      "IND-SECONDARY-TEACHERS",
+      "IND-STUNTING-RATE",
+      "IND-TEENAGE-PREGNANCY",
+      "IND-WATER-ACCESS"
+    ]
+  },
+  "outside_p32_specific_evidence": {
+    "structural_not_applicable_indicator_codes": [
+      "IND-COUNTY-AUDIT-OPINION",
+      "IND-COUNTY-BUDGET-ABSORPTION",
+      "IND-COUNTY-BUDGET-TOTAL",
+      "IND-COUNTY-DEVELOPMENT-ABSORPTION",
+      "IND-COUNTY-EXPENDITURE-TOTAL",
+      "IND-COUNTY-OSR",
+      "IND-COUNTY-PENDING-BILLS"
+    ],
+    "already_resolved_before_p32_indicator_codes": [
+      "IND-HEALTH-FACILITY-DENSITY",
+      "IND-LAND-AREA",
+      "IND-POPULATION",
+      "IND-REGISTERED-VOTERS"
+    ]
+  },
+  "deterministic_outputs": [
+    {
+      "path": "data/completeness/local-54-roads-fuel-ward-evidence-states.json",
+      "builder": "scripts/p32/build-roads-fuel-ward-evidence-states.mjs"
+    }
+  ]
+}
