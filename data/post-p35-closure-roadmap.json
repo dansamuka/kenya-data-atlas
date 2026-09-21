@@ -67,7 +67,7 @@
     {
       "id": "P37",
       "title": "Truthful status and Actions-queue observability",
-      "status": "next",
+      "status": "complete",
       "goal": "Make the canonical status issue reflect settled workflow outcomes and distinguish current runner blockage from irrecoverable historical GitHub queue records.",
       "outputs": [
         "post-workflow status refresh/finalisation trigger",
@@ -86,12 +86,16 @@
       ],
       "depends_on": [
         "P36"
-      ]
+      ],
+      "progress": {
+        "closed_on": "2026-09-21",
+        "closure_note": "Closed with a live, production-verified dispatch, not just an offline fixture suite. scripts/status/workflow-run-classifier.mjs classifies every repo-wide non-completed workflow run as fresh_queued/stale_queued/in_progress/phantom; phantom requires objective evidence (confirmed zero jobs via the Actions jobs API, never updated since creation, aged past 6 hours), so absence of evidence never produces a false phantom. Running this against the real GitHub API caught a real bug before merge: a first draft used the generic githubCollection() helper against /actions/runs, which wraps its array in {workflow_runs:[...]} rather than returning it bare, causing every live check to fail outright -- fixed with a dedicated githubWorkflowRuns() helper. After the fix, a live run against this repository confirmed all 24 real historical phantom records (queued 2026-09-13 on the long-merged p28a-epra-fuel-provenance branch) classify correctly with zero false blockers. scripts/status/successor-roadmap.mjs summarises this P36-P41 roadmap as a counter fully independent of the historical P00-P35 36/36 result; validateStatus() asserts roadmap.total_phases stays exactly 36 and rejects any successor phase ID colliding with a historical one. .github/workflows/kda-status.yml adds a workflow_run trigger on completion of the three critical workflows (Validate Atlas data, Release rehearsal, P16 release audit), gated to main and checking out the exact triggering commit -- verified genuinely firing in production: after merging the implementation PR (#268, commit b10cb8d6) and its own post-merge bot materialisation commit (7726e565), both watched workflows completing triggered real workflow_run events, and the canonical issue (#245) was updated in place showing 'finalized: refreshed after critical workflows settled for this commit' for the exact final commit 7726e565, with the Actions-queue-health section correctly reporting 0 blocking / 24 phantom and the successor-programme section correctly showing 1/6 complete, independent of the 36/36 historical count directly above it. This cannot create a loop: KDA repository status is not among the three watched workflow names, and the canonical issue is updated in place, never via a commit. 13 new node:test cases (tests/status/*.spec.mjs, wired into npm run status:validate and npm test) cover the real 24-record phantom shape, a genuine fresh queue, a stale-but-not-yet-phantom run, in-progress/completed runs, and successor-roadmap independence/ID-collision invariants. The phase does not delete or cancel the 24 GitHub-side phantom records -- per this phase's own acceptance criteria, truthful classification is the closable repository-controlled outcome, not their removal."
+      }
     },
     {
       "id": "P38",
       "title": "Evidence-preserving branch and workflow inventory",
-      "status": "planned",
+      "status": "next",
       "goal": "Classify repository history before cleanup so stale references can be removed without losing unique evidence, unmerged work or auditability.",
       "outputs": [
         "machine-readable remote-branch disposition ledger",
