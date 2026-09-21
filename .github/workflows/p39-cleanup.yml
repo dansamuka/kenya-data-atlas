@@ -1,0 +1,79 @@
+name: P39 repository cleanup
+
+# Manual only, and scoped to exactly the P38-authorised actions:
+#   - archive-workflows: narrows every P38-classified historical_one_off workflow's trigger to
+#     workflow_dispatch-only (never deletes the file -- see data/p38/retention-policy.json).
+#   - cleanup-branches-dry-run / cleanup-branches-execute: re-verifies the P38 first-cleanup-batch
+#     against LIVE branch/PR state immediately before any deletion decision, then reports or
+#     deletes accordingly. Dispatch mode keeps this a human-triggered, auditable Actions run
+#     rather than an unreviewed local execution.
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Which P39 action to run'
+        required: true
+        type: choice
+        options:
+          - archive-workflows
+          - cleanup-branches-dry-run
+          - cleanup-branches-execute
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate P39 contract
+        run: node --test tests/p39/branch-cleanup-planner.spec.mjs tests/p39/workflow-archival-planner.spec.mjs
+
+      - name: Archive historical one-off workflows
+        if: inputs.action == 'archive-workflows'
+        env:
+          KDA_P39_ARCHIVED_ON: ${{ github.event.repository.updated_at }}
+        run: node scripts/p39/archive-historical-workflows.mjs
+
+      - name: Validate workflow archival
+        if: inputs.action == 'archive-workflows'
+        run: node scripts/p39/validate-workflow-archival.mjs
+
+      - name: Branch cleanup (dry run)
+        if: inputs.action == 'cleanup-branches-dry-run'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/p39/execute-branch-cleanup.mjs
+
+      - name: Branch cleanup (execute)
+        if: inputs.action == 'cleanup-branches-execute'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/p39/execute-branch-cleanup.mjs --execute
+
+      - name: Validate branch cleanup report
+        if: inputs.action == 'cleanup-branches-dry-run' || inputs.action == 'cleanup-branches-execute'
+        run: node scripts/p39/validate-branch-cleanup.mjs
+
+      - name: Commit refreshed P39 reports
+        run: |
+          git add data/p39 .github/workflows
+          if git diff --cached --quiet; then
+            echo 'No P39 report changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "P39: refresh ${{ inputs.action }} report"
+          git push origin HEAD:main

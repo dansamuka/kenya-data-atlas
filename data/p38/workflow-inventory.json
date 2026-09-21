@@ -1,11 +1,12 @@
 {
   "schema_version": "kda.p38.workflow-inventory.v1",
   "as_of": "2026-09-21",
-  "total_workflows": 94,
+  "total_workflows": 95,
   "by_classification": {
     "permanent_gate": 12,
     "historical_one_off": 49,
-    "shared_gate": 33
+    "shared_gate": 33,
+    "reusable_manual_tool": 1
   },
   "workflows": [
     {
@@ -1434,6 +1435,15 @@
         "scripts/p38/**",
         "data/p38/**",
         ".github/workflows/p38-inventory.yml"
+      ]
+    },
+    {
+      "file": "p39-cleanup.yml",
+      "workflow_name": "P39 repository cleanup",
+      "classification": "reusable_manual_tool",
+      "reason": "workflow_dispatch is the only trigger -- a manual tool kept for reuse, not an automatic gate",
+      "triggers": [
+        "workflow_dispatch"
       ]
     },
     {
