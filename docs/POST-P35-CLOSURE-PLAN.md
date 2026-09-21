@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P41 Post-P35 Closure Plan
 
-Status: **active successor programme — P36 complete; P37 next**
+Status: **active successor programme — P36–P37 complete; P38 next**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -101,7 +101,7 @@ P29 and P32 now have distinct assurance jobs: P29 proves the complete 96,498-cel
 
 ## P37 — Truthful status and Actions-queue observability
 
-**Status: next.**
+**Status: complete (21 September 2026).**
 
 **Goal:** Ensure the canonical KDA status issue reports settled outcomes for the latest `main` SHA and distinguishes real execution blockage from historical GitHub anomalies.
 
@@ -128,6 +128,14 @@ P29 and P32 now have distinct assurance jobs: P29 proves the complete 96,498-cel
 P37 closes when a live dispatch for the latest `main` SHA finishes with the canonical issue showing the final critical-workflow conclusions, separate historical and successor progress, zero false active blockers, the 24 anomalies in a separate historical category and least-privilege permissions.
 
 The phase is not required to delete the 24 GitHub-side records. If the GitHub API continues to reject cancellation or deletion, truthful classification is the closable repository-controlled outcome.
+
+### Closure evidence
+
+- [`scripts/status/workflow-run-classifier.mjs`](../scripts/status/workflow-run-classifier.mjs) classifies every repo-wide non-completed workflow run as fresh_queued/stale_queued/in_progress/phantom, requiring objective evidence (confirmed zero jobs, never updated, aged >6h) before ever classifying phantom.
+- [`scripts/status/successor-roadmap.mjs`](../scripts/status/successor-roadmap.mjs) summarises this roadmap as a counter independent of the historical 36/36 result; `validateStatus()` asserts `roadmap.total_phases` stays exactly 36 and rejects successor-ID collisions with historical phases.
+- `.github/workflows/kda-status.yml`'s `workflow_run` trigger was verified genuinely firing in production, not just locally: after merging PR #268 (commit `b10cb8d6`) and its post-merge bot materialisation commit (`7726e565`), both watched critical workflows completing triggered real `workflow_run` events, and the canonical issue (#245) was updated in place showing `finalized: refreshed after critical workflows settled for this commit` for the exact final commit, with 0 blocking / 24 phantom reported correctly.
+- A live run against the real GitHub API (ahead of merging) caught a real bug -- a first draft misread the `/actions/runs` response shape -- before it reached production; after the fix, the same live run confirmed all 24 real historical phantom records classify correctly with zero false blockers.
+- 13 `node:test` cases (`tests/status/*.spec.mjs`) cover the real 24-record shape, a genuine fresh queue, a stale-but-not-phantom run, in-progress/completed runs, and successor-roadmap independence/collision invariants; wired into `npm run status:validate` and `npm test`.
 
 ---
 
