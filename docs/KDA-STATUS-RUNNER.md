@@ -15,9 +15,11 @@ The runner treats the following as authoritative inputs:
 - `package.json`, phase scripts and phase workflows — implementation evidence;
 - open PRs and all ahead-of-`main` branches whose name matches the current phase (for example `p31-*`) — ongoing implementation evidence.
 
-When run in GitHub Actions it also makes GitHub API reads for open/merged PRs, current-phase branches, branch divergence from `main`, and the latest critical workflow states.
+When run in GitHub Actions it also makes GitHub API reads for open/merged PRs, current-phase branches, branch divergence from `main`, the latest critical workflow states, and a repo-wide Actions-queue snapshot (all non-completed runs, any branch).
 
-The active [`P36–P41 successor roadmap`](POST-P35-CLOSURE-PLAN.md) is intentionally separate from the completed 36/36 historical counter. The current runner does not yet ingest it. P37 will add a second successor-progress counter and final-state workflow refresh without rewriting P00–P35 history.
+- `data/post-p35-closure-roadmap.json` — the active P36–P41 successor programme.
+
+The active [`P36–P41 successor roadmap`](POST-P35-CLOSURE-PLAN.md) is ingested as a second, fully independent progress counter (`status.successor_roadmap`). It is never merged into `status.roadmap`, and `validateStatus()` asserts `roadmap.total_phases === 36` on every run specifically to guard against that -- the completed 36/36 historical counter cannot be rewritten by successor-programme progress.
 
 ## What it checks
 
@@ -62,6 +64,28 @@ P29 remains the whole-Local-54 denominator and deterministic ledger gate. P32 no
 
 This distinction prevents the broad P29 count from being mistaken for evidence that P32's ward-specific research was actually completed.
 
+## Actions-queue health (fresh / active / stale / phantom)
+
+`scripts/status/workflow-run-classifier.mjs` classifies every non-completed workflow run repo-wide (not just on `main` -- the 24 historical records this exists for sit on a long-merged, unrelated branch):
+
+- **completed** — settled, reported via the existing critical-workflow section;
+- **in_progress** — always a real, active blocker;
+- **fresh_queued** — queued recently; a real blocker, reported as such;
+- **stale_queued** — queued longer than 30 minutes but not yet phantom-confirmed; still a real, reportable blocker;
+- **phantom** — queued, zero jobs (confirmed via the Actions jobs API), never updated since creation, and older than 6 hours. This is the objective, checkable evidence standard: a run is only ever phantom-classified when job-count evidence is actually available and reads zero. If job-count evidence is unavailable, a run is never phantom-classified.
+
+Phantom records are reported separately (`data.github.actions_queue_health.phantom`) and never counted in `blocking_count`. `validateStatus()` asserts `blocking_count` always equals `fresh_queued + stale_queued + in_progress`, excluding phantom, by construction.
+
+This does not delete or cancel the 24 GitHub-side phantom records. If the GitHub API continues to reject cancellation or deletion of those specific queue entries, truthful classification -- reporting them as historical anomalies rather than as current blocking capacity -- is the repository-controlled outcome P37 requires.
+
+Fixtures covering the real 24-record shape and a genuine fresh queue: `tests/status/fixtures/workflow-run-fixtures.mjs`, exercised by `tests/status/workflow-run-classifier.spec.mjs` (`npm run status:validate`).
+
+## Post-workflow finalization
+
+A push-triggered status refresh reports a live, possibly mid-flight snapshot: the critical workflows for that commit (`Validate Atlas data`, `Release rehearsal`, `P16 release audit`) may still be running. `.github/workflows/kda-status.yml` also listens for `workflow_run` completion of each of those three workflows and re-runs the status refresh for that exact commit (`ref: github.event.workflow_run.head_sha`), gated to `main` only. Because the script always re-queries live state, by the time the last of the three watched workflows completes, that finalization run reflects all three conclusions. The rendered dashboard marks this explicitly: *"finalized: refreshed after critical workflows settled for this commit"* vs. *"live snapshot -- critical workflows for this commit may still be running"*.
+
+This cannot create a self-triggering loop: `KDA repository status` is not among the three watched workflow names, so its own runs never trigger another `workflow_run` event, and the canonical issue is updated in place rather than via a commit.
+
 ## Outputs
 
 Every Actions run produces:
@@ -81,7 +105,8 @@ The issue is updated in place. Generated status files are not committed back to 
 
 The workflow runs:
 
-- on every push to `main`;
+- on every push to `main` (live snapshot);
+- once each of `Validate Atlas data`, `Release rehearsal` and `P16 release audit` completes on `main` (finalized snapshot for that exact commit);
 - on pull requests that touch status/roadmap/completeness inputs;
 - daily at 04:17 UTC (07:17 East Africa Time);
 - manually through **Actions → KDA repository status → Run workflow**.
@@ -113,5 +138,3 @@ node scripts/status/build-status.mjs --offline \
 This runner is the canonical **fast status** surface. It is intentionally mechanical and cheap.
 
 It does not replace deeper milestone audits that inspect implementation quality, statistical methodology, UI behaviour or source evidence. Those remain useful after major phases such as P31, P32, P34 and P35.
-
-The runner also does not currently treat GitHub-side zero-job phantom queue records as a separate state. Until P37 closes, API-level checks should distinguish the 24 frozen 13 September 2026 records from fresh queued or in-progress work.

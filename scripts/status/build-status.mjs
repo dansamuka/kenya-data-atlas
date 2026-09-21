@@ -3,6 +3,8 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSy
 import { dirname, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
+import { classifyWorkflowRuns } from './workflow-run-classifier.mjs';
+import { summarizeSuccessorRoadmap } from './successor-roadmap.mjs';
 
 const ROOT = resolve(process.cwd());
 
@@ -193,6 +195,22 @@ async function githubCollection(path, token, { maxPages = 5 } = {}) {
   return items;
 }
 
+// The /actions/runs endpoints wrap their array in { total_count, workflow_runs: [...] },
+// unlike /pulls or /branches which return a bare array -- githubCollection() cannot be reused
+// here without misreading the response shape.
+async function githubWorkflowRuns(path, token, { maxPages = 5 } = {}) {
+  const items = [];
+  const separator = path.includes('?') ? '&' : '?';
+  for (let page = 1; page <= maxPages; page += 1) {
+    const batch = await githubJson(`${path}${separator}page=${page}`, token);
+    const runs = batch.workflow_runs;
+    if (!Array.isArray(runs)) throw new Error(`Expected workflow_runs array for ${path}`);
+    items.push(...runs);
+    if (runs.length < 100) break;
+  }
+  return items;
+}
+
 function extractIndicatorCodes(...texts) {
   const codes = new Set();
   const pattern = /\bIND-[A-Z0-9][A-Z0-9-]*\b/g;
@@ -210,6 +228,20 @@ function phaseScopedPr(item, phaseId) {
   return titlePattern.test(item.title || '') || branchPattern.test(item.head?.ref || '');
 }
 
+function summarizeRunForReport(run) {
+  return {
+    id: run.id,
+    name: run.name,
+    head_branch: run.head_branch,
+    status: run.status,
+    created_at: run.created_at,
+    updated_at: run.updated_at,
+    jobs_count: run.jobs_count ?? null,
+    classification: run.classification,
+    url: run.html_url
+  };
+}
+
 async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndicatorCount) {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
   const repository = process.env.GITHUB_REPOSITORY;
@@ -218,11 +250,15 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndica
   }
 
   const encodedRepo = repository.split('/').map(encodeURIComponent).join('/');
-  const [openPrs, closedPrs, runs, branches] = await Promise.all([
+  const [openPrs, closedPrs, runs, branches, repoWideQueued, repoWideInProgress] = await Promise.all([
     githubJson(`/repos/${encodedRepo}/pulls?state=open&per_page=100&sort=updated&direction=desc`, token),
     githubJson(`/repos/${encodedRepo}/pulls?state=closed&per_page=100&sort=updated&direction=desc`, token),
     githubJson(`/repos/${encodedRepo}/actions/runs?branch=main&per_page=100`, token),
-    githubCollection(`/repos/${encodedRepo}/branches?per_page=100`, token)
+    githubCollection(`/repos/${encodedRepo}/branches?per_page=100`, token),
+    // Phantom queue records are not necessarily on main -- the 24 records this classification
+    // exists for sit on a long-merged branch. Actions-queue health must be checked repo-wide.
+    githubWorkflowRuns(`/repos/${encodedRepo}/actions/runs?status=queued&per_page=100`, token),
+    githubWorkflowRuns(`/repos/${encodedRepo}/actions/runs?status=in_progress&per_page=100`, token)
   ]);
 
   const latestMerged = closedPrs
@@ -242,6 +278,33 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndica
     return [...localPrefixes].some(id => run.name.startsWith(id));
   });
   const failing = critical.filter(run => run.status === 'completed' && !['success', 'skipped'].includes(run.conclusion));
+
+  // P37 -- repo-wide Actions-queue classification (fresh/active/stale/phantom). Job counts are
+  // fetched with per_page=1 purely to read total_count cheaply; the jobs themselves are unused.
+  const repoWideRunsRaw = [...repoWideQueued, ...repoWideInProgress].filter(run => run.name !== 'KDA repository status');
+  const runsWithJobCounts = await Promise.all(repoWideRunsRaw.map(async run => {
+    if (run.status !== 'queued') return run;
+    try {
+      const jobs = await githubJson(`/repos/${encodedRepo}/actions/runs/${run.id}/jobs?per_page=1`, token);
+      return { ...run, jobs_count: jobs.total_count ?? null };
+    } catch {
+      return { ...run, jobs_count: null };
+    }
+  }));
+  const queueClassification = classifyWorkflowRuns(runsWithJobCounts);
+  const actionsQueueHealth = {
+    checked_at: new Date().toISOString(),
+    total_non_completed_runs: repoWideRunsRaw.length,
+    fresh_queued_count: queueClassification.fresh_queued.length,
+    stale_queued_count: queueClassification.stale_queued.length,
+    in_progress_count: queueClassification.in_progress.length,
+    phantom_count: queueClassification.phantom.length,
+    blocking_count: queueClassification.blocking.length,
+    fresh_queued: queueClassification.fresh_queued.map(summarizeRunForReport),
+    stale_queued: queueClassification.stale_queued.map(summarizeRunForReport),
+    in_progress: queueClassification.in_progress.map(summarizeRunForReport),
+    phantom: queueClassification.phantom.map(summarizeRunForReport)
+  };
 
   const currentPhaseId = currentPhase?.id || null;
   const currentPhasePattern = currentPhaseId
@@ -373,7 +436,8 @@ async function remoteGitHubSummary(currentPhase, completedLocalIds, targetIndica
       conclusion: run.conclusion,
       url: run.html_url,
       updated_at: run.updated_at
-    }))
+    })),
+    actions_queue_health: actionsQueueHealth
   };
 }
 
@@ -430,6 +494,26 @@ export function validateStatus(status) {
     }
   }
 
+  // P37 -- the successor roadmap (P36-P41) must never be able to corrupt the frozen historical
+  // 36/36 result, and must not reuse a historical phase ID.
+  if (status.roadmap.total_phases !== 36) errors.push(`historical roadmap.total_phases must remain 36, got ${status.roadmap.total_phases}`);
+  if (status.successor_roadmap) {
+    const historicalIds = new Set(ids);
+    const collidingIds = status.successor_roadmap.phases.filter(p => historicalIds.has(p.id)).map(p => p.id);
+    if (collidingIds.length) errors.push(`successor roadmap phase IDs collide with historical phase IDs: ${collidingIds.join(', ')}`);
+    const successorIds = status.successor_roadmap.phases.map(p => p.id);
+    const duplicateSuccessorIds = successorIds.filter((id, index) => successorIds.indexOf(id) !== index);
+    if (duplicateSuccessorIds.length) errors.push(`duplicate successor phase IDs: ${[...new Set(duplicateSuccessorIds)].join(', ')}`);
+  }
+
+  // P37 -- a phantom Actions-queue record must never be counted as a blocker.
+  const queueHealth = status.github?.available ? status.github.actions_queue_health : null;
+  if (queueHealth) {
+    if (queueHealth.blocking_count !== queueHealth.fresh_queued_count + queueHealth.stale_queued_count + queueHealth.in_progress_count) {
+      errors.push('actions_queue_health.blocking_count must equal fresh_queued + stale_queued + in_progress, excluding phantom');
+    }
+  }
+
   if (errors.length) {
     throw new Error(`KDA status validation failed:\n- ${errors.join('\n- ')}`);
   }
@@ -458,6 +542,8 @@ export async function buildStatus({ includeRemote = true } = {}) {
   const local54Manifest = readJson('data/completeness/local-54-indicator-manifest.json', { optional: true });
   const targetIndicatorCount = local54Manifest?.indicator_count || local54Manifest?.indicators?.length || null;
   const representation = representationSummary();
+  const successorRoadmapJson = readJson('data/post-p35-closure-roadmap.json', { optional: true });
+  const successorRoadmap = successorRoadmapJson ? summarizeSuccessorRoadmap(successorRoadmapJson) : null;
 
   const generatedAt = new Date().toISOString();
   const sha = process.env.GITHUB_SHA || git(['rev-parse', 'HEAD'], null);
@@ -479,6 +565,8 @@ export async function buildStatus({ includeRemote = true } = {}) {
     ref: process.env.GITHUB_REF_NAME || git(['branch', '--show-current'], null),
     sha,
     commit_subject: commitSubject,
+    trigger: process.env.KDA_STATUS_TRIGGER || 'manual',
+    is_finalized: process.env.KDA_STATUS_TRIGGER === 'finalized_after_critical_workflow',
     roadmap: {
       total_phases: phases.length,
       complete_phases: phases.filter(phase => phase.status === 'complete').length,
@@ -518,6 +606,7 @@ export async function buildStatus({ includeRemote = true } = {}) {
       by_status: local54.by_status
     } : null,
     representation,
+    successor_roadmap: successorRoadmap,
     github: githubSummary
   };
 
@@ -537,7 +626,7 @@ export function renderMarkdown(status) {
     '<!-- kda-live-status:v1 -->',
     '# KDA — Live Repository Status',
     '',
-    `_Generated ${status.generated_at} from \`${shortSha}\`._`,
+    `_Generated ${status.generated_at} from \`${shortSha}\`${status.is_finalized ? ' -- **finalized**: refreshed after critical workflows settled for this commit' : ' (live snapshot -- critical workflows for this commit may still be running)'}._`,
     '',
     '## Executive dashboard',
     '',
@@ -547,7 +636,11 @@ export function renderMarkdown(status) {
     `| P00–P17 core product | **${group.core.complete} / ${group.core.total}** |`,
     `| P18–P26 governed completion | **${group.completion.complete} / ${group.completion.total}** |`,
     `| P27–P35 Local-54 | **${group.local54.complete} / ${group.local54.total}** |`,
-    `| Current phase | **${current ? `${current.id} — ${current.title}` : 'All roadmap phases complete'}** |`,
+    `| Current phase (historical P00–P35) | **${current ? `${current.id} — ${current.title}` : 'All roadmap phases complete'}** |`,
+    ...(status.successor_roadmap ? [
+      `| Successor programme (P36–P41) | **${status.successor_roadmap.complete_phases} / ${status.successor_roadmap.total_phases} complete (${status.successor_roadmap.completion_pct}%)** |`,
+      `| Successor current phase | **${status.successor_roadmap.current_phase ? `${status.successor_roadmap.current_phase.id} — ${status.successor_roadmap.current_phase.title}` : 'All successor phases complete'}** |`
+    ] : []),
     `| Legacy governed slots | **${status.legacy_completeness.resolved_slots.toLocaleString()} / ${status.legacy_completeness.total_slots.toLocaleString()} resolved** |`,
     `| Legacy unknown slots | **${status.legacy_completeness.unknown_missing.toLocaleString()}** |`,
     ...(local ? [
@@ -566,7 +659,11 @@ export function renderMarkdown(status) {
       ] : []),
       `| Current-phase active branches | **${gh.current_phase_work?.branch_count ?? 0}** |`,
       `| Open PRs | **${gh.open_pr_count}** |`,
-      `| Critical workflow failures | **${failures}** |`
+      `| Critical workflow failures | **${failures}** |`,
+      ...(gh.actions_queue_health ? [
+        `| Actions queue -- blocking (fresh/stale/in-progress) | **${gh.actions_queue_health.blocking_count}** |`,
+        `| Actions queue -- historical phantom records | **${gh.actions_queue_health.phantom_count}** |`
+      ] : [])
     ] : [
       '| GitHub live checks | _Unavailable in this run_ |'
     ]),
@@ -657,9 +754,49 @@ export function renderMarkdown(status) {
     lines.push(`Live GitHub API checks were skipped: ${gh.reason}.`, '');
   }
 
+  lines.push('## Actions queue health', '');
+  if (gh.available && gh.actions_queue_health) {
+    const q = gh.actions_queue_health;
+    lines.push(
+      `Checked repo-wide (all branches) at ${q.checked_at}. **${q.blocking_count}** run(s) are genuinely blocking (fresh queued: ${q.fresh_queued_count}, stale queued: ${q.stale_queued_count}, in progress: ${q.in_progress_count}). **${q.phantom_count}** historical record(s) are classified phantom (zero jobs, never updated, aged past threshold) and are reported separately -- they do not count as active capacity.`,
+      ''
+    );
+    if (q.blocking_count) {
+      lines.push('Blocking runs:', '');
+      for (const run of [...q.fresh_queued, ...q.stale_queued, ...q.in_progress]) {
+        lines.push(`- [${run.name}](${run.url}) on \`${run.head_branch}\` — ${run.classification}, created ${run.created_at}`);
+      }
+      lines.push('');
+    }
+    if (q.phantom_count) {
+      lines.push(`Phantom records (not blocking): ${q.phantom.map(run => `[#${run.id}](${run.url})`).join(', ')}.`, '');
+    }
+  } else {
+    lines.push('Live GitHub API checks were skipped, so Actions-queue health could not be classified this run.', '');
+  }
+
+  lines.push('## Successor programme (P36–P41)', '');
+  if (status.successor_roadmap) {
+    const sr = status.successor_roadmap;
+    lines.push(
+      `**${sr.complete_phases} / ${sr.total_phases} complete (${sr.completion_pct}%)**. Current: **${sr.current_phase ? `${sr.current_phase.id} — ${sr.current_phase.title}` : 'all successor phases complete'}**. This counter is independent of the historical P00–P35 result above and never modifies it.`,
+      '',
+      '| Phase | Title | Status |',
+      '|---|---|---|'
+    );
+    for (const phase of sr.phases) {
+      lines.push(`| **${phase.id}** | ${phase.title} | ${statusIcon(phase.status === 'complete' ? 'complete' : phase.status === 'next' ? 'in_progress' : 'planned')} ${phase.status} |`);
+    }
+    lines.push('');
+  } else {
+    lines.push('No successor roadmap file was found.', '');
+  }
+
   lines.push('## Next work', '');
   if (current) {
     lines.push(`**${current.id} — ${current.title}** is the first Local-54 phase not marked complete.`);
+  } else if (status.successor_roadmap?.current_phase) {
+    lines.push(`All historical Local-54 phases are complete. Next successor phase: **${status.successor_roadmap.current_phase.id} — ${status.successor_roadmap.current_phase.title}**.`);
   } else {
     lines.push('All Local-54 phases are marked complete.');
   }
