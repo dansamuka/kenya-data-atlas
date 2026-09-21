@@ -91,7 +91,7 @@
     "p35:build": "node scripts/p35/build-local-54-release-gate.mjs",
     "p35:validate": "node scripts/p35/validate-local-54-release-gate.mjs",
     "status:build": "node scripts/status/build-status.mjs",
-    "status:validate": "node scripts/status/validate-status.mjs"
+    "status:validate": "node scripts/status/validate-status.mjs && node --test tests/status/workflow-run-classifier.spec.mjs tests/status/successor-roadmap.spec.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"

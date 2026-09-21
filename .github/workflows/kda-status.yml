@@ -10,10 +10,19 @@ on:
       - 'data/project-roadmap.json'
       - 'data/data-completion-roadmap.json'
       - 'data/local-54-completion-roadmap.json'
+      - 'data/post-p35-closure-roadmap.json'
       - 'data/completeness/summary.json'
       - 'data/completeness/local-54-summary.json'
       - 'data/representation/**'
       - '.github/workflows/kda-status.yml'
+  # P37 -- a push-triggered run above reports a live, possibly mid-flight snapshot (critical
+  # workflows for that SHA may still be running). This second trigger re-runs the status refresh
+  # once each critical workflow actually settles, so the canonical issue's final state for a given
+  # commit reflects real conclusions rather than a race. workflow_run cannot re-trigger itself
+  # (this workflow is not among the watched names) so this cannot create a loop.
+  workflow_run:
+    workflows: ['Validate Atlas data', 'Release rehearsal', 'P16 release audit']
+    types: [completed]
   schedule:
     - cron: '17 4 * * *'
   workflow_dispatch:
@@ -26,16 +35,23 @@ permissions:
 
 concurrency:
   # Keep each PR/ref isolated so branch activity cannot cancel the canonical main status refresh.
-  group: kda-repository-status-${{ github.ref }}
+  # workflow_run finalization runs for the same commit share one group -- if two of the three
+  # watched workflows settle close together, only the last finalization needs to complete, since
+  # it re-queries live truth and already reflects both conclusions.
+  group: kda-repository-status-${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.ref }}
   cancel-in-progress: true
 
 jobs:
   status:
+    # Only finalize for main: a workflow_run completing on a PR branch is not this workflow's
+    # concern and must not update the canonical main status issue.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.head_branch == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
           fetch-depth: 1
 
       - name: Set up Node
@@ -49,6 +65,7 @@ jobs:
       - name: Build repository dashboard
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KDA_STATUS_TRIGGER: ${{ github.event_name == 'workflow_run' && 'finalized_after_critical_workflow' || github.event_name }}
         run: |
           mkdir -p "$RUNNER_TEMP/kda-status"
           node scripts/status/build-status.mjs \
