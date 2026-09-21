@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P41 Post-P35 Closure Plan
 
-Status: **active successor programme — P36–P37 complete; P38 next**
+Status: **active successor programme — P36–P38 complete; P39 next**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -141,6 +141,8 @@ The phase is not required to delete the 24 GitHub-side records. If the GitHub AP
 
 ## P38 — Evidence-preserving branch and workflow inventory
 
+**Status: complete (21 September 2026).**
+
 **Goal:** Decide what can be removed before any destructive cleanup occurs.
 
 ### Scope
@@ -164,6 +166,16 @@ The phase is not required to delete the 24 GitHub-side records. If the GitHub AP
 P38 closes only when every branch and workflow has a disposition, no open-PR/protected/unresolved branch is proposed for deletion, every unique artifact has a preservation path, and the first cleanup batch is reviewable and reconstructable.
 
 P38 performs no broad deletion. It is the authorisation boundary for P39.
+
+### Closure evidence
+
+- [`scripts/p38/branch-classifier.mjs`](../scripts/p38/branch-classifier.mjs) and [`scripts/p38/workflow-classifier.mjs`](../scripts/p38/workflow-classifier.mjs) (pure, unit-tested) classify all 296 non-default remote branches and 94 workflows from real PR/merge evidence and actual trigger shape -- never a filename guess.
+- [`data/p38/branch-inventory.json`](../data/p38/branch-inventory.json): 199 merged_via_pr + 15 merged_no_pr_ancestor_of_main (214 total deletion candidates), 34 closed_unmerged_pr_needs_review, 46 no_pr_reference_needs_manual_review, 2 protected_evidence, 0 active_open_pr -- the latter four dispositions are never deletion candidates, enforced structurally by the classifier and re-checked by the validator.
+- Spot-checked against ground truth: 3 sampled classifications (2 merged-PR matches, 1 ancestor-of-main match) were independently re-verified with `gh pr view` and the GitHub compare API and matched exactly.
+- [`data/p38/workflow-inventory.json`](../data/p38/workflow-inventory.json): 12 permanent_gate, 32 shared_gate, 49 historical_one_off (mostly the P23 per-constituency fresh-source-review workflows, which will never fire again), 1 reusable_manual_tool.
+- [`data/p38/first-cleanup-batch.json`](../data/p38/first-cleanup-batch.json) caps the first batch at 50 branches, each with name/SHA/reason/preservation_reference.
+- [`data/p38/retention-policy.json`](../data/p38/retention-policy.json) documents every disposition/classification rule this build applied.
+- `.github/workflows/p38-inventory.yml` (`workflow_dispatch`-triggered) refreshes the snapshot on demand -- P38's source data is live repository state, not a static input, so `scripts/p38/validate-repository-inventory.mjs` checks the committed snapshot's internal correctness rather than enforcing a byte-exact rebuild (unlike P29/P34/P35).
 
 ---
 

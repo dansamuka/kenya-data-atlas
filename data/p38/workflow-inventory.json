@@ -1,0 +1,1532 @@
+{
+  "schema_version": "kda.p38.workflow-inventory.v1",
+  "as_of": "2026-09-21",
+  "total_workflows": 94,
+  "by_classification": {
+    "permanent_gate": 12,
+    "historical_one_off": 49,
+    "shared_gate": 33
+  },
+  "workflows": [
+    {
+      "file": "data-completion-execution.yml",
+      "workflow_name": "Data completion execution governance",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": "kda-status.yml",
+      "workflow_name": "KDA repository status",
+      "classification": "permanent_gate",
+      "reason": "runs on a recurring schedule",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_run",
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "labels-governance.yml",
+      "workflow_name": "Repository label governance",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (1 total, across push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/labels-governance.yml"
+      ]
+    },
+    {
+      "file": "p17-publish.yml",
+      "workflow_name": "P17 v1.0 publisher",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "push"
+      ],
+      "paths": [
+        ".github/workflows/p17-publish.yml",
+        "scripts/p17/**",
+        "scripts/countyiq/validate-p06.mjs",
+        "scripts/countyiq/validate-p07.mjs",
+        "scripts/countyiq/validate-p08.mjs",
+        "scripts/distribution/validate-distribution.mjs",
+        "docs/releases/v1.0.0.md",
+        "docs/releases/v1.0.0-unresolved.md",
+        "data/release/v1.0.0.json"
+      ]
+    },
+    {
+      "file": "p20-consolidated-generator.yml",
+      "workflow_name": "P20 consolidated parallel completion",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "push"
+      ],
+      "paths": [
+        ".github/workflows/p20-consolidated-generator.yml",
+        "data/p20/source/**",
+        "data/completeness/evidence-states.json",
+        "scripts/p20/**",
+        "scripts/completeness/**",
+        "package.json"
+      ]
+    },
+    {
+      "file": "p22-food-security-source-gate.yml",
+      "workflow_name": "P22 food-security source gate",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": "p22-ndma-freshness.yml",
+      "workflow_name": "P22 NDMA freshness governance",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": "p23-30way-independent-review-packets.yml",
+      "workflow_name": "P23 30-way independent review packets",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-30way-independent-review-packets.yml",
+        "scripts/p23/prepare-30way-review-packet.py",
+        "scripts/p23/audit-turnout-terminal-coverage.py",
+        "data/p23/p23-cycle1-terminal-classification-*.json"
+      ]
+    },
+    {
+      "file": "p23-constituency-voter-readiness.yml",
+      "workflow_name": "P23 constituency voter readiness",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/**",
+        "data/completeness/**",
+        "data/geography/registry/**",
+        "scripts/p23/**",
+        ".github/workflows/p23-constituency-voter-readiness.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-final19-parallel-terminal-gate.yml",
+      "workflow_name": "P23 Cycle 1 final19 parallel terminal gate",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-final19-parallel-*.json",
+        ".github/workflows/p23-cycle1-final19-parallel-terminal-gate.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-fresh-shards13-14-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards13-14 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-fresh-shards13-14-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-fresh-shards13-14-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards11-12-new4.yml",
+      "workflow_name": "P23 cycle 1 30-way shards11-12 new4 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards11-12-new4.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards11-12-new4.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards17-18-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards17-18 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards17-18-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards17-18-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards19-20-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards19-20 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards19-20-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards19-20-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards25-26-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards25-26 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards25-26-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards25-26-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards27-28-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards27-28 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards27-28-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards27-28-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards6-8-new6.yml",
+      "workflow_name": "P23 cycle 1 30-way shards6-8 new6 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards6-8-new6.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards6-8-new6.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-30way-shards9-10-new4.yml",
+      "workflow_name": "P23 cycle 1 30-way shards9-10 new4 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-30way-shards9-10-new4.json",
+        ".github/workflows/p23-cycle1-terminal-classification-30way-shards9-10-new4.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-current30way-shard1-new1.yml",
+      "workflow_name": "P23 cycle 1 current 30-way shard1 new1 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-current30way-shard1-new1.json",
+        ".github/workflows/p23-cycle1-terminal-classification-current30way-shard1-new1.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-current30way-shard2-new1.yml",
+      "workflow_name": "P23 cycle 1 current 30-way shard2 new1 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-current30way-shard2-new1.json",
+        ".github/workflows/p23-cycle1-terminal-classification-current30way-shard2-new1.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-current30way-shards0-1-new2.yml",
+      "workflow_name": "P23 cycle 1 current 30-way shards0-1 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-current30way-shards0-1-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-current30way-shards0-1-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-dynamic-shard5-new2.yml",
+      "workflow_name": "P23 cycle 1 dynamic shard5 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-dynamic-shard5-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-dynamic-shard5-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-final30way-shard0-new1.yml",
+      "workflow_name": "P23 cycle 1 final 30-way shard0 new1 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-final30way-shard0-new1.json",
+        ".github/workflows/p23-cycle1-terminal-classification-final30way-shard0-new1.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-final30way-shard1-new1.yml",
+      "workflow_name": "P23 cycle 1 final 30-way shard1 new1 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-final30way-shard1-new1.json",
+        ".github/workflows/p23-cycle1-terminal-classification-final30way-shard1-new1.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-latest30way-shard0-new1.yml",
+      "workflow_name": "P23 cycle 1 latest 30-way shard0 new1 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-latest30way-shard0-new1.json",
+        ".github/workflows/p23-cycle1-terminal-classification-latest30way-shard0-new1.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-latest30way-shard1-new1.yml",
+      "workflow_name": "P23 cycle 1 latest 30-way shard1 new1 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-latest30way-shard1-new1.json",
+        ".github/workflows/p23-cycle1-terminal-classification-latest30way-shard1-new1.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-new15.yml",
+      "workflow_name": "P23 cycle 1 terminal classification new15",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-new15.json",
+        ".github/workflows/p23-cycle1-terminal-classification-new15.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-refreshed-30way-shards15-16-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards15-16 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-refreshed-30way-shards15-16-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-refreshed-30way-shards15-16-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-refreshed30way-shards21-22-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards21-22 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-refreshed30way-shards21-22-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-refreshed30way-shards21-22-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-refreshed30way-shards23-24-new2.yml",
+      "workflow_name": "P23 cycle 1 refreshed 30-way shards23-24 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-refreshed30way-shards23-24-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-refreshed30way-shards23-24-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-shard0-new3.yml",
+      "workflow_name": "P23 cycle 1 shard0 new3 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-shard0-new3.json",
+        ".github/workflows/p23-cycle1-terminal-classification-shard0-new3.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-shard1-new3.yml",
+      "workflow_name": "P23 cycle 1 shard1 new3 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-shard1-new3.json",
+        ".github/workflows/p23-cycle1-terminal-classification-shard1-new3.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-shard2-new2.yml",
+      "workflow_name": "P23 cycle 1 shard2 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-shard2-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-shard2-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-shard3-new2.yml",
+      "workflow_name": "P23 cycle 1 shard3 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-shard3-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-shard3-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-shard4-new2.yml",
+      "workflow_name": "P23 cycle 1 shard4 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-shard4-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-shard4-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle1-terminal-classification-shard5-new2.yml",
+      "workflow_name": "P23 cycle 1 shard5 new2 terminal classification",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/p23-cycle1-terminal-classification-shard5-new2.json",
+        ".github/workflows/p23-cycle1-terminal-classification-shard5-new2.yml"
+      ]
+    },
+    {
+      "file": "p23-cycle2-109way-promotion-review.yml",
+      "workflow_name": "P23 Cycle 2 109-way promotion review",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "p23-cycle2-54way-exception-resolution.yml",
+      "workflow_name": "P23 Cycle 2 54-way exception resolution",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "scripts/p23/run-cycle2-54way-exception-resolution.py",
+        ".github/workflows/p23-cycle2-54way-exception-resolution.yml",
+        "data/p23/p23-cycle1-terminal-classification-*.json",
+        "data/p23/form34b-*-fresh-source-review.json",
+        "data/p23/turnout-salvage-review-outcomes.json"
+      ]
+    },
+    {
+      "file": "p23-cycle2-54way-source-resolution.yml",
+      "workflow_name": "P23 Cycle 2 54-way source resolution",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "scripts/p23/run-cycle2-54way-source-resolution.py",
+        "scripts/p23/run-cycle2-54way-exception-resolution.py",
+        ".github/workflows/p23-cycle2-54way-source-resolution.yml",
+        "data/p23/p23-cycle1-terminal-classification-*.json",
+        "data/p23/form34b-*-fresh-source-review.json",
+        "data/p23/turnout-salvage-review-outcomes.json"
+      ]
+    },
+    {
+      "file": "p23-cycle2-ledger-parallel-shards.yml",
+      "workflow_name": "P23 Cycle 2 governed parallel resolution shards",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "scripts/p23/build-cycle2-resolution-ledger.py",
+        "scripts/p23/run-cycle2-54way-source-resolution.py",
+        ".github/workflows/p23-cycle2-ledger-parallel-shards.yml",
+        "data/p23/p23-cycle1-terminal-classification-*.json",
+        "data/p23/form34b-*-fresh-source-review.json",
+        "data/p23/turnout-salvage-review-outcomes.json"
+      ]
+    },
+    {
+      "file": "p23-cycle2-parallel-55-54.yml",
+      "workflow_name": "P23 Cycle 2 parallel 55 deep review + 54 exception resolution",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "p23-cycle2-resolution-ledger.yml",
+      "workflow_name": "P23 Cycle 2 resolution ledger",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "scripts/p23/build-cycle2-resolution-ledger.py",
+        "scripts/p23/run-cycle2-54way-source-resolution.py",
+        "scripts/p23/run-cycle2-54way-exception-resolution.py",
+        ".github/workflows/p23-cycle2-resolution-ledger.yml",
+        "data/p23/p23-cycle1-terminal-classification-*.json",
+        "data/p23/form34b-*-fresh-source-review.json",
+        "data/p23/turnout-salvage-review-outcomes.json"
+      ]
+    },
+    {
+      "file": "p23-fafi-fresh-source-review.yml",
+      "workflow_name": "P23 Fafi fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-fafi-fresh-source-review.json",
+        "scripts/p23/validate-fafi-fresh-source-review.mjs",
+        ".github/workflows/p23-fafi-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-final-32way-evidence-cycle.yml",
+      "workflow_name": "P23 final 30-way evidence cycle",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-final-32way-evidence-cycle.yml",
+        "scripts/p23/run-final-32way-evidence-cycle.py",
+        "scripts/p23/fresh-review-context-untouched-row.py",
+        "scripts/p23/audit-turnout-terminal-coverage.py",
+        "data/p23/turnout-followup-triage.json",
+        "data/p23/turnout-salvage-review-outcomes.json",
+        "data/p23/turnout-salvage-tranche-*.json",
+        "data/p23/form34b-*-fresh-source-review.json",
+        "data/p23/p23-cycle1-terminal-classification-*.json",
+        "data/p23/form34b-source-index-contract.json"
+      ]
+    },
+    {
+      "file": "p23-final-shard0-independent-visual-review.yml",
+      "workflow_name": "P23 final shard 0 independent visual review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-final-shard0-independent-visual-review.json",
+        ".github/workflows/p23-final-shard0-independent-visual-review.yml"
+      ]
+    },
+    {
+      "file": "p23-final-shard1-independent-visual-review.yml",
+      "workflow_name": "P23 final shard 1 independent visual review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (2 total, across pull_request) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-final-shard1-independent-visual-review.json",
+        ".github/workflows/p23-final-shard1-independent-visual-review.yml"
+      ]
+    },
+    {
+      "file": "p23-form34b-grid-smoke.yml",
+      "workflow_name": "P23 Form 34B grid smoke",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-form34b-grid-smoke.yml",
+        "scripts/p23/probe-form34b-grid-smoke.py",
+        "scripts/p23/probe-form34b-adaptive-grid-smoke.py",
+        "scripts/p23/probe-form34b-adaptive-grid-batch.py",
+        "scripts/p23/aggregate-form34b-adaptive-grid-batches.py",
+        "scripts/p23/render-form34b-verification-contexts.py",
+        "scripts/p23/render-form34b-machine-review-contexts.py",
+        "scripts/p23/probe-form34b-denominator-anchor-smoke.py",
+        "scripts/p23/materialize-form34b-source-manifest.py",
+        "scripts/p23/validate-form34b-grid-smoke.mjs",
+        "scripts/p23/validate-form34b-adaptive-grid-batch.mjs",
+        "scripts/p23/validate-form34b-candidate-audit.mjs",
+        "scripts/p23/validate-form34b-verification-contexts.mjs",
+        "scripts/p23/validate-form34b-machine-review-contexts.mjs",
+        "scripts/p23/validate-form34b-denominator-anchor-smoke.mjs",
+        "scripts/p23/probe-form34b-total-row-candidates.py",
+        "scripts/p23/validate-iebc-form34b-source-manifest.mjs",
+        "data/p23/form34b-source-index-contract.json",
+        "data/p23/form34b-extraction-contract.json",
+        "data/p23/constituency-turnout-readiness-contract.json",
+        "data/indicators/registry/series.json",
+        "data/indicators/registry/observations.json"
+      ]
+    },
+    {
+      "file": "p23-form34b-source-row-recovery.yml",
+      "workflow_name": "P23 Form 34B source-row recovery",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-form34b-source-row-recovery.yml",
+        "scripts/p23/probe-form34b-denominator-anchor-smoke.py",
+        "scripts/p23/validate-form34b-denominator-anchor-smoke.mjs",
+        "scripts/p23/aggregate-form34b-denominator-anchor-recovery.py",
+        "scripts/p23/validate-form34b-source-row-recovery.mjs",
+        "scripts/p23/render-form34b-pending-review-contexts.py",
+        "scripts/p23/validate-form34b-pending-review-contexts.mjs",
+        "scripts/p23/materialize-form34b-source-manifest.py",
+        "scripts/p23/validate-iebc-form34b-source-manifest.mjs",
+        "scripts/p23/validate-form34b-extraction-contract.mjs",
+        "data/p23/form34b-source-index-contract.json",
+        "data/p23/form34b-extraction-contract.json",
+        "data/p23/constituency-turnout-readiness-contract.json",
+        "data/p23/form34b-*-source-verification.json",
+        "data/indicators/registry/series.json",
+        "data/indicators/registry/observations.json"
+      ]
+    },
+    {
+      "file": "p23-form34b-source-verification.yml",
+      "workflow_name": "P23 Form 34B source verification",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-form34b-source-verification.yml",
+        "scripts/p23/validate-form34b-source-verifications.mjs",
+        "data/p23/form34b-*-source-verification.json",
+        "data/p23/form34b-extraction-contract.json",
+        "data/p23/constituency-turnout-readiness-contract.json",
+        "data/geography/registry/geographies.json",
+        "data/indicators/registry/series.json",
+        "data/indicators/registry/observations.json"
+      ]
+    },
+    {
+      "file": "p23-galole-fresh-source-review.yml",
+      "workflow_name": "P23 Galole fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-galole-fresh-source-review.json",
+        "scripts/p23/validate-galole-fresh-source-review.mjs",
+        ".github/workflows/p23-galole-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-garissa-township-fresh-source-review.yml",
+      "workflow_name": "P23 Garissa Township fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-garissa-township-fresh-source-review.json",
+        "scripts/p23/validate-garissa-township-fresh-source-review.mjs",
+        ".github/workflows/p23-garissa-township-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-iebc-form34b-probe.yml",
+      "workflow_name": "P23 IEBC Form 34B probe",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-iebc-form34b-probe.yml",
+        "data/p23/constituency-turnout-readiness-contract.json",
+        "data/p23/form34b-source-index-contract.json",
+        "data/p23/form34b-ocr-feasibility-contract.json",
+        "data/p23/form34b-extraction-contract.json",
+        "data/p23/form34b-sample-page-layout-contract.json",
+        "scripts/p23/probe-iebc-form34b.sh",
+        "scripts/p23/probe-iebc-form34b-download.sh",
+        "scripts/p23/probe-iebc-form34b-download-all.sh",
+        "scripts/p23/probe-iebc-form34b-ocr.sh",
+        "scripts/p23/probe-form34b-rejected-cell-candidates.py",
+        "scripts/p23/probe-form34b-total-row-candidates.py",
+        "scripts/p23/render-form34b-page-contexts.py",
+        "scripts/p23/validate-form34b-sample-page-layout.mjs",
+        "scripts/p23/assess-form34b-field-labels.py",
+        "scripts/p23/assess-form34b-column-layout.py",
+        "scripts/p23/discover-iebc-form34b-manifest.py",
+        "scripts/p23/build-form34b-extraction-queue.mjs",
+        "scripts/p23/validate-form34b-extraction-queue.mjs",
+        "scripts/p23/validate-constituency-turnout-readiness.mjs",
+        "scripts/p23/validate-iebc-form34b-source-manifest.mjs",
+        "scripts/p23/validate-form34b-ocr-feasibility.mjs",
+        "scripts/p23/validate-form34b-extraction-contract.mjs"
+      ]
+    },
+    {
+      "file": "p23-igembe-south-fresh-source-review.yml",
+      "workflow_name": "P23 Igembe South fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-igembe-south-fresh-source-review.json",
+        "scripts/p23/validate-igembe-south-fresh-source-review.mjs",
+        ".github/workflows/p23-igembe-south-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-igembe-south-review-context.yml",
+      "workflow_name": "P23 Igembe South review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-igembe-south-review-context.yml",
+        "data/p23/turnout-salvage-igembe-south-review.json",
+        "data/p23/turnout-salvage-tranche-c.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/validate-turnout-salvage-fresh-download.mjs",
+        "scripts/p23/render-turnout-salvage-review-context.py",
+        "scripts/p23/validate-turnout-salvage-review-context.mjs"
+      ]
+    },
+    {
+      "file": "p23-isiolo-north-fresh-source-review.yml",
+      "workflow_name": "P23 Isiolo North fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-isiolo-north-fresh-source-review.json",
+        "scripts/p23/validate-isiolo-north-fresh-source-review.mjs",
+        ".github/workflows/p23-isiolo-north-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-isiolo-south-fresh-source-review.yml",
+      "workflow_name": "P23 Isiolo South fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-isiolo-south-fresh-source-review.json",
+        "scripts/p23/validate-isiolo-south-fresh-source-review.mjs",
+        ".github/workflows/p23-isiolo-south-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-isiolo-south-review-context.yml",
+      "workflow_name": "P23 Isiolo South review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-isiolo-south-review-context.yml",
+        "data/p23/turnout-salvage-isiolo-south-review.json",
+        "data/p23/turnout-salvage-tranche-c.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/validate-turnout-salvage-fresh-download.mjs",
+        "scripts/p23/render-turnout-salvage-review-context.py",
+        "scripts/p23/validate-turnout-salvage-review-context.mjs"
+      ]
+    },
+    {
+      "file": "p23-lamu-west-fresh-source-review.yml",
+      "workflow_name": "P23 Lamu West fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-lamu-west-fresh-source-review.json",
+        "scripts/p23/validate-lamu-west-fresh-source-review.mjs",
+        ".github/workflows/p23-lamu-west-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-magarini-fresh-source-review.yml",
+      "workflow_name": "P23 Magarini fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-magarini-fresh-source-review.json",
+        "scripts/p23/validate-magarini-fresh-source-review.mjs",
+        ".github/workflows/p23-magarini-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-mandera-east-fresh-source-review.yml",
+      "workflow_name": "P23 Mandera East fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-mandera-east-fresh-source-review.json",
+        "scripts/p23/validate-mandera-east-fresh-source-review.mjs",
+        ".github/workflows/p23-mandera-east-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-matuga-fresh-source-review.yml",
+      "workflow_name": "P23 Matuga fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-matuga-fresh-source-review.json",
+        "scripts/p23/validate-matuga-fresh-source-review.mjs",
+        ".github/workflows/p23-matuga-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-moyale-fresh-source-review.yml",
+      "workflow_name": "P23 Moyale fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-moyale-fresh-source-review.json",
+        "scripts/p23/validate-moyale-fresh-source-review.mjs",
+        ".github/workflows/p23-moyale-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-mvita-fresh-review-context.yml",
+      "workflow_name": "P23 Mvita fresh review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-mvita-fresh-review-context.yml",
+        "data/p23/turnout-salvage-tranche-a.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/build-mvita-fresh-review-context.py",
+        "scripts/p23/validate-mvita-fresh-review-context.mjs"
+      ]
+    },
+    {
+      "file": "p23-mvita-fresh-source-review.yml",
+      "workflow_name": "P23 Mvita fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-mvita-fresh-source-review.json",
+        "scripts/p23/validate-mvita-fresh-source-review.mjs",
+        ".github/workflows/p23-mvita-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-north-horr-fresh-source-review.yml",
+      "workflow_name": "P23 North Horr fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-north-horr-fresh-source-review.json",
+        "scripts/p23/validate-north-horr-fresh-source-review.mjs",
+        ".github/workflows/p23-north-horr-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-remaining71-parallel-contract.yml",
+      "workflow_name": "P23 dynamic parallel remainder contract",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request"
+      ],
+      "paths": [
+        ".github/workflows/p23-remaining71-parallel-contract.yml",
+        ".github/workflows/p23-final-32way-evidence-cycle.yml",
+        "scripts/p23/run-final-32way-evidence-cycle.py",
+        "scripts/p23/audit-turnout-terminal-coverage.py",
+        "data/p23/p23-cycle1-remaining71-parallel-manifest.json",
+        "data/p23/p23-cycle1-terminal-classification-*.json"
+      ]
+    },
+    {
+      "file": "p23-saku-fresh-source-review.yml",
+      "workflow_name": "P23 Saku fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-saku-fresh-source-review.json",
+        "scripts/p23/validate-saku-fresh-source-review.mjs",
+        ".github/workflows/p23-saku-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-salvage-b-review-context.yml",
+      "workflow_name": "P23 salvage B review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-salvage-b-review-context.yml",
+        "data/p23/turnout-salvage-tranche-b.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/validate-turnout-salvage-fresh-download.mjs",
+        "scripts/p23/render-turnout-salvage-review-context.py",
+        "scripts/p23/validate-turnout-salvage-review-context.mjs"
+      ]
+    },
+    {
+      "file": "p23-salvage-c-review-context.yml",
+      "workflow_name": "P23 salvage C review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-salvage-c-review-context.yml",
+        "data/p23/turnout-salvage-tranche-c.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/validate-turnout-salvage-fresh-download.mjs",
+        "scripts/p23/render-turnout-salvage-review-context.py",
+        "scripts/p23/validate-turnout-salvage-review-context.mjs"
+      ]
+    },
+    {
+      "file": "p23-salvage-fresh-download.yml",
+      "workflow_name": "P23 salvage fresh download",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-salvage-fresh-download.yml",
+        "data/p23/turnout-salvage-tranche-a.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/validate-turnout-salvage-fresh-download.mjs"
+      ]
+    },
+    {
+      "file": "p23-salvage-review-context.yml",
+      "workflow_name": "P23 salvage review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-salvage-review-context.yml",
+        "data/p23/turnout-salvage-tranche-a.json",
+        "data/p23/form34b-source-index-contract.json",
+        "scripts/p23/fresh-download-turnout-salvage-tranche.py",
+        "scripts/p23/validate-turnout-salvage-fresh-download.mjs",
+        "scripts/p23/render-turnout-salvage-review-context.py",
+        "scripts/p23/validate-turnout-salvage-review-context.mjs"
+      ]
+    },
+    {
+      "file": "p23-tarbaj-fresh-source-review.yml",
+      "workflow_name": "P23 Tarbaj fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-tarbaj-fresh-source-review.json",
+        "scripts/p23/validate-tarbaj-fresh-source-review.mjs",
+        ".github/workflows/p23-tarbaj-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-taveta-fresh-source-review.yml",
+      "workflow_name": "P23 Taveta fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-taveta-fresh-source-review.json",
+        "scripts/p23/validate-taveta-fresh-source-review.mjs",
+        ".github/workflows/p23-taveta-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-terminal-coverage-audit.yml",
+      "workflow_name": "P23 terminal coverage audit",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/**",
+        "scripts/p23/audit-turnout-terminal-coverage.py",
+        ".github/workflows/p23-terminal-coverage-audit.yml"
+      ]
+    },
+    {
+      "file": "p23-untouched-20way-review-context.yml",
+      "workflow_name": "P23 untouched 20-way fresh review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-untouched-20way-review-context.yml",
+        "scripts/p23/fresh-review-context-untouched-row.py",
+        "data/p23/turnout-followup-triage.json",
+        "data/p23/form34b-source-index-contract.json"
+      ]
+    },
+    {
+      "file": "p23-untouched-final-four-review-context.yml",
+      "workflow_name": "P23 untouched final four fresh review context",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/p23-untouched-final-four-review-context.yml",
+        "scripts/p23/fresh-review-context-untouched-row.py",
+        "data/p23/form34b-source-index-contract.json"
+      ]
+    },
+    {
+      "file": "p23-voi-fresh-source-review.yml",
+      "workflow_name": "P23 Voi fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-voi-fresh-source-review.json",
+        "scripts/p23/validate-voi-fresh-source-review.mjs",
+        ".github/workflows/p23-voi-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-wajir-east-fresh-source-review.yml",
+      "workflow_name": "P23 Wajir East fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-wajir-east-fresh-source-review.json",
+        "scripts/p23/validate-wajir-east-fresh-source-review.mjs",
+        ".github/workflows/p23-wajir-east-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-wajir-west-fresh-source-review.yml",
+      "workflow_name": "P23 Wajir West fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-wajir-west-fresh-source-review.json",
+        "scripts/p23/validate-wajir-west-fresh-source-review.mjs",
+        ".github/workflows/p23-wajir-west-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23-wundanyi-fresh-source-review.yml",
+      "workflow_name": "P23 Wundanyi fresh source review",
+      "classification": "historical_one_off",
+      "reason": "every triggering path (3 total, across pull_request+push) references only this workflow's own files -- will not fire again once that narrow task is closed",
+      "triggers": [
+        "pull_request",
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        "data/p23/form34b-wundanyi-fresh-source-review.json",
+        "scripts/p23/validate-wundanyi-fresh-source-review.mjs",
+        ".github/workflows/p23-wundanyi-fresh-source-review.yml"
+      ]
+    },
+    {
+      "file": "p23x-ward-voter-materialization-v2.yml",
+      "workflow_name": "P23X ward voter materialization v2",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "p27-local-54-governance.yml",
+      "workflow_name": "P27 local 54 governance",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "data/completeness/local-54-indicator-manifest.json",
+        "data/completeness/local-54-migration-map.json",
+        "data/policy/local-54-indicator-contract.json",
+        "data/local-54-source-governance-contract.json",
+        "data/local-54-completion-roadmap.json",
+        "data/local-54-completion-execution.json",
+        "data/legacy-secondary-source-audit-contract.json",
+        "data/local-indicator-cascade-contract.json",
+        "data/completeness/local-indicator-cascade.json",
+        "data/indicators/registry/indicators.json",
+        "scripts/p27/**",
+        ".github/workflows/p27-local-54-governance.yml"
+      ]
+    },
+    {
+      "file": "p28a-epra-fuel-provenance.yml",
+      "workflow_name": "P28A EPRA fuel provenance",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "data/sprint1/sources.json",
+        "data/sprint1/fuel-super-petrol-2026-08.csv",
+        "scripts/sprint1/build-native.mjs",
+        "scripts/p28/validate-epra-fuel-provenance.mjs",
+        "data/local-54-completion-execution.json",
+        "data/catalogue/registry/**",
+        "data/indicators/registry/**",
+        "data/audit/legacy-*",
+        ".github/workflows/p28a-epra-fuel-provenance.yml",
+        ".github/workflows/p28a-legacy-source-audit.yml"
+      ]
+    },
+    {
+      "file": "p28a-legacy-source-audit.yml",
+      "workflow_name": "P28A legacy source audit",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "scripts/p28/**",
+        "data/legacy-secondary-source-audit-contract.json",
+        "data/local-54-source-governance-contract.json",
+        "data/local-54-completion-execution.json",
+        "data/policy/local-54-indicator-contract.json",
+        "data/completeness/local-54-indicator-manifest.json",
+        "data/completeness/slot-ledger.json",
+        "data/indicators/registry/**",
+        "data/catalogue/registry/**",
+        "data/geography/registry/geographies.json",
+        "data/audit/legacy-*",
+        ".github/workflows/p28a-legacy-source-audit.yml"
+      ]
+    },
+    {
+      "file": "p29-local-54-slot-ledger.yml",
+      "workflow_name": "P29 local-54 slot ledger",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "scripts/p29/**",
+        "data/policy/local-54-indicator-contract.json",
+        "data/completeness/local-54-indicator-manifest.json",
+        "data/completeness/evidence-states.json",
+        "data/completeness/local-54-*-evidence-states.json",
+        "data/indicators/registry/**",
+        "data/catalogue/registry/**",
+        "data/geography/registry/geographies.json",
+        "data/completeness/local-54-slot-ledger.json",
+        "data/completeness/local-54-reason-catalogue.json",
+        ".github/workflows/p29-local-54-slot-ledger.yml"
+      ]
+    },
+    {
+      "file": "p30-representation-registry.yml",
+      "workflow_name": "P30 representation registry",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "scripts/p30/**",
+        "data/p30/**",
+        "data/representation/**",
+        "data/indicators/registry/**",
+        "data/catalogue/registry/**",
+        "data/geography/registry/geographies.json",
+        ".github/workflows/p30-representation-registry.yml"
+      ]
+    },
+    {
+      "file": "p32-ward-completion-assurance.yml",
+      "workflow_name": "P32 ward-completion assurance",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "pull_request",
+        "push"
+      ],
+      "paths": [
+        "scripts/p32/**",
+        "tests/p32/**",
+        "scripts/status/**",
+        "package.json",
+        "data/p32/**",
+        "data/completeness/local-54-*-evidence-states.json",
+        "data/completeness/local-54-indicator-manifest.json",
+        "data/completeness/local-54-slot-ledger.json",
+        "data/completeness/local-54-reason-catalogue.json",
+        "data/geography/registry/geographies.json",
+        "data/policy/local-54-indicator-contract.json",
+        ".github/workflows/p32-ward-completion-assurance.yml"
+      ]
+    },
+    {
+      "file": "p38-inventory.yml",
+      "workflow_name": "P38 repository inventory",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "workflow_dispatch",
+        "pull_request"
+      ],
+      "paths": [
+        "scripts/p38/**",
+        "data/p38/**",
+        ".github/workflows/p38-inventory.yml"
+      ]
+    },
+    {
+      "file": "placeholder-taxonomy.yml",
+      "workflow_name": "Generated native registries and CountyIQ mart",
+      "classification": "shared_gate",
+      "reason": "path-scoped trigger(s) covering more than this workflow's own files -- an ongoing shared validation gate",
+      "triggers": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "paths": [
+        ".github/workflows/placeholder-taxonomy.yml",
+        "docs/DATA-COMPLETION-ROADMAP.md",
+        "data/indicators/seed/placeholder-taxonomy.json",
+        "data/geography/reference/geography-subsets.json",
+        "data/geography/registry/geographies.json",
+        "data/catalogue/registry/**",
+        "data/indicators/registry/**",
+        "data/opportunities/programmes.seed.json",
+        "data/p05/source/connectivity-housing-survey-2023-24.csv",
+        "data/p05/source/manifest.json",
+        "data/countyiq/source/p10-fiscal-accountability-2024-25.json",
+        "scripts/indicators/apply-placeholder-taxonomy.mjs",
+        "scripts/indicators/validate-placeholder-taxonomy.mjs",
+        "scripts/indicators/validate-native-api.mjs",
+        "scripts/countyiq/build-mart.mjs",
+        "scripts/countyiq/validate-mart.mjs",
+        "scripts/completeness/**",
+        "scripts/p14/**",
+        "scripts/p20/**",
+        "assets/countyiq-view.js",
+        "assets/opportunity-finder.js",
+        "assets/opportunity-finder.css",
+        "assets/lazy-integrations.js",
+        "assets/place-profile.js",
+        "assets/place-profile.css",
+        "db/schema/indicators.sql",
+        "package.json"
+      ]
+    },
+    {
+      "file": "pulse-history.yml",
+      "workflow_name": "Pulse history coverage",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "file": "release-audit.yml",
+      "workflow_name": "P16 release audit",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "release-rehearsal.yml",
+      "workflow_name": "Release rehearsal",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "validate.yml",
+      "workflow_name": "Validate Atlas data",
+      "classification": "permanent_gate",
+      "reason": "has an unconditional push/pull_request trigger with no path filter -- runs on every future mainline change",
+      "triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "file": "worldbank-national-integration.yml",
+      "workflow_name": "World Bank national integration",
+      "classification": "permanent_gate",
+      "reason": "runs on a recurring schedule",
+      "triggers": [
+        "push",
+        "schedule",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}
