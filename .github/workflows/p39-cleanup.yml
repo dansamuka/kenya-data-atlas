@@ -42,8 +42,6 @@ jobs:
 
       - name: Archive historical one-off workflows
         if: inputs.action == 'archive-workflows'
-        env:
-          KDA_P39_ARCHIVED_ON: ${{ github.event.repository.updated_at }}
         run: node scripts/p39/archive-historical-workflows.mjs
 
       - name: Validate workflow archival
