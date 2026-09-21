@@ -1,0 +1,58 @@
+name: P38 repository inventory
+
+# Manual only: the branch/workflow inventory reflects live repository state (open PRs, branches),
+# which is not deterministic run-to-run the way a static-source-derived ledger is -- there is no
+# meaningful "zero drift" check to enforce on every push. Re-run this dispatch to refresh the
+# committed snapshot before selecting or executing a P39 cleanup batch.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/p38/**'
+      - 'data/p38/**'
+      - '.github/workflows/p38-inventory.yml'
+
+permissions:
+  contents: write
+  pull-requests: read
+  issues: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate local inventory contract
+        run: node --test tests/p38/workflow-classifier.spec.mjs tests/p38/branch-classifier.spec.mjs
+
+      - name: Build repository inventory
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/p38/build-repository-inventory.mjs
+
+      - name: Validate the inventory snapshot
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/p38/validate-repository-inventory.mjs
+
+      - name: Commit refreshed inventory
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git add data/p38
+          if git diff --cached --quiet; then
+            echo 'P38 inventory already matches the committed baseline.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'P38: refresh branch and workflow inventory snapshot'
+          git push origin HEAD:main

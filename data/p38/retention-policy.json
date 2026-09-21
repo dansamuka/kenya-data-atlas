@@ -1,0 +1,25 @@
+{
+  "schema_version": "kda.p38.retention-policy.v1",
+  "as_of": "2026-09-21",
+  "branch_dispositions": {
+    "protected_evidence": "Branch name matches a protected-evidence naming pattern (backup-*, docs/*). Never a deletion candidate.",
+    "active_open_pr": "An open PR references this branch. Never a deletion candidate.",
+    "merged_via_pr": "A merged PR references this branch -- its content is provably on main. Deletion candidate.",
+    "closed_unmerged_pr_needs_review": "A PR referencing this branch was closed without merging. May hold abandoned or superseded work; never an automatic deletion candidate.",
+    "merged_no_pr_ancestor_of_main": "No PR references this branch, but its head commit is confirmed (via the GitHub compare API, ahead_by === 0) to already be an ancestor of main. Deletion candidate.",
+    "no_pr_reference_needs_manual_review": "No PR references this branch and it is not confirmed as an ancestor of main. Never an automatic deletion candidate -- unique content may exist here."
+  },
+  "workflow_classifications": {
+    "permanent_gate": "Triggers on an unconditional push/pull_request (no path filter) or a schedule -- runs on every future mainline change. Never a cleanup candidate.",
+    "shared_gate": "Path-scoped trigger(s) covering more than the workflow's own files -- an ongoing shared validation gate. Never a cleanup candidate.",
+    "historical_one_off": "Every triggering path (across push and/or pull_request) references only this workflow's own files. Will not fire again once its narrow task is closed. P39 archive/disable candidate, not deletion (workflow files are not branches).",
+    "reusable_manual_tool": "workflow_dispatch is the only trigger. Kept for reuse, not disabled or removed.",
+    "needs_manual_review": "Trigger shape did not match a known pattern. Requires manual classification before any P39 action."
+  },
+  "rules": [
+    "No branch or workflow is deleted, disabled or archived by P38 itself -- this is inventory and classification only.",
+    "An open PR, an unresolved (closed-without-merge) PR, or the absence of any PR/ancestor evidence always blocks a deletion_candidate classification.",
+    "A workflow file is never deleted outright even when historical_one_off -- P39's own scope is archiving/disabling, preserving the file as a governed evidence record.",
+    "The first cleanup batch is capped at 50 branches and is reviewable/reconstructable from this file alone (name, sha, reason, preservation_reference)."
+  ]
+}

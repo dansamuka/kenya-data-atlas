@@ -95,7 +95,7 @@
     {
       "id": "P38",
       "title": "Evidence-preserving branch and workflow inventory",
-      "status": "next",
+      "status": "complete",
       "goal": "Classify repository history before cleanup so stale references can be removed without losing unique evidence, unmerged work or auditability.",
       "outputs": [
         "machine-readable remote-branch disposition ledger",
@@ -112,12 +112,16 @@
       ],
       "depends_on": [
         "P37"
-      ]
+      ],
+      "progress": {
+        "closed_on": "2026-09-21",
+        "closure_note": "Closed with a live inventory of all 296 non-default remote branches and 94 GitHub Actions workflows, classified from real PR/merge evidence, never a guess. scripts/p38/branch-classifier.mjs (pure, unit-tested) never marks a branch deletion_candidate unless a merged PR references it (199 branches) or its head commit is confirmed an ancestor of main via the live compare API (15 branches) -- an open PR (0 currently), a closed-but-unmerged PR (34 branches) or the absence of any PR/ancestor evidence at all (46 branches) always blocks that classification, structurally, not by convention. Spot-checked against ground truth: the 3 sampled deletion candidates (2 merged-PR matches, 1 ancestor-of-main match) were independently re-verified against gh pr view and the GitHub compare API and matched exactly. scripts/p38/workflow-classifier.mjs (pure, unit-tested) classifies every workflow by its actual trigger shape rather than its filename: 12 permanent_gate (unconditional push/pull_request or schedule), 32 shared_gate (path-scoped but broader than the workflow's own files -- most of the P23 completion effort's remaining automation, since those still validate against live canonical registries), 49 historical_one_off (every triggering path, across push and pull_request combined, references only the workflow's own file pair -- the bulk of the P23 per-constituency fresh-source-review workflows, which will never fire again). A first draft's self-referential check required the literal filename stem as a substring and mis-classified several real workflows whose target data file drops the phase-number prefix (e.g. p23-wajir-west-fresh-source-review.yml targets form34b-wajir-west-fresh-source-review.json) -- fixed by also matching the phase-prefix-stripped stem, caught by a test built directly from that real file's exact trigger shape, not an invented one. data/p38/first-cleanup-batch.json caps the first batch at 50 branches, each with name/SHA/reason/preservation_reference, reconstructable from that file alone. P38 performs no deletion, archiving or disabling itself -- data/p38/retention-policy.json documents the classification rules so P39's authorisation boundary is explicit and auditable. .github/workflows/p38-inventory.yml (workflow_dispatch only, plus a narrow pull_request path scope for its own review) refreshes the snapshot on demand; unlike P29/P34/P35's static-source ledgers, live branch/PR state is not deterministic run-to-run, so scripts/p38/validate-repository-inventory.mjs checks the committed snapshot's internal correctness (offline) rather than enforcing byte-exact rebuild parity."
+      }
     },
     {
       "id": "P39",
       "title": "Safe repository cleanup and CI consolidation",
-      "status": "planned",
+      "status": "next",
       "goal": "Execute the P38 decisions in reviewable batches and reduce routine CI noise while preserving every permanent release and data-governance gate.",
       "outputs": [
         "executed branch-cleanup batches with before/after manifests",
