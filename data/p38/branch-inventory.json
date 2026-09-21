@@ -1,13 +1,13 @@
 {
   "schema_version": "kda.p38.branch-inventory.v1",
   "as_of": "2026-09-21",
-  "total_non_default_branches": 296,
+  "total_non_default_branches": 246,
   "by_disposition": {
     "protected_evidence": 2,
     "no_pr_reference_needs_manual_review": 46,
-    "merged_no_pr_ancestor_of_main": 15,
-    "merged_via_pr": 199,
-    "closed_unmerged_pr_needs_review": 34
+    "closed_unmerged_pr_needs_review": 34,
+    "merged_via_pr": 151,
+    "merged_no_pr_ancestor_of_main": 13
   },
   "branches": [
     {
@@ -29,51 +29,6 @@
       "preservation_reference": null
     },
     {
-      "name": "chatgpt/countyiq-classy-selector-print-20260904-v2",
-      "sha": "a6e42c7bb95dedf060801268121415e943d04076",
-      "protected": false,
-      "disposition": "merged_no_pr_ancestor_of_main",
-      "reason": "head commit is already an ancestor of main (merged without a PR, e.g. fast-forward or direct push)",
-      "deletion_candidate": true,
-      "preservation_reference": "ancestor of main"
-    },
-    {
-      "name": "chatgpt/countyiq-tabs-mobile-gap-fix-20260904",
-      "sha": "54381b40e4c9dc989e446225c5a25c3dcefddd1e",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #95",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/95"
-    },
-    {
-      "name": "chatgpt/fix-countyiq-mobile-p16-20260904",
-      "sha": "780d0803efd557008aa7279c27dafc69f179e7c4",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #96",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/96"
-    },
-    {
-      "name": "chatgpt/p21-agriculture-replacement",
-      "sha": "f3e82b97edcd37adcb188283454cc3728e1c7b9d",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #38",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/38"
-    },
-    {
-      "name": "chatgpt/p21-hard-county-queue",
-      "sha": "bf49468db4d539f80fc466c9a6e832215fb65a21",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #37",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/37"
-    },
-    {
       "name": "chatgpt/p21-water-access",
       "sha": "d3406a8112d37468126764d5185d678c4a12c659",
       "protected": false,
@@ -81,24 +36,6 @@
       "reason": "no open or closed PR references this branch, and its head commit is not confirmed as an ancestor of main -- unique content may exist here",
       "deletion_candidate": false,
       "preservation_reference": null
-    },
-    {
-      "name": "data-sprint-1",
-      "sha": "803c5d44363b0727154f32bc4e52bc14d9fca1d6",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #1",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/1"
-    },
-    {
-      "name": "data-sprint-2-local-kenya",
-      "sha": "7649e9468c0eeb49a7b836710c76358bdaa80c0d",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #3",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/3"
     },
     {
       "name": "data-sprint-3-historical-kenya",
@@ -117,78 +54,6 @@
       "reason": "branch name matches protected-evidence pattern /^docs\\//i",
       "deletion_candidate": false,
       "preservation_reference": null
-    },
-    {
-      "name": "document-p18-p26-roadmap",
-      "sha": "23b1300a726b332d4e3d7a5655f7b7349606fc98",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #28",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/28"
-    },
-    {
-      "name": "feat/cross-level-compare",
-      "sha": "7950a722fb7a39d22c04d44409b3e1813c2a69a2",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #72",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/72"
-    },
-    {
-      "name": "feat/kda-status-branch-progress",
-      "sha": "d1748dde8a165586863b7fc58c3ca783be82eef9",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #248",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/248"
-    },
-    {
-      "name": "feat/kda-status-runner",
-      "sha": "b66552197cbb66bcfedcebbdb1c4f363c82dda4a",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #244",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/244"
-    },
-    {
-      "name": "feature/kenya-pulse-carousel",
-      "sha": "cfc18630e0dcd12c781d3a582db2efac19b99ee7",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #63",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/63"
-    },
-    {
-      "name": "feature/life-elsewhere-county-metrics",
-      "sha": "0f5ece8e8021c9a67f37dc7e2d763136fcb6b7b3",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #7",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/7"
-    },
-    {
-      "name": "feature/life-elsewhere-lived-experience",
-      "sha": "6bf11eee64037947289115511cfe183675a82753",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #9",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/9"
-    },
-    {
-      "name": "feature/life-elsewhere-natural-language",
-      "sha": "54e8e3c1fe034a1622f58311c23b044fb4136d80",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #8",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/8"
     },
     {
       "name": "feature/methods-comparability-visibility",
@@ -218,60 +83,6 @@
       "preservation_reference": null
     },
     {
-      "name": "feature/worldbank-national-integration",
-      "sha": "80d692b9f8dd3c70bafa9b4f62fa5bc111858670",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #5",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/5"
-    },
-    {
-      "name": "fix-crlf-line-ending-drift",
-      "sha": "690430d4ec020834909fe174d419529daafaceef",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #229",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/229"
-    },
-    {
-      "name": "fix-data-architecture-ci-ui",
-      "sha": "f8f5e0eb4b3fbd3438a60912b00c85a6a110ed9b",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #4",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/4"
-    },
-    {
-      "name": "fix-live-data-cache-revalidation",
-      "sha": "e3cf74aa344e8ce3edf45c667fa4870430969933",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #27",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/27"
-    },
-    {
-      "name": "fix-mobile-countyiq-density",
-      "sha": "4bb640caa6ce205f422721cc080f33b2ed01998f",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #14",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/14"
-    },
-    {
-      "name": "fix-p17-live-smoke-pipe",
-      "sha": "b06dceabb55e02780b4c5101021376ece0c0be58",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #35",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/35"
-    },
-    {
       "name": "fix-p17-live-smoke-route",
       "sha": "a89ad170d818f3bab56cd36d604b02d1da159cf2",
       "protected": false,
@@ -279,132 +90,6 @@
       "reason": "PR #36 was closed without merging -- may hold abandoned or superseded work",
       "deletion_candidate": false,
       "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/36"
-    },
-    {
-      "name": "fix-p17-p15-terminal-handoff",
-      "sha": "131a1eb6224340e2982015eb58a2243324955e54",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #33",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/33"
-    },
-    {
-      "name": "fix-p17-release-gate-dispatch",
-      "sha": "f26f1d2905e421231491a7dd6022c97a1849cbf6",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #34",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/34"
-    },
-    {
-      "name": "fix-p17-terminal-roadmap-gates",
-      "sha": "5ccf7f694739b114e07b89b4d5147bbca0e846a5",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #32",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/32"
-    },
-    {
-      "name": "fix-stale-derived-registries",
-      "sha": "bde040af61f3fdfa981b07366c4ffadaf373b5cd",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #231",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/231"
-    },
-    {
-      "name": "fix/compare-across-v2",
-      "sha": "d164ff3f4151230994bd42193de80c2a4b61ac79",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #73",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/73"
-    },
-    {
-      "name": "fix/firefox-header-search-route",
-      "sha": "74f8eaa84437dd34f4ed62c5958a05bf626300d7",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #76",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/76"
-    },
-    {
-      "name": "fix/kda-status-phase-pr-scope",
-      "sha": "a12a6692bfa40de9f00e670bf4d18e846ab9e1c0",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #249",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/249"
-    },
-    {
-      "name": "fix/p16-browser-install-timeout",
-      "sha": "407d1a4a37254d8664910ad153f76b9111156ffb",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #67",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/67"
-    },
-    {
-      "name": "hotfix-p18-p22-route-sync",
-      "sha": "47eac96415b770bf2bf570cb5c41445f313d98a5",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #54",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/54"
-    },
-    {
-      "name": "kda-visual-spec-v2-implementation",
-      "sha": "f5f21c078bf1064efc4206131ddcb74f1c4c199a",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #60",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/60"
-    },
-    {
-      "name": "mobile-home-countyiq-overhaul",
-      "sha": "239c418f73b5974c5c61b2f9d5af285083432bd5",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #20",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/20"
-    },
-    {
-      "name": "mobile-place-profile-polish-20260830",
-      "sha": "5f657fcaa70830343c5398624765371426915f8a",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #22",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/22"
-    },
-    {
-      "name": "mobile-polish-countyiq-fix-20260830",
-      "sha": "44a197a83aec24a0715c4a8f8ce70ebbdb96a83a",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #19",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/19"
-    },
-    {
-      "name": "p02-canonical-countyiq-mart",
-      "sha": "5aa36964248168eb6b6ce0ea70b30354a9d14a4e",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #10",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/10"
     },
     {
       "name": "p02-canonical-countyiq-mart-final",
@@ -479,33 +164,6 @@
       "preservation_reference": null
     },
     {
-      "name": "p03-fiscal-history",
-      "sha": "792be27df8b06e6aeb5e4d126fa009d24a455d3b",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #11",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/11"
-    },
-    {
-      "name": "p04-health-living-standards",
-      "sha": "d9771a51721af00c6ec9fdfe7d8494a95e27eae9",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #12",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/12"
-    },
-    {
-      "name": "p05-breadth",
-      "sha": "deafed326a541cad95586e08ce4ed1fa0374288a",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #15",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/15"
-    },
-    {
       "name": "p091011-publishable-20260829",
       "sha": "283f613ea271b2e60a8650b7f6f354ef9d5d6874",
       "protected": false,
@@ -513,15 +171,6 @@
       "reason": "no open or closed PR references this branch, and its head commit is not confirmed as an ancestor of main -- unique content may exist here",
       "deletion_candidate": false,
       "preservation_reference": null
-    },
-    {
-      "name": "p0x-plan-release-20260829",
-      "sha": "c93aa7b4e0bf80bdb33ba08a30ab8e4c4837c127",
-      "protected": false,
-      "disposition": "merged_no_pr_ancestor_of_main",
-      "reason": "head commit is already an ancestor of main (merged without a PR, e.g. fast-forward or direct push)",
-      "deletion_candidate": true,
-      "preservation_reference": "ancestor of main"
     },
     {
       "name": "p0x-release-fix-20260829",
@@ -551,15 +200,6 @@
       "preservation_reference": null
     },
     {
-      "name": "p14-opportunity-finder-20260830",
-      "sha": "973f1a86e52eb77266ad4d8bc82e1741316d367d",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #17",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/17"
-    },
-    {
       "name": "p15-data-distribution-20260830",
       "sha": "63d548e8c5e463260904d17e27030d7743dddc56",
       "protected": false,
@@ -578,15 +218,6 @@
       "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/21"
     },
     {
-      "name": "p16-release-audit",
-      "sha": "499d92090ee3297bfc374ca4cb750410a45d6fb9",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #16",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/16"
-    },
-    {
       "name": "p16-release-hardening-20260830",
       "sha": "89db7f8279f8483b69c41a9a7af6152cd66a358c",
       "protected": false,
@@ -596,69 +227,6 @@
       "preservation_reference": null
     },
     {
-      "name": "p17-v1-release",
-      "sha": "09a0346d21044b82028828a7ae9779e4704d43d9",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #18",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/18"
-    },
-    {
-      "name": "p18-completeness-ledger",
-      "sha": "42a848ab329631ce422270fa8dbcb778aaff05d5",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #23",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/23"
-    },
-    {
-      "name": "p18-p16-cls-order-fix",
-      "sha": "16581853fa02fa3b3b8cf237ccec817f774db9ad",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #24",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/24"
-    },
-    {
-      "name": "p19-surface-complete-county-data-20260831",
-      "sha": "2f7dfcf0a14763f967587484b7dc62e9d153855e",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #25",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/25"
-    },
-    {
-      "name": "p20-audit-opinion-promotion",
-      "sha": "dea1d5384699e77fc6486e9c752c81e839cfbbec",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #29",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/29"
-    },
-    {
-      "name": "p20-consolidated-completion",
-      "sha": "4bfe885ef7fe794914d49d61ec87cad9dc5f20fe",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #31",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/31"
-    },
-    {
-      "name": "p20-county-sourced-promotion",
-      "sha": "02fa590cd9ce95cb350480ad65499a3d1f2a2d3b",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #26",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/26"
-    },
-    {
       "name": "p20-disability-prevalence-promotion",
       "sha": "0d57994cb725df949ab76dca61d5914782b9f551",
       "protected": false,
@@ -666,15 +234,6 @@
       "reason": "no open or closed PR references this branch, and its head commit is not confirmed as an ancestor of main -- unique content may exist here",
       "deletion_candidate": false,
       "preservation_reference": null
-    },
-    {
-      "name": "p20-household-size-promotion",
-      "sha": "cc69382e9c98096fbbee3240b0fb62a020e81aad",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #30",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/30"
     },
     {
       "name": "p20-kdhs-teenage-homebirth",
@@ -693,15 +252,6 @@
       "reason": "no open or closed PR references this branch, and its head commit is not confirmed as an ancestor of main -- unique content may exist here",
       "deletion_candidate": false,
       "preservation_reference": null
-    },
-    {
-      "name": "p21-business-licenses-retirement",
-      "sha": "db1303db0c27e7fc23d63b159e08208c160a06c8",
-      "protected": false,
-      "disposition": "merged_via_pr",
-      "reason": "content merged via PR #43",
-      "deletion_candidate": true,
-      "preservation_reference": "https://github.com/dansamuka/kenya-data-atlas/pull/43"
     },
     {
       "name": "p21-class-c-road-replacement",

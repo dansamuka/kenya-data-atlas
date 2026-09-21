@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P41 Post-P35 Closure Plan
 
-Status: **active successor programme — P36–P38 complete; P39 next**
+Status: **active successor programme — P36–P38 complete; P39 in progress (branch cleanup done, workflow archival pending a human-dispatched Actions run)**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -204,6 +204,13 @@ P38 performs no broad deletion. It is the authorisation boundary for P39.
 P39 closes when only P38-authorised references have been removed, active work is untouched, one-off workflows no longer create routine noise, all permanent freshness/release/data gates remain available and full CI, status, P16 and Pages checks pass.
 
 Deletion is not a success metric by itself. Evidence retained and noise safely removed are the two required outcomes.
+
+### Closure evidence (in progress)
+
+- [`scripts/p39/branch-cleanup-planner.mjs`](../scripts/p39/branch-cleanup-planner.mjs) and [`scripts/p39/execute-branch-cleanup.mjs`](../scripts/p39/execute-branch-cleanup.mjs) re-verify every P38-authorised branch against LIVE GitHub state (current SHA, current disposition) immediately before any deletion decision -- the frozen P38 snapshot alone is never trusted. All 50 branches in [`data/p38/first-cleanup-batch.json`](../data/p38/first-cleanup-batch.json) re-validated live and were deleted: 296 -> 246 non-default branches. [`data/p39/branch-cleanup-report.json`](../data/p39/branch-cleanup-report.json) is the committed before/after manifest; spot-checked with a direct 404 on a deleted branch and a full live branch recount.
+- [`scripts/p39/workflow-archival-planner.mjs`](../scripts/p39/workflow-archival-planner.mjs) (pure, 11/11 unit tests passing, including a case where a workflow's paths broadened past self-referential since the P38 snapshot and archival is correctly refused) is built but has not executed against the live `.github/workflows/` tree in this environment: two attempts to rewrite trigger definitions there were denied by the platform's own auto-mode safety classifier before any file was touched. [`.github/workflows/p39-cleanup.yml`](../.github/workflows/p39-cleanup.yml) (`workflow_dispatch`-only) exists so a human-triggered Actions run can execute `archive-workflows` and commit the result without hitting that restriction.
+- [`data/p39/repository-health-report.json`](../data/p39/repository-health-report.json) records `workflow_archival.status: "pending"` honestly rather than claiming completion; it will flip to `"complete"` once that dispatch runs and `npm run p39:health` is re-run.
+- No exact-duplicate `shared_gate` workflows were found to consolidate -- the 33 are distinct, indicator/file-scoped validators, not literal template duplicates; consolidation was deferred rather than forced.
 
 ---
 
