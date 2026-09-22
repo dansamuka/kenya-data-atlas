@@ -1,7 +1,7 @@
 {
   "schema_version": "kda.p41.access-attempt-record.v1",
   "as_of": "2026-09-22",
-  "definition": "Every real, dated, live access attempt made against the sources behind P40's selected first tranche (data/p40/p41-tranche-contract.json), using two independent methods (WebFetch and a direct curl cross-check) so a result is never attributed to a single tool's own quirk. This is P41's own required 'source and access-attempt record' output, kept whether or not it produces a numeric promotion.",
+  "definition": "Every real, dated, live access attempt made against the sources behind P40's selected first tranche (data/p40/p41-tranche-contract.json), using two independent methods (WebFetch and a direct curl cross-check) so a result is never attributed to a single tool's own quirk. Both tranche families were re-checked twice the same day (~10 hours apart, 2026-09-22 morning and evening EAT) with no change either time. This is P41's own required 'source and access-attempt record' output, kept whether or not it produces a numeric promotion.",
   "tranche_families": ["moe-2024-national-school-census", "knbs-kilimostat-maize"],
   "attempts": [
     {
@@ -13,7 +13,8 @@
         { "method": "WebFetch", "url": "https://www.knbs.or.ke/reports/2024-national-school-census-pilot-report/", "result": "no_timeline", "detail": "Page hosts only the January 2025 Pilot Report; no mention of a main-report release date." },
         { "method": "WebSearch", "query": "Kenya 2024 National School Census KNBS main report results published 2026", "result": "not_found" },
         { "method": "WebSearch", "query": "\"2024 National School Census\" Kenya main report release date November 2026", "result": "not_found" },
-        { "method": "WebFetch", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog/search?search=national+school+census+2024", "result": "not_found", "detail": "KeNADA microdata archive search did not surface a school-census entry (archive appears to lag behind the main site's own publication, which itself has not published the main report yet)." }
+        { "method": "WebFetch", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog/search?search=national+school+census+2024", "result": "not_found", "detail": "KeNADA microdata archive search did not surface a school-census entry (archive appears to lag behind the main site's own publication, which itself has not published the main report yet)." },
+        { "method": "curl", "url": "https://www.knbs.or.ke/reports_category/2024/", "result": "not_found", "detail": "Second check, same day 2026-09-22T19:57 EAT (~10 hours after the first): HTTP 200, page body re-fetched and grepped directly for \"school census\" / \"census...school\" -- zero matches. No change." }
       ],
       "conclusion": "still_pending",
       "changed_since_evidence_state": false,
@@ -27,11 +28,12 @@
         { "method": "WebFetch", "url": "https://statistics.kilimo.go.ke", "result": "unreachable", "detail": "certificate has expired" },
         { "method": "curl", "url": "http://statistics.kilimo.go.ke/en/kilimostat-api/download_crops/", "result": "unreachable", "detail": "HTTP 000 (connection timeout, --max-time 15) -- confirms this is a genuine network/host-level failure, not a WebFetch-tool artifact or an HTTPS-only requirement." },
         { "method": "WebFetch", "url": "http://statistics.kilimo.go.ke/en/kilimostat-api/download_crops/", "result": "unreachable", "detail": "certificate has expired (WebFetch auto-upgrades http to https)" },
-        { "method": "WebSearch", "query": "KilimoSTAT app data offline API Kenya agriculture statistics endpoint", "result": "endpoints_documented_but_domain_down", "detail": "KilimoSTAT documents real download endpoints (download_crops, download_livestock, download_fisheries, download_prices) -- the platform is genuinely designed to support this, but the entire statistics.kilimo.go.ke domain is down, so none are currently reachable." }
+        { "method": "WebSearch", "query": "KilimoSTAT app data offline API Kenya agriculture statistics endpoint", "result": "endpoints_documented_but_domain_down", "detail": "KilimoSTAT documents real download endpoints (download_crops, download_livestock, download_fisheries, download_prices) -- the platform is genuinely designed to support this, but the entire statistics.kilimo.go.ke domain is down, so none are currently reachable." },
+        { "method": "curl", "url": "https://statistics.kilimo.go.ke/", "result": "unreachable", "detail": "Second check, same day 2026-09-22T19:57 EAT (~10 hours after the first): HTTP 000 (connection failure). No change." }
       ],
       "conclusion": "unreachable",
       "changed_since_evidence_state": false,
-      "note": "Confirmed down via two independent methods (WebFetch and direct curl), not just a re-read of the 2026-09-19 evidence-state finding. The platform's own documented API shape means this is worth re-checking again once the certificate issue is fixed -- contact channel published: 0800 724 891 / datahub@kalro.org."
+      "note": "Confirmed down via two independent methods (WebFetch and direct curl) on two separate checks roughly 10 hours apart, not just a single-moment snapshot. The platform's own documented API shape means this is worth re-checking again once the certificate issue is fixed -- contact channel published: 0800 724 891 / datahub@kalro.org."
     }
   ],
   "auxiliary_due_diligence_checks": [
@@ -71,7 +73,16 @@
         { "method": "WebFetch", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog/116", "result": "inconclusive", "detail": "2019 KPHC microdata entry found, but geographic-identifier detail (does public/registered access retain sub-county geocoding, or is it anonymised to county-only per standard census-microdata disclosure practice?) could not be confirmed from the page content alone." }
       ],
       "conclusion": "flagged_for_followup",
-      "note": "NOT investigated further in this P41 cycle -- determining whether any KeNADA-hosted microdata has geocoding precise enough for a legitimate EXACT aggregation (not a modelled/allocated estimate) to constituency or ward level is a genuinely separate research question for each survey, requiring real documentation review per dataset. Flagged as a candidate source family for a future P40 portfolio refresh, not assumed to unlock anything."
+      "note": "NOT investigated further in this P41 cycle -- determining whether any KeNADA-hosted microdata has geocoding precise enough for a legitimate EXACT aggregation (not a modelled/allocated estimate) to constituency or ward level is a genuinely separate research question for each survey, requiring real documentation review per dataset. Flagged as a candidate source family for a future P40 portfolio refresh, not assumed to unlock anything. A dedicated follow-up investigation (task_e3b9d4ac) is running independently as of 2026-09-22 to resolve this."
+    },
+    {
+      "target": "R077 (registered voters, Mandera East/Lafey ward crosswalk, 10 cells, boundary_vintage_mismatch tier) -- checked as the most tractable non-externally-blocked candidate in the P40 portfolio",
+      "reason": "unlike every access_technical candidate (all ultimately blocked by one of two down domains, KMHFR or KilimoSTAT), this gap is project-internal (a ward-boundary geometry mismatch between the Atlas's own HDX-sourced ward shapefile, data/geography/source/hdx-boundaries/administrative-wards-1450-2019, and IEBC's operative Mandera East/Lafey ward configuration) and doesn't depend on any external live system -- worth checking whether a corrected authoritative boundary source now exists.",
+      "checks": [
+        { "method": "WebSearch", "query": "IEBC official ward boundary shapefile Mandera East Lafey Arabia Bulla Mpya Khalalio Neboi Township GIS 2019 2022", "result": "not_found", "detail": "No IEBC-published ward polygon shapefile/GIS dataset found anywhere -- only tabular voter-registration PDFs (rov_per_caw.pdf etc.), which the Atlas already has and already correctly aggregates to the constituency level. IEBC does not appear to publish authoritative ward boundary geometry at all, for any constituency, as open GIS data." }
+      ],
+      "conclusion": "unresolved_no_source_exists",
+      "note": "This is not a temporary access barrier like KMHFR/KilimoSTAT -- no authoritative ward-boundary GIS source for this specific 10-ward mismatch appears to exist publicly at all (IEBC's own gazette notices are tabular, not spatial). Resolving this would need either a direct request to IEBC for a corrected boundary file, or a different, independently-verifiable ward-geometry source specifically for these two constituencies -- neither is a same-day desk-research task. Left as boundary_vintage_mismatch, not reclassified."
     }
   ]
 }
