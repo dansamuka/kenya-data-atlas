@@ -1,0 +1,75 @@
+{
+  "schema_version": "kda.p42.worldpop-population-contract.v1",
+  "created_on": "2026-09-22",
+  "execution_id": "P42-W1-POP-001",
+  "status": "ready_to_execute",
+  "target": {
+    "indicator_id": "IND-POPULATION",
+    "indicator_name": "Population",
+    "reference_period": "Census night, 24–25 August 2019",
+    "levels": [
+      "constituency",
+      "ward"
+    ],
+    "potential_new_cells": 1740,
+    "source_tier": "S5",
+    "public_label": "Modelled estimate — county-constrained spatial allocation"
+  },
+  "rationale": "KDA has official 2019 KNBS population controls for all 47 counties but no defensible values on the current 2012-era constituency/ward geography. WorldPop provides an independent gridded 2019 population surface. The raster is used only to distribute each official county control within that county; it never replaces the official county total.",
+  "sources": {
+    "official_controls": {
+      "source": "KNBS 2019 Kenya Population and Housing Census",
+      "repo_path": "data/distribution/subsets/indicators/IND-POPULATION.json",
+      "expected_counties": 47,
+      "expected_national_total": 47564296
+    },
+    "central_spatial_surface": {
+      "source": "WorldPop Global 2015–2030 R2024B",
+      "year": 2019,
+      "variant": "constrained",
+      "resolution": "100m",
+      "url": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2024B/2019/KEN/v1/100m/constrained/ken_pop_2019_CN_100m_R2024B_v1.tif"
+    },
+    "sensitivity_spatial_surface": {
+      "source": "WorldPop Global 2015–2030 R2024B",
+      "year": 2019,
+      "variant": "unconstrained",
+      "resolution": "100m",
+      "url": "https://data.worldpop.org/GIS/Population/Global_2015_2030/R2024B/2019/KEN/v1/100m/unconstrained/ken_pop_2019_UC_100m_R2024B_v1.tif"
+    }
+  },
+  "geography": {
+    "boundary_version": "2012-01",
+    "constituency_geometry": "data/geography/geometry/constituencies.geojson",
+    "ward_geometry": "data/geography/geometry/wards.geojson",
+    "rule": "Use the canonical KDA geometry. WorldPop pixels are never interpreted as legal boundaries."
+  },
+  "method": {
+    "central": "For each level independently, sum constrained WorldPop cells in each child polygon, convert child sums into within-county shares, multiply by the official KNBS county population, then use largest-remainder integer allocation so children sum exactly to the official county control.",
+    "sensitivity": "Repeat the same county-constrained allocation using the unconstrained WorldPop surface. The difference between constrained and unconstrained allocations is a model-structure sensitivity diagnostic, not a statistical confidence interval.",
+    "no_parent_copy": true,
+    "no_equal_split": true,
+    "no_force_matched_boundaries": true
+  },
+  "predeclared_publication_gate": {
+    "county_reconciliation_absolute_person_tolerance": 0,
+    "national_reconciliation_absolute_person_tolerance": 0,
+    "max_model_structure_spread_pct": 50,
+    "require_positive_central_and_sensitivity_value": true,
+    "require_both_worldpop_variants": true,
+    "require_all_47_county_controls": true,
+    "cell_rule": "A constituency/ward candidate is promotion-eligible only when both variants allocate a positive value and absolute constrained-vs-unconstrained spread divided by their mean is <= 50%. Cells failing this stability gate remain unavailable; thresholds are not relaxed after results are seen."
+  },
+  "uncertainty": {
+    "type": "model-structure sensitivity envelope",
+    "lower": "minimum of county-constrained constrained/unconstrained WorldPop allocations",
+    "upper": "maximum of county-constrained constrained/unconstrained WorldPop allocations",
+    "caveat": "This is not a frequentist confidence interval. It communicates sensitivity to two materially different WorldPop spatial allocation specifications."
+  },
+  "data_handling": {
+    "commit_worldpop_rasters": false,
+    "commit_derived_aggregate_candidates": true,
+    "raster_storage": "ephemeral GitHub Actions runner only"
+  },
+  "output": "data/p42/worldpop-population-candidate.json"
+}
