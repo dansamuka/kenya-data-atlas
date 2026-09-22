@@ -1,0 +1,235 @@
+{
+  "schema_version": "kda.p42.numeric-maximisation-contract.v1",
+  "phase": "P42",
+  "title": "Full Local-54 best-available numeric maximisation",
+  "status": "planned",
+  "depends_on": [
+    "P41"
+  ],
+  "objective": "Maximise defensible numeric coverage across every applicable Local-54 county, constituency and ward cell by systematically exhausting direct, derived, secondary, spatial, statistical small-area, temporal projection and constrained downscaling methods before retaining an unavailable disposition.",
+  "baseline_source": "data/completeness/local-54-summary.json",
+  "frozen_pre_p41_baseline": {
+    "total_cells": 96498,
+    "numeric_evidence_cells": 6007,
+    "numeric_evidence_pct": 6.22,
+    "governed_closure_cells": 90491,
+    "governed_closure_pct": 93.78
+  },
+  "governing_policy": {
+    "source_tiers": "S0-S7 from data/policy/local-54-indicator-contract.json and data/local-54-source-governance-contract.json",
+    "publication_presumption": "Publish the best defensible value with truthful source-tier, method, period, confidence and uncertainty labels rather than omit merely because the value is non-primary or modelled.",
+    "unavailable_last_resort": true,
+    "cannot_close_on_zero_numeric_gain": true,
+    "structural_not_applicable_remains_excluded": true,
+    "official_only_view_must_remain_available": true
+  },
+  "method_classes": [
+    {
+      "id": "direct_or_official_derived",
+      "expected_tiers": [
+        "S0",
+        "S1"
+      ],
+      "description": "Direct local official observations, exact aggregation, official administrative records and deterministic derivations."
+    },
+    {
+      "id": "secondary_verified_or_corroborated",
+      "expected_tiers": [
+        "S2",
+        "S3"
+      ],
+      "description": "Credible secondary observations tied to identifiable primary evidence or independently corroborated evidence lineages."
+    },
+    {
+      "id": "spatial_derivation",
+      "expected_tiers": [
+        "S1",
+        "S5"
+      ],
+      "description": "Point-in-polygon, raster zonal statistics, network intersection and other reproducible geography-aware derivations."
+    },
+    {
+      "id": "small_area_estimation",
+      "expected_tiers": [
+        "S5"
+      ],
+      "description": "Transparent survey small-area estimation using microdata and defensible covariates, with uncertainty and out-of-sample validation."
+    },
+    {
+      "id": "temporal_projection",
+      "expected_tiers": [
+        "S5"
+      ],
+      "description": "Projection of a known local observation to a later reference period using an explicit change model, never an unlabelled carry-forward."
+    },
+    {
+      "id": "constrained_downscaling",
+      "expected_tiers": [
+        "S5"
+      ],
+      "description": "Economic, agricultural or other modelled downscaling constrained to authoritative higher-level totals and validated against known observations."
+    },
+    {
+      "id": "probable_value_conflict",
+      "expected_tiers": [
+        "S4"
+      ],
+      "description": "Preferred value selected from conflicting defensible candidates under the existing P33 conflict policy, with alternatives retained."
+    }
+  ],
+  "required_indicator_matrix_fields": [
+    "indicator_id",
+    "level",
+    "applicability",
+    "current_numeric_coverage",
+    "preferred_method_class",
+    "alternative_method_classes",
+    "candidate_sources",
+    "expected_source_tier",
+    "feasibility_class",
+    "expected_cell_yield",
+    "boundary_vintage",
+    "reference_period",
+    "validation_method",
+    "uncertainty_method",
+    "rights_or_access_constraints",
+    "publication_label",
+    "fallback_reason_if_unavailable"
+  ],
+  "feasibility_classes": {
+    "A": "Deterministic/direct path available or highly likely; execute first.",
+    "B": "Reproducible spatial/administrative/secondary path available with bounded validation risk.",
+    "C": "Statistical/modelled path feasible with uncertainty and hold-out/back-aggregation validation.",
+    "D": "Projection/downscaling path potentially feasible but may publish only if indicator-specific validation thresholds are met.",
+    "E": "Structurally inapplicable, definitionally incompatible, rights-blocked, or model fails validation; retain S6/S7 with evidence."
+  },
+  "reusable_engines": [
+    "raster zonal-statistics engine",
+    "geocoded point-registry aggregation engine",
+    "network intersection and reconciliation engine",
+    "census/administrative geography crosswalk engine",
+    "survey small-area estimation engine",
+    "temporal projection engine",
+    "constrained economic/agricultural downscaling engine"
+  ],
+  "validation_framework": [
+    "Deterministic derivations must reconcile to authoritative totals where the measure is additive.",
+    "Spatial methods must use an explicit boundary vintage and report unmatched or ambiguous source records.",
+    "S5 small-area models require uncertainty intervals and out-of-sample or hold-out validation where data permit.",
+    "Modelled child estimates must be back-aggregated to known higher-level observations and residual bias reported.",
+    "No universal accuracy threshold is assumed: each indicator family must declare and justify its publication threshold before model execution.",
+    "A method that fails its declared validation gate cannot publish merely to increase coverage."
+  ],
+  "coverage_kpis": [
+    {
+      "id": "direct_official_numeric_coverage",
+      "definition": "Share of applicable cells with S0 direct or S1 official-derived numeric values."
+    },
+    {
+      "id": "best_available_numeric_coverage",
+      "definition": "Share of applicable cells with any defensible S0-S5 numeric value; this is the principal P42 product-coverage KPI."
+    },
+    {
+      "id": "model_dependence",
+      "definition": "Share of published numeric cells that rely on S5 modelled/projected estimates."
+    },
+    {
+      "id": "uncertainty_coverage",
+      "definition": "Share of S4/S5 published values carrying the required confidence/interval or uncertainty metadata."
+    },
+    {
+      "id": "nonstructural_unavailable_cells",
+      "definition": "Applicable cells still at S6 after every approved method path has been adjudicated."
+    }
+  ],
+  "public_product_requirements": [
+    "Default profile view may show the best available S0-S5 value for an applicable indicator.",
+    "Users must be able to switch to an Official/observed-only view that excludes modelled/secondary values as defined by the product policy.",
+    "Every S2-S5 value must display a distinct source-tier/method label and expose period, source inputs, confidence/uncertainty and methodology.",
+    "Estimated/modelled values must never be visually indistinguishable from direct official values.",
+    "Indicators with ranking_allowed=false remain non-rankable regardless of numeric availability; modelled values may not silently enable prohibited rankings."
+  ],
+  "waves": [
+    {
+      "id": "W1",
+      "title": "Deterministic spatial and administrative wins",
+      "methods": [
+        "direct_or_official_derived",
+        "secondary_verified_or_corroborated",
+        "spatial_derivation"
+      ],
+      "examples": [
+        "population surfaces",
+        "health facilities",
+        "schools",
+        "roads",
+        "geocoded service locations"
+      ]
+    },
+    {
+      "id": "W2",
+      "title": "Census and administrative reconstruction",
+      "methods": [
+        "direct_or_official_derived",
+        "secondary_verified_or_corroborated",
+        "spatial_derivation"
+      ],
+      "examples": [
+        "housing",
+        "ownership",
+        "education administrative measures",
+        "census crosswalks"
+      ]
+    },
+    {
+      "id": "W3",
+      "title": "Survey small-area estimation",
+      "methods": [
+        "small_area_estimation"
+      ],
+      "examples": [
+        "health",
+        "poverty",
+        "water/electricity",
+        "internet/computer use",
+        "literacy and other survey rates"
+      ]
+    },
+    {
+      "id": "W4",
+      "title": "Economic, agricultural and temporal modelling",
+      "methods": [
+        "temporal_projection",
+        "constrained_downscaling"
+      ],
+      "examples": [
+        "GCP/GVA",
+        "manufacturing/agriculture shares",
+        "maize area/production/yield",
+        "time-updated local estimates"
+      ]
+    }
+  ],
+  "outputs": [
+    "data/p42/numeric-maximisation-matrix.json covering all 54 indicators at county/constituency/ward level",
+    "machine-readable method/source feasibility and expected-yield assessment for every applicable non-numeric cell",
+    "reusable derivation/modelling engines with deterministic inputs and validation artifacts",
+    "updated candidate/preferred observations and Local-54 slot ledger carrying S0-S5 values",
+    "data/p42/best-available-coverage-ledger.json separating direct/derived/secondary/modelled/unavailable coverage",
+    "data/p42/numeric-maximisation-dashboard.json with before/after KPI movement",
+    "public Best available versus Official/observed-only control with methodology and uncertainty disclosure",
+    "indicator-family validation reports including reconciliation, hold-out/back-aggregation performance and publication decisions"
+  ],
+  "acceptance": [
+    "All 54 indicators are explicitly assessed at county, constituency and ward level, subject to applicability, against every relevant permitted method class.",
+    "Every applicable non-numeric cell is assigned a concrete executable method path or an evidence-backed reason why all permitted paths are infeasible or failed validation.",
+    "No applicable cell remains S6 solely because no direct local official table exists when a defensible S1-S5 method passes the indicator-specific validation gate.",
+    "Every A and B feasibility opportunity is executed; every C opportunity is either executed and validated or retained unavailable with recorded model-validation evidence; D opportunities publish only when their predeclared validation thresholds are met.",
+    "Best-available numeric coverage increases above the P41 closing baseline; the exact cell gain and percentage-point gain are reported separately from direct/official-derived coverage.",
+    "All S4/S5 published values carry method, period, boundary vintage, source inputs, confidence/uncertainty and validation metadata.",
+    "Zero values use arbitrary equal splitting, unlabelled parent-value inheritance, force-matched boundaries, invented precision or unsupported proxy substitution.",
+    "Deterministic additive measures reconcile where meaningful and modelled estimates report higher-level back-aggregation error/bias.",
+    "The public product distinguishes best-available from official/observed-only values and does not visually imply that estimated values are official observations.",
+    "Full Local-54, geography, browser, accessibility, release and GitHub Pages gates pass after the expanded numeric surface is published."
+  ]
+}
