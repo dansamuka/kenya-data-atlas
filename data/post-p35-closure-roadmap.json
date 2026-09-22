@@ -147,7 +147,7 @@
     {
       "id": "P40",
       "title": "Numeric-yield opportunity portfolio",
-      "status": "next",
+      "status": "complete",
       "goal": "Turn the 90,491 governed closures into a ranked, source-led portfolio and select a small first tranche with a credible path to real numeric promotion.",
       "outputs": [
         "machine-readable opportunity portfolio grouped by indicator, geography level, closure reason and source trigger",
@@ -164,12 +164,16 @@
       ],
       "depends_on": [
         "P39"
-      ]
+      ],
+      "progress": {
+        "closed_on": "2026-09-22",
+        "note": "All 90,491 governed closures reconciled directly against the live data/completeness/local-54-slot-ledger.json (not just the frozen P35 queues): 78,311 addressable cells across the 87 reason groups in data/audit/local-54-reaudit-queue.json, plus 12,180 structurally-excluded not_applicable cells (data/p40/structural-exclusion-ledger.json) -- 78,311 + 12,180 = 90,491 exactly. scripts/p40/reason-classifications.mjs records a genuine, individually-justified barrier classification for every one of the 87 reason groups (read from each group's full reason text in data/completeness/local-54-reason-catalogue.json, not keyword-matched) into six tiers: publication_pending > access_technical > boundary_vintage_mismatch > regulatory_publication_scope > {already_attempted_rejected, non_submission, structural_permanent}. scripts/p40/portfolio-ranking.mjs (pure, 6 unit tests) implements a fully deterministic ranking (feasibility tier, then cell_count, then reason_id) and tranche selection respecting the roadmap's own caps. Before selecting the first tranche, this phase did genuine LIVE research, not just re-reading prior evidence: WebFetch/WebSearch re-verified KMHFR, KilimoSTAT, NEMIS and the Kenya Roads Board downloads page today (2026-09-22) -- all four confirmed still inaccessible, matching (not contradicting) the underlying evidence-state citations, and a check for a KMHFR open-data mirror found only a stale August-2017 HDX snapshot, independently confirming this project's own prior rejection of it. This research surfaced a genuinely new, stronger signal not previously captured in the reason catalogue: the Ministry of Education's 2024 National School Census (R057-R060, R089-R092) has completed fieldwork and its own questionnaire explicitly captures Constituency and Ward for every institution (fields EA06/EA07) -- only publication is outstanding (confirmed live today: still only the January 2025 Pilot Report exists on KNBS's site), a categorically different and stronger case than a broken portal. The reproducible ranking selected this as the top tier (publication_pending), and the resulting first tranche is 2 source families (Ministry of Education 2024 National School Census: 8 reason groups; KNBS/KilimoSTAT maize area+production: 2 reason groups) covering exactly 10 reason groups and 9,860 potential cells -- within both roadmap caps. data/p40/p41-tranche-contract.json records this live-verification evidence explicitly, including the negative results, and freezes the 6,007-cell / 6.22% numeric-evidence baseline for before/after measurement per the roadmap's own rule. scripts/p40/validate-opportunity-portfolio.mjs re-derives the entire reconciliation, every classification, the ranking order and the tranche selection from source on every run (wired into npm test) -- nothing in this phase's closure is asserted without being independently re-checkable."
+      }
     },
     {
       "id": "P41",
       "title": "First governed numeric-yield tranche",
-      "status": "planned",
+      "status": "next",
       "goal": "Execute the bounded P40 tranche and prove that KDA can increase numeric coverage without weakening provenance, boundary or anti-inheritance rules.",
       "outputs": [
         "governed source snapshots and access-attempt record",

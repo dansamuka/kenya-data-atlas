@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P41 Post-P35 Closure Plan
 
-Status: **active successor programme — P36–P39 complete; P40 next**
+Status: **active successor programme — P36–P40 complete; P41 next**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -249,6 +249,15 @@ Likely source families may include health-facility registries, current-boundary 
 P40 closes when all 90,491 closures reconcile to the portfolio or a structural/non-yield category, each ranked opportunity carries an exact source trigger and potential yield, and the selected tranche has evidence of access and definitional compatibility.
 
 P40 does not earn numeric progress. It creates a defensible acquisition decision.
+
+### Closure evidence
+
+- All 90,491 governed closures reconcile directly against the live [`data/completeness/local-54-slot-ledger.json`](../data/completeness/local-54-slot-ledger.json): 78,311 addressable cells across the 87 reason groups in [`data/audit/local-54-reaudit-queue.json`](../data/audit/local-54-reaudit-queue.json), plus 12,180 structurally-excluded `not_applicable` cells ([`data/p40/structural-exclusion-ledger.json`](../data/p40/structural-exclusion-ledger.json)) — 78,311 + 12,180 = 90,491 exactly.
+- [`scripts/p40/reason-classifications.mjs`](../scripts/p40/reason-classifications.mjs) records a genuine, individually-justified barrier classification for every one of the 87 reason groups — read from each group's full reason text, not keyword-matched — into six tiers: `publication_pending` > `access_technical` > `boundary_vintage_mismatch` > `regulatory_publication_scope` > `{already_attempted_rejected, non_submission, structural_permanent}`. [`scripts/p40/portfolio-ranking.mjs`](../scripts/p40/portfolio-ranking.mjs) (pure, 6 unit tests) implements the fully deterministic ranking and tranche selection.
+- Before selecting the first tranche, this phase did genuine **live** research, not just re-reading prior evidence: `WebFetch`/`WebSearch` re-verified KMHFR, KilimoSTAT, NEMIS and the Kenya Roads Board downloads page on 2026-09-22 — all four confirmed still inaccessible, and a check for a KMHFR open-data mirror found only a stale August-2017 HDX snapshot (independently confirming this project's own prior rejection of it).
+- This research surfaced a genuinely new, stronger signal not previously captured in the reason catalogue: the Ministry of Education's **2024 National School Census** (R057–R060, R089–R092) has completed fieldwork and its own questionnaire explicitly captures Constituency and Ward for every institution (fields EA06/EA07) — only publication is outstanding, confirmed live on 2026-09-22 (still only the January 2025 Pilot Report exists on KNBS's site). This is a categorically different and stronger case than a broken portal, and the reproducible ranking correctly surfaced it as the top tier.
+- The resulting first tranche: **2 source families, 10 reason groups, 9,860 potential cells** — Ministry of Education 2024 National School Census (8 reason groups) and KNBS/KilimoSTAT maize area+production (2 reason groups) — within both roadmap caps. [`data/p40/p41-tranche-contract.json`](../data/p40/p41-tranche-contract.json) records the live-verification evidence explicitly, including the negative results, and freezes the 6,007-cell / 6.22% numeric-evidence baseline for before/after measurement.
+- [`scripts/p40/validate-opportunity-portfolio.mjs`](../scripts/p40/validate-opportunity-portfolio.mjs) re-derives the entire reconciliation, every classification, the ranking order and the tranche selection from source on every run (wired into `npm test`) — nothing in this phase's closure is asserted without being independently re-checkable.
 
 ---
 

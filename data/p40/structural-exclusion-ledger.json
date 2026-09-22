@@ -1,0 +1,8 @@
+{
+  "schema_version": "kda.p40.structural-exclusion-ledger.v1",
+  "as_of": "2026-09-22",
+  "definition": "The local-54 cells permanently excluded from the P40 addressable numeric-yield denominator: not_applicable (structurally inapplicable to that geography, e.g. an indicator defined only above ward level) and retired_replaced (superseded by a successor indicator). These are not \"unavailable pending future evidence\" -- no future source discovery would change their disposition.",
+  "not_applicable_cells": 12180,
+  "retired_replaced_cells": 0,
+  "total_structural_exclusion_cells": 12180
+}

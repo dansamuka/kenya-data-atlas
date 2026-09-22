@@ -1,0 +1,239 @@
+{
+  "schema_version": "kda.p40.p41-tranche-contract.v1",
+  "as_of": "2026-09-22",
+  "frozen_baseline": {
+    "numeric_evidence_cells": 6007,
+    "numeric_evidence_pct": 6.22
+  },
+  "caps": {
+    "max_source_families": 3,
+    "max_reason_groups": 10
+  },
+  "selected_source_families": [
+    "moe-2024-national-school-census",
+    "knbs-kilimostat-maize"
+  ],
+  "selected_reason_groups": [
+    "R089",
+    "R090",
+    "R091",
+    "R092",
+    "R057",
+    "R058",
+    "R059",
+    "R060",
+    "R064",
+    "R065"
+  ],
+  "potential_cell_yield": 9860,
+  "opportunities": [
+    {
+      "reason_id": "R089",
+      "indicator_codes": [
+        "IND-PRIMARY-CLASSROOM-TEACHERS"
+      ],
+      "levels": [
+        "ward"
+      ],
+      "cell_count": 1450,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results with a ward-level or institution-level table (its own field questionnaire captures Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or ward-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 1,450 current-boundary wards, or the Ministry of Education's Basic Education Statistical Booklet or KNBS Economic Survey begins publishing a sub-county/ward annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Primary classroom teachers, ward -- extends R057 a fortiori to ward; same census, same pending-publication barrier.",
+      "family": "moe-2024-national-school-census",
+      "rank": 1
+    },
+    {
+      "reason_id": "R090",
+      "indicator_codes": [
+        "IND-PUBLIC-PRIMARY-SCHOOLS"
+      ],
+      "levels": [
+        "ward"
+      ],
+      "cell_count": 1450,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results with a ward-level or institution-level table (its own field questionnaire captures Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or ward-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 1,450 current-boundary wards, or the Ministry of Education's Basic Education Statistical Booklet or KNBS Economic Survey begins publishing a sub-county/ward annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Public primary schools, ward -- extends R058 a fortiori to ward.",
+      "family": "moe-2024-national-school-census",
+      "rank": 2
+    },
+    {
+      "reason_id": "R091",
+      "indicator_codes": [
+        "IND-PUBLIC-SECONDARY-SCHOOLS"
+      ],
+      "levels": [
+        "ward"
+      ],
+      "cell_count": 1450,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results with a ward-level or institution-level table (its own field questionnaire captures Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or ward-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 1,450 current-boundary wards, or the Ministry of Education's Basic Education Statistical Booklet or KNBS Economic Survey begins publishing a sub-county/ward annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Public secondary schools, ward -- extends R059 a fortiori to ward.",
+      "family": "moe-2024-national-school-census",
+      "rank": 3
+    },
+    {
+      "reason_id": "R092",
+      "indicator_codes": [
+        "IND-SECONDARY-TEACHERS"
+      ],
+      "levels": [
+        "ward"
+      ],
+      "cell_count": 1450,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results with a ward-level or institution-level table (its own field questionnaire captures Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or ward-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 1,450 current-boundary wards, or the Ministry of Education's Basic Education Statistical Booklet or KNBS Economic Survey begins publishing a sub-county/ward annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Secondary teachers, ward -- extends R060 a fortiori to ward.",
+      "family": "moe-2024-national-school-census",
+      "rank": 4
+    },
+    {
+      "reason_id": "R057",
+      "indicator_codes": [
+        "IND-PRIMARY-CLASSROOM-TEACHERS"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results (which, per its own field questionnaire, capture Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or constituency-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 290 current-boundary constituencies, or the Ministry of Education's Basic Education Statistical Booklet begins publishing a sub-county/constituency annex.",
+      "classification": "publication_pending",
+      "classification_basis": "TSC/NEMIS primary-classroom-teachers, constituency -- 2024 National School Census captures Constituency+Ward natively; only publication is outstanding.",
+      "family": "moe-2024-national-school-census",
+      "rank": 5
+    },
+    {
+      "reason_id": "R058",
+      "indicator_codes": [
+        "IND-PUBLIC-PRIMARY-SCHOOLS"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results (which, per its own field questionnaire, capture Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or constituency-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 290 current-boundary constituencies, or the Ministry of Education's Basic Education Statistical Booklet begins publishing a sub-county/constituency annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Public primary schools, constituency -- same 2024 National School Census pending-publication finding as R057.",
+      "family": "moe-2024-national-school-census",
+      "rank": 6
+    },
+    {
+      "reason_id": "R059",
+      "indicator_codes": [
+        "IND-PUBLIC-SECONDARY-SCHOOLS"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results (which, per its own field questionnaire, capture Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or constituency-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 290 current-boundary constituencies, or the Ministry of Education's Basic Education Statistical Booklet begins publishing a sub-county/constituency annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Public secondary schools, constituency -- same 2024 National School Census pending-publication finding as R057.",
+      "family": "moe-2024-national-school-census",
+      "rank": 7
+    },
+    {
+      "reason_id": "R060",
+      "indicator_codes": [
+        "IND-SECONDARY-TEACHERS"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report",
+      "source_url": "https://www.education.go.ke/sites/default/files/2023-08/B5%20REPORT%20OF%20THE%20PRESIDENTIAL%20WORKING%20PARTY%20ON%20EDUCATION%20REFORM%207th%20JULY%202023%20.pdf",
+      "refresh_trigger": "KNBS publishes the main 2024 National School Census results (which, per its own field questionnaire, capture Constituency and Ward per institution), or NEMIS/TSC publish a public, credential-free institution-level export or constituency-filtered locator that can be aggregated with a disclosed crosswalk to the Atlas's 290 current-boundary constituencies, or the Ministry of Education's Basic Education Statistical Booklet begins publishing a sub-county/constituency annex.",
+      "classification": "publication_pending",
+      "classification_basis": "Secondary teachers, constituency -- same 2024 National School Census pending-publication finding as R057.",
+      "family": "moe-2024-national-school-census",
+      "rank": 8
+    },
+    {
+      "reason_id": "R064",
+      "indicator_codes": [
+        "IND-MAIZE-AREA"
+      ],
+      "levels": [
+        "ward"
+      ],
+      "cell_count": 1450,
+      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators; ward-level absence independently re-confirmed 2026-09-19 against KilimoSTAT (statistics.kilimo.go.ke, expired TLS certificate) and opendata.go.ke (host unreachable) and against the published agriculture-department materials of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru and Nandi County Governments",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf",
+      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases sub-county/ward administrative maize records once the KilimoSTAT platform is restored (its TLS certificate remains expired as of 2026-09-19), or any Kenyan county government publishes its own ward-level maize area/production/yield statistics (none of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru or Nandi did so as of this 2026-09-19 check), or a future National Agriculture Production Report edition adds a constituency/ward annex.",
+      "classification": "access_technical",
+      "classification_basis": "Maize area, ward -- extends R061 a fortiori; same KilimoSTAT barrier.",
+      "family": "knbs-kilimostat-maize",
+      "rank": 9
+    },
+    {
+      "reason_id": "R065",
+      "indicator_codes": [
+        "IND-MAIZE-PRODUCTION"
+      ],
+      "levels": [
+        "ward"
+      ],
+      "cell_count": 1450,
+      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators; ward-level absence independently re-confirmed 2026-09-19 against KilimoSTAT (statistics.kilimo.go.ke, expired TLS certificate) and opendata.go.ke (host unreachable) and against the published agriculture-department materials of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru and Nandi County Governments",
+      "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/01/National-Agriculture-Production-Report-2024.pdf",
+      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases sub-county/ward administrative maize records once the KilimoSTAT platform is restored (its TLS certificate remains expired as of 2026-09-19), or any Kenyan county government publishes its own ward-level maize area/production/yield statistics (none of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru or Nandi did so as of this 2026-09-19 check), or a future National Agriculture Production Report edition adds a constituency/ward annex.",
+      "classification": "access_technical",
+      "classification_basis": "Maize production, ward -- extends R062 a fortiori.",
+      "family": "knbs-kilimostat-maize",
+      "rank": 10
+    }
+  ],
+  "live_verification": [
+    {
+      "checked_on": "2026-09-22",
+      "target": "https://www.knbs.or.ke/reports_category/2024/ (KNBS 2024 report listing)",
+      "family": "moe-2024-national-school-census",
+      "result": "still_pending",
+      "detail": "Live fetch of KNBS's 2024 reports category page lists 10 reports; no 2024 National School Census main report (only the January 2025 Pilot Report, already known, is published anywhere as of this check). Matches the 2026-09-18 evidence-state finding -- no change."
+    },
+    {
+      "checked_on": "2026-09-22",
+      "target": "https://kmhfr.health.go.ke/public/facilities",
+      "family": "moh-kmhfr (considered, not selected into this tranche)",
+      "result": "unreachable",
+      "detail": "ECONNREFUSED. Consistent with every prior check (P24, P28A 2026-09-16, P31/P32 2026-09-18) -- persistently down, not a transient outage. Its only public mirror (HDX) is an August 2017 snapshot, independently re-confirmed stale in this session's own research and already known unusable to this project (no coordinates, predates the 2023 census)."
+    },
+    {
+      "checked_on": "2026-09-22",
+      "target": "https://statistics.kilimo.go.ke (KilimoSTAT)",
+      "family": "knbs-kilimostat-maize",
+      "result": "unreachable",
+      "detail": "TLS certificate expired. Matches the 2026-09-19 evidence-state finding -- no change. A live web search independently confirmed no Kenyan county government publishes a citable ward-level maize report as an alternative."
+    },
+    {
+      "checked_on": "2026-09-22",
+      "target": "https://nemis.education.go.ke",
+      "family": "moe-2024-national-school-census (alternate avenue considered)",
+      "result": "unreachable",
+      "detail": "ECONNREFUSED, consistent with R057's own finding (TLS handshake failure; HTTP fallback is a credentialed login screen only). This is why the tranche relies on the pending census publication, not a NEMIS re-check, as its credible path."
+    },
+    {
+      "checked_on": "2026-09-22",
+      "target": "https://krb.go.ke/downloads/ (Kenya Roads Board)",
+      "family": "krb-class-c-roads (not addressable; already_attempted_rejected)",
+      "result": "confirms_no_bulk_gis_available",
+      "detail": "Live fetch lists corporate/technical/planning documents only -- no downloadable GIS/shapefile/classified road-network dataset. Confirms this remains a dead end, consistent with the already-rejected P31 spatial-derivation attempt."
+    }
+  ],
+  "fallback_rule": "Per data/post-p35-closure-roadmap.json's P40/P41 programme rules: a data-yield tranche cannot close with zero numeric promotions. If live re-verification at P41 execution time finds every selected opportunity still blocked, this tranche must be revised and a replacement tranche selected from the next-ranked opportunities in data/p40/opportunity-portfolio.json rather than closing P41 empty."
+}
