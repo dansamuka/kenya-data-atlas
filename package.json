@@ -103,7 +103,7 @@
     "status:build": "node scripts/status/build-status.mjs",
     "status:validate": "node scripts/status/validate-status.mjs && node --test tests/status/workflow-run-classifier.spec.mjs tests/status/successor-roadmap.spec.mjs",
     "p42:build-matrix": "node scripts/p42/build-numeric-maximisation-matrix.mjs",
-    "p42:validate": "node scripts/p42/validate-numeric-maximisation-contract.mjs && node scripts/p42/validate-numeric-maximisation-matrix.mjs && node --test tests/p42/method-selection.spec.mjs"
+    "p42:validate": "node scripts/p42/validate-numeric-maximisation-contract.mjs && node scripts/p42/validate-numeric-maximisation-matrix.mjs && node --test tests/p42/method-selection.spec.mjs tests/p42/validation-gate.spec.mjs"
   },
   "dependencies": {
     "polygon-clipping": "^0.15.7"
