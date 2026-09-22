@@ -231,5 +231,16 @@
     "Deterministic additive measures reconcile where meaningful and modelled estimates report higher-level back-aggregation error/bias.",
     "The public product distinguishes best-available from official/observed-only values and does not visually imply that estimated values are official observations.",
     "Full Local-54, geography, browser, accessibility, release and GitHub Pages gates pass after the expanded numeric surface is published."
-  ]
+  ],
+  "active_execution": {
+    "pilot_id": "P42-SAE-001",
+    "target_indicator_id": "IND-STUNTING-RATE",
+    "status": "input_access_pending",
+    "source_readiness": "data/p42/kenada-source-readiness.json",
+    "pilot_contract": "data/p42/sae-pilot-contract.json",
+    "readiness_report": "data/p42/sae-pilot-readiness-report.json",
+    "methodology": "docs/methodology/P42-STUNTING-SAE-PILOT.md",
+    "potential_new_cells": 1740,
+    "current_numeric_gain": 0
+  }
 }
