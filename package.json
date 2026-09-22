@@ -95,7 +95,7 @@
     "p39:cleanup-branches": "node scripts/p39/execute-branch-cleanup.mjs",
     "p39:archive-workflows": "node scripts/p39/archive-historical-workflows.mjs",
     "p39:health": "node scripts/p39/build-repository-health-report.mjs",
-    "p39:validate": "node scripts/p39/validate-branch-cleanup.mjs && node --test tests/p39/branch-cleanup-planner.spec.mjs tests/p39/workflow-archival-planner.spec.mjs",
+    "p39:validate": "node scripts/p39/validate-branch-cleanup.mjs && node scripts/p39/validate-workflow-archival.mjs && node --test tests/p39/branch-cleanup-planner.spec.mjs tests/p39/workflow-archival-planner.spec.mjs",
     "status:build": "node scripts/status/build-status.mjs",
     "status:validate": "node scripts/status/validate-status.mjs && node --test tests/status/workflow-run-classifier.spec.mjs tests/status/successor-roadmap.spec.mjs"
   },

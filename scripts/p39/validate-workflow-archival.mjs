@@ -40,7 +40,7 @@ function main() {
 
     if (entry.status === 'archived' || entry.status === 'already_archived') {
       if (!liveText.includes(ARCHIVE_MARKER)) fail(`${entry.file} is reported ${entry.status} but its live content carries no archive marker`);
-      if (!/on:\n {2}workflow_dispatch:\n/.test(liveText)) fail(`${entry.file} is reported archived but its live on: block is not workflow_dispatch-only`);
+      if (!/on:\r?\n {2}workflow_dispatch:\r?\n/.test(liveText)) fail(`${entry.file} is reported archived but its live on: block is not workflow_dispatch-only`);
       archivedCount += 1;
     } else {
       if (liveText.includes(ARCHIVE_MARKER)) fail(`${entry.file} is reported ${entry.status} but its live content already carries an archive marker -- report is stale`);

@@ -11,10 +11,9 @@
     "mode": "executed"
   },
   "workflow_archival": {
-    "status": "pending",
-    "archived": 0,
-    "total_historical_one_off": 49,
-    "note": "workflow archival has not run yet in this environment -- rewriting .github/workflows/*.yml trigger blocks requires a human-dispatched run of .github/workflows/p39-cleanup.yml (action: archive-workflows)"
+    "status": "complete",
+    "archived": 49,
+    "total_historical_one_off": 49
   },
   "permanent_and_shared_gates_untouched": 45,
   "consolidation_note": "No exact-duplicate shared_gate workflows were found to consolidate in this pass -- the 33 shared_gate workflows are distinct, indicator/file-scoped validators (different watched data files and assertions), not literal template duplicates. Deferred rather than forced."
