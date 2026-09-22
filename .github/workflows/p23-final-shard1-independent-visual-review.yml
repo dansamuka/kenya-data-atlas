@@ -1,10 +1,10 @@
 name: P23 final shard 1 independent visual review
 
+# Archived by P39 (2026-09-22): originally triggered on pull_request, workflow_dispatch, every
+# path scoped only to this workflow's own files (P38 classification: historical_one_off). Will not
+# fire automatically again; preserved as a governed evidence record and kept available for
+# on-demand manual re-run via workflow_dispatch.
 on:
-  pull_request:
-    paths:
-      - data/p23/form34b-final-shard1-independent-visual-review.json
-      - .github/workflows/p23-final-shard1-independent-visual-review.yml
   workflow_dispatch:
 
 permissions:

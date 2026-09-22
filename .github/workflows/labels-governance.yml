@@ -1,9 +1,10 @@
 name: Repository label governance
 
+# Archived by P39 (2026-09-22): originally triggered on push, workflow_dispatch, every
+# path scoped only to this workflow's own files (P38 classification: historical_one_off). Will not
+# fire automatically again; preserved as a governed evidence record and kept available for
+# on-demand manual re-run via workflow_dispatch.
 on:
-  push:
-    paths:
-      - '.github/workflows/labels-governance.yml'
   workflow_dispatch:
 
 permissions:

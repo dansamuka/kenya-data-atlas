@@ -1,34 +1,38 @@
 name: P39 repository cleanup
 
 # Manual only, and scoped to exactly the P38-authorised actions:
-#   - archive-workflows: narrows every P38-classified historical_one_off workflow's trigger to
-#     workflow_dispatch-only (never deletes the file -- see data/p38/retention-policy.json).
 #   - cleanup-branches-dry-run / cleanup-branches-execute: re-verifies the P38 first-cleanup-batch
 #     against LIVE branch/PR state immediately before any deletion decision, then reports or
 #     deletes accordingly. Dispatch mode keeps this a human-triggered, auditable Actions run
 #     rather than an unreviewed local execution.
+#
+# There is no archive-workflows action here: the default GITHUB_TOKEN can never push changes to
+# files under .github/workflows/ (a hardcoded GitHub anti-escalation restriction -- see the
+# permissions block below), so that half of P39 (narrowing historical_one_off workflow triggers to
+# workflow_dispatch-only) was applied directly instead; see scripts/p39/workflow-archival-planner.mjs
+# and data/p39/workflow-archival-report.json for how and what.
 on:
   workflow_dispatch:
     inputs:
       action:
-        description: 'Which P39 action to run'
+        description: 'Which P39 action to run (archive-workflows is NOT here: the default GITHUB_TOKEN can never push to .github/workflows/, so that action cannot run inside CI -- see scripts/p39/archive-historical-workflows.mjs)'
         required: true
         type: choice
         options:
-          - archive-workflows
           - cleanup-branches-dry-run
           - cleanup-branches-execute
 
 permissions:
   contents: write
   pull-requests: read
-  # Required specifically because archive-workflows commits changes to files under
-  # .github/workflows/ -- without this, GitHub rejects the push even though contents:write alone
-  # is enough for every other path this job touches (e.g. data/p39/**). Confirmed by a real failed
-  # dispatch: "refusing to allow a GitHub App to create or update workflow ... without workflows
-  # permission" (run 35587681353, 2026-09-21) after the archival step itself succeeded locally in
-  # the runner and only the push was rejected.
-  workflows: write
+  # NOTE: the default GITHUB_TOKEN can NEVER push changes to files under .github/workflows/,
+  # regardless of any permissions requested here -- this is a hardcoded GitHub anti-escalation
+  # restriction (confirmed by a real rejected push, run 35587681353, 2026-09-21: "refusing to
+  # allow a GitHub App to create or update workflow ... without workflows permission"; a follow-up
+  # attempt to request a "workflows" key here was itself rejected as invalid YAML -- that scope
+  # does not exist in this block's schema at all). The archive-workflows action therefore never
+  # commits from inside this job; see scripts/p39/archive-historical-workflows.mjs's own docs for
+  # how that half of P39 is actually executed.
 
 jobs:
   cleanup:
@@ -46,14 +50,6 @@ jobs:
 
       - name: Validate P39 contract
         run: node --test tests/p39/branch-cleanup-planner.spec.mjs tests/p39/workflow-archival-planner.spec.mjs
-
-      - name: Archive historical one-off workflows
-        if: inputs.action == 'archive-workflows'
-        run: node scripts/p39/archive-historical-workflows.mjs
-
-      - name: Validate workflow archival
-        if: inputs.action == 'archive-workflows'
-        run: node scripts/p39/validate-workflow-archival.mjs
 
       - name: Branch cleanup (dry run)
         if: inputs.action == 'cleanup-branches-dry-run'
@@ -73,7 +69,7 @@ jobs:
 
       - name: Commit refreshed P39 reports
         run: |
-          git add data/p39 .github/workflows
+          git add data/p39
           if git diff --cached --quiet; then
             echo 'No P39 report changes to commit.'
             exit 0

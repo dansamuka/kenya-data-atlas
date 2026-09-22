@@ -1,10 +1,11 @@
 name: P23 cycle 1 latest 30-way shard0 new1 terminal classification
 
+# Archived by P39 (2026-09-22): originally triggered on pull_request, every
+# path scoped only to this workflow's own files (P38 classification: historical_one_off). Will not
+# fire automatically again; preserved as a governed evidence record and kept available for
+# on-demand manual re-run via workflow_dispatch.
 on:
-  pull_request:
-    paths:
-      - data/p23/p23-cycle1-terminal-classification-latest30way-shard0-new1.json
-      - .github/workflows/p23-cycle1-terminal-classification-latest30way-shard0-new1.yml
+  workflow_dispatch:
 
 permissions:
   contents: read
