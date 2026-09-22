@@ -5,16 +5,16 @@
   "total_rows": 162,
   "by_feasibility_class": {
     "A": 64,
-    "C": 60,
-    "E": 26,
+    "C": 62,
+    "E": 24,
     "B": 12
   },
   "by_preferred_method_class": {
     "direct_or_official_derived": 64,
     "constrained_downscaling": 10,
-    "none": 26,
+    "none": 24,
     "small_area_estimation": 50,
-    "spatial_derivation": 12
+    "spatial_derivation": 14
   },
   "rows": [
     {
@@ -2317,9 +2317,9 @@
       "reason_id": "R045",
       "candidate_source": "KNBS — 2019 Kenya Population and Housing Census Reports",
       "candidate_source_url": "https://new.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
-      "preferred_method_class": null,
-      "feasibility_class": "E",
-      "rationale": "source data exists at an incompatible boundary vintage and this indicator's treatment_class does not permit a spatial-derivation crosswalk."
+      "preferred_method_class": "spatial_derivation",
+      "feasibility_class": "C",
+      "rationale": "the census control exists at county level and this indicator explicitly permits a modelled estimate; a transparent gridded-population spatial allocation may downscale the official county total to the current constituency/ward geography if parent reconciliation and model-sensitivity gates pass."
     },
     {
       "indicator_id": "IND-POPULATION",
@@ -2335,9 +2335,9 @@
       "reason_id": "R046",
       "candidate_source": "KNBS — 2019 Kenya Population and Housing Census Reports (Volumes I–IV)",
       "candidate_source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/",
-      "preferred_method_class": null,
-      "feasibility_class": "E",
-      "rationale": "source data exists at an incompatible boundary vintage and this indicator's treatment_class does not permit a spatial-derivation crosswalk."
+      "preferred_method_class": "spatial_derivation",
+      "feasibility_class": "C",
+      "rationale": "the census control exists at county level and this indicator explicitly permits a modelled estimate; a transparent gridded-population spatial allocation may downscale the official county total to the current constituency/ward geography if parent reconciliation and model-sensitivity gates pass."
     },
     {
       "indicator_id": "IND-POVERTY-RATE",
