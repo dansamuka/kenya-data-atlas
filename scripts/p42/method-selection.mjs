@@ -35,7 +35,7 @@ const MODELLED_METHOD_BY_TREATMENT_CLASS = {
   facility_service_rate: 'small_area_estimation'
 };
 
-export function selectMethod({ barrierClassification, treatmentClass, allowedStates }) {
+export function selectMethod({ barrierClassification, treatmentClass, allowedStates, indicatorId = null }) {
   switch (barrierClassification) {
     case 'already_numeric':
       return { method_class: 'direct_or_official_derived', feasibility_class: 'A', rationale: 'already resolved with a numeric S0/S1 value; no further method needed.' };
@@ -55,7 +55,10 @@ export function selectMethod({ barrierClassification, treatmentClass, allowedSta
       if (allows(allowedStates, 'spatial_derivation')) {
         return { method_class: 'spatial_derivation', feasibility_class: 'C', rationale: 'source data exists but at an incompatible boundary vintage; a genuine geometry crosswalk (not population/equal-share allocation) may resolve it, pending a verified boundary source.' };
       }
-      return { method_class: null, feasibility_class: 'E', rationale: 'source data exists at an incompatible boundary vintage and this indicator\'s treatment_class does not permit a spatial-derivation crosswalk.' };
+      if (indicatorId === 'IND-POPULATION' && allowedStates.includes('modelled_estimate')) {
+        return { method_class: 'spatial_derivation', feasibility_class: 'C', rationale: 'the census control exists at county level and this indicator explicitly permits a modelled estimate; a transparent gridded-population spatial allocation may downscale the official county total to the current constituency/ward geography if parent reconciliation and model-sensitivity gates pass.' };
+      }
+      return { method_class: null, feasibility_class: 'E', rationale: 'source data exists at an incompatible boundary vintage and this indicator\'s treatment_class does not permit an approved spatial/modelled crosswalk for this indicator.' };
     }
 
     case 'regulatory_publication_scope':
