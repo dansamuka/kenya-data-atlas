@@ -1,0 +1,21 @@
+{
+  "schema_version": "kda.p41.yield-report.v1",
+  "as_of": "2026-09-22",
+  "tranche_reference": "data/p40/p41-tranche-contract.json",
+  "access_attempt_reference": "data/p41/access-attempt-record.json",
+  "baseline": {
+    "numeric_evidence_cells": 6007,
+    "numeric_evidence_pct": 6.22
+  },
+  "current": {
+    "numeric_evidence_cells": 6007,
+    "numeric_evidence_pct": 6.22
+  },
+  "cell_gain": 0,
+  "percentage_point_gain": 0,
+  "promotions": [],
+  "promotion_count": 0,
+  "all_selected_opportunities_blocked": true,
+  "outcome": "zero_yield_blocked",
+  "roadmap_disposition": "Per the roadmap's own P41 closure gate: all selected opportunities remain blocked (see data/p41/access-attempt-record.json for the dated, two-method-verified evidence), so P41 stays open rather than closing as a zero-yield cycle. The programme returns to P40 to consider a replacement tranche -- see access-attempt-record.json's auxiliary_due_diligence_checks for a flagged candidate (KeNADA, statistics.knbs.or.ke/nada) not yet investigated deeply enough to select."
+}
