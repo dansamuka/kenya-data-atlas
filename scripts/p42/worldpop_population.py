@@ -44,10 +44,10 @@ def build_level(level, geo_path, central_raster, sensitivity_raster, controls, r
     central_raw=zonal_sums(g, central_raster)
     sensitivity_raw=zonal_sums(g, sensitivity_raster)
 
+    county_by_child={}
     if level=="constituency":
         county_by_child={str(row.geography_id):str(row.parent_id) for row in g.itertuples()}
     else:
-        constituency_parent={}
         # Registry is authoritative for hierarchy; ward parent is constituency.
         by_id={str(x["geography_id"]):x for x in registry}
         for row in g.itertuples():
