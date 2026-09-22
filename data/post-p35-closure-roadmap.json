@@ -203,7 +203,7 @@
     {
       "id": "P42",
       "title": "Full Local-54 best-available numeric maximisation",
-      "status": "planned",
+      "status": "in_progress",
       "goal": "Scale the P40/P41 numeric-yield approach across every applicable Local-54 cell so the public product displays the best defensible S0–S5 value wherever direct, secondary, spatial, modelled or projectable evidence can pass a transparent validation gate.",
       "outputs": [
         "54-indicator × geography method matrix covering direct, derived, secondary, spatial, small-area-estimation, temporal-projection and constrained-downscaling paths",
@@ -227,7 +227,11 @@
       "depends_on": [
         "P41"
       ],
-      "contract": "data/p42/numeric-maximisation-contract.json"
+      "contract": "data/p42/numeric-maximisation-contract.json",
+      "progress": {
+        "updated_on": "2026-09-22",
+        "note": "First required output built and validated: data/p42/numeric-maximisation-matrix.json, the full 54-indicator x geography (county/constituency/ward = 162 rows) method matrix required before any broad execution. Every row is mechanically derived, not freshly judged per row: scripts/p42/method-selection.mjs (pure, 12 unit tests) translates P40's already-individually-justified barrier classification for every closure-reason group into P42's method_class/feasibility_class vocabulary, constrained by what data/policy/local-54-indicator-contract.json's treatment_classes actually permit for that specific indicator (a barrier reading never overrides governing policy -- e.g. a structural_permanent survey-domain ceiling under survey_small_area is a genuine feasibility-C small_area_estimation candidate because that treatment_class explicitly permits modelled_estimate, while the identical barrier under electoral_direct, which never permits modelled_estimate, stays feasibility E). Full reconciliation confirmed exact: 162 rows sum to 96,498 total cells and 6,007 numeric cells, matching the live ledger precisely, and every per-barrier-classification row count matches P40's own counts exactly (already_numeric=56, structural_permanent=60, not_applicable=14, access_technical=12, boundary_vintage_mismatch=7, publication_pending=8, already_attempted_rejected=2, regulatory_publication_scope=2, non_submission=1). Result distribution: feasibility A=64 (already resolved or a deterministic path once published), B=12 (access-blocked but policy-permitted once reachable), C=60 (genuine modelled -- small_area_estimation or constrained_downscaling -- candidates pending real indicator-specific validation work, not yet executed), E=26 (structurally excluded by policy or already-rejected). The 60 feasibility-C rows are this matrix's most significant honest finding: most are survey-based rate indicators (KDHS, Kenya Housing Survey) that P40 had correctly classified as structural_permanent (the survey's own sampling domain never reaches this geography) but that this project's own governing policy explicitly permits as small_area_estimation candidates -- a real, substantial engineering/statistical undertaking for a later P42 wave, not something claimed as done here. scripts/p42/validate-numeric-maximisation-matrix.mjs re-derives every row's cell counts, barrier classification and method/feasibility selection from source on every run -- wired into npm test. P42's own closure remains gated on P41 actually closing (its acceptance criterion requires exceeding 'the P41 closing baseline', which does not yet exist while P41 stays open) and on genuinely executing/validating the A/B/C opportunities this matrix has identified -- neither attempted yet."
+      }
     }
   ],
   "formal_closure_order": "P36 → P37 → P38 → P39 → P40 → P41 → P42",
