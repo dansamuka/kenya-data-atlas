@@ -1,4 +1,4 @@
-# Kenya Data Atlas — P36–P41 Post-P35 Closure Plan
+# Kenya Data Atlas — P36–P42 Post-P35 Closure Plan
 
 Status: **active successor programme — P36–P40 complete; P41 next**
 Created: **20 September 2026**  
@@ -13,13 +13,14 @@ P00–P35 remain complete. This plan does not reopen or dilute that result:
 - P27–P35 Local-54 completion and provenance: **9/9 complete**;
 - historical total: **36/36 complete**.
 
-P36–P41 is a separate successor programme for the work revealed by the final P35 review. It addresses five residual recommendations:
+P36–P42 is a separate successor programme for the work revealed by the final P35 review and the subsequent numeric-coverage assessment. It addresses six residual recommendations:
 
 1. give P32 a dedicated validator and remove the remaining assurance ambiguity;
 2. make the canonical status issue wait for settled CI and distinguish real queues from GitHub-side phantom records;
 3. classify and safely clean stale branch/workflow history without destroying evidence;
 4. turn the governed-closure population into a ranked numeric-yield portfolio; and
-5. deliver a first bounded tranche that measurably raises real numeric coverage.
+5. deliver a first bounded tranche that measurably raises real numeric coverage; and
+6. scale the proven approach across all 54 indicators so every applicable geography shows the best defensible numeric value that can pass an explicit validation gate.
 
 The programme deliberately separates repository hardening from data acquisition. No phase may claim progress by relabelling a governed closure as a value, weakening evidence standards or copying a broader-geography number downward.
 
@@ -48,6 +49,7 @@ The 24 phantom records were created on 13 September 2026, contain no jobs and ha
 | Remove authorised stale references and consolidate CI | **P39** | Cleanup is executed in recoverable batches only after P38 approval. |
 | Prioritise the 90,491 closures by realistic numeric yield | **P40** | A source-led portfolio prevents another broad closure exercise with no new values. |
 | Prove the portfolio through a measurable data release | **P41** | The first tranche is small, source-bounded and cannot close with zero numeric promotions. |
+| Maximise best-available numeric coverage across all 54 indicators | **P42** | Scales validated direct, secondary, spatial, SAE, projection and constrained-downscaling methods across every applicable county/constituency/ward cell. |
 
 ## Programme rules
 
@@ -58,6 +60,9 @@ The 24 phantom records were created on 13 September 2026, contain no jobs and ha
 - Numeric evidence and governed closures are always reported separately.
 - Parent-to-child inheritance, arbitrary splitting, force-matched boundaries and invented precision remain prohibited.
 - A P41 tranche cannot close with zero numeric promotions. If every selected opportunity remains blocked, P40 must select a replacement tranche.
+- P42 treats `Data unavailable` as a last-resort state for applicable indicators: every relevant permitted S1–S5 path must be adjudicated before S6 is retained.
+- Best-available numeric coverage and direct/official-derived coverage are always reported separately so greater utility never disguises greater model dependence.
+- A modelled/projected value may publish only after its indicator-specific validation gate passes and must remain visually distinct from official observations.
 - Any website change must pass the full browser, accessibility, release and Pages gates.
 
 ---
@@ -108,7 +113,7 @@ P29 and P32 now have distinct assurance jobs: P29 proves the complete 96,498-cel
 ### Scope
 
 - add a finalisation path after critical workflows settle, using a bounded `workflow_run`, scheduled or equivalent aggregation trigger;
-- report the closed P00–P35 baseline and the P36–P41 successor programme as separate progress counters;
+- report the closed P00–P35 baseline and the P36–P42 successor programme as separate progress counters;
 - classify workflow states as fresh queued, active, completed, stale or phantom;
 - identify a phantom record through objective evidence such as zero jobs, unchanged timestamps and an age threshold;
 - keep fresh queued/in-progress runs visible as blockers;
@@ -297,13 +302,120 @@ If all selected opportunities remain blocked, P41 stays open. The programme retu
 
 ---
 
+## P42 — Full Local-54 best-available numeric maximisation
+
+**Goal:** Move KDA from a mostly governed-but-empty Local-54 surface to the highest defensible numeric coverage achievable across all applicable county, constituency and ward cells.
+
+P42 is intentionally broader than P41. P40 ranks opportunities and P41 proves that the repository can promote at least one bounded tranche safely. P42 then scales the validated approach across the entire 54-indicator product surface. The machine-readable phase contract is [`data/p42/numeric-maximisation-contract.json`](../data/p42/numeric-maximisation-contract.json).
+
+### Publication principle
+
+For every applicable indicator/geography cell, ask:
+
+> **What is the best defensible value KDA can publish here?**
+
+The method hierarchy is not limited to directly published local tables. P42 may use, subject to the existing S0–S7 governance contract and indicator-specific rules:
+
+1. direct official observations and exact official derivations;
+2. verified or corroborated secondary evidence;
+3. reproducible spatial derivation from points, rasters or networks;
+4. transparent survey small-area estimation with uncertainty;
+5. temporal projection from a valid local baseline;
+6. constrained economic/agricultural downscaling that reconciles to authoritative higher-level totals; and
+7. P33 probable-value treatment where credible sources conflict.
+
+`Data unavailable` remains valid when evidence or a model genuinely fails. It is no longer an acceptable terminal state merely because no official table is published at exactly the requested geography.
+
+### Required 54-indicator method matrix
+
+Before broad execution, P42 must classify every indicator at county, constituency and ward level by:
+
+- applicability and current numeric coverage;
+- preferred and alternative method classes;
+- candidate sources and expected S0–S5 tier;
+- feasibility class A–E;
+- expected cell yield;
+- geography/boundary vintage and reference period;
+- validation and uncertainty method;
+- source-access/rights constraints;
+- public label; and
+- the exact fallback reason if the value ultimately remains unavailable.
+
+The matrix must cover all 54 indicators; it cannot be limited to the highest-yield source families.
+
+### Reusable engines
+
+P42 should build reusable source-family infrastructure rather than one-off scripts for every indicator:
+
+- raster zonal statistics;
+- geocoded point-registry aggregation;
+- network intersection/reconciliation;
+- census/administrative geography crosswalks;
+- survey small-area estimation;
+- temporal projection; and
+- constrained economic/agricultural downscaling.
+
+### Validation boundary
+
+Numeric coverage is never increased merely to hit a percentage. Publication requires the method to pass a declared indicator-family gate.
+
+- additive deterministic measures must reconcile where meaningful;
+- spatial methods must disclose boundary vintage, unmatched records and coverage;
+- S5 small-area estimates require uncertainty and hold-out/out-of-sample validation where data permit;
+- modelled child estimates must be back-aggregated to known higher-level observations and residual bias/error reported;
+- each indicator family declares its publication threshold before model execution;
+- a failed method remains unpublished rather than being softened after seeing the result.
+
+### Product treatment
+
+The default Local-54 experience may show the **Best available** S0–S5 value. Users must also have an **Official/observed-only** view.
+
+Every secondary/probable/modelled value must remain visibly distinct from a direct official observation and expose its period, source inputs, method, confidence/uncertainty and validation metadata. Existing `ranking_allowed=false` restrictions remain binding regardless of whether P42 makes a numeric value available.
+
+### Coverage KPIs
+
+P42 reports at least:
+
+- **direct/official-derived numeric coverage** — S0/S1;
+- **best-available numeric coverage** — all defensible S0–S5 values, the principal product KPI;
+- **model dependence** — S5 share of published numeric cells;
+- **uncertainty coverage** — share of S4/S5 values carrying required uncertainty metadata; and
+- **non-structural unavailable cells** — applicable S6 cells remaining after method adjudication.
+
+The 6,007 / 6.22% figure is the frozen pre-P41 reference point. P42's true execution baseline is P41's closing numeric count, so P42 must report both the historical 6.22% starting point and the incremental gain after P41.
+
+### Execution waves
+
+1. **W1 — deterministic spatial and administrative wins:** population surfaces, facilities, schools, roads and other geocoded services.
+2. **W2 — census/admin reconstruction:** housing, ownership, education and compatible census crosswalks.
+3. **W3 — survey SAE:** health, poverty, utilities/connectivity, literacy and other survey rates.
+4. **W4 — economic/agricultural/projection:** GCP/GVA, manufacturing/agriculture, maize measures and time-updated local estimates.
+
+### Closure gate
+
+P42 closes only when:
+
+- all 54 indicators have been assessed at all applicable geography levels against every relevant permitted method class;
+- every applicable non-numeric cell has an executable path or evidence that all permitted paths are infeasible/failed validation;
+- no S6 cell remains solely because a direct local official table does not exist when a defensible S1–S5 method passes validation;
+- every high-feasibility A/B opportunity has been executed and all C opportunities are either validated or carry explicit model-failure evidence;
+- best-available numeric coverage is above the P41 closing baseline, with exact cell and percentage-point gains reported separately from direct/official-derived coverage;
+- all S4/S5 values carry complete uncertainty/method/source metadata;
+- zero arbitrary splitting, unlabelled inheritance, force-matched boundaries, invented precision or unsupported proxy substitution is present;
+- the public **Best available / Official-observed only** distinction is implemented; and
+- Local-54, geography, browser, accessibility, release and Pages gates all pass.
+
+P42 therefore cannot close by producing another exhaustive list of unavailable values. Its deliverable is a materially more populated Atlas, bounded by transparent uncertainty rather than by an official-table-only publication philosophy.
+
+---
+
 ## Closure order and bounded parallel work
 
 Formal closure order:
 
-`P36 → P37 → P38 → P39 → P40 → P41`
+`P36 → P37 → P38 → P39 → P40 → P41 → P42`
 
-P40 source reconnaissance may begin while P38/P39 execute, but the portfolio cannot close until the post-cleanup baseline is stable. P41 cannot begin until P40 freezes the exact source families, closure groups, expected yield and validation method.
+P40 source reconnaissance may begin while P38/P39 execute, and P42 method-matrix design may begin during P41. P41 cannot begin until P40 freezes the exact source families, closure groups, expected yield and validation method; P42 cannot close until P41 has demonstrated at least one real numeric promotion and established the execution baseline.
 
 ## Phase completion protocol
 
@@ -316,4 +428,4 @@ At the end of each phase:
 5. keep the historical P00–P35 ledgers unchanged;
 6. merge one coherent phase and report the exact next phase ID.
 
-The target outcome is a repository whose health reporting is trustworthy, whose history is manageable without losing evidence, and whose next completion claim reflects **more real local data**, not merely more classified absence.
+The target outcome is a repository whose health reporting is trustworthy, whose history is manageable without losing evidence, and whose next completion claim reflects **more real local data and more defensible best-available local estimates**, not merely more classified absence.
