@@ -81,7 +81,7 @@ export function makeCompletedRun(overrides = {}) {
 
 export function makeSuccessorRoadmapFixture(overrides = {}) {
   return {
-    programme: 'P36-P41 Post-P35 Closure Programme',
+    programme: 'P36-P42 Post-P35 Closure Programme',
     status: 'active',
     phases: [
       { id: 'P36', title: 'Local-54 assurance and validator parity', status: 'complete' },
@@ -89,7 +89,8 @@ export function makeSuccessorRoadmapFixture(overrides = {}) {
       { id: 'P38', title: 'Evidence-preserving branch and workflow inventory', status: 'planned' },
       { id: 'P39', title: 'Safe repository cleanup and CI consolidation', status: 'planned' },
       { id: 'P40', title: 'Numeric-yield opportunity portfolio', status: 'planned' },
-      { id: 'P41', title: 'First governed numeric-yield tranche', status: 'planned' }
+      { id: 'P41', title: 'First governed numeric-yield tranche', status: 'planned' },
+      { id: 'P42', title: 'Full Local-54 best-available numeric maximisation', status: 'planned' }
     ],
     ...overrides
   };

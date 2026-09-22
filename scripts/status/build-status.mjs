@@ -494,7 +494,7 @@ export function validateStatus(status) {
     }
   }
 
-  // P37 -- the successor roadmap (P36-P41) must never be able to corrupt the frozen historical
+  // P37 -- the successor roadmap (P36-P42) must never be able to corrupt the frozen historical
   // 36/36 result, and must not reuse a historical phase ID.
   if (status.roadmap.total_phases !== 36) errors.push(`historical roadmap.total_phases must remain 36, got ${status.roadmap.total_phases}`);
   if (status.successor_roadmap) {
@@ -638,7 +638,7 @@ export function renderMarkdown(status) {
     `| P27–P35 Local-54 | **${group.local54.complete} / ${group.local54.total}** |`,
     `| Current phase (historical P00–P35) | **${current ? `${current.id} — ${current.title}` : 'All roadmap phases complete'}** |`,
     ...(status.successor_roadmap ? [
-      `| Successor programme (P36–P41) | **${status.successor_roadmap.complete_phases} / ${status.successor_roadmap.total_phases} complete (${status.successor_roadmap.completion_pct}%)** |`,
+      `| Successor programme (P36–P42) | **${status.successor_roadmap.complete_phases} / ${status.successor_roadmap.total_phases} complete (${status.successor_roadmap.completion_pct}%)** |`,
       `| Successor current phase | **${status.successor_roadmap.current_phase ? `${status.successor_roadmap.current_phase.id} — ${status.successor_roadmap.current_phase.title}` : 'All successor phases complete'}** |`
     ] : []),
     `| Legacy governed slots | **${status.legacy_completeness.resolved_slots.toLocaleString()} / ${status.legacy_completeness.total_slots.toLocaleString()} resolved** |`,
@@ -775,7 +775,7 @@ export function renderMarkdown(status) {
     lines.push('Live GitHub API checks were skipped, so Actions-queue health could not be classified this run.', '');
   }
 
-  lines.push('## Successor programme (P36–P41)', '');
+  lines.push('## Successor programme (P36–P42)', '');
   if (status.successor_roadmap) {
     const sr = status.successor_roadmap;
     lines.push(

@@ -5,9 +5,9 @@ import { makeSuccessorRoadmapFixture } from './fixtures/workflow-run-fixtures.mj
 
 test('summarizes the successor roadmap independently of the historical 36/36 counter', () => {
   const summary = summarizeSuccessorRoadmap(makeSuccessorRoadmapFixture());
-  assert.equal(summary.total_phases, 6);
+  assert.equal(summary.total_phases, 7);
   assert.equal(summary.complete_phases, 1);
-  assert.equal(summary.completion_pct, 16.67);
+  assert.equal(summary.completion_pct, 14.29);
   assert.deepEqual(summary.current_phase, { id: 'P37', title: 'Truthful status and Actions-queue observability', status: 'next' });
 });
 
@@ -16,7 +16,7 @@ test('reports all phases complete with no current phase when the successor progr
     phases: makeSuccessorRoadmapFixture().phases.map(p => ({ ...p, status: 'complete' }))
   });
   const summary = summarizeSuccessorRoadmap(fixture);
-  assert.equal(summary.complete_phases, 6);
+  assert.equal(summary.complete_phases, 7);
   assert.equal(summary.current_phase, null);
 });
 

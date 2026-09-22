@@ -1,15 +1,15 @@
 {
   "schema_version": "kda.post-p35-closure-roadmap.v1",
   "project": "Kenya Data Atlas",
-  "programme": "P36–P41 Repository Assurance and Numeric-Yield Programme",
+  "programme": "P36–P42 Repository Assurance and Numeric-Yield Programme",
   "status": "active",
   "created_on": "2026-09-20",
-  "purpose": "Convert the post-P35 recommendations into bounded, independently closable phases without reopening or rewriting the completed P00–P35 roadmaps.",
+  "purpose": "Convert the post-P35 recommendations into bounded, independently closable phases, then move from truthful governance completeness to maximised best-available numeric coverage without reopening or rewriting the completed P00–P35 roadmaps.",
   "relationship_to_completed_programmes": {
     "p00_p17": "The v1.0 implementation and release ledger remains closed at 18/18 phases.",
     "p18_p26": "The governed 20,115-slot completion programme remains closed at 9/9 phases.",
     "p27_p35": "The Local-54 programme remains closed at 9/9 phases and continues to define the 96,498-cell governed surface.",
-    "successor_rule": "P36–P41 is reported separately. Planning or executing it must not reduce, relabel or rewrite the historical 36/36 P00–P35 completion result."
+    "successor_rule": "P36–P42 is reported separately. Planning or executing it must not reduce, relabel or rewrite the historical 36/36 P00–P35 completion result."
   },
   "baseline": {
     "as_of": "2026-09-20",
@@ -35,7 +35,10 @@
     "Numeric-yield work must never copy a parent value downward, force-match incompatible boundaries, invent a value or weaken the S0–S7 source policy.",
     "Numeric evidence and governed closures must always be reported separately.",
     "A data-yield tranche cannot close with zero numeric promotions; if every selected opportunity remains blocked, the opportunity portfolio must be revised and a replacement tranche selected.",
-    "Every phase that changes the website must pass the full browser, accessibility, release and GitHub Pages gates before closure."
+    "Every phase that changes the website must pass the full browser, accessibility, release and GitHub Pages gates before closure.",
+    "P42 treats data unavailable as a last-resort outcome for applicable indicators: every permitted direct, secondary, spatial, small-area, projection or constrained-downscaling path must be adjudicated before S6 is retained.",
+    "Best-available numeric coverage and direct/official-derived coverage must be reported separately so greater utility never disguises greater model dependence.",
+    "A modelled or projected value may publish only after its indicator-specific validation gate passes and must remain visibly distinguishable from direct official evidence."
   ],
   "phases": [
     {
@@ -196,8 +199,37 @@
         "updated_on": "2026-09-22",
         "note": "First execution attempt: genuine, dated, two-independent-method (WebFetch + direct curl) live verification of both selected tranche families -- Ministry of Education 2024 National School Census (R057-R060, R089-R092) and KNBS/KilimoSTAT ward maize area+production (R064, R065) -- found both still blocked. National School Census: KNBS's own 2024 reports listing and the census's own pilot-report page confirm only the January 2025 Pilot Report exists; no technical barrier, purely a pending publication with no forcing action available. KilimoSTAT: statistics.kilimo.go.ke confirmed still down via curl AND WebFetch independently (expired TLS certificate). data/p41/access-attempt-record.json records every check made, including auxiliary due-diligence re-checks of KMHFR, NEMIS and the Kenya Roads Board downloads page (all also still blocked, confirming the P40 tranche was genuinely the strongest available choice, not just the first one tried). data/p41/yield-report.json honestly reports zero promotions, zero cell gain, per this phase's own acceptance criterion that the exact gain (including zero) must be reported, not silently omitted. Per this phase's own explicit rule, P41 stays open rather than closing a zero-yield cycle as progress; the programme does not yet return to P40 for a formal replacement-tranche selection, because a genuinely new, live, previously-unknown lead surfaced during this research -- KeNADA (Kenya National Data Archive, statistics.knbs.or.ke/nada), a separate live KNBS microdata catalog hosting 2009/2019 KPHC census and KDHS 2022 microdata -- flagged in access-attempt-record.json's auxiliary_due_diligence_checks for a follow-up investigation into whether any of its datasets retain geocoding precise enough for a legitimate exact aggregation (not a modelled/allocated estimate) before either selecting it as a new P40 candidate or discarding it. scripts/p41/validate-yield-report.mjs re-derives every reconciliation from the live ledger and the frozen P40 baseline, and requires every tranche family to carry at least 2 independent-method access-attempt checks with a valid conclusion -- wired into npm test."
       }
+    },
+    {
+      "id": "P42",
+      "title": "Full Local-54 best-available numeric maximisation",
+      "status": "planned",
+      "goal": "Scale the P40/P41 numeric-yield approach across every applicable Local-54 cell so the public product displays the best defensible S0–S5 value wherever direct, secondary, spatial, modelled or projectable evidence can pass a transparent validation gate.",
+      "outputs": [
+        "54-indicator × geography method matrix covering direct, derived, secondary, spatial, small-area-estimation, temporal-projection and constrained-downscaling paths",
+        "reusable raster, point-registry, network, crosswalk, SAE, projection and constrained-downscaling engines",
+        "best-available coverage ledger separating S0/S1 direct-official-derived, S2/S3 secondary, S4 probable, S5 modelled and S6/S7 unavailable/not-applicable states",
+        "indicator-family validation reports with uncertainty, hold-out/back-aggregation performance and publication decisions",
+        "public Best available versus Official/observed-only control with explicit source-tier/method/confidence disclosure",
+        "before/after numeric-maximisation dashboard reporting exact cell and percentage-point gains"
+      ],
+      "acceptance": [
+        "all 54 indicators are explicitly assessed at county, constituency and ward level, subject to applicability, against every relevant permitted method class",
+        "every applicable non-numeric cell has an executable method path or an evidence-backed reason all permitted paths are infeasible or failed validation",
+        "no applicable cell remains S6 solely because a direct local official table is absent when a defensible S1–S5 method passes the indicator-specific validation gate",
+        "every high-feasibility deterministic/spatial/secondary opportunity is executed and every statistically modelled opportunity is either validated for publication or retains explicit model-failure evidence",
+        "best-available numeric coverage exceeds the P41 closing baseline and exact numeric-cell and percentage-point gains are reported separately from direct/official-derived coverage",
+        "all S4/S5 values carry source inputs, method, period, boundary vintage, confidence/uncertainty and validation metadata",
+        "zero published values use arbitrary equal splitting, unlabelled parent-child inheritance, force-matched boundaries, invented precision or unsupported proxy substitution",
+        "the public product distinguishes best-available from official/observed-only evidence and never visually implies an estimate is an official observation",
+        "full Local-54, geography, browser, accessibility, release and Pages gates pass after publication"
+      ],
+      "depends_on": [
+        "P41"
+      ],
+      "contract": "data/p42/numeric-maximisation-contract.json"
     }
   ],
-  "formal_closure_order": "P36 → P37 → P38 → P39 → P40 → P41",
-  "parallelism_note": "Source reconnaissance for P40 may begin during P38/P39, but the P40 portfolio cannot close until the post-cleanup baseline is stable. P41 cannot begin until P40 freezes its bounded tranche."
+  "formal_closure_order": "P36 → P37 → P38 → P39 → P40 → P41 → P42",
+  "parallelism_note": "P40 source reconnaissance and P42 method-matrix design may proceed while earlier cleanup or P41 execution is underway, but P41 cannot close until P40 freezes a tranche and P42 cannot close until P41 has demonstrated at least one real numeric promotion. P42 then scales only methods that satisfy its own indicator-specific validation and uncertainty gates."
 }

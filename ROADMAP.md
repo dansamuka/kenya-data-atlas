@@ -183,9 +183,15 @@ P30 may run alongside early P31 work once the P28/P29 contracts are stable. Cand
 
 The successor product objective is explicit: **every constituency and ward is assessed against the same 54-indicator framework; every missing value is explained; every secondary value is labelled; every material conflict is disclosed; and legacy gaps are repeatedly challenged rather than permanently grandfathered.**
 
-## P36–P41 — repository assurance and numeric-yield programme
+## P36–P42 — repository assurance and numeric-yield programme
 
-P00–P35 remain historically complete at **36/36**. P36–P41 is a separate active successor programme, with **P36 complete and P37 next**; it does not reopen those phases or convert governance completion into a claim of full numeric coverage.
+P00–P35 remain historically complete at **36/36**. P36–P42 is a separate active successor programme; it does not reopen those phases or convert governance completion into a claim of full numeric coverage.
+
+Current successor state on 22 September 2026:
+
+- **P36–P40 complete**;
+- **P41 next** — execute the first governed numeric-yield tranche;
+- **P42 planned** — scale the proven approach across all 54 indicators and every applicable geography.
 
 Baseline at P35 closure:
 
@@ -198,20 +204,40 @@ The successor phases are deliberately bounded:
 
 | Phase | State | Closure surface |
 |---|---|---|
-| **P36** | **Complete** | Dedicated P32 assurance validator and accurate P31–P35 implementation-evidence reporting. |
-| **P37** | **Next** | Final-state status refresh and truthful separation of fresh queues from 24 historical phantom records. |
-| **P38** | Planned | Evidence-preserving branch/workflow inventory and cleanup authorisation. |
-| **P39** | Planned | Recoverable stale-reference cleanup and CI consolidation without weakening permanent gates. |
-| **P40** | Planned | Ranked portfolio for converting governed closures into real numeric evidence. |
-| **P41** | Planned | First bounded data-yield tranche; cannot close without a measured increase above 6,007 numeric cells. |
+| **P36** | Complete | Dedicated P32 assurance validator and accurate P31–P35 implementation-evidence reporting. |
+| **P37** | Complete | Final-state status refresh and truthful separation of fresh queues from historical phantom records. |
+| **P38** | Complete | Evidence-preserving branch/workflow inventory and cleanup authorisation. |
+| **P39** | Complete | Recoverable stale-reference cleanup and archival of historical one-off workflows without weakening permanent gates. |
+| **P40** | Complete | Ranked portfolio covering all governed closures plus a frozen first P41 tranche and the 6,007-cell numeric baseline. |
+| **P41** | **Next** | First bounded data-yield tranche; cannot close without a measured numeric increase above the frozen baseline. |
+| **P42** | Planned | Full Local-54 best-available numeric maximisation across direct, secondary, spatial, SAE/modelled, projected and constrained-downscaled values. |
 
 Formal closure order:
 
-`P36 → P37 → P38 → P39 → P40 → P41`
+`P36 → P37 → P38 → P39 → P40 → P41 → P42`
 
 Authorities:
 
 - [`data/post-p35-closure-roadmap.json`](data/post-p35-closure-roadmap.json) — machine-readable phase, dependency and acceptance authority;
-- [`docs/POST-P35-CLOSURE-PLAN.md`](docs/POST-P35-CLOSURE-PLAN.md) — detailed human/session handoff.
+- [`docs/POST-P35-CLOSURE-PLAN.md`](docs/POST-P35-CLOSURE-PLAN.md) — detailed human/session handoff;
+- [`data/p42/numeric-maximisation-contract.json`](data/p42/numeric-maximisation-contract.json) — P42 method, KPI, validation and public-product contract.
 
-The governing principle is: **make repository health truthful first, clean history without losing evidence second, then increase real numeric coverage without weakening provenance or geography rules.**
+### P42 product objective
+
+P42 changes the terminal question for every applicable Local-54 cell from **“is there a directly published official local table?”** to **“what is the best defensible value KDA can publish here?”**
+
+Subject to the existing S0–S7 rules and indicator-specific constraints, P42 may use:
+
+- direct official and exact official-derived values;
+- verified/corroborated secondary evidence;
+- point/raster/network spatial derivation;
+- transparent survey small-area estimation with uncertainty;
+- temporal projection from valid local baselines;
+- constrained economic/agricultural downscaling; and
+- P33 probable-value treatment for credible source conflicts.
+
+`Data unavailable` remains valid only where the applicable method paths are infeasible, rights-blocked, definitionally incompatible or fail predeclared validation gates. Structural `not_applicable` cells remain excluded and are never numerically manufactured.
+
+P42 reports **direct/official-derived coverage** separately from **best-available numeric coverage**, plus model dependence, uncertainty coverage and residual non-structural unavailable cells. The public product must preserve a **Best available / Official-observed only** distinction so higher coverage never implies that modelled estimates are official observations.
+
+The governing principle is therefore: **preserve provenance and uncertainty rigor, but do not leave an applicable Local-54 card empty merely because the best defensible value is secondary, spatially derived, modelled or projected rather than directly published at that exact geography.**

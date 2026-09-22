@@ -1,4 +1,4 @@
-// P37 -- summarize the P36-P41 post-P35 successor roadmap as a counter fully separate from the
+// P37 -- summarize the P36-P42 post-P35 successor roadmap as a counter fully separate from the
 // historical P00-P35 36/36 result. That historical count must never be rewritten by this
 // programme (docs/POST-P35-CLOSURE-PLAN.md rule: "P00-P35 phase status, completion counts and
 // historical acceptance semantics must not be rewritten"), so this summary is additive: it is

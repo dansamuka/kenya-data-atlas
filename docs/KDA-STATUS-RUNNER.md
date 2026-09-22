@@ -17,9 +17,9 @@ The runner treats the following as authoritative inputs:
 
 When run in GitHub Actions it also makes GitHub API reads for open/merged PRs, current-phase branches, branch divergence from `main`, the latest critical workflow states, and a repo-wide Actions-queue snapshot (all non-completed runs, any branch).
 
-- `data/post-p35-closure-roadmap.json` — the active P36–P41 successor programme.
+- `data/post-p35-closure-roadmap.json` — the active P36–P42 successor programme.
 
-The active [`P36–P41 successor roadmap`](POST-P35-CLOSURE-PLAN.md) is ingested as a second, fully independent progress counter (`status.successor_roadmap`). It is never merged into `status.roadmap`, and `validateStatus()` asserts `roadmap.total_phases === 36` on every run specifically to guard against that -- the completed 36/36 historical counter cannot be rewritten by successor-programme progress.
+The active [`P36–P42 successor roadmap`](POST-P35-CLOSURE-PLAN.md) is ingested as a second, fully independent progress counter (`status.successor_roadmap`). It is never merged into `status.roadmap`, and `validateStatus()` asserts `roadmap.total_phases === 36` on every run specifically to guard against that -- the completed 36/36 historical counter cannot be rewritten by successor-programme progress.
 
 ## What it checks
 
