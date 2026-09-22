@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P42 Post-P35 Closure Plan
 
-Status: **active successor programme — P36–P40 complete; P41 next**
+Status: **active successor programme — P36–P40 complete; P41 in progress (first tranche attempted, both families genuinely blocked, phase stays open per its own rule)**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -299,6 +299,13 @@ P41 closes only when:
 - Local-54, browser, accessibility, release and Pages gates pass.
 
 If all selected opportunities remain blocked, P41 stays open. The programme returns to P40 to choose a replacement tranche; it does not close another zero-yield research cycle as numeric progress.
+
+### Progress (in progress, not closed)
+
+- First execution attempt (2026-09-22): genuine, dated, two-independent-method (`WebFetch` + direct `curl`) live verification of both selected tranche families found both still blocked. **Ministry of Education 2024 National School Census** (R057–R060, R089–R092): KNBS's own 2024 reports listing and the census's pilot-report page confirm only the January 2025 Pilot Report exists — no technical barrier, purely a pending publication with no forcing action available. **KNBS/KilimoSTAT ward maize area+production** (R064, R065): `statistics.kilimo.go.ke` confirmed still down via `curl` AND `WebFetch` independently (expired TLS certificate).
+- [`data/p41/access-attempt-record.json`](../data/p41/access-attempt-record.json) records every check made, including auxiliary due-diligence re-checks of KMHFR, NEMIS and the Kenya Roads Board downloads page (all also still blocked, confirming the P40 tranche was genuinely the strongest available choice). [`data/p41/yield-report.json`](../data/p41/yield-report.json) honestly reports zero promotions and zero cell gain, per this phase's own requirement that the exact gain — including zero — must be reported, not omitted.
+- Per this phase's own explicit rule, P41 stays open rather than closing a zero-yield cycle as progress. A genuinely new, live, previously-unknown lead surfaced during this research — **KeNADA** (Kenya National Data Archive, `statistics.knbs.or.ke/nada`), a separate live KNBS microdata catalog hosting 2009/2019 KPHC census and KDHS 2022 microdata — flagged for a follow-up investigation into whether any of its datasets retain geocoding precise enough for a legitimate exact aggregation before either selecting it as a new P40 candidate or discarding it.
+- [`scripts/p41/validate-yield-report.mjs`](../scripts/p41/validate-yield-report.mjs) re-derives every reconciliation from the live ledger and the frozen P40 baseline, and requires every tranche family to carry at least 2 independent-method access-attempt checks with a valid conclusion — wired into `npm test`.
 
 ---
 
