@@ -1,0 +1,70 @@
+{
+  "schema_version": "kda.p42.kenada-source-readiness.v1",
+  "assessed_on": "2026-09-22",
+  "purpose": "Resolve the P42 KeNADA follow-up into a reproducible source-access and geography-precision decision for the first survey small-area-estimation pilot.",
+  "overall_conclusion": "conditional_go_for_sae_not_exact_ward_assignment",
+  "sources": [
+    {
+      "id": "kenada-kdhs-2022",
+      "title": "Kenya Demographic and Health Survey 2022",
+      "catalog_url": "https://statistics.knbs.or.ke/nada/index.php/catalog/128",
+      "survey_id": "DDI-KEN-KNBS-KDHS-2022-V001",
+      "authority": "Kenya National Bureau of Statistics",
+      "access_status": "public_use_declared_raw_file_retrieval_not_verified_in_repo_execution",
+      "access_notes": "KeNADA declares the anonymized dataset a Public Use Dataset for statistical/scientific research. Its conditions prohibit redistribution and re-identification. Raw microdata must therefore never be committed to this public repository.",
+      "sampling_and_geography": {
+        "clusters": 1692,
+        "rural_clusters": 1026,
+        "urban_clusters": 666,
+        "design_domain": "national, rural/urban and some county estimates",
+        "frame": "2019 KPHC Kenya Household Master Sample Frame; sampled EAs were developed into georeferenced clusters",
+        "exact_constituency_or_ward_publication_domain": false
+      },
+      "geospatial_status": {
+        "kenada_catalog_exposes_coordinates_in_public_metadata": false,
+        "dhs_program_kenya_2022_georeferenced_dataset_available": true,
+        "access_mode": "registered DHS dataset request",
+        "confidentiality_geometry": "cluster coordinates are displaced for confidentiality",
+        "direct_point_in_ward_assignment_allowed": false,
+        "approved_use": "geostatistical/small-area modelling with displacement-aware covariate extraction and population-weighted prediction aggregation"
+      },
+      "p42_decision": "preferred national microdata family for the first SAE pilot once recode and DHS geographic data are held outside the repository under their access conditions"
+    },
+    {
+      "id": "kenada-kphc-2019",
+      "title": "Kenya Population and Housing Census 2019",
+      "catalog_url": "https://statistics.knbs.or.ke/nada/index.php/catalog/116",
+      "survey_id": "KEN-KNBS-KPHC-2019-v01",
+      "authority": "Kenya National Bureau of Statistics",
+      "access_status": "catalog_metadata_visible_local_microdata_geography_not_verified",
+      "geography_status": "Public catalog metadata states whole-country coverage and household/individual units but does not establish a redistributable ward/constituency identifier or public microdata geography precise enough for exact Local-54 aggregation.",
+      "p42_decision": "do_not_treat_as_unlocked_local_census_microdata until file-level geographic variables and access rights are verified"
+    },
+    {
+      "id": "kenada-county-smart-surveys",
+      "title": "County-level SMART surveys",
+      "catalog_url": "https://statistics.knbs.or.ke/nada/index.php/catalog/SMS",
+      "authority": "Ministry of Health / KNBS catalog",
+      "access_status": "multiple_catalogs_with_variable_dictionaries",
+      "geography_status": "Some cataloged SMART survey files expose ward-name fields and/or GPS latitude/longitude variables.",
+      "limitations": "County-specific samples are not a national substitute for KDHS and cannot be promoted to nationwide Local-54 values without survey-design and comparability checks.",
+      "p42_decision": "candidate external validation/calibration evidence for covered counties, never automatic national training data"
+    }
+  ],
+  "governance": {
+    "raw_microdata_may_be_committed": false,
+    "respondent_or_household_coordinates_may_be_committed": false,
+    "repository_artifacts_allowed": [
+      "source metadata and access decision records",
+      "file hashes and non-sensitive schema manifests",
+      "aggregated cluster sufficient statistics after disclosure review",
+      "model coefficients/diagnostics where permitted",
+      "constituency/ward aggregate predictions with uncertainty after P42 validation"
+    ],
+    "prohibited": [
+      "attempting to reverse displacement or re-identify respondents",
+      "treating displaced DHS cluster coordinates as exact household or ward locations",
+      "redistributing KNBS/DHS raw microdata through this repository"
+    ]
+  }
+}
