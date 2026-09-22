@@ -1,0 +1,29 @@
+{
+  "schema_version": "kda.p42.sae-readiness-report.v1",
+  "pilot_id": "P42-SAE-001",
+  "target_indicator_id": "IND-STUNTING-RATE",
+  "potential_new_cells": 1740,
+  "source_path": "KDHS 2022 public-use recode + DHS registered geographic data",
+  "ready_to_fit": false,
+  "ready_to_publish": false,
+  "errors": [],
+  "blockers": [
+    {
+      "input_id": "kdhs-2022-child-recode",
+      "status": "not_present",
+      "reason": "required input is not yet fit-ready"
+    },
+    {
+      "input_id": "kdhs-2022-geographic-data",
+      "status": "request_or_authorized_download_required",
+      "reason": "required input is not yet fit-ready"
+    },
+    {
+      "input_id": "prediction-covariates",
+      "status": "registry_to_be_frozen_before_fit",
+      "reason": "required input is not yet fit-ready"
+    }
+  ],
+  "next_action": "satisfy controlled external inputs without committing raw respondent/cluster data, then rerun SAE preflight",
+  "assessed_on": "2026-09-22"
+}

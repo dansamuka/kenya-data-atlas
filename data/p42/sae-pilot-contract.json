@@ -1,0 +1,117 @@
+{
+  "schema_version": "kda.p42.sae-pilot-contract.v1",
+  "created_on": "2026-09-22",
+  "pilot_id": "P42-SAE-001",
+  "status": "input_access_pending",
+  "target": {
+    "indicator_id": "IND-STUNTING-RATE",
+    "indicator_name": "Children under 5 stunted",
+    "reference_period": 2022,
+    "official_control_level": "county",
+    "official_control_cells": 47,
+    "prediction_levels": [
+      "constituency",
+      "ward"
+    ],
+    "potential_new_cells": 1740,
+    "source_family": "KDHS 2022"
+  },
+  "selection_rationale": [
+    "The Local-54 ledger already has a numeric official county value for all 47 counties.",
+    "KDHS 2022 directly measures child anthropometry, so the target is not a proxy substitution.",
+    "The constituency and ward matrix rows are feasibility C with small_area_estimation explicitly permitted by survey_small_area policy.",
+    "A successful engine is reusable for other KDHS health indicators after indicator-specific outcome definitions and validation thresholds are declared."
+  ],
+  "external_inputs": [
+    {
+      "id": "kdhs-2022-child-recode",
+      "required": true,
+      "repository_storage": "forbidden",
+      "minimum_fields": [
+        "cluster_id",
+        "survey_weight",
+        "child_age_or_eligibility",
+        "height_for_age_z_or_stunting_flag"
+      ],
+      "status": "not_present"
+    },
+    {
+      "id": "kdhs-2022-geographic-data",
+      "required": true,
+      "repository_storage": "forbidden",
+      "minimum_fields": [
+        "cluster_id",
+        "displaced_latitude",
+        "displaced_longitude",
+        "urban_rural"
+      ],
+      "status": "request_or_authorized_download_required"
+    },
+    {
+      "id": "prediction-covariates",
+      "required": true,
+      "repository_storage": "derived_or_open_inputs_only",
+      "minimum_requirements": [
+        "same covariate definitions available at cluster-training and prediction-grid locations",
+        "population surface suitable for population-weighted aggregation",
+        "explicit vintage/licence/provenance"
+      ],
+      "status": "registry_to_be_frozen_before_fit"
+    },
+    {
+      "id": "kda-current-boundaries",
+      "required": true,
+      "repository_storage": "existing_repo_asset",
+      "status": "available"
+    },
+    {
+      "id": "kda-county-controls",
+      "required": true,
+      "repository_storage": "existing_repo_asset",
+      "status": "available"
+    }
+  ],
+  "modelling_design": {
+    "family": "displacement-aware geostatistical binomial/logit small-area model",
+    "observation_unit": "KDHS cluster-level stunted-child numerator/eligible-child denominator derived outside the public repository",
+    "weighting": "survey weights retained when forming cluster sufficient statistics and validation aggregates",
+    "location_handling": [
+      "Never assign a displaced DHS cluster directly to a ward as ground truth.",
+      "Extract training covariates using displacement-aware buffers/sensitivity rather than assuming the published coordinate is exact.",
+      "Predict on a regular grid or other small spatial support, then aggregate predictions to constituency/ward using population weights."
+    ],
+    "spatial_structure": "spatial random field or equivalent spatial smoother plus declared fixed covariates and county/urban-rural effects where justified",
+    "county_controls": "County KDHS estimates are held out during validation folds; final production predictions may be calibrated/reconciled to official county controls only after hold-out performance passes.",
+    "uncertainty": "Prediction intervals must propagate model uncertainty; spatial-displacement sensitivity must be reported separately."
+  },
+  "predeclared_validation_thresholds": {
+    "county_holdout_mean_absolute_error_pp_max": 5,
+    "county_holdout_rmse_pp_max": 7,
+    "nominal_interval_coverage_pct": 90,
+    "holdout_interval_coverage_pct_min": 80,
+    "final_county_back_aggregation_absolute_bias_pp_max": 0.5,
+    "median_ward_interval_width_pp_max": 20,
+    "justification": "These are pilot publication thresholds chosen before fitting: county predictions should generally be within five percentage points of held-out official KDHS controls; final calibrated child-geography aggregates must reproduce county rates closely; ward intervals wider than 20 percentage points are considered too imprecise for a useful public point estimate. Failing any mandatory threshold blocks publication rather than relaxing the threshold post hoc."
+  },
+  "publication_gate": {
+    "source_tier": "S5",
+    "public_label": "Modelled estimate",
+    "require_methodology_link": true,
+    "require_uncertainty_interval": true,
+    "require_reference_period": true,
+    "require_boundary_vintage": true,
+    "require_model_validation_report": true,
+    "require_official_only_filter_exclusion": true,
+    "publish_currently": false,
+    "reason": "Required controlled microdata/geographic inputs are not present in the repository execution environment and no model has yet been fit or validated."
+  },
+  "execution_order": [
+    "Obtain authorized KDHS recode and geographic files outside the repository and record only hashes/schema metadata.",
+    "Freeze covariate registry and licences before any model fitting.",
+    "Build disclosure-safe cluster sufficient statistics and displacement-aware covariate extracts.",
+    "Run county-held-out model validation without using the held-out county control in training/calibration.",
+    "If thresholds pass, refit on all eligible data, predict grid, population-weight aggregate to constituency/ward and reconcile to official county controls.",
+    "Run P42 rate-aware back-aggregation, hold-out and uncertainty gates.",
+    "Only after every gate passes, write S5 candidate/preferred observations and update Local-54 ledgers/profiles."
+  ]
+}
