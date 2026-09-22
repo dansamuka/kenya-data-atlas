@@ -1,0 +1,77 @@
+{
+  "schema_version": "kda.p41.access-attempt-record.v1",
+  "as_of": "2026-09-22",
+  "definition": "Every real, dated, live access attempt made against the sources behind P40's selected first tranche (data/p40/p41-tranche-contract.json), using two independent methods (WebFetch and a direct curl cross-check) so a result is never attributed to a single tool's own quirk. This is P41's own required 'source and access-attempt record' output, kept whether or not it produces a numeric promotion.",
+  "tranche_families": ["moe-2024-national-school-census", "knbs-kilimostat-maize"],
+  "attempts": [
+    {
+      "family": "moe-2024-national-school-census",
+      "reason_groups": ["R057", "R058", "R059", "R060", "R089", "R090", "R091", "R092"],
+      "target": "KNBS 2024 National School Census main report / microdata release",
+      "checks": [
+        { "method": "WebFetch", "url": "https://www.knbs.or.ke/reports_category/2024/", "result": "not_found", "detail": "Lists 10 KNBS 2024 reports; no National School Census main report among them." },
+        { "method": "WebFetch", "url": "https://www.knbs.or.ke/reports/2024-national-school-census-pilot-report/", "result": "no_timeline", "detail": "Page hosts only the January 2025 Pilot Report; no mention of a main-report release date." },
+        { "method": "WebSearch", "query": "Kenya 2024 National School Census KNBS main report results published 2026", "result": "not_found" },
+        { "method": "WebSearch", "query": "\"2024 National School Census\" Kenya main report release date November 2026", "result": "not_found" },
+        { "method": "WebFetch", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog/search?search=national+school+census+2024", "result": "not_found", "detail": "KeNADA microdata archive search did not surface a school-census entry (archive appears to lag behind the main site's own publication, which itself has not published the main report yet)." }
+      ],
+      "conclusion": "still_pending",
+      "changed_since_evidence_state": false,
+      "note": "No technical barrier exists -- fieldwork concluded ~July 2024 and the census questionnaire natively captures Constituency+Ward -- this is purely a publication-timing question with no access-attempt that can force it. Re-check periodically; do not re-run the same exhaustive search cycle each time, just re-fetch the KNBS 2024 reports listing."
+    },
+    {
+      "family": "knbs-kilimostat-maize",
+      "reason_groups": ["R064", "R065"],
+      "target": "KilimoSTAT ward-level maize area and production",
+      "checks": [
+        { "method": "WebFetch", "url": "https://statistics.kilimo.go.ke", "result": "unreachable", "detail": "certificate has expired" },
+        { "method": "curl", "url": "http://statistics.kilimo.go.ke/en/kilimostat-api/download_crops/", "result": "unreachable", "detail": "HTTP 000 (connection timeout, --max-time 15) -- confirms this is a genuine network/host-level failure, not a WebFetch-tool artifact or an HTTPS-only requirement." },
+        { "method": "WebFetch", "url": "http://statistics.kilimo.go.ke/en/kilimostat-api/download_crops/", "result": "unreachable", "detail": "certificate has expired (WebFetch auto-upgrades http to https)" },
+        { "method": "WebSearch", "query": "KilimoSTAT app data offline API Kenya agriculture statistics endpoint", "result": "endpoints_documented_but_domain_down", "detail": "KilimoSTAT documents real download endpoints (download_crops, download_livestock, download_fisheries, download_prices) -- the platform is genuinely designed to support this, but the entire statistics.kilimo.go.ke domain is down, so none are currently reachable." }
+      ],
+      "conclusion": "unreachable",
+      "changed_since_evidence_state": false,
+      "note": "Confirmed down via two independent methods (WebFetch and direct curl), not just a re-read of the 2026-09-19 evidence-state finding. The platform's own documented API shape means this is worth re-checking again once the certificate issue is fixed -- contact channel published: 0800 724 891 / datahub@kalro.org."
+    }
+  ],
+  "auxiliary_due_diligence_checks": [
+    {
+      "target": "KMHFR (Ministry of Health facility registry)",
+      "reason": "next-ranked access_technical family in the P40 portfolio; checked to confirm the tranche's own two families were genuinely the strongest available choice, not just the first ones tried.",
+      "checks": [
+        { "method": "WebFetch", "url": "https://kmhfr.health.go.ke/public/facilities", "result": "unreachable", "detail": "ECONNREFUSED" },
+        { "method": "curl", "url": "http://kmhfr.health.go.ke/public/facilities", "result": "unreachable", "detail": "HTTP 000 (connection timeout)" },
+        { "method": "WebSearch", "query": "Kenya Master Health Facility Registry KMHFR data HDX humdata.org mirror download", "result": "stale_mirror_only", "detail": "Only public mirror is an HDX snapshot dated 2017-08-02 -- already known and rejected by this project (P28A: no coordinates, predates the 2023 census)." }
+      ],
+      "conclusion": "unreachable"
+    },
+    {
+      "target": "NEMIS (Ministry of Education institution registry)",
+      "reason": "the underlying live system behind the education-admin family, distinct from the pending census.",
+      "checks": [
+        { "method": "WebFetch", "url": "https://nemis.education.go.ke", "result": "unreachable", "detail": "ECONNREFUSED" },
+        { "method": "curl", "url": "http://nemis.education.go.ke/Documents/SchoolCensus/School_Census_Instructions_for_Advance_Questionnaires.pdf", "result": "unreachable", "detail": "connection reset" }
+      ],
+      "conclusion": "unreachable"
+    },
+    {
+      "target": "Kenya Roads Board downloads page",
+      "reason": "re-confirm the already_attempted_rejected classification for the Class-C road indicators hasn't changed.",
+      "checks": [
+        { "method": "WebFetch", "url": "https://krb.go.ke/downloads/", "result": "confirms_no_bulk_gis_available", "detail": "Live, reachable page; lists only corporate/technical/planning documents, no GIS/shapefile dataset." }
+      ],
+      "conclusion": "unchanged"
+    },
+    {
+      "target": "KeNADA (Kenya National Data Archive, statistics.knbs.or.ke/nada) -- NEW lead, not previously in the P40 portfolio",
+      "reason": "surfaced while searching for a KNBS microdata catalog; genuinely live and distinct from every other domain checked this session.",
+      "checks": [
+        { "method": "curl", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog", "result": "reachable", "detail": "HTTP 200, live Apache server." },
+        { "method": "WebFetch", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog", "result": "reachable", "detail": "131 studies listed, including 2009 KPHC, 2019 KPHC, KDHS 2022, Kenya Time Use Survey 2021 and others." },
+        { "method": "WebFetch", "url": "https://statistics.knbs.or.ke/nada/index.php/catalog/116", "result": "inconclusive", "detail": "2019 KPHC microdata entry found, but geographic-identifier detail (does public/registered access retain sub-county geocoding, or is it anonymised to county-only per standard census-microdata disclosure practice?) could not be confirmed from the page content alone." }
+      ],
+      "conclusion": "flagged_for_followup",
+      "note": "NOT investigated further in this P41 cycle -- determining whether any KeNADA-hosted microdata has geocoding precise enough for a legitimate EXACT aggregation (not a modelled/allocated estimate) to constituency or ward level is a genuinely separate research question for each survey, requiring real documentation review per dataset. Flagged as a candidate source family for a future P40 portfolio refresh, not assumed to unlock anything."
+    }
+  ]
+}
