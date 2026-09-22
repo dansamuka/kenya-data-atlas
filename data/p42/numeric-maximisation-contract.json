@@ -2,7 +2,7 @@
   "schema_version": "kda.p42.numeric-maximisation-contract.v1",
   "phase": "P42",
   "title": "Full Local-54 best-available numeric maximisation",
-  "status": "planned",
+  "status": "in_progress",
   "depends_on": [
     "P41"
   ],

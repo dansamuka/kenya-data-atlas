@@ -1,6 +1,6 @@
 # Kenya Data Atlas — P36–P42 Post-P35 Closure Plan
 
-Status: **active successor programme — P36–P40 complete; P41 in progress (first tranche attempted, both families genuinely blocked, phase stays open per its own rule)**
+Status: **active successor programme — P36–P40 complete; P41 in progress (first tranche attempted twice, both families genuinely blocked, phase stays open per its own rule); P42 in progress (method matrix built, execution not yet started, gated on P41 closing)**
 Created: **20 September 2026**  
 Machine-readable authority: [`data/post-p35-closure-roadmap.json`](../data/post-p35-closure-roadmap.json)
 
@@ -414,6 +414,15 @@ P42 closes only when:
 - Local-54, geography, browser, accessibility, release and Pages gates all pass.
 
 P42 therefore cannot close by producing another exhaustive list of unavailable values. Its deliverable is a materially more populated Atlas, bounded by transparent uncertainty rather than by an official-table-only publication philosophy.
+
+### Progress (in progress, execution not yet started)
+
+- **Method matrix built and validated**: [`data/p42/numeric-maximisation-matrix.json`](../data/p42/numeric-maximisation-matrix.json) — the required 54-indicator × geography (county/constituency/ward, 162 rows) matrix, P42's own first prerequisite output. Every row is mechanically derived, not freshly judged per row: [`scripts/p42/method-selection.mjs`](../scripts/p42/method-selection.mjs) (pure, 12 unit tests) translates P40's already-individually-justified barrier classification for every closure-reason group into P42's `method_class`/`feasibility_class` vocabulary, constrained by what `data/policy/local-54-indicator-contract.json`'s `treatment_classes` actually permit for that specific indicator — a barrier reading never overrides governing policy.
+- Full reconciliation confirmed exact: 162 rows sum to 96,498 total cells and 6,007 numeric cells, matching the live ledger precisely, and every per-barrier-classification row count matches P40's own counts exactly.
+- Result distribution: feasibility **A=64** (already resolved or deterministic once published), **B=12** (access-blocked but policy-permitted once reachable), **C=60** (genuine modelled candidates pending real validation work), **E=26** (structurally excluded or already-rejected).
+- The 60 feasibility-C rows are this matrix's most significant honest finding: most are survey-based rate indicators (KDHS, Kenya Housing Survey) that P40 had correctly classified as `structural_permanent` (the survey's own sampling domain never reaches this geography), but that this project's own governing policy explicitly permits as `small_area_estimation` candidates. This is a real, substantial statistical/engineering undertaking for a later wave — identified honestly, not executed or claimed as done here.
+- [`scripts/p42/validate-numeric-maximisation-matrix.mjs`](../scripts/p42/validate-numeric-maximisation-matrix.mjs) re-derives every row's cell counts, barrier classification and method/feasibility selection from source on every run — wired into `npm test`.
+- P42's own closure remains gated on P41 actually closing (its acceptance criterion requires exceeding "the P41 closing baseline", which does not exist while P41 stays open) and on genuinely executing and validating the A/B/C opportunities this matrix has identified — neither attempted yet.
 
 ---
 
