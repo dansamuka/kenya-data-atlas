@@ -81,3 +81,26 @@ test('structural_permanent under electoral_direct stays feasibility E because mo
 test('throws on an unrecognised barrier classification rather than silently defaulting', () => {
   assert.throws(() => selectMethod({ barrierClassification: 'made_up', treatmentClass: 'survey_small_area', allowedStates: SURVEY_ALLOWED }));
 });
+
+
+test('IND-POPULATION boundary mismatch may use an S5 spatial allocation because modelled_estimate is policy-permitted', () => {
+  const r = selectMethod({
+    barrierClassification: 'boundary_vintage_mismatch',
+    treatmentClass: 'census_or_household_crosswalk',
+    allowedStates: ['direct_official', 'exact_aggregation', 'matched_local_calculation', 'secondary_verified', 'secondary_corroborated', 'probable_conflicting_value', 'modelled_estimate', 'governed_unavailable'],
+    indicatorId: 'IND-POPULATION'
+  });
+  assert.equal(r.feasibility_class, 'C');
+  assert.equal(r.method_class, 'spatial_derivation');
+});
+
+test('historical IND-POP-2009 does not inherit the IND-POPULATION modelling exception', () => {
+  const r = selectMethod({
+    barrierClassification: 'boundary_vintage_mismatch',
+    treatmentClass: 'census_or_household_crosswalk',
+    allowedStates: ['direct_official', 'exact_aggregation', 'matched_local_calculation', 'secondary_verified', 'secondary_corroborated', 'probable_conflicting_value', 'modelled_estimate', 'governed_unavailable'],
+    indicatorId: 'IND-POP-2009'
+  });
+  assert.equal(r.feasibility_class, 'E');
+  assert.equal(r.method_class, null);
+});
