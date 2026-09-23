@@ -7,6 +7,9 @@ on:
     paths:
       - .github/workflows/p42-published-sae-probe.yml
       - scripts/p42/probe_published_sae.py
+      - scripts/p42/validate_published_sae_counties.py
+      - scripts/p42/compare_published_sae_geometry.py
+      - data/p42/published-sae-promotion-contract.json
 
 permissions:
   contents: write
