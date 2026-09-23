@@ -31,9 +31,14 @@ for(const decision of contract.decisions||[]){
 
   const rows=ledger.rows.filter(r=>r.level==='constituency'&&r.indicator_code===decision.indicator_code);
   assert(rows.length===expectedSlotCounts[decision.indicator_code],`${decision.indicator_code}: expected ${expectedSlotCounts[decision.indicator_code]} rendered slots, got ${rows.length}`);
-  assert(rows.every(r=>r.resolved===true&&r.status==='official_unavailable'&&r.completion_phase==='complete'),`${decision.indicator_code}: every rendered occurrence must be governed closed`);
-  assert(rows.every(r=>!r.series_code&&!r.observation_id&&(r.value===''||r.value===null||r.value===undefined)),`${decision.indicator_code}: closure must not fabricate series, observations or values`);
-  assert(rows.every(r=>r.reason===decision.reason&&r.period_label===decision.period_label&&r.source===decision.source&&r.source_url===decision.source_url),`${decision.indicator_code}: rendered provenance must match contract`);
+  if(decision.indicator_code==='IND-POPULATION'){
+    assert(rows.every(r=>r.resolved===true&&r.status==='published_modelled'&&r.completion_phase==='complete'),`${decision.indicator_code}: historical closure must be superseded by canonical P42 modelled evidence`);
+    assert(rows.every(r=>r.series_code&&r.observation_id&&Number.isFinite(Number(r.value))),`${decision.indicator_code}: supersession requires canonical series, observation and numeric value`);
+  }else{
+    assert(rows.every(r=>r.resolved===true&&r.status==='official_unavailable'&&r.completion_phase==='complete'),`${decision.indicator_code}: every rendered occurrence must remain governed closed`);
+    assert(rows.every(r=>!r.series_code&&!r.observation_id&&(r.value===''||r.value===null||r.value===undefined)),`${decision.indicator_code}: closure must not fabricate series, observations or values`);
+    assert(rows.every(r=>r.reason===decision.reason&&r.period_label===decision.period_label&&r.source===decision.source&&r.source_url===decision.source_url),`${decision.indicator_code}: rendered provenance must match contract`);
+  }
 }
 
 const coveredRows=ledger.rows.filter(r=>r.level==='constituency'&&Object.hasOwn(expectedSlotCounts,r.indicator_code));
