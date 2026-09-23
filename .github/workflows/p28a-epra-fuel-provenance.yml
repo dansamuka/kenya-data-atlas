@@ -73,7 +73,7 @@ jobs:
           import fs from 'node:fs';
           const s=JSON.parse(fs.readFileSync('data/audit/legacy-source-tier-summary.json','utf8'));
           const failures=[];
-          if(s.preferred_observations_in_scope!==6007) failures.push(`preferred observations changed: ${s.preferred_observations_in_scope}`);
+          if(s.preferred_observations_in_scope<6007) failures.push(`preferred observations regressed below the validated EPRA-era floor: ${s.preferred_observations_in_scope}`);
           if(s.secondary_preferred_observation_count!==0) failures.push(`secondary preferred observations remain: ${s.secondary_preferred_observation_count}`);
           if(s.secondary_explicit_relabel_queue_count!==0) failures.push(`secondary relabel queue remains: ${s.secondary_explicit_relabel_queue_count}`);
           if(s.source_tier_counts?.S2_secondary_verified_to_identifiable_primary!==0) failures.push(`S2 count is ${s.source_tier_counts?.S2_secondary_verified_to_identifiable_primary}`);
@@ -84,7 +84,7 @@ jobs:
           // check must allow further improvement, not just "no regression back above where this PR left it".
           if(s.manual_review_count>3781) failures.push(`manual review count regressed above the post-EPRA-remediation checkpoint: expected <=3781, got ${s.manual_review_count}`);
           if(failures.length){console.error('FAIL: EPRA P28A remediation delta\n - '+failures.join('\n - '));process.exit(1);}
-          console.log('PASS: 45 legacy secondary EPRA observations moved to S1 official proxy provenance.');
+          console.log('PASS: EPRA provenance invariants hold and later governed numeric additions are allowed.');
           console.log(`      S2: 45 -> 0; S1: 532 -> 577; manual review: 3826 -> 3781 -> ${s.manual_review_count}.`);
           NODE
 
