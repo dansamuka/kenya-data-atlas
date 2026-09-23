@@ -3,6 +3,7 @@ import argparse, json, re
 from pathlib import Path
 import geopandas as gpd
 from shapely.geometry import Polygon, MultiPolygon
+from shapely import make_valid
 
 SCRIPT_RE=re.compile(r'<script type="application/json" data-for="([^"]+)">(.*?)</script>', re.S)
 
@@ -65,11 +66,11 @@ def main():
     pairs=gpd.sjoin(src,kda[["geography_id","geo_code","name","geometry"]],how="inner",predicate="intersects")
     results=[]
     for sidx,grp in pairs.groupby("source_index"):
-        sgeom=src.loc[src.source_index==sidx].iloc[0].geometry
+        sgeom=make_valid(src.loc[src.source_index==sidx].iloc[0].geometry)
         candidates=[]
         for _,p in grp.iterrows():
             krow=kda.loc[p["index_right"]]
-            kg=krow.geometry
+            kg=make_valid(krow.geometry)
             inter=sgeom.intersection(kg).area
             union=sgeom.union(kg).area
             iou=0 if union<=0 else inter/union
