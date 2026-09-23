@@ -58,5 +58,6 @@
     "require_all_1450_wards_positive_aggdp_weight": false,
     "max_total_gdp_probe_download_bytes": 750000000
   },
-  "publication_authority": "none_candidate_probe_only"
+  "publication_authority": "none_candidate_probe_only",
+  "execution_note": "Workflow activation commit: probe is candidate-only and cannot promote any economic-account value."
 }
