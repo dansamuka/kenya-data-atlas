@@ -15,17 +15,15 @@
       "source_indicator": "FP_CUSM_W_MOD",
       "kda_indicator": "IND-CONTRACEPTIVE-USE",
       "definition_match": "direct",
-      "county_pairs": 46,
-      "unmatched_source_counties": [
-        "Tharaka"
-      ],
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
       "missing_interval_count": 0,
       "missing_interval_counties": [],
-      "mae_pp": 0.182,
-      "rmse_pp": 0.5892,
-      "mean_bias_pp": -0.0334,
+      "mae_pp": 0.179,
+      "rmse_pp": 0.583,
+      "mean_bias_pp": -0.0318,
       "official_inside_model_90_interval_pct": 100.0,
-      "pass_county_coherence_gate": false,
+      "pass_county_coherence_gate": true,
       "largest_absolute_errors": [
         {
           "geo_code": "KEN-C004",
@@ -133,17 +131,15 @@
       "source_indicator": "RH_DELA_C_SKP",
       "kda_indicator": "IND-MATERNAL-HEALTH",
       "definition_match": "direct",
-      "county_pairs": 46,
-      "unmatched_source_counties": [
-        "Tharaka"
-      ],
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
       "missing_interval_count": 1,
       "missing_interval_counties": [
         "Nyeri"
       ],
-      "mae_pp": 0.2259,
-      "rmse_pp": 0.6404,
-      "mean_bias_pp": 0.1046,
+      "mae_pp": 0.2215,
+      "rmse_pp": 0.6335,
+      "mean_bias_pp": 0.1019,
       "official_inside_model_90_interval_pct": 100.0,
       "pass_county_coherence_gate": false,
       "largest_absolute_errors": [
@@ -253,17 +249,15 @@
       "source_indicator": "RH_DELP_C_HOT",
       "kda_indicator": "IND-HOME-BIRTH-RATE",
       "definition_match": "direct",
-      "county_pairs": 46,
-      "unmatched_source_counties": [
-        "Tharaka"
-      ],
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
       "missing_interval_count": 1,
       "missing_interval_counties": [
         "Nyeri"
       ],
-      "mae_pp": 0.3107,
-      "rmse_pp": 0.8852,
-      "mean_bias_pp": -0.1226,
+      "mae_pp": 0.3048,
+      "rmse_pp": 0.8758,
+      "mean_bias_pp": -0.1206,
       "official_inside_model_90_interval_pct": 100.0,
       "pass_county_coherence_gate": false,
       "largest_absolute_errors": [
@@ -373,17 +367,15 @@
       "source_indicator": "CN_NUTS_C_HA2",
       "kda_indicator": "IND-STUNTING-RATE",
       "definition_match": "direct",
-      "county_pairs": 46,
-      "unmatched_source_counties": [
-        "Tharaka"
-      ],
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
       "missing_interval_count": 0,
       "missing_interval_counties": [],
-      "mae_pp": 0.2706,
-      "rmse_pp": 0.7455,
-      "mean_bias_pp": -0.0767,
+      "mae_pp": 0.2657,
+      "rmse_pp": 0.7376,
+      "mean_bias_pp": -0.0742,
       "official_inside_model_90_interval_pct": 100.0,
-      "pass_county_coherence_gate": false,
+      "pass_county_coherence_gate": true,
       "largest_absolute_errors": [
         {
           "geo_code": "KEN-C004",
@@ -491,17 +483,15 @@
       "source_indicator": "ED_LITR_W_LIT",
       "kda_indicator": "IND-LITERACY-RATE",
       "definition_match": "direct",
-      "county_pairs": 46,
-      "unmatched_source_counties": [
-        "Tharaka"
-      ],
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
       "missing_interval_count": 0,
       "missing_interval_counties": [],
-      "mae_pp": 0.1228,
-      "rmse_pp": 0.3391,
-      "mean_bias_pp": 0.0228,
+      "mae_pp": 0.1213,
+      "rmse_pp": 0.3356,
+      "mean_bias_pp": 0.0213,
       "official_inside_model_90_interval_pct": 100.0,
-      "pass_county_coherence_gate": false,
+      "pass_county_coherence_gate": true,
       "largest_absolute_errors": [
         {
           "geo_code": "KEN-C004",
@@ -606,12 +596,13 @@
       ]
     }
   ],
-  "passing_indicators": [],
-  "failing_indicators": [
+  "passing_indicators": [
     "IND-CONTRACEPTIVE-USE",
-    "IND-MATERNAL-HEALTH",
-    "IND-HOME-BIRTH-RATE",
     "IND-STUNTING-RATE",
     "IND-LITERACY-RATE"
+  ],
+  "failing_indicators": [
+    "IND-MATERNAL-HEALTH",
+    "IND-HOME-BIRTH-RATE"
   ]
 }
