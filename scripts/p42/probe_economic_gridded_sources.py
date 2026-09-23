@@ -2,7 +2,7 @@
 import argparse, json, math
 from pathlib import Path
 import geopandas as gpd
-from rasterstats import zonal_stats
+from exactextract import exact_extract
 
 def read_json(p):
     return json.loads(Path(p).read_text(encoding="utf-8"))
@@ -29,8 +29,14 @@ def spearman(x,y):
     return None if denx==0 or deny==0 else num/(denx*deny)
 
 def zonal(gdf, raster):
-    s=zonal_stats(gdf.geometry, raster, stats=["sum"], all_touched=False)
-    return [0.0 if r.get("sum") is None else float(r["sum"]) for r in s]
+    # Fractional pixel/polygon coverage avoids false zeros for small KDA geographies
+    # when the economic raster is much coarser than constituency/ward geometry.
+    s=exact_extract(raster, gdf, ["sum"], output="geojson")
+    out=[]
+    for feature in s:
+        v=(feature.get("properties") or {}).get("sum")
+        out.append(0.0 if v is None else float(v))
+    return out
 
 def official_controls(subset, year):
     out={}
