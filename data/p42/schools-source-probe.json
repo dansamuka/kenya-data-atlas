@@ -1,0 +1,167 @@
+{
+  "schema_version": "kda.p42.schools-source-probe.v1",
+  "probed_on": "2026-09-23",
+  "url": "https://energydata.info/dataset/2fda191d-c3c6-4002-8c82-daa02008a9e3/resource/129b8c79-de8b-4b7b-8310-cdd207e46863/download/schools.json",
+  "http_status": 200,
+  "records": 29097,
+  "valid_point_geometries": 29097,
+  "field_names": [
+    "CODE",
+    "County",
+    "DISTRICT",
+    "LEVEL",
+    "OBJECTID",
+    "SCHOOL_NAM",
+    "SUB_COUNTY",
+    "Source",
+    "Status",
+    "Ward",
+    "X_Coord",
+    "Y_Coord",
+    "ZONE"
+  ],
+  "category_fields": [
+    "LEVEL",
+    "SCHOOL_NAM"
+  ],
+  "geography_fields": [
+    "County",
+    "DISTRICT",
+    "SUB_COUNTY",
+    "Ward"
+  ],
+  "category_value_profiles": {
+    "LEVEL": [
+      [
+        "Primary",
+        29097
+      ]
+    ],
+    "SCHOOL_NAM": [
+      [
+        "MAKUTANO",
+        15
+      ],
+      [
+        "MWANGAZA",
+        15
+      ],
+      [
+        "BRIDGE INTERNATIONAL",
+        13
+      ],
+      [
+        "BONDENI",
+        11
+      ],
+      [
+        "IIANI",
+        11
+      ],
+      [
+        "MILIMANI",
+        11
+      ],
+      [
+        "KIPTENDEN",
+        9
+      ],
+      [
+        "MANYATTA",
+        9
+      ],
+      [
+        "ST JOSEPHS",
+        9
+      ],
+      [
+        "KIRIKO",
+        8
+      ],
+      [
+        "MUAMBANI",
+        8
+      ],
+      [
+        "SIMOTWET",
+        8
+      ],
+      [
+        "TUMAINI",
+        8
+      ],
+      [
+        "AMANI",
+        7
+      ],
+      [
+        "BARAKA",
+        7
+      ],
+      [
+        "BIDII",
+        7
+      ],
+      [
+        "GITHIMA",
+        7
+      ],
+      [
+        "KIMUGUL",
+        7
+      ],
+      [
+        "MUNYAKA",
+        7
+      ],
+      [
+        "NGUUNI",
+        7
+      ],
+      [
+        "SIGOWET",
+        7
+      ],
+      [
+        "UMOJA",
+        7
+      ],
+      [
+        "ZIWANI",
+        7
+      ],
+      [
+        "ALARA",
+        6
+      ],
+      [
+        "BAHATI",
+        6
+      ],
+      [
+        "GITHUNGURI",
+        6
+      ],
+      [
+        "GLORY ACADEMY",
+        6
+      ],
+      [
+        "KALIANI",
+        6
+      ],
+      [
+        "KARIMA",
+        6
+      ],
+      [
+        "KATHIANI",
+        6
+      ]
+    ]
+  },
+  "source_statement": "World Bank EnergyData dataset states that school locations were provided by Kenya Ministry of Education and comprise primary and secondary schools.",
+  "license": "CC BY 4.0",
+  "raw_records_committed": false,
+  "conclusion": "reachable_and_spatial"
+}
