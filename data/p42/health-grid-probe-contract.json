@@ -1,0 +1,45 @@
+{
+  "schema_version": "kda.p42.health-grid-probe-contract.v1",
+  "execution_id": "P42-HEALTH-GRID-001",
+  "built_on": "2026-09-23",
+  "source": {
+    "publisher": "WorldPop / University of Southampton",
+    "doi": "10.5258/SOTON/WP00790",
+    "release": "Grid level prediction and uncertainty surfaces for selected reproductive, maternal, newborn, child, and adolescent health and development indicators for 2014 and 2022 Kenya, v1.0",
+    "license": "CC BY 4.0",
+    "base_url": "https://data.worldpop.org/repo/prj/CMHProgress_map/v1/high_resolution",
+    "method": "Bayesian INLA-SPDE; 5x5km prediction surfaces. Original administrative aggregation is population weighted.",
+    "population_2020_url": "https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/KEN/ken_ppp_2020_UNadj.tif"
+  },
+  "mappings": [
+    {
+      "kda_indicator": "IND-CONTRACEPTIVE-USE",
+      "source_prefix": "C_Prev",
+      "definition_match": "exact",
+      "official_control_year": 2022
+    },
+    {
+      "kda_indicator": "IND-STUNTING-RATE",
+      "source_prefix": "Stunting",
+      "definition_match": "exact",
+      "official_control_year": 2022
+    }
+  ],
+  "geography": {
+    "county": "data/geography/geometry/counties.geojson",
+    "constituency": "data/geography/geometry/constituencies.geojson",
+    "ward": "data/geography/geometry/wards.geojson"
+  },
+  "predeclared_county_gate": {
+    "expected_counties": 47,
+    "max_mae_pp": 5,
+    "max_rmse_pp": 7,
+    "max_absolute_mean_bias_pp": 3
+  },
+  "publication_authority": "none_probe_only",
+  "notes": [
+    "Custom KDA polygon aggregation must use a population-weighted mean, matching the published method.",
+    "Grid-cell lower/upper credible surfaces may be aggregated only as diagnostics; they are not to be labelled as polygon-level credible intervals.",
+    "No constituency or ward value may publish from this probe alone."
+  ]
+}
