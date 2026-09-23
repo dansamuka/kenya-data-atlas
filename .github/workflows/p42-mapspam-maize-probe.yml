@@ -25,7 +25,7 @@ jobs:
       - name: Install cloud-array dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "xarray==2026.6.0" "zarr<3" "fsspec" "s3fs" "numpy"
+          python -m pip install "xarray==2026.7.0" "zarr<3" "fsspec" "s3fs" "numpy"
       - name: Probe MAPSPAM maize cube
         run: python scripts/p42/probe_mapspam_maize.py
       - name: Commit sanitized source profile
