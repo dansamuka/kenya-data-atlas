@@ -2,8 +2,8 @@
   "schema_version": "kda.p35.local-54-reaudit-queue.v1",
   "as_of": "2026-09-20",
   "definition": "Every distinct closure reason behind an official_unavailable/governed_unavailable/boundary_unresolved local-54 cell, with its refresh_trigger, so legacy unavailable states are periodically re-audited for new representable evidence rather than permanently grandfathered. not_applicable and retired_replaced are excluded -- those are permanent structural dispositions, not \"unavailable pending future evidence\".",
-  "reason_group_count": 87,
-  "cell_count": 78311,
+  "reason_group_count": 85,
+  "cell_count": 76571,
   "without_refresh_trigger": 0,
   "rows": [
     {
@@ -451,32 +451,6 @@
     {
       "reason_id": "R045",
       "indicator_codes": [
-        "IND-POPULATION"
-      ],
-      "levels": [
-        "constituency"
-      ],
-      "cell_count": 290,
-      "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS publishes a direct current-290 constituency population table (including a public release of the previously-unpublished 'Volume V' constituency/ward tabulation), or an authoritative 2019 administrative-unit to 2012-01 constituency crosswalk; or the Atlas acquires GIS/raster tooling and constructs a disclosed, independently-checkable S5 modelled estimate from a gridded population product (e.g. WorldPop) aggregated to the Atlas's existing current-boundary constituency geometry.",
-      "source": "KNBS — 2019 Kenya Population and Housing Census Reports"
-    },
-    {
-      "reason_id": "R046",
-      "indicator_codes": [
-        "IND-POPULATION"
-      ],
-      "levels": [
-        "ward"
-      ],
-      "cell_count": 1450,
-      "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS publishes a direct current-1,450-ward population table (including a public release of the previously-unpublished 'Volume V' constituency/ward tabulation), or IEBC/KNBS jointly publish an authoritative administrative-unit-to-ward crosswalk supporting deterministic aggregation from a published table; or the Atlas acquires GIS/raster tooling and constructs a disclosed, independently-checkable S5 modelled estimate from a gridded population product aggregated to the Atlas's existing current-boundary ward geometry.",
-      "source": "KNBS — 2019 Kenya Population and Housing Census Reports (Volumes I–IV)"
-    },
-    {
-      "reason_id": "R047",
-      "indicator_codes": [
         "IND-AGRICULTURE-GVA"
       ],
       "levels": [
@@ -488,7 +462,7 @@
       "source": "KNBS -- Gross County Product 2019 (methodology report) and Gross County Product portal (2019-2025 editions)"
     },
     {
-      "reason_id": "R048",
+      "reason_id": "R046",
       "indicator_codes": [
         "IND-AGRICULTURE-GCP-SHARE"
       ],
@@ -501,7 +475,7 @@
       "source": "KNBS -- Gross County Product 2019 (methodology report) and Gross County Product portal (2019-2025 editions)"
     },
     {
-      "reason_id": "R049",
+      "reason_id": "R047",
       "indicator_codes": [
         "IND-MANUFACTURING-GVA"
       ],
@@ -514,7 +488,7 @@
       "source": "KNBS -- Gross County Product 2019 (methodology report) and Gross County Product portal (2019-2025 editions)"
     },
     {
-      "reason_id": "R050",
+      "reason_id": "R048",
       "indicator_codes": [
         "IND-MANUFACTURING-GCP-SHARE"
       ],
@@ -527,7 +501,7 @@
       "source": "KNBS -- Gross County Product 2019 (methodology report) and Gross County Product portal (2019-2025 editions)"
     },
     {
-      "reason_id": "R051",
+      "reason_id": "R049",
       "indicator_codes": [
         "IND-GCP-CURRENT"
       ],
@@ -540,7 +514,7 @@
       "source": "KNBS -- Gross County Product 2019 (methodology report) and Gross County Product portal (2019-2025 editions)"
     },
     {
-      "reason_id": "R052",
+      "reason_id": "R050",
       "indicator_codes": [
         "IND-HEALTH-FACILITY-COUNT"
       ],
@@ -553,7 +527,7 @@
       "source": "Kenya Master Health Facility Registry (KMHFR); Ministry of Health -- Kenya Health Facility Census Report September 2023"
     },
     {
-      "reason_id": "R053",
+      "reason_id": "R051",
       "indicator_codes": [
         "IND-COUNTY-PENDING-BILLS"
       ],
@@ -566,7 +540,7 @@
       "source": "National Treasury Budget Review and Outlook Paper 2025, Table 10; source data Controller of Budget"
     },
     {
-      "reason_id": "R056",
+      "reason_id": "R054",
       "indicator_codes": [
         "IND-CLASS-C-RURAL-ROAD-LENGTH"
       ],
@@ -579,7 +553,7 @@
       "source": "KNBS Economic Survey 2026 Table 11.9; underlying source Kenya Rural Roads Authority; spatial-derivation candidate World Bank/ESMAP \"Kenya - Roads\" (energydata.info, KRB-attributed)"
     },
     {
-      "reason_id": "R057",
+      "reason_id": "R055",
       "indicator_codes": [
         "IND-PRIMARY-CLASSROOM-TEACHERS"
       ],
@@ -592,7 +566,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R058",
+      "reason_id": "R056",
       "indicator_codes": [
         "IND-PUBLIC-PRIMARY-SCHOOLS"
       ],
@@ -605,7 +579,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R059",
+      "reason_id": "R057",
       "indicator_codes": [
         "IND-PUBLIC-SECONDARY-SCHOOLS"
       ],
@@ -618,7 +592,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R060",
+      "reason_id": "R058",
       "indicator_codes": [
         "IND-SECONDARY-TEACHERS"
       ],
@@ -631,9 +605,35 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R061",
+      "reason_id": "R059",
       "indicator_codes": [
         "IND-MAIZE-AREA"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "has_refresh_trigger": true,
+      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases the sub-county administrative maize records confirmed to exist (per Simbolon et al. 2024) for at least Trans Nzoia and Uasin Gishu Counties, or a future National Agriculture Production Report edition adds a constituency/sub-county annex.",
+      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators"
+    },
+    {
+      "reason_id": "R060",
+      "indicator_codes": [
+        "IND-MAIZE-PRODUCTION"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "has_refresh_trigger": true,
+      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases the sub-county administrative maize records confirmed to exist (per Simbolon et al. 2024) for at least Trans Nzoia and Uasin Gishu Counties, or a future National Agriculture Production Report edition adds a constituency/sub-county annex.",
+      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators"
+    },
+    {
+      "reason_id": "R061",
+      "indicator_codes": [
+        "IND-MAIZE-YIELD"
       ],
       "levels": [
         "constituency"
@@ -646,33 +646,33 @@
     {
       "reason_id": "R062",
       "indicator_codes": [
-        "IND-MAIZE-PRODUCTION"
+        "IND-MAIZE-AREA"
       ],
       "levels": [
-        "constituency"
+        "ward"
       ],
-      "cell_count": 290,
+      "cell_count": 1450,
       "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases the sub-county administrative maize records confirmed to exist (per Simbolon et al. 2024) for at least Trans Nzoia and Uasin Gishu Counties, or a future National Agriculture Production Report edition adds a constituency/sub-county annex.",
-      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators"
+      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases sub-county/ward administrative maize records once the KilimoSTAT platform is restored (its TLS certificate remains expired as of 2026-09-19), or any Kenyan county government publishes its own ward-level maize area/production/yield statistics (none of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru or Nandi did so as of this 2026-09-19 check), or a future National Agriculture Production Report edition adds a constituency/ward annex.",
+      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators; ward-level absence independently re-confirmed 2026-09-19 against KilimoSTAT (statistics.kilimo.go.ke, expired TLS certificate) and opendata.go.ke (host unreachable) and against the published agriculture-department materials of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru and Nandi County Governments"
     },
     {
       "reason_id": "R063",
       "indicator_codes": [
-        "IND-MAIZE-YIELD"
+        "IND-MAIZE-PRODUCTION"
       ],
       "levels": [
-        "constituency"
+        "ward"
       ],
-      "cell_count": 290,
+      "cell_count": 1450,
       "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases the sub-county administrative maize records confirmed to exist (per Simbolon et al. 2024) for at least Trans Nzoia and Uasin Gishu Counties, or a future National Agriculture Production Report edition adds a constituency/sub-county annex.",
-      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators"
+      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases sub-county/ward administrative maize records once the KilimoSTAT platform is restored (its TLS certificate remains expired as of 2026-09-19), or any Kenyan county government publishes its own ward-level maize area/production/yield statistics (none of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru or Nandi did so as of this 2026-09-19 check), or a future National Agriculture Production Report edition adds a constituency/ward annex.",
+      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators; ward-level absence independently re-confirmed 2026-09-19 against KilimoSTAT (statistics.kilimo.go.ke, expired TLS certificate) and opendata.go.ke (host unreachable) and against the published agriculture-department materials of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru and Nandi County Governments"
     },
     {
       "reason_id": "R064",
       "indicator_codes": [
-        "IND-MAIZE-AREA"
+        "IND-MAIZE-YIELD"
       ],
       "levels": [
         "ward"
@@ -685,32 +685,6 @@
     {
       "reason_id": "R065",
       "indicator_codes": [
-        "IND-MAIZE-PRODUCTION"
-      ],
-      "levels": [
-        "ward"
-      ],
-      "cell_count": 1450,
-      "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases sub-county/ward administrative maize records once the KilimoSTAT platform is restored (its TLS certificate remains expired as of 2026-09-19), or any Kenyan county government publishes its own ward-level maize area/production/yield statistics (none of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru or Nandi did so as of this 2026-09-19 check), or a future National Agriculture Production Report edition adds a constituency/ward annex.",
-      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators; ward-level absence independently re-confirmed 2026-09-19 against KilimoSTAT (statistics.kilimo.go.ke, expired TLS certificate) and opendata.go.ke (host unreachable) and against the published agriculture-department materials of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru and Nandi County Governments"
-    },
-    {
-      "reason_id": "R066",
-      "indicator_codes": [
-        "IND-MAIZE-YIELD"
-      ],
-      "levels": [
-        "ward"
-      ],
-      "cell_count": 1450,
-      "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS publishes the main 2025/26 Kenya Census of Agriculture results disaggregated below county, or MoALD/KilimoSTAT publicly releases sub-county/ward administrative maize records once the KilimoSTAT platform is restored (its TLS certificate remains expired as of 2026-09-19), or any Kenyan county government publishes its own ward-level maize area/production/yield statistics (none of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru or Nandi did so as of this 2026-09-19 check), or a future National Agriculture Production Report edition adds a constituency/ward annex.",
-      "source": "Kenya National Bureau of Statistics, National Agriculture Production Report (2023 edition, Annex 1: '2023 Maize by County') -- the same source this Atlas already cites at county level for these three indicators; ward-level absence independently re-confirmed 2026-09-19 against KilimoSTAT (statistics.kilimo.go.ke, expired TLS certificate) and opendata.go.ke (host unreachable) and against the published agriculture-department materials of Uasin Gishu, Trans Nzoia, Bungoma, Nakuru and Nandi County Governments"
-    },
-    {
-      "reason_id": "R067",
-      "indicator_codes": [
         "IND-HEALTH-FACILITY-COUNT"
       ],
       "levels": [
@@ -722,7 +696,7 @@
       "source": "Kenya Master Health Facility Registry (KMHFR); Ministry of Health -- Kenya Health Facility Census Report September 2023"
     },
     {
-      "reason_id": "R068",
+      "reason_id": "R066",
       "indicator_codes": [
         "IND-HEALTH-FACILITY-STOCK"
       ],
@@ -735,7 +709,7 @@
       "source": "Ministry of Health -- Kenya Health Facility Census Report September 2023"
     },
     {
-      "reason_id": "R069",
+      "reason_id": "R067",
       "indicator_codes": [
         "IND-INPATIENT-SERVICE-AVAILABILITY"
       ],
@@ -748,7 +722,7 @@
       "source": "Ministry of Health -- Service Availability and Readiness Assessment (SARA), Table 18"
     },
     {
-      "reason_id": "R072",
+      "reason_id": "R070",
       "indicator_codes": [
         "IND-HOUSING-OWNER-OCCUPIED"
       ],
@@ -761,7 +735,7 @@
       "source": "KNBS Kenya Time Use Survey Report 2021, Chapter 2 (Sections 2.3.2 Sampling of Clusters, 2.3.4 Sample Design for the Time Use Module, 2.4 Data Weighting)"
     },
     {
-      "reason_id": "R073",
+      "reason_id": "R071",
       "indicator_codes": [
         "IND-HOUSEHOLDS-CASH-TRANSFER-SOCIAL-ASSISTANCE",
         "IND-LITERACY-RATE"
@@ -775,7 +749,7 @@
       "source": "KNBS/ICF 2022 Kenya Demographic and Health Survey, Volume I, Section 1.2 Sample Design (p.2)"
     },
     {
-      "reason_id": "R074",
+      "reason_id": "R072",
       "indicator_codes": [
         "IND-COMPUTER-USE",
         "IND-ELECTRICITY-ACCESS",
@@ -792,7 +766,7 @@
       "source": "KNBS 2023/24 Kenya Housing Survey Basic Report, Chapter 2 (Sections 2.1 Survey Design, 2.3 Sample size determination, 2.4 Sampling frame)"
     },
     {
-      "reason_id": "R075",
+      "reason_id": "R073",
       "indicator_codes": [
         "IND-CLASS-C-RURAL-ROAD-LENGTH"
       ],
@@ -805,7 +779,7 @@
       "source": "KNBS Economic Survey 2026 Table 11.9; underlying source Kenya Rural Roads Authority; spatial-derivation candidate World Bank/ESMAP \"Kenya - Roads\" (energydata.info, KRB-attributed)"
     },
     {
-      "reason_id": "R076",
+      "reason_id": "R074",
       "indicator_codes": [
         "IND-HEALTH-FACILITY-DENSITY"
       ],
@@ -818,7 +792,7 @@
       "source": "Ministry of Health — Kenya Master Health Facility Registry (KMHFR)"
     },
     {
-      "reason_id": "R077",
+      "reason_id": "R075",
       "indicator_codes": [
         "IND-REGISTERED-VOTERS"
       ],
@@ -831,9 +805,35 @@
       "source": "IEBC Gazette Notice No. 7290 — Registered Voters per County Assembly Ward (First Schedule); Kenya Data Atlas P23X ward-voter materialisation (scripts/p23/build-ward-voters.mjs, data/sprint2/README.md)"
     },
     {
-      "reason_id": "R078",
+      "reason_id": "R076",
       "indicator_codes": [
         "IND-IMMUNIZATION-RATE"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "has_refresh_trigger": true,
+      "refresh_trigger": "KNBS/DHS Program publishes a KDHS round stratified to constituency level, or a transparent, uncertainty-labelled small-area model built from KDHS microdata and independently validated against known county totals becomes available and is reviewed under this project's S5 modelled-estimate rules.",
+      "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
+    },
+    {
+      "reason_id": "R077",
+      "indicator_codes": [
+        "IND-STUNTING-RATE"
+      ],
+      "levels": [
+        "constituency"
+      ],
+      "cell_count": 290,
+      "has_refresh_trigger": true,
+      "refresh_trigger": "KNBS/DHS Program publishes a KDHS round stratified to constituency level, or a transparent, uncertainty-labelled small-area model built from KDHS microdata and independently validated against known county totals becomes available and is reviewed under this project's S5 modelled-estimate rules.",
+      "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
+    },
+    {
+      "reason_id": "R078",
+      "indicator_codes": [
+        "IND-FGM-CHILD-MARRIAGE"
       ],
       "levels": [
         "constituency"
@@ -846,7 +846,7 @@
     {
       "reason_id": "R079",
       "indicator_codes": [
-        "IND-STUNTING-RATE"
+        "IND-HOME-BIRTH-RATE"
       ],
       "levels": [
         "constituency"
@@ -859,7 +859,7 @@
     {
       "reason_id": "R080",
       "indicator_codes": [
-        "IND-FGM-CHILD-MARRIAGE"
+        "IND-CONTRACEPTIVE-USE"
       ],
       "levels": [
         "constituency"
@@ -872,7 +872,7 @@
     {
       "reason_id": "R081",
       "indicator_codes": [
-        "IND-HOME-BIRTH-RATE"
+        "IND-MATERNAL-HEALTH"
       ],
       "levels": [
         "constituency"
@@ -885,7 +885,7 @@
     {
       "reason_id": "R082",
       "indicator_codes": [
-        "IND-CONTRACEPTIVE-USE"
+        "IND-TEENAGE-PREGNANCY"
       ],
       "levels": [
         "constituency"
@@ -898,32 +898,6 @@
     {
       "reason_id": "R083",
       "indicator_codes": [
-        "IND-MATERNAL-HEALTH"
-      ],
-      "levels": [
-        "constituency"
-      ],
-      "cell_count": 290,
-      "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS/DHS Program publishes a KDHS round stratified to constituency level, or a transparent, uncertainty-labelled small-area model built from KDHS microdata and independently validated against known county totals becomes available and is reviewed under this project's S5 modelled-estimate rules.",
-      "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
-    },
-    {
-      "reason_id": "R084",
-      "indicator_codes": [
-        "IND-TEENAGE-PREGNANCY"
-      ],
-      "levels": [
-        "constituency"
-      ],
-      "cell_count": 290,
-      "has_refresh_trigger": true,
-      "refresh_trigger": "KNBS/DHS Program publishes a KDHS round stratified to constituency level, or a transparent, uncertainty-labelled small-area model built from KDHS microdata and independently validated against known county totals becomes available and is reviewed under this project's S5 modelled-estimate rules.",
-      "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
-    },
-    {
-      "reason_id": "R085",
-      "indicator_codes": [
         "IND-HIV-PREVALENCE"
       ],
       "levels": [
@@ -935,7 +909,7 @@
       "source": "KENPHIA 2018 Preliminary Report (Methods) and NSDCC 2022 Sub-National HIV Epidemic Appraisal Evidence Brief"
     },
     {
-      "reason_id": "R086",
+      "reason_id": "R084",
       "indicator_codes": [
         "IND-POVERTY-RATE"
       ],
@@ -948,7 +922,7 @@
       "source": "KNBS Kenya Poverty Report 2022, Background (p. viii) and Section 1.4.2 Sample Size and Allocation (p.6)"
     },
     {
-      "reason_id": "R087",
+      "reason_id": "R085",
       "indicator_codes": [
         "IND-RENT-BURDEN"
       ],
@@ -961,7 +935,7 @@
       "source": "KNBS 2025 Economic Survey, Chapter 20 (Highlights of the 2023/24 Kenya Housing and Real Estate Surveys), Table 20.5; underlying survey: 2023/24 Kenya Housing Survey Basic Report, Chapter 2"
     },
     {
-      "reason_id": "R088",
+      "reason_id": "R086",
       "indicator_codes": [
         "IND-INPATIENT-SERVICE-AVAILABILITY"
       ],
@@ -974,7 +948,7 @@
       "source": "Ministry of Health -- Service Availability and Readiness Assessment (SARA), Table 18"
     },
     {
-      "reason_id": "R089",
+      "reason_id": "R087",
       "indicator_codes": [
         "IND-PRIMARY-CLASSROOM-TEACHERS"
       ],
@@ -987,7 +961,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R090",
+      "reason_id": "R088",
       "indicator_codes": [
         "IND-PUBLIC-PRIMARY-SCHOOLS"
       ],
@@ -1000,7 +974,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R091",
+      "reason_id": "R089",
       "indicator_codes": [
         "IND-PUBLIC-SECONDARY-SCHOOLS"
       ],
@@ -1013,7 +987,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R092",
+      "reason_id": "R090",
       "indicator_codes": [
         "IND-SECONDARY-TEACHERS"
       ],
@@ -1026,7 +1000,7 @@
       "source": "Teachers Service Commission (TSC) 2023 establishment data, as tabulated by county in the Ministry of Education's Presidential Working Party on Education Reform (PWPER) report"
     },
     {
-      "reason_id": "R093",
+      "reason_id": "R091",
       "indicator_codes": [
         "IND-IMMUNIZATION-RATE"
       ],
@@ -1039,7 +1013,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R094",
+      "reason_id": "R092",
       "indicator_codes": [
         "IND-STUNTING-RATE"
       ],
@@ -1052,7 +1026,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R095",
+      "reason_id": "R093",
       "indicator_codes": [
         "IND-FGM-CHILD-MARRIAGE"
       ],
@@ -1065,7 +1039,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R096",
+      "reason_id": "R094",
       "indicator_codes": [
         "IND-HOME-BIRTH-RATE"
       ],
@@ -1078,7 +1052,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R097",
+      "reason_id": "R095",
       "indicator_codes": [
         "IND-CONTRACEPTIVE-USE"
       ],
@@ -1091,7 +1065,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R098",
+      "reason_id": "R096",
       "indicator_codes": [
         "IND-MATERNAL-HEALTH"
       ],
@@ -1104,7 +1078,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R099",
+      "reason_id": "R097",
       "indicator_codes": [
         "IND-TEENAGE-PREGNANCY"
       ],
@@ -1117,7 +1091,7 @@
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
     },
     {
-      "reason_id": "R100",
+      "reason_id": "R098",
       "indicator_codes": [
         "IND-HIV-PREVALENCE"
       ],
@@ -1130,7 +1104,7 @@
       "source": "KENPHIA 2018 Preliminary Report (Methods) and NSDCC 2022 Sub-National HIV Epidemic Appraisal Evidence Brief"
     },
     {
-      "reason_id": "R101",
+      "reason_id": "R099",
       "indicator_codes": [
         "IND-DISABILITY-PREVALENCE"
       ],

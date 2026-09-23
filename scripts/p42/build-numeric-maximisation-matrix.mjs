@@ -86,7 +86,7 @@ function main() {
         sourceUrl = catalogueEntry?.source_url || null;
       }
 
-      const selection = selectMethod({ barrierClassification, treatmentClass, allowedStates: treatmentPolicy.allowed });
+      const selection = selectMethod({ barrierClassification, treatmentClass, allowedStates: treatmentPolicy.allowed, indicatorId });
 
       matrix.push({
         indicator_id: indicatorId,

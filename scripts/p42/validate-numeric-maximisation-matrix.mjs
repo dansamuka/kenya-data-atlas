@@ -84,7 +84,7 @@ function main() {
     if (row.barrier_classification !== expectedBarrier) fail(`${row.indicator_id}/${row.level} barrier_classification "${row.barrier_classification}" does not match the reproducible derivation "${expectedBarrier}"`);
 
     const treatmentPolicy = policy.treatment_classes[row.treatment_class];
-    const expectedSelection = selectMethod({ barrierClassification: expectedBarrier, treatmentClass: row.treatment_class, allowedStates: treatmentPolicy.allowed });
+    const expectedSelection = selectMethod({ barrierClassification: expectedBarrier, treatmentClass: row.treatment_class, allowedStates: treatmentPolicy.allowed, indicatorId: row.indicator_id });
     if (row.preferred_method_class !== expectedSelection.method_class) fail(`${row.indicator_id}/${row.level} preferred_method_class does not match the reproducible selection`);
     if (row.feasibility_class !== expectedSelection.feasibility_class) fail(`${row.indicator_id}/${row.level} feasibility_class does not match the reproducible selection`);
   }

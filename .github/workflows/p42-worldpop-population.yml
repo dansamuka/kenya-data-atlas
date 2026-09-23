@@ -1,0 +1,142 @@
+name: P42 WorldPop population execution
+
+on:
+  push:
+    branches:
+      - p42-worldpop-population
+    paths:
+      - .github/workflows/p42-worldpop-population.yml
+      - data/p42/worldpop-population-contract.json
+      - scripts/p42/worldpop_population.py
+      - scripts/p42/validate-worldpop-population-candidate.mjs
+      - scripts/p42/apply-worldpop-population.mjs
+      - scripts/p42/validate-worldpop-population-promotion.mjs
+      - package.json
+      - docs/methodology/P42-WORLDPOP-POPULATION.md
+      - scripts/p42/method-selection.mjs
+      - scripts/p42/build-numeric-maximisation-matrix.mjs
+      - scripts/p42/validate-numeric-maximisation-matrix.mjs
+      - tests/p42/method-selection.spec.mjs
+      - data/p42/numeric-maximisation-matrix.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-worldpop-population
+  cancel-in-progress: true
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out execution branch
+        uses: actions/checkout@v4
+        with:
+          ref: p42-worldpop-population
+          fetch-depth: 1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install geospatial dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "geopandas==1.0.1" "rasterio==1.4.3" "rasterstats==0.20.0"
+
+      - name: Validate P42 method matrix before execution
+        run: |
+          npm ci
+          node scripts/p42/validate-numeric-maximisation-matrix.mjs
+          node --test tests/p42/method-selection.spec.mjs
+
+      - name: Download frozen 2019 WorldPop variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          CENTRAL_URL="$(python - <<'PY'
+          import json
+          c=json.load(open('data/p42/worldpop-population-contract.json'))
+          print(c['sources']['central_spatial_surface']['url'])
+          PY
+          )"
+          SENSITIVITY_URL="$(python - <<'PY'
+          import json
+          c=json.load(open('data/p42/worldpop-population-contract.json'))
+          print(c['sources']['sensitivity_spatial_surface']['url'])
+          PY
+          )"
+          curl --fail --location --retry 3 --retry-delay 5 "$CENTRAL_URL" -o /tmp/ken_pop_2019_constrained.tif
+          curl --fail --location --retry 3 --retry-delay 5 "$SENSITIVITY_URL" -o /tmp/ken_pop_2019_unconstrained.tif
+          test -s /tmp/ken_pop_2019_constrained.tif
+          test -s /tmp/ken_pop_2019_unconstrained.tif
+
+      - name: Build county-constrained constituency and ward candidates
+        run: |
+          python scripts/p42/worldpop_population.py \
+            --contract data/p42/worldpop-population-contract.json \
+            --central-raster /tmp/ken_pop_2019_constrained.tif \
+            --sensitivity-raster /tmp/ken_pop_2019_unconstrained.tif \
+            --output data/p42/worldpop-population-candidate.json
+
+      - name: Validate derived candidate output
+        run: node scripts/p42/validate-worldpop-population-candidate.mjs
+
+      - name: Promote passing cells into canonical catalogue and indicator registries
+        run: |
+          node scripts/p42/apply-worldpop-population.mjs catalogue
+          node scripts/catalogue/validate-catalogue.mjs
+          node scripts/p42/apply-worldpop-population.mjs indicators
+          node scripts/indicators/build-cross-level-eligibility.mjs
+          node scripts/indicators/validate-registry.mjs
+
+      - name: Rebuild distribution and Local-54 publication surfaces
+        run: |
+          node scripts/distribution/build-distribution.mjs
+          node scripts/p29/build-local-54-slot-ledger.mjs
+          node scripts/p34/build-local-54-profile-subsets.mjs
+          node scripts/p35/build-local-54-release-gate.mjs
+
+      - name: Validate promoted population and Local-54 gain
+        run: |
+          node scripts/p42/validate-worldpop-population-promotion.mjs
+          npm run distribution:validate
+          npm run p29:validate
+          npm run p34:validate
+          npm run p35:validate
+
+      - name: Commit derived promotion outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/p42/worldpop-population-candidate.json \
+            data/catalogue/registry \
+            data/indicators/registry \
+            data/distribution \
+            data/completeness/local-54-slot-ledger.json \
+            data/completeness/local-54-slot-ledger.csv \
+            data/completeness/local-54-reason-catalogue.json \
+            data/completeness/local-54-reason-catalogue.csv \
+            data/completeness/local-54-summary.json \
+            data/local-54-profiles \
+            data/audit/local-54-freshness-queue.json \
+            data/audit/local-54-supersession-queue.json \
+            data/audit/local-54-reaudit-queue.json \
+            data/local-54-completion-dashboard.json
+          if git diff --cached --quiet; then
+            echo "No promotion output change to commit."
+          else
+            git commit -m "P42: promote validated WorldPop population estimates"
+            git push origin HEAD:p42-worldpop-population
+          fi

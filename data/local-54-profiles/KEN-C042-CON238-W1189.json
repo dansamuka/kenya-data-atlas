@@ -60,7 +60,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R056",
+      "reason_id": "R054",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -88,7 +88,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R097",
+      "reason_id": "R095",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -172,7 +172,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R055",
+      "reason_id": "R053",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -186,7 +186,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R071",
+      "reason_id": "R069",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -228,7 +228,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R095",
+      "reason_id": "R093",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -270,7 +270,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R067",
+      "reason_id": "R065",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -284,7 +284,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R076",
+      "reason_id": "R074",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -298,7 +298,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R068",
+      "reason_id": "R066",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -312,7 +312,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R100",
+      "reason_id": "R098",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -326,7 +326,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R096",
+      "reason_id": "R094",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -424,7 +424,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R093",
+      "reason_id": "R091",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -438,7 +438,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R069",
+      "reason_id": "R067",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -522,7 +522,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R064",
+      "reason_id": "R062",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -536,7 +536,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R065",
+      "reason_id": "R063",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -550,7 +550,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R066",
+      "reason_id": "R064",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -592,7 +592,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R098",
+      "reason_id": "R096",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -614,14 +614,14 @@
       "indicator_code": "IND-POPULATION",
       "indicator_name": "Population",
       "treatment_class": "census_or_household_crosswalk",
-      "status": "official_unavailable",
-      "badge_label": "Data unavailable",
-      "value": null,
-      "period_label": null,
-      "source": null,
-      "source_url": null,
-      "reason_id": "R046",
-      "confidence": "n/a",
+      "status": "published_modelled",
+      "badge_label": "Estimated/modelled",
+      "value": 12475,
+      "period_label": "Census night, 24–25 August 2019",
+      "source": "KDA",
+      "source_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-WORLDPOP-POPULATION.md",
+      "reason_id": null,
+      "confidence": "medium",
       "conflict_note": null
     },
     {
@@ -648,7 +648,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R089",
+      "reason_id": "R087",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -662,7 +662,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R090",
+      "reason_id": "R088",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -676,7 +676,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R091",
+      "reason_id": "R089",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -732,7 +732,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R092",
+      "reason_id": "R090",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -746,7 +746,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R094",
+      "reason_id": "R092",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -760,7 +760,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R099",
+      "reason_id": "R097",
       "confidence": "n/a",
       "conflict_note": null
     },

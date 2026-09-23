@@ -1052,5 +1052,21 @@
     "publication_status": "published",
     "methodology_url": "https://www.centralbank.go.ke/national-payments-system/mobile-payments/",
     "known_limitations": "This series is CBK's published agent cash-in/cash-out (CICO) transaction value only. It is CBK's own headline national mobile-money activity metric, but it is not a reconciled economy-wide total across every mobile-money rail (person-to-person transfers, paybill, till/merchant payments not routed through agent CICO are excluded). The Atlas does not relabel it as \"total mobile money transactions\" and does not combine it with unrelated CBK payment-system tables to manufacture a broader total. The source is a live, continuously-updated statistics table rather than a static report; figures are captured and dated at ingestion time."
+  },
+  {
+    "dataset_id": "71610049-93eb-550f-9aba-ab8f6ade782d",
+    "dataset_code": "DS-KDA-P42-WORLDPOP-POP-2019",
+    "source_id": "37a22f81-be94-544b-9794-2518c53b12ed",
+    "title": "KDA 2019 county-constrained WorldPop local population model",
+    "description": "Constituency and ward population estimates for the 2019 census reference period. Official KNBS county totals are preserved exactly; WorldPop R2024B 2019 100m constrained population provides the within-county spatial allocation and the unconstrained variant provides a model-structure sensitivity envelope.",
+    "topic": "Demography",
+    "geographic_coverage": [
+      "constituency",
+      "ward"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-WORLDPOP-POPULATION.md",
+    "known_limitations": "S5 modelled estimates, not census counts published by KNBS at these current KDA geographies. The WorldPop constrained/unconstrained difference is a model-structure sensitivity envelope, not a statistical confidence interval. Every child allocation is constrained to its official KNBS 2019 county total."
   }
 ]
