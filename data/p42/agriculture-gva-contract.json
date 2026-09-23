@@ -62,7 +62,8 @@
       "constituency": 290,
       "ward": 1450
     },
-    "cell_rule": "A candidate is promotion-eligible only when both central AgGDP and summed component-prior allocations are positive and absolute central-vs-sensitivity spread divided by their mean is <= 50%. Failing cells remain governed unavailable; the threshold is frozen before candidate execution."
+    "cell_rule": "A candidate is promotion-eligible only when both central AgGDP and summed component-prior allocations are positive and absolute central-vs-sensitivity spread divided by their mean is <= 50%. Failing cells remain governed unavailable; the threshold is frozen before candidate execution.",
+    "max_child_weight_vs_county_weight_relative_error": 0.01
   },
   "uncertainty": {
     "type": "model-structure sensitivity envelope",
