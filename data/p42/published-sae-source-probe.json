@@ -1,0 +1,302 @@
+{
+  "schema_version": "kda.p42.published-sae-source-probe.v1",
+  "probed_on": "2026-09-23",
+  "source": {
+    "publisher": "Multi-Indicator Small Area Estimation Resource / University of Washington Statistics",
+    "release": "v2025.11.20",
+    "asset": "KEN_combined_estimates.csv",
+    "asset_size_bytes": 1408745,
+    "model_reference": "Kenya 2014/2022 DHS small-area estimates; Bayesian spatial models with population-weighted aggregation"
+  },
+  "row_count": 12806,
+  "field_names": [
+    "ISO3",
+    "Country",
+    "Year",
+    "Survey",
+    "Indicator",
+    "Admin",
+    "Region_Name",
+    "Mean",
+    "Median",
+    "Lower_CI",
+    "Upper_CI",
+    "Width_90_CI",
+    "Coefficient_of_Variation"
+  ],
+  "low_cardinality_profiles": {
+    "ISO3": {
+      "unique_count": 1,
+      "top_values": [
+        [
+          "KEN",
+          12806
+        ]
+      ]
+    },
+    "Country": {
+      "unique_count": 1,
+      "top_values": [
+        [
+          "Kenya",
+          12806
+        ]
+      ]
+    },
+    "Year": {
+      "unique_count": 2,
+      "top_values": [
+        [
+          "2022",
+          6740
+        ],
+        [
+          "2014",
+          6066
+        ]
+      ]
+    },
+    "Survey": {
+      "unique_count": 2,
+      "top_values": [
+        [
+          "KE2022DHS",
+          6740
+        ],
+        [
+          "KE2014DHS",
+          6066
+        ]
+      ]
+    },
+    "Indicator": {
+      "unique_count": 20,
+      "top_values": [
+        [
+          "FP_CUSM_W_MOD",
+          674
+        ],
+        [
+          "RH_ANCN_W_N4P",
+          674
+        ],
+        [
+          "RH_DELA_C_SKP",
+          674
+        ],
+        [
+          "RH_DELP_C_DHT",
+          674
+        ],
+        [
+          "RH_DELP_C_PUT",
+          674
+        ],
+        [
+          "RH_DELP_C_PRT",
+          674
+        ],
+        [
+          "RH_DELP_C_HOT",
+          674
+        ],
+        [
+          "CH_VACC_C_MSL",
+          674
+        ],
+        [
+          "CH_VACC_C_DP3",
+          674
+        ],
+        [
+          "CH_VACC_C_NON",
+          674
+        ],
+        [
+          "ML_NETC_C_ITN",
+          674
+        ],
+        [
+          "CH_DIAT_C_ORT",
+          674
+        ],
+        [
+          "ED_LITR_W_LIT",
+          674
+        ],
+        [
+          "ED_EDUC_W_SEH",
+          674
+        ],
+        [
+          "HC_WIXQ_P_12Q",
+          674
+        ],
+        [
+          "CM_ECMR_C_NNF",
+          674
+        ],
+        [
+          "CN_NUTS_C_HA2",
+          674
+        ],
+        [
+          "CN_NUTS_C_WH2",
+          674
+        ],
+        [
+          "RH_PCCT_C_DY2",
+          337
+        ],
+        [
+          "CO_MOBB_W_MOB",
+          337
+        ]
+      ]
+    },
+    "Admin": {
+      "unique_count": 2,
+      "top_values": [
+        [
+          "2",
+          11020
+        ],
+        [
+          "1",
+          1786
+        ]
+      ]
+    }
+  },
+  "detected_fields": {
+    "indicator": "Indicator",
+    "year": "Year",
+    "level": null,
+    "county": null,
+    "subcounty": null
+  },
+  "sample_rows": [
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Baringo",
+      "Mean": "0.4769",
+      "Median": "0.4769",
+      "Lower_CI": "0.4103",
+      "Upper_CI": "0.5443",
+      "Width_90_CI": "0.1341",
+      "Coefficient_of_Variation": "0.08598"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Bomet",
+      "Mean": "0.5874",
+      "Median": "0.5874",
+      "Lower_CI": "0.5431",
+      "Upper_CI": "0.6304",
+      "Width_90_CI": "0.08734",
+      "Coefficient_of_Variation": "0.06451"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Bungoma",
+      "Mean": "0.6366",
+      "Median": "0.6366",
+      "Lower_CI": "0.5983",
+      "Upper_CI": "0.6733",
+      "Width_90_CI": "0.07498",
+      "Coefficient_of_Variation": "0.06283"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Busia",
+      "Mean": "0.554",
+      "Median": "0.554",
+      "Lower_CI": "0.5124",
+      "Upper_CI": "0.595",
+      "Width_90_CI": "0.08259",
+      "Coefficient_of_Variation": "0.05642"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Elgeyo-Marakwet",
+      "Mean": "0.5902",
+      "Median": "0.5902",
+      "Lower_CI": "0.5336",
+      "Upper_CI": "0.6445",
+      "Width_90_CI": "0.111",
+      "Coefficient_of_Variation": "0.08263"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Embu",
+      "Mean": "0.7516",
+      "Median": "0.7516",
+      "Lower_CI": "0.704",
+      "Upper_CI": "0.7938",
+      "Width_90_CI": "0.08984",
+      "Coefficient_of_Variation": "0.1101"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Garissa",
+      "Mean": "0.1156",
+      "Median": "0.1156",
+      "Lower_CI": "0.0717",
+      "Upper_CI": "0.181",
+      "Width_90_CI": "0.1093",
+      "Coefficient_of_Variation": "0.2827"
+    },
+    {
+      "ISO3": "KEN",
+      "Country": "Kenya",
+      "Year": "2022",
+      "Survey": "KE2022DHS",
+      "Indicator": "FP_CUSM_W_MOD",
+      "Admin": "1",
+      "Region_Name": "Homa Bay",
+      "Mean": "0.5429",
+      "Median": "0.5429",
+      "Lower_CI": "0.4951",
+      "Upper_CI": "0.59",
+      "Width_90_CI": "0.09487",
+      "Coefficient_of_Variation": "0.06328"
+    }
+  ],
+  "raw_source_committed": false,
+  "conclusion": "reachable_machine_readable_with_uncertainty"
+}
