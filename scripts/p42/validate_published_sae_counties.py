@@ -26,6 +26,15 @@ ALIASES={
   "murang a":"murang a"
 }
 
+def parse_float(value):
+    s=str(value or "").strip()
+    if not s or s.upper() in {"NA","N/A","NULL","NONE","NAN"}:
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
 def official_values(indicator):
     j=json.loads(Path(f"data/distribution/subsets/indicators/{indicator}.json").read_text(encoding="utf-8"))
     out={}
@@ -48,30 +57,42 @@ for m in contract["mappings"]:
         gid=str(k["geography_id"])
         if gid not in off:
             unmatched.append(r["Region_Name"]); continue
-        mean=float(r["Mean"])*100
-        lo=float(r["Lower_CI"])*100
-        hi=float(r["Upper_CI"])*100
+        mean_raw=parse_float(r.get("Mean"))
+        lo_raw=parse_float(r.get("Lower_CI"))
+        hi_raw=parse_float(r.get("Upper_CI"))
+        if mean_raw is None:
+            unmatched.append(f'{r["Region_Name"]} [missing Mean]')
+            continue
+        mean=mean_raw*100
+        lo=lo_raw*100 if lo_raw is not None else None
+        hi=hi_raw*100 if hi_raw is not None else None
         observed=off[gid]
         pairs.append({
           "geo_code":k["geo_code"],"county":k["name"],
-          "model_mean":round(mean,4),"model_lower_90":round(lo,4),"model_upper_90":round(hi,4),
+          "model_mean":round(mean,4),
+          "model_lower_90":round(lo,4) if lo is not None else None,
+          "model_upper_90":round(hi,4) if hi is not None else None,
           "official_value":observed,"error_pp":round(mean-observed,4),
-          "official_inside_model_interval":lo<=observed<=hi
+          "official_inside_model_interval":(lo<=observed<=hi) if lo is not None and hi is not None else None
         })
     errors=[p["error_pp"] for p in pairs]
     mae=sum(abs(e) for e in errors)/len(errors) if errors else None
     rmse=math.sqrt(sum(e*e for e in errors)/len(errors)) if errors else None
     bias=sum(errors)/len(errors) if errors else None
-    cov=100*sum(p["official_inside_model_interval"] for p in pairs)/len(pairs) if pairs else None
+    interval_pairs=[p for p in pairs if p["official_inside_model_interval"] is not None]
+    missing_interval_counties=[p["county"] for p in pairs if p["official_inside_model_interval"] is None]
+    cov=100*sum(1 for p in interval_pairs if p["official_inside_model_interval"])/len(interval_pairs) if interval_pairs else None
     g=contract["predeclared_county_coherence_gate"]
     pass_gate=(
-      len(pairs)==47 and not unmatched and
+      len(pairs)==47 and not unmatched and not missing_interval_counties and
       mae<=g["max_mae_pp"] and rmse<=g["max_rmse_pp"] and abs(bias)<=g["max_absolute_mean_bias_pp"] and
-      cov>=g["min_official_points_inside_published_90_interval_pct"]
+      cov is not None and cov>=g["min_official_points_inside_published_90_interval_pct"]
     )
     results.append({
       **m,
       "county_pairs":len(pairs),"unmatched_source_counties":unmatched,
+      "missing_interval_count":len(missing_interval_counties),
+      "missing_interval_counties":missing_interval_counties,
       "mae_pp":round(mae,4) if mae is not None else None,
       "rmse_pp":round(rmse,4) if rmse is not None else None,
       "mean_bias_pp":round(bias,4) if bias is not None else None,
