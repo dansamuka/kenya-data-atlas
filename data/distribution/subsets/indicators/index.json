@@ -59,8 +59,8 @@
     "indicator_code": "IND-CONTRACEPTIVE-USE",
     "name": "Modern contraceptive use rate",
     "path": "data/distribution/subsets/indicators/IND-CONTRACEPTIVE-USE.json",
-    "series_count": 47,
-    "observation_count": 47
+    "series_count": 52,
+    "observation_count": 52
   },
   {
     "indicator_code": "IND-COUNTY-AUDIT-OPINION",
@@ -395,8 +395,8 @@
     "indicator_code": "IND-LITERACY-RATE",
     "name": "Women age 15–49 literacy rate",
     "path": "data/distribution/subsets/indicators/IND-LITERACY-RATE.json",
-    "series_count": 47,
-    "observation_count": 47
+    "series_count": 52,
+    "observation_count": 52
   },
   {
     "indicator_code": "IND-MAIN-GRID-ELECTRICITY",
@@ -633,8 +633,8 @@
     "indicator_code": "IND-STUNTING-RATE",
     "name": "Children under 5 stunted",
     "path": "data/distribution/subsets/indicators/IND-STUNTING-RATE.json",
-    "series_count": 47,
-    "observation_count": 47
+    "series_count": 52,
+    "observation_count": 52
   },
   {
     "indicator_code": "IND-SUBSTANCE-ABUSE-PREVALENCE",

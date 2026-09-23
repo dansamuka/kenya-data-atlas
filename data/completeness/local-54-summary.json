@@ -8,18 +8,18 @@
   "ward_cells": 78300,
   "child_level_cells": 93960,
   "unclassified_cells": 0,
-  "numeric_evidence_cells": 7747,
-  "numeric_evidence_pct": 8.03,
-  "governed_closure_cells": 88751,
-  "governed_closure_pct": 91.97,
+  "numeric_evidence_cells": 7762,
+  "numeric_evidence_pct": 8.04,
+  "governed_closure_cells": 88736,
+  "governed_closure_pct": 91.96,
   "by_status": {
     "boundary_unresolved": 10,
-    "governed_unavailable": 38280,
+    "governed_unavailable": 38265,
     "not_applicable": 12180,
     "official_unavailable": 38281,
     "published_derived": 2364,
     "published_direct": 3643,
-    "published_modelled": 1740
+    "published_modelled": 1755
   },
   "by_level": {
     "constituency": 15660,

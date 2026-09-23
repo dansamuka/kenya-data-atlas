@@ -1,0 +1,608 @@
+{
+  "schema_version": "kda.p42.published-sae-county-validation.v1",
+  "validated_on": "2026-09-23",
+  "contract": "data/p42/published-sae-promotion-contract.json",
+  "thresholds": {
+    "max_mae_pp": 5,
+    "max_rmse_pp": 7,
+    "max_absolute_mean_bias_pp": 3,
+    "min_official_points_inside_published_90_interval_pct": 75,
+    "require_47_county_pairs": true,
+    "rule": "Each indicator is evaluated independently. Failure blocks that indicator from KDA promotion; thresholds are not relaxed after results are observed."
+  },
+  "results": [
+    {
+      "source_indicator": "FP_CUSM_W_MOD",
+      "kda_indicator": "IND-CONTRACEPTIVE-USE",
+      "definition_match": "direct",
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
+      "missing_interval_count": 0,
+      "missing_interval_counties": [],
+      "mae_pp": 0.179,
+      "rmse_pp": 0.583,
+      "mean_bias_pp": -0.0318,
+      "official_inside_model_90_interval_pct": 100.0,
+      "pass_county_coherence_gate": true,
+      "largest_absolute_errors": [
+        {
+          "geo_code": "KEN-C004",
+          "county": "Tana River",
+          "model_mean": 19.76,
+          "model_lower_90": 15.44,
+          "model_upper_90": 24.94,
+          "official_value": 23.2,
+          "error_pp": -3.44,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C019",
+          "county": "Nyeri",
+          "model_mean": 72.02,
+          "model_lower_90": 65.91,
+          "model_upper_90": 77.41,
+          "official_value": 70.5,
+          "error_pp": 1.52,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C036",
+          "county": "Bomet",
+          "model_mean": 58.74,
+          "model_lower_90": 54.31,
+          "model_upper_90": 63.04,
+          "official_value": 57.8,
+          "error_pp": 0.94,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C035",
+          "county": "Kericho",
+          "model_mean": 59.18,
+          "model_lower_90": 54.66,
+          "model_upper_90": 63.55,
+          "official_value": 60.0,
+          "error_pp": -0.82,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C007",
+          "county": "Garissa",
+          "model_mean": 11.56,
+          "model_lower_90": 7.17,
+          "model_upper_90": 18.1,
+          "official_value": 11.1,
+          "error_pp": 0.46,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C031",
+          "county": "Laikipia",
+          "model_mean": 64.65,
+          "model_lower_90": 58.47,
+          "model_upper_90": 70.37,
+          "official_value": 64.5,
+          "error_pp": 0.15,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C011",
+          "county": "Isiolo",
+          "model_mean": 28.75,
+          "model_lower_90": 23.7,
+          "model_upper_90": 34.39,
+          "official_value": 28.7,
+          "error_pp": 0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C034",
+          "county": "Kajiado",
+          "model_mean": 57.25,
+          "model_lower_90": 50.79,
+          "model_upper_90": 63.47,
+          "official_value": 57.3,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C045",
+          "county": "Kisii",
+          "model_mean": 63.55,
+          "model_lower_90": 59.29,
+          "model_upper_90": 67.6,
+          "official_value": 63.5,
+          "error_pp": 0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C021",
+          "county": "Murang'a",
+          "model_mean": 67.25,
+          "model_lower_90": 61.92,
+          "model_upper_90": 72.18,
+          "official_value": 67.3,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        }
+      ]
+    },
+    {
+      "source_indicator": "RH_DELA_C_SKP",
+      "kda_indicator": "IND-MATERNAL-HEALTH",
+      "definition_match": "direct",
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
+      "missing_interval_count": 1,
+      "missing_interval_counties": [
+        "Nyeri"
+      ],
+      "mae_pp": 0.2215,
+      "rmse_pp": 0.6335,
+      "mean_bias_pp": 0.1019,
+      "official_inside_model_90_interval_pct": 100.0,
+      "pass_county_coherence_gate": false,
+      "largest_absolute_errors": [
+        {
+          "geo_code": "KEN-C004",
+          "county": "Tana River",
+          "model_mean": 62.17,
+          "model_lower_90": 53.13,
+          "model_upper_90": 70.45,
+          "official_value": 59.2,
+          "error_pp": 2.97,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C036",
+          "county": "Bomet",
+          "model_mean": 90.22,
+          "model_lower_90": 86.52,
+          "model_upper_90": 92.98,
+          "official_value": 88.2,
+          "error_pp": 2.02,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C035",
+          "county": "Kericho",
+          "model_mean": 90.41,
+          "model_lower_90": 85.05,
+          "model_upper_90": 93.98,
+          "official_value": 92.3,
+          "error_pp": -1.89,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C031",
+          "county": "Laikipia",
+          "model_mean": 93.78,
+          "model_lower_90": 88.68,
+          "model_upper_90": 96.67,
+          "official_value": 92.6,
+          "error_pp": 1.18,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C019",
+          "county": "Nyeri",
+          "model_mean": 100.0,
+          "model_lower_90": null,
+          "model_upper_90": null,
+          "official_value": 99.1,
+          "error_pp": 0.9,
+          "official_inside_model_interval": null
+        },
+        {
+          "geo_code": "KEN-C007",
+          "county": "Garissa",
+          "model_mean": 67.71,
+          "model_lower_90": 58.98,
+          "model_upper_90": 75.35,
+          "official_value": 68.1,
+          "error_pp": -0.39,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C030",
+          "county": "Baringo",
+          "model_mean": 83.05,
+          "model_lower_90": 70.45,
+          "model_upper_90": 90.96,
+          "official_value": 83.0,
+          "error_pp": 0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C034",
+          "county": "Kajiado",
+          "model_mean": 85.25,
+          "model_lower_90": 77.1,
+          "model_upper_90": 90.85,
+          "official_value": 85.3,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C008",
+          "county": "Wajir",
+          "model_mean": 56.55,
+          "model_lower_90": 43.73,
+          "model_upper_90": 68.56,
+          "official_value": 56.6,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C028",
+          "county": "Elgeyo/Marakwet",
+          "model_mean": 97.54,
+          "model_lower_90": 94.58,
+          "model_upper_90": 98.9,
+          "official_value": 97.5,
+          "error_pp": 0.04,
+          "official_inside_model_interval": true
+        }
+      ]
+    },
+    {
+      "source_indicator": "RH_DELP_C_HOT",
+      "kda_indicator": "IND-HOME-BIRTH-RATE",
+      "definition_match": "direct",
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
+      "missing_interval_count": 1,
+      "missing_interval_counties": [
+        "Nyeri"
+      ],
+      "mae_pp": 0.3048,
+      "rmse_pp": 0.8758,
+      "mean_bias_pp": -0.1206,
+      "official_inside_model_90_interval_pct": 100.0,
+      "pass_county_coherence_gate": false,
+      "largest_absolute_errors": [
+        {
+          "geo_code": "KEN-C004",
+          "county": "Tana River",
+          "model_mean": 43.82,
+          "model_lower_90": 33.79,
+          "model_upper_90": 54.39,
+          "official_value": 48.2,
+          "error_pp": -4.38,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C036",
+          "county": "Bomet",
+          "model_mean": 10.61,
+          "model_lower_90": 7.518,
+          "model_upper_90": 14.76,
+          "official_value": 12.8,
+          "error_pp": -2.19,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C035",
+          "county": "Kericho",
+          "model_mean": 11.26,
+          "model_lower_90": 7.374,
+          "model_upper_90": 16.82,
+          "official_value": 9.1,
+          "error_pp": 2.16,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C031",
+          "county": "Laikipia",
+          "model_mean": 8.095,
+          "model_lower_90": 4.191,
+          "model_upper_90": 15.06,
+          "official_value": 10.0,
+          "error_pp": -1.905,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C007",
+          "county": "Garissa",
+          "model_mean": 40.31,
+          "model_lower_90": 32.97,
+          "model_upper_90": 48.12,
+          "official_value": 38.6,
+          "error_pp": 1.71,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C019",
+          "county": "Nyeri",
+          "model_mean": 0.0,
+          "model_lower_90": null,
+          "model_upper_90": null,
+          "official_value": 0.9,
+          "error_pp": -0.9,
+          "official_inside_model_interval": null
+        },
+        {
+          "geo_code": "KEN-C039",
+          "county": "Bungoma",
+          "model_mean": 11.96,
+          "model_lower_90": 7.595,
+          "model_upper_90": 18.33,
+          "official_value": 11.9,
+          "error_pp": 0.06,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C010",
+          "county": "Marsabit",
+          "model_mean": 40.75,
+          "model_lower_90": 32.06,
+          "model_upper_90": 50.05,
+          "official_value": 40.7,
+          "error_pp": 0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C023",
+          "county": "Turkana",
+          "model_mean": 47.15,
+          "model_lower_90": 38.19,
+          "model_upper_90": 56.31,
+          "official_value": 47.2,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C018",
+          "county": "Nyandarua",
+          "model_mean": 2.152,
+          "model_lower_90": 0.8031,
+          "model_upper_90": 5.639,
+          "official_value": 2.2,
+          "error_pp": -0.048,
+          "official_inside_model_interval": true
+        }
+      ]
+    },
+    {
+      "source_indicator": "CN_NUTS_C_HA2",
+      "kda_indicator": "IND-STUNTING-RATE",
+      "definition_match": "direct",
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
+      "missing_interval_count": 0,
+      "missing_interval_counties": [],
+      "mae_pp": 0.2657,
+      "rmse_pp": 0.7376,
+      "mean_bias_pp": -0.0742,
+      "official_inside_model_90_interval_pct": 100.0,
+      "pass_county_coherence_gate": true,
+      "largest_absolute_errors": [
+        {
+          "geo_code": "KEN-C004",
+          "county": "Tana River",
+          "model_mean": 18.19,
+          "model_lower_90": 14.99,
+          "model_upper_90": 21.89,
+          "official_value": 21.1,
+          "error_pp": -2.91,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C035",
+          "county": "Kericho",
+          "model_mean": 21.91,
+          "model_lower_90": 17.8,
+          "model_upper_90": 26.67,
+          "official_value": 19.3,
+          "error_pp": 2.61,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C036",
+          "county": "Bomet",
+          "model_mean": 19.95,
+          "model_lower_90": 16.63,
+          "model_upper_90": 23.73,
+          "official_value": 22.1,
+          "error_pp": -2.15,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C019",
+          "county": "Nyeri",
+          "model_mean": 10.68,
+          "model_lower_90": 6.399,
+          "model_upper_90": 17.28,
+          "official_value": 12.5,
+          "error_pp": -1.82,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C031",
+          "county": "Laikipia",
+          "model_mean": 14.03,
+          "model_lower_90": 11.65,
+          "model_upper_90": 16.79,
+          "official_value": 12.6,
+          "error_pp": 1.43,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C007",
+          "county": "Garissa",
+          "model_mean": 8.48,
+          "model_lower_90": 6.568,
+          "model_upper_90": 10.88,
+          "official_value": 9.0,
+          "error_pp": -0.52,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C022",
+          "county": "Kiambu",
+          "model_mean": 15.25,
+          "model_lower_90": 11.08,
+          "model_upper_90": 20.63,
+          "official_value": 15.3,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C012",
+          "county": "Meru",
+          "model_mean": 25.15,
+          "model_lower_90": 19.54,
+          "model_upper_90": 31.74,
+          "official_value": 25.2,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C044",
+          "county": "Migori",
+          "model_mean": 14.85,
+          "model_lower_90": 12.06,
+          "model_upper_90": 18.15,
+          "official_value": 14.8,
+          "error_pp": 0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C032",
+          "county": "Nakuru",
+          "model_mean": 18.45,
+          "model_lower_90": 15.46,
+          "model_upper_90": 21.87,
+          "official_value": 18.5,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        }
+      ]
+    },
+    {
+      "source_indicator": "ED_LITR_W_LIT",
+      "kda_indicator": "IND-LITERACY-RATE",
+      "definition_match": "direct",
+      "county_pairs": 47,
+      "unmatched_source_counties": [],
+      "missing_interval_count": 0,
+      "missing_interval_counties": [],
+      "mae_pp": 0.1213,
+      "rmse_pp": 0.3356,
+      "mean_bias_pp": 0.0213,
+      "official_inside_model_90_interval_pct": 100.0,
+      "pass_county_coherence_gate": true,
+      "largest_absolute_errors": [
+        {
+          "geo_code": "KEN-C004",
+          "county": "Tana River",
+          "model_mean": 48.95,
+          "model_lower_90": 41.39,
+          "model_upper_90": 56.55,
+          "official_value": 50.6,
+          "error_pp": -1.65,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C031",
+          "county": "Laikipia",
+          "model_mean": 92.81,
+          "model_lower_90": 88.34,
+          "model_upper_90": 95.65,
+          "official_value": 91.5,
+          "error_pp": 1.31,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C036",
+          "county": "Bomet",
+          "model_mean": 96.56,
+          "model_lower_90": 95.33,
+          "model_upper_90": 97.48,
+          "official_value": 95.9,
+          "error_pp": 0.66,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C007",
+          "county": "Garissa",
+          "model_mean": 46.92,
+          "model_lower_90": 35.15,
+          "model_upper_90": 59.05,
+          "official_value": 46.5,
+          "error_pp": 0.42,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C019",
+          "county": "Nyeri",
+          "model_mean": 98.6,
+          "model_lower_90": 97.27,
+          "model_upper_90": 99.28,
+          "official_value": 98.2,
+          "error_pp": 0.4,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C035",
+          "county": "Kericho",
+          "model_mean": 98.39,
+          "model_lower_90": 97.27,
+          "model_upper_90": 99.05,
+          "official_value": 98.6,
+          "error_pp": -0.21,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C045",
+          "county": "Kisii",
+          "model_mean": 96.45,
+          "model_lower_90": 94.87,
+          "model_upper_90": 97.56,
+          "official_value": 96.5,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C017",
+          "county": "Makueni",
+          "model_mean": 98.05,
+          "model_lower_90": 96.42,
+          "model_upper_90": 98.95,
+          "official_value": 98.1,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C010",
+          "county": "Marsabit",
+          "model_mean": 34.25,
+          "model_lower_90": 26.85,
+          "model_upper_90": 42.5,
+          "official_value": 34.2,
+          "error_pp": 0.05,
+          "official_inside_model_interval": true
+        },
+        {
+          "geo_code": "KEN-C032",
+          "county": "Nakuru",
+          "model_mean": 96.75,
+          "model_lower_90": 95.32,
+          "model_upper_90": 97.76,
+          "official_value": 96.8,
+          "error_pp": -0.05,
+          "official_inside_model_interval": true
+        }
+      ]
+    }
+  ],
+  "passing_indicators": [
+    "IND-CONTRACEPTIVE-USE",
+    "IND-STUNTING-RATE",
+    "IND-LITERACY-RATE"
+  ],
+  "failing_indicators": [
+    "IND-MATERNAL-HEALTH",
+    "IND-HOME-BIRTH-RATE"
+  ]
+}

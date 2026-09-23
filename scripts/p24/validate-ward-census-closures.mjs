@@ -31,9 +31,8 @@ for(const decision of contract.decisions||[]){
 
   const rows=ledger.rows.filter(r=>r.level==='ward'&&r.indicator_code===decision.indicator_code);
   assert(rows.length===expectedSlotCounts[decision.indicator_code],`${decision.indicator_code}: expected ${expectedSlotCounts[decision.indicator_code]} rendered slots, got ${rows.length}`);
-  assert(rows.every(r=>r.resolved===true&&r.status==='official_unavailable'&&r.completion_phase==='complete'),`${decision.indicator_code}: every rendered occurrence must be governed closed`);
-  assert(rows.every(r=>!r.series_code&&!r.observation_id&&(r.value===''||r.value===null||r.value===undefined)),`${decision.indicator_code}: closure must not fabricate series, observations or values`);
-  assert(rows.every(r=>r.reason===decision.reason&&r.period_label===decision.period_label&&r.source===decision.source&&r.source_url===decision.source_url),`${decision.indicator_code}: rendered provenance must match contract`);
+  assert(rows.every(r=>r.resolved===true&&r.status==='published_modelled'&&r.completion_phase==='complete'),`${decision.indicator_code}: historical ward closure must be superseded by canonical P42 modelled evidence`);
+  assert(rows.every(r=>r.series_code&&r.observation_id&&Number.isFinite(Number(r.value))),`${decision.indicator_code}: supersession requires canonical series, observation and numeric value`);
   // Every unique ward geography must be represented exactly twice (overview + people).
   const byWard=new Map();
   for(const r of rows)byWard.set(r.geo_code,(byWard.get(r.geo_code)||0)+1);
@@ -45,7 +44,7 @@ const coveredRows=ledger.rows.filter(r=>r.level==='ward'&&Object.hasOwn(expected
 assert(coveredRows.length===2900,`expected 2,900 P24 census slot occurrences to be covered, got ${coveredRows.length}`);
 
 const decision=(decisionsDoc.decisions||[]).find(d=>d.indicator_code==='IND-POPULATION'&&d.level==='ward');
-assert(decision?.disposition==='governed_unavailable',`local-indicator-cascade decision for IND-POPULATION|ward must remain governed_unavailable, got ${decision?.disposition}`);
+assert(decision?.disposition==='modelled_estimate',`local-indicator-cascade decision for IND-POPULATION|ward must recognize P42 modelled evidence, got ${decision?.disposition}`);
 assert(String(decision.reason||'').length>=20,'IND-POPULATION|ward cascade decision must carry a substantive reason');
 
 console.log(`P24_WARD_CENSUS_CLOSURES_OK wards=${wards.length} rendered_slots=${coveredRows.length} contract=${contract.contract_id}`);

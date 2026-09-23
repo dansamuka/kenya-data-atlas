@@ -1,0 +1,62 @@
+name: P42 published Kenya SAE source probe
+
+on:
+  push:
+    branches:
+      - p42-published-sae-probe
+    paths:
+      - .github/workflows/p42-published-sae-probe.yml
+      - scripts/p42/probe_published_sae.py
+      - scripts/p42/validate_published_sae_counties.py
+      - scripts/p42/compare_published_sae_geometry.py
+      - scripts/p42/build_published_sae_candidate.py
+      - data/p42/published-sae-promotion-contract.json
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-published-sae-probe
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geometry comparison dependencies
+        run: python -m pip install "geopandas==1.0.1" "shapely==2.1.2"
+      - name: Download public Kenya SAE release CSV
+        run: |
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://github.com/UW-Statistics/gatesweb/releases/download/v2025.11.20/KEN_combined_estimates.csv' \
+            -o /tmp/KEN_combined_estimates.csv
+          test -s /tmp/KEN_combined_estimates.csv
+      - name: Profile published Kenya SAE estimates
+        run: python scripts/p42/probe_published_sae.py
+      - name: Validate published SAE against official KDA county controls
+        run: python scripts/p42/validate_published_sae_counties.py
+      - name: Download published 2022 stunting Admin2 map artifact
+        run: |
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://raw.githubusercontent.com/UW-Statistics/gatesweb_html1/main/KEN/CN_NUTS_C_HA2_detail.html' \
+            -o /tmp/KEN_stunting_detail.html
+          test -s /tmp/KEN_stunting_detail.html
+      - name: Compare published Admin2 polygons to KDA constituencies
+        run: |
+          python scripts/p42/compare_published_sae_geometry.py \
+            --html /tmp/KEN_stunting_detail.html \
+            --output data/p42/published-sae-geometry-crosswalk.json
+      - name: Build strictly gated constituency candidates
+        run: python scripts/p42/build_published_sae_candidate.py
+      - name: Commit sanitized source profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/published-sae-source-probe.json data/p42/published-sae-county-validation.json data/p42/published-sae-geometry-crosswalk.json data/p42/published-sae-constituency-candidate.json
+          git commit -m "P42: record published Kenya SAE source profile"
+          git push origin HEAD:p42-published-sae-probe
