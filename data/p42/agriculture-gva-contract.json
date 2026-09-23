@@ -1,0 +1,78 @@
+{
+  "schema_version": "kda.p42.agriculture-gva-contract.v1",
+  "created_on": "2026-09-23",
+  "execution_id": "P42-ECO-AGGVA-001",
+  "status": "ready_to_execute",
+  "target": {
+    "indicator_id": "IND-AGRICULTURE-GVA",
+    "indicator_name": "Agriculture gross value added",
+    "reference_period": "2024",
+    "levels": [
+      "constituency",
+      "ward"
+    ],
+    "potential_new_cells": 1740,
+    "source_tier": "S5",
+    "public_label": "Modelled estimate — county-constrained agricultural spatial allocation"
+  },
+  "rationale": "KDA has official KNBS 2024 Agriculture GVA for all 47 counties but no defensible current constituency/ward values. The World Bank AgGDP raster has passed the predeclared spatial-prior feasibility gate against KNBS county Agriculture GVA (Spearman > 0.60) and supplies an independent agricultural economic-activity surface. It is used only to distribute each official county control within that county.",
+  "sources": {
+    "official_controls": {
+      "source": "KNBS Gross County Product 2024",
+      "repo_path": "data/distribution/subsets/indicators/IND-AGRICULTURE-GVA.json",
+      "expected_counties": 47,
+      "year": 2024
+    },
+    "central_spatial_surface": {
+      "source": "World Bank Global Gridded Agricultural Gross Domestic Product (AgGDP)",
+      "year": 2010,
+      "resolution": "5 arc-minute (~10 km)",
+      "url": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0089195/aggdp2010.tif",
+      "license": "CC BY 4.0"
+    },
+    "sensitivity_component_priors": {
+      "crop": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090770/aggdp2010_crop_prior.tif",
+      "livestock": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090771/aggdp2010_ls_prior.tif",
+      "fish": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090772/aggdp2010_fish_prior.tif",
+      "forest": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090773/aggdp2010_forest_prior.tif"
+    },
+    "feasibility_evidence": "data/p42/economic-gridded-source-probe.json"
+  },
+  "geography": {
+    "boundary_version": "2012-01",
+    "constituency_geometry": "data/geography/geometry/constituencies.geojson",
+    "ward_geometry": "data/geography/geometry/wards.geojson",
+    "extraction": "fractional pixel-polygon overlap"
+  },
+  "method": {
+    "central": "For each level independently, exact-fractionally sum AgGDP raster values in each child polygon, normalize child weights within the canonical KDA county, and multiply by official KNBS 2024 county Agriculture GVA.",
+    "sensitivity": "Construct an alternative raw prior surface by summing crop, livestock, fish and forest prior values at each child polygon, normalize within county, and allocate the same official county Agriculture GVA.",
+    "rounding": "Allocate in KES million to 2 decimals using largest-remainder cents so child values reconcile exactly to the official county control.",
+    "no_parent_copy": true,
+    "no_equal_split": true,
+    "no_force_matched_boundaries": true
+  },
+  "predeclared_publication_gate": {
+    "feasibility_spearman_min": 0.6,
+    "county_reconciliation_absolute_kes_million_tolerance": 0,
+    "max_model_structure_spread_pct": 50,
+    "require_positive_central_and_sensitivity_value": true,
+    "require_all_47_county_controls": true,
+    "require_full_child_geometry_counts": {
+      "constituency": 290,
+      "ward": 1450
+    },
+    "cell_rule": "A candidate is promotion-eligible only when both central AgGDP and summed component-prior allocations are positive and absolute central-vs-sensitivity spread divided by their mean is <= 50%. Failing cells remain governed unavailable; the threshold is frozen before candidate execution."
+  },
+  "uncertainty": {
+    "type": "model-structure sensitivity envelope",
+    "lower": "minimum of the two county-constrained allocations",
+    "upper": "maximum of the two county-constrained allocations",
+    "caveat": "Not a statistical confidence interval. It measures sensitivity to the optimized AgGDP surface versus the raw sum of its four sectoral priors."
+  },
+  "data_handling": {
+    "commit_source_rasters": false,
+    "commit_derived_candidate": true
+  },
+  "output": "data/p42/agriculture-gva-candidate.json"
+}
