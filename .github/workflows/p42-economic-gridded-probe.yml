@@ -1,0 +1,66 @@
+name: P42 economic gridded source probe
+
+on:
+  push:
+    branches:
+      - p42-economic-gridded-probe
+    paths:
+      - .github/workflows/p42-economic-gridded-probe.yml
+      - data/p42/economic-gridded-probe-contract.json
+      - scripts/p42/probe_economic_gridded_sources.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-economic-gridded-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-economic-gridded-probe
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geospatial dependencies
+        run: python -m pip install "geopandas==1.0.1" "rasterio==1.4.3" "rasterstats==0.20.0"
+      - name: Download World Bank agriculture rasters
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY' > /tmp/p42-economic-urls.txt
+          import json
+          c=json.load(open('data/p42/economic-gridded-probe-contract.json'))
+          for k,v in c['sources']['agriculture']['rasters'].items():
+              print(k+'|'+v)
+          PY
+          while IFS='|' read -r key url; do
+            curl --fail --location --retry 3 --retry-delay 4 "$url" -o "/tmp/$key.tif"
+            test -s "/tmp/$key.tif"
+          done < /tmp/p42-economic-urls.txt
+      - name: Fetch Figshare file manifest
+        run: |
+          curl --fail --location --retry 3 --retry-delay 4             https://api.figshare.com/v2/articles/17004523/files             -o /tmp/figshare-gdp-files.json
+          test -s /tmp/figshare-gdp-files.json
+      - name: Probe source coverage and county coherence
+        run: |
+          python scripts/p42/probe_economic_gridded_sources.py             --contract data/p42/economic-gridded-probe-contract.json             --aggdp /tmp/aggdp.tif             --crop /tmp/crop_prior.tif             --livestock /tmp/livestock_prior.tif             --fish /tmp/fish_prior.tif             --forest /tmp/forest_prior.tif             --figshare-manifest /tmp/figshare-gdp-files.json             --output data/p42/economic-gridded-source-probe.json
+      - name: Commit sanitized probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/economic-gridded-source-probe.json
+          if git diff --cached --quiet; then
+            echo "No probe change."
+          else
+            git commit -m "P42: record economic gridded-source probe"
+            git push origin HEAD:p42-economic-gridded-probe
+          fi
