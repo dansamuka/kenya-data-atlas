@@ -1,0 +1,70 @@
+name: P42 health spatial source comparison
+
+on:
+  push:
+    branches:
+      - p42-health-spatial-probe
+    paths:
+      - .github/workflows/p42-health-spatial-probe.yml
+      - scripts/p42/probe_health_spatial.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-health-spatial-probe
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-health-spatial-probe
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geospatial tooling
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y osmium-tool
+          python -m pip install --upgrade pip
+          python -m pip install "geopandas==1.0.1" "pandas==2.2.3"
+      - name: Download Government/World Bank facility points
+        run: |
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://energydata.info/dataset/7e456b65-1c58-4031-9a91-397787c1334c/resource/f1faedc0-de28-4157-a48c-cb72d1482aed/download/healthcare_facilities.json' \
+            -o /tmp/worldbank-health.json
+          test -s /tmp/worldbank-health.json
+      - name: Download current Kenya OpenStreetMap extract
+        run: |
+          curl --fail --location --retry 3 --retry-delay 5 \
+            'https://download.geofabrik.de/africa/kenya-latest.osm.pbf' \
+            -o /tmp/kenya.osm.pbf
+          test -s /tmp/kenya.osm.pbf
+      - name: Extract OSM healthcare features
+        run: |
+          osmium tags-filter /tmp/kenya.osm.pbf \
+            nwr/amenity=hospital,clinic,doctors \
+            nwr/healthcare=hospital,clinic,doctor,centre,health_centre,dispensary \
+            -o /tmp/osm-health.pbf
+          osmium export /tmp/osm-health.pbf -f geojson -o /tmp/osm-health.geojson
+          test -s /tmp/osm-health.geojson
+      - name: Compare spatial allocation patterns against official 2023 county controls
+        run: |
+          python scripts/p42/probe_health_spatial.py \
+            --worldbank /tmp/worldbank-health.json \
+            --osm /tmp/osm-health.geojson \
+            --threshold 50 \
+            --output data/p42/health-spatial-probe.json
+      - name: Commit aggregate comparison only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/health-spatial-probe.json
+          git commit -m "P42: record health facility spatial source comparison"
+          git push origin HEAD:p42-health-spatial-probe
