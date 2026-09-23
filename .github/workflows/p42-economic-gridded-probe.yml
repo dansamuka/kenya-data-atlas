@@ -8,6 +8,8 @@ on:
       - .github/workflows/p42-economic-gridded-probe.yml
       - data/p42/economic-gridded-probe-contract.json
       - scripts/p42/probe_economic_gridded_sources.py
+      - scripts/p42/build_agriculture_gva_candidate.py
+      - data/p42/agriculture-gva-contract.json
 
 permissions:
   contents: write
@@ -51,13 +53,16 @@ jobs:
       - name: Probe source coverage and county coherence
         run: |
           python scripts/p42/probe_economic_gridded_sources.py             --contract data/p42/economic-gridded-probe-contract.json             --aggdp /tmp/aggdp.tif             --crop /tmp/crop_prior.tif             --livestock /tmp/livestock_prior.tif             --fish /tmp/fish_prior.tif             --forest /tmp/forest_prior.tif             --figshare-manifest /tmp/figshare-gdp-files.json             --output data/p42/economic-gridded-source-probe.json
+      - name: Build county-constrained Agriculture GVA candidate
+        run: |
+          python scripts/p42/build_agriculture_gva_candidate.py             --contract data/p42/agriculture-gva-contract.json             --aggdp /tmp/aggdp.tif             --crop /tmp/crop_prior.tif             --livestock /tmp/livestock_prior.tif             --fish /tmp/fish_prior.tif             --forest /tmp/forest_prior.tif             --output data/p42/agriculture-gva-candidate.json
       - name: Commit sanitized probe
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/p42/economic-gridded-source-probe.json
+          git add data/p42/economic-gridded-source-probe.json data/p42/agriculture-gva-candidate.json
           if git diff --cached --quiet; then
             echo "No probe change."
           else
