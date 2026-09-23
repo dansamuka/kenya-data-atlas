@@ -123,6 +123,7 @@ def main():
         ]
       },
       "total_gdp":{
+        "figshare_manifest_files":[{"id":f.get("id"),"name":f.get("name"),"size":f.get("size"),"download_url":f.get("download_url")} for f in files],
         "figshare_2019_candidates":candidates,
         "probe_download_runnable_under_size_gate":total_gdp_runnable,
         "size_gate_bytes":gates["max_total_gdp_probe_download_bytes"]
