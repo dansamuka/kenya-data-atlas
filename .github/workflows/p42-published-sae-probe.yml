@@ -1,0 +1,41 @@
+name: P42 published Kenya SAE source probe
+
+on:
+  push:
+    branches:
+      - p42-published-sae-probe
+    paths:
+      - .github/workflows/p42-published-sae-probe.yml
+      - scripts/p42/probe_published_sae.py
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-published-sae-probe
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download public Kenya SAE release CSV
+        run: |
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://github.com/UW-Statistics/gatesweb/releases/download/v2025.11.20/KEN_combined_estimates.csv' \
+            -o /tmp/KEN_combined_estimates.csv
+          test -s /tmp/KEN_combined_estimates.csv
+      - name: Profile published Kenya SAE estimates
+        run: python scripts/p42/probe_published_sae.py
+      - name: Commit sanitized source profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/published-sae-source-probe.json
+          git commit -m "P42: record published Kenya SAE source profile"
+          git push origin HEAD:p42-published-sae-probe
