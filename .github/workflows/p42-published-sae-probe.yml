@@ -9,6 +9,7 @@ on:
       - scripts/p42/probe_published_sae.py
       - scripts/p42/validate_published_sae_counties.py
       - scripts/p42/compare_published_sae_geometry.py
+      - scripts/p42/build_published_sae_candidate.py
       - data/p42/published-sae-promotion-contract.json
 
 permissions:
@@ -48,12 +49,14 @@ jobs:
           python scripts/p42/compare_published_sae_geometry.py \
             --html /tmp/KEN_stunting_detail.html \
             --output data/p42/published-sae-geometry-crosswalk.json
+      - name: Build strictly gated constituency candidates
+        run: python scripts/p42/build_published_sae_candidate.py
       - name: Commit sanitized source profile
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/p42/published-sae-source-probe.json data/p42/published-sae-county-validation.json data/p42/published-sae-geometry-crosswalk.json
+          git add data/p42/published-sae-source-probe.json data/p42/published-sae-county-validation.json data/p42/published-sae-geometry-crosswalk.json data/p42/published-sae-constituency-candidate.json
           git commit -m "P42: record published Kenya SAE source profile"
           git push origin HEAD:p42-published-sae-probe
