@@ -36,10 +36,11 @@ def official_controls(subset, year):
     out={}
     for o in subset.get("observations",[]):
         if o.get("indicator_code")!="IND-AGRICULTURE-GVA": continue
-        if o.get("geography_level")!="county": continue
         if str(o.get("period_start",""))[:4]!=str(year): continue
         if o.get("source_class")!="official": continue
-        out[o["geo_code"]]=float(o["value"])
+        code=str(o.get("geo_code",""))
+        if not code.startswith("KEN-C") or "-CON" in code or "-W" in code: continue
+        out[code]=float(o["value"])
     return out
 
 def profile_level(name,path,rasters):
