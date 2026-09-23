@@ -1068,5 +1068,20 @@
     "publication_status": "published",
     "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-WORLDPOP-POPULATION.md",
     "known_limitations": "S5 modelled estimates, not census counts published by KNBS at these current KDA geographies. The WorldPop constrained/unconstrained difference is a model-structure sensitivity envelope, not a statistical confidence interval. Every child allocation is constrained to its official KNBS 2019 county total."
+  },
+  {
+    "dataset_id": "4b533b75-6ff6-5505-b317-7b23f2fb2e55",
+    "dataset_code": "DS-KDA-P42-PUBLISHED-SAE-2022",
+    "source_id": "37a22f81-be94-544b-9794-2518c53b12ed",
+    "title": "KDA governed promotion of published Kenya 2022 small-area estimates",
+    "description": "Strictly gated constituency estimates from the UW Statistics Multi-Indicator Small Area Estimation Resource. Promotion requires county coherence plus near-identical source/KDA polygon geometry; non-equivalent Admin-2 areas remain unavailable.",
+    "topic": "Cross-sector small-area estimation",
+    "geographic_coverage": [
+      "constituency"
+    ],
+    "frequency": "irregular",
+    "publication_status": "published",
+    "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-PUBLISHED-SAE.md",
+    "known_limitations": "S5 modelled estimates, not official constituency observations. Only cells passing predeclared county and geometry gates are included."
   }
 ]

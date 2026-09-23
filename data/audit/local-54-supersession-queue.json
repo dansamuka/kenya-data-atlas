@@ -2,7 +2,7 @@
   "schema_version": "kda.p35.local-54-supersession-queue.v1",
   "as_of": "2026-09-20",
   "definition": "Every published local-54 cell whose value is not a direct primary (badge A) observation, queued for periodic re-check against whether a primary source has since become available -- so a secondary/derived/modelled value is never permanently presented as final.",
-  "cell_count": 4104,
+  "cell_count": 4119,
   "rows": [
     {
       "slot_key": "KEN-C001-CON001-W0001|local_54|IND-LAND-AREA",
@@ -5375,6 +5375,16 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C008-CON038-W0190; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C008-CON038|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-CONTRACEPTIVE-USE at KEN-C008-CON038; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C008-CON038|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C008-CON038",
       "level": "constituency",
@@ -5383,6 +5393,16 @@
       "geographic_method": "aggregated",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LAND-AREA at KEN-C008-CON038; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C008-CON038|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LITERACY-RATE at KEN-C008-CON038; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C008-CON038|local_54|IND-POPULATION",
@@ -5403,6 +5423,16 @@
       "geographic_method": "aggregated",
       "current_source": "IEBC",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-REGISTERED-VOTERS at KEN-C008-CON038; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C008-CON038|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-STUNTING-RATE at KEN-C008-CON038; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C008|local_54|IND-AGRICULTURE-GCP-SHARE",
@@ -19215,6 +19245,16 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C025-CON135-W0675; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C025-CON135|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-CONTRACEPTIVE-USE at KEN-C025-CON135; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C025-CON135|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C025-CON135",
       "level": "constituency",
@@ -19223,6 +19263,16 @@
       "geographic_method": "aggregated",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LAND-AREA at KEN-C025-CON135; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C025-CON135|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LITERACY-RATE at KEN-C025-CON135; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C025-CON135|local_54|IND-POPULATION",
@@ -19243,6 +19293,16 @@
       "geographic_method": "aggregated",
       "current_source": "IEBC",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-REGISTERED-VOTERS at KEN-C025-CON135; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C025-CON135|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-STUNTING-RATE at KEN-C025-CON135; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C025|local_54|IND-AGRICULTURE-GCP-SHARE",
@@ -25215,6 +25275,16 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C033-CON177-W0886; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C033-CON177|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-CONTRACEPTIVE-USE at KEN-C033-CON177; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C033-CON177|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C033-CON177",
       "level": "constituency",
@@ -25223,6 +25293,16 @@
       "geographic_method": "aggregated",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LAND-AREA at KEN-C033-CON177; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C033-CON177|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LITERACY-RATE at KEN-C033-CON177; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C033-CON177|local_54|IND-POPULATION",
@@ -25243,6 +25323,16 @@
       "geographic_method": "aggregated",
       "current_source": "IEBC",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-REGISTERED-VOTERS at KEN-C033-CON177; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C033-CON177|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-STUNTING-RATE at KEN-C033-CON177; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C033-CON178-W0887|local_54|IND-LAND-AREA",
@@ -25585,6 +25675,16 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C033-CON180-W0900; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C033-CON180|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-CONTRACEPTIVE-USE at KEN-C033-CON180; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C033-CON180|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C033-CON180",
       "level": "constituency",
@@ -25593,6 +25693,16 @@
       "geographic_method": "aggregated",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LAND-AREA at KEN-C033-CON180; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C033-CON180|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LITERACY-RATE at KEN-C033-CON180; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C033-CON180|local_54|IND-POPULATION",
@@ -25613,6 +25723,16 @@
       "geographic_method": "aggregated",
       "current_source": "IEBC",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-REGISTERED-VOTERS at KEN-C033-CON180; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C033-CON180|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-STUNTING-RATE at KEN-C033-CON180; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C033-CON181-W0901|local_54|IND-LAND-AREA",
@@ -25845,6 +25965,16 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C033-CON182-W0910; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C033-CON182|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-CONTRACEPTIVE-USE at KEN-C033-CON182; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C033-CON182|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C033-CON182",
       "level": "constituency",
@@ -25853,6 +25983,16 @@
       "geographic_method": "aggregated",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LAND-AREA at KEN-C033-CON182; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C033-CON182|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-LITERACY-RATE at KEN-C033-CON182; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C033-CON182|local_54|IND-POPULATION",
@@ -25873,6 +26013,16 @@
       "geographic_method": "aggregated",
       "current_source": "IEBC",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-REGISTERED-VOTERS at KEN-C033-CON182; if so, promote this cell and retire the B-badged (aggregated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C033-CON182|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "badge": "D",
+      "geographic_method": "modelled",
+      "current_source": "KDA",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-STUNTING-RATE at KEN-C033-CON182; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
       "slot_key": "KEN-C033|local_54|IND-AGRICULTURE-GCP-SHARE",
