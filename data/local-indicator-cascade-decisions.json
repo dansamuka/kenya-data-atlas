@@ -198,8 +198,8 @@
     {
       "indicator_code": "IND-CONTRACEPTIVE-USE",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "Modern contraceptive use is published canonically as a KDHS county-domain estimate. No official current-constituency domain estimate is available in the governed source, and parent survey estimates cannot be inherited."
+      "disposition": "modelled_estimate",
+      "reason": "P42 now permits governed S5 modelled estimates at constituency level when a published small-area estimate passes both the frozen county-coherence gate and strict one-to-one geometry equivalence. Only five constituencies currently pass; all other constituency cells remain governed closures in the Local-54 cell ledger."
     },
     {
       "indicator_code": "IND-CONTRACEPTIVE-USE",
@@ -234,8 +234,8 @@
     {
       "indicator_code": "IND-STUNTING-RATE",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "The canonical child-stunting rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with survey precision adequate for Atlas publication, so the county rate cannot be inherited or naively reweighted."
+      "disposition": "modelled_estimate",
+      "reason": "P42 now permits governed S5 modelled estimates at constituency level when the published small-area estimate passes county coherence and the source Admin-2 polygon is demonstrably equivalent to the KDA constituency under frozen geometry thresholds. Only five constituencies currently pass; remaining cells stay governed unavailable."
     },
     {
       "indicator_code": "IND-STUNTING-RATE",
@@ -270,8 +270,8 @@
     {
       "indicator_code": "IND-LITERACY-RATE",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "The canonical women age 15–49 literacy rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with compatible survey weighting and precision, so the county rate cannot be inherited or naively reweighted."
+      "disposition": "modelled_estimate",
+      "reason": "P42 now permits governed S5 modelled estimates at constituency level for published small-area estimates that pass the frozen county-coherence and one-to-one geometry gates. Five constituencies currently qualify; this disposition does not imply complete constituency coverage and all other cells retain governed closures."
     },
     {
       "indicator_code": "IND-LITERACY-RATE",
