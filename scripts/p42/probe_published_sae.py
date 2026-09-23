@@ -42,6 +42,29 @@ level_field=find_field(["level"])
 county_field=find_field(["county"])
 subcounty_field=next((f for f in fields if "sub" in norm(f) and "county" in norm(f)),None)
 
+# Compare 2022 Admin=2 region names against KDA's 290 constituency names.
+registry=json.loads(Path("data/geography/registry/geographies.json").read_text(encoding="utf-8"))
+constituencies=[x for x in registry if x.get("level")=="constituency"]
+kda_by_norm=defaultdict(list)
+for x in constituencies:
+    kda_by_norm[norm(x.get("name"))].append({"geography_id":x.get("geography_id"),"geo_code":x.get("geo_code"),"name":x.get("name"),"parent_id":x.get("parent_id")})
+admin2_2022=sorted({str(r.get("Region_Name","")).strip() for r in rows if str(r.get("Year"))=="2022" and str(r.get("Admin"))=="2"})
+sae_by_norm=defaultdict(list)
+for name in admin2_2022: sae_by_norm[norm(name)].append(name)
+exact_matches=[]
+ambiguous=[]
+unmatched=[]
+for n,names in sorted(sae_by_norm.items()):
+    ks=kda_by_norm.get(n,[])
+    if len(names)==1 and len(ks)==1:
+        exact_matches.append({"source_name":names[0],**ks[0]})
+    elif ks:
+        ambiguous.append({"normalized":n,"source_names":names,"kda_matches":ks})
+    else:
+        unmatched.extend(names)
+matched_kda_codes={x["geo_code"] for x in exact_matches}
+missing_kda=[{"geo_code":x.get("geo_code"),"name":x.get("name")} for x in constituencies if x.get("geo_code") not in matched_kda_codes]
+
 out={
   "schema_version":"kda.p42.published-sae-source-probe.v1",
   "probed_on":"2026-09-23",
@@ -63,6 +86,16 @@ out={
     "subcounty":subcounty_field
   },
   "sample_rows":sample,
+  "admin2_2022_geography_crosswalk":{
+    "source_unique_regions":len(admin2_2022),
+    "kda_constituencies":len(constituencies),
+    "exact_name_matches":len(exact_matches),
+    "ambiguous_source_name_groups":len(ambiguous),
+    "unmatched_source_names":unmatched,
+    "missing_kda_constituencies":missing_kda,
+    "ambiguous_examples":ambiguous[:30],
+    "exact_match_examples":exact_matches[:20]
+  },
   "raw_source_committed":False,
   "conclusion":"reachable_machine_readable_with_uncertainty" if len(rows)>0 else "not_usable"
 }
