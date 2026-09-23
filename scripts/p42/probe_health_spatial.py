@@ -49,8 +49,9 @@ def assign(points, geo_path, level, cby):
     cols=["geography_id","geo_code","name","geometry"]
     geo=geo[cols]
     # intersects is deliberate: boundary points may match >1 polygon; resolve deterministically by geo_code.
-    joined=gpd.sjoin(points[["geometry"]],geo,how="inner",predicate="intersects")
-    joined=joined.sort_values(["index_left","geo_code"]).drop_duplicates("index_left",keep="first")
+    left=points[["geometry"]].copy().reset_index(drop=True).reset_index(names="source_index")
+    joined=gpd.sjoin(left,geo,how="inner",predicate="intersects")
+    joined=joined.sort_values(["source_index","geo_code"]).drop_duplicates("source_index",keep="first")
     counts=joined.groupby(["geography_id","geo_code","name"]).size().reset_index(name="points")
     rows=[]
     for r in geo.drop(columns="geometry").itertuples():
