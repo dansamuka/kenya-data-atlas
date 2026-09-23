@@ -23,6 +23,7 @@ ALIASES={
   "elgeyo marakwet":"elgeyo marakwet",
   "taita taveta":"taita taveta",
   "tharaka nithi":"tharaka nithi",
+  "tharaka":"tharaka nithi",
   "murang a":"murang a"
 }
 
