@@ -126,14 +126,14 @@
     {
       "indicator_code": "IND-AGRICULTURE-GVA",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "Agriculture GVA is sourced from county economic accounts. The source does not publish current electoral-constituency GVA, and no governed small-area production model has been approved for deterministic disaggregation."
+      "disposition": "modelled_estimate",
+      "reason": "P42 publishes governed S5 Agriculture GVA estimates for 279 of 290 constituencies using official KNBS 2024 county controls and a validated World Bank AgGDP within-county spatial prior. Eleven unstable cells remain governed unavailable under the frozen model-structure spread gate."
     },
     {
       "indicator_code": "IND-AGRICULTURE-GVA",
       "level": "ward",
-      "disposition": "governed_unavailable",
-      "reason": "Agriculture GVA is a county-accounting measure in the governed source. Ward values cannot be inferred by land area, population or equal allocation without fabricating local output."
+      "disposition": "modelled_estimate",
+      "reason": "P42 publishes governed S5 Agriculture GVA estimates for 1,382 of 1,450 wards using official KNBS 2024 county controls and a validated World Bank AgGDP within-county spatial prior. Sixty-eight unstable cells remain governed unavailable under the frozen model-structure spread gate."
     },
     {
       "indicator_code": "IND-MANUFACTURING-GVA",
