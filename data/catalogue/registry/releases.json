@@ -942,5 +942,21 @@
     "version_label": "P25 national Pulse closure",
     "release_notes": "CBK National Payments System — Mobile Payments statistics; Mobile Payments (Year, Month, Active Agents, Total Registered Mobile Money Accounts (Millions), Total Agent Cash in Cash Out (Volume Million), Total Agent Cash in Cash Out (Value KSh billions)). The Atlas promotes only the published Total Agent Cash in Cash Out (Value KSh billions) column, converted to KES millions, and does not present it as covering every mobile-money transaction type.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "6c11033c-1543-57e6-9fe6-057130e6a805",
+    "release_code": "REL-KDA-P42-WORLDPOP-POP-2019",
+    "dataset_id": "71610049-93eb-550f-9aba-ab8f6ade782d",
+    "title": "P42 WorldPop county-constrained 2019 local population estimates",
+    "reference_period_start": "2019-08-24",
+    "reference_period_end": "2019-08-25",
+    "published_at": "2026-09-22",
+    "discovered_at": "2026-09-22T19:33:44.000Z",
+    "ingested_at": "2026-09-22T19:33:44.000Z",
+    "release_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-WORLDPOP-POPULATION.md",
+    "release_status": "published",
+    "version_label": "P42-W1-POP-001 / WorldPop R2024B v1",
+    "release_notes": "Derived by Kenya Data Atlas. Numeric controls: KNBS 2019 KPHC official county populations (https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/). Spatial allocation: WorldPop Global 2015–2030 R2024B 2019 100m constrained surface; sensitivity: corresponding unconstrained surface (https://hub.worldpop.org/geodata/summary?id=54834). WorldPop data are CC BY 4.0.",
+    "supersedes_release_id": ""
   }
 ]

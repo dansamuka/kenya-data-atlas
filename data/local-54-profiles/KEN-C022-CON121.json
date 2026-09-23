@@ -32,7 +32,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R048",
+      "reason_id": "R046",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -46,7 +46,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R047",
+      "reason_id": "R045",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -60,7 +60,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R075",
+      "reason_id": "R073",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -74,7 +74,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R074",
+      "reason_id": "R072",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -88,7 +88,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R082",
+      "reason_id": "R080",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -172,7 +172,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R054",
+      "reason_id": "R052",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -186,7 +186,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R070",
+      "reason_id": "R068",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -200,7 +200,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R101",
+      "reason_id": "R099",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -214,7 +214,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R074",
+      "reason_id": "R072",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -228,7 +228,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R080",
+      "reason_id": "R078",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -256,7 +256,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R051",
+      "reason_id": "R049",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -270,7 +270,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R052",
+      "reason_id": "R050",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -312,7 +312,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R085",
+      "reason_id": "R083",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -326,7 +326,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R081",
+      "reason_id": "R079",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -382,7 +382,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R073",
+      "reason_id": "R071",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -410,7 +410,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R072",
+      "reason_id": "R070",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -424,7 +424,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R078",
+      "reason_id": "R076",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -438,7 +438,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R088",
+      "reason_id": "R086",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -452,7 +452,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R074",
+      "reason_id": "R072",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -494,7 +494,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R073",
+      "reason_id": "R071",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -508,7 +508,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R074",
+      "reason_id": "R072",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -522,7 +522,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R061",
+      "reason_id": "R059",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -536,7 +536,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R062",
+      "reason_id": "R060",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -550,7 +550,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R063",
+      "reason_id": "R061",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -564,7 +564,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R050",
+      "reason_id": "R048",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -578,7 +578,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R049",
+      "reason_id": "R047",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -592,7 +592,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R083",
+      "reason_id": "R081",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -614,14 +614,14 @@
       "indicator_code": "IND-POPULATION",
       "indicator_name": "Population",
       "treatment_class": "census_or_household_crosswalk",
-      "status": "official_unavailable",
-      "badge_label": "Data unavailable",
-      "value": null,
-      "period_label": null,
-      "source": null,
-      "source_url": null,
-      "reason_id": "R045",
-      "confidence": "n/a",
+      "status": "published_modelled",
+      "badge_label": "Estimated/modelled",
+      "value": 157865,
+      "period_label": "Census night, 24–25 August 2019",
+      "source": "KDA",
+      "source_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-WORLDPOP-POPULATION.md",
+      "reason_id": null,
+      "confidence": "medium",
       "conflict_note": null
     },
     {
@@ -634,7 +634,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R086",
+      "reason_id": "R084",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -648,7 +648,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R057",
+      "reason_id": "R055",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -662,7 +662,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R058",
+      "reason_id": "R056",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -676,7 +676,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R059",
+      "reason_id": "R057",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -704,7 +704,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R087",
+      "reason_id": "R085",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -732,7 +732,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R060",
+      "reason_id": "R058",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -746,7 +746,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R079",
+      "reason_id": "R077",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -760,7 +760,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R084",
+      "reason_id": "R082",
       "confidence": "n/a",
       "conflict_note": null
     },
@@ -774,7 +774,7 @@
       "period_label": null,
       "source": null,
       "source_url": null,
-      "reason_id": "R074",
+      "reason_id": "R072",
       "confidence": "n/a",
       "conflict_note": null
     }

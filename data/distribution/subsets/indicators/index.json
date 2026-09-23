@@ -500,8 +500,8 @@
     "indicator_code": "IND-POPULATION",
     "name": "Population",
     "path": "data/distribution/subsets/indicators/IND-POPULATION.json",
-    "series_count": 48,
-    "observation_count": 100
+    "series_count": 1788,
+    "observation_count": 1840
   },
   {
     "indicator_code": "IND-POPULATION-GROWTH",
