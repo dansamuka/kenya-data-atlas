@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import argparse, html, json, re
+import argparse, json, re
 from pathlib import Path
 import geopandas as gpd
 from shapely.geometry import Polygon, MultiPolygon
@@ -42,7 +42,7 @@ def main():
     raw=Path(args.html).read_text(encoding="utf-8")
     widgets=[]
     for wid,payload in SCRIPT_RE.findall(raw):
-        j=json.loads(html.unescape(payload))
+        j=json.loads(payload)
         calls=j.get("x",{}).get("calls",[])
         poly=next((c for c in calls if c.get("method")=="addPolygons" and isinstance(c.get("args"),list) and len(c["args"][0])==290),None)
         if poly: widgets.append((wid,poly))
