@@ -32,6 +32,8 @@ jobs:
           test -s /tmp/KEN_combined_estimates.csv
       - name: Profile published Kenya SAE estimates
         run: python scripts/p42/probe_published_sae.py
+      - name: Validate published SAE against official KDA county controls
+        run: python scripts/p42/validate_published_sae_counties.py
       - name: Download published 2022 stunting Admin2 map artifact
         run: |
           curl --fail --location --retry 3 --retry-delay 3 \
@@ -49,6 +51,6 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/p42/published-sae-source-probe.json data/p42/published-sae-geometry-crosswalk.json
+          git add data/p42/published-sae-source-probe.json data/p42/published-sae-county-validation.json data/p42/published-sae-geometry-crosswalk.json
           git commit -m "P42: record published Kenya SAE source profile"
           git push origin HEAD:p42-published-sae-probe
