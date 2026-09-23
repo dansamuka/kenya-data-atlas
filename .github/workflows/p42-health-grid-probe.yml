@@ -1,0 +1,64 @@
+name: P42 WorldPop health-grid probe
+
+on:
+  push:
+    branches:
+      - p42-health-grid-probe
+    paths:
+      - .github/workflows/p42-health-grid-probe.yml
+      - data/p42/health-grid-probe-contract.json
+      - scripts/p42/probe_health_grid.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-health-grid-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-health-grid-probe
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install geospatial dependencies
+        run: python -m pip install "geopandas==1.0.1" "rasterio==1.4.3" "rasterstats==0.20.0"
+      - name: Download published WorldPop 2022 health surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/health
+          BASE='https://data.worldpop.org/repo/prj/CMHProgress_map/v1/high_resolution'
+          for prefix in C_Prev Stunting; do
+            for suffix in round2 round2_lower round2_upper; do
+              curl --fail --location --retry 3 --retry-delay 4 "$BASE/${prefix}_${suffix}.tif" -o "/tmp/health/${prefix}_${suffix}.tif"
+              test -s "/tmp/health/${prefix}_${suffix}.tif"
+            done
+          done
+      - name: Download WorldPop 2020 unconstrained population weights
+        run: |
+          curl --fail --location --retry 3 --retry-delay 4             'https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/KEN/ken_ppp_2020_UNadj.tif'             -o /tmp/ken_ppp_2020_UNadj.tif
+          test -s /tmp/ken_ppp_2020_UNadj.tif
+      - name: Aggregate grids to KDA geographies and test county coherence
+        run: |
+          python scripts/p42/probe_health_grid.py             --contract data/p42/health-grid-probe-contract.json             --population /tmp/ken_ppp_2020_UNadj.tif             --surface-dir /tmp/health             --output data/p42/health-grid-source-probe.json
+      - name: Commit sanitized probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/health-grid-source-probe.json
+          if git diff --cached --quiet; then
+            echo "No probe change."
+          else
+            git commit -m "P42: record WorldPop health-grid probe"
+            git push origin HEAD:p42-health-grid-probe
+          fi
