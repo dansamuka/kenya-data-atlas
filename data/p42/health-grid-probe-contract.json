@@ -7,7 +7,7 @@
     "doi": "10.5258/SOTON/WP00790",
     "release": "Grid level prediction and uncertainty surfaces for selected reproductive, maternal, newborn, child, and adolescent health and development indicators for 2014 and 2022 Kenya, v1.0",
     "license": "CC BY 4.0",
-    "base_url": "https://data.worldpop.org/repo/prj/CMHProgress_map/v1/high_resolution",
+    "base_url": "https://data.worldpop.org/repo/prj/CMHProgress_map/v1_b/KEN/high_resolution",
     "method": "Bayesian INLA-SPDE; 5x5km prediction surfaces. Original administrative aggregation is population weighted.",
     "population_2020_url": "https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/KEN/ken_ppp_2020_UNadj.tif"
   },
