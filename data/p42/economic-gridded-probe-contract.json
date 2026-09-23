@@ -1,0 +1,62 @@
+{
+  "schema_version": "kda.p42.economic-gridded-probe-contract.v1",
+  "execution_id": "P42-ECO-GRID-001",
+  "built_on": "2026-09-23",
+  "purpose": "Test gridded economic surfaces as governed spatial priors for county-constrained constituency/ward economic-account estimates. No promotion is authorized by this contract.",
+  "target_rows": [
+    "IND-AGRICULTURE-GVA|constituency",
+    "IND-AGRICULTURE-GVA|ward",
+    "IND-AGRICULTURE-GCP-SHARE|constituency",
+    "IND-AGRICULTURE-GCP-SHARE|ward",
+    "IND-GCP-CURRENT|constituency",
+    "IND-GCP-CURRENT|ward",
+    "IND-MANUFACTURING-GVA|constituency",
+    "IND-MANUFACTURING-GVA|ward",
+    "IND-MANUFACTURING-GCP-SHARE|constituency",
+    "IND-MANUFACTURING-GCP-SHARE|ward"
+  ],
+  "sources": {
+    "agriculture": {
+      "publisher": "World Bank",
+      "dataset": "Global Gridded Agricultural Gross Domestic Product (AgGDP)",
+      "reference_period": "circa 2010",
+      "resolution": "5 arc-minute (~10 km)",
+      "license": "CC BY 4.0",
+      "metadata_url": "https://datacatalog.worldbank.org/search/dataset/0061507/global-gridded-agricultural-gross-domestic-product-aggdp",
+      "rasters": {
+        "aggdp": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0089195/aggdp2010.tif",
+        "crop_prior": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090770/aggdp2010_crop_prior.tif",
+        "livestock_prior": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090771/aggdp2010_ls_prior.tif",
+        "fish_prior": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090772/aggdp2010_fish_prior.tif",
+        "forest_prior": "https://datacatalogfiles.worldbank.org/ddh-published/0061507/3/DR0090773/aggdp2010_forest_prior.tif"
+      }
+    },
+    "total_gdp_manifest": {
+      "publisher": "Chen et al. / Figshare",
+      "dataset": "Global 1 km × 1 km gridded revised real GDP and electricity consumption, 1992–2019",
+      "article_id": 17004523,
+      "api_files_url": "https://api.figshare.com/v2/articles/17004523/files",
+      "license": "CC BY 4.0",
+      "intended_probe_year": 2019
+    },
+    "official_agriculture_control": {
+      "repo_path": "data/distribution/subsets/indicators/IND-AGRICULTURE-GVA.json",
+      "indicator": "IND-AGRICULTURE-GVA",
+      "reference_year": 2024,
+      "expected_counties": 47
+    }
+  },
+  "geography": {
+    "county_geometry": "data/geography/geometry/counties.geojson",
+    "constituency_geometry": "data/geography/geometry/constituencies.geojson",
+    "ward_geometry": "data/geography/geometry/wards.geojson"
+  },
+  "predeclared_probe_gates": {
+    "county_positive_aggdp_cells": 47,
+    "minimum_county_rank_spearman_vs_knbs_2024_agriculture_gva": 0.6,
+    "require_all_290_constituencies_positive_aggdp_weight": false,
+    "require_all_1450_wards_positive_aggdp_weight": false,
+    "max_total_gdp_probe_download_bytes": 750000000
+  },
+  "publication_authority": "none_candidate_probe_only"
+}
