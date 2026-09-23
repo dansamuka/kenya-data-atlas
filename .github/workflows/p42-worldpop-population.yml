@@ -129,7 +129,7 @@ jobs:
             data/completeness/local-54-reason-catalogue.json \
             data/completeness/local-54-reason-catalogue.csv \
             data/completeness/local-54-summary.json \
-            data/distribution/local-54-profiles \
+            data/local-54-profiles \
             data/audit/local-54-freshness-queue.json \
             data/audit/local-54-supersession-queue.json \
             data/audit/local-54-reaudit-queue.json \
