@@ -35,7 +35,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p /tmp/health
-          BASE='https://data.worldpop.org/repo/prj/CMHProgress_map/v1/high_resolution'
+          BASE='https://data.worldpop.org/repo/prj/CMHProgress_map/v1_b/KEN/high_resolution'
           for prefix in C_Prev Stunting; do
             for suffix in round2 round2_lower round2_upper; do
               curl --fail --location --retry 3 --retry-delay 4 "$BASE/${prefix}_${suffix}.tif" -o "/tmp/health/${prefix}_${suffix}.tif"
