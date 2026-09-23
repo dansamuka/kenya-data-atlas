@@ -1,3 +1,4 @@
+# P42 published SAE source probe; rerun geometry crosswalk.
 #!/usr/bin/env python3
 import csv, json, re
 from collections import Counter, defaultdict
