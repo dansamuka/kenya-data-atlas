@@ -1,0 +1,43 @@
+name: P42 schools source probe
+
+on:
+  push:
+    branches:
+      - p42-schools-source-probe
+    paths:
+      - .github/workflows/p42-schools-source-probe.yml
+      - scripts/p42/probe_schools.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-schools-source-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-schools-source-probe
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe Ministry-of-Education schools spatial dataset
+        run: python scripts/p42/probe_schools.py
+      - name: Commit sanitized source profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/schools-source-probe.json
+          if git diff --cached --quiet; then
+            echo "No probe change."
+          else
+            git commit -m "P42: record schools spatial source profile"
+            git push origin HEAD:p42-schools-source-probe
+          fi
