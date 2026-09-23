@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, ssl, urllib.parse, urllib.request
+import json, os, ssl, urllib.parse, urllib.request
 from pathlib import Path
 
 BASE = "https://api.kmhfr.health.go.ke/api/public/facilities/"
@@ -13,7 +13,13 @@ def get(url):
 
 def main():
     url=BASE+"?page_size=100&page=1"
-    status, ctype, payload=get(url)
+    probe_file=os.environ.get("KMHFR_PROBE_FILE")
+    if probe_file and Path(probe_file).exists():
+        status=200
+        ctype="application/json"
+        payload=json.loads(Path(probe_file).read_text(encoding="utf-8"))
+    else:
+        status, ctype, payload=get(url)
     if isinstance(payload, dict):
         results=payload.get("results") or payload.get("data") or payload.get("facilities") or []
         count=payload.get("count") or payload.get("total") or payload.get("total_count")
