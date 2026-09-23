@@ -2,290 +2,290 @@
   "schema_version": "kda.p42.economic-gridded-source-probe.v1",
   "status": "probe_only_no_promotion",
   "agriculture": {
-    "county_spearman_raw_aggdp2010_vs_knbs_agriculture_gva_2024": 0.809898,
+    "county_spearman_raw_aggdp2010_vs_knbs_agriculture_gva_2024": 0.810592,
     "county_positive_aggdp": 47,
     "passes_predeclared_spatial_prior_gate": true,
     "county_rows": [
       {
         "geo_code": "KEN-C001",
         "name": "Mombasa",
-        "aggdp2010_raw_sum": 18522574.0,
+        "aggdp2010_raw_sum": 12315939.8857349,
         "knbs_agriculture_gva_2024_kes_mn": 5910.0
       },
       {
         "geo_code": "KEN-C002",
         "name": "Kwale",
-        "aggdp2010_raw_sum": 127812024.0,
+        "aggdp2010_raw_sum": 122195280.09059703,
         "knbs_agriculture_gva_2024_kes_mn": 55143.0
       },
       {
         "geo_code": "KEN-C003",
         "name": "Kilifi",
-        "aggdp2010_raw_sum": 79545297.0,
+        "aggdp2010_raw_sum": 79225694.36196935,
         "knbs_agriculture_gva_2024_kes_mn": 69330.0
       },
       {
         "geo_code": "KEN-C004",
         "name": "Tana River",
-        "aggdp2010_raw_sum": 94039936.0,
+        "aggdp2010_raw_sum": 92389418.55048054,
         "knbs_agriculture_gva_2024_kes_mn": 18160.0
       },
       {
         "geo_code": "KEN-C005",
         "name": "Lamu",
-        "aggdp2010_raw_sum": 33574393.0,
+        "aggdp2010_raw_sum": 32295736.146817226,
         "knbs_agriculture_gva_2024_kes_mn": 16680.0
       },
       {
         "geo_code": "KEN-C006",
         "name": "Taita Taveta",
-        "aggdp2010_raw_sum": 108869480.0,
+        "aggdp2010_raw_sum": 96895830.69468258,
         "knbs_agriculture_gva_2024_kes_mn": 23781.0
       },
       {
         "geo_code": "KEN-C007",
         "name": "Garissa",
-        "aggdp2010_raw_sum": 69339941.0,
+        "aggdp2010_raw_sum": 71179597.99757665,
         "knbs_agriculture_gva_2024_kes_mn": 34162.0
       },
       {
         "geo_code": "KEN-C008",
         "name": "Wajir",
-        "aggdp2010_raw_sum": 65497725.0,
+        "aggdp2010_raw_sum": 65742511.912882656,
         "knbs_agriculture_gva_2024_kes_mn": 26566.0
       },
       {
         "geo_code": "KEN-C009",
         "name": "Mandera",
-        "aggdp2010_raw_sum": 42964921.0,
+        "aggdp2010_raw_sum": 41952200.82077688,
         "knbs_agriculture_gva_2024_kes_mn": 34682.0
       },
       {
         "geo_code": "KEN-C010",
         "name": "Marsabit",
-        "aggdp2010_raw_sum": 90358253.0,
+        "aggdp2010_raw_sum": 100796634.42505191,
         "knbs_agriculture_gva_2024_kes_mn": 23375.0
       },
       {
         "geo_code": "KEN-C011",
         "name": "Isiolo",
-        "aggdp2010_raw_sum": 89454560.0,
+        "aggdp2010_raw_sum": 85735532.81805584,
         "knbs_agriculture_gva_2024_kes_mn": 14008.0
       },
       {
         "geo_code": "KEN-C012",
         "name": "Meru",
-        "aggdp2010_raw_sum": 341124752.0,
+        "aggdp2010_raw_sum": 353586844.3329055,
         "knbs_agriculture_gva_2024_kes_mn": 306838.0
       },
       {
         "geo_code": "KEN-C013",
         "name": "Tharaka-Nithi",
-        "aggdp2010_raw_sum": 108764815.0,
+        "aggdp2010_raw_sum": 108168828.26293865,
         "knbs_agriculture_gva_2024_kes_mn": 36330.0
       },
       {
         "geo_code": "KEN-C014",
         "name": "Embu",
-        "aggdp2010_raw_sum": 123137340.0,
+        "aggdp2010_raw_sum": 120963196.51948369,
         "knbs_agriculture_gva_2024_kes_mn": 60739.0
       },
       {
         "geo_code": "KEN-C015",
         "name": "Kitui",
-        "aggdp2010_raw_sum": 187374135.0,
+        "aggdp2010_raw_sum": 194190292.53425533,
         "knbs_agriculture_gva_2024_kes_mn": 68893.0
       },
       {
         "geo_code": "KEN-C016",
         "name": "Machakos",
-        "aggdp2010_raw_sum": 210066951.0,
+        "aggdp2010_raw_sum": 206882691.1274314,
         "knbs_agriculture_gva_2024_kes_mn": 72600.0
       },
       {
         "geo_code": "KEN-C017",
         "name": "Makueni",
-        "aggdp2010_raw_sum": 132048876.0,
+        "aggdp2010_raw_sum": 135346304.24904117,
         "knbs_agriculture_gva_2024_kes_mn": 42076.0
       },
       {
         "geo_code": "KEN-C018",
         "name": "Nyandarua",
-        "aggdp2010_raw_sum": 349200082.0,
+        "aggdp2010_raw_sum": 336937171.5310758,
         "knbs_agriculture_gva_2024_kes_mn": 152245.0
       },
       {
         "geo_code": "KEN-C019",
         "name": "Nyeri",
-        "aggdp2010_raw_sum": 400559472.0,
+        "aggdp2010_raw_sum": 379214762.4057183,
         "knbs_agriculture_gva_2024_kes_mn": 107225.0
       },
       {
         "geo_code": "KEN-C020",
         "name": "Kirinyaga",
-        "aggdp2010_raw_sum": 289081946.0,
+        "aggdp2010_raw_sum": 291237683.67568743,
         "knbs_agriculture_gva_2024_kes_mn": 75839.0
       },
       {
         "geo_code": "KEN-C021",
         "name": "Murang'a",
-        "aggdp2010_raw_sum": 459902173.0,
+        "aggdp2010_raw_sum": 455091024.58223605,
         "knbs_agriculture_gva_2024_kes_mn": 144939.0
       },
       {
         "geo_code": "KEN-C022",
         "name": "Kiambu",
-        "aggdp2010_raw_sum": 453013210.0,
+        "aggdp2010_raw_sum": 445927522.53341347,
         "knbs_agriculture_gva_2024_kes_mn": 130260.0
       },
       {
         "geo_code": "KEN-C023",
         "name": "Turkana",
-        "aggdp2010_raw_sum": 256398059.0,
+        "aggdp2010_raw_sum": 267338451.47136134,
         "knbs_agriculture_gva_2024_kes_mn": 76096.0
       },
       {
         "geo_code": "KEN-C024",
         "name": "West Pokot",
-        "aggdp2010_raw_sum": 164500954.0,
+        "aggdp2010_raw_sum": 168634248.85251075,
         "knbs_agriculture_gva_2024_kes_mn": 44281.0
       },
       {
         "geo_code": "KEN-C025",
         "name": "Samburu",
-        "aggdp2010_raw_sum": 180060962.0,
+        "aggdp2010_raw_sum": 177547474.87464902,
         "knbs_agriculture_gva_2024_kes_mn": 8652.0
       },
       {
         "geo_code": "KEN-C026",
         "name": "Trans Nzoia",
-        "aggdp2010_raw_sum": 105521198.0,
+        "aggdp2010_raw_sum": 114024247.87404346,
         "knbs_agriculture_gva_2024_kes_mn": 104498.0
       },
       {
         "geo_code": "KEN-C027",
         "name": "Uasin Gishu",
-        "aggdp2010_raw_sum": 219659930.0,
+        "aggdp2010_raw_sum": 224648229.647191,
         "knbs_agriculture_gva_2024_kes_mn": 115076.0
       },
       {
         "geo_code": "KEN-C028",
         "name": "Elgeyo/Marakwet",
-        "aggdp2010_raw_sum": 148480659.0,
+        "aggdp2010_raw_sum": 145055339.64420426,
         "knbs_agriculture_gva_2024_kes_mn": 94130.0
       },
       {
         "geo_code": "KEN-C029",
         "name": "Nandi",
-        "aggdp2010_raw_sum": 291430530.0,
+        "aggdp2010_raw_sum": 285092433.1067802,
         "knbs_agriculture_gva_2024_kes_mn": 134622.0
       },
       {
         "geo_code": "KEN-C030",
         "name": "Baringo",
-        "aggdp2010_raw_sum": 269418842.0,
+        "aggdp2010_raw_sum": 276886570.2636961,
         "knbs_agriculture_gva_2024_kes_mn": 49063.0
       },
       {
         "geo_code": "KEN-C031",
         "name": "Laikipia",
-        "aggdp2010_raw_sum": 152559207.0,
+        "aggdp2010_raw_sum": 172981517.33786255,
         "knbs_agriculture_gva_2024_kes_mn": 32270.0
       },
       {
         "geo_code": "KEN-C032",
         "name": "Nakuru",
-        "aggdp2010_raw_sum": 340725969.0,
+        "aggdp2010_raw_sum": 350865002.88344836,
         "knbs_agriculture_gva_2024_kes_mn": 227544.0
       },
       {
         "geo_code": "KEN-C033",
         "name": "Narok",
-        "aggdp2010_raw_sum": 356087994.0,
+        "aggdp2010_raw_sum": 373374832.69008255,
         "knbs_agriculture_gva_2024_kes_mn": 123818.0
       },
       {
         "geo_code": "KEN-C034",
         "name": "Kajiado",
-        "aggdp2010_raw_sum": 272611904.0,
+        "aggdp2010_raw_sum": 281120659.8557728,
         "knbs_agriculture_gva_2024_kes_mn": 35508.0
       },
       {
         "geo_code": "KEN-C035",
         "name": "Kericho",
-        "aggdp2010_raw_sum": 325282900.0,
+        "aggdp2010_raw_sum": 329857440.54487306,
         "knbs_agriculture_gva_2024_kes_mn": 115342.0
       },
       {
         "geo_code": "KEN-C036",
         "name": "Bomet",
-        "aggdp2010_raw_sum": 480252820.0,
+        "aggdp2010_raw_sum": 463932682.6389925,
         "knbs_agriculture_gva_2024_kes_mn": 112380.0
       },
       {
         "geo_code": "KEN-C037",
         "name": "Kakamega",
-        "aggdp2010_raw_sum": 289039000.0,
+        "aggdp2010_raw_sum": 312921217.3212618,
         "knbs_agriculture_gva_2024_kes_mn": 122370.0
       },
       {
         "geo_code": "KEN-C038",
         "name": "Vihiga",
-        "aggdp2010_raw_sum": 98694700.0,
+        "aggdp2010_raw_sum": 108917283.0271722,
         "knbs_agriculture_gva_2024_kes_mn": 51140.0
       },
       {
         "geo_code": "KEN-C039",
         "name": "Bungoma",
-        "aggdp2010_raw_sum": 324544820.0,
+        "aggdp2010_raw_sum": 330153918.2698547,
         "knbs_agriculture_gva_2024_kes_mn": 133397.0
       },
       {
         "geo_code": "KEN-C040",
         "name": "Busia",
-        "aggdp2010_raw_sum": 189962280.0,
+        "aggdp2010_raw_sum": 174564769.84732085,
         "knbs_agriculture_gva_2024_kes_mn": 46552.0
       },
       {
         "geo_code": "KEN-C041",
         "name": "Siaya",
-        "aggdp2010_raw_sum": 147993870.0,
+        "aggdp2010_raw_sum": 142924798.7122916,
         "knbs_agriculture_gva_2024_kes_mn": 67741.0
       },
       {
         "geo_code": "KEN-C042",
         "name": "Kisumu",
-        "aggdp2010_raw_sum": 173408790.0,
+        "aggdp2010_raw_sum": 153587786.04996267,
         "knbs_agriculture_gva_2024_kes_mn": 58886.0
       },
       {
         "geo_code": "KEN-C043",
         "name": "Homa Bay",
-        "aggdp2010_raw_sum": 175392380.0,
+        "aggdp2010_raw_sum": 204887170.47962353,
         "knbs_agriculture_gva_2024_kes_mn": 94619.0
       },
       {
         "geo_code": "KEN-C044",
         "name": "Migori",
-        "aggdp2010_raw_sum": 239519110.0,
+        "aggdp2010_raw_sum": 225739670.543163,
         "knbs_agriculture_gva_2024_kes_mn": 73311.0
       },
       {
         "geo_code": "KEN-C045",
         "name": "Kisii",
-        "aggdp2010_raw_sum": 208747250.0,
+        "aggdp2010_raw_sum": 203924287.87739307,
         "knbs_agriculture_gva_2024_kes_mn": 114734.0
       },
       {
         "geo_code": "KEN-C046",
         "name": "Nyamira",
-        "aggdp2010_raw_sum": 201757700.0,
+        "aggdp2010_raw_sum": 159993733.0114371,
         "knbs_agriculture_gva_2024_kes_mn": 83126.0
       },
       {
         "geo_code": "KEN-C047",
         "name": "Nairobi",
-        "aggdp2010_raw_sum": 28108306.0,
+        "aggdp2010_raw_sum": 24442776.376426715,
         "knbs_agriculture_gva_2024_kes_mn": 7166.0
       }
     ],
@@ -297,37 +297,37 @@
           "aggdp": {
             "positive_geographies": 47,
             "zero_geographies": 0,
-            "min_sum": 18522574.0,
-            "max_sum": 480252820.0,
-            "total_sum": 9514412990.0
+            "min_sum": 12315939.8857349,
+            "max_sum": 463932682.6389925,
+            "total_sum": 9501687242.660187
           },
           "crop_prior": {
             "positive_geographies": 47,
             "zero_geographies": 0,
-            "min_sum": 2297546.0,
-            "max_sum": 427631969.0,
-            "total_sum": 5749922751.0
+            "min_sum": 2553081.952941386,
+            "max_sum": 414313037.31603,
+            "total_sum": 5706166226.091458
           },
           "livestock_prior": {
             "positive_geographies": 47,
             "zero_geographies": 0,
-            "min_sum": 2612821.0,
-            "max_sum": 212768493.0,
-            "total_sum": 3827649472.0
+            "min_sum": 2682862.660947673,
+            "max_sum": 212308243.8160464,
+            "total_sum": 3827320244.96509
           },
           "fish_prior": {
             "positive_geographies": 45,
             "zero_geographies": 2,
             "min_sum": 0.0,
-            "max_sum": 19850548.0,
-            "total_sum": 81140329.51177979
+            "max_sum": 16797981.049902767,
+            "total_sum": 84901159.61980908
           },
           "forest_prior": {
             "positive_geographies": 47,
             "zero_geographies": 0,
-            "min_sum": 255743.0,
-            "max_sum": 26520679.0,
-            "total_sum": 309544678.0
+            "min_sum": 192585.5192591045,
+            "max_sum": 26723936.65062718,
+            "total_sum": 307739737.90005004
           }
         }
       },
@@ -336,39 +336,39 @@
         "geographies": 290,
         "rasters": {
           "aggdp": {
-            "positive_geographies": 274,
-            "zero_geographies": 16,
-            "min_sum": 0.0,
-            "max_sum": 192881922.0,
-            "total_sum": 9514412990.0
+            "positive_geographies": 290,
+            "zero_geographies": 0,
+            "min_sum": 22583.79050177455,
+            "max_sum": 166264328.74669516,
+            "total_sum": 9501687239.77177
           },
           "crop_prior": {
-            "positive_geographies": 270,
-            "zero_geographies": 20,
+            "positive_geographies": 287,
+            "zero_geographies": 3,
             "min_sum": 0.0,
-            "max_sum": 137655406.0,
-            "total_sum": 5749922751.0
+            "max_sum": 123225472.94681057,
+            "total_sum": 5706166223.155594
           },
           "livestock_prior": {
-            "positive_geographies": 274,
-            "zero_geographies": 16,
-            "min_sum": 0.0,
-            "max_sum": 130553358.0,
-            "total_sum": 3827649472.0
+            "positive_geographies": 290,
+            "zero_geographies": 0,
+            "min_sum": 2292.242817642138,
+            "max_sum": 128033382.11076573,
+            "total_sum": 3827320245.0555325
           },
           "fish_prior": {
-            "positive_geographies": 174,
-            "zero_geographies": 116,
+            "positive_geographies": 231,
+            "zero_geographies": 59,
             "min_sum": 0.0,
-            "max_sum": 19788676.0,
-            "total_sum": 81140329.3256836
+            "max_sum": 7377516.0039627515,
+            "total_sum": 84901160.15988007
           },
           "forest_prior": {
-            "positive_geographies": 246,
-            "zero_geographies": 44,
+            "positive_geographies": 279,
+            "zero_geographies": 11,
             "min_sum": 0.0,
-            "max_sum": 11150417.0,
-            "total_sum": 309544678.0
+            "max_sum": 11311098.380875286,
+            "total_sum": 307739737.92881596
           }
         }
       },
@@ -377,45 +377,59 @@
         "geographies": 1450,
         "rasters": {
           "aggdp": {
-            "positive_geographies": 983,
-            "zero_geographies": 467,
-            "min_sum": 0.0,
-            "max_sum": 59920170.0,
-            "total_sum": 9514412990.0
+            "positive_geographies": 1450,
+            "zero_geographies": 0,
+            "min_sum": 1294.955611238256,
+            "max_sum": 66303139.39235164,
+            "total_sum": 9501687239.023846
           },
           "crop_prior": {
-            "positive_geographies": 916,
-            "zero_geographies": 534,
+            "positive_geographies": 1385,
+            "zero_geographies": 65,
             "min_sum": 0.0,
-            "max_sum": 95174462.0,
-            "total_sum": 5749922751.0
+            "max_sum": 63814822.26293728,
+            "total_sum": 5706166222.919943
           },
           "livestock_prior": {
-            "positive_geographies": 983,
-            "zero_geographies": 467,
-            "min_sum": 0.0,
-            "max_sum": 56147868.0,
-            "total_sum": 3827649472.0
+            "positive_geographies": 1450,
+            "zero_geographies": 0,
+            "min_sum": 206.21745211724192,
+            "max_sum": 55936365.72013068,
+            "total_sum": 3827320243.845017
           },
           "fish_prior": {
-            "positive_geographies": 368,
-            "zero_geographies": 1082,
+            "positive_geographies": 888,
+            "zero_geographies": 562,
             "min_sum": 0.0,
-            "max_sum": 19788676.0,
-            "total_sum": 81140329.10662842
+            "max_sum": 7376987.178950544,
+            "total_sum": 84901160.26566902
           },
           "forest_prior": {
-            "positive_geographies": 729,
-            "zero_geographies": 721,
+            "positive_geographies": 1297,
+            "zero_geographies": 153,
             "min_sum": 0.0,
-            "max_sum": 5562428.0,
-            "total_sum": 309544678.0
+            "max_sum": 5551731.872588001,
+            "total_sum": 307739737.75264835
           }
         }
       }
     ]
   },
   "total_gdp": {
+    "figshare_manifest_files": [
+      {
+        "id": 31456837,
+        "name": "Real GDP.zip",
+        "size": 3123367945,
+        "download_url": "https://ndownloader.figshare.com/files/31456837"
+      },
+      {
+        "id": 31456843,
+        "name": "Electricity consumption.zip",
+        "size": 3059351347,
+        "download_url": "https://ndownloader.figshare.com/files/31456843"
+      }
+    ],
     "figshare_2019_candidates": [],
     "probe_download_runnable_under_size_gate": false,
     "size_gate_bytes": 750000000
