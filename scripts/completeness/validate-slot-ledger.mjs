@@ -67,11 +67,18 @@ const p29OnlyStatuses=new Set(['governed_unavailable']);
 const configuredAll=[];
 for(const state of evidenceStates.states||[])for(const geoCode of state.geo_codes||(state.geo_code?[state.geo_code]:[]))configuredAll.push({...state,geo_code:geoCode});
 const configuredWithMatches=configuredAll.map(state=>({state,matches:ledger.rows.filter(r=>r.level===state.level&&r.geo_code===state.geo_code&&r.indicator_code===state.indicator_code)}));
-const configured=configuredWithMatches.filter(x=>x.matches.length>0).map(x=>x.state);
+const configuredMatched=configuredWithMatches.filter(x=>x.matches.length>0);
+const supersededConfiguredStates=configuredMatched.filter(x=>x.matches.every(row=>resolvedEvidence.has(row.status)));
+const configured=configuredMatched.filter(x=>!x.matches.every(row=>resolvedEvidence.has(row.status))).map(x=>x.state);
 const local54OnlyStates=configuredWithMatches.filter(x=>x.matches.length===0).map(x=>x.state);
 for(const state of local54OnlyStates){
   assert(local54Codes.has(state.indicator_code),`${state.geo_code}/${state.indicator_code}: evidence state has no matching P18 legacy slot and its indicator is not part of the local-54 manifest either`);
   assert(authorizedExplicit.has(state.status)||p29OnlyStatuses.has(state.status),`${state.geo_code}/${state.indicator_code}: local-54-only evidence state has unexpected status ${state.status}`);
+}
+for(const {state,matches} of supersededConfiguredStates){
+  assert(authorizedExplicit.has(state.status)||p29OnlyStatuses.has(state.status),`${state.geo_code}/${state.indicator_code}: superseded evidence state has unexpected historical status ${state.status}`);
+  assert(matches.length>=1,`${state.geo_code}/${state.indicator_code}: superseded evidence state must map to at least one public slot`);
+  assert(matches.every(row=>row.resolved===true&&resolvedEvidence.has(row.status)&&row.series_code&&row.observation_id),`${state.geo_code}/${state.indicator_code}: historical closure may be superseded only by canonical resolved evidence`);
 }
 for(const state of configured){
   assert(authorizedExplicit.has(state.status),`${state.geo_code}/${state.indicator_code}: unauthorized explicit evidence status ${state.status}`);
@@ -109,14 +116,14 @@ const p24McaIdentityUnavailable=officialUnavailable.filter(s=>s.level==='ward'&&
 const legacyUnavailable=officialUnavailable.filter(s=>!p22Codes.has(s.indicator_code)&&!(s.level==='constituency'&&(p23CensusCodes.has(s.indicator_code)||p23EvidenceGapCodes.has(s.indicator_code)||p23ConstituencyTurnoutCodes.has(s.indicator_code)))&&!(s.level==='ward'&&(p24CensusCodes.has(s.indicator_code)||p24WardEvidenceGapCodes.has(s.indicator_code)||p24WardTurnoutCodes.has(s.indicator_code)||p24McaIdentityCodes.has(s.indicator_code))));
 assert(legacyUnavailable.length===48,`pre-P22/P23 official-unavailable inventory must remain 48 states, got ${legacyUnavailable.length}`);
 assert(p22Unavailable.length===66,`P22 terminal snapshot must contribute exactly 66 governed official-unavailable states, got ${p22Unavailable.length}`);
-assert(p23CensusUnavailable.length===580,`P23 census publication closure must contribute exactly 580 geography/indicator evidence states, got ${p23CensusUnavailable.length}`);
+assert(p23CensusUnavailable.length===290,`P23 census publication closure must now contribute exactly 290 active geography/indicator evidence states (household size only; population is superseded by P42 WorldPop), got ${p23CensusUnavailable.length}`);
 assert(p23EvidenceGapUnavailable.length===580,`P23 utilisation/density closure must contribute exactly 580 geography/indicator evidence states, got ${p23EvidenceGapUnavailable.length}`);
 assert(p23ConstituencyTurnoutUnavailable.length===104,`P23 constituency turnout closure must contribute exactly 104 governed official-unavailable states, got ${p23ConstituencyTurnoutUnavailable.length}`);
-assert(p24CensusUnavailable.length===1450,`P24 ward census publication closure must contribute exactly 1,450 geography/indicator evidence states, got ${p24CensusUnavailable.length}`);
+assert(p24CensusUnavailable.length===0,`P24 ward population publication closure must be fully superseded by P42 WorldPop modelled evidence, got ${p24CensusUnavailable.length} active states`);
 assert(p24WardEvidenceGapUnavailable.length===1450,`P24 ward density closure must contribute exactly 1,450 geography/indicator evidence states, got ${p24WardEvidenceGapUnavailable.length}`);
 assert(p24WardTurnoutUnavailable.length===1450,`P24 ward turnout closure must contribute exactly 1,450 governed official-unavailable states, got ${p24WardTurnoutUnavailable.length}`);
 assert(p24McaIdentityUnavailable.length===17,`P24 ward MCA identity closure must contribute exactly 17 geography/indicator evidence states, got ${p24McaIdentityUnavailable.length}`);
-assert(officialUnavailable.length===5745,`official-unavailable evidence inventory must reconcile 48 legacy + 66 P22 + 580 P23 census + 580 P23 evidence gaps + 104 P23 constituency turnout + 1450 P24 ward census + 1450 P24 ward evidence gaps + 1450 P24 ward turnout + 17 P24 ward MCA identity = 5745, got ${officialUnavailable.length}`);
+assert(officialUnavailable.length===4005,`active official-unavailable evidence inventory must reconcile 48 legacy + 66 P22 + 290 P23 census + 580 P23 evidence gaps + 104 P23 constituency turnout + 0 P24 ward census + 1450 P24 ward evidence gaps + 1450 P24 ward turnout + 17 P24 ward MCA identity = 4005, got ${officialUnavailable.length}`);
 assert(p23ConstituencyTurnoutUnavailable.every(s=>s.as_of==='2026-09-16'&&String(s.evidence_constraint||'').length>0),'P23 constituency turnout unavailable states must retain snapshot date and evidence constraint');
 assert(p23ConstituencyTurnoutUnavailable.every(s=>String(s.refresh_trigger||'').length>0),'P23 constituency turnout unavailable states must retain refresh triggers');
 assert(p22Unavailable.every(s=>s.as_of==='2026-09-01'&&s.evidence_constraint==='current_observation_unavailable_under_p22_contract'), 'P22 unavailable states must retain snapshot date and evidence-constraint marker');
@@ -161,4 +168,5 @@ console.log(`P18_GOVERNED_CLOSURE_STATES_OK configured=${configured.length} unav
 console.log(`P18_P22_P23_P24_UNAVAILABLE_RECONCILIATION_OK legacy=${legacyUnavailable.length} p22=${p22Unavailable.length} p23_census=${p23CensusUnavailable.length} p23_evidence_gaps=${p23EvidenceGapUnavailable.length} p24_ward_census=${p24CensusUnavailable.length} p24_ward_evidence_gaps=${p24WardEvidenceGapUnavailable.length} p24_ward_turnout=${p24WardTurnoutUnavailable.length} p24_ward_mca_identity=${p24McaIdentityUnavailable.length} total=${officialUnavailable.length}`);
 console.log(`P18_P24_CLOSURE_RECONCILIATION_OK not_applicable=${notApplicable.length} boundary_unresolved=${boundaryUnresolved.length}`);
 console.log('P18_CANONICAL_LIFECYCLE_AUTHORITY_OK');
+console.log(`P18_SUPERSEDED_CLOSURES_OK canonical_evidence_rows=${supersededConfiguredStates.length}`);
 console.log(`P18_LOCAL54_ONLY_EVIDENCE_STATES_OUT_OF_SCOPE_OK local54_only_geo_rows=${local54OnlyStates.length} (validated instead by npm run p29:validate)`);
