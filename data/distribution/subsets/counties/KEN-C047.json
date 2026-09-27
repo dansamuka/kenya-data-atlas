@@ -28,61 +28,6 @@
     },
     "metrics": [
       {
-        "indicator_code": "IND-POPULATION",
-        "name": "Population",
-        "domain": "living",
-        "latest": {
-          "value": 4397073,
-          "period_label": "Census night, 24–25 August 2019",
-          "unit_code": "persons",
-          "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/"
-        },
-        "ranking": {
-          "eligible": true,
-          "rank": 1,
-          "eligible_count": 47,
-          "percentile": 100,
-          "peer_rank": 1,
-          "peer_eligible_count": 11,
-          "peer_percentile": 100,
-          "higher_is_better": null
-        },
-        "trend": {
-          "eligible": true,
-          "direction": "rising",
-          "one_period_change": 1258704,
-          "medium_term_change": 1258704,
-          "medium_term_years": 10,
-          "national_matched_change": 140716,
-          "peer_matched_change": 189413,
-          "break_in_series": false
-        }
-      },
-      {
-        "indicator_code": "IND-FUEL-PETROL",
-        "name": "Super Petrol pump price",
-        "domain": "infrastructure",
-        "latest": {
-          "value": 214.03,
-          "period_label": "Announced 14 Aug 2026, effective 15 Aug – 14 Sep 2026",
-          "unit_code": "kes_per_litre",
-          "source_url": "https://www.epra.go.ke/pump-price-formulae"
-        },
-        "ranking": {
-          "eligible": false
-        },
-        "trend": {
-          "eligible": true,
-          "direction": "worsening",
-          "one_period_change": 33.36,
-          "medium_term_change": 27.72,
-          "medium_term_years": 1,
-          "national_matched_change": 31.78,
-          "peer_matched_change": 31.78,
-          "break_in_series": true
-        }
-      },
-      {
         "indicator_code": "IND-LAND-AREA",
         "name": "Land area",
         "domain": "infrastructure",
@@ -107,57 +52,33 @@
         }
       },
       {
-        "indicator_code": "IND-REGISTERED-VOTERS",
-        "name": "Registered voters",
-        "domain": "governance",
+        "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",
+        "name": "County budget absorption rate",
+        "domain": "fiscal",
         "latest": {
-          "value": 2415310,
-          "period_label": "Certified register county schedule, June 2022",
-          "unit_code": "persons",
-          "source_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf"
+          "value": 77,
+          "period_label": "FY 2024/25",
+          "unit_code": "percent",
+          "source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/"
         },
         "ranking": {
           "eligible": true,
-          "rank": 1,
+          "rank": 27,
           "eligible_count": 47,
-          "percentile": 100,
-          "peer_rank": 1,
+          "percentile": 44.7,
+          "peer_rank": 3,
           "peer_eligible_count": 11,
-          "peer_percentile": 100,
-          "higher_is_better": null
-        },
-        "trend": {
-          "eligible": false
-        }
-      },
-      {
-        "indicator_code": "IND-GCP-CURRENT",
-        "name": "Gross County Product (current prices)",
-        "domain": "economic",
-        "latest": {
-          "value": 4105576,
-          "period_label": "2024 preliminary",
-          "unit_code": "kes_million",
-          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/12/2025-Gross-County-Product.pdf"
-        },
-        "ranking": {
-          "eligible": true,
-          "rank": 1,
-          "eligible_count": 47,
-          "percentile": 100,
-          "peer_rank": 1,
-          "peer_eligible_count": 11,
-          "peer_percentile": 100,
-          "higher_is_better": null
+          "peer_percentile": 81.8,
+          "higher_is_better": true
         },
         "trend": {
           "eligible": true,
-          "direction": "rising",
-          "one_period_change": 271405,
-          "medium_term_change": 1419869,
-          "medium_term_years": 4,
-          "national_matched_change": 19378,
-          "peer_matched_change": 28788,
+          "direction": "improving",
+          "one_period_change": 1.829,
+          "medium_term_change": 6.5,
+          "medium_term_years": 11,
+          "national_matched_change": -0.381,
+          "peer_matched_change": -1.605,
           "break_in_series": false
         }
       },
@@ -193,68 +114,6 @@
         }
       },
       {
-        "indicator_code": "IND-COUNTY-EXPENDITURE-TOTAL",
-        "name": "County expenditure",
-        "domain": "fiscal",
-        "latest": {
-          "value": 33523.47,
-          "period_label": "FY 2024/25",
-          "unit_code": "kes_million",
-          "source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/"
-        },
-        "ranking": {
-          "eligible": true,
-          "rank": 1,
-          "eligible_count": 47,
-          "percentile": 100,
-          "peer_rank": 1,
-          "peer_eligible_count": 11,
-          "peer_percentile": 100,
-          "higher_is_better": null
-        },
-        "trend": {
-          "eligible": true,
-          "direction": "rising",
-          "one_period_change": 1733.47,
-          "medium_term_change": 15748.57,
-          "medium_term_years": 11,
-          "national_matched_change": 1067.84,
-          "peer_matched_change": 786.23,
-          "break_in_series": false
-        }
-      },
-      {
-        "indicator_code": "IND-COUNTY-BUDGET-ABSORPTION",
-        "name": "County budget absorption rate",
-        "domain": "fiscal",
-        "latest": {
-          "value": 77,
-          "period_label": "FY 2024/25",
-          "unit_code": "percent",
-          "source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/"
-        },
-        "ranking": {
-          "eligible": true,
-          "rank": 27,
-          "eligible_count": 47,
-          "percentile": 44.7,
-          "peer_rank": 3,
-          "peer_eligible_count": 11,
-          "peer_percentile": 81.8,
-          "higher_is_better": true
-        },
-        "trend": {
-          "eligible": true,
-          "direction": "improving",
-          "one_period_change": 1.829,
-          "medium_term_change": 6.5,
-          "medium_term_years": 11,
-          "national_matched_change": -0.381,
-          "peer_matched_change": -1.605,
-          "break_in_series": false
-        }
-      },
-      {
         "indicator_code": "IND-COUNTY-DEVELOPMENT-ABSORPTION",
         "name": "Development budget absorption rate",
         "domain": "fiscal",
@@ -286,14 +145,14 @@
         }
       },
       {
-        "indicator_code": "IND-POP-2009",
-        "name": "Population, 2009 census",
-        "domain": "living",
+        "indicator_code": "IND-COUNTY-EXPENDITURE-TOTAL",
+        "name": "County expenditure",
+        "domain": "fiscal",
         "latest": {
-          "value": 3138369,
-          "period_label": "2009 census",
-          "unit_code": "persons",
-          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2013-Statistical-Abstract.pdf"
+          "value": 33523.47,
+          "period_label": "FY 2024/25",
+          "unit_code": "kes_million",
+          "source_url": "https://cob.go.ke/download/county-governments-budget-implementation-review-report-fy-2024-25/"
         },
         "ranking": {
           "eligible": true,
@@ -303,6 +162,140 @@
           "peer_rank": 1,
           "peer_eligible_count": 11,
           "peer_percentile": 100,
+          "higher_is_better": null
+        },
+        "trend": {
+          "eligible": true,
+          "direction": "rising",
+          "one_period_change": 1733.47,
+          "medium_term_change": 15748.57,
+          "medium_term_years": 11,
+          "national_matched_change": 1067.84,
+          "peer_matched_change": 786.23,
+          "break_in_series": false
+        }
+      },
+      {
+        "indicator_code": "IND-FUEL-PETROL",
+        "name": "Super Petrol pump price",
+        "domain": "infrastructure",
+        "latest": {
+          "value": 214.03,
+          "period_label": "Announced 14 Aug 2026, effective 15 Aug – 14 Sep 2026",
+          "unit_code": "kes_per_litre",
+          "source_url": "https://www.epra.go.ke/pump-price-formulae"
+        },
+        "ranking": {
+          "eligible": false
+        },
+        "trend": {
+          "eligible": true,
+          "direction": "worsening",
+          "one_period_change": 33.36,
+          "medium_term_change": 27.72,
+          "medium_term_years": 1,
+          "national_matched_change": 31.78,
+          "peer_matched_change": 31.78,
+          "break_in_series": true
+        }
+      },
+      {
+        "indicator_code": "IND-GCP-CURRENT",
+        "name": "Gross County Product (current prices)",
+        "domain": "economic",
+        "latest": {
+          "value": 4105576,
+          "period_label": "2024 preliminary",
+          "unit_code": "kes_million",
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2025/12/2025-Gross-County-Product.pdf"
+        },
+        "ranking": {
+          "eligible": true,
+          "rank": 1,
+          "eligible_count": 47,
+          "percentile": 100,
+          "peer_rank": 1,
+          "peer_eligible_count": 11,
+          "peer_percentile": 100,
+          "higher_is_better": null
+        },
+        "trend": {
+          "eligible": true,
+          "direction": "rising",
+          "one_period_change": 271405,
+          "medium_term_change": 1419869,
+          "medium_term_years": 4,
+          "national_matched_change": 19378,
+          "peer_matched_change": 28788,
+          "break_in_series": false
+        }
+      },
+      {
+        "indicator_code": "IND-HEALTH-FACILITY-STOCK",
+        "name": "Health facility count",
+        "domain": "health",
+        "latest": {
+          "value": 1319,
+          "period_label": "KMHFL as of 1 Aug 2023",
+          "unit_code": "count",
+          "source_url": "https://repository.familyhealth.go.ke/xmlui/bitstream/handle/123456789/192/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf?isAllowed=y&sequence=1"
+        },
+        "ranking": {
+          "eligible": true,
+          "rank": 1,
+          "eligible_count": 47,
+          "percentile": 100,
+          "peer_rank": 1,
+          "peer_eligible_count": 11,
+          "peer_percentile": 100,
+          "higher_is_better": null
+        },
+        "trend": {
+          "eligible": false
+        }
+      },
+      {
+        "indicator_code": "IND-LABOUR-FORCE-PARTICIPATION",
+        "name": "Labour-force participation rate, age 15–64",
+        "domain": "economic",
+        "latest": {
+          "value": 74.5,
+          "period_label": "2019 census",
+          "unit_code": "percent",
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Labour-Force.pdf"
+        },
+        "ranking": {
+          "eligible": true,
+          "rank": 18,
+          "eligible_count": 47,
+          "percentile": 63.8,
+          "peer_rank": 4,
+          "peer_eligible_count": 11,
+          "peer_percentile": 72.7,
+          "higher_is_better": true
+        },
+        "trend": {
+          "eligible": false
+        }
+      },
+      {
+        "indicator_code": "IND-HOUSING-OWNER-OCCUPIED",
+        "name": "Households owning their main dwelling",
+        "domain": "living",
+        "latest": {
+          "value": 11.6,
+          "period_label": "2021 survey",
+          "unit_code": "percent",
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2024/06/Kenya-Time-Use-Survey-Report-2021.pdf"
+        },
+        "ranking": {
+          "eligible": true,
+          "rank": 47,
+          "eligible_count": 47,
+          "percentile": 2.1,
+          "peer_rank": 11,
+          "peer_eligible_count": 11,
+          "peer_percentile": 9.1,
           "higher_is_better": null
         },
         "trend": {
@@ -334,54 +327,6 @@
         }
       },
       {
-        "indicator_code": "IND-HOUSING-OWNER-OCCUPIED",
-        "name": "Households owning their main dwelling",
-        "domain": "living",
-        "latest": {
-          "value": 11.6,
-          "period_label": "2021 survey",
-          "unit_code": "percent",
-          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2024/06/Kenya-Time-Use-Survey-Report-2021.pdf"
-        },
-        "ranking": {
-          "eligible": true,
-          "rank": 47,
-          "eligible_count": 47,
-          "percentile": 2.1,
-          "peer_rank": 11,
-          "peer_eligible_count": 11,
-          "peer_percentile": 9.1,
-          "higher_is_better": null
-        },
-        "trend": {
-          "eligible": false
-        }
-      },
-      {
-        "indicator_code": "IND-HEALTH-FACILITY-STOCK",
-        "name": "Health facility count",
-        "domain": "health",
-        "latest": {
-          "value": 1319,
-          "period_label": "KMHFL as of 1 Aug 2023",
-          "unit_code": "count",
-          "source_url": "https://repository.familyhealth.go.ke/xmlui/bitstream/handle/123456789/192/Kenya%20Health%20Facility%20Census%20Report%20September%202023.pdf?isAllowed=y&sequence=1"
-        },
-        "ranking": {
-          "eligible": true,
-          "rank": 1,
-          "eligible_count": 47,
-          "percentile": 100,
-          "peer_rank": 1,
-          "peer_eligible_count": 11,
-          "peer_percentile": 100,
-          "higher_is_better": null
-        },
-        "trend": {
-          "eligible": false
-        }
-      },
-      {
         "indicator_code": "IND-SCHOOL-ATTENDANCE-RATE",
         "name": "Population age 3+ at school or learning institution",
         "domain": "education",
@@ -406,24 +351,79 @@
         }
       },
       {
-        "indicator_code": "IND-LABOUR-FORCE-PARTICIPATION",
-        "name": "Labour-force participation rate, age 15–64",
-        "domain": "economic",
+        "indicator_code": "IND-POP-2009",
+        "name": "Population, 2009 census",
+        "domain": "living",
         "latest": {
-          "value": 74.5,
-          "period_label": "2019 census",
-          "unit_code": "percent",
-          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2019-Kenya-population-and-Housing-Census-Analytical-Report-on-Labour-Force.pdf"
+          "value": 3138369,
+          "period_label": "2009 census",
+          "unit_code": "persons",
+          "source_url": "https://www.knbs.or.ke/wp-content/uploads/2023/09/2013-Statistical-Abstract.pdf"
         },
         "ranking": {
           "eligible": true,
-          "rank": 18,
+          "rank": 1,
           "eligible_count": 47,
-          "percentile": 63.8,
-          "peer_rank": 4,
+          "percentile": 100,
+          "peer_rank": 1,
           "peer_eligible_count": 11,
-          "peer_percentile": 72.7,
-          "higher_is_better": true
+          "peer_percentile": 100,
+          "higher_is_better": null
+        },
+        "trend": {
+          "eligible": false
+        }
+      },
+      {
+        "indicator_code": "IND-POPULATION",
+        "name": "Population",
+        "domain": "living",
+        "latest": {
+          "value": 4397073,
+          "period_label": "Census night, 24–25 August 2019",
+          "unit_code": "persons",
+          "source_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/"
+        },
+        "ranking": {
+          "eligible": true,
+          "rank": 1,
+          "eligible_count": 47,
+          "percentile": 100,
+          "peer_rank": 1,
+          "peer_eligible_count": 11,
+          "peer_percentile": 100,
+          "higher_is_better": null
+        },
+        "trend": {
+          "eligible": true,
+          "direction": "rising",
+          "one_period_change": 1258704,
+          "medium_term_change": 1258704,
+          "medium_term_years": 10,
+          "national_matched_change": 140716,
+          "peer_matched_change": 189413,
+          "break_in_series": false
+        }
+      },
+      {
+        "indicator_code": "IND-REGISTERED-VOTERS",
+        "name": "Registered voters",
+        "domain": "governance",
+        "latest": {
+          "value": 2415310,
+          "period_label": "Certified register county schedule, June 2022",
+          "unit_code": "persons",
+          "source_url": "https://www.iebc.or.ke/uploads/resources/L7k6ob1bau.pdf"
+        },
+        "ranking": {
+          "eligible": true,
+          "rank": 1,
+          "eligible_count": 47,
+          "percentile": 100,
+          "peer_rank": 1,
+          "peer_eligible_count": 11,
+          "peer_percentile": 100,
+          "higher_is_better": null
         },
         "trend": {
           "eligible": false
@@ -467,9 +467,9 @@
         "Population age 3+ at school or learning institution: 35.3% in 2019 census, 9th percentile within the peer-group (tier 4) — lower than the peer_group median of 43.5%."
       ],
       "what_changed": [
-        "Super Petrol pump price worsened by 33.36 kes_per_litre as of Announced 14 Aug 2026, effective 15 Aug – 14 Sep 2026 (was 180.67 kes_per_litre, now 214.03 kes_per_litre).",
         "County budget absorption rate improved by 1.83 percentage points as of FY 2024/25 (was 75.17%, now 77%).",
-        "Development budget absorption rate worsened by 9.7 percentage points as of FY 2024/25 (was 38.7%, now 29%)."
+        "Development budget absorption rate worsened by 9.7 percentage points as of FY 2024/25 (was 38.7%, now 29%).",
+        "Super Petrol pump price worsened by 33.36 kes_per_litre as of Announced 14 Aug 2026, effective 15 Aug – 14 Sep 2026 (was 180.67 kes_per_litre, now 214.03 kes_per_litre)."
       ]
     },
     "recognition": [],

@@ -5,8 +5,8 @@ This directory is the stable, machine-readable developer entry point introduced 
 - Application/data release: **1.0.0**
 - Data contract: **1.0.0**
 - Indicators: **103**
-- Series: **9,979**
-- Observations: **13,763**
+- Series: **9,994**
+- Observations: **13,778**
 - Geographies: **1,788**
 - County subsets: **47**
 - Indicator subsets: **103**

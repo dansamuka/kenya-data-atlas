@@ -198,8 +198,8 @@
     {
       "indicator_code": "IND-CONTRACEPTIVE-USE",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "Modern contraceptive use is published canonically as a KDHS county-domain estimate. No official current-constituency domain estimate is available in the governed source, and parent survey estimates cannot be inherited."
+      "disposition": "modelled_estimate",
+      "reason": "P42 now permits governed S5 modelled estimates at constituency level when a published small-area estimate passes both the frozen county-coherence gate and strict one-to-one geometry equivalence. Only five constituencies currently pass; all other constituency cells remain governed closures in the Local-54 cell ledger."
     },
     {
       "indicator_code": "IND-CONTRACEPTIVE-USE",
@@ -234,8 +234,8 @@
     {
       "indicator_code": "IND-STUNTING-RATE",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "The canonical child-stunting rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with survey precision adequate for Atlas publication, so the county rate cannot be inherited or naively reweighted."
+      "disposition": "modelled_estimate",
+      "reason": "P42 now permits governed S5 modelled estimates at constituency level when the published small-area estimate passes county coherence and the source Admin-2 polygon is demonstrably equivalent to the KDA constituency under frozen geometry thresholds. Only five constituencies currently pass; remaining cells stay governed unavailable."
     },
     {
       "indicator_code": "IND-STUNTING-RATE",
@@ -270,8 +270,8 @@
     {
       "indicator_code": "IND-LITERACY-RATE",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "The canonical women age 15–49 literacy rate is a KDHS county-domain survey estimate. KDHS 2022 does not publish a current-290 constituency-domain estimate with compatible survey weighting and precision, so the county rate cannot be inherited or naively reweighted."
+      "disposition": "modelled_estimate",
+      "reason": "P42 now permits governed S5 modelled estimates at constituency level for published small-area estimates that pass the frozen county-coherence and one-to-one geometry gates. Five constituencies currently qualify; this disposition does not imply complete constituency coverage and all other cells retain governed closures."
     },
     {
       "indicator_code": "IND-LITERACY-RATE",
@@ -342,14 +342,14 @@
     {
       "indicator_code": "IND-POPULATION",
       "level": "ward",
-      "disposition": "governed_unavailable",
-      "reason": "KNBS 2019 KPHC Volumes I-IV do not publish population for the current 1,450 IEBC county assembly wards; their finest tabulated administrative tier is the sub-location, a different, non-coterminous geography. The IEBC boundary-delimitation exercise that would have produced an official ward population table was never completed or gazetted, so no authoritative crosswalk exists to aggregate published sub-location counts into wards. See data/p24/ward-census-closure-contract.json."
+      "disposition": "modelled_estimate",
+      "reason": "P42 WorldPop now publishes governed S5 modelled 2019 population estimates for all 1,450 current KDA wards. Official KNBS county totals are preserved exactly and WorldPop R2024B supplies within-county spatial allocation with disclosed model-structure sensitivity; the earlier direct-official publication closure remains historical provenance but is superseded by canonical modelled evidence."
     },
     {
       "indicator_code": "IND-POPULATION",
       "level": "constituency",
-      "disposition": "governed_unavailable",
-      "reason": "KNBS's 2019 KPHC publication does not publish population as a direct current-290-constituency table; its finest tabulated administrative tier is the sub-location/sub-county, a different, non-coterminous geography, and the legacy KNBS constituency table predates the current 2012-01 configuration with no authoritative crosswalk. See data/p23/constituency-census-closure-contract.json, which already closes this indicator at constituency level; this entry brings that closure into the P23X cascade ledger."
+      "disposition": "modelled_estimate",
+      "reason": "P42 WorldPop now publishes governed S5 modelled 2019 population estimates for all 290 current KDA constituencies. Official KNBS county totals are preserved exactly and WorldPop R2024B provides within-county spatial allocation with a disclosed sensitivity envelope; the earlier official-publication closure remains historical provenance but no longer describes the canonical numeric state."
     },
     {
       "indicator_code": "IND-HOUSEHOLD-SIZE",

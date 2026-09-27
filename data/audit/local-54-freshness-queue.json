@@ -2,11 +2,11 @@
   "schema_version": "kda.p35.local-54-freshness-queue.v1",
   "as_of": "2026-09-20",
   "definition": "Every numeric (published) local-54 cell with its as_of period and a recheck rule derived from its series frequency metadata. recheck_status is \"no_computable_schedule\" wherever the series frequency (irregular/periodic/one_off) does not imply a defensible interval -- this records that the schedule is unknown, not that the cell is stale.",
-  "cell_count": 7747,
+  "cell_count": 7762,
   "by_recheck_status": {
     "current": 4505,
     "due_for_recheck": 421,
-    "no_computable_schedule": 2821
+    "no_computable_schedule": 2836
   },
   "rows": [
     {
@@ -14836,6 +14836,20 @@
       "refresh_trigger": null
     },
     {
+      "slot_key": "KEN-C008-CON038|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
       "slot_key": "KEN-C008-CON038|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C008-CON038",
       "level": "constituency",
@@ -14844,6 +14858,20 @@
       "frequency": "irregular",
       "interval_days": null,
       "period_end": "Boundary-derived 2012-01",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C008-CON038|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "no_computable_schedule",
@@ -14875,6 +14903,20 @@
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "current",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C008-CON038|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C008-CON038",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
       "refresh_trigger": null
     },
     {
@@ -51992,6 +52034,20 @@
       "refresh_trigger": null
     },
     {
+      "slot_key": "KEN-C025-CON135|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
       "slot_key": "KEN-C025-CON135|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C025-CON135",
       "level": "constituency",
@@ -52000,6 +52056,20 @@
       "frequency": "irregular",
       "interval_days": null,
       "period_end": "Boundary-derived 2012-01",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C025-CON135|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "no_computable_schedule",
@@ -52031,6 +52101,20 @@
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "current",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C025-CON135|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
       "refresh_trigger": null
     },
     {
@@ -68666,6 +68750,20 @@
       "refresh_trigger": null
     },
     {
+      "slot_key": "KEN-C033-CON177|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
       "slot_key": "KEN-C033-CON177|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C033-CON177",
       "level": "constituency",
@@ -68674,6 +68772,20 @@
       "frequency": "irregular",
       "interval_days": null,
       "period_end": "Boundary-derived 2012-01",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C033-CON177|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "no_computable_schedule",
@@ -68705,6 +68817,20 @@
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "current",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C033-CON177|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C033-CON177",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
       "refresh_trigger": null
     },
     {
@@ -69380,6 +69506,20 @@
       "refresh_trigger": null
     },
     {
+      "slot_key": "KEN-C033-CON180|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
       "slot_key": "KEN-C033-CON180|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C033-CON180",
       "level": "constituency",
@@ -69388,6 +69528,20 @@
       "frequency": "irregular",
       "interval_days": null,
       "period_end": "Boundary-derived 2012-01",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C033-CON180|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "no_computable_schedule",
@@ -69419,6 +69573,20 @@
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "current",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C033-CON180|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C033-CON180",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
       "refresh_trigger": null
     },
     {
@@ -69884,6 +70052,20 @@
       "refresh_trigger": null
     },
     {
+      "slot_key": "KEN-C033-CON182|local_54|IND-CONTRACEPTIVE-USE",
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "indicator_code": "IND-CONTRACEPTIVE-USE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
       "slot_key": "KEN-C033-CON182|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C033-CON182",
       "level": "constituency",
@@ -69892,6 +70074,20 @@
       "frequency": "irregular",
       "interval_days": null,
       "period_end": "Boundary-derived 2012-01",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C033-CON182|local_54|IND-LITERACY-RATE",
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "indicator_code": "IND-LITERACY-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "no_computable_schedule",
@@ -69923,6 +70119,20 @@
       "days_since_period_end": null,
       "next_expected_release": null,
       "recheck_status": "current",
+      "refresh_trigger": null
+    },
+    {
+      "slot_key": "KEN-C033-CON182|local_54|IND-STUNTING-RATE",
+      "geo_code": "KEN-C033-CON182",
+      "level": "constituency",
+      "indicator_code": "IND-STUNTING-RATE",
+      "as_of": "2022",
+      "frequency": "irregular",
+      "interval_days": null,
+      "period_end": "2022",
+      "days_since_period_end": null,
+      "next_expected_release": null,
+      "recheck_status": "no_computable_schedule",
       "refresh_trigger": null
     },
     {

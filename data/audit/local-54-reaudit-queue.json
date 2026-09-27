@@ -3,7 +3,7 @@
   "as_of": "2026-09-20",
   "definition": "Every distinct closure reason behind an official_unavailable/governed_unavailable/boundary_unresolved local-54 cell, with its refresh_trigger, so legacy unavailable states are periodically re-audited for new representable evidence rather than permanently grandfathered. not_applicable and retired_replaced are excluded -- those are permanent structural dispositions, not \"unavailable pending future evidence\".",
   "reason_group_count": 85,
-  "cell_count": 76571,
+  "cell_count": 76556,
   "without_refresh_trigger": 0,
   "rows": [
     {
@@ -743,7 +743,7 @@
       "levels": [
         "constituency"
       ],
-      "cell_count": 580,
+      "cell_count": 575,
       "has_refresh_trigger": true,
       "refresh_trigger": "Re-open if a future KHS/TUS/KDHS/KCHS round explicitly adds a constituency domain of estimation, if KNBS publishes an official constituency-level or small-area-estimation product for this theme, or if a future 2019 KPHC-series analytical report republishes this theme with a sub-county table.",
       "source": "KNBS/ICF 2022 Kenya Demographic and Health Survey, Volume I, Section 1.2 Sample Design (p.2)"
@@ -825,7 +825,7 @@
       "levels": [
         "constituency"
       ],
-      "cell_count": 290,
+      "cell_count": 285,
       "has_refresh_trigger": true,
       "refresh_trigger": "KNBS/DHS Program publishes a KDHS round stratified to constituency level, or a transparent, uncertainty-labelled small-area model built from KDHS microdata and independently validated against known county totals becomes available and is reviewed under this project's S5 modelled-estimate rules.",
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"
@@ -864,7 +864,7 @@
       "levels": [
         "constituency"
       ],
-      "cell_count": 290,
+      "cell_count": 285,
       "has_refresh_trigger": true,
       "refresh_trigger": "KNBS/DHS Program publishes a KDHS round stratified to constituency level, or a transparent, uncertainty-labelled small-area model built from KDHS microdata and independently validated against known county totals becomes available and is reviewed under this project's S5 modelled-estimate rules.",
       "source": "Kenya Demographic and Health Survey 2022 Key Indicators Report, Section 2.1 Sample Design"

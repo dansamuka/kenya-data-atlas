@@ -1,0 +1,72 @@
+name: P42 published SAE promotion
+
+on:
+  push:
+    branches:
+      - p42-published-sae-probe
+    paths:
+      - .github/workflows/p42-published-sae-promote.yml
+      - data/p42/published-sae-constituency-candidate.json
+      - data/p42/published-sae-county-validation.json
+      - data/p42/published-sae-geometry-crosswalk.json
+      - data/p42/published-sae-promotion-contract.json
+      - scripts/p42/apply-published-sae.mjs
+      - scripts/p42/validate-published-sae-candidate.mjs
+      - package.json
+      - docs/methodology/P42-PUBLISHED-SAE.md
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-published-sae-promotion
+  cancel-in-progress: true
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-published-sae-probe
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Node dependencies
+        run: npm ci
+      - name: Validate frozen candidate
+        run: node scripts/p42/validate-published-sae-candidate.mjs
+      - name: Promote candidates into canonical registries
+        run: |
+          node scripts/p42/apply-published-sae.mjs catalogue
+          node scripts/catalogue/validate-catalogue.mjs
+          node scripts/p42/apply-published-sae.mjs indicators
+          node scripts/indicators/build-cross-level-eligibility.mjs
+          node scripts/indicators/validate-registry.mjs
+      - name: Rebuild distribution and Local-54 surfaces
+        run: |
+          node scripts/distribution/build-distribution.mjs
+          node scripts/p29/build-local-54-slot-ledger.mjs
+          node scripts/p34/build-local-54-profile-subsets.mjs
+          node scripts/p35/build-local-54-release-gate.mjs
+      - name: Validate Local-54 promotion
+        run: |
+          npm run distribution:validate
+          npm run p29:validate
+          npm run p34:validate
+          npm run p35:validate
+      - name: Commit promotion outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             data/catalogue/registry             data/indicators/registry             data/distribution             data/completeness/local-54-slot-ledger.json             data/completeness/local-54-slot-ledger.csv             data/completeness/local-54-reason-catalogue.json             data/completeness/local-54-reason-catalogue.csv             data/completeness/local-54-summary.json             data/local-54-profiles             data/audit/local-54-freshness-queue.json             data/audit/local-54-supersession-queue.json             data/audit/local-54-reaudit-queue.json             data/local-54-completion-dashboard.json
+          if git diff --cached --quiet; then
+            echo "No promotion output change to commit."
+          else
+            git commit -m "P42: promote strictly gated published SAE estimates"
+            git push origin HEAD:p42-published-sae-probe
+          fi

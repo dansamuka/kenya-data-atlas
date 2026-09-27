@@ -1,0 +1,6107 @@
+{
+  "schema_version": "kda.p42.published-sae-geometry-crosswalk.v1",
+  "assessed_on": "2026-09-23",
+  "source_map": "UW-Statistics gatesweb_html1 Kenya CN_NUTS_C_HA2 2022 Admin2 widget",
+  "source_widget_id": "htmlwidget-7256",
+  "source_polygons": 290,
+  "kda_constituencies": 290,
+  "unique_best_match_codes": 288,
+  "duplicate_best_match_codes": [
+    "KEN-C012-CON052",
+    "KEN-C032-CON175"
+  ],
+  "threshold_counts": {
+    "iou_ge_0_99": 4,
+    "iou_ge_0_98": 7,
+    "iou_ge_0_95": 29,
+    "iou_ge_0_90": 123,
+    "iou_ge_0_80": 204,
+    "iou_ge_0_50": 275
+  },
+  "minimum_best_iou": 0.199236,
+  "median_best_iou": 0.88375,
+  "lowest_overlap_examples": [
+    {
+      "source_index": 251,
+      "source_region": "Wundanyi",
+      "source_parent": "Taita Taveta",
+      "best_match": {
+        "geo_code": "KEN-C006-CON024",
+        "kda_name": "Wundanyi",
+        "intersection_over_union": 0.199236,
+        "source_area_covered": 0.825682,
+        "kda_area_covered": 0.207984
+      },
+      "runner_up": {
+        "geo_code": "KEN-C006-CON025",
+        "kda_name": "Mwatate",
+        "intersection_over_union": 0.034071,
+        "source_area_covered": 0.14263,
+        "kda_area_covered": 0.042846
+      }
+    },
+    {
+      "source_index": 189,
+      "source_region": "Embakasi South",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON282",
+        "kda_name": "Embakasi South",
+        "intersection_over_union": 0.267276,
+        "source_area_covered": 0.355307,
+        "kda_area_covered": 0.518944
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON289",
+        "kda_name": "Starehe",
+        "intersection_over_union": 0.110621,
+        "source_area_covered": 0.211898,
+        "kda_area_covered": 0.187948
+      }
+    },
+    {
+      "source_index": 208,
+      "source_region": "Nakuru Town East",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON175",
+        "kda_name": "Nakuru Town West",
+        "intersection_over_union": 0.368285,
+        "source_area_covered": 0.697681,
+        "kda_area_covered": 0.438218
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON176",
+        "kda_name": "Nakuru Town East",
+        "intersection_over_union": 0.281354,
+        "source_area_covered": 0.283799,
+        "kda_area_covered": 0.970289
+      }
+    },
+    {
+      "source_index": 48,
+      "source_region": "Suba North",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON251",
+        "kda_name": "Mbita",
+        "intersection_over_union": 0.385828,
+        "source_area_covered": 0.389205,
+        "kda_area_covered": 0.978008
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON252",
+        "kda_name": "Suba",
+        "intersection_over_union": 0.019968,
+        "source_area_covered": 0.031457,
+        "kda_area_covered": 0.051834
+      }
+    },
+    {
+      "source_index": 159,
+      "source_region": "Igembe South",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON052",
+        "kda_name": "Igembe Central",
+        "intersection_over_union": 0.38895,
+        "source_area_covered": 0.744667,
+        "kda_area_covered": 0.448805
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON051",
+        "kda_name": "Igembe South",
+        "intersection_over_union": 0.237104,
+        "source_area_covered": 0.251781,
+        "kda_area_covered": 0.802666
+      }
+    },
+    {
+      "source_index": 172,
+      "source_region": "Changamwe",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON001",
+        "kda_name": "Changamwe",
+        "intersection_over_union": 0.400282,
+        "source_area_covered": 0.486625,
+        "kda_area_covered": 0.692871
+      },
+      "runner_up": {
+        "geo_code": "KEN-C001-CON002",
+        "kda_name": "Jomvu",
+        "intersection_over_union": 0.229513,
+        "source_area_covered": 0.478834,
+        "kda_area_covered": 0.305936
+      }
+    },
+    {
+      "source_index": 106,
+      "source_region": "Kisumu Central",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON240",
+        "kda_name": "Kisumu Central",
+        "intersection_over_union": 0.40514,
+        "source_area_covered": 0.425739,
+        "kda_area_covered": 0.893316
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON238",
+        "kda_name": "Kisumu East",
+        "intersection_over_union": 0.023645,
+        "source_area_covered": 0.068794,
+        "kda_area_covered": 0.034776
+      }
+    },
+    {
+      "source_index": 197,
+      "source_region": "Mathare",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON290",
+        "kda_name": "Mathare",
+        "intersection_over_union": 0.425719,
+        "source_area_covered": 0.602159,
+        "kda_area_covered": 0.592319
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON281",
+        "kda_name": "Ruaraka",
+        "intersection_over_union": 0.084231,
+        "source_area_covered": 0.269167,
+        "kda_area_covered": 0.109206
+      }
+    },
+    {
+      "source_index": 243,
+      "source_region": "Bondo",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON236",
+        "kda_name": "Bondo",
+        "intersection_over_union": 0.436951,
+        "source_area_covered": 0.440793,
+        "kda_area_covered": 0.980445
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON234",
+        "kda_name": "Alego Usonga",
+        "intersection_over_union": 0.005778,
+        "source_area_covered": 0.008384,
+        "kda_area_covered": 0.018255
+      }
+    },
+    {
+      "source_index": 157,
+      "source_region": "Igembe Central",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON052",
+        "kda_name": "Igembe Central",
+        "intersection_over_union": 0.439824,
+        "source_area_covered": 0.835454,
+        "kda_area_covered": 0.481538
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON053",
+        "kda_name": "Igembe North",
+        "intersection_over_union": 0.055622,
+        "source_area_covered": 0.129207,
+        "kda_area_covered": 0.088977
+      }
+    },
+    {
+      "source_index": 180,
+      "source_region": "Kangema",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON104",
+        "kda_name": "Kangema",
+        "intersection_over_union": 0.462701,
+        "source_area_covered": 0.472586,
+        "kda_area_covered": 0.956749
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON105",
+        "kda_name": "Mathioya",
+        "intersection_over_union": 0.219352,
+        "source_area_covered": 0.359656,
+        "kda_area_covered": 0.359912
+      }
+    },
+    {
+      "source_index": 94,
+      "source_region": "Kirinyaga Central",
+      "source_parent": "Kirinyaga",
+      "best_match": {
+        "geo_code": "KEN-C020-CON103",
+        "kda_name": "Kirinyaga Central",
+        "intersection_over_union": 0.468499,
+        "source_area_covered": 0.986441,
+        "kda_area_covered": 0.471535
+      },
+      "runner_up": {
+        "geo_code": "KEN-C020-CON102",
+        "kda_name": "Ndia",
+        "intersection_over_union": 0.003624,
+        "source_area_covered": 0.006818,
+        "kda_area_covered": 0.007676
+      }
+    },
+    {
+      "source_index": 93,
+      "source_region": "Gichugu",
+      "source_parent": "Kirinyaga",
+      "best_match": {
+        "geo_code": "KEN-C020-CON101",
+        "kda_name": "Gichugu",
+        "intersection_over_union": 0.470256,
+        "source_area_covered": 0.476861,
+        "kda_area_covered": 0.97139
+      },
+      "runner_up": {
+        "geo_code": "KEN-C020-CON103",
+        "kda_name": "Kirinyaga Central",
+        "intersection_over_union": 0.335095,
+        "source_area_covered": 0.517719,
+        "kda_area_covered": 0.487168
+      }
+    },
+    {
+      "source_index": 49,
+      "source_region": "Suba South",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON252",
+        "kda_name": "Suba",
+        "intersection_over_union": 0.482098,
+        "source_area_covered": 0.502083,
+        "kda_area_covered": 0.923733
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON251",
+        "kda_name": "Mbita",
+        "intersection_over_union": 0.00245,
+        "source_area_covered": 0.003316,
+        "kda_area_covered": 0.009303
+      }
+    },
+    {
+      "source_index": 188,
+      "source_region": "Embakasi North",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON283",
+        "kda_name": "Embakasi North",
+        "intersection_over_union": 0.496432,
+        "source_area_covered": 0.638141,
+        "kda_area_covered": 0.69093
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON281",
+        "kda_name": "Ruaraka",
+        "intersection_over_union": 0.12771,
+        "source_area_covered": 0.262493,
+        "kda_area_covered": 0.199178
+      }
+    },
+    {
+      "source_index": 233,
+      "source_region": "Ol Kalou",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON091",
+        "kda_name": "Ol Kalou",
+        "intersection_over_union": 0.520454,
+        "source_area_covered": 0.980714,
+        "kda_area_covered": 0.525836
+      },
+      "runner_up": {
+        "geo_code": "KEN-C018-CON092",
+        "kda_name": "Ol Jorok",
+        "intersection_over_union": 0.005796,
+        "source_area_covered": 0.014565,
+        "kda_area_covered": 0.009534
+      }
+    },
+    {
+      "source_index": 199,
+      "source_region": "Ruaraka",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON281",
+        "kda_name": "Ruaraka",
+        "intersection_over_union": 0.521124,
+        "source_area_covered": 0.684004,
+        "kda_area_covered": 0.686366
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON279",
+        "kda_name": "Roysambu",
+        "intersection_over_union": 0.015813,
+        "source_area_covered": 0.11896,
+        "kda_area_covered": 0.01791
+      }
+    },
+    {
+      "source_index": 173,
+      "source_region": "Jomvu",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON002",
+        "kda_name": "Jomvu",
+        "intersection_over_union": 0.5218,
+        "source_area_covered": 0.728025,
+        "kda_area_covered": 0.648145
+      },
+      "runner_up": {
+        "geo_code": "KEN-C001-CON001",
+        "kda_name": "Changamwe",
+        "intersection_over_union": 0.072991,
+        "source_area_covered": 0.102313,
+        "kda_area_covered": 0.202987
+      }
+    },
+    {
+      "source_index": 167,
+      "source_region": "Nyatike",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON258",
+        "kda_name": "Nyatike",
+        "intersection_over_union": 0.526273,
+        "source_area_covered": 0.535893,
+        "kda_area_covered": 0.967012
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON252",
+        "kda_name": "Suba",
+        "intersection_over_union": 0.006171,
+        "source_area_covered": 0.009354,
+        "kda_area_covered": 0.01781
+      }
+    },
+    {
+      "source_index": 209,
+      "source_region": "Nakuru Town West",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON175",
+        "kda_name": "Nakuru Town West",
+        "intersection_over_union": 0.529855,
+        "source_area_covered": 0.966713,
+        "kda_area_covered": 0.539701
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON173",
+        "kda_name": "Rongai",
+        "intersection_over_union": 0.002757,
+        "source_area_covered": 0.022775,
+        "kda_area_covered": 0.003127
+      }
+    },
+    {
+      "source_index": 88,
+      "source_region": "Kilifi North",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON011",
+        "kda_name": "Kilifi North",
+        "intersection_over_union": 0.541392,
+        "source_area_covered": 0.588829,
+        "kda_area_covered": 0.87047
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON016",
+        "kda_name": "Malindi",
+        "intersection_over_union": 0.062375,
+        "source_area_covered": 0.106562,
+        "kda_area_covered": 0.130755
+      }
+    },
+    {
+      "source_index": 141,
+      "source_region": "Kibwezi West",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON087",
+        "kda_name": "Kibwezi West",
+        "intersection_over_union": 0.543121,
+        "source_area_covered": 0.693806,
+        "kda_area_covered": 0.714345
+      },
+      "runner_up": {
+        "geo_code": "KEN-C017-CON088",
+        "kda_name": "Kibwezi East",
+        "intersection_over_union": 0.132556,
+        "source_area_covered": 0.298107,
+        "kda_area_covered": 0.192697
+      }
+    },
+    {
+      "source_index": 184,
+      "source_region": "Mathioya",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON105",
+        "kda_name": "Mathioya",
+        "intersection_over_union": 0.544416,
+        "source_area_covered": 0.794949,
+        "kda_area_covered": 0.633356
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON106",
+        "kda_name": "Kiharu",
+        "intersection_over_union": 0.067624,
+        "source_area_covered": 0.156086,
+        "kda_area_covered": 0.106599
+      }
+    },
+    {
+      "source_index": 44,
+      "source_region": "Karachuonyo",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON247",
+        "kda_name": "Karachuonyo",
+        "intersection_over_union": 0.553832,
+        "source_area_covered": 0.56565,
+        "kda_area_covered": 0.963646
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON244",
+        "kda_name": "Nyakach",
+        "intersection_over_union": 0.001475,
+        "source_area_covered": 0.002173,
+        "kda_area_covered": 0.004574
+      }
+    },
+    {
+      "source_index": 280,
+      "source_region": "Eldas",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON037",
+        "kda_name": "Eldas",
+        "intersection_over_union": 0.559011,
+        "source_area_covered": 0.704381,
+        "kda_area_covered": 0.730361
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON036",
+        "kda_name": "Wajir West",
+        "intersection_over_union": 0.073812,
+        "source_area_covered": 0.192352,
+        "kda_area_covered": 0.106962
+      }
+    },
+    {
+      "source_index": 238,
+      "source_region": "Tetu",
+      "source_parent": "Nyeri",
+      "best_match": {
+        "geo_code": "KEN-C019-CON094",
+        "kda_name": "Tetu",
+        "intersection_over_union": 0.562735,
+        "source_area_covered": 0.578508,
+        "kda_area_covered": 0.953787
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON097",
+        "kda_name": "Othaya",
+        "intersection_over_union": 0.159777,
+        "source_area_covered": 0.324512,
+        "kda_area_covered": 0.239396
+      }
+    },
+    {
+      "source_index": 230,
+      "source_region": "Kipipiri",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON090",
+        "kda_name": "Kipipiri",
+        "intersection_over_union": 0.572403,
+        "source_area_covered": 0.574092,
+        "kda_area_covered": 0.994887
+      },
+      "runner_up": {
+        "geo_code": "KEN-C018-CON089",
+        "kda_name": "Kinangop",
+        "intersection_over_union": 0.204104,
+        "source_area_covered": 0.317393,
+        "kda_area_covered": 0.363795
+      }
+    },
+    {
+      "source_index": 112,
+      "source_region": "Seme",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON241",
+        "kda_name": "Seme",
+        "intersection_over_union": 0.572687,
+        "source_area_covered": 0.579631,
+        "kda_area_covered": 0.979509
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON239",
+        "kda_name": "Kisumu West",
+        "intersection_over_union": 0.007705,
+        "source_area_covered": 0.011249,
+        "kda_area_covered": 0.023872
+      }
+    },
+    {
+      "source_index": 21,
+      "source_region": "Budalangi",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON231",
+        "kda_name": "Budalangi",
+        "intersection_over_union": 0.579637,
+        "source_area_covered": 0.587837,
+        "kda_area_covered": 0.9765
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON230",
+        "kda_name": "Funyula",
+        "intersection_over_union": 0.006718,
+        "source_area_covered": 0.01233,
+        "kda_area_covered": 0.014547
+      }
+    },
+    {
+      "source_index": 245,
+      "source_region": "Rarieda",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON237",
+        "kda_name": "Rarieda",
+        "intersection_over_union": 0.588832,
+        "source_area_covered": 0.589428,
+        "kda_area_covered": 0.998288
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON236",
+        "kda_name": "Bondo",
+        "intersection_over_union": 0.004234,
+        "source_area_covered": 0.007876,
+        "kda_area_covered": 0.009073
+      }
+    }
+  ],
+  "rows": [
+    {
+      "source_index": 0,
+      "source_region": "Baringo Central",
+      "source_parent": "Baringo",
+      "best_match": {
+        "geo_code": "KEN-C030-CON159",
+        "kda_name": "Baringo Central",
+        "intersection_over_union": 0.838798,
+        "source_area_covered": 0.867759,
+        "kda_area_covered": 0.961734
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON160",
+        "kda_name": "Baringo South",
+        "intersection_over_union": 0.031467,
+        "source_area_covered": 0.116947,
+        "kda_area_covered": 0.041274
+      }
+    },
+    {
+      "source_index": 1,
+      "source_region": "Baringo North",
+      "source_parent": "Baringo",
+      "best_match": {
+        "geo_code": "KEN-C030-CON158",
+        "kda_name": "Baringo North",
+        "intersection_over_union": 0.89399,
+        "source_area_covered": 0.963014,
+        "kda_area_covered": 0.925777
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON157",
+        "kda_name": "Tiaty",
+        "intersection_over_union": 0.008045,
+        "source_area_covered": 0.029992,
+        "kda_area_covered": 0.010874
+      }
+    },
+    {
+      "source_index": 2,
+      "source_region": "Baringo South",
+      "source_parent": "Baringo",
+      "best_match": {
+        "geo_code": "KEN-C030-CON160",
+        "kda_name": "Baringo South",
+        "intersection_over_union": 0.808509,
+        "source_area_covered": 0.906158,
+        "kda_area_covered": 0.882391
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON158",
+        "kda_name": "Baringo North",
+        "intersection_over_union": 0.030199,
+        "source_area_covered": 0.056598,
+        "kda_area_covered": 0.060806
+      }
+    },
+    {
+      "source_index": 3,
+      "source_region": "Eldama Ravine",
+      "source_parent": "Baringo",
+      "best_match": {
+        "geo_code": "KEN-C030-CON162",
+        "kda_name": "Eldama Ravine",
+        "intersection_over_union": 0.929172,
+        "source_area_covered": 0.973217,
+        "kda_area_covered": 0.953555
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON161",
+        "kda_name": "Mogotio",
+        "intersection_over_union": 0.00778,
+        "source_area_covered": 0.018971,
+        "kda_area_covered": 0.013017
+      }
+    },
+    {
+      "source_index": 4,
+      "source_region": "Mogotio",
+      "source_parent": "Baringo",
+      "best_match": {
+        "geo_code": "KEN-C030-CON161",
+        "kda_name": "Mogotio",
+        "intersection_over_union": 0.928547,
+        "source_area_covered": 0.953323,
+        "kda_area_covered": 0.972772
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON160",
+        "kda_name": "Baringo South",
+        "intersection_over_union": 0.016668,
+        "source_area_covered": 0.038553,
+        "kda_area_covered": 0.028524
+      }
+    },
+    {
+      "source_index": 5,
+      "source_region": "Tiaty",
+      "source_parent": "Baringo",
+      "best_match": {
+        "geo_code": "KEN-C030-CON157",
+        "kda_name": "Tiaty",
+        "intersection_over_union": 0.962287,
+        "source_area_covered": 0.987574,
+        "kda_area_covered": 0.974081
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON158",
+        "kda_name": "Baringo North",
+        "intersection_over_union": 0.002295,
+        "source_area_covered": 0.003165,
+        "kda_area_covered": 0.008278
+      }
+    },
+    {
+      "source_index": 6,
+      "source_region": "Bomet Central",
+      "source_parent": "Bomet",
+      "best_match": {
+        "geo_code": "KEN-C036-CON197",
+        "kda_name": "Bomet Central",
+        "intersection_over_union": 0.908234,
+        "source_area_covered": 0.935584,
+        "kda_area_covered": 0.968817
+      },
+      "runner_up": {
+        "geo_code": "KEN-C036-CON196",
+        "kda_name": "Bomet East",
+        "intersection_over_union": 0.010576,
+        "source_area_covered": 0.022754,
+        "kda_area_covered": 0.019379
+      }
+    },
+    {
+      "source_index": 7,
+      "source_region": "Bomet East",
+      "source_parent": "Bomet",
+      "best_match": {
+        "geo_code": "KEN-C036-CON196",
+        "kda_name": "Bomet East",
+        "intersection_over_union": 0.929382,
+        "source_area_covered": 0.979245,
+        "kda_area_covered": 0.948057
+      },
+      "runner_up": {
+        "geo_code": "KEN-C036-CON197",
+        "kda_name": "Bomet Central",
+        "intersection_over_union": 0.007085,
+        "source_area_covered": 0.013011,
+        "kda_area_covered": 0.015317
+      }
+    },
+    {
+      "source_index": 8,
+      "source_region": "Buret",
+      "source_parent": "Bomet",
+      "best_match": {
+        "geo_code": "KEN-C035-CON191",
+        "kda_name": "Bureti",
+        "intersection_over_union": 0.932696,
+        "source_area_covered": 0.971567,
+        "kda_area_covered": 0.958869
+      },
+      "runner_up": {
+        "geo_code": "KEN-C035-CON192",
+        "kda_name": "Belgut",
+        "intersection_over_union": 0.005538,
+        "source_area_covered": 0.010702,
+        "kda_area_covered": 0.011345
+      }
+    },
+    {
+      "source_index": 9,
+      "source_region": "Chepalungu",
+      "source_parent": "Bomet",
+      "best_match": {
+        "geo_code": "KEN-C036-CON195",
+        "kda_name": "Chepalungu",
+        "intersection_over_union": 0.940456,
+        "source_area_covered": 0.966928,
+        "kda_area_covered": 0.971712
+      },
+      "runner_up": {
+        "geo_code": "KEN-C036-CON194",
+        "kda_name": "Sotik",
+        "intersection_over_union": 0.01184,
+        "source_area_covered": 0.022114,
+        "kda_area_covered": 0.024852
+      }
+    },
+    {
+      "source_index": 10,
+      "source_region": "Konoin",
+      "source_parent": "Bomet",
+      "best_match": {
+        "geo_code": "KEN-C036-CON198",
+        "kda_name": "Konoin",
+        "intersection_over_union": 0.876808,
+        "source_area_covered": 0.968968,
+        "kda_area_covered": 0.902141
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON170",
+        "kda_name": "Kuresoi South",
+        "intersection_over_union": 0.012525,
+        "source_area_covered": 0.020659,
+        "kda_area_covered": 0.030833
+      }
+    },
+    {
+      "source_index": 11,
+      "source_region": "Sotik",
+      "source_parent": "Bomet",
+      "best_match": {
+        "geo_code": "KEN-C036-CON194",
+        "kda_name": "Sotik",
+        "intersection_over_union": 0.920924,
+        "source_area_covered": 0.960606,
+        "kda_area_covered": 0.95707
+      },
+      "runner_up": {
+        "geo_code": "KEN-C035-CON191",
+        "kda_name": "Bureti",
+        "intersection_over_union": 0.014209,
+        "source_area_covered": 0.023434,
+        "kda_area_covered": 0.034837
+      }
+    },
+    {
+      "source_index": 12,
+      "source_region": "Bumula",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON219",
+        "kda_name": "Bumula",
+        "intersection_over_union": 0.939156,
+        "source_area_covered": 0.969426,
+        "kda_area_covered": 0.967822
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON217",
+        "kda_name": "Sirisia",
+        "intersection_over_union": 0.006521,
+        "source_area_covered": 0.010456,
+        "kda_area_covered": 0.017035
+      }
+    },
+    {
+      "source_index": 13,
+      "source_region": "Kabuchai",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON218",
+        "kda_name": "Kabuchai",
+        "intersection_over_union": 0.931871,
+        "source_area_covered": 0.959316,
+        "kda_area_covered": 0.970214
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON217",
+        "kda_name": "Sirisia",
+        "intersection_over_union": 0.007006,
+        "source_area_covered": 0.013269,
+        "kda_area_covered": 0.014626
+      }
+    },
+    {
+      "source_index": 14,
+      "source_region": "Kanduyi",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON220",
+        "kda_name": "Kanduyi",
+        "intersection_over_union": 0.930673,
+        "source_area_covered": 0.96063,
+        "kda_area_covered": 0.967578
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON218",
+        "kda_name": "Kabuchai",
+        "intersection_over_union": 0.009655,
+        "source_area_covered": 0.016487,
+        "kda_area_covered": 0.022769
+      }
+    },
+    {
+      "source_index": 15,
+      "source_region": "Kimilili",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON223",
+        "kda_name": "Kimilili",
+        "intersection_over_union": 0.922504,
+        "source_area_covered": 0.967557,
+        "kda_area_covered": 0.951951
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON216",
+        "kda_name": "Mt.elgon",
+        "intersection_over_union": 0.003964,
+        "source_area_covered": 0.025136,
+        "kda_area_covered": 0.004684
+      }
+    },
+    {
+      "source_index": 16,
+      "source_region": "Mt. Elgon",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON216",
+        "kda_name": "Mt.elgon",
+        "intersection_over_union": 0.967877,
+        "source_area_covered": 0.981996,
+        "kda_area_covered": 0.985362
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON138",
+        "kda_name": "Saboti",
+        "intersection_over_union": 0.002468,
+        "source_area_covered": 0.003363,
+        "kda_area_covered": 0.009186
+      }
+    },
+    {
+      "source_index": 17,
+      "source_region": "Sirisia",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON217",
+        "kda_name": "Sirisia",
+        "intersection_over_union": 0.902355,
+        "source_area_covered": 0.952826,
+        "kda_area_covered": 0.944553
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON216",
+        "kda_name": "Mt.elgon",
+        "intersection_over_union": 0.005079,
+        "source_area_covered": 0.027932,
+        "kda_area_covered": 0.00617
+      }
+    },
+    {
+      "source_index": 18,
+      "source_region": "Tongaren",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON224",
+        "kda_name": "Tongaren",
+        "intersection_over_union": 0.9421,
+        "source_area_covered": 0.971857,
+        "kda_area_covered": 0.968523
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON139",
+        "kda_name": "Kiminini",
+        "intersection_over_union": 0.010993,
+        "source_area_covered": 0.021471,
+        "kda_area_covered": 0.022031
+      }
+    },
+    {
+      "source_index": 19,
+      "source_region": "Webuye East",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON221",
+        "kda_name": "Webuye East",
+        "intersection_over_union": 0.904535,
+        "source_area_covered": 0.949735,
+        "kda_area_covered": 0.950014
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON222",
+        "kda_name": "Webuye West",
+        "intersection_over_union": 0.009934,
+        "source_area_covered": 0.024145,
+        "kda_area_covered": 0.016599
+      }
+    },
+    {
+      "source_index": 20,
+      "source_region": "Webuye West",
+      "source_parent": "Bungoma",
+      "best_match": {
+        "geo_code": "KEN-C039-CON222",
+        "kda_name": "Webuye West",
+        "intersection_over_union": 0.913758,
+        "source_area_covered": 0.959711,
+        "kda_area_covered": 0.950208
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON223",
+        "kda_name": "Kimilili",
+        "intersection_over_union": 0.008674,
+        "source_area_covered": 0.015168,
+        "kda_area_covered": 0.01986
+      }
+    },
+    {
+      "source_index": 21,
+      "source_region": "Budalangi",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON231",
+        "kda_name": "Budalangi",
+        "intersection_over_union": 0.579637,
+        "source_area_covered": 0.587837,
+        "kda_area_covered": 0.9765
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON230",
+        "kda_name": "Funyula",
+        "intersection_over_union": 0.006718,
+        "source_area_covered": 0.01233,
+        "kda_area_covered": 0.014547
+      }
+    },
+    {
+      "source_index": 22,
+      "source_region": "Butula",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON229",
+        "kda_name": "Butula",
+        "intersection_over_union": 0.917761,
+        "source_area_covered": 0.962308,
+        "kda_area_covered": 0.951982
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON228",
+        "kda_name": "Matayos",
+        "intersection_over_union": 0.010772,
+        "source_area_covered": 0.01921,
+        "kda_area_covered": 0.023934
+      }
+    },
+    {
+      "source_index": 23,
+      "source_region": "Funyula",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON230",
+        "kda_name": "Funyula",
+        "intersection_over_union": 0.896338,
+        "source_area_covered": 0.928129,
+        "kda_area_covered": 0.963192
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON228",
+        "kda_name": "Matayos",
+        "intersection_over_union": 0.004086,
+        "source_area_covered": 0.006971,
+        "kda_area_covered": 0.009777
+      }
+    },
+    {
+      "source_index": 24,
+      "source_region": "Matayos",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON228",
+        "kda_name": "Matayos",
+        "intersection_over_union": 0.879608,
+        "source_area_covered": 0.938393,
+        "kda_area_covered": 0.933516
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON227",
+        "kda_name": "Nambale",
+        "intersection_over_union": 0.016385,
+        "source_area_covered": 0.03576,
+        "kda_area_covered": 0.029354
+      }
+    },
+    {
+      "source_index": 25,
+      "source_region": "Nambale",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON227",
+        "kda_name": "Nambale",
+        "intersection_over_union": 0.88212,
+        "source_area_covered": 0.945459,
+        "kda_area_covered": 0.929416
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON228",
+        "kda_name": "Matayos",
+        "intersection_over_union": 0.010665,
+        "source_area_covered": 0.01941,
+        "kda_area_covered": 0.023124
+      }
+    },
+    {
+      "source_index": 26,
+      "source_region": "Teso North",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON225",
+        "kda_name": "Teso North",
+        "intersection_over_union": 0.907679,
+        "source_area_covered": 0.961724,
+        "kda_area_covered": 0.941697
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON217",
+        "kda_name": "Sirisia",
+        "intersection_over_union": 0.004891,
+        "source_area_covered": 0.008927,
+        "kda_area_covered": 0.010703
+      }
+    },
+    {
+      "source_index": 27,
+      "source_region": "Teso South",
+      "source_parent": "Busia",
+      "best_match": {
+        "geo_code": "KEN-C040-CON226",
+        "kda_name": "Teso South",
+        "intersection_over_union": 0.919073,
+        "source_area_covered": 0.947492,
+        "kda_area_covered": 0.968397
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON225",
+        "kda_name": "Teso North",
+        "intersection_over_union": 0.015051,
+        "source_area_covered": 0.027467,
+        "kda_area_covered": 0.032225
+      }
+    },
+    {
+      "source_index": 28,
+      "source_region": "Keiyo North",
+      "source_parent": "Elgeyo-Marakwet",
+      "best_match": {
+        "geo_code": "KEN-C028-CON149",
+        "kda_name": "Keiyo North",
+        "intersection_over_union": 0.939904,
+        "source_area_covered": 0.966985,
+        "kda_area_covered": 0.971066
+      },
+      "runner_up": {
+        "geo_code": "KEN-C028-CON148",
+        "kda_name": "Marakwet West",
+        "intersection_over_union": 0.007912,
+        "source_area_covered": 0.019474,
+        "kda_area_covered": 0.013152
+      }
+    },
+    {
+      "source_index": 29,
+      "source_region": "Keiyo South",
+      "source_parent": "Elgeyo-Marakwet",
+      "best_match": {
+        "geo_code": "KEN-C028-CON150",
+        "kda_name": "Keiyo South",
+        "intersection_over_union": 0.958333,
+        "source_area_covered": 0.984761,
+        "kda_area_covered": 0.972758
+      },
+      "runner_up": {
+        "geo_code": "KEN-C028-CON149",
+        "kda_name": "Keiyo North",
+        "intersection_over_union": 0.004151,
+        "source_area_covered": 0.006651,
+        "kda_area_covered": 0.010924
+      }
+    },
+    {
+      "source_index": 30,
+      "source_region": "Marakwet East",
+      "source_parent": "Elgeyo-Marakwet",
+      "best_match": {
+        "geo_code": "KEN-C028-CON147",
+        "kda_name": "Marakwet East",
+        "intersection_over_union": 0.911073,
+        "source_area_covered": 0.936754,
+        "kda_area_covered": 0.970789
+      },
+      "runner_up": {
+        "geo_code": "KEN-C028-CON148",
+        "kda_name": "Marakwet West",
+        "intersection_over_union": 0.024728,
+        "source_area_covered": 0.04802,
+        "kda_area_covered": 0.048509
+      }
+    },
+    {
+      "source_index": 31,
+      "source_region": "Marakwet West",
+      "source_parent": "Elgeyo-Marakwet",
+      "best_match": {
+        "geo_code": "KEN-C028-CON148",
+        "kda_name": "Marakwet West",
+        "intersection_over_union": 0.887677,
+        "source_area_covered": 0.960312,
+        "kda_area_covered": 0.921483
+      },
+      "runner_up": {
+        "geo_code": "KEN-C028-CON147",
+        "kda_name": "Marakwet East",
+        "intersection_over_union": 0.011263,
+        "source_area_covered": 0.022452,
+        "kda_area_covered": 0.022102
+      }
+    },
+    {
+      "source_index": 32,
+      "source_region": "Gachoka",
+      "source_parent": "Embu",
+      "best_match": {
+        "geo_code": "KEN-C014-CON065",
+        "kda_name": "Mbeere South",
+        "intersection_over_union": 0.959406,
+        "source_area_covered": 0.978689,
+        "kda_area_covered": 0.979876
+      },
+      "runner_up": {
+        "geo_code": "KEN-C014-CON066",
+        "kda_name": "Mbeere North",
+        "intersection_over_union": 0.006021,
+        "source_area_covered": 0.009473,
+        "kda_area_covered": 0.016255
+      }
+    },
+    {
+      "source_index": 33,
+      "source_region": "Manyatta",
+      "source_parent": "Embu",
+      "best_match": {
+        "geo_code": "KEN-C014-CON063",
+        "kda_name": "Manyatta",
+        "intersection_over_union": 0.793926,
+        "source_area_covered": 0.979202,
+        "kda_area_covered": 0.807543
+      },
+      "runner_up": {
+        "geo_code": "KEN-C014-CON064",
+        "kda_name": "Runyenjes",
+        "intersection_over_union": 0.006974,
+        "source_area_covered": 0.012559,
+        "kda_area_covered": 0.01544
+      }
+    },
+    {
+      "source_index": 34,
+      "source_region": "Runyenjes",
+      "source_parent": "Embu",
+      "best_match": {
+        "geo_code": "KEN-C014-CON064",
+        "kda_name": "Runyenjes",
+        "intersection_over_union": 0.7415,
+        "source_area_covered": 0.759399,
+        "kda_area_covered": 0.969193
+      },
+      "runner_up": {
+        "geo_code": "KEN-C014-CON063",
+        "kda_name": "Manyatta",
+        "intersection_over_union": 0.105191,
+        "source_area_covered": 0.20635,
+        "kda_area_covered": 0.176667
+      }
+    },
+    {
+      "source_index": 35,
+      "source_region": "Siakago",
+      "source_parent": "Embu",
+      "best_match": {
+        "geo_code": "KEN-C014-CON066",
+        "kda_name": "Mbeere North",
+        "intersection_over_union": 0.9538,
+        "source_area_covered": 0.976923,
+        "kda_area_covered": 0.975785
+      },
+      "runner_up": {
+        "geo_code": "KEN-C013-CON061",
+        "kda_name": "Chuka/Igambang'om",
+        "intersection_over_union": 0.005997,
+        "source_area_covered": 0.010791,
+        "kda_area_covered": 0.013318
+      }
+    },
+    {
+      "source_index": 36,
+      "source_region": "Balambala",
+      "source_parent": "Garissa",
+      "best_match": {
+        "geo_code": "KEN-C007-CON028",
+        "kda_name": "Balambala",
+        "intersection_over_union": 0.767366,
+        "source_area_covered": 0.874182,
+        "kda_area_covered": 0.86264
+      },
+      "runner_up": {
+        "geo_code": "KEN-C007-CON030",
+        "kda_name": "Dadaab",
+        "intersection_over_union": 0.052375,
+        "source_area_covered": 0.119545,
+        "kda_area_covered": 0.085266
+      }
+    },
+    {
+      "source_index": 37,
+      "source_region": "Dadaab",
+      "source_parent": "Garissa",
+      "best_match": {
+        "geo_code": "KEN-C007-CON030",
+        "kda_name": "Dadaab",
+        "intersection_over_union": 0.817351,
+        "source_area_covered": 0.890219,
+        "kda_area_covered": 0.90897
+      },
+      "runner_up": {
+        "geo_code": "KEN-C007-CON031",
+        "kda_name": "Fafi",
+        "intersection_over_union": 0.028854,
+        "source_area_covered": 0.090699,
+        "kda_area_covered": 0.040599
+      }
+    },
+    {
+      "source_index": 38,
+      "source_region": "Dujis",
+      "source_parent": "Garissa",
+      "best_match": {
+        "geo_code": "KEN-C007-CON027",
+        "kda_name": "Garissa Township",
+        "intersection_over_union": 0.813719,
+        "source_area_covered": 0.991349,
+        "kda_area_covered": 0.819538
+      },
+      "runner_up": {
+        "geo_code": "KEN-C007-CON028",
+        "kda_name": "Balambala",
+        "intersection_over_union": 0.000266,
+        "source_area_covered": 0.002556,
+        "kda_area_covered": 0.000296
+      }
+    },
+    {
+      "source_index": 39,
+      "source_region": "Fafi",
+      "source_parent": "Garissa",
+      "best_match": {
+        "geo_code": "KEN-C007-CON031",
+        "kda_name": "Fafi",
+        "intersection_over_union": 0.846283,
+        "source_area_covered": 0.886014,
+        "kda_area_covered": 0.949679
+      },
+      "runner_up": {
+        "geo_code": "KEN-C007-CON032",
+        "kda_name": "Ijara",
+        "intersection_over_union": 0.07135,
+        "source_area_covered": 0.106031,
+        "kda_area_covered": 0.179076
+      }
+    },
+    {
+      "source_index": 40,
+      "source_region": "Ijara",
+      "source_parent": "Garissa",
+      "best_match": {
+        "geo_code": "KEN-C007-CON032",
+        "kda_name": "Ijara",
+        "intersection_over_union": 0.802723,
+        "source_area_covered": 0.976657,
+        "kda_area_covered": 0.818425
+      },
+      "runner_up": {
+        "geo_code": "KEN-C007-CON031",
+        "kda_name": "Fafi",
+        "intersection_over_union": 0.005913,
+        "source_area_covered": 0.01693,
+        "kda_area_covered": 0.009004
+      }
+    },
+    {
+      "source_index": 41,
+      "source_region": "Lagdera",
+      "source_parent": "Garissa",
+      "best_match": {
+        "geo_code": "KEN-C007-CON029",
+        "kda_name": "Lagdera",
+        "intersection_over_union": 0.973855,
+        "source_area_covered": 0.992082,
+        "kda_area_covered": 0.981483
+      },
+      "runner_up": {
+        "geo_code": "KEN-C011-CON050",
+        "kda_name": "Isiolo South",
+        "intersection_over_union": 0.001628,
+        "source_area_covered": 0.004099,
+        "kda_area_covered": 0.002692
+      }
+    },
+    {
+      "source_index": 42,
+      "source_region": "Homa Bay",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON249",
+        "kda_name": "Homa Bay Town",
+        "intersection_over_union": 0.663732,
+        "source_area_covered": 0.691802,
+        "kda_area_covered": 0.94239
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON250",
+        "kda_name": "Ndhiwa",
+        "intersection_over_union": 0.002868,
+        "source_area_covered": 0.01038,
+        "kda_area_covered": 0.003947
+      }
+    },
+    {
+      "source_index": 43,
+      "source_region": "Kabondo Kasipul",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON246",
+        "kda_name": "Kabondo Kasipul",
+        "intersection_over_union": 0.91356,
+        "source_area_covered": 0.958062,
+        "kda_area_covered": 0.951614
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON244",
+        "kda_name": "Nyakach",
+        "intersection_over_union": 0.011283,
+        "source_area_covered": 0.027225,
+        "kda_area_covered": 0.018904
+      }
+    },
+    {
+      "source_index": 44,
+      "source_region": "Karachuonyo",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON247",
+        "kda_name": "Karachuonyo",
+        "intersection_over_union": 0.553832,
+        "source_area_covered": 0.56565,
+        "kda_area_covered": 0.963646
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON244",
+        "kda_name": "Nyakach",
+        "intersection_over_union": 0.001475,
+        "source_area_covered": 0.002173,
+        "kda_area_covered": 0.004574
+      }
+    },
+    {
+      "source_index": 45,
+      "source_region": "Kasipul",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON245",
+        "kda_name": "Kasipul",
+        "intersection_over_union": 0.92762,
+        "source_area_covered": 0.963293,
+        "kda_area_covered": 0.961611
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON247",
+        "kda_name": "Karachuonyo",
+        "intersection_over_union": 0.008943,
+        "source_area_covered": 0.02394,
+        "kda_area_covered": 0.014074
+      }
+    },
+    {
+      "source_index": 46,
+      "source_region": "Ndhiwa",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON250",
+        "kda_name": "Ndhiwa",
+        "intersection_over_union": 0.928046,
+        "source_area_covered": 0.970935,
+        "kda_area_covered": 0.954565
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON249",
+        "kda_name": "Homa Bay Town",
+        "intersection_over_union": 0.009772,
+        "source_area_covered": 0.012426,
+        "kda_area_covered": 0.043762
+      }
+    },
+    {
+      "source_index": 47,
+      "source_region": "Rangwe",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON248",
+        "kda_name": "Rangwe",
+        "intersection_over_union": 0.850098,
+        "source_area_covered": 0.868073,
+        "kda_area_covered": 0.976221
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON247",
+        "kda_name": "Karachuonyo",
+        "intersection_over_union": 0.005696,
+        "source_area_covered": 0.014213,
+        "kda_area_covered": 0.009415
+      }
+    },
+    {
+      "source_index": 48,
+      "source_region": "Suba North",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON251",
+        "kda_name": "Mbita",
+        "intersection_over_union": 0.385828,
+        "source_area_covered": 0.389205,
+        "kda_area_covered": 0.978008
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON252",
+        "kda_name": "Suba",
+        "intersection_over_union": 0.019968,
+        "source_area_covered": 0.031457,
+        "kda_area_covered": 0.051834
+      }
+    },
+    {
+      "source_index": 49,
+      "source_region": "Suba South",
+      "source_parent": "Homa Bay",
+      "best_match": {
+        "geo_code": "KEN-C043-CON252",
+        "kda_name": "Suba",
+        "intersection_over_union": 0.482098,
+        "source_area_covered": 0.502083,
+        "kda_area_covered": 0.923733
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON251",
+        "kda_name": "Mbita",
+        "intersection_over_union": 0.00245,
+        "source_area_covered": 0.003316,
+        "kda_area_covered": 0.009303
+      }
+    },
+    {
+      "source_index": 50,
+      "source_region": "Isiolo North",
+      "source_parent": "Isiolo",
+      "best_match": {
+        "geo_code": "KEN-C011-CON049",
+        "kda_name": "Isiolo North",
+        "intersection_over_union": 0.971657,
+        "source_area_covered": 0.992222,
+        "kda_area_covered": 0.979115
+      },
+      "runner_up": {
+        "geo_code": "KEN-C025-CON135",
+        "kda_name": "Samburu East",
+        "intersection_over_union": 0.001557,
+        "source_area_covered": 0.002575,
+        "kda_area_covered": 0.003924
+      }
+    },
+    {
+      "source_index": 51,
+      "source_region": "Isiolo South",
+      "source_parent": "Isiolo",
+      "best_match": {
+        "geo_code": "KEN-C011-CON050",
+        "kda_name": "Isiolo South",
+        "intersection_over_union": 0.966985,
+        "source_area_covered": 0.970942,
+        "kda_area_covered": 0.995803
+      },
+      "runner_up": {
+        "geo_code": "KEN-C011-CON049",
+        "kda_name": "Isiolo North",
+        "intersection_over_union": 0.010528,
+        "source_area_covered": 0.026472,
+        "kda_area_covered": 0.01718
+      }
+    },
+    {
+      "source_index": 52,
+      "source_region": "Kajiado Central",
+      "source_parent": "Kajiado",
+      "best_match": {
+        "geo_code": "KEN-C034-CON184",
+        "kda_name": "Kajiado Central",
+        "intersection_over_union": 0.946408,
+        "source_area_covered": 0.9674,
+        "kda_area_covered": 0.977586
+      },
+      "runner_up": {
+        "geo_code": "KEN-C034-CON186",
+        "kda_name": "Kajiado West",
+        "intersection_over_union": 0.006259,
+        "source_area_covered": 0.017092,
+        "kda_area_covered": 0.009779
+      }
+    },
+    {
+      "source_index": 53,
+      "source_region": "Kajiado East",
+      "source_parent": "Kajiado",
+      "best_match": {
+        "geo_code": "KEN-C034-CON185",
+        "kda_name": "Kajiado East",
+        "intersection_over_union": 0.867368,
+        "source_area_covered": 0.974349,
+        "kda_area_covered": 0.887637
+      },
+      "runner_up": {
+        "geo_code": "KEN-C034-CON187",
+        "kda_name": "Kajiado South",
+        "intersection_over_union": 0.004673,
+        "source_area_covered": 0.013772,
+        "kda_area_covered": 0.007024
+      }
+    },
+    {
+      "source_index": 54,
+      "source_region": "Kajiado North",
+      "source_parent": "Kajiado",
+      "best_match": {
+        "geo_code": "KEN-C034-CON183",
+        "kda_name": "Kajiado North",
+        "intersection_over_union": 0.815627,
+        "source_area_covered": 0.879542,
+        "kda_area_covered": 0.918194
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON277",
+        "kda_name": "Langata",
+        "intersection_over_union": 0.014056,
+        "source_area_covered": 0.040994,
+        "kda_area_covered": 0.020942
+      }
+    },
+    {
+      "source_index": 55,
+      "source_region": "Kajiado South",
+      "source_parent": "Kajiado",
+      "best_match": {
+        "geo_code": "KEN-C034-CON187",
+        "kda_name": "Kajiado South",
+        "intersection_over_union": 0.971108,
+        "source_area_covered": 0.990997,
+        "kda_area_covered": 0.979752
+      },
+      "runner_up": {
+        "geo_code": "KEN-C034-CON185",
+        "kda_name": "Kajiado East",
+        "intersection_over_union": 0.003948,
+        "source_area_covered": 0.00616,
+        "kda_area_covered": 0.010878
+      }
+    },
+    {
+      "source_index": 56,
+      "source_region": "Kajiado West",
+      "source_parent": "Kajiado",
+      "best_match": {
+        "geo_code": "KEN-C034-CON186",
+        "kda_name": "Kajiado West",
+        "intersection_over_union": 0.932562,
+        "source_area_covered": 0.944266,
+        "kda_area_covered": 0.986883
+      },
+      "runner_up": {
+        "geo_code": "KEN-C034-CON185",
+        "kda_name": "Kajiado East",
+        "intersection_over_union": 0.0306,
+        "source_area_covered": 0.043231,
+        "kda_area_covered": 0.094798
+      }
+    },
+    {
+      "source_index": 57,
+      "source_region": "Butere",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON207",
+        "kda_name": "Butere",
+        "intersection_over_union": 0.918226,
+        "source_area_covered": 0.957789,
+        "kda_area_covered": 0.956951
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON205",
+        "kda_name": "Mumias East",
+        "intersection_over_union": 0.011888,
+        "source_area_covered": 0.020076,
+        "kda_area_covered": 0.028324
+      }
+    },
+    {
+      "source_index": 58,
+      "source_region": "Ikolomani",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON210",
+        "kda_name": "Ikolomani",
+        "intersection_over_union": 0.90486,
+        "source_area_covered": 0.946841,
+        "kda_area_covered": 0.953289
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON202",
+        "kda_name": "Lurambi",
+        "intersection_over_union": 0.012023,
+        "source_area_covered": 0.025179,
+        "kda_area_covered": 0.022493
+      }
+    },
+    {
+      "source_index": 59,
+      "source_region": "Khwisero",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON208",
+        "kda_name": "Khwisero",
+        "intersection_over_union": 0.877957,
+        "source_area_covered": 0.936292,
+        "kda_area_covered": 0.933737
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON207",
+        "kda_name": "Butere",
+        "intersection_over_union": 0.014113,
+        "source_area_covered": 0.034099,
+        "kda_area_covered": 0.023513
+      }
+    },
+    {
+      "source_index": 60,
+      "source_region": "Likuyani",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON200",
+        "kda_name": "Likuyani",
+        "intersection_over_union": 0.949126,
+        "source_area_covered": 0.97293,
+        "kda_area_covered": 0.97487
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON139",
+        "kda_name": "Kiminini",
+        "intersection_over_union": 0.005549,
+        "source_area_covered": 0.012224,
+        "kda_area_covered": 0.010061
+      }
+    },
+    {
+      "source_index": 61,
+      "source_region": "Lugari",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON199",
+        "kda_name": "Lugari",
+        "intersection_over_union": 0.912139,
+        "source_area_covered": 0.951057,
+        "kda_area_covered": 0.957064
+      },
+      "runner_up": {
+        "geo_code": "KEN-C039-CON224",
+        "kda_name": "Tongaren",
+        "intersection_over_union": 0.012498,
+        "source_area_covered": 0.024987,
+        "kda_area_covered": 0.024394
+      }
+    },
+    {
+      "source_index": 62,
+      "source_region": "Lurambi",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON202",
+        "kda_name": "Lurambi",
+        "intersection_over_union": 0.893767,
+        "source_area_covered": 0.94191,
+        "kda_area_covered": 0.945906
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON203",
+        "kda_name": "Navakholo",
+        "intersection_over_union": 0.013313,
+        "source_area_covered": 0.033988,
+        "kda_area_covered": 0.021416
+      }
+    },
+    {
+      "source_index": 63,
+      "source_region": "Malava",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON201",
+        "kda_name": "Malava",
+        "intersection_over_union": 0.943188,
+        "source_area_covered": 0.973632,
+        "kda_area_covered": 0.967912
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON199",
+        "kda_name": "Lugari",
+        "intersection_over_union": 0.007679,
+        "source_area_covered": 0.014204,
+        "kda_area_covered": 0.016442
+      }
+    },
+    {
+      "source_index": 64,
+      "source_region": "Matungu",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON206",
+        "kda_name": "Matungu",
+        "intersection_over_union": 0.918857,
+        "source_area_covered": 0.951615,
+        "kda_area_covered": 0.963889
+      },
+      "runner_up": {
+        "geo_code": "KEN-C040-CON229",
+        "kda_name": "Butula",
+        "intersection_over_union": 0.009564,
+        "source_area_covered": 0.017852,
+        "kda_area_covered": 0.020184
+      }
+    },
+    {
+      "source_index": 65,
+      "source_region": "Mumias East",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON205",
+        "kda_name": "Mumias East",
+        "intersection_over_union": 0.782518,
+        "source_area_covered": 0.811132,
+        "kda_area_covered": 0.956864
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON204",
+        "kda_name": "Mumias West",
+        "intersection_over_union": 0.088703,
+        "source_area_covered": 0.15806,
+        "kda_area_covered": 0.168156
+      }
+    },
+    {
+      "source_index": 66,
+      "source_region": "Mumias West",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON204",
+        "kda_name": "Mumias West",
+        "intersection_over_union": 0.769825,
+        "source_area_covered": 0.95193,
+        "kda_area_covered": 0.800961
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON206",
+        "kda_name": "Matungu",
+        "intersection_over_union": 0.010651,
+        "source_area_covered": 0.031432,
+        "kda_area_covered": 0.015854
+      }
+    },
+    {
+      "source_index": 67,
+      "source_region": "Navakholo",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON203",
+        "kda_name": "Navakholo",
+        "intersection_over_union": 0.923363,
+        "source_area_covered": 0.958614,
+        "kda_area_covered": 0.9617
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON201",
+        "kda_name": "Malava",
+        "intersection_over_union": 0.004609,
+        "source_area_covered": 0.012168,
+        "kda_area_covered": 0.007365
+      }
+    },
+    {
+      "source_index": 68,
+      "source_region": "Shinyalu",
+      "source_parent": "Kakamega",
+      "best_match": {
+        "geo_code": "KEN-C037-CON209",
+        "kda_name": "Shinyalu",
+        "intersection_over_union": 0.945974,
+        "source_area_covered": 0.974271,
+        "kda_area_covered": 0.970212
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON201",
+        "kda_name": "Malava",
+        "intersection_over_union": 0.007268,
+        "source_area_covered": 0.014734,
+        "kda_area_covered": 0.014141
+      }
+    },
+    {
+      "source_index": 69,
+      "source_region": "Ainamoi",
+      "source_parent": "Kericho",
+      "best_match": {
+        "geo_code": "KEN-C035-CON190",
+        "kda_name": "Ainamoi",
+        "intersection_over_union": 0.879758,
+        "source_area_covered": 0.923751,
+        "kda_area_covered": 0.948647
+      },
+      "runner_up": {
+        "geo_code": "KEN-C035-CON193",
+        "kda_name": "Sigowet/Soin",
+        "intersection_over_union": 0.015149,
+        "source_area_covered": 0.043566,
+        "kda_area_covered": 0.022697
+      }
+    },
+    {
+      "source_index": 70,
+      "source_region": "Belgut",
+      "source_parent": "Kericho",
+      "best_match": {
+        "geo_code": "KEN-C035-CON192",
+        "kda_name": "Belgut",
+        "intersection_over_union": 0.726392,
+        "source_area_covered": 0.748269,
+        "kda_area_covered": 0.961308
+      },
+      "runner_up": {
+        "geo_code": "KEN-C036-CON198",
+        "kda_name": "Konoin",
+        "intersection_over_union": 0.063888,
+        "source_area_covered": 0.203496,
+        "kda_area_covered": 0.085192
+      }
+    },
+    {
+      "source_index": 71,
+      "source_region": "Kipkelion East",
+      "source_parent": "Kericho",
+      "best_match": {
+        "geo_code": "KEN-C035-CON188",
+        "kda_name": "Kipkelion East",
+        "intersection_over_union": 0.920851,
+        "source_area_covered": 0.953578,
+        "kda_area_covered": 0.964069
+      },
+      "runner_up": {
+        "geo_code": "KEN-C035-CON189",
+        "kda_name": "Kipkelion West",
+        "intersection_over_union": 0.013432,
+        "source_area_covered": 0.019593,
+        "kda_area_covered": 0.040971
+      }
+    },
+    {
+      "source_index": 72,
+      "source_region": "Kipkelion West",
+      "source_parent": "Kericho",
+      "best_match": {
+        "geo_code": "KEN-C035-CON189",
+        "kda_name": "Kipkelion West",
+        "intersection_over_union": 0.922476,
+        "source_area_covered": 0.969794,
+        "kda_area_covered": 0.949764
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON151",
+        "kda_name": "Tinderet",
+        "intersection_over_union": 0.007003,
+        "source_area_covered": 0.017815,
+        "kda_area_covered": 0.011407
+      }
+    },
+    {
+      "source_index": 73,
+      "source_region": "Sigowet/Soin",
+      "source_parent": "Kericho",
+      "best_match": {
+        "geo_code": "KEN-C035-CON193",
+        "kda_name": "Sigowet/Soin",
+        "intersection_over_union": 0.936259,
+        "source_area_covered": 0.974309,
+        "kda_area_covered": 0.959957
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON242",
+        "kda_name": "Nyando",
+        "intersection_over_union": 0.004265,
+        "source_area_covered": 0.008009,
+        "kda_area_covered": 0.00904
+      }
+    },
+    {
+      "source_index": 74,
+      "source_region": "Gatundu North",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON112",
+        "kda_name": "Gatundu North",
+        "intersection_over_union": 0.747741,
+        "source_area_covered": 0.949285,
+        "kda_area_covered": 0.778854
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON110",
+        "kda_name": "Gatanga",
+        "intersection_over_union": 0.007662,
+        "source_area_covered": 0.027011,
+        "kda_area_covered": 0.010583
+      }
+    },
+    {
+      "source_index": 75,
+      "source_region": "Gatundu South",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON111",
+        "kda_name": "Gatundu South",
+        "intersection_over_union": 0.794082,
+        "source_area_covered": 0.826474,
+        "kda_area_covered": 0.952965
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON112",
+        "kda_name": "Gatundu North",
+        "intersection_over_union": 0.078604,
+        "source_area_covered": 0.16684,
+        "kda_area_covered": 0.129395
+      }
+    },
+    {
+      "source_index": 76,
+      "source_region": "Githunguri",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON116",
+        "kda_name": "Githunguri",
+        "intersection_over_union": 0.905765,
+        "source_area_covered": 0.951535,
+        "kda_area_covered": 0.949573
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON111",
+        "kda_name": "Gatundu South",
+        "intersection_over_union": 0.008855,
+        "source_area_covered": 0.018533,
+        "kda_area_covered": 0.016674
+      }
+    },
+    {
+      "source_index": 77,
+      "source_region": "Juja",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON113",
+        "kda_name": "Juja",
+        "intersection_over_union": 0.823101,
+        "source_area_covered": 0.84621,
+        "kda_area_covered": 0.967888
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON115",
+        "kda_name": "Ruiru",
+        "intersection_over_union": 0.085432,
+        "source_area_covered": 0.121137,
+        "kda_area_covered": 0.224714
+      }
+    },
+    {
+      "source_index": 78,
+      "source_region": "Kabete",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON119",
+        "kda_name": "Kabete",
+        "intersection_over_union": 0.825649,
+        "source_area_covered": 0.936944,
+        "kda_area_covered": 0.874227
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON118",
+        "kda_name": "Kiambaa",
+        "intersection_over_union": 0.008119,
+        "source_area_covered": 0.019965,
+        "kda_area_covered": 0.013499
+      }
+    },
+    {
+      "source_index": 79,
+      "source_region": "Kiambaa",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON118",
+        "kda_name": "Kiambaa",
+        "intersection_over_union": 0.813704,
+        "source_area_covered": 0.869409,
+        "kda_area_covered": 0.927007
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON117",
+        "kda_name": "Kiambu",
+        "intersection_over_union": 0.040485,
+        "source_area_covered": 0.085326,
+        "kda_area_covered": 0.071526
+      }
+    },
+    {
+      "source_index": 80,
+      "source_region": "Kiambu",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON117",
+        "kda_name": "Kiambu",
+        "intersection_over_union": 0.8421,
+        "source_area_covered": 0.950634,
+        "kda_area_covered": 0.880609
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON118",
+        "kda_name": "Kiambaa",
+        "intersection_over_union": 0.007103,
+        "source_area_covered": 0.013039,
+        "kda_area_covered": 0.015364
+      }
+    },
+    {
+      "source_index": 81,
+      "source_region": "Kikuyu",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON120",
+        "kda_name": "Kikuyu",
+        "intersection_over_union": 0.887086,
+        "source_area_covered": 0.943626,
+        "kda_area_covered": 0.936729
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON119",
+        "kda_name": "Kabete",
+        "intersection_over_union": 0.020939,
+        "source_area_covered": 0.027598,
+        "kda_area_covered": 0.079848
+      }
+    },
+    {
+      "source_index": 82,
+      "source_region": "Lari",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON122",
+        "kda_name": "Lari",
+        "intersection_over_union": 0.88231,
+        "source_area_covered": 0.910153,
+        "kda_area_covered": 0.966491
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON112",
+        "kda_name": "Gatundu North",
+        "intersection_over_union": 0.033719,
+        "source_area_covered": 0.052627,
+        "kda_area_covered": 0.0858
+      }
+    },
+    {
+      "source_index": 83,
+      "source_region": "Limuru",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON121",
+        "kda_name": "Limuru",
+        "intersection_over_union": 0.912038,
+        "source_area_covered": 0.948091,
+        "kda_area_covered": 0.959975
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON120",
+        "kda_name": "Kikuyu",
+        "intersection_over_union": 0.008316,
+        "source_area_covered": 0.01333,
+        "kda_area_covered": 0.021633
+      }
+    },
+    {
+      "source_index": 84,
+      "source_region": "Ruiru",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON115",
+        "kda_name": "Ruiru",
+        "intersection_over_union": 0.683847,
+        "source_area_covered": 0.940081,
+        "kda_area_covered": 0.715012
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON113",
+        "kda_name": "Juja",
+        "intersection_over_union": 0.015246,
+        "source_area_covered": 0.047038,
+        "kda_area_covered": 0.022059
+      }
+    },
+    {
+      "source_index": 85,
+      "source_region": "Thika Town",
+      "source_parent": "Kiambu",
+      "best_match": {
+        "geo_code": "KEN-C022-CON114",
+        "kda_name": "Thika Town",
+        "intersection_over_union": 0.885378,
+        "source_area_covered": 0.935684,
+        "kda_area_covered": 0.942752
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON110",
+        "kda_name": "Gatanga",
+        "intersection_over_union": 0.0161,
+        "source_area_covered": 0.05915,
+        "kda_area_covered": 0.021642
+      }
+    },
+    {
+      "source_index": 86,
+      "source_region": "Ganze",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON015",
+        "kda_name": "Ganze",
+        "intersection_over_union": 0.822355,
+        "source_area_covered": 0.938848,
+        "kda_area_covered": 0.868897
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON017",
+        "kda_name": "Magarini",
+        "intersection_over_union": 0.016154,
+        "source_area_covered": 0.053733,
+        "kda_area_covered": 0.022577
+      }
+    },
+    {
+      "source_index": 87,
+      "source_region": "Kaloleni",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON013",
+        "kda_name": "Kaloleni",
+        "intersection_over_union": 0.857019,
+        "source_area_covered": 0.935817,
+        "kda_area_covered": 0.91054
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON015",
+        "kda_name": "Ganze",
+        "intersection_over_union": 0.008893,
+        "source_area_covered": 0.050637,
+        "kda_area_covered": 0.010673
+      }
+    },
+    {
+      "source_index": 88,
+      "source_region": "Kilifi North",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON011",
+        "kda_name": "Kilifi North",
+        "intersection_over_union": 0.541392,
+        "source_area_covered": 0.588829,
+        "kda_area_covered": 0.87047
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON016",
+        "kda_name": "Malindi",
+        "intersection_over_union": 0.062375,
+        "source_area_covered": 0.106562,
+        "kda_area_covered": 0.130755
+      }
+    },
+    {
+      "source_index": 89,
+      "source_region": "Kilifi South",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON012",
+        "kda_name": "Kilifi South",
+        "intersection_over_union": 0.870751,
+        "source_area_covered": 0.905179,
+        "kda_area_covered": 0.958148
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON011",
+        "kda_name": "Kilifi North",
+        "intersection_over_union": 0.007866,
+        "source_area_covered": 0.017565,
+        "kda_area_covered": 0.014044
+      }
+    },
+    {
+      "source_index": 90,
+      "source_region": "Magarini",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON017",
+        "kda_name": "Magarini",
+        "intersection_over_union": 0.948796,
+        "source_area_covered": 0.974178,
+        "kda_area_covered": 0.973273
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON015",
+        "kda_name": "Ganze",
+        "intersection_over_union": 0.010317,
+        "source_area_covered": 0.014853,
+        "kda_area_covered": 0.032685
+      }
+    },
+    {
+      "source_index": 91,
+      "source_region": "Malindi",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON016",
+        "kda_name": "Malindi",
+        "intersection_over_union": 0.800392,
+        "source_area_covered": 0.937327,
+        "kda_area_covered": 0.845648
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON015",
+        "kda_name": "Ganze",
+        "intersection_over_union": 0.003572,
+        "source_area_covered": 0.023123,
+        "kda_area_covered": 0.004207
+      }
+    },
+    {
+      "source_index": 92,
+      "source_region": "Rabai",
+      "source_parent": "Kilifi",
+      "best_match": {
+        "geo_code": "KEN-C003-CON014",
+        "kda_name": "Rabai",
+        "intersection_over_union": 0.744847,
+        "source_area_covered": 0.802641,
+        "kda_area_covered": 0.911852
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON013",
+        "kda_name": "Kaloleni",
+        "intersection_over_union": 0.048606,
+        "source_area_covered": 0.182446,
+        "kda_area_covered": 0.062141
+      }
+    },
+    {
+      "source_index": 93,
+      "source_region": "Gichugu",
+      "source_parent": "Kirinyaga",
+      "best_match": {
+        "geo_code": "KEN-C020-CON101",
+        "kda_name": "Gichugu",
+        "intersection_over_union": 0.470256,
+        "source_area_covered": 0.476861,
+        "kda_area_covered": 0.97139
+      },
+      "runner_up": {
+        "geo_code": "KEN-C020-CON103",
+        "kda_name": "Kirinyaga Central",
+        "intersection_over_union": 0.335095,
+        "source_area_covered": 0.517719,
+        "kda_area_covered": 0.487168
+      }
+    },
+    {
+      "source_index": 94,
+      "source_region": "Kirinyaga Central",
+      "source_parent": "Kirinyaga",
+      "best_match": {
+        "geo_code": "KEN-C020-CON103",
+        "kda_name": "Kirinyaga Central",
+        "intersection_over_union": 0.468499,
+        "source_area_covered": 0.986441,
+        "kda_area_covered": 0.471535
+      },
+      "runner_up": {
+        "geo_code": "KEN-C020-CON102",
+        "kda_name": "Ndia",
+        "intersection_over_union": 0.003624,
+        "source_area_covered": 0.006818,
+        "kda_area_covered": 0.007676
+      }
+    },
+    {
+      "source_index": 95,
+      "source_region": "Mwea",
+      "source_parent": "Kirinyaga",
+      "best_match": {
+        "geo_code": "KEN-C020-CON100",
+        "kda_name": "Mwea",
+        "intersection_over_union": 0.76899,
+        "source_area_covered": 0.980059,
+        "kda_area_covered": 0.781213
+      },
+      "runner_up": {
+        "geo_code": "KEN-C020-CON101",
+        "kda_name": "Gichugu",
+        "intersection_over_union": 0.006077,
+        "source_area_covered": 0.009242,
+        "kda_area_covered": 0.017432
+      }
+    },
+    {
+      "source_index": 96,
+      "source_region": "Ndia",
+      "source_parent": "Kirinyaga",
+      "best_match": {
+        "geo_code": "KEN-C020-CON102",
+        "kda_name": "Ndia",
+        "intersection_over_union": 0.594023,
+        "source_area_covered": 0.604723,
+        "kda_area_covered": 0.971076
+      },
+      "runner_up": {
+        "geo_code": "KEN-C020-CON100",
+        "kda_name": "Mwea",
+        "intersection_over_union": 0.13704,
+        "source_area_covered": 0.31374,
+        "kda_area_covered": 0.195704
+      }
+    },
+    {
+      "source_index": 97,
+      "source_region": "Bobasi",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON264",
+        "kda_name": "Bobasi",
+        "intersection_over_union": 0.943841,
+        "source_area_covered": 0.969033,
+        "kda_area_covered": 0.973194
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON267",
+        "kda_name": "Nyaribari Chache",
+        "intersection_over_union": 0.007103,
+        "source_area_covered": 0.010908,
+        "kda_area_covered": 0.019958
+      }
+    },
+    {
+      "source_index": 98,
+      "source_region": "Bomachoge Borabu",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON263",
+        "kda_name": "Bomachoge Borabu",
+        "intersection_over_union": 0.895679,
+        "source_area_covered": 0.946821,
+        "kda_area_covered": 0.943124
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON265",
+        "kda_name": "Bomachoge Chache",
+        "intersection_over_union": 0.018161,
+        "source_area_covered": 0.034366,
+        "kda_area_covered": 0.037085
+      }
+    },
+    {
+      "source_index": 99,
+      "source_region": "Bomachoge Chache",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON265",
+        "kda_name": "Bomachoge Chache",
+        "intersection_over_union": 0.898649,
+        "source_area_covered": 0.964132,
+        "kda_area_covered": 0.929732
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON262",
+        "kda_name": "South Mugirango",
+        "intersection_over_union": 0.006079,
+        "source_area_covered": 0.018081,
+        "kda_area_covered": 0.009074
+      }
+    },
+    {
+      "source_index": 100,
+      "source_region": "Bonchari",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON261",
+        "kda_name": "Bonchari",
+        "intersection_over_union": 0.933457,
+        "source_area_covered": 0.964475,
+        "kda_area_covered": 0.966695
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON269",
+        "kda_name": "Kitutu Chache South",
+        "intersection_over_union": 0.004467,
+        "source_area_covered": 0.008176,
+        "kda_area_covered": 0.00975
+      }
+    },
+    {
+      "source_index": 101,
+      "source_region": "Kitutu Chache North",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON268",
+        "kda_name": "Kitutu Chache North",
+        "intersection_over_union": 0.880115,
+        "source_area_covered": 0.910389,
+        "kda_area_covered": 0.963592
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON269",
+        "kda_name": "Kitutu Chache South",
+        "intersection_over_union": 0.015295,
+        "source_area_covered": 0.027338,
+        "kda_area_covered": 0.033555
+      }
+    },
+    {
+      "source_index": 102,
+      "source_region": "Kitutu Chache South",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON269",
+        "kda_name": "Kitutu Chache South",
+        "intersection_over_union": 0.684183,
+        "source_area_covered": 0.848589,
+        "kda_area_covered": 0.77932
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON267",
+        "kda_name": "Nyaribari Chache",
+        "intersection_over_union": 0.048726,
+        "source_area_covered": 0.109007,
+        "kda_area_covered": 0.080978
+      }
+    },
+    {
+      "source_index": 103,
+      "source_region": "Nyaribari Chache",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON267",
+        "kda_name": "Nyaribari Chache",
+        "intersection_over_union": 0.751526,
+        "source_area_covered": 0.843668,
+        "kda_area_covered": 0.873114
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON269",
+        "kda_name": "Kitutu Chache South",
+        "intersection_over_union": 0.078082,
+        "source_area_covered": 0.129036,
+        "kda_area_covered": 0.165089
+      }
+    },
+    {
+      "source_index": 104,
+      "source_region": "Nyaribari Masaba",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON266",
+        "kda_name": "Nyaribari Masaba",
+        "intersection_over_union": 0.941767,
+        "source_area_covered": 0.976313,
+        "kda_area_covered": 0.963788
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON267",
+        "kda_name": "Nyaribari Chache",
+        "intersection_over_union": 0.007131,
+        "source_area_covered": 0.012926,
+        "kda_area_covered": 0.015657
+      }
+    },
+    {
+      "source_index": 105,
+      "source_region": "South Mugirango",
+      "source_parent": "Kisii",
+      "best_match": {
+        "geo_code": "KEN-C045-CON262",
+        "kda_name": "South Mugirango",
+        "intersection_over_union": 0.928669,
+        "source_area_covered": 0.953232,
+        "kda_area_covered": 0.973002
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON253",
+        "kda_name": "Rongo",
+        "intersection_over_union": 0.009591,
+        "source_area_covered": 0.019001,
+        "kda_area_covered": 0.018998
+      }
+    },
+    {
+      "source_index": 106,
+      "source_region": "Kisumu Central",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON240",
+        "kda_name": "Kisumu Central",
+        "intersection_over_union": 0.40514,
+        "source_area_covered": 0.425739,
+        "kda_area_covered": 0.893316
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON238",
+        "kda_name": "Kisumu East",
+        "intersection_over_union": 0.023645,
+        "source_area_covered": 0.068794,
+        "kda_area_covered": 0.034776
+      }
+    },
+    {
+      "source_index": 107,
+      "source_region": "Kisumu East",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON238",
+        "kda_name": "Kisumu East",
+        "intersection_over_union": 0.691003,
+        "source_area_covered": 0.742441,
+        "kda_area_covered": 0.908874
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON240",
+        "kda_name": "Kisumu Central",
+        "intersection_over_union": 0.008619,
+        "source_area_covered": 0.010228,
+        "kda_area_covered": 0.05197
+      }
+    },
+    {
+      "source_index": 108,
+      "source_region": "Kisumu West",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON239",
+        "kda_name": "Kisumu West",
+        "intersection_over_union": 0.636552,
+        "source_area_covered": 0.652575,
+        "kda_area_covered": 0.962859
+      },
+      "runner_up": {
+        "geo_code": "KEN-C038-CON211",
+        "kda_name": "Vihiga",
+        "intersection_over_union": 0.009884,
+        "source_area_covered": 0.012598,
+        "kda_area_covered": 0.04386
+      }
+    },
+    {
+      "source_index": 109,
+      "source_region": "Muhoroni",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON243",
+        "kda_name": "Muhoroni",
+        "intersection_over_union": 0.934367,
+        "source_area_covered": 0.966437,
+        "kda_area_covered": 0.965703
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON151",
+        "kda_name": "Tinderet",
+        "intersection_over_union": 0.008377,
+        "source_area_covered": 0.015185,
+        "kda_area_covered": 0.018343
+      }
+    },
+    {
+      "source_index": 110,
+      "source_region": "Nyakach",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON244",
+        "kda_name": "Nyakach",
+        "intersection_over_union": 0.825748,
+        "source_area_covered": 0.85186,
+        "kda_area_covered": 0.964208
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON242",
+        "kda_name": "Nyando",
+        "intersection_over_union": 0.005949,
+        "source_area_covered": 0.011956,
+        "kda_area_covered": 0.011703
+      }
+    },
+    {
+      "source_index": 111,
+      "source_region": "Nyando",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON242",
+        "kda_name": "Nyando",
+        "intersection_over_union": 0.640542,
+        "source_area_covered": 0.656646,
+        "kda_area_covered": 0.963126
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON243",
+        "kda_name": "Muhoroni",
+        "intersection_over_union": 0.008143,
+        "source_area_covered": 0.016975,
+        "kda_area_covered": 0.01541
+      }
+    },
+    {
+      "source_index": 112,
+      "source_region": "Seme",
+      "source_parent": "Kisumu",
+      "best_match": {
+        "geo_code": "KEN-C042-CON241",
+        "kda_name": "Seme",
+        "intersection_over_union": 0.572687,
+        "source_area_covered": 0.579631,
+        "kda_area_covered": 0.979509
+      },
+      "runner_up": {
+        "geo_code": "KEN-C042-CON239",
+        "kda_name": "Kisumu West",
+        "intersection_over_union": 0.007705,
+        "source_area_covered": 0.011249,
+        "kda_area_covered": 0.023872
+      }
+    },
+    {
+      "source_index": 113,
+      "source_region": "Kitui Central",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON072",
+        "kda_name": "Kitui Central",
+        "intersection_over_union": 0.824477,
+        "source_area_covered": 0.86585,
+        "kda_area_covered": 0.945219
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON071",
+        "kda_name": "Kitui Rural",
+        "intersection_over_union": 0.022367,
+        "source_area_covered": 0.068773,
+        "kda_area_covered": 0.032085
+      }
+    },
+    {
+      "source_index": 114,
+      "source_region": "Kitui East",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON073",
+        "kda_name": "Kitui East",
+        "intersection_over_union": 0.894936,
+        "source_area_covered": 0.98415,
+        "kda_area_covered": 0.908024
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON069",
+        "kda_name": "Mwingi Central",
+        "intersection_over_union": 0.004579,
+        "source_area_covered": 0.008555,
+        "kda_area_covered": 0.009757
+      }
+    },
+    {
+      "source_index": 115,
+      "source_region": "Kitui Rural",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON071",
+        "kda_name": "Kitui Rural",
+        "intersection_over_union": 0.893164,
+        "source_area_covered": 0.953516,
+        "kda_area_covered": 0.933825
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON070",
+        "kda_name": "Kitui West",
+        "intersection_over_union": 0.010625,
+        "source_area_covered": 0.015102,
+        "kda_area_covered": 0.034598
+      }
+    },
+    {
+      "source_index": 116,
+      "source_region": "Kitui South",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON074",
+        "kda_name": "Kitui South",
+        "intersection_over_union": 0.951195,
+        "source_area_covered": 0.964488,
+        "kda_area_covered": 0.985717
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON073",
+        "kda_name": "Kitui East",
+        "intersection_over_union": 0.020368,
+        "source_area_covered": 0.028002,
+        "kda_area_covered": 0.069525
+      }
+    },
+    {
+      "source_index": 117,
+      "source_region": "Kitui West",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON070",
+        "kda_name": "Kitui West",
+        "intersection_over_union": 0.932856,
+        "source_area_covered": 0.993726,
+        "kda_area_covered": 0.938383
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON068",
+        "kda_name": "Mwingi West",
+        "intersection_over_union": 0.001948,
+        "source_area_covered": 0.005286,
+        "kda_area_covered": 0.003075
+      }
+    },
+    {
+      "source_index": 118,
+      "source_region": "Mwingi East",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON069",
+        "kda_name": "Mwingi Central",
+        "intersection_over_union": 0.905151,
+        "source_area_covered": 0.938951,
+        "kda_area_covered": 0.961752
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON067",
+        "kda_name": "Mwingi North",
+        "intersection_over_union": 0.020849,
+        "source_area_covered": 0.043638,
+        "kda_area_covered": 0.038392
+      }
+    },
+    {
+      "source_index": 119,
+      "source_region": "Mwingi North",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON067",
+        "kda_name": "Mwingi North",
+        "intersection_over_union": 0.948394,
+        "source_area_covered": 0.986696,
+        "kda_area_covered": 0.960679
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON069",
+        "kda_name": "Mwingi Central",
+        "intersection_over_union": 0.004153,
+        "source_area_covered": 0.007785,
+        "kda_area_covered": 0.008825
+      }
+    },
+    {
+      "source_index": 120,
+      "source_region": "Mwingi West",
+      "source_parent": "Kitui",
+      "best_match": {
+        "geo_code": "KEN-C015-CON068",
+        "kda_name": "Mwingi West",
+        "intersection_over_union": 0.892173,
+        "source_area_covered": 0.904235,
+        "kda_area_covered": 0.985269
+      },
+      "runner_up": {
+        "geo_code": "KEN-C015-CON069",
+        "kda_name": "Mwingi Central",
+        "intersection_over_union": 0.015005,
+        "source_area_covered": 0.066662,
+        "kda_area_covered": 0.018995
+      }
+    },
+    {
+      "source_index": 121,
+      "source_region": "Kinango",
+      "source_parent": "Kwale",
+      "best_match": {
+        "geo_code": "KEN-C002-CON010",
+        "kda_name": "Kinango",
+        "intersection_over_union": 0.810228,
+        "source_area_covered": 0.819343,
+        "kda_area_covered": 0.986455
+      },
+      "runner_up": {
+        "geo_code": "KEN-C002-CON008",
+        "kda_name": "Lungalunga",
+        "intersection_over_union": 0.121852,
+        "source_area_covered": 0.171668,
+        "kda_area_covered": 0.295728
+      }
+    },
+    {
+      "source_index": 122,
+      "source_region": "Lunga Lunga",
+      "source_parent": "Kwale",
+      "best_match": {
+        "geo_code": "KEN-C002-CON008",
+        "kda_name": "Lungalunga",
+        "intersection_over_union": 0.672311,
+        "source_area_covered": 0.960803,
+        "kda_area_covered": 0.691271
+      },
+      "runner_up": {
+        "geo_code": "KEN-C002-CON007",
+        "kda_name": "Msambweni",
+        "intersection_over_union": 0.021328,
+        "source_area_covered": 0.025267,
+        "kda_area_covered": 0.120351
+      }
+    },
+    {
+      "source_index": 123,
+      "source_region": "Matuga",
+      "source_parent": "Kwale",
+      "best_match": {
+        "geo_code": "KEN-C002-CON009",
+        "kda_name": "Matuga",
+        "intersection_over_union": 0.914456,
+        "source_area_covered": 0.945397,
+        "kda_area_covered": 0.965446
+      },
+      "runner_up": {
+        "geo_code": "KEN-C002-CON007",
+        "kda_name": "Msambweni",
+        "intersection_over_union": 0.009465,
+        "source_area_covered": 0.013147,
+        "kda_area_covered": 0.032691
+      }
+    },
+    {
+      "source_index": 124,
+      "source_region": "Msambweni",
+      "source_parent": "Kwale",
+      "best_match": {
+        "geo_code": "KEN-C002-CON007",
+        "kda_name": "Msambweni",
+        "intersection_over_union": 0.795358,
+        "source_area_covered": 0.964982,
+        "kda_area_covered": 0.818997
+      },
+      "runner_up": {
+        "geo_code": "KEN-C002-CON009",
+        "kda_name": "Matuga",
+        "intersection_over_union": 0.008304,
+        "source_area_covered": 0.031862,
+        "kda_area_covered": 0.011106
+      }
+    },
+    {
+      "source_index": 125,
+      "source_region": "Kieni",
+      "source_parent": "Laikipia",
+      "best_match": {
+        "geo_code": "KEN-C019-CON095",
+        "kda_name": "Kieni",
+        "intersection_over_union": 0.898863,
+        "source_area_covered": 0.92766,
+        "kda_area_covered": 0.966618
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON096",
+        "kda_name": "Mathira",
+        "intersection_over_union": 0.039126,
+        "source_area_covered": 0.048959,
+        "kda_area_covered": 0.163053
+      }
+    },
+    {
+      "source_index": 126,
+      "source_region": "Laikipia East",
+      "source_parent": "Laikipia",
+      "best_match": {
+        "geo_code": "KEN-C031-CON163",
+        "kda_name": "Laikipia West",
+        "intersection_over_union": 0.700579,
+        "source_area_covered": 0.725686,
+        "kda_area_covered": 0.952938
+      },
+      "runner_up": {
+        "geo_code": "KEN-C031-CON165",
+        "kda_name": "Laikipia North",
+        "intersection_over_union": 0.099456,
+        "source_area_covered": 0.246287,
+        "kda_area_covered": 0.142973
+      }
+    },
+    {
+      "source_index": 127,
+      "source_region": "Laikipia North",
+      "source_parent": "Laikipia",
+      "best_match": {
+        "geo_code": "KEN-C031-CON165",
+        "kda_name": "Laikipia North",
+        "intersection_over_union": 0.775837,
+        "source_area_covered": 0.930463,
+        "kda_area_covered": 0.823589
+      },
+      "runner_up": {
+        "geo_code": "KEN-C031-CON164",
+        "kda_name": "Laikipia East",
+        "intersection_over_union": 0.047024,
+        "source_area_covered": 0.058136,
+        "kda_area_covered": 0.197447
+      }
+    },
+    {
+      "source_index": 128,
+      "source_region": "Laikipia West",
+      "source_parent": "Laikipia",
+      "best_match": {
+        "geo_code": "KEN-C031-CON164",
+        "kda_name": "Laikipia East",
+        "intersection_over_union": 0.66276,
+        "source_area_covered": 0.811118,
+        "kda_area_covered": 0.783714
+      },
+      "runner_up": {
+        "geo_code": "KEN-C031-CON165",
+        "kda_name": "Laikipia North",
+        "intersection_over_union": 0.024844,
+        "source_area_covered": 0.120508,
+        "kda_area_covered": 0.030346
+      }
+    },
+    {
+      "source_index": 129,
+      "source_region": "Lamu East",
+      "source_parent": "Lamu",
+      "best_match": {
+        "geo_code": "KEN-C005-CON021",
+        "kda_name": "Lamu East",
+        "intersection_over_union": 0.8627,
+        "source_area_covered": 0.961733,
+        "kda_area_covered": 0.893366
+      },
+      "runner_up": {
+        "geo_code": "KEN-C005-CON022",
+        "kda_name": "Lamu West",
+        "intersection_over_union": 0.000842,
+        "source_area_covered": 0.002386,
+        "kda_area_covered": 0.0013
+      }
+    },
+    {
+      "source_index": 130,
+      "source_region": "Lamu West",
+      "source_parent": "Lamu",
+      "best_match": {
+        "geo_code": "KEN-C005-CON022",
+        "kda_name": "Lamu West",
+        "intersection_over_union": 0.966106,
+        "source_area_covered": 0.990354,
+        "kda_area_covered": 0.975284
+      },
+      "runner_up": {
+        "geo_code": "KEN-C005-CON021",
+        "kda_name": "Lamu East",
+        "intersection_over_union": 0.001599,
+        "source_area_covered": 0.002548,
+        "kda_area_covered": 0.004277
+      }
+    },
+    {
+      "source_index": 131,
+      "source_region": "Kangundo",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON077",
+        "kda_name": "Kangundo",
+        "intersection_over_union": 0.9152,
+        "source_area_covered": 0.972972,
+        "kda_area_covered": 0.939074
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON082",
+        "kda_name": "Mwala",
+        "intersection_over_union": 0.002297,
+        "source_area_covered": 0.015934,
+        "kda_area_covered": 0.002677
+      }
+    },
+    {
+      "source_index": 132,
+      "source_region": "Kathiani",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON079",
+        "kda_name": "Kathiani",
+        "intersection_over_union": 0.848383,
+        "source_area_covered": 0.920309,
+        "kda_area_covered": 0.915649
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON078",
+        "kda_name": "Matungulu",
+        "intersection_over_union": 0.012799,
+        "source_area_covered": 0.048063,
+        "kda_area_covered": 0.017146
+      }
+    },
+    {
+      "source_index": 133,
+      "source_region": "Machakos Town",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON081",
+        "kda_name": "Machakos Town",
+        "intersection_over_union": 0.766673,
+        "source_area_covered": 0.964271,
+        "kda_area_covered": 0.789089
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON079",
+        "kda_name": "Kathiani",
+        "intersection_over_union": 0.01519,
+        "source_area_covered": 0.019054,
+        "kda_area_covered": 0.069672
+      }
+    },
+    {
+      "source_index": 134,
+      "source_region": "Masinga",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON075",
+        "kda_name": "Masinga",
+        "intersection_over_union": 0.950056,
+        "source_area_covered": 0.973238,
+        "kda_area_covered": 0.975542
+      },
+      "runner_up": {
+        "geo_code": "KEN-C014-CON065",
+        "kda_name": "Mbeere South",
+        "intersection_over_union": 0.007125,
+        "source_area_covered": 0.013724,
+        "kda_area_covered": 0.014603
+      }
+    },
+    {
+      "source_index": 135,
+      "source_region": "Matungulu",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON078",
+        "kda_name": "Matungulu",
+        "intersection_over_union": 0.933528,
+        "source_area_covered": 0.962339,
+        "kda_area_covered": 0.968926
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON114",
+        "kda_name": "Thika Town",
+        "intersection_over_union": 0.006514,
+        "source_area_covered": 0.008892,
+        "kda_area_covered": 0.023772
+      }
+    },
+    {
+      "source_index": 136,
+      "source_region": "Mavoko",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON080",
+        "kda_name": "Mavoko",
+        "intersection_over_union": 0.930344,
+        "source_area_covered": 0.964092,
+        "kda_area_covered": 0.963739
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON081",
+        "kda_name": "Machakos Town",
+        "intersection_over_union": 0.008458,
+        "source_area_covered": 0.017594,
+        "kda_area_covered": 0.016027
+      }
+    },
+    {
+      "source_index": 137,
+      "source_region": "Mwala",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON082",
+        "kda_name": "Mwala",
+        "intersection_over_union": 0.962953,
+        "source_area_covered": 0.980735,
+        "kda_area_covered": 0.981519
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON076",
+        "kda_name": "Yatta",
+        "intersection_over_union": 0.003901,
+        "source_area_covered": 0.007919,
+        "kda_area_covered": 0.007631
+      }
+    },
+    {
+      "source_index": 138,
+      "source_region": "Yatta",
+      "source_parent": "Machakos",
+      "best_match": {
+        "geo_code": "KEN-C016-CON076",
+        "kda_name": "Yatta",
+        "intersection_over_union": 0.954455,
+        "source_area_covered": 0.975094,
+        "kda_area_covered": 0.978305
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON075",
+        "kda_name": "Masinga",
+        "intersection_over_union": 0.006533,
+        "source_area_covered": 0.015074,
+        "kda_area_covered": 0.011398
+      }
+    },
+    {
+      "source_index": 139,
+      "source_region": "Kaiti",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON085",
+        "kda_name": "Kaiti",
+        "intersection_over_union": 0.87289,
+        "source_area_covered": 0.953697,
+        "kda_area_covered": 0.91152
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON081",
+        "kda_name": "Machakos Town",
+        "intersection_over_union": 0.005182,
+        "source_area_covered": 0.016955,
+        "kda_area_covered": 0.007408
+      }
+    },
+    {
+      "source_index": 140,
+      "source_region": "Kibwezi East",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON088",
+        "kda_name": "Kibwezi East",
+        "intersection_over_union": 0.787132,
+        "source_area_covered": 0.983149,
+        "kda_area_covered": 0.797896
+      },
+      "runner_up": {
+        "geo_code": "KEN-C017-CON087",
+        "kda_name": "Kibwezi West",
+        "intersection_over_union": 0.006332,
+        "source_area_covered": 0.01116,
+        "kda_area_covered": 0.014426
+      }
+    },
+    {
+      "source_index": 141,
+      "source_region": "Kibwezi West",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON087",
+        "kda_name": "Kibwezi West",
+        "intersection_over_union": 0.543121,
+        "source_area_covered": 0.693806,
+        "kda_area_covered": 0.714345
+      },
+      "runner_up": {
+        "geo_code": "KEN-C017-CON088",
+        "kda_name": "Kibwezi East",
+        "intersection_over_union": 0.132556,
+        "source_area_covered": 0.298107,
+        "kda_area_covered": 0.192697
+      }
+    },
+    {
+      "source_index": 142,
+      "source_region": "Kilome",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON084",
+        "kda_name": "Kilome",
+        "intersection_over_union": 0.749325,
+        "source_area_covered": 0.761965,
+        "kda_area_covered": 0.978341
+      },
+      "runner_up": {
+        "geo_code": "KEN-C016-CON081",
+        "kda_name": "Machakos Town",
+        "intersection_over_union": 0.10536,
+        "source_area_covered": 0.202435,
+        "kda_area_covered": 0.180135
+      }
+    },
+    {
+      "source_index": 143,
+      "source_region": "Makueni",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON086",
+        "kda_name": "Makueni",
+        "intersection_over_union": 0.735889,
+        "source_area_covered": 0.75507,
+        "kda_area_covered": 0.966633
+      },
+      "runner_up": {
+        "geo_code": "KEN-C017-CON087",
+        "kda_name": "Kibwezi West",
+        "intersection_over_union": 0.14088,
+        "source_area_covered": 0.230547,
+        "kda_area_covered": 0.265906
+      }
+    },
+    {
+      "source_index": 144,
+      "source_region": "Mbooni",
+      "source_parent": "Makueni",
+      "best_match": {
+        "geo_code": "KEN-C017-CON083",
+        "kda_name": "Mbooni",
+        "intersection_over_union": 0.934482,
+        "source_area_covered": 0.950794,
+        "kda_area_covered": 0.981972
+      },
+      "runner_up": {
+        "geo_code": "KEN-C017-CON085",
+        "kda_name": "Kaiti",
+        "intersection_over_union": 0.009658,
+        "source_area_covered": 0.013693,
+        "kda_area_covered": 0.031734
+      }
+    },
+    {
+      "source_index": 145,
+      "source_region": "Banissa",
+      "source_parent": "Mandera",
+      "best_match": {
+        "geo_code": "KEN-C009-CON040",
+        "kda_name": "Banissa",
+        "intersection_over_union": 0.868343,
+        "source_area_covered": 0.978169,
+        "kda_area_covered": 0.885504
+      },
+      "runner_up": {
+        "geo_code": "KEN-C009-CON041",
+        "kda_name": "Mandera North",
+        "intersection_over_union": 0.003412,
+        "source_area_covered": 0.010046,
+        "kda_area_covered": 0.005141
+      }
+    },
+    {
+      "source_index": 146,
+      "source_region": "Lafey",
+      "source_parent": "Mandera",
+      "best_match": {
+        "geo_code": "KEN-C009-CON044",
+        "kda_name": "Lafey",
+        "intersection_over_union": 0.770389,
+        "source_area_covered": 0.989236,
+        "kda_area_covered": 0.776902
+      },
+      "runner_up": {
+        "geo_code": "KEN-C009-CON041",
+        "kda_name": "Mandera North",
+        "intersection_over_union": 0.003158,
+        "source_area_covered": 0.008418,
+        "kda_area_covered": 0.005028
+      }
+    },
+    {
+      "source_index": 147,
+      "source_region": "Mandera East",
+      "source_parent": "Mandera",
+      "best_match": {
+        "geo_code": "KEN-C009-CON043",
+        "kda_name": "Mandera East",
+        "intersection_over_union": 0.630145,
+        "source_area_covered": 0.637652,
+        "kda_area_covered": 0.98166
+      },
+      "runner_up": {
+        "geo_code": "KEN-C009-CON044",
+        "kda_name": "Lafey",
+        "intersection_over_union": 0.145932,
+        "source_area_covered": 0.352446,
+        "kda_area_covered": 0.199395
+      }
+    },
+    {
+      "source_index": 148,
+      "source_region": "Mandera North",
+      "source_parent": "Mandera",
+      "best_match": {
+        "geo_code": "KEN-C009-CON041",
+        "kda_name": "Mandera North",
+        "intersection_over_union": 0.896579,
+        "source_area_covered": 0.930508,
+        "kda_area_covered": 0.96092
+      },
+      "runner_up": {
+        "geo_code": "KEN-C009-CON040",
+        "kda_name": "Banissa",
+        "intersection_over_union": 0.032316,
+        "source_area_covered": 0.048442,
+        "kda_area_covered": 0.088488
+      }
+    },
+    {
+      "source_index": 149,
+      "source_region": "Mandera South",
+      "source_parent": "Mandera",
+      "best_match": {
+        "geo_code": "KEN-C009-CON042",
+        "kda_name": "Mandera South",
+        "intersection_over_union": 0.875323,
+        "source_area_covered": 0.950684,
+        "kda_area_covered": 0.916959
+      },
+      "runner_up": {
+        "geo_code": "KEN-C009-CON041",
+        "kda_name": "Mandera North",
+        "intersection_over_union": 0.014417,
+        "source_area_covered": 0.029437,
+        "kda_area_covered": 0.027481
+      }
+    },
+    {
+      "source_index": 150,
+      "source_region": "Mandera West",
+      "source_parent": "Mandera",
+      "best_match": {
+        "geo_code": "KEN-C009-CON039",
+        "kda_name": "Mandera West",
+        "intersection_over_union": 0.873354,
+        "source_area_covered": 0.896879,
+        "kda_area_covered": 0.970843
+      },
+      "runner_up": {
+        "geo_code": "KEN-C009-CON042",
+        "kda_name": "Mandera South",
+        "intersection_over_union": 0.03976,
+        "source_area_covered": 0.080719,
+        "kda_area_covered": 0.072664
+      }
+    },
+    {
+      "source_index": 151,
+      "source_region": "Laisamis",
+      "source_parent": "Marsabit",
+      "best_match": {
+        "geo_code": "KEN-C010-CON048",
+        "kda_name": "Laisamis",
+        "intersection_over_union": 0.778281,
+        "source_area_covered": 0.80639,
+        "kda_area_covered": 0.957132
+      },
+      "runner_up": {
+        "geo_code": "KEN-C010-CON046",
+        "kda_name": "North Horr",
+        "intersection_over_union": 0.031645,
+        "source_area_covered": 0.080664,
+        "kda_area_covered": 0.049497
+      }
+    },
+    {
+      "source_index": 152,
+      "source_region": "Moyale",
+      "source_parent": "Marsabit",
+      "best_match": {
+        "geo_code": "KEN-C010-CON045",
+        "kda_name": "Moyale",
+        "intersection_over_union": 0.980643,
+        "source_area_covered": 0.992047,
+        "kda_area_covered": 0.988413
+      },
+      "runner_up": {
+        "geo_code": "KEN-C010-CON046",
+        "kda_name": "North Horr",
+        "intersection_over_union": 0.000748,
+        "source_area_covered": 0.003892,
+        "kda_area_covered": 0.000926
+      }
+    },
+    {
+      "source_index": 153,
+      "source_region": "North Horr",
+      "source_parent": "Marsabit",
+      "best_match": {
+        "geo_code": "KEN-C010-CON046",
+        "kda_name": "North Horr",
+        "intersection_over_union": 0.874191,
+        "source_area_covered": 0.917745,
+        "kda_area_covered": 0.948509
+      },
+      "runner_up": {
+        "geo_code": "KEN-C010-CON048",
+        "kda_name": "Laisamis",
+        "intersection_over_union": 0.013532,
+        "source_area_covered": 0.02003,
+        "kda_area_covered": 0.040043
+      }
+    },
+    {
+      "source_index": 154,
+      "source_region": "Saku",
+      "source_parent": "Marsabit",
+      "best_match": {
+        "geo_code": "KEN-C010-CON047",
+        "kda_name": "Saku",
+        "intersection_over_union": 0.979322,
+        "source_area_covered": 0.991093,
+        "kda_area_covered": 0.988017
+      },
+      "runner_up": {
+        "geo_code": "KEN-C010-CON046",
+        "kda_name": "North Horr",
+        "intersection_over_union": 0.000378,
+        "source_area_covered": 0.007635,
+        "kda_area_covered": 0.000398
+      }
+    },
+    {
+      "source_index": 155,
+      "source_region": "Buuri",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON057",
+        "kda_name": "Buuri",
+        "intersection_over_union": 0.66826,
+        "source_area_covered": 0.72867,
+        "kda_area_covered": 0.889632
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON059",
+        "kda_name": "South Imenti",
+        "intersection_over_union": 0.137302,
+        "source_area_covered": 0.206838,
+        "kda_area_covered": 0.289982
+      }
+    },
+    {
+      "source_index": 156,
+      "source_region": "Cental Imenti",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON058",
+        "kda_name": "Central Imenti",
+        "intersection_over_union": 0.721393,
+        "source_area_covered": 0.790696,
+        "kda_area_covered": 0.891664
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON057",
+        "kda_name": "Buuri",
+        "intersection_over_union": 0.062209,
+        "source_area_covered": 0.1403,
+        "kda_area_covered": 0.100531
+      }
+    },
+    {
+      "source_index": 157,
+      "source_region": "Igembe Central",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON052",
+        "kda_name": "Igembe Central",
+        "intersection_over_union": 0.439824,
+        "source_area_covered": 0.835454,
+        "kda_area_covered": 0.481538
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON053",
+        "kda_name": "Igembe North",
+        "intersection_over_union": 0.055622,
+        "source_area_covered": 0.129207,
+        "kda_area_covered": 0.088977
+      }
+    },
+    {
+      "source_index": 158,
+      "source_region": "Igembe North",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON053",
+        "kda_name": "Igembe North",
+        "intersection_over_union": 0.899755,
+        "source_area_covered": 0.98651,
+        "kda_area_covered": 0.910963
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON052",
+        "kda_name": "Igembe Central",
+        "intersection_over_union": 0.002008,
+        "source_area_covered": 0.004597,
+        "kda_area_covered": 0.003553
+      }
+    },
+    {
+      "source_index": 159,
+      "source_region": "Igembe South",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON052",
+        "kda_name": "Igembe Central",
+        "intersection_over_union": 0.38895,
+        "source_area_covered": 0.744667,
+        "kda_area_covered": 0.448805
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON051",
+        "kda_name": "Igembe South",
+        "intersection_over_union": 0.237104,
+        "source_area_covered": 0.251781,
+        "kda_area_covered": 0.802666
+      }
+    },
+    {
+      "source_index": 160,
+      "source_region": "North Imenti",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON056",
+        "kda_name": "North Imenti",
+        "intersection_over_union": 0.855573,
+        "source_area_covered": 0.908812,
+        "kda_area_covered": 0.935918
+      },
+      "runner_up": {
+        "geo_code": "KEN-C013-CON062",
+        "kda_name": "Tharaka",
+        "intersection_over_union": 0.008027,
+        "source_area_covered": 0.048835,
+        "kda_area_covered": 0.009514
+      }
+    },
+    {
+      "source_index": 161,
+      "source_region": "South Imenti",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON059",
+        "kda_name": "South Imenti",
+        "intersection_over_union": 0.646748,
+        "source_area_covered": 0.94951,
+        "kda_area_covered": 0.669783
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON058",
+        "kda_name": "Central Imenti",
+        "intersection_over_union": 0.014529,
+        "source_area_covered": 0.029134,
+        "kda_area_covered": 0.028166
+      }
+    },
+    {
+      "source_index": 162,
+      "source_region": "Tigania East",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON055",
+        "kda_name": "Tigania East",
+        "intersection_over_union": 0.743567,
+        "source_area_covered": 0.767805,
+        "kda_area_covered": 0.959275
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON054",
+        "kda_name": "Tigania West",
+        "intersection_over_union": 0.04968,
+        "source_area_covered": 0.073178,
+        "kda_area_covered": 0.13399
+      }
+    },
+    {
+      "source_index": 163,
+      "source_region": "Tigania West",
+      "source_parent": "Meru",
+      "best_match": {
+        "geo_code": "KEN-C012-CON054",
+        "kda_name": "Tigania West",
+        "intersection_over_union": 0.807664,
+        "source_area_covered": 0.966185,
+        "kda_area_covered": 0.831159
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON055",
+        "kda_name": "Tigania East",
+        "intersection_over_union": 0.009469,
+        "source_area_covered": 0.02536,
+        "kda_area_covered": 0.014886
+      }
+    },
+    {
+      "source_index": 164,
+      "source_region": "Awendo",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON254",
+        "kda_name": "Awendo",
+        "intersection_over_union": 0.902072,
+        "source_area_covered": 0.935236,
+        "kda_area_covered": 0.962177
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON250",
+        "kda_name": "Ndhiwa",
+        "intersection_over_union": 0.015997,
+        "source_area_covered": 0.058115,
+        "kda_area_covered": 0.021596
+      }
+    },
+    {
+      "source_index": 165,
+      "source_region": "Kuria East",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON260",
+        "kda_name": "Kuria East",
+        "intersection_over_union": 0.624473,
+        "source_area_covered": 0.770547,
+        "kda_area_covered": 0.767123
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON259",
+        "kda_name": "Kuria West",
+        "intersection_over_union": 0.085075,
+        "source_area_covered": 0.190452,
+        "kda_area_covered": 0.133269
+      }
+    },
+    {
+      "source_index": 166,
+      "source_region": "Kuria West",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON259",
+        "kda_name": "Kuria West",
+        "intersection_over_union": 0.729908,
+        "source_area_covered": 0.842064,
+        "kda_area_covered": 0.845682
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON260",
+        "kda_name": "Kuria East",
+        "intersection_over_union": 0.092348,
+        "source_area_covered": 0.143707,
+        "kda_area_covered": 0.205336
+      }
+    },
+    {
+      "source_index": 167,
+      "source_region": "Nyatike",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON258",
+        "kda_name": "Nyatike",
+        "intersection_over_union": 0.526273,
+        "source_area_covered": 0.535893,
+        "kda_area_covered": 0.967012
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON252",
+        "kda_name": "Suba",
+        "intersection_over_union": 0.006171,
+        "source_area_covered": 0.009354,
+        "kda_area_covered": 0.01781
+      }
+    },
+    {
+      "source_index": 168,
+      "source_region": "Rongo",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON253",
+        "kda_name": "Rongo",
+        "intersection_over_union": 0.916889,
+        "source_area_covered": 0.945031,
+        "kda_area_covered": 0.968543
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON254",
+        "kda_name": "Awendo",
+        "intersection_over_union": 0.010619,
+        "source_area_covered": 0.023143,
+        "kda_area_covered": 0.019246
+      }
+    },
+    {
+      "source_index": 169,
+      "source_region": "Suna East",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON255",
+        "kda_name": "Suna East",
+        "intersection_over_union": 0.887181,
+        "source_area_covered": 0.938946,
+        "kda_area_covered": 0.941494
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON257",
+        "kda_name": "Uriri",
+        "intersection_over_union": 0.013185,
+        "source_area_covered": 0.036849,
+        "kda_area_covered": 0.020117
+      }
+    },
+    {
+      "source_index": 170,
+      "source_region": "Suna West",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON256",
+        "kda_name": "Suna West",
+        "intersection_over_union": 0.909161,
+        "source_area_covered": 0.947278,
+        "kda_area_covered": 0.957617
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON255",
+        "kda_name": "Suna East",
+        "intersection_over_union": 0.00959,
+        "source_area_covered": 0.016386,
+        "kda_area_covered": 0.022598
+      }
+    },
+    {
+      "source_index": 171,
+      "source_region": "Uriri",
+      "source_parent": "Migori",
+      "best_match": {
+        "geo_code": "KEN-C044-CON257",
+        "kda_name": "Uriri",
+        "intersection_over_union": 0.936043,
+        "source_area_covered": 0.960369,
+        "kda_area_covered": 0.973653
+      },
+      "runner_up": {
+        "geo_code": "KEN-C044-CON258",
+        "kda_name": "Nyatike",
+        "intersection_over_union": 0.005214,
+        "source_area_covered": 0.01429,
+        "kda_area_covered": 0.008144
+      }
+    },
+    {
+      "source_index": 172,
+      "source_region": "Changamwe",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON001",
+        "kda_name": "Changamwe",
+        "intersection_over_union": 0.400282,
+        "source_area_covered": 0.486625,
+        "kda_area_covered": 0.692871
+      },
+      "runner_up": {
+        "geo_code": "KEN-C001-CON002",
+        "kda_name": "Jomvu",
+        "intersection_over_union": 0.229513,
+        "source_area_covered": 0.478834,
+        "kda_area_covered": 0.305936
+      }
+    },
+    {
+      "source_index": 173,
+      "source_region": "Jomvu",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON002",
+        "kda_name": "Jomvu",
+        "intersection_over_union": 0.5218,
+        "source_area_covered": 0.728025,
+        "kda_area_covered": 0.648145
+      },
+      "runner_up": {
+        "geo_code": "KEN-C001-CON001",
+        "kda_name": "Changamwe",
+        "intersection_over_union": 0.072991,
+        "source_area_covered": 0.102313,
+        "kda_area_covered": 0.202987
+      }
+    },
+    {
+      "source_index": 174,
+      "source_region": "Kisauni",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON003",
+        "kda_name": "Kisauni",
+        "intersection_over_union": 0.832939,
+        "source_area_covered": 0.905324,
+        "kda_area_covered": 0.912416
+      },
+      "runner_up": {
+        "geo_code": "KEN-C003-CON014",
+        "kda_name": "Rabai",
+        "intersection_over_union": 0.011825,
+        "source_area_covered": 0.038565,
+        "kda_area_covered": 0.016767
+      }
+    },
+    {
+      "source_index": 175,
+      "source_region": "Likoni",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON005",
+        "kda_name": "Likoni",
+        "intersection_over_union": 0.705593,
+        "source_area_covered": 0.739929,
+        "kda_area_covered": 0.938292
+      },
+      "runner_up": {
+        "geo_code": "KEN-C002-CON009",
+        "kda_name": "Matuga",
+        "intersection_over_union": 0.010231,
+        "source_area_covered": 0.21081,
+        "kda_area_covered": 0.010639
+      }
+    },
+    {
+      "source_index": 176,
+      "source_region": "Mvita",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON006",
+        "kda_name": "Mvita",
+        "intersection_over_union": 0.822209,
+        "source_area_covered": 0.901481,
+        "kda_area_covered": 0.903383
+      },
+      "runner_up": {
+        "geo_code": "KEN-C001-CON001",
+        "kda_name": "Changamwe",
+        "intersection_over_union": 0.001019,
+        "source_area_covered": 0.002124,
+        "kda_area_covered": 0.001956
+      }
+    },
+    {
+      "source_index": 177,
+      "source_region": "Nyali",
+      "source_parent": "Mombasa",
+      "best_match": {
+        "geo_code": "KEN-C001-CON004",
+        "kda_name": "Nyali",
+        "intersection_over_union": 0.848794,
+        "source_area_covered": 0.918237,
+        "kda_area_covered": 0.918191
+      },
+      "runner_up": {
+        "geo_code": "KEN-C001-CON003",
+        "kda_name": "Kisauni",
+        "intersection_over_union": 0.015568,
+        "source_area_covered": 0.075051,
+        "kda_area_covered": 0.019264
+      }
+    },
+    {
+      "source_index": 178,
+      "source_region": "Gatanga",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON110",
+        "kda_name": "Gatanga",
+        "intersection_over_union": 0.902823,
+        "source_area_covered": 0.947477,
+        "kda_area_covered": 0.950388
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON108",
+        "kda_name": "Maragwa",
+        "intersection_over_union": 0.010096,
+        "source_area_covered": 0.017759,
+        "kda_area_covered": 0.022862
+      }
+    },
+    {
+      "source_index": 179,
+      "source_region": "Kandara",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON109",
+        "kda_name": "Kandara",
+        "intersection_over_union": 0.824092,
+        "source_area_covered": 0.959239,
+        "kda_area_covered": 0.853997
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON107",
+        "kda_name": "Kigumo",
+        "intersection_over_union": 0.009724,
+        "source_area_covered": 0.024419,
+        "kda_area_covered": 0.015902
+      }
+    },
+    {
+      "source_index": 180,
+      "source_region": "Kangema",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON104",
+        "kda_name": "Kangema",
+        "intersection_over_union": 0.462701,
+        "source_area_covered": 0.472586,
+        "kda_area_covered": 0.956749
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON105",
+        "kda_name": "Mathioya",
+        "intersection_over_union": 0.219352,
+        "source_area_covered": 0.359656,
+        "kda_area_covered": 0.359912
+      }
+    },
+    {
+      "source_index": 181,
+      "source_region": "Kigumo",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON107",
+        "kda_name": "Kigumo",
+        "intersection_over_union": 0.767909,
+        "source_area_covered": 0.877129,
+        "kda_area_covered": 0.86047
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON109",
+        "kda_name": "Kandara",
+        "intersection_over_union": 0.051058,
+        "source_area_covered": 0.084796,
+        "kda_area_covered": 0.11373
+      }
+    },
+    {
+      "source_index": 182,
+      "source_region": "Kiharu",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON106",
+        "kda_name": "Kiharu",
+        "intersection_over_union": 0.70035,
+        "source_area_covered": 0.963874,
+        "kda_area_covered": 0.719229
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON104",
+        "kda_name": "Kangema",
+        "intersection_over_union": 0.012098,
+        "source_area_covered": 0.018742,
+        "kda_area_covered": 0.033005
+      }
+    },
+    {
+      "source_index": 183,
+      "source_region": "Maragwa",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON108",
+        "kda_name": "Maragwa",
+        "intersection_over_union": 0.922381,
+        "source_area_covered": 0.964437,
+        "kda_area_covered": 0.954857
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON106",
+        "kda_name": "Kiharu",
+        "intersection_over_union": 0.010007,
+        "source_area_covered": 0.018694,
+        "kda_area_covered": 0.021079
+      }
+    },
+    {
+      "source_index": 184,
+      "source_region": "Mathioya",
+      "source_parent": "Murang'a",
+      "best_match": {
+        "geo_code": "KEN-C021-CON105",
+        "kda_name": "Mathioya",
+        "intersection_over_union": 0.544416,
+        "source_area_covered": 0.794949,
+        "kda_area_covered": 0.633356
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON106",
+        "kda_name": "Kiharu",
+        "intersection_over_union": 0.067624,
+        "source_area_covered": 0.156086,
+        "kda_area_covered": 0.106599
+      }
+    },
+    {
+      "source_index": 185,
+      "source_region": "Dagoretti",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON276",
+        "kda_name": "Dagoretti South",
+        "intersection_over_union": 0.779354,
+        "source_area_covered": 0.889302,
+        "kda_area_covered": 0.863084
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON275",
+        "kda_name": "Dagoretti North",
+        "intersection_over_union": 0.010771,
+        "source_area_covered": 0.023284,
+        "kda_area_covered": 0.019648
+      }
+    },
+    {
+      "source_index": 186,
+      "source_region": "Embakasi Central",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON284",
+        "kda_name": "Embakasi Central",
+        "intersection_over_union": 0.624063,
+        "source_area_covered": 0.68906,
+        "kda_area_covered": 0.868698
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON286",
+        "kda_name": "Embakasi West",
+        "intersection_over_union": 0.037793,
+        "source_area_covered": 0.071762,
+        "kda_area_covered": 0.073938
+      }
+    },
+    {
+      "source_index": 187,
+      "source_region": "Embakasi East",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON285",
+        "kda_name": "Embakasi East",
+        "intersection_over_union": 0.698233,
+        "source_area_covered": 0.721067,
+        "kda_area_covered": 0.956614
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON282",
+        "kda_name": "Embakasi South",
+        "intersection_over_union": 0.054478,
+        "source_area_covered": 0.058895,
+        "kda_area_covered": 0.420737
+      }
+    },
+    {
+      "source_index": 188,
+      "source_region": "Embakasi North",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON283",
+        "kda_name": "Embakasi North",
+        "intersection_over_union": 0.496432,
+        "source_area_covered": 0.638141,
+        "kda_area_covered": 0.69093
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON281",
+        "kda_name": "Ruaraka",
+        "intersection_over_union": 0.12771,
+        "source_area_covered": 0.262493,
+        "kda_area_covered": 0.199178
+      }
+    },
+    {
+      "source_index": 189,
+      "source_region": "Embakasi South",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON282",
+        "kda_name": "Embakasi South",
+        "intersection_over_union": 0.267276,
+        "source_area_covered": 0.355307,
+        "kda_area_covered": 0.518944
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON289",
+        "kda_name": "Starehe",
+        "intersection_over_union": 0.110621,
+        "source_area_covered": 0.211898,
+        "kda_area_covered": 0.187948
+      }
+    },
+    {
+      "source_index": 190,
+      "source_region": "Embakasi West",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON286",
+        "kda_name": "Embakasi West",
+        "intersection_over_union": 0.620731,
+        "source_area_covered": 0.694594,
+        "kda_area_covered": 0.853743
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON287",
+        "kda_name": "Makadara",
+        "intersection_over_union": 0.058035,
+        "source_area_covered": 0.135592,
+        "kda_area_covered": 0.092117
+      }
+    },
+    {
+      "source_index": 191,
+      "source_region": "Kamukunji",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON288",
+        "kda_name": "Kamukunji",
+        "intersection_over_union": 0.722243,
+        "source_area_covered": 0.834572,
+        "kda_area_covered": 0.842916
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON290",
+        "kda_name": "Mathare",
+        "intersection_over_union": 0.098373,
+        "source_area_covered": 0.11947,
+        "kda_area_covered": 0.357775
+      }
+    },
+    {
+      "source_index": 192,
+      "source_region": "Kasarani",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON280",
+        "kda_name": "Kasarani",
+        "intersection_over_union": 0.84002,
+        "source_area_covered": 0.921885,
+        "kda_area_covered": 0.904393
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON115",
+        "kda_name": "Ruiru",
+        "intersection_over_union": 0.019727,
+        "source_area_covered": 0.047923,
+        "kda_area_covered": 0.032441
+      }
+    },
+    {
+      "source_index": 193,
+      "source_region": "Kibra",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON278",
+        "kda_name": "Kibra",
+        "intersection_over_union": 0.655959,
+        "source_area_covered": 0.79665,
+        "kda_area_covered": 0.787881
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON275",
+        "kda_name": "Dagoretti North",
+        "intersection_over_union": 0.047603,
+        "source_area_covered": 0.152211,
+        "kda_area_covered": 0.064779
+      }
+    },
+    {
+      "source_index": 194,
+      "source_region": "Kilimani",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON275",
+        "kda_name": "Dagoretti North",
+        "intersection_over_union": 0.828241,
+        "source_area_covered": 0.900135,
+        "kda_area_covered": 0.912047
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON274",
+        "kda_name": "Westlands",
+        "intersection_over_union": 0.029132,
+        "source_area_covered": 0.097956,
+        "kda_area_covered": 0.039813
+      }
+    },
+    {
+      "source_index": 195,
+      "source_region": "Langata",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON277",
+        "kda_name": "Langata",
+        "intersection_over_union": 0.882076,
+        "source_area_covered": 0.960228,
+        "kda_area_covered": 0.915525
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON276",
+        "kda_name": "Dagoretti South",
+        "intersection_over_union": 0.012672,
+        "source_area_covered": 0.014016,
+        "kda_area_covered": 0.116738
+      }
+    },
+    {
+      "source_index": 196,
+      "source_region": "Makadara",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON287",
+        "kda_name": "Makadara",
+        "intersection_over_union": 0.736718,
+        "source_area_covered": 0.932197,
+        "kda_area_covered": 0.778429
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON288",
+        "kda_name": "Kamukunji",
+        "intersection_over_union": 0.036752,
+        "source_area_covered": 0.061304,
+        "kda_area_covered": 0.084054
+      }
+    },
+    {
+      "source_index": 197,
+      "source_region": "Mathare",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON290",
+        "kda_name": "Mathare",
+        "intersection_over_union": 0.425719,
+        "source_area_covered": 0.602159,
+        "kda_area_covered": 0.592319
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON281",
+        "kda_name": "Ruaraka",
+        "intersection_over_union": 0.084231,
+        "source_area_covered": 0.269167,
+        "kda_area_covered": 0.109206
+      }
+    },
+    {
+      "source_index": 198,
+      "source_region": "Roysambu",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON279",
+        "kda_name": "Roysambu",
+        "intersection_over_union": 0.820826,
+        "source_area_covered": 0.897696,
+        "kda_area_covered": 0.905533
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON117",
+        "kda_name": "Kiambu",
+        "intersection_over_union": 0.021277,
+        "source_area_covered": 0.06665,
+        "kda_area_covered": 0.030307
+      }
+    },
+    {
+      "source_index": 199,
+      "source_region": "Ruaraka",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON281",
+        "kda_name": "Ruaraka",
+        "intersection_over_union": 0.521124,
+        "source_area_covered": 0.684004,
+        "kda_area_covered": 0.686366
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON279",
+        "kda_name": "Roysambu",
+        "intersection_over_union": 0.015813,
+        "source_area_covered": 0.11896,
+        "kda_area_covered": 0.01791
+      }
+    },
+    {
+      "source_index": 200,
+      "source_region": "Starehe",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON289",
+        "kda_name": "Starehe",
+        "intersection_over_union": 0.686608,
+        "source_area_covered": 0.885473,
+        "kda_area_covered": 0.753526
+      },
+      "runner_up": {
+        "geo_code": "KEN-C047-CON287",
+        "kda_name": "Makadara",
+        "intersection_over_union": 0.027811,
+        "source_area_covered": 0.050148,
+        "kda_area_covered": 0.058769
+      }
+    },
+    {
+      "source_index": 201,
+      "source_region": "Westlands",
+      "source_parent": "Nairobi",
+      "best_match": {
+        "geo_code": "KEN-C047-CON274",
+        "kda_name": "Westlands",
+        "intersection_over_union": 0.874687,
+        "source_area_covered": 0.930096,
+        "kda_area_covered": 0.936234
+      },
+      "runner_up": {
+        "geo_code": "KEN-C022-CON118",
+        "kda_name": "Kiambaa",
+        "intersection_over_union": 0.013778,
+        "source_area_covered": 0.029135,
+        "kda_area_covered": 0.025472
+      }
+    },
+    {
+      "source_index": 202,
+      "source_region": "Bahati",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON174",
+        "kda_name": "Bahati",
+        "intersection_over_union": 0.94325,
+        "source_area_covered": 0.969077,
+        "kda_area_covered": 0.972521
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON172",
+        "kda_name": "Subukia",
+        "intersection_over_union": 0.009772,
+        "source_area_covered": 0.024513,
+        "kda_area_covered": 0.01599
+      }
+    },
+    {
+      "source_index": 203,
+      "source_region": "Gilgil",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON169",
+        "kda_name": "Gilgil",
+        "intersection_over_union": 0.863042,
+        "source_area_covered": 0.956713,
+        "kda_area_covered": 0.898112
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON168",
+        "kda_name": "Naivasha",
+        "intersection_over_union": 0.011202,
+        "source_area_covered": 0.025835,
+        "kda_area_covered": 0.019395
+      }
+    },
+    {
+      "source_index": 204,
+      "source_region": "Kuresoi North",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON171",
+        "kda_name": "Kuresoi North",
+        "intersection_over_union": 0.901275,
+        "source_area_covered": 0.952445,
+        "kda_area_covered": 0.943743
+      },
+      "runner_up": {
+        "geo_code": "KEN-C035-CON188",
+        "kda_name": "Kipkelion East",
+        "intersection_over_union": 0.009624,
+        "source_area_covered": 0.021136,
+        "kda_area_covered": 0.017362
+      }
+    },
+    {
+      "source_index": 205,
+      "source_region": "Kuresoi South",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON170",
+        "kda_name": "Kuresoi South",
+        "intersection_over_union": 0.874306,
+        "source_area_covered": 0.973668,
+        "kda_area_covered": 0.89548
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON171",
+        "kda_name": "Kuresoi North",
+        "intersection_over_union": 0.012091,
+        "source_area_covered": 0.025993,
+        "kda_area_covered": 0.022109
+      }
+    },
+    {
+      "source_index": 206,
+      "source_region": "Molo",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON166",
+        "kda_name": "Molo",
+        "intersection_over_union": 0.808496,
+        "source_area_covered": 0.864762,
+        "kda_area_covered": 0.925517
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON170",
+        "kda_name": "Kuresoi South",
+        "intersection_over_union": 0.027669,
+        "source_area_covered": 0.056997,
+        "kda_area_covered": 0.051028
+      }
+    },
+    {
+      "source_index": 207,
+      "source_region": "Naivasha",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON168",
+        "kda_name": "Naivasha",
+        "intersection_over_union": 0.919572,
+        "source_area_covered": 0.947588,
+        "kda_area_covered": 0.968851
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON169",
+        "kda_name": "Gilgil",
+        "intersection_over_union": 0.029008,
+        "source_area_covered": 0.05024,
+        "kda_area_covered": 0.064231
+      }
+    },
+    {
+      "source_index": 208,
+      "source_region": "Nakuru Town East",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON175",
+        "kda_name": "Nakuru Town West",
+        "intersection_over_union": 0.368285,
+        "source_area_covered": 0.697681,
+        "kda_area_covered": 0.438218
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON176",
+        "kda_name": "Nakuru Town East",
+        "intersection_over_union": 0.281354,
+        "source_area_covered": 0.283799,
+        "kda_area_covered": 0.970289
+      }
+    },
+    {
+      "source_index": 209,
+      "source_region": "Nakuru Town West",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON175",
+        "kda_name": "Nakuru Town West",
+        "intersection_over_union": 0.529855,
+        "source_area_covered": 0.966713,
+        "kda_area_covered": 0.539701
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON173",
+        "kda_name": "Rongai",
+        "intersection_over_union": 0.002757,
+        "source_area_covered": 0.022775,
+        "kda_area_covered": 0.003127
+      }
+    },
+    {
+      "source_index": 210,
+      "source_region": "Njoro",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON167",
+        "kda_name": "Njoro",
+        "intersection_over_union": 0.870264,
+        "source_area_covered": 0.890776,
+        "kda_area_covered": 0.974222
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON166",
+        "kda_name": "Molo",
+        "intersection_over_union": 0.025314,
+        "source_area_covered": 0.039763,
+        "kda_area_covered": 0.065126
+      }
+    },
+    {
+      "source_index": 211,
+      "source_region": "Rongai",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON173",
+        "kda_name": "Rongai",
+        "intersection_over_union": 0.951204,
+        "source_area_covered": 0.973699,
+        "kda_area_covered": 0.976288
+      },
+      "runner_up": {
+        "geo_code": "KEN-C030-CON161",
+        "kda_name": "Mogotio",
+        "intersection_over_union": 0.006415,
+        "source_area_covered": 0.014862,
+        "kda_area_covered": 0.011161
+      }
+    },
+    {
+      "source_index": 212,
+      "source_region": "Subukia",
+      "source_parent": "Nakuru",
+      "best_match": {
+        "geo_code": "KEN-C032-CON172",
+        "kda_name": "Subukia",
+        "intersection_over_union": 0.930492,
+        "source_area_covered": 0.967254,
+        "kda_area_covered": 0.960757
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON173",
+        "kda_name": "Rongai",
+        "intersection_over_union": 0.00762,
+        "source_area_covered": 0.024528,
+        "kda_area_covered": 0.010933
+      }
+    },
+    {
+      "source_index": 213,
+      "source_region": "Aldai",
+      "source_parent": "Nandi",
+      "best_match": {
+        "geo_code": "KEN-C029-CON152",
+        "kda_name": "Aldai",
+        "intersection_over_union": 0.909856,
+        "source_area_covered": 0.940927,
+        "kda_area_covered": 0.964977
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON155",
+        "kda_name": "Emgwen",
+        "intersection_over_union": 0.011806,
+        "source_area_covered": 0.020819,
+        "kda_area_covered": 0.026544
+      }
+    },
+    {
+      "source_index": 214,
+      "source_region": "Chesumei",
+      "source_parent": "Nandi",
+      "best_match": {
+        "geo_code": "KEN-C029-CON154",
+        "kda_name": "Chesumei",
+        "intersection_over_union": 0.914362,
+        "source_area_covered": 0.9397,
+        "kda_area_covered": 0.971355
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON156",
+        "kda_name": "Mosop",
+        "intersection_over_union": 0.023048,
+        "source_area_covered": 0.050299,
+        "kda_area_covered": 0.040805
+      }
+    },
+    {
+      "source_index": 215,
+      "source_region": "Emgwen",
+      "source_parent": "Nandi",
+      "best_match": {
+        "geo_code": "KEN-C029-CON155",
+        "kda_name": "Emgwen",
+        "intersection_over_union": 0.895461,
+        "source_area_covered": 0.950173,
+        "kda_area_covered": 0.939582
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON154",
+        "kda_name": "Chesumei",
+        "intersection_over_union": 0.015286,
+        "source_area_covered": 0.034566,
+        "kda_area_covered": 0.026675
+      }
+    },
+    {
+      "source_index": 216,
+      "source_region": "Mosop",
+      "source_parent": "Nandi",
+      "best_match": {
+        "geo_code": "KEN-C029-CON156",
+        "kda_name": "Mosop",
+        "intersection_over_union": 0.93083,
+        "source_area_covered": 0.976386,
+        "kda_area_covered": 0.952267
+      },
+      "runner_up": {
+        "geo_code": "KEN-C027-CON142",
+        "kda_name": "Turbo",
+        "intersection_over_union": 0.01059,
+        "source_area_covered": 0.018235,
+        "kda_area_covered": 0.024638
+      }
+    },
+    {
+      "source_index": 217,
+      "source_region": "Nandi Hills",
+      "source_parent": "Nandi",
+      "best_match": {
+        "geo_code": "KEN-C029-CON153",
+        "kda_name": "Nandi Hills",
+        "intersection_over_union": 0.820005,
+        "source_area_covered": 0.944212,
+        "kda_area_covered": 0.861757
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON155",
+        "kda_name": "Emgwen",
+        "intersection_over_union": 0.01168,
+        "source_area_covered": 0.022329,
+        "kda_area_covered": 0.023907
+      }
+    },
+    {
+      "source_index": 218,
+      "source_region": "Tinderet",
+      "source_parent": "Nandi",
+      "best_match": {
+        "geo_code": "KEN-C029-CON151",
+        "kda_name": "Tinderet",
+        "intersection_over_union": 0.910533,
+        "source_area_covered": 0.960509,
+        "kda_area_covered": 0.945946
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON153",
+        "kda_name": "Nandi Hills",
+        "intersection_over_union": 0.015022,
+        "source_area_covered": 0.026566,
+        "kda_area_covered": 0.033414
+      }
+    },
+    {
+      "source_index": 219,
+      "source_region": "Emurua Dikirr",
+      "source_parent": "Narok",
+      "best_match": {
+        "geo_code": "KEN-C033-CON178",
+        "kda_name": "Emurua Dikirr",
+        "intersection_over_union": 0.980951,
+        "source_area_covered": 0.981481,
+        "kda_area_covered": 0.99945
+      },
+      "runner_up": {
+        "geo_code": "KEN-C036-CON194",
+        "kda_name": "Sotik",
+        "intersection_over_union": 0.003342,
+        "source_area_covered": 0.00822,
+        "kda_area_covered": 0.005599
+      }
+    },
+    {
+      "source_index": 220,
+      "source_region": "Kilgoris",
+      "source_parent": "Narok",
+      "best_match": {
+        "geo_code": "KEN-C033-CON177",
+        "kda_name": "Kilgoris",
+        "intersection_over_union": 0.991185,
+        "source_area_covered": 0.993177,
+        "kda_area_covered": 0.99798
+      },
+      "runner_up": {
+        "geo_code": "KEN-C045-CON263",
+        "kda_name": "Bomachoge Borabu",
+        "intersection_over_union": 0.001627,
+        "source_area_covered": 0.001697,
+        "kda_area_covered": 0.037591
+      }
+    },
+    {
+      "source_index": 221,
+      "source_region": "Narok East",
+      "source_parent": "Narok",
+      "best_match": {
+        "geo_code": "KEN-C033-CON180",
+        "kda_name": "Narok East",
+        "intersection_over_union": 0.992137,
+        "source_area_covered": 0.998274,
+        "kda_area_covered": 0.993842
+      },
+      "runner_up": {
+        "geo_code": "KEN-C032-CON168",
+        "kda_name": "Naivasha",
+        "intersection_over_union": 0.000853,
+        "source_area_covered": 0.001553,
+        "kda_area_covered": 0.001888
+      }
+    },
+    {
+      "source_index": 222,
+      "source_region": "Narok North",
+      "source_parent": "Narok",
+      "best_match": {
+        "geo_code": "KEN-C033-CON179",
+        "kda_name": "Narok North",
+        "intersection_over_union": 0.952766,
+        "source_area_covered": 0.953248,
+        "kda_area_covered": 0.999469
+      },
+      "runner_up": {
+        "geo_code": "KEN-C033-CON181",
+        "kda_name": "Narok South",
+        "intersection_over_union": 0.014945,
+        "source_area_covered": 0.041556,
+        "kda_area_covered": 0.022806
+      }
+    },
+    {
+      "source_index": 223,
+      "source_region": "Narok South",
+      "source_parent": "Narok",
+      "best_match": {
+        "geo_code": "KEN-C033-CON181",
+        "kda_name": "Narok South",
+        "intersection_over_union": 0.971102,
+        "source_area_covered": 0.998615,
+        "kda_area_covered": 0.972412
+      },
+      "runner_up": {
+        "geo_code": "KEN-C036-CON198",
+        "kda_name": "Konoin",
+        "intersection_over_union": 0.000379,
+        "source_area_covered": 0.000451,
+        "kda_area_covered": 0.00238
+      }
+    },
+    {
+      "source_index": 224,
+      "source_region": "Narok West",
+      "source_parent": "Narok",
+      "best_match": {
+        "geo_code": "KEN-C033-CON182",
+        "kda_name": "Narok West",
+        "intersection_over_union": 0.99492,
+        "source_area_covered": 0.995129,
+        "kda_area_covered": 0.999789
+      },
+      "runner_up": {
+        "geo_code": "KEN-C033-CON181",
+        "kda_name": "Narok South",
+        "intersection_over_union": 0.00138,
+        "source_area_covered": 0.002632,
+        "kda_area_covered": 0.002892
+      }
+    },
+    {
+      "source_index": 225,
+      "source_region": "Borabu",
+      "source_parent": "Nyamira",
+      "best_match": {
+        "geo_code": "KEN-C046-CON273",
+        "kda_name": "Borabu",
+        "intersection_over_union": 0.930819,
+        "source_area_covered": 0.969269,
+        "kda_area_covered": 0.959125
+      },
+      "runner_up": {
+        "geo_code": "KEN-C046-CON272",
+        "kda_name": "North Mugirango",
+        "intersection_over_union": 0.007234,
+        "source_area_covered": 0.011326,
+        "kda_area_covered": 0.01963
+      }
+    },
+    {
+      "source_index": 226,
+      "source_region": "Kitutu Masaba",
+      "source_parent": "Nyamira",
+      "best_match": {
+        "geo_code": "KEN-C046-CON270",
+        "kda_name": "Kitutu Masaba",
+        "intersection_over_union": 0.938235,
+        "source_area_covered": 0.964353,
+        "kda_area_covered": 0.971944
+      },
+      "runner_up": {
+        "geo_code": "KEN-C046-CON271",
+        "kda_name": "West Mugirango",
+        "intersection_over_union": 0.010756,
+        "source_area_covered": 0.018116,
+        "kda_area_covered": 0.025791
+      }
+    },
+    {
+      "source_index": 227,
+      "source_region": "North Mugirango",
+      "source_parent": "Nyamira",
+      "best_match": {
+        "geo_code": "KEN-C046-CON272",
+        "kda_name": "North Mugirango",
+        "intersection_over_union": 0.925427,
+        "source_area_covered": 0.958038,
+        "kda_area_covered": 0.964523
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON246",
+        "kda_name": "Kabondo Kasipul",
+        "intersection_over_union": 0.008482,
+        "source_area_covered": 0.020688,
+        "kda_area_covered": 0.014172
+      }
+    },
+    {
+      "source_index": 228,
+      "source_region": "West Mugirango",
+      "source_parent": "Nyamira",
+      "best_match": {
+        "geo_code": "KEN-C046-CON271",
+        "kda_name": "West Mugirango",
+        "intersection_over_union": 0.922684,
+        "source_area_covered": 0.955486,
+        "kda_area_covered": 0.964127
+      },
+      "runner_up": {
+        "geo_code": "KEN-C043-CON246",
+        "kda_name": "Kabondo Kasipul",
+        "intersection_over_union": 0.006325,
+        "source_area_covered": 0.014976,
+        "kda_area_covered": 0.010831
+      }
+    },
+    {
+      "source_index": 229,
+      "source_region": "Kinangop",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON089",
+        "kda_name": "Kinangop",
+        "intersection_over_union": 0.592164,
+        "source_area_covered": 0.938721,
+        "kda_area_covered": 0.615975
+      },
+      "runner_up": {
+        "geo_code": "KEN-C021-CON107",
+        "kda_name": "Kigumo",
+        "intersection_over_union": 0.033804,
+        "source_area_covered": 0.052251,
+        "kda_area_covered": 0.087384
+      }
+    },
+    {
+      "source_index": 230,
+      "source_region": "Kipipiri",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON090",
+        "kda_name": "Kipipiri",
+        "intersection_over_union": 0.572403,
+        "source_area_covered": 0.574092,
+        "kda_area_covered": 0.994887
+      },
+      "runner_up": {
+        "geo_code": "KEN-C018-CON089",
+        "kda_name": "Kinangop",
+        "intersection_over_union": 0.204104,
+        "source_area_covered": 0.317393,
+        "kda_area_covered": 0.363795
+      }
+    },
+    {
+      "source_index": 231,
+      "source_region": "Ndaragwa",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON093",
+        "kda_name": "Ndaragwa",
+        "intersection_over_union": 0.80964,
+        "source_area_covered": 0.909544,
+        "kda_area_covered": 0.880541
+      },
+      "runner_up": {
+        "geo_code": "KEN-C018-CON091",
+        "kda_name": "Ol Kalou",
+        "intersection_over_union": 0.03947,
+        "source_area_covered": 0.061246,
+        "kda_area_covered": 0.09992
+      }
+    },
+    {
+      "source_index": 232,
+      "source_region": "Ol Jorok",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON092",
+        "kda_name": "Ol Jorok",
+        "intersection_over_union": 0.661475,
+        "source_area_covered": 0.677416,
+        "kda_area_covered": 0.965648
+      },
+      "runner_up": {
+        "geo_code": "KEN-C018-CON091",
+        "kda_name": "Ol Kalou",
+        "intersection_over_union": 0.196062,
+        "source_area_covered": 0.304312,
+        "kda_area_covered": 0.355325
+      }
+    },
+    {
+      "source_index": 233,
+      "source_region": "Ol Kalou",
+      "source_parent": "Nyandarua",
+      "best_match": {
+        "geo_code": "KEN-C018-CON091",
+        "kda_name": "Ol Kalou",
+        "intersection_over_union": 0.520454,
+        "source_area_covered": 0.980714,
+        "kda_area_covered": 0.525836
+      },
+      "runner_up": {
+        "geo_code": "KEN-C018-CON092",
+        "kda_name": "Ol Jorok",
+        "intersection_over_union": 0.005796,
+        "source_area_covered": 0.014565,
+        "kda_area_covered": 0.009534
+      }
+    },
+    {
+      "source_index": 234,
+      "source_region": "Mathira",
+      "source_parent": "Nyeri",
+      "best_match": {
+        "geo_code": "KEN-C019-CON096",
+        "kda_name": "Mathira",
+        "intersection_over_union": 0.797098,
+        "source_area_covered": 0.971251,
+        "kda_area_covered": 0.816359
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON095",
+        "kda_name": "Kieni",
+        "intersection_over_union": 0.004898,
+        "source_area_covered": 0.02341,
+        "kda_area_covered": 0.006156
+      }
+    },
+    {
+      "source_index": 235,
+      "source_region": "Mukurweni",
+      "source_parent": "Nyeri",
+      "best_match": {
+        "geo_code": "KEN-C019-CON098",
+        "kda_name": "Mukurweini",
+        "intersection_over_union": 0.92186,
+        "source_area_covered": 0.959862,
+        "kda_area_covered": 0.958821
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON094",
+        "kda_name": "Tetu",
+        "intersection_over_union": 0.007096,
+        "source_area_covered": 0.015639,
+        "kda_area_covered": 0.012824
+      }
+    },
+    {
+      "source_index": 236,
+      "source_region": "Nyeri Town",
+      "source_parent": "Nyeri",
+      "best_match": {
+        "geo_code": "KEN-C019-CON099",
+        "kda_name": "Nyeri Town",
+        "intersection_over_union": 0.917525,
+        "source_area_covered": 0.952675,
+        "kda_area_covered": 0.961341
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON094",
+        "kda_name": "Tetu",
+        "intersection_over_union": 0.006042,
+        "source_area_covered": 0.013726,
+        "kda_area_covered": 0.010678
+      }
+    },
+    {
+      "source_index": 237,
+      "source_region": "Othaya",
+      "source_parent": "Nyeri",
+      "best_match": {
+        "geo_code": "KEN-C019-CON097",
+        "kda_name": "Othaya",
+        "intersection_over_union": 0.699904,
+        "source_area_covered": 0.973087,
+        "kda_area_covered": 0.71372
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON094",
+        "kda_name": "Tetu",
+        "intersection_over_union": 0.008453,
+        "source_area_covered": 0.013496,
+        "kda_area_covered": 0.022123
+      }
+    },
+    {
+      "source_index": 238,
+      "source_region": "Tetu",
+      "source_parent": "Nyeri",
+      "best_match": {
+        "geo_code": "KEN-C019-CON094",
+        "kda_name": "Tetu",
+        "intersection_over_union": 0.562735,
+        "source_area_covered": 0.578508,
+        "kda_area_covered": 0.953787
+      },
+      "runner_up": {
+        "geo_code": "KEN-C019-CON097",
+        "kda_name": "Othaya",
+        "intersection_over_union": 0.159777,
+        "source_area_covered": 0.324512,
+        "kda_area_covered": 0.239396
+      }
+    },
+    {
+      "source_index": 239,
+      "source_region": "Samburu East",
+      "source_parent": "Samburu",
+      "best_match": {
+        "geo_code": "KEN-C025-CON135",
+        "kda_name": "Samburu East",
+        "intersection_over_union": 0.989941,
+        "source_area_covered": 0.994512,
+        "kda_area_covered": 0.995378
+      },
+      "runner_up": {
+        "geo_code": "KEN-C025-CON134",
+        "kda_name": "Samburu North",
+        "intersection_over_union": 0.001123,
+        "source_area_covered": 0.002089,
+        "kda_area_covered": 0.002422
+      }
+    },
+    {
+      "source_index": 240,
+      "source_region": "Samburu North",
+      "source_parent": "Samburu",
+      "best_match": {
+        "geo_code": "KEN-C025-CON134",
+        "kda_name": "Samburu North",
+        "intersection_over_union": 0.944492,
+        "source_area_covered": 0.982373,
+        "kda_area_covered": 0.960774
+      },
+      "runner_up": {
+        "geo_code": "KEN-C025-CON133",
+        "kda_name": "Samburu West",
+        "intersection_over_union": 0.009236,
+        "source_area_covered": 0.011627,
+        "kda_area_covered": 0.042983
+      }
+    },
+    {
+      "source_index": 241,
+      "source_region": "Samburu West",
+      "source_parent": "Samburu",
+      "best_match": {
+        "geo_code": "KEN-C025-CON133",
+        "kda_name": "Samburu West",
+        "intersection_over_union": 0.82791,
+        "source_area_covered": 0.872506,
+        "kda_area_covered": 0.941853
+      },
+      "runner_up": {
+        "geo_code": "KEN-C025-CON134",
+        "kda_name": "Samburu North",
+        "intersection_over_union": 0.027623,
+        "source_area_covered": 0.121006,
+        "kda_area_covered": 0.034557
+      }
+    },
+    {
+      "source_index": 242,
+      "source_region": "Alego Usonga",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON234",
+        "kda_name": "Alego Usonga",
+        "intersection_over_union": 0.947928,
+        "source_area_covered": 0.968857,
+        "kda_area_covered": 0.97772
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON236",
+        "kda_name": "Bondo",
+        "intersection_over_union": 0.005134,
+        "source_area_covered": 0.010063,
+        "kda_area_covered": 0.010373
+      }
+    },
+    {
+      "source_index": 243,
+      "source_region": "Bondo",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON236",
+        "kda_name": "Bondo",
+        "intersection_over_union": 0.436951,
+        "source_area_covered": 0.440793,
+        "kda_area_covered": 0.980445
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON234",
+        "kda_name": "Alego Usonga",
+        "intersection_over_union": 0.005778,
+        "source_area_covered": 0.008384,
+        "kda_area_covered": 0.018255
+      }
+    },
+    {
+      "source_index": 244,
+      "source_region": "Gem",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON235",
+        "kda_name": "Gem",
+        "intersection_over_union": 0.947132,
+        "source_area_covered": 0.972598,
+        "kda_area_covered": 0.973099
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON208",
+        "kda_name": "Khwisero",
+        "intersection_over_union": 0.007674,
+        "source_area_covered": 0.010352,
+        "kda_area_covered": 0.028817
+      }
+    },
+    {
+      "source_index": 245,
+      "source_region": "Rarieda",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON237",
+        "kda_name": "Rarieda",
+        "intersection_over_union": 0.588832,
+        "source_area_covered": 0.589428,
+        "kda_area_covered": 0.998288
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON236",
+        "kda_name": "Bondo",
+        "intersection_over_union": 0.004234,
+        "source_area_covered": 0.007876,
+        "kda_area_covered": 0.009073
+      }
+    },
+    {
+      "source_index": 246,
+      "source_region": "Ugenya",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON232",
+        "kda_name": "Ugenya",
+        "intersection_over_union": 0.902458,
+        "source_area_covered": 0.930029,
+        "kda_area_covered": 0.968195
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON233",
+        "kda_name": "Ugunja",
+        "intersection_over_union": 0.020744,
+        "source_area_covered": 0.033717,
+        "kda_area_covered": 0.051155
+      }
+    },
+    {
+      "source_index": 247,
+      "source_region": "Ugunja",
+      "source_parent": "Siaya",
+      "best_match": {
+        "geo_code": "KEN-C041-CON233",
+        "kda_name": "Ugunja",
+        "intersection_over_union": 0.873903,
+        "source_area_covered": 0.961994,
+        "kda_area_covered": 0.905154
+      },
+      "runner_up": {
+        "geo_code": "KEN-C041-CON232",
+        "kda_name": "Ugenya",
+        "intersection_over_union": 0.009492,
+        "source_area_covered": 0.023967,
+        "kda_area_covered": 0.015474
+      }
+    },
+    {
+      "source_index": 248,
+      "source_region": "Mwatate",
+      "source_parent": "Taita Taveta",
+      "best_match": {
+        "geo_code": "KEN-C006-CON025",
+        "kda_name": "Mwatate",
+        "intersection_over_union": 0.675392,
+        "source_area_covered": 0.712476,
+        "kda_area_covered": 0.928448
+      },
+      "runner_up": {
+        "geo_code": "KEN-C006-CON026",
+        "kda_name": "Voi",
+        "intersection_over_union": 0.092325,
+        "source_area_covered": 0.253499,
+        "kda_area_covered": 0.126799
+      }
+    },
+    {
+      "source_index": 249,
+      "source_region": "Taveta",
+      "source_parent": "Taita Taveta",
+      "best_match": {
+        "geo_code": "KEN-C006-CON023",
+        "kda_name": "Taveta",
+        "intersection_over_union": 0.806863,
+        "source_area_covered": 0.836971,
+        "kda_area_covered": 0.95732
+      },
+      "runner_up": {
+        "geo_code": "KEN-C006-CON024",
+        "kda_name": "Wundanyi",
+        "intersection_over_union": 0.088963,
+        "source_area_covered": 0.150553,
+        "kda_area_covered": 0.178619
+      }
+    },
+    {
+      "source_index": 250,
+      "source_region": "Voi",
+      "source_parent": "Taita Taveta",
+      "best_match": {
+        "geo_code": "KEN-C006-CON026",
+        "kda_name": "Voi",
+        "intersection_over_union": 0.666707,
+        "source_area_covered": 0.744059,
+        "kda_area_covered": 0.865105
+      },
+      "runner_up": {
+        "geo_code": "KEN-C006-CON024",
+        "kda_name": "Wundanyi",
+        "intersection_over_union": 0.208747,
+        "source_area_covered": 0.240689,
+        "kda_area_covered": 0.611339
+      }
+    },
+    {
+      "source_index": 251,
+      "source_region": "Wundanyi",
+      "source_parent": "Taita Taveta",
+      "best_match": {
+        "geo_code": "KEN-C006-CON024",
+        "kda_name": "Wundanyi",
+        "intersection_over_union": 0.199236,
+        "source_area_covered": 0.825682,
+        "kda_area_covered": 0.207984
+      },
+      "runner_up": {
+        "geo_code": "KEN-C006-CON025",
+        "kda_name": "Mwatate",
+        "intersection_over_union": 0.034071,
+        "source_area_covered": 0.14263,
+        "kda_area_covered": 0.042846
+      }
+    },
+    {
+      "source_index": 252,
+      "source_region": "Bura",
+      "source_parent": "Tana River",
+      "best_match": {
+        "geo_code": "KEN-C004-CON020",
+        "kda_name": "Bura",
+        "intersection_over_union": 0.920051,
+        "source_area_covered": 0.944229,
+        "kda_area_covered": 0.972923
+      },
+      "runner_up": {
+        "geo_code": "KEN-C007-CON028",
+        "kda_name": "Balambala",
+        "intersection_over_union": 0.036109,
+        "source_area_covered": 0.047419,
+        "kda_area_covered": 0.131495
+      }
+    },
+    {
+      "source_index": 253,
+      "source_region": "Galole",
+      "source_parent": "Tana River",
+      "best_match": {
+        "geo_code": "KEN-C004-CON019",
+        "kda_name": "Galole",
+        "intersection_over_union": 0.928326,
+        "source_area_covered": 0.960384,
+        "kda_area_covered": 0.965291
+      },
+      "runner_up": {
+        "geo_code": "KEN-C004-CON020",
+        "kda_name": "Bura",
+        "intersection_over_union": 0.015359,
+        "source_area_covered": 0.03574,
+        "kda_area_covered": 0.026227
+      }
+    },
+    {
+      "source_index": 254,
+      "source_region": "Garsen",
+      "source_parent": "Tana River",
+      "best_match": {
+        "geo_code": "KEN-C004-CON018",
+        "kda_name": "Garsen",
+        "intersection_over_union": 0.971419,
+        "source_area_covered": 0.976887,
+        "kda_area_covered": 0.994271
+      },
+      "runner_up": {
+        "geo_code": "KEN-C004-CON019",
+        "kda_name": "Galole",
+        "intersection_over_union": 0.009701,
+        "source_area_covered": 0.01543,
+        "kda_area_covered": 0.02546
+      }
+    },
+    {
+      "source_index": 255,
+      "source_region": "Maara",
+      "source_parent": "Tharaka",
+      "best_match": {
+        "geo_code": "KEN-C013-CON060",
+        "kda_name": "Maara",
+        "intersection_over_union": 0.855582,
+        "source_area_covered": 0.886112,
+        "kda_area_covered": 0.961289
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON059",
+        "kda_name": "South Imenti",
+        "intersection_over_union": 0.023351,
+        "source_area_covered": 0.065214,
+        "kda_area_covered": 0.035098
+      }
+    },
+    {
+      "source_index": 256,
+      "source_region": "Nithi",
+      "source_parent": "Tharaka",
+      "best_match": {
+        "geo_code": "KEN-C013-CON061",
+        "kda_name": "Chuka/Igambang'om",
+        "intersection_over_union": 0.902963,
+        "source_area_covered": 0.969638,
+        "kda_area_covered": 0.929236
+      },
+      "runner_up": {
+        "geo_code": "KEN-C013-CON060",
+        "kda_name": "Maara",
+        "intersection_over_union": 0.015545,
+        "source_area_covered": 0.027216,
+        "kda_area_covered": 0.034979
+      }
+    },
+    {
+      "source_index": 257,
+      "source_region": "Tharaka",
+      "source_parent": "Tharaka",
+      "best_match": {
+        "geo_code": "KEN-C013-CON062",
+        "kda_name": "Tharaka",
+        "intersection_over_union": 0.916873,
+        "source_area_covered": 0.980062,
+        "kda_area_covered": 0.9343
+      },
+      "runner_up": {
+        "geo_code": "KEN-C012-CON055",
+        "kda_name": "Tigania East",
+        "intersection_over_union": 0.006906,
+        "source_area_covered": 0.009954,
+        "kda_area_covered": 0.022052
+      }
+    },
+    {
+      "source_index": 258,
+      "source_region": "Cherangany",
+      "source_parent": "Trans Nzoia",
+      "best_match": {
+        "geo_code": "KEN-C026-CON140",
+        "kda_name": "Cherangany",
+        "intersection_over_union": 0.962304,
+        "source_area_covered": 0.980748,
+        "kda_area_covered": 0.980832
+      },
+      "runner_up": {
+        "geo_code": "KEN-C028-CON148",
+        "kda_name": "Marakwet West",
+        "intersection_over_union": 0.004406,
+        "source_area_covered": 0.00999,
+        "kda_area_covered": 0.00782
+      }
+    },
+    {
+      "source_index": 259,
+      "source_region": "Endebess",
+      "source_parent": "Trans Nzoia",
+      "best_match": {
+        "geo_code": "KEN-C026-CON137",
+        "kda_name": "Endebess",
+        "intersection_over_union": 0.937974,
+        "source_area_covered": 0.973702,
+        "kda_area_covered": 0.962354
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON136",
+        "kda_name": "Kwanza",
+        "intersection_over_union": 0.002876,
+        "source_area_covered": 0.004861,
+        "kda_area_covered": 0.006996
+      }
+    },
+    {
+      "source_index": 260,
+      "source_region": "Kiminini",
+      "source_parent": "Trans Nzoia",
+      "best_match": {
+        "geo_code": "KEN-C026-CON139",
+        "kda_name": "Kiminini",
+        "intersection_over_union": 0.911171,
+        "source_area_covered": 0.950019,
+        "kda_area_covered": 0.95705
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON138",
+        "kda_name": "Saboti",
+        "intersection_over_union": 0.020647,
+        "source_area_covered": 0.039431,
+        "kda_area_covered": 0.041539
+      }
+    },
+    {
+      "source_index": 261,
+      "source_region": "Kwanza",
+      "source_parent": "Trans Nzoia",
+      "best_match": {
+        "geo_code": "KEN-C026-CON136",
+        "kda_name": "Kwanza",
+        "intersection_over_union": 0.953303,
+        "source_area_covered": 0.976292,
+        "kda_area_covered": 0.975895
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON137",
+        "kda_name": "Endebess",
+        "intersection_over_union": 0.003672,
+        "source_area_covered": 0.008988,
+        "kda_area_covered": 0.00617
+      }
+    },
+    {
+      "source_index": 262,
+      "source_region": "Saboti",
+      "source_parent": "Trans Nzoia",
+      "best_match": {
+        "geo_code": "KEN-C026-CON138",
+        "kda_name": "Saboti",
+        "intersection_over_union": 0.886515,
+        "source_area_covered": 0.933221,
+        "kda_area_covered": 0.946562
+      },
+      "runner_up": {
+        "geo_code": "KEN-C026-CON137",
+        "kda_name": "Endebess",
+        "intersection_over_union": 0.017795,
+        "source_area_covered": 0.050841,
+        "kda_area_covered": 0.026648
+      }
+    },
+    {
+      "source_index": 263,
+      "source_region": "Loima",
+      "source_parent": "Turkana",
+      "best_match": {
+        "geo_code": "KEN-C023-CON126",
+        "kda_name": "Loima",
+        "intersection_over_union": 0.864795,
+        "source_area_covered": 0.886347,
+        "kda_area_covered": 0.972652
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON124",
+        "kda_name": "Turkana West",
+        "intersection_over_union": 0.033996,
+        "source_area_covered": 0.084629,
+        "kda_area_covered": 0.053765
+      }
+    },
+    {
+      "source_index": 264,
+      "source_region": "Turkana Central",
+      "source_parent": "Turkana",
+      "best_match": {
+        "geo_code": "KEN-C023-CON125",
+        "kda_name": "Turkana Central",
+        "intersection_over_union": 0.782826,
+        "source_area_covered": 0.815003,
+        "kda_area_covered": 0.951987
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON123",
+        "kda_name": "Turkana North",
+        "intersection_over_union": 0.014296,
+        "source_area_covered": 0.056654,
+        "kda_area_covered": 0.018761
+      }
+    },
+    {
+      "source_index": 265,
+      "source_region": "Turkana East",
+      "source_parent": "Turkana",
+      "best_match": {
+        "geo_code": "KEN-C023-CON128",
+        "kda_name": "Turkana East",
+        "intersection_over_union": 0.965204,
+        "source_area_covered": 0.986896,
+        "kda_area_covered": 0.977734
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON127",
+        "kda_name": "Turkana South",
+        "intersection_over_union": 0.00512,
+        "source_area_covered": 0.008442,
+        "kda_area_covered": 0.012843
+      }
+    },
+    {
+      "source_index": 266,
+      "source_region": "Turkana North",
+      "source_parent": "Turkana",
+      "best_match": {
+        "geo_code": "KEN-C023-CON123",
+        "kda_name": "Turkana North",
+        "intersection_over_union": 0.88375,
+        "source_area_covered": 0.926337,
+        "kda_area_covered": 0.95055
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON124",
+        "kda_name": "Turkana West",
+        "intersection_over_union": 0.000948,
+        "source_area_covered": 0.001658,
+        "kda_area_covered": 0.002211
+      }
+    },
+    {
+      "source_index": 267,
+      "source_region": "Turkana South",
+      "source_parent": "Turkana",
+      "best_match": {
+        "geo_code": "KEN-C023-CON127",
+        "kda_name": "Turkana South",
+        "intersection_over_union": 0.927905,
+        "source_area_covered": 0.957774,
+        "kda_area_covered": 0.967484
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON128",
+        "kda_name": "Turkana East",
+        "intersection_over_union": 0.010672,
+        "source_area_covered": 0.026609,
+        "kda_area_covered": 0.017505
+      }
+    },
+    {
+      "source_index": 268,
+      "source_region": "Turkana West",
+      "source_parent": "Turkana",
+      "best_match": {
+        "geo_code": "KEN-C023-CON124",
+        "kda_name": "Turkana West",
+        "intersection_over_union": 0.92474,
+        "source_area_covered": 0.981745,
+        "kda_area_covered": 0.940918
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON123",
+        "kda_name": "Turkana North",
+        "intersection_over_union": 0.005282,
+        "source_area_covered": 0.012383,
+        "kda_area_covered": 0.009128
+      }
+    },
+    {
+      "source_index": 269,
+      "source_region": "Ainabkoi",
+      "source_parent": "Uasin Gishu",
+      "best_match": {
+        "geo_code": "KEN-C027-CON144",
+        "kda_name": "Ainabkoi",
+        "intersection_over_union": 0.898766,
+        "source_area_covered": 0.923962,
+        "kda_area_covered": 0.970553
+      },
+      "runner_up": {
+        "geo_code": "KEN-C028-CON150",
+        "kda_name": "Keiyo South",
+        "intersection_over_union": 0.01131,
+        "source_area_covered": 0.031144,
+        "kda_area_covered": 0.017449
+      }
+    },
+    {
+      "source_index": 270,
+      "source_region": "Kapseret",
+      "source_parent": "Uasin Gishu",
+      "best_match": {
+        "geo_code": "KEN-C027-CON145",
+        "kda_name": "Kapseret",
+        "intersection_over_union": 0.918282,
+        "source_area_covered": 0.954457,
+        "kda_area_covered": 0.960361
+      },
+      "runner_up": {
+        "geo_code": "KEN-C027-CON146",
+        "kda_name": "Kesses",
+        "intersection_over_union": 0.010839,
+        "source_area_covered": 0.029906,
+        "kda_area_covered": 0.016717
+      }
+    },
+    {
+      "source_index": 271,
+      "source_region": "Kesses",
+      "source_parent": "Uasin Gishu",
+      "best_match": {
+        "geo_code": "KEN-C027-CON146",
+        "kda_name": "Kesses",
+        "intersection_over_union": 0.857658,
+        "source_area_covered": 0.901636,
+        "kda_area_covered": 0.946189
+      },
+      "runner_up": {
+        "geo_code": "KEN-C029-CON153",
+        "kda_name": "Nandi Hills",
+        "intersection_over_union": 0.0421,
+        "source_area_covered": 0.066347,
+        "kda_area_covered": 0.1033
+      }
+    },
+    {
+      "source_index": 272,
+      "source_region": "Moiben",
+      "source_parent": "Uasin Gishu",
+      "best_match": {
+        "geo_code": "KEN-C027-CON143",
+        "kda_name": "Moiben",
+        "intersection_over_union": 0.936738,
+        "source_area_covered": 0.977781,
+        "kda_area_covered": 0.957112
+      },
+      "runner_up": {
+        "geo_code": "KEN-C027-CON141",
+        "kda_name": "Soy",
+        "intersection_over_union": 0.005456,
+        "source_area_covered": 0.009878,
+        "kda_area_covered": 0.01204
+      }
+    },
+    {
+      "source_index": 273,
+      "source_region": "Soy",
+      "source_parent": "Uasin Gishu",
+      "best_match": {
+        "geo_code": "KEN-C027-CON141",
+        "kda_name": "Soy",
+        "intersection_over_union": 0.930108,
+        "source_area_covered": 0.949708,
+        "kda_area_covered": 0.978293
+      },
+      "runner_up": {
+        "geo_code": "KEN-C027-CON143",
+        "kda_name": "Moiben",
+        "intersection_over_union": 0.010219,
+        "source_area_covered": 0.022344,
+        "kda_area_covered": 0.018484
+      }
+    },
+    {
+      "source_index": 274,
+      "source_region": "Turbo",
+      "source_parent": "Uasin Gishu",
+      "best_match": {
+        "geo_code": "KEN-C027-CON142",
+        "kda_name": "Turbo",
+        "intersection_over_union": 0.901161,
+        "source_area_covered": 0.945262,
+        "kda_area_covered": 0.950777
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON199",
+        "kda_name": "Lugari",
+        "intersection_over_union": 0.007042,
+        "source_area_covered": 0.01287,
+        "kda_area_covered": 0.015314
+      }
+    },
+    {
+      "source_index": 275,
+      "source_region": "Emuhaya",
+      "source_parent": "Vihiga",
+      "best_match": {
+        "geo_code": "KEN-C038-CON215",
+        "kda_name": "Emuhaya",
+        "intersection_over_union": 0.893889,
+        "source_area_covered": 0.940403,
+        "kda_area_covered": 0.947568
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON208",
+        "kda_name": "Khwisero",
+        "intersection_over_union": 0.019503,
+        "source_area_covered": 0.050197,
+        "kda_area_covered": 0.030911
+      }
+    },
+    {
+      "source_index": 276,
+      "source_region": "Hamisi",
+      "source_parent": "Vihiga",
+      "best_match": {
+        "geo_code": "KEN-C038-CON213",
+        "kda_name": "Hamisi",
+        "intersection_over_union": 0.905394,
+        "source_area_covered": 0.956673,
+        "kda_area_covered": 0.944107
+      },
+      "runner_up": {
+        "geo_code": "KEN-C038-CON212",
+        "kda_name": "Sabatia",
+        "intersection_over_union": 0.007399,
+        "source_area_covered": 0.011686,
+        "kda_area_covered": 0.019769
+      }
+    },
+    {
+      "source_index": 277,
+      "source_region": "Luanda",
+      "source_parent": "Vihiga",
+      "best_match": {
+        "geo_code": "KEN-C038-CON214",
+        "kda_name": "Luanda",
+        "intersection_over_union": 0.869601,
+        "source_area_covered": 0.932753,
+        "kda_area_covered": 0.927766
+      },
+      "runner_up": {
+        "geo_code": "KEN-C038-CON215",
+        "kda_name": "Emuhaya",
+        "intersection_over_union": 0.02268,
+        "source_area_covered": 0.045651,
+        "kda_area_covered": 0.04313
+      }
+    },
+    {
+      "source_index": 278,
+      "source_region": "Sabatia",
+      "source_parent": "Vihiga",
+      "best_match": {
+        "geo_code": "KEN-C038-CON212",
+        "kda_name": "Sabatia",
+        "intersection_over_union": 0.907247,
+        "source_area_covered": 0.946368,
+        "kda_area_covered": 0.956422
+      },
+      "runner_up": {
+        "geo_code": "KEN-C037-CON210",
+        "kda_name": "Ikolomani",
+        "intersection_over_union": 0.018077,
+        "source_area_covered": 0.040512,
+        "kda_area_covered": 0.031611
+      }
+    },
+    {
+      "source_index": 279,
+      "source_region": "Vihiga",
+      "source_parent": "Vihiga",
+      "best_match": {
+        "geo_code": "KEN-C038-CON211",
+        "kda_name": "Vihiga",
+        "intersection_over_union": 0.896855,
+        "source_area_covered": 0.946707,
+        "kda_area_covered": 0.944541
+      },
+      "runner_up": {
+        "geo_code": "KEN-C038-CON212",
+        "kda_name": "Sabatia",
+        "intersection_over_union": 0.010344,
+        "source_area_covered": 0.022852,
+        "kda_area_covered": 0.018548
+      }
+    },
+    {
+      "source_index": 280,
+      "source_region": "Eldas",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON037",
+        "kda_name": "Eldas",
+        "intersection_over_union": 0.559011,
+        "source_area_covered": 0.704381,
+        "kda_area_covered": 0.730361
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON036",
+        "kda_name": "Wajir West",
+        "intersection_over_union": 0.073812,
+        "source_area_covered": 0.192352,
+        "kda_area_covered": 0.106962
+      }
+    },
+    {
+      "source_index": 281,
+      "source_region": "Tarbaj",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON035",
+        "kda_name": "Tarbaj",
+        "intersection_over_union": 0.760958,
+        "source_area_covered": 0.972972,
+        "kda_area_covered": 0.77739
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON037",
+        "kda_name": "Eldas",
+        "intersection_over_union": 0.014578,
+        "source_area_covered": 0.023073,
+        "kda_area_covered": 0.038086
+      }
+    },
+    {
+      "source_index": 282,
+      "source_region": "Wajir East",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON034",
+        "kda_name": "Wajir East",
+        "intersection_over_union": 0.911077,
+        "source_area_covered": 0.92317,
+        "kda_area_covered": 0.985825
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON035",
+        "kda_name": "Tarbaj",
+        "intersection_over_union": 0.023341,
+        "source_area_covered": 0.073115,
+        "kda_area_covered": 0.03315
+      }
+    },
+    {
+      "source_index": 283,
+      "source_region": "Wajir North",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON033",
+        "kda_name": "Wajir North",
+        "intersection_over_union": 0.774105,
+        "source_area_covered": 0.795525,
+        "kda_area_covered": 0.966386
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON035",
+        "kda_name": "Tarbaj",
+        "intersection_over_union": 0.086119,
+        "source_area_covered": 0.151312,
+        "kda_area_covered": 0.166583
+      }
+    },
+    {
+      "source_index": 284,
+      "source_region": "Wajir South",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON038",
+        "kda_name": "Wajir South",
+        "intersection_over_union": 0.991968,
+        "source_area_covered": 0.996417,
+        "kda_area_covered": 0.995519
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON034",
+        "kda_name": "Wajir East",
+        "intersection_over_union": 0.001468,
+        "source_area_covered": 0.001739,
+        "kda_area_covered": 0.00936
+      }
+    },
+    {
+      "source_index": 285,
+      "source_region": "Wajir West",
+      "source_parent": "Wajir",
+      "best_match": {
+        "geo_code": "KEN-C008-CON036",
+        "kda_name": "Wajir West",
+        "intersection_over_union": 0.829405,
+        "source_area_covered": 0.929136,
+        "kda_area_covered": 0.885414
+      },
+      "runner_up": {
+        "geo_code": "KEN-C008-CON037",
+        "kda_name": "Eldas",
+        "intersection_over_union": 0.046895,
+        "source_area_covered": 0.070004,
+        "kda_area_covered": 0.12439
+      }
+    },
+    {
+      "source_index": 286,
+      "source_region": "Kacheliba",
+      "source_parent": "West Pokot",
+      "best_match": {
+        "geo_code": "KEN-C024-CON131",
+        "kda_name": "Kacheliba",
+        "intersection_over_union": 0.885235,
+        "source_area_covered": 0.919391,
+        "kda_area_covered": 0.959723
+      },
+      "runner_up": {
+        "geo_code": "KEN-C023-CON126",
+        "kda_name": "Loima",
+        "intersection_over_union": 0.012513,
+        "source_area_covered": 0.039057,
+        "kda_area_covered": 0.01808
+      }
+    },
+    {
+      "source_index": 287,
+      "source_region": "Kapenguria",
+      "source_parent": "West Pokot",
+      "best_match": {
+        "geo_code": "KEN-C024-CON129",
+        "kda_name": "Kapenguria",
+        "intersection_over_union": 0.92333,
+        "source_area_covered": 0.970814,
+        "kda_area_covered": 0.949692
+      },
+      "runner_up": {
+        "geo_code": "KEN-C024-CON131",
+        "kda_name": "Kacheliba",
+        "intersection_over_union": 0.004297,
+        "source_area_covered": 0.013768,
+        "kda_area_covered": 0.006209
+      }
+    },
+    {
+      "source_index": 288,
+      "source_region": "Pokot South",
+      "source_parent": "West Pokot",
+      "best_match": {
+        "geo_code": "KEN-C024-CON132",
+        "kda_name": "Pokot South",
+        "intersection_over_union": 0.90618,
+        "source_area_covered": 0.955234,
+        "kda_area_covered": 0.94637
+      },
+      "runner_up": {
+        "geo_code": "KEN-C024-CON129",
+        "kda_name": "Kapenguria",
+        "intersection_over_union": 0.014326,
+        "source_area_covered": 0.034359,
+        "kda_area_covered": 0.023983
+      }
+    },
+    {
+      "source_index": 289,
+      "source_region": "Sigor",
+      "source_parent": "West Pokot",
+      "best_match": {
+        "geo_code": "KEN-C024-CON130",
+        "kda_name": "Sigor",
+        "intersection_over_union": 0.934982,
+        "source_area_covered": 0.955838,
+        "kda_area_covered": 0.977196
+      },
+      "runner_up": {
+        "geo_code": "KEN-C024-CON132",
+        "kda_name": "Pokot South",
+        "intersection_over_union": 0.014441,
+        "source_area_covered": 0.02271,
+        "kda_area_covered": 0.038149
+      }
+    }
+  ]
+}

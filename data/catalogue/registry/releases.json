@@ -958,5 +958,21 @@
     "version_label": "P42-W1-POP-001 / WorldPop R2024B v1",
     "release_notes": "Derived by Kenya Data Atlas. Numeric controls: KNBS 2019 KPHC official county populations (https://www.knbs.or.ke/2019-kenya-population-and-housing-census-results/). Spatial allocation: WorldPop Global 2015–2030 R2024B 2019 100m constrained surface; sensitivity: corresponding unconstrained surface (https://hub.worldpop.org/geodata/summary?id=54834). WorldPop data are CC BY 4.0.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "fc651458-fa01-5863-8d57-3847b4151d11",
+    "release_code": "REL-KDA-P42-PUBLISHED-SAE-2022",
+    "dataset_id": "4b533b75-6ff6-5505-b317-7b23f2fb2e55",
+    "title": "P42 published Kenya SAE 2022 strictly gated constituency tranche",
+    "reference_period_start": "2022-01-01",
+    "reference_period_end": "2022-12-31",
+    "published_at": "2026-09-23",
+    "discovered_at": "2026-09-23T11:30:00.000Z",
+    "ingested_at": "2026-09-23T11:30:00.000Z",
+    "release_url": "https://github.com/UW-Statistics/gatesweb/releases/tag/v2025.11.20",
+    "release_status": "published",
+    "version_label": "UW gatesweb v2025.11.20 / KDA P42 governed promotion",
+    "release_notes": "External published Bayesian small-area estimates with 90% intervals. KDA promotes only indicators passing county coherence and constituencies passing the frozen one-to-one geometry gate.",
+    "supersedes_release_id": ""
   }
 ]
