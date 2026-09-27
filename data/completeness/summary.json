@@ -17,9 +17,10 @@
   "by_status": {
     "boundary_unresolved": 30,
     "not_applicable": 1450,
-    "official_unavailable": 7485,
+    "official_unavailable": 4005,
     "published_derived": 3345,
     "published_direct": 7429,
+    "published_modelled": 3480,
     "retired_replaced": 376
   },
   "by_completion_phase": {
