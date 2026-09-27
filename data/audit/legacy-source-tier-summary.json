@@ -8,10 +8,10 @@
   "preferred_observations_in_scope": 7762,
   "preferred_observations_with_disposition": 7762,
   "preferred_observation_disposition_pct": 100,
-  "closure_cells_in_scope": 3781,
-  "closure_cells_with_disposition": 3781,
+  "closure_cells_in_scope": 2041,
+  "closure_cells_with_disposition": 2041,
   "closure_cell_disposition_pct": 100,
-  "closure_slot_keys_covered": 5541,
+  "closure_slot_keys_covered": 2061,
   "legacy_external_slots_without_canonical_observation": 0,
   "source_tier_counts": {
     "S0_direct_primary_official": 3643,
@@ -20,7 +20,7 @@
     "S3_secondary_corroborated_independent": 0,
     "S4_probable_value_conflicting_sources": 0,
     "S5_transparent_modelled_or_spatial_estimate": 3542,
-    "S6_governed_unavailable": 3781,
+    "S6_governed_unavailable": 2041,
     "S7_not_applicable": 0
   },
   "secondary_preferred_observation_count": 0,
