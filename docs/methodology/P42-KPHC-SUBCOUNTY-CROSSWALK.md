@@ -37,12 +37,7 @@ Before any value can enter the canonical registry, a subsequent tranche must est
 1. an official 2019 KNBS/IEBC crosswalk proving the census sub-county and constituency are equivalent; or
 2. independently sourced 2019 boundary geometries that pass a predeclared one-to-one overlap gate.
 
-The probe therefore writes `publication_eligible=false` for every row. No force matching, parent copying, arbitrary allocation, or current administrative-boundary substitution is permitted.
-
-## Next step
-
-If the candidate yield is substantial, build the boundary-equivalence stage and freeze its overlap thresholds **before** inspecting pass/fail results. Only rows that pass source, geography and reconciliation checks should then be considered for Local-54 promotion.
-
+No force matching, parent copying, arbitrary allocation, partial-county reconciliation, or current administrative-boundary substitution is permitted.
 
 ## Boundary-equivalence stage
 
@@ -60,4 +55,17 @@ The geometry test reprojects both layers to EPSG:6933 and requires, for a unique
 - at least **99%** of the constituency area covered by the sub-county;
 - a one-to-one passing match.
 
-The output records all failures and unmatched units, rather than force-matching them. A passing geometry row may advance to value-level reconciliation; it still cannot publish until the relevant census table value and county-level controls pass their own validation.
+A second, pinned PCode crosswalk route is permitted only when it resolves uniquely to the same KDA constituency identity. Both routes remain subject to full-county reconciliation.
+
+## Current governed result
+
+The executed probe currently records:
+
+- **438** source rows passing a geography route;
+- **12** county/indicator groups passing the exhaustive one-to-one reconciliation gate;
+- **66** promotion-candidate rows across **33** unique constituencies;
+- **0** rows marked publication-eligible before canonical promotion.
+
+Those 66 rows are deliberately held at `promotion_candidate=true` with `next_gate=canonical_registry_and_local54_validation`. Publication eligibility is granted only by the separate promotion workflow after canonical registry insertion, distribution rebuild, and Local-54 validation complete successfully.
+
+This section also retriggers the pull-request checks from a human-authored branch commit after the generated candidate artifact was committed by GitHub Actions.
