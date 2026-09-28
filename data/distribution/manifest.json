@@ -3,7 +3,7 @@
   "application_version": "1.0.0",
   "data_contract_version": "1.0.0",
   "release_date": "2026-08-30",
-  "generated_at": "2026-09-23T11:30:00.000Z",
+  "generated_at": "2026-09-09T00:00:00.000Z",
   "counts": {
     "units": 21,
     "indicators": 103,
@@ -237,7 +237,7 @@
         "json": {
           "path": "data/results/county-results.json",
           "bytes": 1423523,
-          "sha256": "723da2be05297c74735dbd518a7dda630672d48053c2f6f94102d7721f7f3b1b"
+          "sha256": "21034e6bc6fa1a7ac209a08b8c14f008db1bbd8b2932ea78f0fc71547cc4d672"
         },
         "csv": {
           "path": "data/distribution/csv/county-results.csv",
@@ -247,7 +247,7 @@
         "ndjson": {
           "path": "data/distribution/ndjson/county-results.ndjson",
           "bytes": 540616,
-          "sha256": "018ecd73ed581bcb065025b990fe3c35efbcf13e898765d85eeddb6668922ac2"
+          "sha256": "419c2ee8b07a322540d10143681bcc4f498c26fffb386956311afce1e5878cf7"
         }
       }
     },
@@ -282,8 +282,8 @@
       "formats": {
         "json": {
           "path": "data/policy/indicator-policy.json",
-          "bytes": 4072416,
-          "sha256": "05291bd58ace34b38e25f00d25e67b3546a38e82d0f1ae4dca8a118f9e4d9808"
+          "bytes": 3353111,
+          "sha256": "0dbe60ae6854fcc4b3f4dee8f059b58dc02371e01a79b4b32220c4a42de7caab"
         }
       }
     }
