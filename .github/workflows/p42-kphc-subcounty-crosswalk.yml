@@ -10,13 +10,22 @@ on:
       - scripts/p42/validate-kphc-subcounty-crosswalk.mjs
       - data/p42/kphc-subcounty-crosswalk-contract.json
       - data/geography/registry/geographies.json
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/p42-kphc-subcounty-crosswalk.yml
+      - scripts/p42/probe_kphc_subcounty.R
+      - scripts/p42/validate-kphc-subcounty-crosswalk.mjs
+      - data/p42/kphc-subcounty-crosswalk-contract.json
+      - data/geography/registry/geographies.json
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: p42-kphc-subcounty-crosswalk
+  group: p42-kphc-subcounty-crosswalk-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -38,6 +47,7 @@ jobs:
       - name: Validate no-publication safety gate
         run: node scripts/p42/validate-kphc-subcounty-crosswalk.mjs
       - name: Commit sanitized probe output
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         shell: bash
         run: |
           set -euo pipefail
