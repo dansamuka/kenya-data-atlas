@@ -1,0 +1,471 @@
+adm1_en,adm1_pcode,adm2_pcode,origin,adm2_en,sub_county_pcode
+Baringo,KE030,KE030159,adm2_en,Baringo Central,KEN_30_3001
+Baringo,KE030,KE030158,adm2_en,Baringo North,KEN_30_3002
+Baringo,KE030,KE030160,adm2_en,Baringo South,KEN_30_3005
+Baringo,KE030,KE030160,adm2alt1_en,Marigat,KEN_30_3005
+Baringo,KE030,KE030162,adm2_en,Eldama Ravine,KEN_30_3004
+Baringo,KE030,KE030162,adm2alt1_en,Koibatek,KEN_30_3004
+Baringo,KE030,KE030161,adm2_en,Mogotio,KEN_30_3006
+Baringo,KE030,KE030157,adm2_en,Tiaty,KEN_30_3003
+Baringo,KE030,KE030157,adm2alt1_en,East Pokot,KEN_30_3003
+Baringo,KE030,KE030157,adm2alt2_en,Tiaty East,KEN_30_3007
+Bomet,KE036,KE036197,adm2_en,Bomet Central,KEN_36_3605
+Bomet,KE036,KE036196,adm2_en,Bomet East,KEN_36_3601
+Bomet,KE036,KE036195,adm2_en,Chepalungu,KEN_36_3602
+Bomet,KE036,KE036198,adm2_en,Konoin,KEN_36_3603
+Bomet,KE036,KE036194,adm2_en,Sotik,KEN_36_3604
+Bungoma,KE039,KE039219,adm2_en,Bumula,KEN_39_3901
+Bungoma,KE039,KE039218,adm2_en,Kabuchai,KEN_39_3902
+Bungoma,KE039,KE039218,adm2alt1_en,Bungoma Central,KEN_39_3902
+Bungoma,KE039,KE039220,adm2_en,Kanduyi,KEN_39_3905
+Bungoma,KE039,KE039220,adm2alt1_en,Bungoma South,KEN_39_3905
+Bungoma,KE039,KE039223,adm2_en,Kimilili,KEN_39_3907
+Bungoma,KE039,KE039223,adm2alt1_en,Kimilili-Bungoma,KEN_39_3907
+Bungoma,KE039,KE039216,adm2_en,Mt. Elgon,KEN_39_3906
+Bungoma,KE039,KE039216,adm2alt1_en,Cheptais,KEN_39_3906
+Bungoma,KE039,KE039217,adm2_en,Sirisia,KEN_39_3909
+Bungoma,KE039,KE039217,adm2alt1_en,Bungoma West,KEN_39_3909
+Bungoma,KE039,KE039224,adm2_en,Tongaren,KEN_39_3910
+Bungoma,KE039,KE039224,adm2alt1_en,Bungoma North,KEN_39_3904
+Bungoma,KE039,KE039221,adm2_en,Webuye East,KEN_39_3903
+Bungoma,KE039,KE039221,adm2alt1_en,Bungoma East,KEN_39_3903
+Bungoma,KE039,KE039222,adm2_en,Webuye West,KEN_39_3911
+Busia,KE040,KE040231,adm2_en,Budalangi,NA
+Busia,KE040,KE040229,adm2_en,Butula,KEN_40_4003
+Busia,KE040,KE040230,adm2_en,Funyula,NA
+Busia,KE040,KE040228,adm2_en,Matayos,NA
+Busia,KE040,KE040227,adm2_en,Nambale,KEN_40_4004
+Busia,KE040,KE040225,adm2_en,Teso North,KEN_40_4006
+Busia,KE040,KE040226,adm2_en,Teso South,KEN_40_4007
+Elgeyo-Marakwet,KE028,KE028149,adm2_en,Keiyo North,KEN_28_2801
+Elgeyo-Marakwet,KE028,KE028150,adm2_en,Keiyo South,KEN_28_2802
+Elgeyo-Marakwet,KE028,KE028147,adm2_en,Marakwet East,KEN_28_2803
+Elgeyo-Marakwet,KE028,KE028148,adm2_en,Marakwet West,KEN_28_2804
+Embu,KE014,KE014065,adm2_en,Gachoka,KEN_14_1404
+Embu,KE014,KE014065,adm2alt1_en,Mbeere South,KEN_14_1404
+Embu,KE014,KE014063,adm2_en,Manyatta,NA
+Embu,KE014,KE014064,adm2_en,Runyenjes,NA
+Embu,KE014,KE014066,adm2_en,Siakago,KEN_14_1405
+Embu,KE014,KE014066,adm2alt1_en,Mbeere North,KEN_14_1405
+Garissa,KE007,KE007028,adm2_en,Balambala,KEN_7_701
+Garissa,KE007,KE007030,adm2_en,Dadaab,KEN_7_702
+Garissa,KE007,KE007027,adm2_en,Dujis,NA
+Garissa,KE007,KE007027,adm2alt1_en,Garissa Township,NA
+Garissa,KE007,KE007031,adm2_en,Fafi,KEN_7_703
+Garissa,KE007,KE007031,adm2alt1_en,Hulugho,KEN_7_705
+Garissa,KE007,KE007032,adm2_en,Ijara,KEN_7_706
+Garissa,KE007,KE007029,adm2_en,Lagdera,KEN_7_707
+Homa Bay,KE043,KE043249,adm2_en,Homa Bay,KEN_43_4301
+Homa Bay,KE043,KE043246,adm2_en,Kabondo Kasipul,NA
+Homa Bay,KE043,KE043247,adm2_en,Karachuonyo,NA
+Homa Bay,KE043,KE043245,adm2_en,Kasipul,NA
+Homa Bay,KE043,KE043250,adm2_en,Ndhiwa,KEN_43_4302
+Homa Bay,KE043,KE043248,adm2_en,Rangwe,KEN_43_4306
+Homa Bay,KE043,KE043251,adm2_en,Suba North,KEN_43_4307
+Homa Bay,KE043,KE043252,adm2_en,Suba South,KEN_43_4308
+Isiolo,KE011,KE011049,adm2_en,Isiolo North,KEN_11_1103
+Isiolo,KE011,KE011049,adm2alt1_en,Merti,KEN_11_1103
+Isiolo,KE011,KE011049,adm2alt2_en,Isiolo,KEN_11_1102
+Isiolo,KE011,KE011050,adm2_en,Isiolo South,KEN_11_1101
+Isiolo,KE011,KE011050,adm2alt1_en,Garbatulla,KEN_11_1101
+Isiolo,KE011,KE011050,adm2alt2_en,Gabatula,KEN_11_1101
+Kajiado,KE034,KE034184,adm2_en,Kajiado Central,KEN_34_3402
+Kajiado,KE034,KE034186,adm2_en,Kajiado East,KEN_34_3406
+Kajiado,KE034,KE034186,adm2alt1_en,Mashuru,KEN_34_3406
+Kajiado,KE034,KE034186,adm2alt2_en,Mashuuru,KEN_34_3406
+Kajiado,KE034,KE034183,adm2_en,Kajiado North,KEN_34_3403
+Kajiado,KE034,KE034183,adm2alt1_en,Isinya,KEN_34_3401
+Kajiado,KE034,KE034187,adm2_en,Kajiado South,KEN_34_3405
+Kajiado,KE034,KE034187,adm2alt1_en,Loitoktok,KEN_34_3405
+Kajiado,KE034,KE034187,adm2alt2_en,Loitokitok,KEN_34_3405
+Kajiado,KE034,KE034185,adm2_en,Kajiado West,KEN_34_3404
+Kakamega,KE037,KE037207,adm2_en,Butere,KEN_37_3701
+Kakamega,KE037,KE037210,adm2_en,Ikolomani,NA
+Kakamega,KE037,KE037208,adm2_en,Khwisero,KEN_37_3706
+Kakamega,KE037,KE037200,adm2_en,Likuyani,KEN_37_3707
+Kakamega,KE037,KE037199,adm2_en,Lugari,KEN_37_3708
+Kakamega,KE037,KE037202,adm2_en,Lurambi,NA
+Kakamega,KE037,KE037201,adm2_en,Malava,NA
+Kakamega,KE037,KE037206,adm2_en,Matungu,KEN_37_3710
+Kakamega,KE037,KE037205,adm2_en,Mumias East,KEN_37_3711
+Kakamega,KE037,KE037204,adm2_en,Mumias West,KEN_37_3712
+Kakamega,KE037,KE037203,adm2_en,Navakholo,KEN_37_3713
+Kakamega,KE037,KE037209,adm2_en,Shinyalu,NA
+Kericho,KE035,KE035190,adm2_en,Ainamoi,NA
+Kericho,KE035,KE035192,adm2_en,Belgut,KEN_35_3501
+Kericho,KE035,KE035191,adm2_en,Buret,NA
+Kericho,KE035,KE035188,adm2_en,Kipkelion East,NA
+Kericho,KE035,KE035189,adm2_en,Kipkelion West,NA
+Kericho,KE035,KE035193,adm2_en,Sigowet/Soin,NA
+Kiambu,KE022,KE022112,adm2_en,Gatundu North,KEN_22_2201
+Kiambu,KE022,KE022111,adm2_en,Gatundu South,KEN_22_2202
+Kiambu,KE022,KE022116,adm2_en,Githunguri,KEN_22_2203
+Kiambu,KE022,KE022113,adm2_en,Juja,KEN_22_2204
+Kiambu,KE022,KE022119,adm2_en,Kabete,KEN_22_2205
+Kiambu,KE022,KE022118,adm2_en,Kiambaa,KEN_22_2206
+Kiambu,KE022,KE022117,adm2_en,Kiambu,KEN_22_2207
+Kiambu,KE022,KE022120,adm2_en,Kikuyu,KEN_22_2208
+Kiambu,KE022,KE022122,adm2_en,Lari,KEN_22_2209
+Kiambu,KE022,KE022121,adm2_en,Limuru,KEN_22_2210
+Kiambu,KE022,KE022115,adm2_en,Ruiru,KEN_22_2211
+Kiambu,KE022,KE022114,adm2_en,Thika Town,NA
+Kilifi,KE003,KE003015,adm2_en,Ganze,KEN_3_302
+Kilifi,KE003,KE003015,adm2alt1_en,Kauma,KEN_3_304
+Kilifi,KE003,KE003013,adm2_en,Kaloleni,KEN_3_303
+Kilifi,KE003,KE003011,adm2_en,Kilifi North,KEN_3_305
+Kilifi,KE003,KE003012,adm2_en,Kilifi South,KEN_3_306
+Kilifi,KE003,KE003012,adm2alt1_en,Chonyi,KEN_3_301
+Kilifi,KE003,KE003017,adm2_en,Magarini,KEN_3_307
+Kilifi,KE003,KE003016,adm2_en,Malindi,KEN_3_308
+Kilifi,KE003,KE003014,adm2_en,Rabai,KEN_3_309
+Kirinyaga,KE020,KE020101,adm2_en,Gichugu,KEN_20_2002
+Kirinyaga,KE020,KE020101,adm2alt1_en,Kirinyaga East,KEN_20_2002
+Kirinyaga,KE020,KE020103,adm2_en,Kirinyaga Central,KEN_20_2001
+Kirinyaga,KE020,KE020100,adm2_en,Mwea,KEN_20_2004
+Kirinyaga,KE020,KE020100,adm2alt1_en,Mwea East,KEN_20_2004
+Kirinyaga,KE020,KE020100,adm2alt2_en,Mwea West,KEN_20_2005
+Kirinyaga,KE020,KE020102,adm2_en,Ndia,KEN_20_2003
+Kirinyaga,KE020,KE020102,adm2alt1_en,Kirinyaga West,KEN_20_2003
+Kisii,KE045,KE045264,adm2_en,Bobasi,NA
+Kisii,KE045,KE045263,adm2_en,Bomachoge Borabu,NA
+Kisii,KE045,KE045265,adm2_en,Bomachoge Chache,NA
+Kisii,KE045,KE045261,adm2_en,Bonchari,NA
+Kisii,KE045,KE045268,adm2_en,Kitutu Chache North,NA
+Kisii,KE045,KE045269,adm2_en,Kitutu Chache South,NA
+Kisii,KE045,KE045267,adm2_en,Nyaribari Chache,NA
+Kisii,KE045,KE045266,adm2_en,Nyaribari Masaba,NA
+Kisii,KE045,KE045262,adm2_en,South Mugirango,NA
+Kisumu,KE042,KE042240,adm2_en,Kisumu Central,KEN_42_4202
+Kisumu,KE042,KE042238,adm2_en,Kisumu East,KEN_42_4201
+Kisumu,KE042,KE042239,adm2_en,Kisumu West,KEN_42_4203
+Kisumu,KE042,KE042243,adm2_en,Muhoroni,KEN_42_4205
+Kisumu,KE042,KE042244,adm2_en,Nyakach,KEN_42_4207
+Kisumu,KE042,KE042242,adm2_en,Nyando,KEN_42_4206
+Kisumu,KE042,KE042241,adm2_en,Seme,KEN_42_4204
+Kitui,KE015,KE015072,adm2_en,Kitui Central,KEN_15_1504
+Kitui,KE015,KE015073,adm2_en,Kitui East,NA
+Kitui,KE015,KE015071,adm2_en,Kitui Rural,KEN_15_1503
+Kitui,KE015,KE015071,adm2alt1_en,Kisasi,KEN_15_1503
+Kitui,KE015,KE015074,adm2_en,Kitui South,KEN_15_1501
+Kitui,KE015,KE015074,adm2alt1_en,Ikutha,KEN_15_1501
+Kitui,KE015,KE015074,adm2alt2_en,Katulani,KEN_15_1502
+Kitui,KE015,KE015070,adm2_en,Kitui West,KEN_15_1505
+Kitui,KE015,KE015069,adm2_en,Mwingi East,KEN_15_1515
+Kitui,KE015,KE015067,adm2_en,Mwingi North,KEN_15_1509
+Kitui,KE015,KE015067,adm2alt1_en,Migwani,KEN_15_1509
+Kitui,KE015,KE015068,adm2_en,Mwingi West,NA
+Kwale,KE002,KE002010,adm2_en,Kinango,KEN_2_201
+Kwale,KE002,KE002010,adm2alt1_en,Samburu,KEN_2_201
+Kwale,KE002,KE002008,adm2_en,Lunga Lunga,NA
+Kwale,KE002,KE002009,adm2_en,Matuga,KEN_2_203
+Kwale,KE002,KE002007,adm2_en,Msambweni,KEN_2_204
+Laikipia,KE031,KE031164,adm2_en,Laikipia East,KEN_31_3102
+Laikipia,KE031,KE031165,adm2_en,Laikipia North,KEN_31_3103
+Laikipia,KE031,KE031163,adm2_en,Laikipia West,KEN_31_3104
+Lamu,KE005,KE005021,adm2_en,Lamu East,KEN_5_501
+Lamu,KE005,KE005022,adm2_en,Lamu West,KEN_5_502
+Machakos,KE016,KE016077,adm2_en,Kangundo,KEN_16_1603
+Machakos,KE016,KE016079,adm2_en,Kathiani,KEN_16_1604
+Machakos,KE016,KE016081,adm2_en,Machakos Town,KEN_16_1602
+Machakos,KE016,KE016081,adm2alt1_en,Kalama,KEN_16_1602
+Machakos,KE016,KE016081,adm2alt2_en,Machakos,KEN_16_1605
+Machakos,KE016,KE016075,adm2_en,Masinga,KEN_16_1606
+Machakos,KE016,KE016078,adm2_en,Matungulu,KEN_16_1607
+Machakos,KE016,KE016080,adm2_en,Mavoko,KEN_16_1601
+Machakos,KE016,KE016080,adm2alt1_en,Athi River,KEN_16_1601
+Machakos,KE016,KE016082,adm2_en,Mwala,KEN_16_1608
+Machakos,KE016,KE016076,adm2_en,Yatta,KEN_16_1609
+Makueni,KE017,KE017085,adm2_en,Kaiti,KEN_17_1703
+Makueni,KE017,KE017085,adm2alt1_en,Kilungu,KEN_17_1703
+Makueni,KE017,KE017088,adm2_en,Kibwezi East,KEN_17_1702
+Makueni,KE017,KE017088,adm2alt1_en,Kibwezi,KEN_17_1702
+Makueni,KE017,KE017087,adm2_en,Kibwezi West,KEN_17_1704
+Makueni,KE017,KE017087,adm2alt1_en,Makindu,KEN_17_1704
+Makueni,KE017,KE017084,adm2_en,Kilome,KEN_17_1708
+Makueni,KE017,KE017084,adm2alt1_en,Mukaa,KEN_17_1708
+Makueni,KE017,KE017086,adm2_en,Makueni,KEN_17_1705
+Makueni,KE017,KE017086,adm2alt1_en,Nzaui,KEN_17_1709
+Makueni,KE017,KE017086,adm2alt2_en,Kathonzweni,KEN_17_1701
+Makueni,KE017,KE017083,adm2_en,Mbooni,KEN_17_1706
+Makueni,KE017,KE017083,adm2alt1_en,Mbooni East,KEN_17_1706
+Makueni,KE017,KE017083,adm2alt2_en,Mbooni West,KEN_17_1707
+Mandera,KE009,KE009040,adm2_en,Banissa,NA
+Mandera,KE009,KE009044,adm2_en,Lafey,KEN_9_904
+Mandera,KE009,KE009043,adm2_en,Mandera East,KEN_9_906
+Mandera,KE009,KE009041,adm2_en,Mandera North,KEN_9_907
+Mandera,KE009,KE009042,adm2_en,Mandera South,KEN_9_903
+Mandera,KE009,KE009042,adm2alt1_en,Kutulo,KEN_9_903
+Mandera,KE009,KE009042,adm2alt2_en,Mandera Central,KEN_9_905
+Mandera,KE009,KE009039,adm2_en,Mandera West,KEN_9_901
+Marsabit,KE010,KE010048,adm2_en,Laisamis,KEN_10_1004
+Marsabit,KE010,KE010048,adm2alt1_en,Marsabit South,KEN_10_1004
+Marsabit,KE010,KE010048,adm2alt2_en,Loyangalani,KEN_10_1004
+Marsabit,KE010,KE010045,adm2_en,Moyale,KEN_10_1005
+Marsabit,KE010,KE010045,adm2alt1_en,Sololo,KEN_10_1007
+Marsabit,KE010,KE010046,adm2_en,North Horr,KEN_10_1006
+Marsabit,KE010,KE010046,adm2alt1_en,Chalbi,KEN_10_1003
+Marsabit,KE010,KE010046,adm2alt2_en,Marsabit North,KEN_10_1003
+Marsabit,KE010,KE010047,adm2_en,Saku,KEN_10_1002
+Marsabit,KE010,KE010047,adm2alt1_en,Marsabit Central,KEN_10_1002
+Meru,KE012,KE012057,adm2_en,Buuri,KEN_12_1201
+Meru,KE012,KE012057,adm2alt1_en,Buuri East,KEN_12_1201
+Meru,KE012,KE012057,adm2alt2_en,Buuri West,KEN_12_1202
+Meru,KE012,KE012058,adm2_en,Cental Imenti,KEN_12_1208
+Meru,KE012,KE012058,adm2alt1_en,Meru Central,KEN_12_1208
+Meru,KE012,KE012052,adm2_en,Igembe Central,KEN_12_1203
+Meru,KE012,KE012053,adm2_en,Igembe North,KEN_12_1204
+Meru,KE012,KE012051,adm2_en,Igembe South,KEN_12_1205
+Meru,KE012,KE012056,adm2_en,North Imenti,KEN_12_1206
+Meru,KE012,KE012056,adm2alt1_en,Imenti North,KEN_12_1206
+Meru,KE012,KE012059,adm2_en,South Imenti,KEN_12_1207
+Meru,KE012,KE012059,adm2alt1_en,Imenti South,KEN_12_1207
+Meru,KE012,KE012055,adm2_en,Tigania East,KEN_12_1210
+Meru,KE012,KE012055,adm2alt1_en,Tigania Central,KEN_12_1209
+Meru,KE012,KE012054,adm2_en,Tigania West,KEN_12_1211
+Migori,KE044,KE044254,adm2_en,Awendo,KEN_44_4401
+Migori,KE044,KE044260,adm2_en,Kuria East,KEN_44_4402
+Migori,KE044,KE044259,adm2_en,Kuria West,KEN_44_4403
+Migori,KE044,KE044258,adm2_en,Nyatike,KEN_44_4404
+Migori,KE044,KE044253,adm2_en,Rongo,KEN_44_4405
+Migori,KE044,KE044255,adm2_en,Suna East,KEN_44_4406
+Migori,KE044,KE044256,adm2_en,Suna West,KEN_44_4407
+Migori,KE044,KE044257,adm2_en,Uriri,KEN_44_4408
+Mombasa,KE001,KE001001,adm2_en,Changamwe,KEN_1_101
+Mombasa,KE001,KE001002,adm2_en,Jomvu,KEN_1_102
+Mombasa,KE001,KE001003,adm2_en,Kisauni,KEN_1_103
+Mombasa,KE001,KE001005,adm2_en,Likoni,KEN_1_104
+Mombasa,KE001,KE001006,adm2_en,Mvita,KEN_1_105
+Mombasa,KE001,KE001004,adm2_en,Nyali,KEN_1_106
+Murang'a,KE021,KE021110,adm2_en,Gatanga,KEN_21_2106
+Murang'a,KE021,KE021109,adm2_en,Kandara,KEN_21_2108
+Murang'a,KE021,KE021104,adm2_en,Kangema,KEN_21_2102
+Murang'a,KE021,KE021107,adm2_en,Kigumo,KEN_21_2107
+Murang'a,KE021,KE021106,adm2_en,Kiharu,NA
+Murang'a,KE021,KE021108,adm2_en,Maragwa,NA
+Murang'a,KE021,KE021105,adm2_en,Mathioya,KEN_21_2103
+Nairobi,KE047,KE047276,adm2_en,Dagoretti,KEN_47_4701
+Nairobi,KE047,KE047284,adm2_en,Embakasi Central,NA
+Nairobi,KE047,KE047285,adm2_en,Embakasi East,NA
+Nairobi,KE047,KE047283,adm2_en,Embakasi North,NA
+Nairobi,KE047,KE047282,adm2_en,Embakasi South,NA
+Nairobi,KE047,KE047286,adm2_en,Embakasi West,NA
+Nairobi,KE047,KE047288,adm2_en,Kamukunji,KEN_47_4703
+Nairobi,KE047,KE047280,adm2_en,Kasarani,KEN_47_4704
+Nairobi,KE047,KE047280,adm2alt1_en,Njiru,KEN_47_4709
+Nairobi,KE047,KE047278,adm2_en,Kibra,KEN_47_4705
+Nairobi,KE047,KE047275,adm2_en,Kilimani,NA
+Nairobi,KE047,KE047277,adm2_en,Langata,KEN_47_4706
+Nairobi,KE047,KE047277,adm2alt1_en,Lang'ata,KEN_47_4706
+Nairobi,KE047,KE047287,adm2_en,Makadara,KEN_47_4707
+Nairobi,KE047,KE047290,adm2_en,Mathare,KEN_47_4708
+Nairobi,KE047,KE047279,adm2_en,Roysambu,NA
+Nairobi,KE047,KE047281,adm2_en,Ruaraka,NA
+Nairobi,KE047,KE047289,adm2_en,Starehe,KEN_47_4710
+Nairobi,KE047,KE047274,adm2_en,Westlands,KEN_47_4711
+Nakuru,KE032,KE032174,adm2_en,Bahati,NA
+Nakuru,KE032,KE032169,adm2_en,Gilgil,KEN_32_3201
+Nakuru,KE032,KE032171,adm2_en,Kuresoi North,KEN_32_3202
+Nakuru,KE032,KE032170,adm2_en,Kuresoi South,KEN_32_3203
+Nakuru,KE032,KE032166,adm2_en,Molo,KEN_32_3204
+Nakuru,KE032,KE032168,adm2_en,Naivasha,KEN_32_3205
+Nakuru,KE032,KE032176,adm2_en,Nakuru Town East,NA
+Nakuru,KE032,KE032175,adm2_en,Nakuru Town West,NA
+Nakuru,KE032,KE032167,adm2_en,Njoro,KEN_32_3209
+Nakuru,KE032,KE032173,adm2_en,Rongai,KEN_32_3210
+Nakuru,KE032,KE032172,adm2_en,Subukia,KEN_32_3211
+Nandi,KE029,KE029152,adm2_en,Aldai,NA
+Nandi,KE029,KE029154,adm2_en,Chesumei,KEN_29_2901
+Nandi,KE029,KE029155,adm2_en,Emgwen,NA
+Nandi,KE029,KE029156,adm2_en,Mosop,NA
+Nandi,KE029,KE029153,adm2_en,Nandi Hills,NA
+Nandi,KE029,KE029151,adm2_en,Tinderet,KEN_29_2906
+Narok,KE033,KE033178,adm2_en,Emurua Dikirr,NA
+Narok,KE033,KE033178,adm2alt1_en,Transmara East,NA
+Narok,KE033,KE033177,adm2_en,Kilgoris,NA
+Narok,KE033,KE033177,adm2alt1_en,Transmara West,NA
+Narok,KE033,KE033180,adm2_en,Narok East,KEN_33_3301
+Narok,KE033,KE033179,adm2_en,Narok North,KEN_33_3302
+Narok,KE033,KE033181,adm2_en,Narok South,KEN_33_3303
+Narok,KE033,KE033182,adm2_en,Narok West,KEN_33_3304
+Nyamira,KE046,KE046273,adm2_en,Borabu,KEN_46_4601
+Nyamira,KE046,KE046270,adm2_en,Kitutu Masaba,NA
+Nyamira,KE046,KE046272,adm2_en,North Mugirango,NA
+Nyamira,KE046,KE046271,adm2_en,West Mugirango,NA
+Nyandarua,KE018,KE018089,adm2_en,Kinangop,KEN_18_1801
+Nyandarua,KE018,KE018090,adm2_en,Kipipiri,KEN_18_1804
+Nyandarua,KE018,KE018093,adm2_en,Ndaragwa,NA
+Nyandarua,KE018,KE018092,adm2_en,Ol Jorok,NA
+Nyandarua,KE018,KE018091,adm2_en,Ol Kalou,NA
+Nyeri,KE019,KE019095,adm2_en,Kieni,KEN_19_1902
+Nyeri,KE019,KE019095,adm2alt1_en,Kieni East,KEN_19_1902
+Nyeri,KE019,KE019095,adm2alt2_en,Kieni West,KEN_19_1903
+Nyeri,KE019,KE019096,adm2_en,Mathira,KEN_19_1904
+Nyeri,KE019,KE019096,adm2alt1_en,Mathira East,KEN_19_1904
+Nyeri,KE019,KE019096,adm2alt2_en,Mathira West,KEN_19_1905
+Nyeri,KE019,KE019098,adm2_en,Mukurweni,KEN_19_1907
+Nyeri,KE019,KE019098,adm2alt1_en,Mukurwe-ini,KEN_19_1907
+Nyeri,KE019,KE019099,adm2_en,Nyeri Town,KEN_19_1908
+Nyeri,KE019,KE019099,adm2alt1_en,Nyeri Central,KEN_19_1908
+Nyeri,KE019,KE019097,adm2_en,Othaya,NA
+Nyeri,KE019,KE019094,adm2_en,Tetu,KEN_19_1901
+Samburu,KE025,KE025135,adm2_en,Samburu East,KEN_25_2502
+Samburu,KE025,KE025134,adm2_en,Samburu North,KEN_25_2503
+Samburu,KE025,KE025133,adm2_en,Samburu West,KEN_25_2501
+Samburu,KE025,KE025133,adm2alt1_en,Samburu Central,KEN_25_2501
+Siaya,KE041,KE041234,adm2_en,Alego Usonga,NA
+Siaya,KE041,KE041236,adm2_en,Bondo,KEN_41_4105
+Siaya,KE041,KE041235,adm2_en,Gem,KEN_41_4102
+Siaya,KE041,KE041237,adm2_en,Rarieda,KEN_41_4106
+Siaya,KE041,KE041232,adm2_en,Ugenya,KEN_41_4103
+Siaya,KE041,KE041233,adm2_en,Ugunja,KEN_41_4104
+Taita Taveta,KE006,KE006025,adm2_en,Mwatate,KEN_6_601
+Taita Taveta,KE006,KE006023,adm2_en,Taveta,KEN_6_603
+Taita Taveta,KE006,KE006026,adm2_en,Voi,KEN_6_604
+Taita Taveta,KE006,KE006024,adm2_en,Wundanyi,KEN_6_602
+Taita Taveta,KE006,KE006024,adm2alt1_en,Taita,KEN_6_602
+Tana River,KE004,KE004020,adm2_en,Bura,KEN_4_402
+Tana River,KE004,KE004020,adm2alt1_en,Tana North,KEN_4_402
+Tana River,KE004,KE004019,adm2_en,Galole,KEN_4_403
+Tana River,KE004,KE004019,adm2alt1_en,Tana River,KEN_4_403
+Tana River,KE004,KE004018,adm2_en,Garsen,KEN_4_401
+Tana River,KE004,KE004018,adm2alt1_en,Tana Delta,KEN_4_401
+Tharaka-Nithi,KE013,KE013061,adm2_en,Maara,KEN_13_1302
+Tharaka-Nithi,KE013,KE013061,adm2alt1_en,Igambang'ombe,KEN_13_1301
+Tharaka-Nithi,KE013,KE013060,adm2_en,Nithi,KEN_13_1303
+Tharaka-Nithi,KE013,KE013060,adm2alt1_en,Nithi,KEN_13_1303
+Tharaka-Nithi,KE013,KE013060,adm2alt2_en,Meru South,KEN_13_1303
+Tharaka-Nithi,KE013,KE013062,adm2_en,Tharaka,KEN_13_1304
+Tharaka-Nithi,KE013,KE013062,adm2alt1_en,Tharaka North,KEN_13_1304
+Tharaka-Nithi,KE013,KE013062,adm2alt2_en,Tharaka South,KEN_13_1305
+Trans Nzoia,KE026,KE026140,adm2_en,Cherangany,KEN_26_2602
+Trans Nzoia,KE026,KE026140,adm2alt1_en,Trans Nzoia East,KEN_26_2602
+Trans Nzoia,KE026,KE026137,adm2_en,Endebess,KEN_26_2604
+Trans Nzoia,KE026,KE026137,adm2alt1_en,Trans Nzoia West,KEN_26_2601
+Trans Nzoia,KE026,KE026139,adm2_en,Kiminini,KEN_26_2605
+Trans Nzoia,KE026,KE026136,adm2_en,Kwanza,KEN_26_2603
+Trans Nzoia,KE026,KE026138,adm2_en,Saboti,NA
+Turkana,KE023,KE023126,adm2_en,Loima,KEN_23_2302
+Turkana,KE023,KE023125,adm2_en,Turkana Central,KEN_23_2303
+Turkana,KE023,KE023128,adm2_en,Turkana East,KEN_23_2304
+Turkana,KE023,KE023123,adm2_en,Turkana North,KEN_23_2305
+Turkana,KE023,KE023123,adm2alt1_en,Kibish,KEN_23_2301
+Turkana,KE023,KE023127,adm2_en,Turkana South,KEN_23_2306
+Turkana,KE023,KE023124,adm2_en,Turkana West,KEN_23_2307
+Uasin Gishu,KE027,KE027144,adm2_en,Ainabkoi,KEN_27_2701
+Uasin Gishu,KE027,KE027145,adm2_en,Kapseret,KEN_27_2702
+Uasin Gishu,KE027,KE027146,adm2_en,Kesses,KEN_27_2703
+Uasin Gishu,KE027,KE027143,adm2_en,Moiben,KEN_27_2704
+Uasin Gishu,KE027,KE027141,adm2_en,Soy,KEN_27_2705
+Uasin Gishu,KE027,KE027142,adm2_en,Turbo,KEN_27_2706
+Vihiga,KE038,KE038215,adm2_en,Emuhaya,KEN_38_3801
+Vihiga,KE038,KE038213,adm2_en,Hamisi,KEN_38_3805
+Vihiga,KE038,KE038214,adm2_en,Luanda,KEN_38_3804
+Vihiga,KE038,KE038212,adm2_en,Sabatia,KEN_38_3803
+Vihiga,KE038,KE038211,adm2_en,Vihiga,KEN_38_3802
+Wajir,KE008,KE008037,adm2_en,Eldas,KEN_8_802
+Wajir,KE008,KE008035,adm2_en,Tarbaj,KEN_8_804
+Wajir,KE008,KE008034,adm2_en,Wajir East,KEN_8_805
+Wajir,KE008,KE008034,adm2alt1_en,Sabuli,KEN_8_805
+Wajir,KE008,KE008033,adm2_en,Wajir North,KEN_8_806
+Wajir,KE008,KE008033,adm2alt1_en,Bute,KEN_8_801
+Wajir,KE008,KE008033,adm2alt2_en,Buna,KEN_8_801
+Wajir,KE008,KE008038,adm2_en,Wajir South,KEN_8_807
+Wajir,KE008,KE008038,adm2alt1_en,Habasweine,KEN_8_807
+Wajir,KE008,KE008036,adm2_en,Wajir West,KEN_8_808
+West Pokot,KE024,KE024131,adm2_en,Kacheliba,KEN_24_2403
+West Pokot,KE024,KE024131,adm2alt1_en,Pokot North,KEN_24_2403
+West Pokot,KE024,KE024131,adm2alt2_en,North Pokot,KEN_24_2403
+West Pokot,KE024,KE024129,adm2_en,Kapenguria,NA
+West Pokot,KE024,KE024132,adm2_en,Pokot South,KEN_24_2404
+West Pokot,KE024,KE024130,adm2_en,Sigor,KEN_24_2402
+West Pokot,KE024,KE024130,adm2alt1_en,Pokot Central,KEN_24_2402
+Kwale,NA,NA,NA,Lungalunga,KEN_2_202
+Kwale,NA,NA,NA,Samburu-Kwale,KEN_2_205
+Garissa,NA,NA,NA,Garissa,KEN_7_704
+Wajir,NA,NA,NA,Habaswein,KEN_8_803
+Mandera,NA,NA,NA,Banisa,KEN_9_902
+Marsabit,NA,NA,NA,Loiyangalani,KEN_10_1001
+Meru,NA,NA,NA,Meru National Park*,KEN_14_1401
+Meru,NA,NA,NA,Mt Kenya Forest*,KEN_14_1401
+Tharaka-Nithi,NA,NA,NA,Mt Kenya Forest*,KEN_14_1401
+Embu,NA,NA,NA,Embu East,KEN_14_1401
+Embu,NA,NA,NA,Embu North,KEN_14_1402
+Embu,NA,NA,NA,Embu West,KEN_14_1403
+Embu,NA,NA,NA,Mt Kenya Forest*,KEN_15_1506
+Kitui,NA,NA,NA,Kyuso,KEN_15_1506
+Kitui,NA,NA,NA,Lower Yatta,KEN_15_1507
+Kitui,NA,NA,NA,Matinyani,KEN_15_1508
+Kitui,NA,NA,NA,Mumoni,KEN_15_1510
+Kitui,NA,NA,NA,Mutitu,KEN_15_1511
+Kitui,NA,NA,NA,Mutitu North,KEN_15_1512
+Kitui,NA,NA,NA,Mutomo,KEN_15_1513
+Kitui,NA,NA,NA,Mwingi Central,KEN_15_1514
+Kitui,NA,NA,NA,Nzambani,KEN_15_1516
+Kitui,NA,NA,NA,Thagicu,KEN_15_1517
+Kitui,NA,NA,NA,Tseikuru,KEN_15_1518
+Nyandarua,NA,NA,NA,Nyandarua South,KEN_18_1802
+Nyandarua,NA,NA,NA,Mirangine,KEN_18_1803
+Nyandarua,NA,NA,NA,Nyandarua Central,KEN_18_1805
+Nyandarua,NA,NA,NA,Nyandarua West,KEN_18_1806
+Nyandarua,NA,NA,NA,Nyandarua North,KEN_18_1807
+Nyandarua,NA,NA,NA,Aberdare National Park*,KEN_19_1906
+Nyeri,NA,NA,NA,Nyeri South,KEN_19_1906
+Nyeri,NA,NA,NA,Mt Kenya Forest*,KEN_21_2101
+Nyeri,NA,NA,NA,Aberdare Forest*,KEN_21_2101
+Kirinyaga,NA,NA,NA,Mt Kenya Forest*,KEN_21_2101
+Murang'a,NA,NA,NA,Murang'a East,KEN_21_2101
+Murang'a,NA,NA,NA,Kahuro,KEN_21_2104
+Murang'a,NA,NA,NA,Murang'a South,KEN_21_2105
+Murang'a,NA,NA,NA,Aberdare Forest*,KEN_22_2212
+Kiambu,NA,NA,NA,Thika East,KEN_22_2212
+Kiambu,NA,NA,NA,Thika West,KEN_22_2213
+West Pokot,NA,NA,NA,Kipkomo,KEN_24_2401
+West Pokot,NA,NA,NA,West Pokot,KEN_24_2405
+Nandi,NA,NA,NA,Nandi Central,KEN_29_2902
+Nandi,NA,NA,NA,Nandi East,KEN_29_2903
+Nandi,NA,NA,NA,Nandi North,KEN_29_2904
+Nandi,NA,NA,NA,Nandi South,KEN_29_2905
+Laikipia,NA,NA,NA,Laikipia Central,KEN_31_3101
+Laikipia,NA,NA,NA,Nyahururu,KEN_31_3105
+Nakuru,NA,NA,NA,Nakuru East,KEN_32_3206
+Nakuru,NA,NA,NA,Nakuru North,KEN_32_3207
+Nakuru,NA,NA,NA,Nakuru West,KEN_32_3208
+Narok,NA,NA,NA,Trans Mara East,KEN_33_3305
+Narok,NA,NA,NA,Trans Mara West,KEN_33_3306
+Narok,NA,NA,NA,Mau Forest*,KEN_35_3502
+Kericho,NA,NA,NA,Bureti,KEN_35_3502
+Kericho,NA,NA,NA,Kericho East,KEN_35_3503
+Kericho,NA,NA,NA,Kipkelion,KEN_35_3504
+Kericho,NA,NA,NA,Londiani,KEN_35_3505
+Kericho,NA,NA,NA,Soin Sigowet,KEN_35_3506
+Kakamega,NA,NA,NA,Kakamega Central,KEN_37_3702
+Kakamega,NA,NA,NA,Kakamega East,KEN_37_3703
+Kakamega,NA,NA,NA,Kakamega North,KEN_37_3704
+Kakamega,NA,NA,NA,Kakamega South,KEN_37_3705
+Kakamega,NA,NA,NA,Matete,KEN_37_3709
+Vihiga,NA,NA,NA,Kakamega Forest*,KEN_39_3912
+Bungoma,NA,NA,NA,Mt Elgon,KEN_39_3912
+Bungoma,NA,NA,NA,Mt Elgon Forest*,KEN_40_4001
+Busia,NA,NA,NA,Bunyala,KEN_40_4001
+Busia,NA,NA,NA,Busia,KEN_40_4002
+Busia,NA,NA,NA,Samia,KEN_40_4005
+Siaya,NA,NA,NA,Siaya,KEN_41_4101
+Homa Bay,NA,NA,NA,Rachuonyo North,KEN_43_4303
+Homa Bay,NA,NA,NA,Rachuonyo East,KEN_43_4304
+Homa Bay,NA,NA,NA,Rachuonyo South,KEN_43_4305
+Kisii,NA,NA,NA,Etago,KEN_45_4501
+Kisii,NA,NA,NA,Gucha,KEN_45_4502
+Kisii,NA,NA,NA,Gucha South,KEN_45_4503
+Kisii,NA,NA,NA,Kenyenya,KEN_45_4504
+Kisii,NA,NA,NA,Kisii Central,KEN_45_4505
+Kisii,NA,NA,NA,Kisii South,KEN_45_4506
+Kisii,NA,NA,NA,Kitutu Central,KEN_45_4507
+Kisii,NA,NA,NA,Marani,KEN_45_4508
+Kisii,NA,NA,NA,Masaba South,KEN_45_4509
+Kisii,NA,NA,NA,Nyamache,KEN_45_4510
+Kisii,NA,NA,NA,Sameta,KEN_45_4511
+Nyamira,NA,NA,NA,Manga,KEN_46_4602
+Nyamira,NA,NA,NA,Masaba North,KEN_46_4603
+Nyamira,NA,NA,NA,Nyamira North,KEN_46_4604
+Nyamira,NA,NA,NA,Nyamira South,KEN_46_4605
+Nairobi,NA,NA,NA,Embakasi,KEN_47_4702
