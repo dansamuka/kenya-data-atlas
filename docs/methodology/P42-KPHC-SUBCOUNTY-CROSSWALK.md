@@ -69,3 +69,7 @@ The executed probe currently records:
 Those 66 rows are deliberately held at `promotion_candidate=true` with `next_gate=canonical_registry_and_local54_validation`. Publication eligibility is granted only by the separate promotion workflow after canonical registry insertion, distribution rebuild, and Local-54 validation complete successfully.
 
 This section also retriggers the pull-request checks from a human-authored branch commit after the generated candidate artifact was committed by GitHub Actions.
+
+## Release-gate compatibility
+
+P35's closed geographic-method vocabulary now explicitly recognizes `interpolated` as a governed Class C crosswalk method. The prohibited inheritance methods (`inherited`, `copied`, `downscaled`, `equal_share`, and `parent_rate`) remain prohibited. This change aligns P35 with the canonical indicator registry's pre-existing geographic-method vocabulary; it does not loosen the geography or reconciliation thresholds for this tranche.
