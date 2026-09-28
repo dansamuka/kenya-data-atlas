@@ -106,6 +106,7 @@ extract_rows <- function(df, dataset, indicator_id, value_col, weight_col, gende
       match_count=nrow(hits),
       matched_geo_code=if (nrow(hits)==1) hits$geo_code[[1]] else NULL,
       matched_constituency=if (nrow(hits)==1) hits$constituency_name[[1]] else NULL,
+      matched_external_adm2_pcode=if (nrow(hits)==1) hits$external_adm2_pcode[[1]] else NULL,
       match_status=if (nrow(hits)==1) "unique_name_candidate_geometry_gate_required" else if (nrow(hits)==0) "unmatched" else "ambiguous",
       publication_eligible=FALSE
     )
