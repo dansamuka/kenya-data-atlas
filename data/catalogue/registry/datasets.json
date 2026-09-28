@@ -1083,5 +1083,20 @@
     "publication_status": "published",
     "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-PUBLISHED-SAE.md",
     "known_limitations": "S5 modelled estimates, not official constituency observations. Only cells passing predeclared county and geometry gates are included."
+  },
+  {
+    "dataset_id": "40613062-b9de-57fd-92eb-806f1ddd8aaf",
+    "dataset_code": "DS-KDA-P42-KPHC-SUBCOUNTY-XWALK-2019",
+    "source_id": "aa098973-0098-52f1-8bdd-db7ef2b16fc5",
+    "title": "KPHC 2019 sub-county observations crosswalked to geometry-equivalent constituencies",
+    "description": "KNBS 2019 KPHC Volume IV percentage observations exposed at constituency level only where the source sub-county and electoral constituency pass KDA's frozen one-to-one geometry-equivalence gate and the complete county set reconciles to the published county control.",
+    "topic": "Population and housing census",
+    "geographic_coverage": [
+      "constituency"
+    ],
+    "frequency": "decennial",
+    "publication_status": "published",
+    "methodology_url": "https://github.com/dansamuka/kenya-data-atlas/blob/main/docs/methodology/P42-KPHC-SUBCOUNTY-CROSSWALK.md",
+    "known_limitations": "The numeric observation is an official KNBS sub-county value. Constituency exposure is a KDA geographic crosswalk and therefore carries Class C provenance; it is not represented as an official KNBS constituency publication."
   }
 ]

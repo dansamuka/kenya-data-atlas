@@ -46,8 +46,8 @@
       "pass": true
     },
     "dynamic_observations_with_recheck_schedule": {
-      "value": 4926,
-      "of": 7762
+      "value": 4992,
+      "of": 7828
     },
     "reauditable_closures_with_refresh_trigger": {
       "value": 85,
@@ -55,7 +55,7 @@
       "pass": true
     },
     "secondary_observations_queued_for_supersession": {
-      "value": 4119
+      "value": 4185
     },
     "local_geographies_covered": {
       "value": 1787,
