@@ -37,3 +37,7 @@ Names alone never authorize an assignment.
 Passing values publish as **S5 — Modelled estimate**. They are not official constituency statistics, are excluded from official-only views, are not ranking-eligible, and retain the published 90% interval plus the geometry diagnostics used to authorize the crosswalk.
 
 Admin-2 estimates that fail the geometry gate remain unavailable until a separately validated population-weighted boundary crosswalk or prediction-grid method exists. Thresholds are not relaxed after observing results.
+
+## Validation refresh
+
+The P42 branch was re-synchronised on 27 September 2026 after deterministic generated-output rebuilds. This marker intentionally retriggers the pull-request validation suite against the latest branch head; it does not change promotion thresholds or publication semantics.
