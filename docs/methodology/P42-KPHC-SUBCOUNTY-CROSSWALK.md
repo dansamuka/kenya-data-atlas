@@ -42,3 +42,22 @@ The probe therefore writes `publication_eligible=false` for every row. No force 
 ## Next step
 
 If the candidate yield is substantial, build the boundary-equivalence stage and freeze its overlap thresholds **before** inspecting pass/fail results. Only rows that pass source, geography and reconciliation checks should then be considered for Local-54 promotion.
+
+
+## Boundary-equivalence stage
+
+The second stage uses two frozen geometry comparators:
+
+1. a 2019-era Admin-2 boundary layer whose published metadata identifies IEBC as originator and describes the polygons as Kenya sub-counties; and
+2. a pinned archival constituency GeoJSON extracted from the former IEBC vote endpoint after the 2012 delimitation.
+
+The sources are intentionally frozen in `data/p42/kphc-subcounty-equivalence-sources.json` before comparison. They are not treated as interchangeable simply because each has roughly 290 units.
+
+The geometry test reprojects both layers to EPSG:6933 and requires, for a unique county/name candidate:
+
+- intersection-over-union **>= 0.98**;
+- at least **99%** of the sub-county area covered by the constituency;
+- at least **99%** of the constituency area covered by the sub-county;
+- a one-to-one passing match.
+
+The output records all failures and unmatched units, rather than force-matching them. A passing geometry row may advance to value-level reconciliation; it still cannot publish until the relevant census table value and county-level controls pass their own validation.
