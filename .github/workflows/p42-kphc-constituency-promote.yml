@@ -1,0 +1,88 @@
+name: P42 KPHC constituency promotion
+
+on:
+  push:
+    branches:
+      - p42-kphc-subcounty-crosswalk
+    paths:
+      - data/p42/kphc-constituency-candidates.json
+      - data/p42/kphc-constituency-promotion-contract.json
+      - scripts/p42/validate-kphc-promotion-candidates.mjs
+      - scripts/p42/apply-kphc-constituency-crosswalk.mjs
+      - docs/methodology/P42-KPHC-SUBCOUNTY-CROSSWALK.md
+      - .github/workflows/p42-kphc-constituency-promote.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-kphc-constituency-promotion
+  cancel-in-progress: true
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-kphc-subcounty-crosswalk
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check candidate yield
+        id: yield
+        shell: bash
+        run: |
+          if [ ! -f data/p42/kphc-constituency-candidates.json ]; then
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            echo "Candidate artifact does not exist yet."
+            exit 0
+          fi
+          COUNT=$(node -e "const x=require('./data/p42/kphc-constituency-candidates.json'); console.log((x.rows||[]).filter(r=>r.promotion_candidate).length)")
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "Promotion candidates: $COUNT"
+      - name: Install dependencies
+        if: steps.yield.outputs.count != '0'
+        run: npm ci
+      - name: Validate frozen candidates
+        if: steps.yield.outputs.count != '0'
+        run: node scripts/p42/validate-kphc-promotion-candidates.mjs
+      - name: Promote into canonical catalogue and indicator registries
+        if: steps.yield.outputs.count != '0'
+        run: |
+          node scripts/p42/apply-kphc-constituency-crosswalk.mjs catalogue
+          node scripts/catalogue/validate-catalogue.mjs
+          node scripts/p42/apply-kphc-constituency-crosswalk.mjs indicators
+          node scripts/indicators/build-cross-level-eligibility.mjs
+          node scripts/indicators/validate-registry.mjs
+      - name: Rebuild Local-54 and distribution surfaces
+        if: steps.yield.outputs.count != '0'
+        run: |
+          node scripts/distribution/build-distribution.mjs
+          node scripts/p29/build-local-54-slot-ledger.mjs
+          node scripts/p34/build-local-54-profile-subsets.mjs
+          node scripts/p35/build-local-54-release-gate.mjs
+      - name: Validate promotion
+        if: steps.yield.outputs.count != '0'
+        run: |
+          npm run distribution:validate
+          npm run p29:validate
+          npm run p34:validate
+          npm run p35:validate
+      - name: Commit governed promotion
+        if: steps.yield.outputs.count != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             data/catalogue/registry             data/indicators/registry             data/distribution             data/completeness/local-54-slot-ledger.json             data/completeness/local-54-slot-ledger.csv             data/completeness/local-54-reason-catalogue.json             data/completeness/local-54-reason-catalogue.csv             data/completeness/local-54-summary.json             data/local-54-profiles             data/audit/local-54-freshness-queue.json             data/audit/local-54-supersession-queue.json             data/audit/local-54-reaudit-queue.json             data/local-54-completion-dashboard.json
+          if git diff --cached --quiet; then
+            echo "No canonical promotion change to commit."
+          else
+            git commit -m "P42: promote geometry-equivalent KPHC constituency values"
+            git push origin HEAD:p42-kphc-subcounty-crosswalk
+          fi

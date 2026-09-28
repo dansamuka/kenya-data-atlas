@@ -67,7 +67,7 @@ assert(policy.acceptance?.parent_child_inheritance_prohibited === true, 'the loc
 const FORBIDDEN_GEOGRAPHIC_METHODS = new Set(['inherited', 'copied', 'downscaled', 'equal_share', 'parent_rate']);
 const inheritedCells = ledger.rows.filter(r => FORBIDDEN_GEOGRAPHIC_METHODS.has(String(r.geographic_method || '').toLowerCase()));
 assert(inheritedCells.length === 0, `gate: prohibited parent-child inheritance must be zero, found ${inheritedCells.length} cell(s) with a forbidden geographic_method`);
-const allowedMethods = new Set(['', 'direct', 'aggregated', 'proxy', 'modelled']);
+const allowedMethods = new Set(['', 'direct', 'aggregated', 'interpolated', 'proxy', 'modelled']);
 for (const r of ledger.rows) assert(allowedMethods.has(r.geographic_method || ''), `${r.slot_key}: geographic_method "${r.geographic_method}" is not in the allowed vocabulary -- gate 8 depends on this vocabulary staying closed`);
 
 // --- gate 9: dynamic observations carry as_of/recheck rules ---

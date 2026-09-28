@@ -974,5 +974,21 @@
     "version_label": "UW gatesweb v2025.11.20 / KDA P42 governed promotion",
     "release_notes": "External published Bayesian small-area estimates with 90% intervals. KDA promotes only indicators passing county coherence and constituencies passing the frozen one-to-one geometry gate.",
     "supersedes_release_id": ""
+  },
+  {
+    "release_id": "339fcccb-f57d-5d96-8c69-8646f542c3e4",
+    "release_code": "REL-KDA-P42-KPHC-SUBCOUNTY-XWALK-2019",
+    "dataset_id": "40613062-b9de-57fd-92eb-806f1ddd8aaf",
+    "title": "P42 KPHC 2019 geometry-equivalent constituency crosswalk tranche",
+    "reference_period_start": "2019-08-24",
+    "reference_period_end": "2019-08-25",
+    "published_at": "2026-09-28",
+    "discovered_at": "2026-09-28T09:25:00.000Z",
+    "ingested_at": "2026-09-28T09:25:00.000Z",
+    "release_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "release_status": "published",
+    "version_label": "KPHC 2019 Volume IV / KDA P42 governed crosswalk",
+    "release_notes": "Official KNBS percentages preserved without numeric alteration. KDA publishes a constituency series only after frozen geometry equivalence and complete-county weighted reconciliation pass.",
+    "supersedes_release_id": ""
   }
 ]

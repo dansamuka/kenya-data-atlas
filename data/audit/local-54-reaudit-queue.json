@@ -3,7 +3,7 @@
   "as_of": "2026-09-20",
   "definition": "Every distinct closure reason behind an official_unavailable/governed_unavailable/boundary_unresolved local-54 cell, with its refresh_trigger, so legacy unavailable states are periodically re-audited for new representable evidence rather than permanently grandfathered. not_applicable and retired_replaced are excluded -- those are permanent structural dispositions, not \"unavailable pending future evidence\".",
   "reason_group_count": 85,
-  "cell_count": 76556,
+  "cell_count": 76490,
   "without_refresh_trigger": 0,
   "rows": [
     {
@@ -417,7 +417,7 @@
       "levels": [
         "constituency"
       ],
-      "cell_count": 290,
+      "cell_count": 257,
       "has_refresh_trigger": true,
       "refresh_trigger": "Re-check data/indicators/registry/series.json for an active series for IND-HOUSEHOLD-CAR-OWNERSHIP at constituency level, and re-check the source cited above for an updated publication scope.",
       "source": "KNBS -- 2019 Kenya Population and Housing Census, Volume IV"
@@ -430,7 +430,7 @@
       "levels": [
         "constituency"
       ],
-      "cell_count": 290,
+      "cell_count": 257,
       "has_refresh_trigger": true,
       "refresh_trigger": "Re-check data/indicators/registry/series.json for an active series for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at constituency level, and re-check the source cited above for an updated publication scope.",
       "source": "KNBS -- 2019 Kenya Population and Housing Census, Volume IV"

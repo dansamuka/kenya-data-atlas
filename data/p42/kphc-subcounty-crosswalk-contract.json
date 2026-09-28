@@ -1,0 +1,43 @@
+{
+  "schema_version": "kda.p42.kphc-subcounty-crosswalk-contract.v1",
+  "phase": "P42",
+  "status": "probe",
+  "objective": "Test whether 2019 KPHC Volume IV sub-county tables can unlock constituency-level Local-54 values without assuming that a census sub-county is spatially equivalent to an electoral constituency.",
+  "source": {
+    "primary_authority": "Kenya National Bureau of Statistics",
+    "official_report": "2019 Kenya Population and Housing Census Volume IV — Distribution of Population by Socio-Economic Characteristics",
+    "official_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "extraction_mirror": "Shelmith-Kariuki/rKenyaCensus",
+    "extraction_mirror_commit": "6db00e5b1b71a781e6def15dd98a4828b6d960bc",
+    "mirror_role": "reproducible transcription aid only; not sufficient by itself for publication"
+  },
+  "target_tables": [
+    {
+      "dataset": "V4_T2.2",
+      "indicator_id": "IND-SCHOOL-ATTENDANCE-RATE",
+      "field": "StillinSchool_Perc"
+    },
+    {
+      "dataset": "V4_T2.36",
+      "indicator_id": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "field": "Car"
+    },
+    {
+      "dataset": "V4_T2.36",
+      "indicator_id": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "field": "Motor Cycle"
+    }
+  ],
+  "gates": {
+    "county_match": "required",
+    "unique_normalized_name_match": "required for candidate generation only",
+    "name_match_is_geometry_proof": false,
+    "geometry_or_official_crosswalk_equivalence": "required before publication",
+    "county_back_aggregation": "required before publication where weights are available",
+    "force_matching": false,
+    "parent_copying": false,
+    "arbitrary_allocation": false
+  },
+  "publication_decision": "blocked_until_equivalence_gate",
+  "maximum_potential_constituency_cells": 870
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "kda.p42.kphc-constituency-promotion-contract.v2",
+  "phase": "P42",
+  "status": "gated",
+  "purpose": "Promote only KPHC 2019 sub-county observations that pass one of two frozen documented geography routes (strict geometry equivalence or a pinned unique subcounty-to-constituency PCode crosswalk) plus complete-county reconciliation into constituency-level Local-54 series.",
+  "source": {
+    "authority": "Kenya National Bureau of Statistics",
+    "source_code": "KNBS-STATISTICS",
+    "report": "2019 Kenya Population and Housing Census Volume IV — Distribution of Population by Socio-Economic Characteristics",
+    "report_url": "https://www.knbs.or.ke/2019-kenya-population-and-housing-census-reports/",
+    "extraction_aid": "Shelmith-Kariuki/rKenyaCensus pinned at 6db00e5b1b71a781e6def15dd98a4828b6d960bc",
+    "extraction_aid_is_primary_source": false,
+    "extraction_blob_shas": {
+      "V4_T1.9": "f5535c58e0b37614e92467375f1f47ae277f7dfc",
+      "V4_T2.2": "fcc698f8c858123e5404149469ddbeebdd14a4f2",
+      "V4_T2.36": "143828675c1860f958944d6cf974005a98a6983b"
+    }
+  },
+  "indicators": [
+    {
+      "indicator_id": "IND-SCHOOL-ATTENDANCE-RATE",
+      "source_table": "V4_T2.2",
+      "source_measure": "StillinSchool_Perc"
+    },
+    {
+      "indicator_id": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "source_table": "V4_T2.36",
+      "source_measure": "Car"
+    },
+    {
+      "indicator_id": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "source_table": "V4_T2.36",
+      "source_measure": "Motor Cycle"
+    }
+  ],
+  "required_gates": [
+    "pinned census extraction tables verified by Git blob SHA",
+    "one approved geography route: frozen strict geometry equivalence OR pinned unique secondary PCode crosswalk",
+    "one-to-one target constituency resolution",
+    "complete county passing set",
+    "weighted source sub-county aggregation reproduces county control within 0.15 percentage points",
+    "canonical registry validation",
+    "Local-54 P29/P34/P35 validation"
+  ],
+  "publication": {
+    "provenance_class": "C",
+    "geographic_method": "interpolated",
+    "source_tier": "S1_official_derived_or_crosswalked",
+    "statistical_status": "official_value_crosswalked",
+    "ranking_allowed": "inherit indicator policy",
+    "public_label": "Spatially crosswalked official value",
+    "official_only_view_inclusion": false,
+    "rationale": "The numeric value is published by KNBS for the source sub-county. KDA exposes it at constituency level only after a documented geography crosswalk and complete-county reconciliation pass; the geographic transformation remains visible and the value is never described as a direct KNBS constituency publication."
+  },
+  "prohibition": [
+    "no name-only promotion",
+    "no parent-to-child inheritance",
+    "no boundary force-match",
+    "no partial county reconciliation",
+    "no invented values or precision"
+  ],
+  "geography_routes": {
+    "strict_geometry": {
+      "thresholds": "IoU >= 0.98; source coverage >= 0.99; constituency coverage >= 0.99; one-to-one",
+      "role": "preferred direct spatial-equivalence proof"
+    },
+    "secondary_pcode_crosswalk": {
+      "source_repository": "kenya-eie-wg/kenya_locations",
+      "source_path": "data/locations_match.csv",
+      "pinned_blob_sha": "1537272254d8022661462cd8958d5df9972ddf37",
+      "rule": "source KPHC sub-county PCode must map to exactly one external constituency/Admin-2 PCode, which must resolve uniquely to the KDA constituency registry",
+      "limitation": "secondary documented crosswalk, not an official KNBS or IEBC boundary instrument; therefore Class C presentation remains mandatory"
+    }
+  }
+}

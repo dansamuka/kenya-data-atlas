@@ -2,7 +2,7 @@
   "schema_version": "kda.p35.local-54-supersession-queue.v1",
   "as_of": "2026-09-20",
   "definition": "Every published local-54 cell whose value is not a direct primary (badge A) observation, queued for periodic re-check against whether a primary source has since become available -- so a secondary/derived/modelled value is never permanently presented as final.",
-  "cell_count": 4119,
+  "cell_count": 4185,
   "rows": [
     {
       "slot_key": "KEN-C001-CON001-W0001|local_54|IND-LAND-AREA",
@@ -18985,6 +18985,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C025-CON133-W0665; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C025-CON133|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C025-CON133",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C025-CON133; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C025-CON133|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C025-CON133",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C025-CON133; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C025-CON133|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C025-CON133",
       "level": "constituency",
@@ -19135,6 +19155,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C025-CON134-W0671; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C025-CON134|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C025-CON134",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C025-CON134; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C025-CON134|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C025-CON134",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C025-CON134; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C025-CON134|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C025-CON134",
       "level": "constituency",
@@ -19253,6 +19293,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-CONTRACEPTIVE-USE at KEN-C025-CON135; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C025-CON135|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C025-CON135; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C025-CON135|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C025-CON135",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C025-CON135; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C025-CON135|local_54|IND-LAND-AREA",
@@ -20215,6 +20275,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C027-CON141-W0707; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C027-CON141|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C027-CON141",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C027-CON141; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON141|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C027-CON141",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C027-CON141; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C027-CON141|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C027-CON141",
       "level": "constituency",
@@ -20365,6 +20445,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C027-CON142-W0713; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C027-CON142|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C027-CON142",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C027-CON142; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON142|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C027-CON142",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C027-CON142; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C027-CON142|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C027-CON142",
       "level": "constituency",
@@ -20495,6 +20595,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C027-CON143-W0718; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C027-CON143|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C027-CON143",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C027-CON143; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON143|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C027-CON143",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C027-CON143; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C027-CON143|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C027-CON143",
       "level": "constituency",
@@ -20583,6 +20703,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C027-CON144-W0721; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON144|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C027-CON144",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C027-CON144; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON144|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C027-CON144",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C027-CON144; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C027-CON144|local_54|IND-LAND-AREA",
@@ -20715,6 +20855,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C027-CON145-W0726; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C027-CON145|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C027-CON145",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C027-CON145; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON145|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C027-CON145",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C027-CON145; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C027-CON145|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C027-CON145",
       "level": "constituency",
@@ -20823,6 +20983,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C027-CON146-W0730; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON146|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C027-CON146",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C027-CON146; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C027-CON146|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C027-CON146",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C027-CON146; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C027-CON146|local_54|IND-LAND-AREA",
@@ -20995,6 +21175,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C028-CON147-W0734; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C028-CON147|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C028-CON147",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C028-CON147; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C028-CON147|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C028-CON147",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C028-CON147; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C028-CON147|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C028-CON147",
       "level": "constituency",
@@ -21145,6 +21345,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C028-CON148-W0740; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C028-CON148|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C028-CON148",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C028-CON148; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C028-CON148|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C028-CON148",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C028-CON148; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C028-CON148|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C028-CON148",
       "level": "constituency",
@@ -21253,6 +21473,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C028-CON149-W0744; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C028-CON149|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C028-CON149",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C028-CON149; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C028-CON149|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C028-CON149",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C028-CON149; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C028-CON149|local_54|IND-LAND-AREA",
@@ -21403,6 +21643,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C028-CON150-W0750; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C028-CON150|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C028-CON150",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C028-CON150; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C028-CON150|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C028-CON150",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C028-CON150; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C028-CON150|local_54|IND-LAND-AREA",
@@ -27735,6 +27995,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C036-CON194-W0970; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C036-CON194|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C036-CON194",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C036-CON194; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON194|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C036-CON194",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C036-CON194; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C036-CON194|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C036-CON194",
       "level": "constituency",
@@ -27863,6 +28143,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C036-CON195-W0975; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON195|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C036-CON195",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C036-CON195; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON195|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C036-CON195",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C036-CON195; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C036-CON195|local_54|IND-LAND-AREA",
@@ -27995,6 +28295,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C036-CON196-W0980; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C036-CON196|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C036-CON196",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C036-CON196; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON196|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C036-CON196",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C036-CON196; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C036-CON196|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C036-CON196",
       "level": "constituency",
@@ -28125,6 +28445,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C036-CON197-W0985; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C036-CON197|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C036-CON197",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C036-CON197; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON197|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C036-CON197",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C036-CON197; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C036-CON197|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C036-CON197",
       "level": "constituency",
@@ -28253,6 +28593,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C036-CON198-W0990; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON198|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C036-CON198",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C036-CON198; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C036-CON198|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C036-CON198",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C036-CON198; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C036-CON198|local_54|IND-LAND-AREA",
@@ -33905,6 +34265,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON238-W1190; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C042-CON238|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON238",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON238; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON238|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON238",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON238; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C042-CON238|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C042-CON238",
       "level": "constituency",
@@ -34033,6 +34413,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON239-W1195; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON239|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON239",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON239; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON239|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON239",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON239; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C042-CON239|local_54|IND-LAND-AREA",
@@ -34185,6 +34585,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON240-W1201; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C042-CON240|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON240",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON240; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON240|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON240",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON240; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C042-CON240|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C042-CON240",
       "level": "constituency",
@@ -34293,6 +34713,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON241-W1205; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON241|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON241",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON241; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON241|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON241",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON241; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C042-CON241|local_54|IND-LAND-AREA",
@@ -34425,6 +34865,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON242-W1210; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C042-CON242|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON242",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON242; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON242|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON242",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON242; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C042-CON242|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C042-CON242",
       "level": "constituency",
@@ -34555,6 +35015,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON243-W1215; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C042-CON243|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON243",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON243; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON243|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON243",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON243; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C042-CON243|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C042-CON243",
       "level": "constituency",
@@ -34683,6 +35163,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C042-CON244-W1220; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON244|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C042-CON244",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C042-CON244; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C042-CON244|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C042-CON244",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C042-CON244; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C042-CON244|local_54|IND-LAND-AREA",
@@ -35975,6 +36475,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON253-W1264; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C044-CON253|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON253",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON253; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON253|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON253",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON253; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C044-CON253|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C044-CON253",
       "level": "constituency",
@@ -36083,6 +36603,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON254-W1268; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON254|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON254",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON254; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON254|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON254",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON254; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C044-CON254|local_54|IND-LAND-AREA",
@@ -36195,6 +36735,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON255-W1272; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C044-CON255|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON255",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON255; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON255|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON255",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON255; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C044-CON255|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C044-CON255",
       "level": "constituency",
@@ -36303,6 +36863,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON256-W1276; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON256|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON256",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON256; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON256|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON256",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON256; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C044-CON256|local_54|IND-LAND-AREA",
@@ -36433,6 +37013,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON257-W1281; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON257|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON257",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON257; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON257|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON257",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON257; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C044-CON257|local_54|IND-LAND-AREA",
@@ -36605,6 +37205,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON258-W1288; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C044-CON258|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON258",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON258; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON258|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON258",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON258; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C044-CON258|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C044-CON258",
       "level": "constituency",
@@ -36775,6 +37395,26 @@
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON259-W1295; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
     },
     {
+      "slot_key": "KEN-C044-CON259|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON259",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON259; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON259|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON259",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON259; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
       "slot_key": "KEN-C044-CON259|local_54|IND-LAND-AREA",
       "geo_code": "KEN-C044-CON259",
       "level": "constituency",
@@ -36903,6 +37543,26 @@
       "geographic_method": "modelled",
       "current_source": "KDA",
       "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-POPULATION at KEN-C044-CON260-W1300; if so, promote this cell and retire the D-badged (modelled) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON260|local_54|IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "geo_code": "KEN-C044-CON260",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-CAR-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-CAR-OWNERSHIP at KEN-C044-CON260; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
+    },
+    {
+      "slot_key": "KEN-C044-CON260|local_54|IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "geo_code": "KEN-C044-CON260",
+      "level": "constituency",
+      "indicator_code": "IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP",
+      "badge": "C",
+      "geographic_method": "interpolated",
+      "current_source": "KNBS",
+      "supersession_trigger": "Re-check whether an official (badge A, direct primary) source has since become available for IND-HOUSEHOLD-MOTORCYCLE-OWNERSHIP at KEN-C044-CON260; if so, promote this cell and retire the C-badged (interpolated) value it currently carries."
     },
     {
       "slot_key": "KEN-C044-CON260|local_54|IND-LAND-AREA",

@@ -1,0 +1,41 @@
+{
+  "schema_version": "kda.p42.kphc-subcounty-equivalence-sources.v1",
+  "phase": "P42",
+  "purpose": "Freeze the geometry sources and thresholds before evaluating whether 2019 KPHC sub-counties are spatially equivalent to KDA electoral constituencies.",
+  "sources": {
+    "subcounty": {
+      "id": "iebc-ocha-adm2-20191031",
+      "role": "2019-era sub-county polygons",
+      "metadata_title": "KENYA: Admin Level 2 Boundaries",
+      "metadata_originator": "Independent Electoral and Boundaries Commission (IEBC)",
+      "metadata_provider": "UNOCHA / HumanitarianResponse COD",
+      "metadata_publication_date": "2019-10-31",
+      "metadata_note": "Metadata states the layer represents Kenya sub-county boundaries; operational layer is not claimed by KDA to be a fresh official administrative release.",
+      "geojson_url": "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Kenya_Risk_8_7/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=geojson"
+    },
+    "constituency": {
+      "id": "iebc-derived-constituencies-2012",
+      "role": "electoral constituency polygons",
+      "provenance": "Public extraction from the former IEBC vote endpoint, archived in kenya-election-data and forked in Data-Repository/kenya-election-data-shapefiles.",
+      "pinned_repository": "Data-Repository/kenya-election-data-shapefiles",
+      "pinned_commit": "38f59ef765a0f0d6c2e82d84dec049b38ec6012f",
+      "geojson_url": "https://raw.githubusercontent.com/Data-Repository/kenya-election-data-shapefiles/38f59ef765a0f0d6c2e82d84dec049b38ec6012f/data/constituencies.geojson",
+      "limitation": "This is an IEBC-derived archival extraction, not a current IEBC download. It is used only as an independent geometry comparator."
+    }
+  },
+  "field_detection": {
+    "rule": "String fields are selected by maximum normalized overlap with the KDA county/constituency registry; the selected fields and scores are recorded in the output.",
+    "minimum_constituency_name_matches": 250,
+    "minimum_subcounty_name_matches": 250
+  },
+  "equivalence_gate": {
+    "unique_county_and_name_pair_required": true,
+    "iou_min": 0.98,
+    "source_area_coverage_min": 0.99,
+    "kda_comparator_area_coverage_min": 0.99,
+    "one_to_one_required": true,
+    "evaluated_crs": "EPSG:6933",
+    "threshold_freeze_rule": "Thresholds are frozen in this contract before the geometry comparison output is generated."
+  },
+  "publication_rule": "Only KPHC candidate rows whose source sub-county passes the frozen geometry-equivalence gate may advance to value-level reconciliation; geometry pass alone does not publish a value."
+}

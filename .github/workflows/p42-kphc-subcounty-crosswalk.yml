@@ -1,0 +1,144 @@
+name: P42 KPHC subcounty crosswalk probe
+
+on:
+  push:
+    branches:
+      - p42-kphc-subcounty-crosswalk
+    paths:
+      - .github/workflows/p42-kphc-subcounty-crosswalk.yml
+      - scripts/p42/probe_kphc_subcounty.R
+      - scripts/p42/validate-kphc-subcounty-crosswalk.mjs
+      - scripts/p42/build-kphc-secondary-crosswalk.mjs
+      - scripts/p42/validate-kphc-secondary-crosswalk.mjs
+      - scripts/p42/compare_kphc_subcounty_constituency_geometry.py
+      - scripts/p42/validate-kphc-subcounty-geometry.mjs
+      - scripts/p42/build-kphc-constituency-candidates.mjs
+      - scripts/p42/validate-kphc-constituency-candidates.mjs
+      - data/p42/kphc-subcounty-crosswalk-contract.json
+      - data/p42/kphc-subcounty-equivalence-sources.json
+      - data/p42/reference/kenya-eie-locations-match.csv
+      - data/geography/registry/geographies.json
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/p42-kphc-subcounty-crosswalk.yml
+      - scripts/p42/**
+      - data/p42/**
+      - data/geography/registry/geographies.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-kphc-subcounty-crosswalk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-kphc-subcounty-crosswalk
+
+      - uses: r-lib/actions/setup-r@v2
+
+      - name: Install extraction dependency
+        shell: Rscript {0}
+        run: |
+          install.packages("jsonlite", repos="https://cloud.r-project.org")
+
+      - name: Download pinned KPHC table blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://raw.githubusercontent.com/Shelmith-Kariuki/rKenyaCensus/6db00e5b1b71a781e6def15dd98a4828b6d960bc/data'
+          curl --fail --location --retry 3 --retry-delay 3 "$base/V4_T1.9.rda" -o /tmp/V4_T1.9.rda
+          curl --fail --location --retry 3 --retry-delay 3 "$base/V4_T2.2.rda" -o /tmp/V4_T2.2.rda
+          curl --fail --location --retry 3 --retry-delay 3 "$base/V4_T2.36.rda" -o /tmp/V4_T2.36.rda
+          test -s /tmp/V4_T1.9.rda
+          test -s /tmp/V4_T2.2.rda
+          test -s /tmp/V4_T2.36.rda
+
+      - name: Verify pinned Git blob SHAs
+        shell: python
+        run: |
+          import hashlib, pathlib
+          expected={
+            "/tmp/V4_T1.9.rda":"f5535c58e0b37614e92467375f1f47ae277f7dfc",
+            "/tmp/V4_T2.2.rda":"fcc698f8c858123e5404149469ddbeebdd14a4f2",
+            "/tmp/V4_T2.36.rda":"143828675c1860f958944d6cf974005a98a6983b",
+          }
+          for path, want in expected.items():
+            data=pathlib.Path(path).read_bytes()
+            got=hashlib.sha1(b"blob "+str(len(data)).encode()+b"\0"+data).hexdigest()
+            if got != want:
+              raise SystemExit(f"{path}: Git blob SHA mismatch {got} != {want}")
+            print(f"verified {path}: {got}")
+
+      - name: Extract KPHC source values and PCodes
+        run: Rscript scripts/p42/probe_kphc_subcounty.R
+
+      - name: Validate candidate-only extraction
+        run: node scripts/p42/validate-kphc-subcounty-crosswalk.mjs
+
+      - name: Build pinned secondary PCode geography route
+        run: |
+          node scripts/p42/build-kphc-secondary-crosswalk.mjs
+          node scripts/p42/validate-kphc-secondary-crosswalk.mjs
+
+      - name: Install optional geometry dependencies
+        continue-on-error: true
+        run: python -m pip install "geopandas==1.0.1" "shapely==2.1.2"
+
+      - name: Download optional strict geometry comparators
+        id: geometry_sources
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Kenya_Risk_8_7/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&outSR=4326&f=geojson' \
+            -o /tmp/kphc_subcounties.geojson
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://raw.githubusercontent.com/Data-Repository/kenya-election-data-shapefiles/38f59ef765a0f0d6c2e82d84dec049b38ec6012f/data/constituencies.geojson' \
+            -o /tmp/iebc_constituencies.geojson
+          test -s /tmp/kphc_subcounties.geojson
+          test -s /tmp/iebc_constituencies.geojson
+
+      - name: Evaluate optional frozen geometry route
+        if: steps.geometry_sources.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python scripts/p42/compare_kphc_subcounty_constituency_geometry.py \
+            --subcounty /tmp/kphc_subcounties.geojson \
+            --constituency /tmp/iebc_constituencies.geojson
+          node scripts/p42/validate-kphc-subcounty-geometry.mjs
+
+      - name: Build and validate value-level constituency candidates
+        run: |
+          node scripts/p42/build-kphc-constituency-candidates.mjs
+          node scripts/p42/validate-kphc-constituency-candidates.mjs
+
+      - name: Commit sanitized probe outputs
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/kphc-subcounty-crosswalk-probe.json \
+                  data/p42/kphc-secondary-pcode-crosswalk.json \
+                  data/p42/kphc-constituency-candidates.json
+          if [ -f data/p42/kphc-subcounty-geometry-equivalence.json ]; then
+            git add data/p42/kphc-subcounty-geometry-equivalence.json
+          fi
+          if git diff --cached --quiet; then
+            echo "No probe output change."
+          else
+            git commit -m "P42: record KPHC governed crosswalk candidates"
+            git push origin HEAD:p42-kphc-subcounty-crosswalk
+          fi
