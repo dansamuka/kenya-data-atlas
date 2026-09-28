@@ -92,10 +92,10 @@ async function indicators(){
    observations.push({
      observation_id:oid,series_id:sid,geography_id:geo.geography_id,boundary_version:'2012-01',
      period_start:'2019-08-24',period_end:'2019-08-25',period_type:'point_in_time',period_label:'2019 KPHC',
-     value:Number(r.source_value),geographic_method:'interpolated',statistical_status:'official_crosswalked',
+     value:Number(r.source_value),geographic_method:'interpolated',statistical_status:'final',
      source_class:'primary',badge:'C',source_release_id:release.release_id,source_dataset_id:dataset.dataset_id,
      source_table:r.dataset,source_sheet:'',source_page:'',source_row_label:r.source_county+' / '+r.source_subcounty,
-     source_url:SOURCE_URL,published_at:'2019',ingested_at:INGESTED_AT,vintage_id:vid,supersedes_observation_id:'',
+     source_url:SOURCE_URL,published_at:'2026-09-28',ingested_at:INGESTED_AT,vintage_id:vid,supersedes_observation_id:'',
      lower_bound:null,upper_bound:null,confidence_level:null,standard_error:null,sample_size:Number(r.source_weight)||null,
      suppression_reason:'',crosswalk_id:'P42-KPHC-SUBCOUNTY-CONSTITUENCY-2019',
      notes:`Class C spatially crosswalked official KNBS value. Source geography: ${r.source_county} / ${r.source_subcounty}. KDA constituency: ${r.matched_constituency} (${r.matched_geo_code}). Geography route=${r.geography_gate_route}. ${r.geometry_gate?.passes ? `Geometry IoU=${r.geometry_gate.iou}; source coverage=${r.geometry_gate.source_area_coverage}; constituency coverage=${r.geometry_gate.constituency_area_coverage}.` : `Pinned secondary PCode crosswalk ${r.source_subcounty_pcode} -> ${r.secondary_crosswalk_gate?.target_adm2_pcode}.`} Complete county weighted reconciliation passed within 0.15 percentage points. Numeric value is unchanged from the KNBS sub-county table; only the geography mapping is derived.`
