@@ -1,0 +1,52 @@
+name: P42 KPHC subcounty crosswalk probe
+
+on:
+  push:
+    branches:
+      - p42-kphc-subcounty-crosswalk
+    paths:
+      - .github/workflows/p42-kphc-subcounty-crosswalk.yml
+      - scripts/p42/probe_kphc_subcounty.R
+      - scripts/p42/validate-kphc-subcounty-crosswalk.mjs
+      - data/p42/kphc-subcounty-crosswalk-contract.json
+      - data/geography/registry/geographies.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p42-kphc-subcounty-crosswalk
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: p42-kphc-subcounty-crosswalk
+      - uses: r-lib/actions/setup-r@v2
+      - name: Install pinned extraction dependencies
+        shell: Rscript {0}
+        run: |
+          install.packages(c("jsonlite","remotes"), repos="https://cloud.r-project.org")
+          remotes::install_github("Shelmith-Kariuki/rKenyaCensus@6db00e5b1b71a781e6def15dd98a4828b6d960bc", upgrade="never")
+      - name: Extract and crosswalk official-table transcription
+        run: Rscript scripts/p42/probe_kphc_subcounty.R
+      - name: Validate no-publication safety gate
+        run: node scripts/p42/validate-kphc-subcounty-crosswalk.mjs
+      - name: Commit sanitized probe output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/p42/kphc-subcounty-crosswalk-probe.json
+          if git diff --cached --quiet; then
+            echo "No probe output change."
+          else
+            git commit -m "P42: record KPHC subcounty crosswalk candidates"
+            git push origin HEAD:p42-kphc-subcounty-crosswalk
+          fi
